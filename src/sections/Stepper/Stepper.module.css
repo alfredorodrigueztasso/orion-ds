@@ -1,0 +1,294 @@
+/**
+ * Stepper Component Styles
+ *
+ * Optimized for Product Mode (SaaS dashboards).
+ * Clean step navigation with efficient progress indication.
+ */
+
+.stepper {
+  display: flex;
+}
+
+/* ============================================================================
+ * ORIENTATION
+ * ============================================================================ */
+
+.horizontal {
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.vertical {
+  flex-direction: column;
+}
+
+/* ============================================================================
+ * STEP
+ * ============================================================================ */
+
+.step {
+  display: flex;
+  flex: 1;
+}
+
+.horizontal .step {
+  flex-direction: row;
+  align-items: center;
+}
+
+.vertical .step {
+  flex-direction: column;
+}
+
+.stepContent {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  flex-shrink: 0;
+}
+
+.vertical .stepContent {
+  flex-direction: row;
+}
+
+.stepClickable .stepContent {
+  cursor: pointer;
+  border-radius: var(--radius-control);
+  padding: var(--spacing-1);
+  margin: calc(-1 * var(--spacing-1));
+  transition: background-color var(--mode-hover-duration);
+}
+
+.stepClickable .stepContent:hover {
+  background: var(--surface-subtle);
+}
+
+/* ============================================================================
+ * STEP ICON
+ * ============================================================================ */
+
+.stepIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--surface-subtle);
+  color: var(--text-tertiary);
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-13);
+  font-weight: var(--font-weight-semibold);
+  flex-shrink: 0;
+  transition: all var(--mode-hover-duration);
+}
+
+.stepIconActive {
+  background: var(--interactive-primary);
+  color: var(--interactive-primary-text);
+}
+
+.stepIconCompleted {
+  background: var(--status-success-bg);
+  color: var(--text-success);
+}
+
+.stepIconError {
+  background: var(--status-error-bg);
+  color: var(--text-error);
+}
+
+/* ============================================================================
+ * STEP TEXT
+ * ============================================================================ */
+
+.stepText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-0-5);
+  min-width: 0;
+}
+
+.stepLabel {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-13);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.stepActive .stepLabel {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.stepCompleted .stepLabel {
+  color: var(--text-primary);
+}
+
+.stepError .stepLabel {
+  color: var(--text-error);
+}
+
+.stepOptional {
+  font-weight: var(--font-weight-normal);
+  color: var(--text-tertiary);
+}
+
+.stepDescription {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-12);
+  color: var(--text-tertiary);
+  line-height: var(--line-height-relaxed);
+}
+
+.stepErrorMessage {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-11);
+  color: var(--text-error);
+}
+
+/* ============================================================================
+ * CONNECTOR
+ * ============================================================================ */
+
+.connector {
+  flex: 1;
+  background: var(--border-subtle);
+  transition: background-color var(--mode-hover-duration);
+}
+
+.horizontal .connector {
+  height: 2px;
+  margin: 0 var(--spacing-3);
+  align-self: center;
+  min-width: 24px;
+}
+
+.vertical .connector {
+  width: 2px;
+  min-height: 24px;
+  margin: var(--spacing-2) 0 var(--spacing-2) 15px;
+}
+
+.connectorCompleted {
+  background: var(--text-success);
+}
+
+/* Connector Styles */
+.connector-dashed .connector {
+  background: transparent;
+  border-top: 2px dashed var(--border-subtle);
+}
+
+.connector-dashed .connectorCompleted {
+  border-top-color: var(--text-success);
+}
+
+.connector-dotted .connector {
+  background: transparent;
+  border-top: 2px dotted var(--border-subtle);
+}
+
+.connector-dotted .connectorCompleted {
+  border-top-color: var(--text-success);
+}
+
+.vertical.connector-dashed .connector,
+.vertical.connector-dotted .connector {
+  border-top: none;
+  border-left-width: 2px;
+  border-left-style: inherit;
+}
+
+/* ============================================================================
+ * ALTERNATIVE LABEL (Horizontal only)
+ * ============================================================================ */
+
+.alternativeLabel .step {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.alternativeLabel .stepContent {
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.alternativeLabel .connector {
+  position: absolute;
+  top: 16px;
+  left: calc(50% + 20px);
+  right: calc(-50% + 20px);
+  margin: 0;
+}
+
+.alternativeLabel .step {
+  position: relative;
+}
+
+/* ============================================================================
+ * SIZE VARIANTS
+ * ============================================================================ */
+
+.sm .stepIcon {
+  width: 24px;
+  height: 24px;
+  font-size: var(--font-size-11);
+}
+
+.sm .stepLabel {
+  font-size: var(--font-size-12);
+}
+
+.sm .stepDescription {
+  font-size: var(--font-size-11);
+}
+
+.sm.vertical .connector {
+  margin-left: 11px;
+}
+
+.lg .stepIcon {
+  width: 40px;
+  height: 40px;
+  font-size: var(--font-size-14);
+}
+
+.lg .stepLabel {
+  font-size: var(--font-size-14);
+}
+
+.lg .stepDescription {
+  font-size: var(--font-size-13);
+}
+
+.lg.vertical .connector {
+  margin-left: 19px;
+}
+
+/* ============================================================================
+ * RESPONSIVE
+ * ============================================================================ */
+
+@media (max-width: 640px) {
+  .horizontal:not(.alternativeLabel) {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .horizontal:not(.alternativeLabel)::-webkit-scrollbar {
+    display: none;
+  }
+
+  .horizontal:not(.alternativeLabel) .step {
+    flex-shrink: 0;
+  }
+
+  /* Hide descriptions on mobile in horizontal mode */
+  .horizontal .stepDescription {
+    display: none;
+  }
+}

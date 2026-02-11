@@ -1,0 +1,137 @@
+/**
+ * DashboardTemplate Styles
+ *
+ * Modern, elegant dashboard layout.
+ * Uses CSS variables for all values.
+ */
+
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--surface-subtle);
+  padding: var(--spacing-4);
+  gap: var(--spacing-4);
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: transparent;
+  /* Container is invisible - components have their own backgrounds */
+  overflow: visible;
+}
+
+.content {
+  flex: 1;
+  padding: var(--spacing-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+/* Inner content wrapper */
+.contentInner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+/* Split layout - content + aside */
+.contentSplit {
+  flex: 1;
+  padding: var(--spacing-6);
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: var(--spacing-6);
+}
+
+/* Compact layout */
+.compact .content {
+  padding: var(--spacing-4);
+  gap: var(--spacing-4);
+}
+
+.compact .contentInner {
+  gap: var(--spacing-4);
+}
+
+/* ============================================================================
+ * ASIDE - Enhanced styling with subtle visual hierarchy
+ * ============================================================================ */
+
+.aside {
+  background-color: var(--surface-base);
+  border-radius: var(--radius-container);
+  padding: var(--spacing-6);
+  height: fit-content;
+  position: sticky;
+  top: var(--spacing-6);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Add subtle top accent */
+.aside::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: var(--spacing-6);
+  right: var(--spacing-6);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-subtle), transparent);
+}
+
+/* ============================================================================
+ * MAIN CONTENT WRAPPER
+ * ============================================================================ */
+
+.contentSplit .contentInner {
+  min-width: 0;
+}
+
+/* ============================================================================
+ * RESPONSIVE
+ * ============================================================================ */
+
+@media (max-width: 1200px) {
+  .contentSplit {
+    grid-template-columns: 1fr 320px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .contentSplit {
+    grid-template-columns: 1fr;
+  }
+
+  .aside {
+    position: static;
+    order: -1;
+  }
+
+  .aside::before {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    padding: var(--spacing-2);
+    gap: var(--spacing-2);
+  }
+
+  .content,
+  .contentSplit {
+    gap: var(--spacing-3);
+  }
+
+  .contentInner {
+    gap: var(--spacing-4);
+  }
+
+  .aside {
+    padding: var(--spacing-4);
+  }
+}

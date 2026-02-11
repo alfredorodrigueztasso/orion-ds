@@ -1,0 +1,130 @@
+{
+  "name": "@orion-ds/react",
+  "version": "2.0.3",
+  "type": "module",
+  "description": "Orion Design System - React component library with 40+ AI-ready components and 9 templates",
+  "author": "Orion Design System Team",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./dist/react.css": "./dist/react.css",
+    "./styles.css": "./dist/styles.css",
+    "./components/*": {
+      "types": "./dist/components/*/index.d.ts",
+      "import": "./dist/components/*/index.mjs",
+      "require": "./dist/components/*/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "AI_GUIDE.md",
+    "AI_QUICKREF.md",
+    "AI_COMPONENTS.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && vite build && npm run build:styles",
+    "build:styles": "node scripts/bundle-styles.js",
+    "type-check": "tsc --noEmit",
+    "dev": "vite",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "keywords": [
+    "react",
+    "components",
+    "orion",
+    "design-system",
+    "typescript",
+    "ui",
+    "component-library",
+    "css-variables",
+    "theme",
+    "dark-mode",
+    "accessible",
+    "wcag"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/orion-ds/orion",
+    "directory": "packages/react"
+  },
+  "homepage": "https://github.com/orion-ds/orion#readme",
+  "bugs": {
+    "url": "https://github.com/orion-ds/orion/issues"
+  },
+  "aiMetadata": {
+    "setupRequired": [
+      "@orion-ds/react/styles.css"
+    ],
+    "alternativeSetup": [
+      "@orion-ds/core/theme.css",
+      "@orion-ds/react/dist/react.css"
+    ],
+    "entryPoints": [
+      "AI_GUIDE.md",
+      "AI_QUICKREF.md",
+      "AI_COMPONENTS.md"
+    ],
+    "wrapperRequired": "ThemeProvider",
+    "iconLibrary": "lucide-react",
+    "breakingChangesV2": [
+      "Hero: headline -> title",
+      "CTA: headline -> title",
+      "DetailPanel: subtitle -> description",
+      "ThemeProvider: options -> flat props (defaultTheme, defaultBrand)"
+    ]
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "peerDependencies": {
+    "@orion-ds/core": "^1.2.0",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "dependencies": {
+    "@types/react-syntax-highlighter": "^15.5.13",
+    "date-fns": "^4.1.0",
+    "lucide-react": "^0.563.0",
+    "react-markdown": "^10.1.0",
+    "react-syntax-highlighter": "^16.1.0",
+    "recharts": "^3.7.0",
+    "remark-gfm": "^4.0.1"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^8.6.14",
+    "@storybook/addon-interactions": "^8.6.14",
+    "@storybook/addon-links": "^8.6.15",
+    "@storybook/blocks": "^8.6.14",
+    "@storybook/react": "^8.6.15",
+    "@storybook/react-vite": "^8.6.15",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^25.2.1",
+    "@types/react": "^19.2.9",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.2",
+    "@vitest/ui": "^4.0.18",
+    "jsdom": "^27.4.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "storybook": "^8.6.15",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vitest": "^4.0.18"
+  }
+}

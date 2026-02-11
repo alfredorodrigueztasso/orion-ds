@@ -1,0 +1,263 @@
+/**
+ * Stats Component Styles
+ *
+ * Uses CSS Modules for scoped styling.
+ * All values reference semantic tokens via CSS variables.
+ */
+
+.stats {
+  position: relative;
+}
+
+/* ============================================================================
+ * HEADER STYLES
+ * ============================================================================ */
+
+.header {
+  margin-bottom: var(--spacing-16);
+}
+
+.centered {
+  & .header {
+    text-align: center;
+  }
+
+  & .description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  & .statItem {
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.eyebrow {
+  margin-bottom: var(--spacing-4);
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-4) 0;
+}
+
+.description {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-18);
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0;
+  line-height: var(--line-height-relaxed);
+}
+
+/* ============================================================================
+ * GRID LAYOUT
+ * ============================================================================ */
+
+.grid {
+  display: grid;
+  gap: var(--spacing-8);
+}
+
+.cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Default variant - with dividers */
+.grid.variant-default {
+  gap: 0;
+
+  & .statItem {
+    padding: var(--spacing-6);
+    border-right: 1px solid var(--border-subtle);
+  }
+
+  & .statItem:last-child {
+    border-right: none;
+  }
+}
+
+/* Cards variant */
+.grid.variant-cards {
+  gap: var(--spacing-6);
+}
+
+/* Inline variant */
+.grid.variant-inline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-12);
+}
+
+/* ============================================================================
+ * STAT ITEM STYLES
+ * ============================================================================ */
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+/* Cards variant styling handled by Card component */
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  align-items: inherit;
+  text-align: inherit;
+  padding: var(--spacing-6);
+}
+
+/* ============================================================================
+ * STAT ELEMENTS
+ * ============================================================================ */
+
+.icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-subtle);
+  border-radius: var(--radius-control);
+  color: var(--interactive-primary);
+  margin-bottom: var(--spacing-2);
+}
+
+.valueWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.centered .valueWrapper {
+  align-items: center;
+}
+
+.value {
+  font-family: var(--font-secondary);
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.valueHighlight {
+  background: linear-gradient(135deg, var(--color-brand-400), var(--color-brand-600));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.trend {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: var(--spacing-1);
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--radius-full);
+}
+
+.centered .trend {
+  align-self: center;
+}
+
+.trendPositive {
+  color: var(--text-success);
+  background: var(--status-success-bg);
+}
+
+.trendNegative {
+  color: var(--text-error);
+  background: var(--status-error-bg);
+}
+
+.label {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+}
+
+.statDescription {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-13);
+  color: var(--text-tertiary);
+  line-height: var(--line-height-relaxed);
+}
+
+/* ============================================================================
+ * RESPONSIVE ADJUSTMENTS
+ * ============================================================================ */
+
+@media (max-width: 1024px) {
+  .cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cols-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid.variant-default {
+    & .statItem:nth-child(2n) {
+      border-right: none;
+    }
+
+    & .statItem:nth-child(n+3) {
+      border-top: 1px solid var(--border-subtle);
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .cols-2,
+  .cols-3,
+  .cols-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .header {
+    margin-bottom: var(--spacing-8);
+  }
+
+  .value {
+    font-size: clamp(2.25rem, 10vw, 3rem);
+  }
+
+  .grid.variant-default {
+    & .statItem {
+      border-right: none;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    & .statItem:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .grid.variant-inline {
+    flex-direction: column;
+    gap: var(--spacing-6);
+  }
+}

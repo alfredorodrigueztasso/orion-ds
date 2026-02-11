@@ -1,0 +1,197 @@
+/**
+ * Card Component Styles
+ *
+ * Container card with header, body, and footer sections.
+ */
+
+/* Base card */
+.card {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  /* Styling */
+  background: var(--surface-base);
+  border-radius: var(--radius-container);
+
+  /* Interaction */
+  transition: all var(--transition-fast);
+}
+
+/* ============================================================================
+ * VARIANTS
+ * ============================================================================ */
+
+/* Base variant (default) */
+.base {
+  border: 1px solid var(--border-subtle);
+}
+
+/* Glass variant (frosted glass effect) */
+.glass {
+  background: var(--surface-glass);
+  backdrop-filter: blur(var(--blur-md));
+  border: 1px solid var(--border-subtle);
+}
+
+/* Elevated variant (shadow) */
+.elevated {
+  box-shadow: var(--shadow-md);
+}
+
+/* Outlined variant (strong border) */
+.outlined {
+  border: 2px solid var(--border-strong);
+}
+
+/* Image variant (full background image with gradient overlay) */
+.image {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  aspect-ratio: 16 / 9;
+}
+
+/* Gradient overlay for readability */
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-4);
+  border-radius: var(--radius-container);
+}
+
+/* Gradient positions */
+.gradientBottom {
+  background: linear-gradient(
+    to top,
+    var(--overlay-dark-heavy) 0%,
+    var(--overlay-dark-light) 50%,
+    transparent 100%
+  );
+  justify-content: flex-end;
+}
+
+.gradientTop {
+  background: linear-gradient(
+    to bottom,
+    var(--overlay-dark-heavy) 0%,
+    var(--overlay-dark-light) 50%,
+    transparent 100%
+  );
+  justify-content: flex-start;
+}
+
+.gradientCenter {
+  background: linear-gradient(
+    to bottom,
+    var(--overlay-dark-light) 0%,
+    var(--overlay-dark) 50%,
+    var(--overlay-dark-light) 100%
+  );
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Image card text styles (always light on dark) */
+.imageContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  color: var(--color-neutral-0);
+}
+
+.imageTitle {
+  font-size: var(--font-size-24);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-neutral-0);
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.02em;
+  text-shadow:
+    0 2px 4px var(--overlay-dark-heavy),
+    0 4px 12px var(--overlay-dark);
+}
+
+.imageDescription {
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-neutral-0);
+  line-height: var(--line-height-relaxed);
+  opacity: 0.9;
+  text-shadow:
+    0 1px 2px var(--overlay-dark-heavy),
+    0 2px 8px var(--overlay-dark);
+}
+
+.imageMeta {
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-neutral-0);
+  opacity: 0.75;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow:
+    0 1px 2px var(--overlay-dark-heavy);
+}
+
+/* ============================================================================
+ * INTERACTIVE STATE
+ * ============================================================================ */
+
+.interactive {
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.interactive.elevated:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.interactive.image:hover {
+  transform: scale(1.02);
+}
+
+.interactive.image:active {
+  transform: scale(1);
+}
+
+/* ============================================================================
+ * CARD SECTIONS
+ * ============================================================================ */
+
+/* Card Header */
+.header {
+  padding: var(--spacing-4) var(--spacing-4) 0;
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+}
+
+/* Card Body */
+.body {
+  padding: var(--spacing-4);
+  flex: 1;
+  color: var(--text-primary);
+}
+
+/* Body padding adjustment when preceded by header */
+.header + .body {
+  padding-top: var(--spacing-2);
+}
+
+/* Card Footer */
+.footer {
+  padding: 0 var(--spacing-4) var(--spacing-4);
+  color: var(--text-secondary);
+  font-size: var(--font-size-14);
+}

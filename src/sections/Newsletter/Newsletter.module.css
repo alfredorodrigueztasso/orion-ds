@@ -1,0 +1,230 @@
+/**
+ * Newsletter Component Styles
+ *
+ * Uses CSS Modules for scoped styling.
+ * All values reference semantic tokens via CSS variables.
+ */
+
+.newsletter {
+  position: relative;
+}
+
+/* ============================================================================
+ * CENTERED ALIGNMENT
+ * ============================================================================ */
+
+.centered {
+  text-align: center;
+
+  & .header {
+    text-align: center;
+  }
+
+  & .description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  & .form {
+    align-items: center;
+  }
+
+  & .inputGroup {
+    justify-content: center;
+  }
+
+  & .disclaimer {
+    text-align: center;
+  }
+}
+
+/* ============================================================================
+ * HEADER STYLES
+ * ============================================================================ */
+
+.header {
+  margin-bottom: var(--spacing-6);
+}
+
+.eyebrow {
+  margin-bottom: var(--spacing-3);
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-3) 0;
+}
+
+.description {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-16);
+  color: var(--text-secondary);
+  max-width: 500px;
+  margin: 0;
+  line-height: var(--line-height-relaxed);
+}
+
+/* ============================================================================
+ * SIZE VARIANTS
+ * ============================================================================ */
+
+.size-sm {
+  & .title {
+    font-size: var(--font-size-20);
+  }
+
+  & .description {
+    font-size: var(--font-size-14);
+  }
+}
+
+.size-lg {
+  & .title {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+  }
+
+  & .description {
+    font-size: var(--font-size-18);
+    max-width: 600px;
+  }
+}
+
+/* ============================================================================
+ * FORM STYLES
+ * ============================================================================ */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.inputGroup {
+  display: flex;
+  gap: var(--spacing-3);
+  width: 100%;
+  max-width: 500px;
+}
+
+.emailInput {
+  flex: 1;
+  min-width: 200px;
+}
+
+.submitButton {
+  flex-shrink: 0;
+}
+
+/* ============================================================================
+ * LAYOUT VARIANTS
+ * ============================================================================ */
+
+/* Stacked layout */
+.layout-stacked .inputGroup {
+  flex-direction: column;
+  max-width: 400px;
+}
+
+.layout-stacked .emailInput {
+  width: 100%;
+}
+
+.layout-stacked .submitButton {
+  width: 100%;
+}
+
+/* Card layout */
+.card {
+  border: 1px solid var(--border-subtle);
+}
+
+.cardBody {
+  padding: var(--spacing-8);
+}
+
+/* ============================================================================
+ * DISCLAIMER
+ * ============================================================================ */
+
+.disclaimer {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-12);
+  color: var(--text-tertiary);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+  max-width: 400px;
+}
+
+/* ============================================================================
+ * SUCCESS/ERROR STATES
+ * ============================================================================ */
+
+.successState,
+.errorState {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-4) var(--spacing-6);
+  border-radius: var(--radius-control);
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-14);
+}
+
+.successState {
+  background: var(--status-success-bg);
+  color: var(--text-success);
+}
+
+.successIcon {
+  color: var(--text-success);
+  flex-shrink: 0;
+}
+
+.errorState {
+  background: var(--status-error-bg);
+  color: var(--text-error);
+}
+
+.errorIcon {
+  color: var(--text-error);
+  flex-shrink: 0;
+}
+
+/* ============================================================================
+ * BRAND BACKGROUND ADJUSTMENTS
+ * ============================================================================ */
+
+:global([class*="bg-brand"]) .title,
+:global([class*="bg-brand"]) .description {
+  color: var(--interactive-primary-text);
+}
+
+:global([class*="bg-brand"]) .disclaimer {
+  color: var(--text-on-dark-secondary);
+}
+
+/* ============================================================================
+ * RESPONSIVE ADJUSTMENTS
+ * ============================================================================ */
+
+@media (max-width: 640px) {
+  .inputGroup {
+    flex-direction: column;
+  }
+
+  .emailInput {
+    width: 100%;
+  }
+
+  .submitButton {
+    width: 100%;
+  }
+
+  .cardBody {
+    padding: var(--spacing-6);
+  }
+}

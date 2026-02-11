@@ -1,0 +1,5 @@
+
+> @orion-ds/react@2.0.3 build /Users/alfredo/Documents/AI First DS Library/packages/react
+> tsc -p tsconfig.build.json && vite build && npm run build:styles
+
+ ELIFECYCLE  Command failed.

@@ -1,0 +1,216 @@
+/**
+ * Button Component Styles
+ *
+ * Uses CSS Modules for scoped styling.
+ * All values reference semantic tokens via CSS variables.
+ */
+
+/* Base button styles */
+.button {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+
+  /* Typography */
+  font-family: var(--font-secondary);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-tight);
+
+  /* Interaction */
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--transition-fast);
+
+  /* Borders */
+  border: 1px solid transparent;
+  outline: none;
+
+  /* Focus state */
+  &:focus-visible {
+    outline: 2px solid var(--interactive-primary);
+    outline-offset: 2px;
+  }
+
+  /* Disabled state */
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+/* ============================================================================
+ * VARIANTS
+ * ============================================================================ */
+
+/* Primary variant */
+.primary {
+  background: var(--interactive-primary);
+  color: var(--interactive-primary-text);
+
+  &:hover:not(:disabled) {
+    background: var(--interactive-primary-hover);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+}
+
+/* Secondary variant */
+.secondary {
+  background: var(--interactive-secondary);
+  color: var(--interactive-secondary-text);
+  border-color: var(--border-subtle);
+
+  &:hover:not(:disabled) {
+    background: var(--interactive-secondary-hover);
+    border-color: var(--border-strong);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+}
+
+/* Ghost variant */
+.ghost {
+  background: transparent;
+  color: var(--text-primary);
+
+  &:hover:not(:disabled) {
+    background: var(--interactive-ghost-hover);
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+}
+
+/* Danger variant */
+.danger {
+  background: var(--status-error);
+  color: var(--text-inverse);
+
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--status-error) 85%, var(--color-neutral-1000));
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+}
+
+/* ============================================================================
+ * SIZES
+ * ============================================================================ */
+
+.sm {
+  height: 32px;
+  padding: 0 var(--spacing-3);
+  font-size: var(--font-size-12);
+  border-radius: var(--radius-button);
+}
+
+.md {
+  height: 40px;
+  padding: 0 var(--spacing-4);
+  font-size: var(--font-size-16);
+  border-radius: var(--radius-button);
+}
+
+.lg {
+  height: 48px;
+  padding: 0 var(--spacing-6);
+  font-size: var(--font-size-18);
+  border-radius: var(--radius-button);
+}
+
+/* ============================================================================
+ * MODIFIERS
+ * ============================================================================ */
+
+/* Full width */
+.fullWidth {
+  width: 100%;
+}
+
+/* Icon only */
+.iconOnly {
+  &.sm {
+    width: 32px;
+    padding: 0;
+  }
+
+  &.md {
+    width: 40px;
+    padding: 0;
+  }
+
+  &.lg {
+    width: 48px;
+    padding: 0;
+  }
+}
+
+/* Loading state */
+.loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  animation: spin 600ms linear infinite;
+}
+
+/* Spinner colors per variant */
+.primary .spinner {
+  border: 2px solid var(--interactive-primary-text);
+  border-top-color: transparent;
+}
+
+.secondary .spinner {
+  border: 2px solid var(--interactive-secondary-text);
+  border-top-color: transparent;
+}
+
+.ghost .spinner {
+  border: 2px solid var(--text-primary);
+  border-top-color: transparent;
+}
+
+.danger .spinner {
+  border: 2px solid var(--text-inverse);
+  border-top-color: transparent;
+}
+
+/* Hide content when loading */
+.loadingContent {
+  visibility: hidden;
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Icon styles */
+.icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.iconRight {
+  order: 1;
+}

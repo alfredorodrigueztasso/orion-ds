@@ -1,0 +1,246 @@
+/**
+ * Pricing Component Styles
+ *
+ * Uses CSS Modules for scoped styling.
+ * All values reference semantic tokens via CSS variables.
+ */
+
+.pricing {
+  position: relative;
+}
+
+/* ============================================================================
+ * HEADER STYLES
+ * ============================================================================ */
+
+.header {
+  margin-bottom: var(--spacing-16);
+}
+
+.centered {
+  & .header {
+    text-align: center;
+  }
+
+  & .description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.eyebrow {
+  margin-bottom: var(--spacing-4);
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-4) 0;
+}
+
+.description {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-18);
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0;
+  line-height: var(--line-height-relaxed);
+}
+
+/* ============================================================================
+ * GRID LAYOUT
+ * ============================================================================ */
+
+.grid {
+  display: grid;
+  gap: var(--spacing-6);
+  align-items: stretch;
+}
+
+.cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* ============================================================================
+ * PRICING CARD STYLES
+ * ============================================================================ */
+
+.pricingCard {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-subtle);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.pricingCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.popular {
+  border-color: var(--interactive-primary);
+  border-width: 2px;
+  box-shadow: 0 0 0 4px var(--interactive-primary-subtle);
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: var(--spacing-6);
+}
+
+/* ============================================================================
+ * CARD HEADER
+ * ============================================================================ */
+
+.cardHeader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.planInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-3);
+}
+
+.planName {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.priceWrapper {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-2);
+}
+
+.price {
+  font-family: var(--font-secondary);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.period {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-14);
+  color: var(--text-tertiary);
+}
+
+.planDescription {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-14);
+  color: var(--text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+}
+
+/* ============================================================================
+ * FEATURE LIST
+ * ============================================================================ */
+
+.featureList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  flex: 1;
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-3);
+}
+
+.featureIcon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-success);
+}
+
+.excluded .featureIcon {
+  color: var(--text-tertiary);
+}
+
+.featureText {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-14);
+  color: var(--text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+.excluded .featureText {
+  color: var(--text-tertiary);
+  text-decoration: line-through;
+}
+
+/* ============================================================================
+ * ACTION BUTTON
+ * ============================================================================ */
+
+.action {
+  margin-top: auto;
+  padding-top: var(--spacing-4);
+}
+
+.action > * {
+  width: 100%;
+}
+
+/* ============================================================================
+ * RESPONSIVE ADJUSTMENTS
+ * ============================================================================ */
+
+@media (max-width: 1024px) {
+  .cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cols-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .cols-2,
+  .cols-3,
+  .cols-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .header {
+    margin-bottom: var(--spacing-8);
+  }
+
+  .price {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+  }
+}

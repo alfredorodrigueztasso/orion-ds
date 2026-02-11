@@ -1,0 +1,189 @@
+/**
+ * Contact Component Styles
+ *
+ * Uses CSS Modules for scoped styling.
+ * All values reference semantic tokens via CSS variables.
+ */
+
+.contact {
+  position: relative;
+}
+
+/* ============================================================================
+ * HEADER STYLES
+ * ============================================================================ */
+
+.header {
+  margin-bottom: var(--spacing-12);
+  text-align: center;
+}
+
+.eyebrow {
+  margin-bottom: var(--spacing-4);
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-4) 0;
+}
+
+.description {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-18);
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: var(--line-height-relaxed);
+}
+
+/* ============================================================================
+ * LAYOUT VARIANTS
+ * ============================================================================ */
+
+.content {
+  display: grid;
+  gap: var(--spacing-12);
+}
+
+/* Split layout - info on left, form on right */
+.layout-split .content {
+  grid-template-columns: 1fr 1.5fr;
+  align-items: start;
+}
+
+/* Stacked layout - info above form */
+.layout-stacked .content {
+  grid-template-columns: 1fr;
+}
+
+.layout-stacked .contactInfo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-8);
+}
+
+.layout-stacked .infoItem {
+  flex: 0 0 auto;
+}
+
+/* Form only - centered form */
+.layout-form-only .content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ============================================================================
+ * CONTACT INFO
+ * ============================================================================ */
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+.infoItem {
+  display: flex;
+  gap: var(--spacing-4);
+  align-items: flex-start;
+}
+
+.infoIcon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-layer);
+  border-radius: var(--radius-control);
+  color: var(--interactive-primary);
+  flex-shrink: 0;
+}
+
+.infoContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.infoLabel {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-tertiary);
+}
+
+.infoValue {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-16);
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+a.infoValue:hover {
+  color: var(--interactive-primary);
+}
+
+.additionalContent {
+  margin-top: var(--spacing-6);
+  padding-top: var(--spacing-6);
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* ============================================================================
+ * FORM STYLES
+ * ============================================================================ */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+.formFields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.formField {
+  width: 100%;
+}
+
+.formAction {
+  margin-top: var(--spacing-2);
+}
+
+.formAction > * {
+  width: 100%;
+}
+
+/* ============================================================================
+ * RESPONSIVE ADJUSTMENTS
+ * ============================================================================ */
+
+@media (max-width: 768px) {
+  .layout-split .content {
+    grid-template-columns: 1fr;
+  }
+
+  .contactInfo {
+    order: -1;
+  }
+
+  .layout-stacked .contactInfo {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header {
+    margin-bottom: var(--spacing-8);
+  }
+}

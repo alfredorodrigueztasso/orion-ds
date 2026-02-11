@@ -1,0 +1,237 @@
+/**
+ * CTA Component Styles
+ *
+ * Uses CSS Modules for scoped styling.
+ * All values reference semantic tokens via CSS variables.
+ */
+
+.cta {
+  position: relative;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.card {
+  overflow: hidden;
+}
+
+.cardBody {
+  padding: var(--spacing-12);
+}
+
+/* ============================================================================
+ * ALIGNMENT
+ * ============================================================================ */
+
+.align-center {
+  & .content {
+    align-items: center;
+    text-align: center;
+  }
+
+  & .actions {
+    justify-content: center;
+  }
+
+  & .description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.align-left {
+  & .content {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  & .actions {
+    justify-content: flex-start;
+  }
+}
+
+/* ============================================================================
+ * SIZE VARIANTS
+ * ============================================================================ */
+
+.size-sm {
+  & .cardBody {
+    padding: var(--spacing-8);
+  }
+
+  & .headline {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+  }
+
+  & .description {
+    font-size: var(--font-size-14);
+    max-width: 400px;
+  }
+}
+
+.size-md {
+  & .cardBody {
+    padding: var(--spacing-12);
+  }
+
+  & .headline {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+
+  & .description {
+    font-size: var(--font-size-16);
+    max-width: 500px;
+  }
+}
+
+.size-lg {
+  & .cardBody {
+    padding: var(--spacing-16);
+  }
+
+  & .headline {
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+
+  & .description {
+    font-size: var(--font-size-18);
+    max-width: 600px;
+  }
+}
+
+/* ============================================================================
+ * VARIANT STYLES
+ * ============================================================================ */
+
+/* Default variant */
+.variant-default {
+  & .card {
+    background: var(--surface-base);
+    border: 1px solid var(--border-subtle);
+  }
+
+  & .headline {
+    color: var(--text-primary);
+  }
+
+  & .description {
+    color: var(--text-secondary);
+  }
+
+  & .footnote {
+    color: var(--text-tertiary);
+  }
+}
+
+/* Brand variant - uses on-brand tokens for text on brand surface */
+.variant-brand {
+  & .card {
+    background: linear-gradient(135deg, var(--interactive-primary), var(--interactive-primary-hover));
+    border: none;
+  }
+
+  & .headline {
+    color: var(--text-on-brand-primary);
+  }
+
+  & .description {
+    color: var(--text-on-brand-secondary);
+  }
+
+  & .footnote {
+    color: var(--text-on-brand-tertiary);
+  }
+}
+
+/* Subtle variant */
+.variant-subtle {
+  & .card {
+    background: var(--surface-subtle);
+    border: 1px solid var(--border-subtle);
+  }
+
+  & .headline {
+    color: var(--text-primary);
+  }
+
+  & .description {
+    color: var(--text-secondary);
+  }
+
+  & .footnote {
+    color: var(--text-tertiary);
+  }
+}
+
+/* Outline variant */
+.variant-outline {
+  & .card {
+    background: transparent;
+    border: 2px solid var(--interactive-primary);
+  }
+
+  & .headline {
+    color: var(--text-primary);
+  }
+
+  & .description {
+    color: var(--text-secondary);
+  }
+
+  & .footnote {
+    color: var(--text-tertiary);
+  }
+}
+
+/* ============================================================================
+ * CONTENT ELEMENTS
+ * ============================================================================ */
+
+.headline {
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  margin: 0;
+}
+
+.description {
+  font-family: var(--font-secondary);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-4);
+  margin-top: var(--spacing-4);
+}
+
+.footnote {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-12);
+  margin: var(--spacing-4) 0 0 0;
+}
+
+/* ============================================================================
+ * RESPONSIVE ADJUSTMENTS
+ * ============================================================================ */
+
+@media (max-width: 640px) {
+  .cardBody {
+    padding: var(--spacing-8);
+  }
+
+  .actions {
+    flex-direction: column;
+    width: 100%;
+
+    & > * {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,279 @@
+/**
+ * LogoCloud Component Styles
+ *
+ * Uses CSS Modules for scoped styling.
+ * All values reference semantic tokens via CSS variables.
+ */
+
+.logoCloud {
+  position: relative;
+}
+
+/* ============================================================================
+ * CENTERED ALIGNMENT
+ * ============================================================================ */
+
+.centered {
+  text-align: center;
+
+  & .header {
+    text-align: center;
+  }
+
+  & .description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  & .logosContainer {
+    justify-content: center;
+  }
+}
+
+/* ============================================================================
+ * HEADER STYLES
+ * ============================================================================ */
+
+.header {
+  margin-bottom: var(--spacing-8);
+}
+
+.eyebrow {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-tertiary);
+  margin-bottom: var(--spacing-2);
+}
+
+.title {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-normal);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.description {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-14);
+  color: var(--text-tertiary);
+  max-width: 500px;
+  margin: var(--spacing-2) 0 0 0;
+  line-height: var(--line-height-relaxed);
+}
+
+/* ============================================================================
+ * LOGOS CONTAINER
+ * ============================================================================ */
+
+.logosContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-8);
+  align-items: center;
+}
+
+/* Grid layout */
+.layout-grid .logosContainer {
+  display: grid;
+  gap: var(--spacing-6);
+}
+
+.cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.cols-5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.cols-6 {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+/* Inline layout */
+.layout-inline .logosContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-8) var(--spacing-12);
+}
+
+/* ============================================================================
+ * LOGO ITEM
+ * ============================================================================ */
+
+.logo,
+.logoLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity var(--transition-fast), filter var(--transition-fast);
+}
+
+.logoLink {
+  text-decoration: none;
+}
+
+.logo img,
+.logoLink img,
+.logo svg,
+.logoLink svg {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Grayscale effect */
+.grayscale .logo,
+.grayscale .logoLink {
+  filter: grayscale(100%);
+  opacity: 0.6;
+}
+
+.grayscale .logo:hover,
+.grayscale .logoLink:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+/* ============================================================================
+ * SIZE VARIANTS
+ * ============================================================================ */
+
+.size-sm .logo,
+.size-sm .logoLink {
+  height: 24px;
+}
+
+.size-md .logo,
+.size-md .logoLink {
+  height: 32px;
+}
+
+.size-lg .logo,
+.size-lg .logoLink {
+  height: 48px;
+}
+
+.size-sm .logo img,
+.size-sm .logoLink img,
+.size-sm .logo svg,
+.size-sm .logoLink svg {
+  max-height: 24px;
+}
+
+.size-md .logo img,
+.size-md .logoLink img,
+.size-md .logo svg,
+.size-md .logoLink svg {
+  max-height: 32px;
+}
+
+.size-lg .logo img,
+.size-lg .logoLink img,
+.size-lg .logo svg,
+.size-lg .logoLink svg {
+  max-height: 48px;
+}
+
+/* ============================================================================
+ * MARQUEE LAYOUT
+ * ============================================================================ */
+
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+.marqueeTrack {
+  display: flex;
+  gap: var(--spacing-12);
+  width: max-content;
+  animation: marquee linear infinite;
+}
+
+.speed-slow .marqueeTrack {
+  animation-duration: 60s;
+}
+
+.speed-normal .marqueeTrack {
+  animation-duration: 40s;
+}
+
+.speed-fast .marqueeTrack {
+  animation-duration: 20s;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Pause on hover */
+.marquee:hover .marqueeTrack {
+  animation-play-state: paused;
+}
+
+/* ============================================================================
+ * RESPONSIVE ADJUSTMENTS
+ * ============================================================================ */
+
+@media (max-width: 1024px) {
+  .cols-5,
+  .cols-6 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .cols-3,
+  .cols-4,
+  .cols-5,
+  .cols-6 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .layout-inline .logosContainer {
+    gap: var(--spacing-6) var(--spacing-8);
+  }
+}
+
+@media (max-width: 480px) {
+  .cols-3,
+  .cols-4,
+  .cols-5,
+  .cols-6 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .marqueeTrack {
+    animation: none;
+  }
+
+  .marquee {
+    overflow-x: auto;
+    mask-image: none;
+  }
+}
