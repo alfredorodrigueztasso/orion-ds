@@ -1,0 +1,344 @@
+/**
+ * Gallery Section Styles
+ */
+
+.gallery {
+  padding: var(--spacing-16) var(--spacing-4);
+}
+
+.gallery[data-background='base'] {
+  background: var(--surface-base);
+}
+
+.gallery[data-background='subtle'] {
+  background: var(--surface-subtle);
+}
+
+.gallery[data-background='none'] {
+  background: transparent;
+}
+
+.container {
+  max-width: var(--container-width, 1200px);
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--spacing-12);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-brand);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-2);
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-4) 0;
+  line-height: 1.2;
+}
+
+.description {
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-8);
+}
+
+.filterButton {
+  padding: var(--spacing-2) var(--spacing-4);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filterButton:hover {
+  color: var(--text-primary);
+  border-color: var(--border-default);
+}
+
+.filterButton[data-active='true'] {
+  color: var(--interactive-primary-text);
+  background: var(--interactive-primary);
+  border-color: var(--interactive-primary);
+}
+
+/* Grid Layout */
+.grid {
+  display: grid;
+}
+
+.grid[data-columns='2'] {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid[data-columns='3'] {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid[data-columns='4'] {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.grid[data-columns='5'] {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.grid[data-gap='none'] {
+  gap: 0;
+}
+
+.grid[data-gap='sm'] {
+  gap: var(--spacing-2);
+}
+
+.grid[data-gap='md'] {
+  gap: var(--spacing-4);
+}
+
+.grid[data-gap='lg'] {
+  gap: var(--spacing-8);
+}
+
+/* Masonry Layout */
+.masonry {
+  columns: 4;
+  column-gap: var(--spacing-4);
+}
+
+.masonry[data-columns='2'] {
+  columns: 2;
+}
+
+.masonry[data-columns='3'] {
+  columns: 3;
+}
+
+.masonry[data-columns='5'] {
+  columns: 5;
+}
+
+.masonry .imageItem {
+  break-inside: avoid;
+  margin-bottom: var(--spacing-4);
+}
+
+/* Image Item */
+.imageItem {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-control);
+  cursor: pointer;
+}
+
+.imageItem[data-lightbox='true']:hover .imageOverlay {
+  opacity: 1;
+}
+
+.imageItem[data-lightbox='true']:hover img {
+  transform: scale(1.05);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.imageItem[data-aspect='square'] .image {
+  aspect-ratio: 1/1;
+}
+
+.imageItem[data-aspect='landscape'] .image {
+  aspect-ratio: 16/9;
+}
+
+.imageItem[data-aspect='portrait'] .image {
+  aspect-ratio: 3/4;
+}
+
+.imageItem[data-aspect='auto'] .image {
+  aspect-ratio: auto;
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: var(--surface-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.expandIcon {
+  width: 48px;
+  height: 48px;
+  background: var(--surface-base);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+}
+
+.caption {
+  padding: var(--spacing-2);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: var(--overlay-dark-heavy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-8);
+}
+
+.lightboxContent {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.lightboxImage {
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: var(--radius-control);
+}
+
+.lightboxCaption {
+  text-align: center;
+  color: var(--text-on-dark);
+  padding: var(--spacing-4);
+  font-size: var(--font-size-base);
+}
+
+.lightboxClose {
+  position: absolute;
+  top: var(--spacing-4);
+  right: var(--spacing-4);
+  width: 48px;
+  height: 48px;
+  background: var(--overlay-light-subtle);
+  border: none;
+  border-radius: 50%;
+  color: var(--text-on-dark);
+  font-size: var(--font-size-2xl);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.lightboxClose:hover {
+  background: var(--overlay-light);
+}
+
+.lightboxNav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  background: var(--overlay-light-subtle);
+  border: none;
+  border-radius: 50%;
+  color: var(--text-on-dark);
+  font-size: var(--font-size-xl);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.lightboxNav:hover {
+  background: var(--overlay-light);
+}
+
+.lightboxPrev {
+  left: var(--spacing-4);
+}
+
+.lightboxNext {
+  right: var(--spacing-4);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .grid[data-columns='4'],
+  .grid[data-columns='5'] {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .masonry {
+    columns: 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    padding: var(--spacing-12) var(--spacing-4);
+  }
+
+  .title {
+    font-size: var(--font-size-3xl);
+  }
+
+  .grid[data-columns='2'],
+  .grid[data-columns='3'],
+  .grid[data-columns='4'],
+  .grid[data-columns='5'] {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .masonry {
+    columns: 2;
+  }
+
+  .lightboxNav {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid[data-columns='2'],
+  .grid[data-columns='3'],
+  .grid[data-columns='4'],
+  .grid[data-columns='5'] {
+    grid-template-columns: 1fr;
+  }
+
+  .masonry {
+    columns: 1;
+  }
+}

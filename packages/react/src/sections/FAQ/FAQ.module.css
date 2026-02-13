@@ -1,0 +1,194 @@
+/**
+ * FAQ Component Styles
+ *
+ * Uses CSS Modules for scoped styling.
+ * All values reference semantic tokens via CSS variables.
+ */
+
+.faq {
+  position: relative;
+}
+
+/* ============================================================================
+ * HEADER STYLES
+ * ============================================================================ */
+
+.header {
+  margin-bottom: var(--spacing-12);
+}
+
+.centered {
+  & .header {
+    text-align: center;
+  }
+
+  & .description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.eyebrow {
+  margin-bottom: var(--spacing-4);
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-4) 0;
+}
+
+.description {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-18);
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0;
+  line-height: var(--line-height-relaxed);
+}
+
+/* ============================================================================
+ * LIST LAYOUT
+ * ============================================================================ */
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Grid variant columns */
+.cols-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-8);
+}
+
+/* ============================================================================
+ * FAQ ITEM - ACCORDION VARIANT
+ * ============================================================================ */
+
+.faqItem.variant-accordion {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.faqItem.variant-accordion:first-child {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+  padding: var(--spacing-5) 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.trigger:hover {
+  background: transparent;
+}
+
+.trigger:focus-visible {
+  outline: 2px solid var(--interactive-primary);
+  outline-offset: -2px;
+}
+
+.variant-accordion .question {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  line-height: var(--line-height-normal);
+}
+
+.chevron {
+  flex-shrink: 0;
+  color: var(--text-tertiary);
+  transition: transform var(--transition-fast);
+}
+
+.open .chevron {
+  transform: rotate(180deg);
+}
+
+.content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--transition-fast);
+}
+
+.open .content {
+  grid-template-rows: 1fr;
+}
+
+.variant-accordion .answer {
+  overflow: hidden;
+  padding-bottom: 0;
+  transition: padding-bottom var(--transition-fast);
+}
+
+.open.variant-accordion .answer {
+  padding-bottom: var(--spacing-5);
+}
+
+.variant-accordion .answer p {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-14);
+  color: var(--text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+}
+
+/* ============================================================================
+ * FAQ ITEM - GRID VARIANT
+ * ============================================================================ */
+
+.faqItem.variant-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  padding: var(--spacing-6);
+  background: var(--surface-subtle);
+  border-radius: var(--radius-container);
+}
+
+.variant-grid .question {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  line-height: var(--line-height-normal);
+  margin: 0;
+}
+
+.variant-grid .answer {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-14);
+  color: var(--text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+.variant-grid .answer p {
+  margin: 0;
+}
+
+/* ============================================================================
+ * RESPONSIVE ADJUSTMENTS
+ * ============================================================================ */
+
+@media (max-width: 768px) {
+  .cols-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .header {
+    margin-bottom: var(--spacing-8);
+  }
+}

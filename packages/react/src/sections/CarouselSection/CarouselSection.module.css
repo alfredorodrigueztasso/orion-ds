@@ -1,0 +1,137 @@
+/**
+ * CarouselSection Styles
+ *
+ * Styles specific to the section wrapper (header, navigation).
+ * The carousel track/card styles come from the atomic Carousel component.
+ */
+
+.section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ============================================================================
+ * HEADER STYLES
+ * ============================================================================ */
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--spacing-6);
+  margin-bottom: var(--spacing-8);
+}
+
+.headerContent {
+  flex: 1;
+}
+
+.headerEyebrow {
+  margin-bottom: var(--spacing-4);
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-2) 0;
+}
+
+.description {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-18);
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0;
+  line-height: var(--line-height-relaxed);
+}
+
+/* ============================================================================
+ * NAVIGATION BUTTONS (In Header)
+ * ============================================================================ */
+
+.navigation {
+  display: flex;
+  gap: var(--spacing-2);
+  flex-shrink: 0;
+}
+
+.navButton {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: 50%;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.navButton:hover:not(:disabled) {
+  background: var(--surface-layer);
+  border-color: var(--border-default);
+}
+
+.navButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ============================================================================
+ * PAGINATION (Below Carousel)
+ * ============================================================================ */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-6);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border-subtle);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition:
+    background var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.dot:hover {
+  background: var(--border-default);
+}
+
+.dotActive {
+  background: var(--interactive-primary);
+  transform: scale(1.25);
+}
+
+/* ============================================================================
+ * RESPONSIVE ADJUSTMENTS
+ * ============================================================================ */
+
+@media (max-width: 1024px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-4);
+  }
+}
+
+@media (max-width: 640px) {
+  .navButton {
+    width: 40px;
+    height: 40px;
+  }
+}
