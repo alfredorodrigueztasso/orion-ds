@@ -1,0 +1,28 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "kanban-board",
+  "type": "registry:section",
+  "title": "KanbanBoard",
+  "description": "KanbanBoard section component",
+  "category": "marketing",
+  "files": [
+    {
+      "path": "packages/react/src/sections/KanbanBoard/KanbanBoard.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/sections/KanbanBoard/KanbanBoard.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/sections/KanbanBoard/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#kanban-board",
+    "local": "/library.html#kanban-board"
+  },
+  "import": "import { KanbanBoard } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

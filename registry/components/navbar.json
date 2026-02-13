@@ -1,0 +1,116 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "navbar",
+  "type": "registry:component",
+  "title": "Navbar",
+  "description": "Top navigation bar with brand and links",
+  "category": "navigation",
+  "files": [
+    {
+      "path": "packages/react/src/components/Navbar/Navbar.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Navbar/Navbar.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Navbar/Navbar.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Navbar/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "height",
+      "type": "NavbarHeight",
+      "description": "Navbar height",
+      "default": "md",
+      "values": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    {
+      "name": "variant",
+      "type": "NavbarVariant",
+      "description": "Navbar variant",
+      "default": "solid",
+      "values": [
+        "solid",
+        "transparent",
+        "glass"
+      ]
+    },
+    {
+      "name": "colorScheme",
+      "type": "NavbarColorScheme",
+      "description": "Color scheme for text/links when using transparent or glass variants",
+      "default": "auto",
+      "values": [
+        "auto",
+        "light",
+        "dark"
+      ]
+    },
+    {
+      "name": "sticky",
+      "type": "boolean",
+      "description": "Sticky positioning",
+      "default": false
+    },
+    {
+      "name": "bordered",
+      "type": "boolean",
+      "description": "Border on bottom",
+      "default": true
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "description": "Additional CSS class"
+    }
+  ],
+  "subComponents": [
+    {
+      "name": "Navbar.Brand",
+      "description": "Logo/brand area"
+    },
+    {
+      "name": "Navbar.Nav",
+      "description": "Navigation links container"
+    },
+    {
+      "name": "Navbar.Link",
+      "description": "Individual navigation link"
+    },
+    {
+      "name": "Navbar.Actions",
+      "description": "Right-side action buttons"
+    }
+  ],
+  "tokens": [
+    "--surface-base",
+    "--border-subtle",
+    "--text-primary",
+    "--text-secondary",
+    "--interactive-primary"
+  ],
+  "examples": [
+    {
+      "title": "Basic navbar",
+      "code": "<Navbar>\n  <Navbar.Brand>Orion</Navbar.Brand>\n  <Navbar.Nav>\n    <Navbar.Link href=\"/\" active>Home</Navbar.Link>\n    <Navbar.Link href=\"/about\">About</Navbar.Link>\n  </Navbar.Nav>\n  <Navbar.Actions>\n    <Button variant=\"primary\" size=\"sm\">Sign In</Button>\n  </Navbar.Actions>\n</Navbar>"
+    }
+  ],
+  "modeAware": true,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#navbar",
+    "local": "/library.html#navbar"
+  },
+  "import": "import { Navbar } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

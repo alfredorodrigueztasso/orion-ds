@@ -1,0 +1,109 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "search-input",
+  "type": "registry:component",
+  "title": "SearchInput",
+  "description": "SearchInput component",
+  "category": "search",
+  "files": [
+    {
+      "path": "packages/react/src/components/SearchInput/SearchInput.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/SearchInput/SearchInput.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/SearchInput/SearchInput.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/SearchInput/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "size",
+      "type": "SearchInputSize",
+      "description": "Size variant",
+      "default": "md",
+      "values": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    {
+      "name": "onClear",
+      "type": "() => void",
+      "description": "Callback when the clear button is clicked"
+    },
+    {
+      "name": "onSearch",
+      "type": "(value: string) => void",
+      "description": "Callback when search is triggered (Enter key or search button)"
+    },
+    {
+      "name": "showClear",
+      "type": "boolean",
+      "description": "Whether to show the clear button when there's a value",
+      "default": true
+    },
+    {
+      "name": "showSearchButton",
+      "type": "boolean",
+      "description": "Whether to show a search button",
+      "default": false
+    },
+    {
+      "name": "searchIcon",
+      "type": "ReactNode",
+      "description": "Custom search icon"
+    },
+    {
+      "name": "clearLabel",
+      "type": "string",
+      "description": "Label for the clear button (accessibility)",
+      "default": "Clear search"
+    },
+    {
+      "name": "searchLabel",
+      "type": "string",
+      "description": "Label for the search button (accessibility)",
+      "default": "Search"
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "description": "Whether the input is in a loading state",
+      "default": false
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "description": "Make the input take full width",
+      "default": false
+    }
+  ],
+  "tokens": [
+    "--surface-base",
+    "--border-subtle",
+    "--text-primary",
+    "--radius-control"
+  ],
+  "examples": [
+    {
+      "title": "Basic search",
+      "code": "<SearchInput\n  placeholder=\"Search...\"\n  onSearch={(query) => handleSearch(query)}\n/>"
+    }
+  ],
+  "modeAware": true,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#search-input",
+    "local": "/library.html#search-input"
+  },
+  "import": "import { SearchInput } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

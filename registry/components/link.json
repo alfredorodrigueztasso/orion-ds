@@ -1,0 +1,110 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "link",
+  "type": "registry:component",
+  "title": "Link",
+  "description": "Link component",
+  "category": "text",
+  "files": [
+    {
+      "path": "packages/react/src/components/Link/Link.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Link/Link.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Link/Link.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Link/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "variant",
+      "type": "LinkVariant",
+      "description": "Visual variant of the link",
+      "default": "default",
+      "values": [
+        "default",
+        "subtle",
+        "brand"
+      ]
+    },
+    {
+      "name": "size",
+      "type": "LinkSize",
+      "description": "Size of the link",
+      "default": "md",
+      "values": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    {
+      "name": "external",
+      "type": "boolean",
+      "description": "Whether the link opens in a new tab",
+      "default": false
+    },
+    {
+      "name": "underline",
+      "type": "boolean",
+      "description": "Whether to show an underline",
+      "default": true
+    },
+    {
+      "name": "showExternalIcon",
+      "type": "boolean",
+      "description": "Whether to show the external link icon automatically when external is true",
+      "default": true
+    },
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "description": "Icon to display before the link text"
+    },
+    {
+      "name": "iconRight",
+      "type": "ReactNode",
+      "description": "Icon to display after the link text (e.g., external link icon)"
+    },
+    {
+      "name": "iconAnimation",
+      "type": "LinkIconAnimation",
+      "description": "Icon hover animation type",
+      "values": [
+        "arrow",
+        "arrow-left",
+        "external",
+        "none"
+      ]
+    }
+  ],
+  "tokens": [
+    "--interactive-primary",
+    "--text-primary"
+  ],
+  "examples": [
+    {
+      "title": "Basic link",
+      "code": "<Link href=\"/about\">About Us</Link>"
+    },
+    {
+      "title": "External link",
+      "code": "<Link href=\"https://example.com\" external>Visit Site</Link>"
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#link",
+    "local": "/library.html#link"
+  },
+  "import": "import { Link } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

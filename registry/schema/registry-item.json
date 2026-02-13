@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://orion-ds.dev/schema/registry-item.json",
+  "title": "Orion Registry Item",
+  "description": "Schema for Orion Design System registry items — machine-readable component/section/template descriptors for AI consumption.",
+  "type": "object",
+  "required": ["$schema", "name", "type", "title", "description", "files"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "const": "https://orion-ds.dev/schema/registry-item.json"
+    },
+    "name": {
+      "type": "string",
+      "description": "Kebab-case identifier (e.g., 'button', 'data-table', 'landing-page-template')"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["registry:component", "registry:section", "registry:template", "registry:hook"],
+      "description": "Item type: component (UI primitive), section (composed block), template (full page), hook (React hook)"
+    },
+    "title": {
+      "type": "string",
+      "description": "Human-readable display name (e.g., 'Button', 'Data Table', 'Landing Page Template')"
+    },
+    "description": {
+      "type": "string",
+      "description": "One-line description of what this item does"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["actions", "forms", "layout", "feedback", "data-display", "navigation", "overlays", "text", "loading", "tags", "search", "marketing", "app", "chat", "utilities"],
+      "description": "Functional category for grouping"
+    },
+    "dependencies": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "npm package dependencies (e.g., 'lucide-react')"
+    },
+    "registryDependencies": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Other registry items this depends on (by name)"
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "type"],
+        "properties": {
+          "path": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["registry:component", "registry:types", "registry:styles", "registry:index", "registry:hook"]
+          }
+        }
+      },
+      "description": "Source files that make up this item"
+    },
+    "props": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "type"],
+        "properties": {
+          "name": { "type": "string" },
+          "type": { "type": "string", "description": "TypeScript type as string (e.g., 'ButtonVariant', 'ReactNode', 'boolean')" },
+          "description": { "type": "string" },
+          "default": { "description": "Default value" },
+          "required": { "type": "boolean", "default": false },
+          "values": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Possible values for union types"
+          }
+        }
+      },
+      "description": "Component props with types, defaults, and descriptions"
+    },
+    "subComponents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": { "type": "string", "description": "Sub-component name (e.g., 'Card.Header')" },
+          "description": { "type": "string" },
+          "props": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "type": { "type": "string" },
+                "description": { "type": "string" },
+                "required": { "type": "boolean" }
+              }
+            }
+          }
+        }
+      },
+      "description": "Compound component children (e.g., Card.Header, Modal.Body)"
+    },
+    "tokens": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Semantic CSS tokens used by this component (e.g., '--interactive-primary')"
+    },
+    "examples": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["title", "code"],
+        "properties": {
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "code": { "type": "string", "description": "TSX code snippet" }
+        }
+      },
+      "description": "Usage examples with TSX code"
+    },
+    "accessibility": {
+      "type": "object",
+      "properties": {
+        "role": { "type": "string", "description": "ARIA role if applicable" },
+        "ariaAttributes": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Relevant ARIA attributes"
+        },
+        "keyboardNav": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": { "type": "string" },
+              "action": { "type": "string" }
+            }
+          }
+        },
+        "notes": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Accessibility notes and requirements"
+        }
+      },
+      "description": "Accessibility information"
+    },
+    "modeAware": {
+      "type": "boolean",
+      "description": "Whether this component adapts to display/product/app modes",
+      "default": false
+    },
+    "import": {
+      "type": "string",
+      "description": "Import statement (e.g., \"import { Button } from '@orion-ds/react'\")"
+    },
+    "cssImport": {
+      "type": "string",
+      "description": "Required CSS import",
+      "default": "import '@orion-ds/react/styles.css'"
+    }
+  },
+  "additionalProperties": false
+}

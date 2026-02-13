@@ -1,0 +1,33 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "chart",
+  "type": "registry:component",
+  "title": "Chart",
+  "description": "Chart component",
+  "category": "utilities",
+  "files": [
+    {
+      "path": "packages/react/src/components/Chart/Chart.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Chart/Chart.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Chart/Chart.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Chart/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#chart",
+    "local": "/library.html#chart"
+  },
+  "import": "import { Chart } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

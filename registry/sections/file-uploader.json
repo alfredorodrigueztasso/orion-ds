@@ -1,0 +1,28 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "file-uploader",
+  "type": "registry:section",
+  "title": "FileUploader",
+  "description": "FileUploader section component",
+  "category": "marketing",
+  "files": [
+    {
+      "path": "packages/react/src/sections/FileUploader/FileUploader.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/sections/FileUploader/FileUploader.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/sections/FileUploader/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#file-uploader",
+    "local": "/library.html#file-uploader"
+  },
+  "import": "import { FileUploader } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

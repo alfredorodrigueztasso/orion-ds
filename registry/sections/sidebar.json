@@ -1,0 +1,28 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "sidebar",
+  "type": "registry:section",
+  "title": "Sidebar",
+  "description": "Sidebar section component",
+  "category": "marketing",
+  "files": [
+    {
+      "path": "packages/react/src/sections/Sidebar/Sidebar.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/sections/Sidebar/Sidebar.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/sections/Sidebar/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#sidebar",
+    "local": "/library.html#sidebar"
+  },
+  "import": "import { Sidebar } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

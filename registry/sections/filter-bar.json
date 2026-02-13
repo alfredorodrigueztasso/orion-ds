@@ -1,0 +1,28 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "filter-bar",
+  "type": "registry:section",
+  "title": "FilterBar",
+  "description": "FilterBar section component",
+  "category": "marketing",
+  "files": [
+    {
+      "path": "packages/react/src/sections/FilterBar/FilterBar.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/sections/FilterBar/FilterBar.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/sections/FilterBar/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#filter-bar",
+    "local": "/library.html#filter-bar"
+  },
+  "import": "import { FilterBar } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

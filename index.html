@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-brand="red">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orion Design System — AI-First Framework</title>
+  <meta name="description"
+    content="Scale AI interfaces with precision. The governance system that eliminates hallucination in UI by bridging design and engineering with absolute predictability.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&family=Work+Sans:wght@400;500;700&family=Poppins:wght@400;500;700&family=Anton&display=swap"
+    rel="stylesheet">
+
+  <!-- Design System -->
+  <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="assets/docs.css">
+  <link rel="stylesheet" href="assets/page-transitions.css">
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="assets/landing.css">
+</head>
+
+<body>
+  <!-- Header injected by docs-shell.js -->
+
+  <div class="docs-layout flex-col pt-0">
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        AI-First Design System • v1.0
+      </div>
+      <h1 class="text-display-xl">
+        Scale AI Interfaces<br>
+        <span class="gradient-text">with Precision</span>
+      </h1>
+      <p class="hero-subtitle text-body-lg">
+        The decision brain for Generative AI. Eliminate hallucination in UI with a token-governed system that bridges
+        design and engineering.
+      </p>
+      <div class="hero-actions">
+        <a href="getting-started.html" class="btn btn-primary btn-lg">
+          <i data-lucide="rocket" class="icon"></i>
+          Get Started
+        </a>
+        <a href="components.html" class="btn btn-secondary btn-lg">
+          <i data-lucide="box" class="icon"></i>
+          Browse Components
+        </a>
+      </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section class="quick-links">
+      <div class="quick-links-grid">
+        <a href="getting-started.html" class="quick-link-card">
+          <div class="quick-link-icon">
+            <i data-lucide="rocket" class="icon icon-lg"></i>
+          </div>
+          <h3 class="quick-link-title">Get Started</h3>
+          <p class="quick-link-description">Build production-ready web interfaces in minutes with React. Complete setup guide from installation to production.</p>
+        </a>
+        <a href="tokens.html" class="quick-link-card">
+          <div class="quick-link-icon">
+            <i data-lucide="palette" class="icon icon-lg"></i>
+          </div>
+          <h3 class="quick-link-title">Design Tokens</h3>
+          <p class="quick-link-description">Colors, typography, spacing, and all the primitive values that power the
+            system.</p>
+        </a>
+        <a href="components.html" class="quick-link-card">
+          <div class="quick-link-icon">
+            <i data-lucide="box" class="icon icon-lg"></i>
+          </div>
+          <h3 class="quick-link-title">Components</h3>
+          <p class="quick-link-description">40+ ready-to-use UI components with live previews and code snippets.</p>
+        </a>
+        <a href="rules.html" class="quick-link-card">
+          <div class="quick-link-icon">
+            <i data-lucide="book-open" class="icon icon-lg"></i>
+          </div>
+          <h3 class="quick-link-title">The Constitution</h3>
+          <p class="quick-link-description">Governance rules, anti-hallucination policies, and the Chain of Truth.</p>
+        </a>
+        <a href="examples.html" class="quick-link-card">
+          <div class="quick-link-icon">
+            <i data-lucide="layout" class="icon icon-lg"></i>
+          </div>
+          <h3 class="quick-link-title">Examples</h3>
+          <p class="quick-link-description">Real-world implementations showing the design system in action.</p>
+        </a>
+        <a href="prompt-guide.html" class="quick-link-card">
+          <div class="quick-link-icon">
+            <i data-lucide="sparkles" class="icon icon-lg"></i>
+          </div>
+          <h3 class="quick-link-title">Prompt Guide</h3>
+          <p class="quick-link-description">Master AI prompting for building interfaces with Orion. Learn effective patterns and avoid anti-patterns.</p>
+        </a>
+        <a href="testing-projects/tri-modal-showcase/index.html" class="quick-link-card">
+          <div class="quick-link-icon">
+            <i data-lucide="layout-grid" class="icon icon-lg"></i>
+          </div>
+          <h3 class="quick-link-title">Tri-Modal System</h3>
+          <p class="quick-link-description">Explore Display, Product, and App modes with interactive examples and live switching.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Velocity Metrics -->
+    <!-- Velocity Metrics (Carousel) -->
+    <section class="docs-section max-w-full mx-auto px-4" style="max-width: 1200px;">
+      <div class="flex justify-between items-end mb-8 px-2">
+        <div class="text-left">
+          <h2 class="text-display-sm mb-2">Velocity at Scale</h2>
+          <p class="text-body-lg text-secondary">Proven impact on business outcomes.</p>
+        </div>
+        <div class="flex gap-2">
+          <button id="carousel-prev" class="btn btn-ghost btn-sm btn-icon-only" aria-label="Previous slide">
+            <i data-lucide="chevron-left" class="icon"></i>
+          </button>
+          <button id="carousel-next" class="btn btn-ghost btn-sm btn-icon-only" aria-label="Next slide">
+            <i data-lucide="chevron-right" class="icon"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Carousel Engine -->
+      <div class="carousel-engine pb-4" style="scroll-padding: 0 1rem;">
+        <!-- Card 1 -->
+        <article class="card-visual" style="flex: 0 0 400px; height: 500px;">
+          <img src="assets/bg-velocity-1.png" alt="Faster Deployments" class="card-visual-bg">
+          <div class="card-visual-overlay"></div>
+          <div class="card-visual-content text-left">
+            <div class="text-display-xl text-brand mb-2">10x</div>
+            <h3 class="text-title-md text-white mb-2">Faster Deployments</h3>
+            <p class="text-body-lg" style="color: rgba(255,255,255,0.8);">
+              Pre-built tokens and components allow engineers to ship features without debating pixel values.
+            </p>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="card-visual" style="flex: 0 0 400px; height: 500px;">
+          <img src="assets/bg-velocity-2.png" alt="Visual Drift" class="card-visual-bg">
+          <div class="card-visual-overlay"></div>
+          <div class="card-visual-content text-left">
+            <div class="text-display-xl text-brand mb-2">0%</div>
+            <h3 class="text-title-md text-white mb-2">Visual Drift</h3>
+            <p class="text-body-lg" style="color: rgba(255,255,255,0.8);">
+              Automated CI/CD validation ensures no rogue styles or hardcoded values enter production.
+            </p>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="card-visual" style="flex: 0 0 400px; height: 500px;">
+          <img src="assets/bg-velocity-3.png" alt="Brand Consistency" class="card-visual-bg">
+          <div class="card-visual-overlay"></div>
+          <div class="card-visual-content text-left">
+            <div class="text-display-xl text-brand mb-2">100%</div>
+            <h3 class="text-title-md text-white mb-2">Brand Consistency</h3>
+            <p class="text-body-lg" style="color: rgba(255,255,255,0.8);">
+              Switch between Orion, Unitec, UVM, and Laureate instantly with a single semantic variable change.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Chain of Truth -->
+    <section class="chain-section">
+      <header class="section-header">
+        <h2 class="text-display-sm">The Chain of Truth</h2>
+        <p class="text-body-lg text-secondary max-w-600 mx-auto mt-4">
+          Three layers of governance. One single source of truth.
+        </p>
+      </header>
+
+      <div class="stack stack-gap-24">
+
+        <!-- Module 1: Primitives -->
+        <div class="grid grid-cols-2 gap-16 items-center">
+          <div
+            class="bg-subtle p-8 rounded-control border border-subtle relative overflow-hidden h-full flex items-center justify-center min-h-feature">
+            <!-- Abstract visualization of Primitives -->
+            <div class="stack stack-gap-2 pointer-events-none select-none opacity-80 font-mono text-sm">
+              <div class="flex gap-4"><span class="text-secondary">"blue.500":</span> <span
+                  class="text-brand">"#1B5BFF"</span></div>
+              <div class="flex gap-4"><span class="text-secondary">"spacing.4":</span> <span
+                  class="text-brand">"16px"</span></div>
+              <div class="flex gap-4"><span class="text-secondary">"radius.md":</span> <span
+                  class="text-brand">"12px"</span></div>
+              <div class="flex gap-4"><span class="text-secondary">"font.sans":</span> <span
+                  class="text-brand">"Inter"</span></div>
+            </div>
+            <i data-lucide="dna" class="icon-hero text-tertiary absolute-corner-br w-feature-icon opacity-10"></i>
+          </div>
+          <div class="p-4">
+            <div class="repo-badge mb-3 text-brand font-mono text-sm">Layer 1</div>
+            <h3 class="text-display-sm mb-3">Primitives</h3>
+            <p class="text-body-lg text-secondary">
+              The atomic foundation. Raw values live exclusively in <code>primary.json</code>—immutable,
+              platform-agnostic, and the single source of truth for the entire organization.
+            </p>
+          </div>
+        </div>
+
+        <!-- Module 2: Semantics -->
+        <div class="grid grid-cols-2 gap-16 items-center">
+          <div class="p-4 order-2 md:order-1">
+            <div class="repo-badge mb-3 text-brand font-mono text-sm">Layer 2</div>
+            <h3 class="text-display-sm mb-3">Semantics</h3>
+            <p class="text-body-lg text-secondary">
+              The language of intent. Semantics describe <em>what</em> a value does ("Primary Action"), not
+              <em>what</em> it looks like. This abstraction layer allows for instant, code-free theming.
+            </p>
+          </div>
+          <div
+            class="bg-subtle p-8 rounded-control border border-subtle relative overflow-hidden h-full flex items-center justify-center order-1 md:order-2 min-h-feature">
+            <!-- Abstract visualization of Semantics -->
+            <div class="stack stack-gap-3 w-full max-w-280">
+              <div class="flex justify-between items-center p-3 bg-white rounded-control shadow-sm">
+                <span class="text-sm font-medium">Text Primary</span>
+                <div class="w-4 h-4 rounded-full bg-slate-900"></div>
+              </div>
+              <div class="flex justify-between items-center p-3 bg-white rounded-control shadow-sm">
+                <span class="text-sm font-medium">Surface Brand</span>
+                <div class="w-4 h-4 rounded-full bg-blue-600"></div>
+              </div>
+              <div class="flex justify-between items-center p-3 bg-white rounded-control shadow-sm">
+                <span class="text-sm font-medium">Status Success</span>
+                <div class="w-4 h-4 rounded-full bg-green-500"></div>
+              </div>
+            </div>
+            <i data-lucide="target" class="icon-hero text-tertiary absolute-corner-bl w-feature-icon opacity-10"></i>
+          </div>
+        </div>
+
+        <!-- Module 3: Components -->
+        <div class="grid grid-cols-2 gap-16 items-center">
+          <div
+            class="bg-subtle p-8 rounded-control border border-subtle relative overflow-hidden h-full flex items-center justify-center min-h-feature">
+            <!-- Abstract visualization of Components -->
+            <div class="card p-6 shadow-lg bg-white w-280">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-brand"><i
+                    data-lucide="user"></i></div>
+                <div>
+                  <div class="h-2 w-20 bg-slate-200 rounded mb-1"></div>
+                  <div class="h-2 w-12 bg-slate-100 rounded"></div>
+                </div>
+              </div>
+              <button class="btn btn-primary w-full">Connect Account</button>
+            </div>
+            <i data-lucide="box" class="icon-hero text-tertiary absolute-corner-br w-feature-icon opacity-10"></i>
+          </div>
+          <div class="p-4">
+            <div class="repo-badge mb-3 text-brand font-mono text-sm">Layer 3</div>
+            <h3 class="text-display-sm mb-3">Components</h3>
+            <p class="text-body-lg text-secondary">
+              Blind consumers. Components never hardcode values; they simply request semantic tokens. This strict
+              separation ensures that a button built today will automatically inherit the brand of tomorrow.
+            </p>
+          </div>
+        </div>
+
+        <!-- Integrated Workflow -->
+        <section class="docs-section text-center max-w-full mx-auto px-4 mt-4" style="max-width: 1200px;">
+          <header class="section-header">
+            <h2 class="text-display-sm">The Integrated Workflow</h2>
+            <p class="text-body-lg text-secondary max-w-600 mx-auto mt-4">
+              Seamless collaboration from Figma to Production.
+            </p>
+          </header>
+
+          <div class="bg-subtle p-8 rounded-control border border-subtle relative overflow-hidden">
+            <div class="flex flex-col md:flex-row items-center justify-between relative z-10 gap-16 md:gap-4">
+
+              <!-- Step 1 -->
+              <div class="flex flex-col items-center gap-4 text-center max-w-280">
+                <div
+                  class="w-16 h-16 rounded-full bg-white border border-subtle flex items-center justify-center shadow-sm">
+                  <i data-lucide="figma" class="icon-xl text-brand"></i>
+                </div>
+                <div>
+                  <h3 class="text-title-sm">Design</h3>
+                  <p class="text-body-sm text-secondary">Tokens defined in Figma variables.</p>
+                </div>
+              </div>
+
+              <!-- Arrow -->
+              <div class="hidden md:block w-32 h-1 bg-border-subtle relative opacity-50"></div>
+              <i data-lucide="arrow-down" class="md:hidden icon-lg text-tertiary"></i>
+
+              <!-- Step 2 -->
+              <div class="flex flex-col items-center gap-4 text-center max-w-280">
+                <div
+                  class="w-16 h-16 rounded-full bg-white border border-subtle flex items-center justify-center shadow-sm">
+                  <i data-lucide="github" class="icon-xl text-brand"></i>
+                </div>
+                <div>
+                  <h3 class="text-title-sm">Build</h3>
+                  <p class="text-body-sm text-secondary">JSON tokens sync to git repo.</p>
+                </div>
+              </div>
+
+              <!-- Arrow -->
+              <div class="hidden md:block w-32 h-1 bg-border-subtle relative opacity-50"></div>
+              <i data-lucide="arrow-down" class="md:hidden icon-lg text-tertiary"></i>
+
+              <!-- Step 3 -->
+              <div class="flex flex-col items-center gap-4 text-center max-w-280">
+                <div
+                  class="w-16 h-16 rounded-full bg-white border border-subtle flex items-center justify-center shadow-sm">
+                  <i data-lucide="box" class="icon-xl text-brand"></i>
+                </div>
+                <div>
+                  <h3 class="text-title-sm">Deploy</h3>
+                  <p class="text-body-sm text-secondary">Components consume semantic CSS.</p>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Decorative Background Connection -->
+            <div class="absolute top-1/2 left-0 right-0 h-1 bg-border-subtle opacity-20 -z-10 hidden md:block"></div>
+          </div>
+        </section>
+
+        <!-- Tri-Modal -->
+        <section class="modes-section">
+          <header class="section-header">
+            <h2 class="text-display-sm">Tri-Modal Architecture</h2>
+            <p class="text-body-lg text-secondary">One system. Three distinct user outcomes.</p>
+          </header>
+          <div class="modes-grid">
+            <article class="mode-card">
+              <header class="mode-header">
+                <i data-lucide="palette" class="icon icon-lg text-brand"></i>
+                <h3 class="text-title-sm">Captivate</h3>
+              </header>
+              <p class="text-detail mb-3">Display Mode</p>
+              <ul class="mode-list">
+                <li>For Marketing & Landing Pages</li>
+                <li>Large Typography (80px+)</li>
+                <li>Glassmorphism & Depth</li>
+              </ul>
+            </article>
+            <article class="mode-card">
+              <header class="mode-header">
+                <i data-lucide="wrench" class="icon icon-lg text-brand"></i>
+                <h3 class="text-title-sm">Empower</h3>
+              </header>
+              <p class="text-detail mb-3">Product Mode</p>
+              <ul class="mode-list">
+                <li>For SaaS & Dashboards</li>
+                <li>Compact Density</li>
+                <li>Focus on Data & Utility</li>
+              </ul>
+            </article>
+            <article class="mode-card">
+              <header class="mode-header">
+                <i data-lucide="smartphone" class="icon icon-lg text-brand"></i>
+                <h3 class="text-title-sm">Engage</h3>
+              </header>
+              <p class="text-detail mb-3">App Mode</p>
+              <ul class="mode-list">
+                <li>For Touch Interfaces</li>
+                <li>Hit Targets (44px+)</li>
+                <li>Native Platform Feel</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+          <p>Orion Design System © 2026 • Built for AI, governed by tokens.</p>
+        </footer>
+      </div>
+
+      <!-- Navigation Shell -->
+      <script src="assets/docs-shell.js"></script>
+      <script>
+        lucide.createIcons();
+
+        // Carousel Engine Navigation
+        const carouselEngine = document.querySelector('.carousel-engine');
+        const prevBtn = document.getElementById('carousel-prev');
+        const nextBtn = document.getElementById('carousel-next');
+
+        if (carouselEngine && prevBtn && nextBtn) {
+          nextBtn.addEventListener('click', () => {
+            carouselEngine.scrollBy({ left: 420, behavior: 'smooth' }); // 400 card + 20 gap
+          });
+          prevBtn.addEventListener('click', () => {
+            carouselEngine.scrollBy({ left: -420, behavior: 'smooth' });
+          });
+        }
+      </script>
+</body>
+
+</html>

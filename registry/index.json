@@ -1,0 +1,712 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry.json",
+  "name": "@orion-ds/registry",
+  "version": "1.0.0",
+  "description": "Machine-readable registry for Orion Design System — AI-native component discovery and generation",
+  "homepage": "https://orion-ds.dev",
+  "components": [
+    {
+      "name": "about-page-template",
+      "title": "About Page",
+      "description": "AboutPage page template",
+      "category": "marketing",
+      "type": "registry:template"
+    },
+    {
+      "name": "accordion",
+      "title": "Accordion",
+      "description": "Accordion component",
+      "category": "layout",
+      "type": "registry:component"
+    },
+    {
+      "name": "activity-feed",
+      "title": "ActivityFeed",
+      "description": "ActivityFeed section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "alert",
+      "title": "Alert",
+      "description": "Feedback message with icon",
+      "category": "feedback",
+      "type": "registry:component"
+    },
+    {
+      "name": "alert-dialog",
+      "title": "AlertDialog",
+      "description": "AlertDialog component",
+      "category": "utilities",
+      "type": "registry:component"
+    },
+    {
+      "name": "app-download",
+      "title": "AppDownload",
+      "description": "AppDownload section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "avatar",
+      "title": "Avatar",
+      "description": "User profile image or initials",
+      "category": "data-display",
+      "type": "registry:component"
+    },
+    {
+      "name": "badge",
+      "title": "Badge",
+      "description": "Status indicator or label",
+      "category": "feedback",
+      "type": "registry:component"
+    },
+    {
+      "name": "banner",
+      "title": "Banner",
+      "description": "Banner section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "blog",
+      "title": "Blog",
+      "description": "Blog section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "breadcrumb",
+      "title": "Breadcrumb",
+      "description": "Navigation path indicator",
+      "category": "navigation",
+      "type": "registry:component"
+    },
+    {
+      "name": "breadcrumbs",
+      "title": "Breadcrumbs",
+      "description": "Breadcrumbs section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "button",
+      "title": "Button",
+      "description": "Primary interactive element for actions",
+      "category": "actions",
+      "type": "registry:component"
+    },
+    {
+      "name": "calendar",
+      "title": "Calendar",
+      "description": "Calendar component",
+      "category": "utilities",
+      "type": "registry:component"
+    },
+    {
+      "name": "card",
+      "title": "Card",
+      "description": "Container for grouped content",
+      "category": "layout",
+      "type": "registry:component"
+    },
+    {
+      "name": "carousel",
+      "title": "Carousel",
+      "description": "Carousel component",
+      "category": "data-display",
+      "type": "registry:component"
+    },
+    {
+      "name": "carousel-section",
+      "title": "CarouselSection",
+      "description": "CarouselSection section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "chart",
+      "title": "Chart",
+      "description": "Chart component",
+      "category": "utilities",
+      "type": "registry:component"
+    },
+    {
+      "name": "chat",
+      "title": "Chat",
+      "description": "Chat component",
+      "category": "utilities",
+      "type": "registry:component"
+    },
+    {
+      "name": "chat-page-template",
+      "title": "Chat Page",
+      "description": "ChatPage page template",
+      "category": "app",
+      "type": "registry:template"
+    },
+    {
+      "name": "chat-section",
+      "title": "Chat",
+      "description": "Chat section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "checkbox",
+      "title": "Checkbox",
+      "description": "Checkbox input for multiple selections",
+      "category": "forms",
+      "type": "registry:component"
+    },
+    {
+      "name": "chip",
+      "title": "Chip",
+      "description": "Chip component",
+      "category": "tags",
+      "type": "registry:component"
+    },
+    {
+      "name": "collapsible",
+      "title": "Collapsible",
+      "description": "Collapsible component",
+      "category": "utilities",
+      "type": "registry:component"
+    },
+    {
+      "name": "combobox",
+      "title": "Combobox",
+      "description": "Combobox component",
+      "category": "forms",
+      "type": "registry:component"
+    },
+    {
+      "name": "command",
+      "title": "Command",
+      "description": "Command component",
+      "category": "utilities",
+      "type": "registry:component"
+    },
+    {
+      "name": "command-bar",
+      "title": "CommandBar",
+      "description": "CommandBar section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "comparison",
+      "title": "Comparison",
+      "description": "Comparison section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "contact",
+      "title": "Contact",
+      "description": "Contact section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "contact-page-template",
+      "title": "Contact Page",
+      "description": "ContactPage page template",
+      "category": "marketing",
+      "type": "registry:template"
+    },
+    {
+      "name": "container",
+      "title": "Container",
+      "description": "Container section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "cta",
+      "title": "CTA",
+      "description": "CTA section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "dashboard-template",
+      "title": "Dashboard",
+      "description": "Dashboard page template",
+      "category": "app",
+      "type": "registry:template"
+    },
+    {
+      "name": "data-table",
+      "title": "DataTable",
+      "description": "DataTable section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "date-picker",
+      "title": "DatePicker",
+      "description": "DatePicker component",
+      "category": "utilities",
+      "type": "registry:component"
+    },
+    {
+      "name": "detail-panel",
+      "title": "DetailPanel",
+      "description": "DetailPanel section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "divider",
+      "title": "Divider",
+      "description": "Visual separator between content",
+      "category": "layout",
+      "type": "registry:component"
+    },
+    {
+      "name": "drawer",
+      "title": "Drawer",
+      "description": "Drawer component",
+      "category": "overlays",
+      "type": "registry:component"
+    },
+    {
+      "name": "dropdown",
+      "title": "Dropdown",
+      "description": "Contextual menu on click",
+      "category": "overlays",
+      "type": "registry:component"
+    },
+    {
+      "name": "empty-state",
+      "title": "EmptyState",
+      "description": "EmptyState component",
+      "category": "feedback",
+      "type": "registry:component"
+    },
+    {
+      "name": "empty-state-section",
+      "title": "EmptyState",
+      "description": "EmptyState section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "error-boundary",
+      "title": "ErrorBoundary",
+      "description": "ErrorBoundary component",
+      "category": "utilities",
+      "type": "registry:component"
+    },
+    {
+      "name": "faq",
+      "title": "FAQ",
+      "description": "FAQ section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "features",
+      "title": "Features",
+      "description": "Features section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "field",
+      "title": "Field",
+      "description": "Text input wrapper with label and error state",
+      "category": "forms",
+      "type": "registry:component"
+    },
+    {
+      "name": "file-uploader",
+      "title": "FileUploader",
+      "description": "FileUploader section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "filter-bar",
+      "title": "FilterBar",
+      "description": "FilterBar section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "footer",
+      "title": "Footer",
+      "description": "Footer section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "form-section",
+      "title": "FormSection",
+      "description": "FormSection section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "gallery",
+      "title": "Gallery",
+      "description": "Gallery section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "hero",
+      "title": "Hero",
+      "description": "Hero section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "icon",
+      "title": "Icon",
+      "description": "Icon component",
+      "category": "utilities",
+      "type": "registry:component"
+    },
+    {
+      "name": "input-otp",
+      "title": "InputOTP",
+      "description": "InputOTP component",
+      "category": "utilities",
+      "type": "registry:component"
+    },
+    {
+      "name": "kanban-board",
+      "title": "KanbanBoard",
+      "description": "KanbanBoard section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "kanban-page-template",
+      "title": "Kanban Page",
+      "description": "KanbanPage page template",
+      "category": "app",
+      "type": "registry:template"
+    },
+    {
+      "name": "landing-page-template",
+      "title": "Landing Page",
+      "description": "LandingPage page template",
+      "category": "marketing",
+      "type": "registry:template"
+    },
+    {
+      "name": "link",
+      "title": "Link",
+      "description": "Link component",
+      "category": "text",
+      "type": "registry:component"
+    },
+    {
+      "name": "list",
+      "title": "List",
+      "description": "List component",
+      "category": "data-display",
+      "type": "registry:component"
+    },
+    {
+      "name": "login-template",
+      "title": "Login",
+      "description": "Login page template",
+      "category": "app",
+      "type": "registry:template"
+    },
+    {
+      "name": "logo-cloud",
+      "title": "LogoCloud",
+      "description": "LogoCloud section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "metric-cards",
+      "title": "MetricCards",
+      "description": "MetricCards section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "modal",
+      "title": "Modal",
+      "description": "Dialog overlay for focused interactions",
+      "category": "overlays",
+      "type": "registry:component"
+    },
+    {
+      "name": "navbar",
+      "title": "Navbar",
+      "description": "Top navigation bar with brand and links",
+      "category": "navigation",
+      "type": "registry:component"
+    },
+    {
+      "name": "newsletter",
+      "title": "Newsletter",
+      "description": "Newsletter section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "notification-center",
+      "title": "NotificationCenter",
+      "description": "NotificationCenter section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "page-header",
+      "title": "PageHeader",
+      "description": "PageHeader section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "pagination",
+      "title": "Pagination",
+      "description": "Page navigation controls",
+      "category": "navigation",
+      "type": "registry:component"
+    },
+    {
+      "name": "popover",
+      "title": "Popover",
+      "description": "Popover component",
+      "category": "overlays",
+      "type": "registry:component"
+    },
+    {
+      "name": "pricing",
+      "title": "Pricing",
+      "description": "Pricing section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "pricing-page-template",
+      "title": "Pricing Page",
+      "description": "PricingPage page template",
+      "category": "marketing",
+      "type": "registry:template"
+    },
+    {
+      "name": "profile-page-template",
+      "title": "Profile Page",
+      "description": "ProfilePage page template",
+      "category": "app",
+      "type": "registry:template"
+    },
+    {
+      "name": "progress-bar",
+      "title": "ProgressBar",
+      "description": "Visual progress indicator",
+      "category": "feedback",
+      "type": "registry:component"
+    },
+    {
+      "name": "quick-actions",
+      "title": "QuickActions",
+      "description": "QuickActions section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "radio",
+      "title": "Radio",
+      "description": "Radio button for single selection",
+      "category": "forms",
+      "type": "registry:component"
+    },
+    {
+      "name": "search-input",
+      "title": "SearchInput",
+      "description": "SearchInput component",
+      "category": "search",
+      "type": "registry:component"
+    },
+    {
+      "name": "section",
+      "title": "Section",
+      "description": "Section section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "select",
+      "title": "Select",
+      "description": "Dropdown selection input",
+      "category": "forms",
+      "type": "registry:component"
+    },
+    {
+      "name": "settings-layout",
+      "title": "SettingsLayout",
+      "description": "SettingsLayout section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "settings-template",
+      "title": "Settings",
+      "description": "Settings page template",
+      "category": "app",
+      "type": "registry:template"
+    },
+    {
+      "name": "sidebar",
+      "title": "Sidebar",
+      "description": "Sidebar section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "skeleton",
+      "title": "Skeleton",
+      "description": "Placeholder for loading content",
+      "category": "loading",
+      "type": "registry:component"
+    },
+    {
+      "name": "slider",
+      "title": "Slider",
+      "description": "Slider component",
+      "category": "forms",
+      "type": "registry:component"
+    },
+    {
+      "name": "social-proof",
+      "title": "SocialProof",
+      "description": "SocialProof section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "spinner",
+      "title": "Spinner",
+      "description": "Loading indicator",
+      "category": "loading",
+      "type": "registry:component"
+    },
+    {
+      "name": "stats",
+      "title": "Stats",
+      "description": "Stats section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "stepper",
+      "title": "Stepper",
+      "description": "Stepper component",
+      "category": "navigation",
+      "type": "registry:component"
+    },
+    {
+      "name": "stepper-section",
+      "title": "Stepper",
+      "description": "Stepper section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "switch",
+      "title": "Switch",
+      "description": "Toggle switch for boolean settings",
+      "category": "forms",
+      "type": "registry:component"
+    },
+    {
+      "name": "table",
+      "title": "Table",
+      "description": "Data grid with headers and rows",
+      "category": "data-display",
+      "type": "registry:component"
+    },
+    {
+      "name": "tabs",
+      "title": "Tabs",
+      "description": "Pill-style navigation tabs with segmented control appearance",
+      "category": "navigation",
+      "type": "registry:component"
+    },
+    {
+      "name": "team",
+      "title": "Team",
+      "description": "Team section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "testimonials",
+      "title": "Testimonials",
+      "description": "Testimonials section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "textarea",
+      "title": "Textarea",
+      "description": "Textarea component",
+      "category": "forms",
+      "type": "registry:component"
+    },
+    {
+      "name": "theme-controller",
+      "title": "ThemeController",
+      "description": "ThemeController component",
+      "category": "utilities",
+      "type": "registry:component"
+    },
+    {
+      "name": "timeline",
+      "title": "Timeline",
+      "description": "Timeline section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
+      "name": "toast",
+      "title": "Toast",
+      "description": "Toast component",
+      "category": "feedback",
+      "type": "registry:component"
+    },
+    {
+      "name": "toggle",
+      "title": "Toggle",
+      "description": "Toggle component",
+      "category": "utilities",
+      "type": "registry:component"
+    },
+    {
+      "name": "toggle-group",
+      "title": "ToggleGroup",
+      "description": "ToggleGroup component",
+      "category": "utilities",
+      "type": "registry:component"
+    },
+    {
+      "name": "tooltip",
+      "title": "Tooltip",
+      "description": "Contextual help on hover",
+      "category": "overlays",
+      "type": "registry:component"
+    },
+    {
+      "name": "user-menu",
+      "title": "UserMenu",
+      "description": "UserMenu section component",
+      "category": "marketing",
+      "type": "registry:section"
+    }
+  ],
+  "totalComponents": 49,
+  "totalSections": 41,
+  "totalTemplates": 10
+}

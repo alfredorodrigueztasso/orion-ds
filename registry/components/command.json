@@ -1,0 +1,55 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "command",
+  "type": "registry:component",
+  "title": "Command",
+  "description": "Command component",
+  "category": "utilities",
+  "files": [
+    {
+      "path": "packages/react/src/components/Command/Command.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Command/Command.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Command/Command.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Command/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "value",
+      "type": "string",
+      "description": "Controlled search value"
+    },
+    {
+      "name": "onValueChange",
+      "type": "(value: string) => void",
+      "description": "Callback when search value changes"
+    },
+    {
+      "name": "filter",
+      "type": "(value: string, search: string) => number",
+      "description": "Custom filter function. Return 0 to hide, 1 to show."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "description": "Additional class name"
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#command",
+    "local": "/library.html#command"
+  },
+  "import": "import { Command } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

@@ -1,0 +1,85 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "empty-state",
+  "type": "registry:component",
+  "title": "EmptyState",
+  "description": "EmptyState component",
+  "category": "feedback",
+  "files": [
+    {
+      "path": "packages/react/src/components/EmptyState/EmptyState.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/EmptyState/EmptyState.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/EmptyState/EmptyState.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/EmptyState/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "description": "Icon or illustration to display"
+    },
+    {
+      "name": "title",
+      "type": "string",
+      "description": "Main title text",
+      "required": true
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "description": "Description text"
+    },
+    {
+      "name": "action",
+      "type": "ReactNode",
+      "description": "Primary action button"
+    },
+    {
+      "name": "secondaryAction",
+      "type": "ReactNode",
+      "description": "Secondary action button"
+    },
+    {
+      "name": "size",
+      "type": "EmptyStateSize",
+      "description": "Size variant",
+      "default": "md",
+      "values": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    }
+  ],
+  "tokens": [
+    "--text-secondary",
+    "--surface-subtle"
+  ],
+  "examples": [
+    {
+      "title": "Basic empty state",
+      "code": "import { Inbox } from 'lucide-react';\n\n<EmptyState\n  icon={<Inbox size={48} />}\n  title=\"No messages\"\n  description=\"You don't have any messages yet.\"\n  action={<Button>Compose</Button>}\n/>"
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#empty-state",
+    "local": "/library.html#empty-state"
+  },
+  "import": "import { EmptyState } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'",
+  "dependencies": [
+    "lucide-react"
+  ]
+}

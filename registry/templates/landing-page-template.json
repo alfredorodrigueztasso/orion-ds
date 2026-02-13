@@ -1,0 +1,20 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "landing-page-template",
+  "type": "registry:template",
+  "title": "Landing Page",
+  "description": "LandingPage page template",
+  "category": "marketing",
+  "files": [
+    {
+      "path": "packages/react/src/templates/marketing/LandingPageTemplate/LandingPageTemplate.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#landing-page-template",
+    "local": "/library.html#landing-page-template"
+  },
+  "import": "import { LandingPageTemplate } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

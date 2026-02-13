@@ -1,0 +1,48 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "toast",
+  "type": "registry:component",
+  "title": "Toast",
+  "description": "Toast component",
+  "category": "feedback",
+  "files": [
+    {
+      "path": "packages/react/src/components/Toast/Toast.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Toast/Toast.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Toast/Toast.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Toast/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "tokens": [
+    "--surface-base",
+    "--border-subtle",
+    "--shadow-lg",
+    "--status-success",
+    "--status-error",
+    "--status-warning",
+    "--status-info"
+  ],
+  "examples": [
+    {
+      "title": "Toast usage",
+      "code": "const { addToast } = useToast();\n\naddToast({ title: 'Saved', description: 'Changes saved.', variant: 'success' });"
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#toast",
+    "local": "/library.html#toast"
+  },
+  "import": "import { Toast } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

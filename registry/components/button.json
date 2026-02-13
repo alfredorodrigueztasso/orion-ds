@@ -1,0 +1,145 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "button",
+  "type": "registry:component",
+  "title": "Button",
+  "description": "Primary interactive element for actions",
+  "category": "actions",
+  "files": [
+    {
+      "path": "packages/react/src/components/Button/Button.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Button/Button.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Button/Button.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Button/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "variant",
+      "type": "ButtonVariant",
+      "description": "Visual variant of the button.",
+      "default": "primary",
+      "values": [
+        "primary",
+        "secondary",
+        "ghost",
+        "danger"
+      ]
+    },
+    {
+      "name": "size",
+      "type": "ButtonSize",
+      "description": "Size of the button. Automatically adapts to current mode.",
+      "default": "md",
+      "values": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    {
+      "name": "isLoading",
+      "type": "boolean",
+      "description": "Loading state - shows spinner and disables interaction.",
+      "default": false
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "description": "Full width button - expands to fill container.",
+      "default": false
+    },
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "description": "Icon to display on the left side of button text."
+    },
+    {
+      "name": "iconRight",
+      "type": "ReactNode",
+      "description": "Icon to display on the right side of button text."
+    },
+    {
+      "name": "iconOnly",
+      "type": "boolean",
+      "description": "Icon-only button (no text, just icon).",
+      "default": false
+    }
+  ],
+  "tokens": [
+    "--interactive-primary",
+    "--interactive-primary-hover",
+    "--interactive-primary-text",
+    "--interactive-secondary",
+    "--radius-control",
+    "--font-secondary"
+  ],
+  "examples": [
+    {
+      "title": "Primary button",
+      "code": "<Button variant=\"primary\">Save</Button>"
+    },
+    {
+      "title": "With icon",
+      "code": "import { Download } from 'lucide-react';\n\n<Button icon={<Download size={20} />}>Download</Button>"
+    },
+    {
+      "title": "Icon-only",
+      "code": "import { Settings } from 'lucide-react';\n\n<Button iconOnly icon={<Settings size={20} />} aria-label=\"Settings\" />"
+    },
+    {
+      "title": "Loading state",
+      "code": "<Button isLoading>Saving...</Button>"
+    },
+    {
+      "title": "Full width",
+      "code": "<Button fullWidth variant=\"primary\">Continue</Button>"
+    },
+    {
+      "title": "Danger action",
+      "code": "import { Trash2 } from 'lucide-react';\n\n<Button variant=\"danger\" icon={<Trash2 size={20} />}>Delete</Button>"
+    }
+  ],
+  "accessibility": {
+    "role": "button",
+    "ariaAttributes": [
+      "aria-label",
+      "aria-pressed",
+      "aria-disabled"
+    ],
+    "keyboardNav": [
+      {
+        "key": "Enter",
+        "action": "Activate button"
+      },
+      {
+        "key": "Space",
+        "action": "Activate button"
+      }
+    ],
+    "notes": [
+      "Icon-only buttons MUST have aria-label",
+      "Loading state automatically sets aria-busy"
+    ]
+  },
+  "modeAware": true,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#button",
+    "local": "/library.html#button"
+  },
+  "import": "import { Button } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'",
+  "dependencies": [
+    "lucide-react"
+  ]
+}

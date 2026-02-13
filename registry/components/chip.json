@@ -1,0 +1,105 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "chip",
+  "type": "registry:component",
+  "title": "Chip",
+  "description": "Chip component",
+  "category": "tags",
+  "files": [
+    {
+      "path": "packages/react/src/components/Chip/Chip.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Chip/Chip.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Chip/Chip.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Chip/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "variant",
+      "type": "ChipVariant",
+      "description": "Visual variant of the chip",
+      "default": "default",
+      "values": [
+        "default",
+        "primary",
+        "success",
+        "warning",
+        "error",
+        "info"
+      ]
+    },
+    {
+      "name": "size",
+      "type": "ChipSize",
+      "description": "Size of the chip",
+      "default": "md",
+      "values": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "description": "Icon to display before the label"
+    },
+    {
+      "name": "clickable",
+      "type": "boolean",
+      "description": "Whether the chip is clickable",
+      "default": false
+    },
+    {
+      "name": "onClick",
+      "type": "() => void",
+      "description": "Click handler (when clickable is true)"
+    },
+    {
+      "name": "onRemove",
+      "type": "() => void",
+      "description": "Callback to remove the chip (shows X button)"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Whether the chip is disabled",
+      "default": false
+    },
+    {
+      "name": "selected",
+      "type": "boolean",
+      "description": "Whether the chip is selected (for selectable chips)",
+      "default": false
+    }
+  ],
+  "tokens": [
+    "--surface-layer",
+    "--text-primary",
+    "--interactive-primary",
+    "--radius-full"
+  ],
+  "examples": [
+    {
+      "title": "Basic chips",
+      "code": "<Chip>React</Chip>\n<Chip variant=\"primary\">TypeScript</Chip>\n<Chip removable onRemove={() => {}}>Removable</Chip>"
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#chip",
+    "local": "/library.html#chip"
+  },
+  "import": "import { Chip } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

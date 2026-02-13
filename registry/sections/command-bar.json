@@ -1,0 +1,28 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "command-bar",
+  "type": "registry:section",
+  "title": "CommandBar",
+  "description": "CommandBar section component",
+  "category": "marketing",
+  "files": [
+    {
+      "path": "packages/react/src/sections/CommandBar/CommandBar.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/sections/CommandBar/CommandBar.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/sections/CommandBar/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#command-bar",
+    "local": "/library.html#command-bar"
+  },
+  "import": "import { CommandBar } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

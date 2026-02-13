@@ -1,0 +1,97 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "switch",
+  "type": "registry:component",
+  "title": "Switch",
+  "description": "Toggle switch for boolean settings",
+  "category": "forms",
+  "files": [
+    {
+      "path": "packages/react/src/components/Switch/Switch.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Switch/Switch.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Switch/Switch.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Switch/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Switch label text."
+    },
+    {
+      "name": "size",
+      "type": "SwitchSize",
+      "description": "Switch size variant.",
+      "default": "sm",
+      "values": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    {
+      "name": "helperText",
+      "type": "string",
+      "description": "Helper text displayed below the switch."
+    },
+    {
+      "name": "error",
+      "type": "string",
+      "description": "Error message."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "description": "Accessible label for screen readers when no visible label is provided.",
+      "required": true
+    },
+    {
+      "name": "aria-describedby",
+      "type": "string",
+      "description": "Additional element IDs that describe this switch.",
+      "required": true
+    }
+  ],
+  "tokens": [
+    "--interactive-primary",
+    "--surface-layer",
+    "--radius-full"
+  ],
+  "examples": [
+    {
+      "title": "Basic switch",
+      "code": "<Switch label=\"Enable notifications\" checked={enabled} onChange={setEnabled} />"
+    }
+  ],
+  "accessibility": {
+    "role": "switch",
+    "ariaAttributes": [
+      "aria-checked",
+      "aria-label"
+    ],
+    "keyboardNav": [
+      {
+        "key": "Space",
+        "action": "Toggle switch"
+      }
+    ]
+  },
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#switch",
+    "local": "/library.html#switch"
+  },
+  "import": "import { Switch } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

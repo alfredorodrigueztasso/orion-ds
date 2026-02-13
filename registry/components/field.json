@@ -1,0 +1,135 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "field",
+  "type": "registry:component",
+  "title": "Field",
+  "description": "Text input wrapper with label and error state",
+  "category": "forms",
+  "files": [
+    {
+      "path": "packages/react/src/components/Field/Field.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Field/Field.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Field/Field.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Field/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Input label text displayed above the input."
+    },
+    {
+      "name": "error",
+      "type": "string",
+      "description": "Error message - shows error state and displays message below input."
+    },
+    {
+      "name": "helperText",
+      "type": "string",
+      "description": "Helper text displayed below input (when no error)."
+    },
+    {
+      "name": "leftIcon",
+      "type": "ReactNode",
+      "description": "Icon to display on the left side of input."
+    },
+    {
+      "name": "rightIcon",
+      "type": "ReactNode",
+      "description": "Icon to display on the right side of input."
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "description": "Full width input - expands to fill container.",
+      "default": false
+    },
+    {
+      "name": "size",
+      "type": "'sm' | 'md' | 'lg'",
+      "description": "Input size variant.",
+      "default": "md",
+      "values": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    {
+      "name": "optional",
+      "type": "boolean",
+      "description": "Shows \"(optional)\" indicator next to label.",
+      "default": false
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "description": "Accessible label for screen readers when no visible label is provided.",
+      "required": true
+    },
+    {
+      "name": "aria-describedby",
+      "type": "string",
+      "description": "Additional element IDs that describe this input.",
+      "required": true
+    }
+  ],
+  "tokens": [
+    "--surface-base",
+    "--border-subtle",
+    "--border-interactive",
+    "--text-primary",
+    "--text-secondary",
+    "--radius-control",
+    "--font-secondary"
+  ],
+  "examples": [
+    {
+      "title": "Basic field",
+      "code": "<Field label=\"Email\" type=\"email\" placeholder=\"you@example.com\" />"
+    },
+    {
+      "title": "With error",
+      "code": "<Field label=\"Email\" type=\"email\" error=\"Please enter a valid email\" />"
+    },
+    {
+      "title": "With icons",
+      "code": "import { Mail } from 'lucide-react';\n\n<Field label=\"Email\" type=\"email\" leftIcon={<Mail size={18} />} />"
+    },
+    {
+      "title": "With helper text",
+      "code": "<Field label=\"Password\" type=\"password\" helperText=\"Must be at least 8 characters\" />"
+    }
+  ],
+  "accessibility": {
+    "role": "textbox",
+    "ariaAttributes": [
+      "aria-label",
+      "aria-describedby",
+      "aria-invalid",
+      "aria-required"
+    ],
+    "notes": [
+      "Error message auto-associated via aria-describedby",
+      "Label required unless aria-label provided"
+    ]
+  },
+  "modeAware": true,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#field",
+    "local": "/library.html#field"
+  },
+  "import": "import { Field } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

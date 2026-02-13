@@ -1,0 +1,28 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "form-section",
+  "type": "registry:section",
+  "title": "FormSection",
+  "description": "FormSection section component",
+  "category": "marketing",
+  "files": [
+    {
+      "path": "packages/react/src/sections/FormSection/FormSection.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/sections/FormSection/FormSection.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/sections/FormSection/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#form-section",
+    "local": "/library.html#form-section"
+  },
+  "import": "import { FormSection } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

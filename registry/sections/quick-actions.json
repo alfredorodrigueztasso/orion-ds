@@ -1,0 +1,28 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "quick-actions",
+  "type": "registry:section",
+  "title": "QuickActions",
+  "description": "QuickActions section component",
+  "category": "marketing",
+  "files": [
+    {
+      "path": "packages/react/src/sections/QuickActions/QuickActions.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/sections/QuickActions/QuickActions.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/sections/QuickActions/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#quick-actions",
+    "local": "/library.html#quick-actions"
+  },
+  "import": "import { QuickActions } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

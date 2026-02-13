@@ -1,0 +1,118 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "select",
+  "type": "registry:component",
+  "title": "Select",
+  "description": "Dropdown selection input",
+  "category": "forms",
+  "files": [
+    {
+      "path": "packages/react/src/components/Select/Select.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Select/Select.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Select/Select.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Select/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Select label"
+    },
+    {
+      "name": "error",
+      "type": "string",
+      "description": "Error message (shows error state when present)"
+    },
+    {
+      "name": "helperText",
+      "type": "string",
+      "description": "Helper text (shown below select)"
+    },
+    {
+      "name": "options",
+      "type": "SelectOption[]",
+      "description": "Select options"
+    },
+    {
+      "name": "placeholder",
+      "type": "string",
+      "description": "Placeholder option text",
+      "default": "Select an option..."
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "description": "Full width select",
+      "default": false
+    },
+    {
+      "name": "size",
+      "type": "'sm' | 'md' | 'lg'",
+      "description": "Select size",
+      "default": "md",
+      "values": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    {
+      "name": "optional",
+      "type": "boolean",
+      "description": "Optional indicator",
+      "default": false
+    }
+  ],
+  "tokens": [
+    "--surface-base",
+    "--border-subtle",
+    "--text-primary",
+    "--radius-control"
+  ],
+  "examples": [
+    {
+      "title": "Basic select",
+      "code": "<Select\n  label=\"Country\"\n  options={[\n    { value: 'us', label: 'United States' },\n    { value: 'uk', label: 'United Kingdom' },\n  ]}\n  onChange={(value) => console.log(value)}\n/>"
+    }
+  ],
+  "accessibility": {
+    "role": "listbox",
+    "ariaAttributes": [
+      "aria-label",
+      "aria-expanded",
+      "aria-haspopup"
+    ],
+    "keyboardNav": [
+      {
+        "key": "Enter/Space",
+        "action": "Open/select"
+      },
+      {
+        "key": "ArrowUp/Down",
+        "action": "Navigate options"
+      },
+      {
+        "key": "Escape",
+        "action": "Close dropdown"
+      }
+    ]
+  },
+  "modeAware": true,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#select",
+    "local": "/library.html#select"
+  },
+  "import": "import { Select } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

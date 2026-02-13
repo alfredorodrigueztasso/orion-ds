@@ -1,0 +1,33 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "calendar",
+  "type": "registry:component",
+  "title": "Calendar",
+  "description": "Calendar component",
+  "category": "utilities",
+  "files": [
+    {
+      "path": "packages/react/src/components/Calendar/Calendar.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Calendar/Calendar.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Calendar/Calendar.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Calendar/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#calendar",
+    "local": "/library.html#calendar"
+  },
+  "import": "import { Calendar } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

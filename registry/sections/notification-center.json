@@ -1,0 +1,28 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "notification-center",
+  "type": "registry:section",
+  "title": "NotificationCenter",
+  "description": "NotificationCenter section component",
+  "category": "marketing",
+  "files": [
+    {
+      "path": "packages/react/src/sections/NotificationCenter/NotificationCenter.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/sections/NotificationCenter/NotificationCenter.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/sections/NotificationCenter/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#notification-center",
+    "local": "/library.html#notification-center"
+  },
+  "import": "import { NotificationCenter } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

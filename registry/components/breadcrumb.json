@@ -1,0 +1,105 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "breadcrumb",
+  "type": "registry:component",
+  "title": "Breadcrumb",
+  "description": "Navigation path indicator",
+  "category": "navigation",
+  "files": [
+    {
+      "path": "packages/react/src/components/Breadcrumb/Breadcrumb.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Breadcrumb/Breadcrumb.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Breadcrumb/Breadcrumb.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Breadcrumb/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "items",
+      "type": "BreadcrumbItem[]",
+      "description": "Breadcrumb items",
+      "required": true
+    },
+    {
+      "name": "separator",
+      "type": "BreadcrumbSeparator",
+      "description": "Separator type",
+      "default": "chevron",
+      "values": [
+        "chevron",
+        "slash",
+        "custom"
+      ]
+    },
+    {
+      "name": "customSeparator",
+      "type": "ReactNode",
+      "description": "Custom separator element"
+    },
+    {
+      "name": "showHomeIcon",
+      "type": "boolean",
+      "description": "Show home icon for first item",
+      "default": false
+    },
+    {
+      "name": "maxItems",
+      "type": "number",
+      "description": "Maximum number of items to display"
+    },
+    {
+      "name": "size",
+      "type": "BreadcrumbSize",
+      "description": "Breadcrumb size",
+      "default": "md",
+      "values": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "description": "Additional CSS class"
+    },
+    {
+      "name": "linkProps",
+      "type": "Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>",
+      "description": "Link props (applied to all anchor elements)"
+    }
+  ],
+  "tokens": [
+    "--text-secondary",
+    "--text-primary"
+  ],
+  "examples": [
+    {
+      "title": "Basic breadcrumb",
+      "code": "<Breadcrumb\n  items={[\n    { label: 'Home', href: '/' },\n    { label: 'Products', href: '/products' },\n    { label: 'Widget', active: true },\n  ]}\n/>"
+    }
+  ],
+  "accessibility": {
+    "role": "navigation",
+    "ariaAttributes": [
+      "aria-label=\"Breadcrumb\""
+    ]
+  },
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#breadcrumb",
+    "local": "/library.html#breadcrumb"
+  },
+  "import": "import { Breadcrumb } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

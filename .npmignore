@@ -1,0 +1,5 @@
+# Don't publish the monorepo root - only individual packages
+*
+!package.json
+!README.md
+!LICENSE

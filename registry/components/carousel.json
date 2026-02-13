@@ -1,0 +1,147 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "carousel",
+  "type": "registry:component",
+  "title": "Carousel",
+  "description": "Carousel component",
+  "category": "data-display",
+  "files": [
+    {
+      "path": "packages/react/src/components/Carousel/Carousel.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Carousel/Carousel.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Carousel/Carousel.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Carousel/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "items",
+      "type": "CarouselItem[]",
+      "description": "Array of carousel items",
+      "required": true
+    },
+    {
+      "name": "variant",
+      "type": "CarouselVariant",
+      "description": "Visual variant",
+      "default": "editorial",
+      "values": [
+        "editorial",
+        "product",
+        "gallery"
+      ]
+    },
+    {
+      "name": "aspectRatio",
+      "type": "CarouselAspectRatio",
+      "description": "Aspect ratio for cards",
+      "default": "16/9"
+    },
+    {
+      "name": "peek",
+      "type": "boolean",
+      "description": "Show cards cut at edge (Apple style peek effect)",
+      "default": true
+    },
+    {
+      "name": "autoScroll",
+      "type": "boolean",
+      "description": "Enable auto-scroll",
+      "default": false
+    },
+    {
+      "name": "autoScrollInterval",
+      "type": "number",
+      "description": "Auto-scroll interval in milliseconds",
+      "default": 5000
+    },
+    {
+      "name": "gap",
+      "type": "CarouselGap",
+      "description": "Gap between cards",
+      "default": "md",
+      "values": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    {
+      "name": "align",
+      "type": "CarouselAlign",
+      "description": "Track alignment",
+      "default": "edge",
+      "values": [
+        "container",
+        "edge"
+      ]
+    },
+    {
+      "name": "showNavigation",
+      "type": "boolean",
+      "description": "Show navigation arrows",
+      "default": true
+    },
+    {
+      "name": "showPagination",
+      "type": "boolean",
+      "description": "Show pagination dots",
+      "default": false
+    },
+    {
+      "name": "onSlideChange",
+      "type": "(index: number) => void",
+      "description": "Callback when active slide changes"
+    },
+    {
+      "name": "renderNavigation",
+      "type": "(props: CarouselNavigationProps) => ReactNode",
+      "description": "Custom navigation renderer"
+    },
+    {
+      "name": "alignOffset",
+      "type": "number",
+      "description": "Pixel offset for container alignment."
+    },
+    {
+      "name": "highlightActive",
+      "type": "boolean",
+      "description": "Make the active (focused) card 10% larger than the rest.",
+      "default": false
+    },
+    {
+      "name": "loop",
+      "type": "boolean",
+      "description": "Enable infinite loop scrolling.",
+      "default": false
+    }
+  ],
+  "tokens": [
+    "--surface-base",
+    "--border-subtle",
+    "--radius-container"
+  ],
+  "examples": [
+    {
+      "title": "Basic carousel",
+      "code": "<Carousel\n  items={[\n    { id: '1', image: '/img1.jpg', title: 'Slide 1' },\n    { id: '2', image: '/img2.jpg', title: 'Slide 2' },\n  ]}\n/>"
+    }
+  ],
+  "modeAware": true,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#carousel",
+    "local": "/library.html#carousel"
+  },
+  "import": "import { Carousel } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

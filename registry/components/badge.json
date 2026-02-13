@@ -1,0 +1,85 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "badge",
+  "type": "registry:component",
+  "title": "Badge",
+  "description": "Status indicator or label",
+  "category": "feedback",
+  "files": [
+    {
+      "path": "packages/react/src/components/Badge/Badge.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Badge/Badge.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Badge/Badge.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Badge/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "variant",
+      "type": "BadgeVariant",
+      "description": "Badge visual variant",
+      "default": "neutral",
+      "values": [
+        "primary",
+        "secondary",
+        "neutral",
+        "success",
+        "error",
+        "warning",
+        "info",
+        "brand"
+      ]
+    },
+    {
+      "name": "size",
+      "type": "BadgeSize",
+      "description": "Badge size",
+      "default": "md",
+      "values": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    {
+      "name": "dot",
+      "type": "boolean",
+      "description": "Show dot indicator",
+      "default": false
+    }
+  ],
+  "tokens": [
+    "--surface-brand-soft",
+    "--text-brand",
+    "--status-success",
+    "--status-warning",
+    "--status-error"
+  ],
+  "examples": [
+    {
+      "title": "Status badges",
+      "code": "<Badge variant=\"success\">Active</Badge>\n<Badge variant=\"warning\">Pending</Badge>\n<Badge variant=\"error\">Failed</Badge>"
+    },
+    {
+      "title": "With dot indicator",
+      "code": "<Badge variant=\"primary\" dot>Online</Badge>"
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#badge",
+    "local": "/library.html#badge"
+  },
+  "import": "import { Badge } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

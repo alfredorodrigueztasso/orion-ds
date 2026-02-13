@@ -1,0 +1,33 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "date-picker",
+  "type": "registry:component",
+  "title": "DatePicker",
+  "description": "DatePicker component",
+  "category": "utilities",
+  "files": [
+    {
+      "path": "packages/react/src/components/DatePicker/DatePicker.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/DatePicker/DatePicker.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/DatePicker/DatePicker.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/DatePicker/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#date-picker",
+    "local": "/library.html#date-picker"
+  },
+  "import": "import { DatePicker } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "user-menu",
+  "type": "registry:section",
+  "title": "UserMenu",
+  "description": "UserMenu section component",
+  "category": "marketing",
+  "files": [
+    {
+      "path": "packages/react/src/sections/UserMenu/UserMenu.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/sections/UserMenu/UserMenu.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/sections/UserMenu/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#user-menu",
+    "local": "/library.html#user-menu"
+  },
+  "import": "import { UserMenu } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

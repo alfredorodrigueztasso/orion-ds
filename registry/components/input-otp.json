@@ -1,0 +1,92 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "input-otp",
+  "type": "registry:component",
+  "title": "InputOTP",
+  "description": "InputOTP component",
+  "category": "utilities",
+  "files": [
+    {
+      "path": "packages/react/src/components/InputOTP/InputOTP.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/InputOTP/InputOTP.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/InputOTP/InputOTP.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/InputOTP/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "maxLength",
+      "type": "number",
+      "description": "Number of OTP slots. */",
+      "required": true
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "description": "Controlled value. */"
+    },
+    {
+      "name": "defaultValue",
+      "type": "string",
+      "description": "Default value for uncontrolled usage. */"
+    },
+    {
+      "name": "onChange",
+      "type": "(value: string) => void",
+      "description": "Callback when value changes. */"
+    },
+    {
+      "name": "onComplete",
+      "type": "(value: string) => void",
+      "description": "Callback when all slots are filled. */"
+    },
+    {
+      "name": "type",
+      "type": "InputOTPType",
+      "description": "Input type — determines keyboard and allowed characters. @default 'numeric' */",
+      "default": "numeric",
+      "values": [
+        "numeric",
+        "alphanumeric"
+      ]
+    },
+    {
+      "name": "size",
+      "type": "InputOTPSize",
+      "description": "Size of the OTP slots. @default 'md' */",
+      "default": "md",
+      "values": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disable the input. */"
+    },
+    {
+      "name": "autoFocus",
+      "type": "boolean",
+      "description": "Auto-focus the input on mount. */"
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#input-otp",
+    "local": "/library.html#input-otp"
+  },
+  "import": "import { InputOTP } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

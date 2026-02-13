@@ -1,0 +1,111 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "card",
+  "type": "registry:component",
+  "title": "Card",
+  "description": "Container for grouped content",
+  "category": "layout",
+  "files": [
+    {
+      "path": "packages/react/src/components/Card/Card.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Card/Card.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Card/Card.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Card/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "variant",
+      "type": "CardVariant",
+      "description": "Visual variant",
+      "default": "base",
+      "values": [
+        "base",
+        "glass",
+        "elevated",
+        "outlined",
+        "image"
+      ]
+    },
+    {
+      "name": "interactive",
+      "type": "boolean",
+      "description": "Interactive card (adds hover effect)",
+      "default": false
+    },
+    {
+      "name": "imageUrl",
+      "type": "string",
+      "description": "Background image URL (only for 'image' variant)"
+    },
+    {
+      "name": "imagePosition",
+      "type": "ImageCardPosition",
+      "description": "Content position for image variant",
+      "default": "bottom",
+      "values": [
+        "top",
+        "center",
+        "bottom"
+      ]
+    },
+    {
+      "name": "aspectRatio",
+      "type": "string",
+      "description": "Aspect ratio for image card (e.g., '16/9', '4/3', '1/1')",
+      "default": "16/9"
+    }
+  ],
+  "subComponents": [
+    {
+      "name": "Card.Header",
+      "description": "Card header section"
+    },
+    {
+      "name": "Card.Body",
+      "description": "Card body/content section"
+    },
+    {
+      "name": "Card.Footer",
+      "description": "Card footer section"
+    }
+  ],
+  "tokens": [
+    "--surface-base",
+    "--surface-subtle",
+    "--border-subtle",
+    "--radius-container",
+    "--shadow-md"
+  ],
+  "examples": [
+    {
+      "title": "Basic card",
+      "code": "<Card>\n  <Card.Header>Title</Card.Header>\n  <Card.Body>Content goes here</Card.Body>\n  <Card.Footer>\n    <Button variant=\"primary\">Save</Button>\n  </Card.Footer>\n</Card>"
+    },
+    {
+      "title": "Interactive card",
+      "code": "<Card interactive variant=\"elevated\">\n  <Card.Body>Click me</Card.Body>\n</Card>"
+    },
+    {
+      "title": "Image card",
+      "code": "<Card variant=\"image\" imageUrl=\"/hero.jpg\" aspectRatio=\"16/9\">\n  <Card.Body>Overlay content</Card.Body>\n</Card>"
+    }
+  ],
+  "modeAware": true,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#card",
+    "local": "/library.html#card"
+  },
+  "import": "import { Card } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}
