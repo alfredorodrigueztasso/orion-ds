@@ -1,0 +1,359 @@
+/**
+ * LoginTemplate Styles
+ *
+ * Split-layout login page inspired by Supabase.
+ * Uses CSS variables for all values - no hardcoded styles.
+ */
+
+/* ============================================================================
+ * MAIN CONTAINER
+ * ============================================================================ */
+
+.login {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  background-color: var(--surface-base);
+}
+
+.login[data-single-column='true'] {
+  grid-template-columns: 1fr;
+}
+
+/* ============================================================================
+ * LEFT PANEL - FORM
+ * ============================================================================ */
+
+.formPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-8);
+  background-color: var(--surface-base);
+}
+
+.formContainer {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+}
+
+/* ============================================================================
+ * HEADER (Logo + Title)
+ * ============================================================================ */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+.logo {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.titleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-32);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin: 0;
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-16);
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: var(--line-height-relaxed);
+}
+
+/* ============================================================================
+ * FORM
+ * ============================================================================ */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.formOptions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+}
+
+.error {
+  padding: var(--spacing-3) var(--spacing-4);
+  background-color: var(--status-error-bg);
+  border-radius: var(--radius-control);
+  color: var(--text-error);
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-14);
+}
+
+/* ============================================================================
+ * SOCIAL LOGIN
+ * ============================================================================ */
+
+.socialSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.socialButtons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.socialButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-3);
+  width: 100%;
+  padding: var(--spacing-3) var(--spacing-4);
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  background-color: var(--surface-base);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-control);
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast);
+  text-decoration: none;
+}
+
+.socialButton:hover {
+  background-color: var(--surface-subtle);
+  border-color: var(--border-strong);
+}
+
+.socialIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+/* ============================================================================
+ * FOOTER / SIGN UP
+ * ============================================================================ */
+
+.signUpPrompt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-14);
+  color: var(--text-secondary);
+}
+
+.footer {
+  margin-top: var(--spacing-8);
+  padding-top: var(--spacing-6);
+  border-top: 1px solid var(--border-subtle);
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-13);
+  color: var(--text-tertiary);
+  text-align: center;
+}
+
+/* ============================================================================
+ * RIGHT PANEL - EDITORIAL
+ * ============================================================================ */
+
+.editorialPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--spacing-12);
+  background-color: var(--surface-subtle);
+  position: relative;
+  overflow: hidden;
+}
+
+.editorialPanel[data-has-image='true'] {
+  background-size: cover;
+  background-position: center;
+}
+
+.editorialPanel[data-has-image='true']::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--interactive-primary), var(--interactive-primary-hover));
+  opacity: 0.9;
+}
+
+.editorialContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  max-width: 480px;
+}
+
+.editorialHeadline {
+  font-family: var(--font-primary);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin: 0;
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.02em;
+}
+
+.editorialPanel[data-has-image='true'] .editorialHeadline {
+  color: var(--text-on-brand-primary);
+}
+
+.editorialDescription {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-18);
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: var(--line-height-relaxed);
+}
+
+.editorialPanel[data-has-image='true'] .editorialDescription {
+  color: var(--text-on-brand-secondary);
+}
+
+/* Testimonial Quote */
+.testimonial {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+  padding: var(--spacing-6);
+  background-color: var(--surface-base);
+  border-radius: var(--radius-container);
+  border: 1px solid var(--border-subtle);
+}
+
+.editorialPanel[data-has-image='true'] .testimonial {
+  background-color: var(--text-on-brand-tertiary);
+  border: none;
+}
+
+.quote {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-18);
+  font-style: italic;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: var(--line-height-relaxed);
+}
+
+.editorialPanel[data-has-image='true'] .quote {
+  color: var(--text-on-brand-primary);
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.authorAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  background-color: var(--surface-subtle);
+}
+
+.authorAvatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.authorInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.authorName {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.editorialPanel[data-has-image='true'] .authorName {
+  color: var(--text-on-brand-primary);
+}
+
+.authorRole {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-13);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.editorialPanel[data-has-image='true'] .authorRole {
+  color: var(--text-on-brand-secondary);
+}
+
+/* ============================================================================
+ * RESPONSIVE
+ * ============================================================================ */
+
+@media (max-width: 1024px) {
+  .editorialPanel {
+    padding: var(--spacing-8);
+  }
+
+  .editorialHeadline {
+    font-size: var(--font-size-32);
+  }
+}
+
+@media (max-width: 768px) {
+  .login {
+    grid-template-columns: 1fr;
+  }
+
+  .editorialPanel {
+    display: none;
+  }
+
+  .formPanel {
+    padding: var(--spacing-6);
+  }
+
+  .title {
+    font-size: var(--font-size-24);
+  }
+}

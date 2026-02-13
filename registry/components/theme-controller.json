@@ -1,0 +1,90 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "theme-controller",
+  "type": "registry:component",
+  "title": "ThemeController",
+  "description": "ThemeController component",
+  "category": "utilities",
+  "files": [
+    {
+      "path": "packages/react/src/components/ThemeController/ThemeController.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/ThemeController/ThemeController.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/ThemeController/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "showBrandSelector",
+      "type": "boolean",
+      "description": "Show brand selector",
+      "default": true
+    },
+    {
+      "name": "showThemeToggle",
+      "type": "boolean",
+      "description": "Show theme toggle",
+      "default": true
+    },
+    {
+      "name": "showSummary",
+      "type": "boolean",
+      "description": "Show current settings summary",
+      "default": true
+    },
+    {
+      "name": "compact",
+      "type": "boolean",
+      "description": "Compact mode (horizontal layout)",
+      "default": false
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "description": "Additional CSS class"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "description": "Inline styles"
+    },
+    {
+      "name": "onThemeChange",
+      "type": "(theme: Theme) => void",
+      "description": "Theme change callback"
+    },
+    {
+      "name": "onBrandChange",
+      "type": "(brand: Brand) => void",
+      "description": "Brand change callback"
+    }
+  ],
+  "tokens": [],
+  "examples": [
+    {
+      "title": "Theme controller",
+      "code": "<ThemeController />"
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#theme-controller",
+    "local": "/library.html#theme-controller"
+  },
+  "import": "import { ThemeController } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'",
+  "registryDependencies": [
+    "card",
+    "switch",
+    "radio",
+    "button",
+    "badge",
+    "alert"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "banner",
+  "type": "registry:section",
+  "title": "Banner",
+  "description": "Banner section component",
+  "category": "marketing",
+  "files": [
+    {
+      "path": "packages/react/src/sections/Banner/Banner.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/sections/Banner/Banner.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/sections/Banner/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#banner",
+    "local": "/library.html#banner"
+  },
+  "import": "import { Banner } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

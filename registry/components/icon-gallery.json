@@ -1,0 +1,73 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "icon-gallery",
+  "type": "registry:component",
+  "title": "IconGallery",
+  "description": "Documentation utility for browsing all available Lucide icons with search, category filtering, and click-to-copy import statements. Not intended for use in production applications. Displays icons in a responsive grid with real-time search.",
+  "category": "documentation",
+  "files": [
+    {
+      "path": "packages/react/src/components/IconGallery/IconGallery.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/IconGallery/IconGallery.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/IconGallery/IconGallery.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/IconGallery/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "className",
+      "type": "string",
+      "description": "Additional CSS class name for the gallery container."
+    }
+  ],
+  "tokens": [
+    "--surface-base",
+    "--surface-subtle",
+    "--surface-layer",
+    "--border-subtle",
+    "--border-strong",
+    "--text-primary",
+    "--text-secondary",
+    "--text-tertiary",
+    "--interactive-primary",
+    "--interactive-primary-text",
+    "--interactive-primary-subtle",
+    "--interactive-ghost-hover",
+    "--radius-control",
+    "--radius-sm",
+    "--shadow-lg",
+    "--font-mono",
+    "--transition-fast"
+  ],
+  "examples": [
+    {
+      "title": "Full icon gallery page",
+      "code": "import { IconGallery } from '@orion-ds/react';\n\nfunction IconBrowserPage() {\n  return <IconGallery />;\n}"
+    }
+  ],
+  "accessibility": {
+    "notes": [
+      "Each icon item is a button with a title attribute for the icon name",
+      "Click-to-copy provides visual feedback via a 'Copied!' badge",
+      "Search input for filtering icons in real-time",
+      "Category buttons for filtering by icon group"
+    ]
+  },
+  "modeAware": false,
+  "internal": true,
+  "import": "import { IconGallery } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'",
+  "dependencies": [
+    "lucide-react"
+  ]
+}

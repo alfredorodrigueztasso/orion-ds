@@ -1,0 +1,87 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "spinner",
+  "type": "registry:component",
+  "title": "Spinner",
+  "description": "Loading indicator",
+  "category": "loading",
+  "files": [
+    {
+      "path": "packages/react/src/components/Spinner/Spinner.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Spinner/Spinner.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Spinner/Spinner.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Spinner/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "size",
+      "type": "SpinnerSize",
+      "description": "Spinner size",
+      "default": "md",
+      "values": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ]
+    },
+    {
+      "name": "variant",
+      "type": "SpinnerVariant",
+      "description": "Spinner variant (color)",
+      "default": "primary",
+      "values": [
+        "primary",
+        "secondary",
+        "neutral",
+        "inverse"
+      ]
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Loading label (for accessibility)",
+      "default": "Loading..."
+    },
+    {
+      "name": "showLabel",
+      "type": "boolean",
+      "description": "Show label text below spinner",
+      "default": false
+    }
+  ],
+  "tokens": [
+    "--interactive-primary"
+  ],
+  "examples": [
+    {
+      "title": "Basic spinner",
+      "code": "<Spinner size=\"md\" />"
+    }
+  ],
+  "accessibility": {
+    "role": "status",
+    "ariaAttributes": [
+      "aria-label=\"Loading\""
+    ]
+  },
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#spinner",
+    "local": "/library.html#spinner"
+  },
+  "import": "import { Spinner } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

@@ -1,0 +1,91 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "icon",
+  "type": "registry:component",
+  "title": "Icon",
+  "description": "Icon component",
+  "category": "utilities",
+  "files": [
+    {
+      "path": "packages/react/src/components/Icon/Icon.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Icon/Icon.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Icon/Icon.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Icon/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "icon",
+      "type": "LucideIcon",
+      "description": "Lucide icon component to render",
+      "required": true
+    },
+    {
+      "name": "size",
+      "type": "IconSize | number",
+      "description": "Icon size - uses design tokens or custom pixel value",
+      "default": "md"
+    },
+    {
+      "name": "color",
+      "type": "IconColor",
+      "description": "Icon color variant - uses semantic tokens",
+      "default": "current"
+    },
+    {
+      "name": "strokeWidth",
+      "type": "number",
+      "description": "Stroke width (Lucide default: 2)",
+      "default": 2
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Accessible label for screen readers"
+    },
+    {
+      "name": "decorative",
+      "type": "boolean",
+      "description": "Mark icon as decorative (hidden from screen readers)",
+      "default": false
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disabled state (applies muted styling)",
+      "default": false
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "description": "Additional CSS class name"
+    }
+  ],
+  "tokens": [],
+  "examples": [
+    {
+      "title": "Basic icon",
+      "code": "<Icon name=\"search\" size=\"md\" />"
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#icon",
+    "local": "/library.html#icon"
+  },
+  "import": "import { Icon } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'",
+  "dependencies": [
+    "lucide-react"
+  ]
+}

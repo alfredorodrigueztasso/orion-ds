@@ -1,0 +1,99 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "tabs",
+  "type": "registry:component",
+  "title": "Tabs",
+  "description": "Pill-style navigation tabs with segmented control appearance",
+  "category": "navigation",
+  "files": [
+    {
+      "path": "packages/react/src/components/Tabs/Tabs.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Tabs/Tabs.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Tabs/Tabs.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Tabs/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "tabs",
+      "type": "TabItem[]",
+      "description": "Array of tabs",
+      "required": true
+    },
+    {
+      "name": "defaultTab",
+      "type": "string",
+      "description": "Default active tab ID"
+    },
+    {
+      "name": "activeTab",
+      "type": "string",
+      "description": "Controlled active tab ID"
+    },
+    {
+      "name": "onChange",
+      "type": "(tabId: string) => void",
+      "description": "Callback when tab changes"
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "description": "Full width tabs",
+      "default": false
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "description": "Additional class name"
+    }
+  ],
+  "tokens": [
+    "--text-secondary",
+    "--text-primary",
+    "--interactive-primary",
+    "--interactive-primary-text",
+    "--surface-layer",
+    "--border-subtle"
+  ],
+  "examples": [
+    {
+      "title": "Basic tabs",
+      "code": "<Tabs\n  items={[\n    { id: 'overview', label: 'Overview', content: <Overview /> },\n    { id: 'details', label: 'Details', content: <Details /> },\n    { id: 'history', label: 'History', content: <History /> },\n  ]}\n/>"
+    }
+  ],
+  "accessibility": {
+    "role": "tablist",
+    "ariaAttributes": [
+      "aria-selected",
+      "role=\"tab\"",
+      "role=\"tabpanel\""
+    ],
+    "keyboardNav": [
+      {
+        "key": "ArrowLeft/Right",
+        "action": "Navigate tabs"
+      },
+      {
+        "key": "Home/End",
+        "action": "First/last tab"
+      }
+    ]
+  },
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#tabs",
+    "local": "/library.html#tabs"
+  },
+  "import": "import { Tabs } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

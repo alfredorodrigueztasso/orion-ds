@@ -1,0 +1,145 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "table",
+  "type": "registry:component",
+  "title": "Table",
+  "description": "Data grid with headers and rows",
+  "category": "data-display",
+  "files": [
+    {
+      "path": "packages/react/src/components/Table/Table.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Table/Table.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Table/Table.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Table/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "columns",
+      "type": "TableColumn<T>[]",
+      "description": "Column definitions",
+      "required": true
+    },
+    {
+      "name": "data",
+      "type": "T[]",
+      "description": "Table data",
+      "required": true
+    },
+    {
+      "name": "size",
+      "type": "TableSize",
+      "description": "Table size",
+      "default": "md",
+      "values": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    {
+      "name": "striped",
+      "type": "boolean",
+      "description": "Striped rows",
+      "default": false
+    },
+    {
+      "name": "hoverable",
+      "type": "boolean",
+      "description": "Hoverable rows",
+      "default": true
+    },
+    {
+      "name": "bordered",
+      "type": "boolean",
+      "description": "Show borders",
+      "default": false
+    },
+    {
+      "name": "borderless",
+      "type": "boolean",
+      "description": "Remove container border (for integration inside Cards)",
+      "default": false
+    },
+    {
+      "name": "caption",
+      "type": "ReactNode",
+      "description": "Table caption"
+    },
+    {
+      "name": "emptyMessage",
+      "type": "ReactNode",
+      "description": "Empty state message"
+    },
+    {
+      "name": "onRowClick",
+      "type": "(row: T, rowIndex: number) => void",
+      "description": "Row click handler"
+    },
+    {
+      "name": "onSortChange",
+      "type": "(columnKey: string, direction: SortDirection) => void",
+      "description": "Sort change handler"
+    },
+    {
+      "name": "sortState",
+      "type": "{\n    columnKey: string",
+      "description": "Current sort state (for controlled sorting)"
+    },
+    {
+      "name": "direction",
+      "type": "SortDirection",
+      "description": "",
+      "required": true,
+      "values": [
+        "asc",
+        "desc",
+        "null"
+      ]
+    },
+    {
+      "name": "getRowKey",
+      "type": "(row: T, index: number) => string | number",
+      "description": "Row key extractor (for React keys)",
+      "default": "(row, index) => index"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "description": "Additional CSS class"
+    }
+  ],
+  "tokens": [
+    "--surface-base",
+    "--border-subtle",
+    "--text-primary",
+    "--text-secondary"
+  ],
+  "examples": [
+    {
+      "title": "Basic table",
+      "code": "<Table\n  columns={[\n    { key: 'name', header: 'Name' },\n    { key: 'email', header: 'Email' },\n    { key: 'role', header: 'Role' },\n  ]}\n  data={users}\n/>"
+    },
+    {
+      "title": "Sortable table",
+      "code": "<Table\n  columns={[\n    { key: 'name', header: 'Name', sortable: true },\n    { key: 'date', header: 'Date', sortable: true },\n  ]}\n  data={items}\n  onSort={(key, dir) => handleSort(key, dir)}\n/>"
+    }
+  ],
+  "modeAware": true,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#table",
+    "local": "/library.html#table"
+  },
+  "import": "import { Table } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

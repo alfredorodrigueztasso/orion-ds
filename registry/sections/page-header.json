@@ -1,0 +1,28 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "page-header",
+  "type": "registry:section",
+  "title": "PageHeader",
+  "description": "PageHeader section component",
+  "category": "marketing",
+  "files": [
+    {
+      "path": "packages/react/src/sections/PageHeader/PageHeader.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/sections/PageHeader/PageHeader.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/sections/PageHeader/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#page-header",
+    "local": "/library.html#page-header"
+  },
+  "import": "import { PageHeader } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

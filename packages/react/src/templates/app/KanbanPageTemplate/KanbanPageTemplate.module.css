@@ -1,0 +1,115 @@
+/**
+ * KanbanPageTemplate Styles
+ *
+ * Modern, elegant Kanban board layout.
+ * Uses CSS variables for all values.
+ */
+
+.kanbanPage {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--surface-subtle);
+  padding: var(--spacing-4);
+  gap: var(--spacing-4);
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  background: transparent;
+  /* Container is invisible - components have their own backgrounds */
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-6);
+  padding-top: 0;
+  overflow: hidden;
+  gap: var(--spacing-4);
+}
+
+/* ============================================================================
+ * FILTER SECTION - Clean, modern filter bar container
+ * ============================================================================ */
+
+.filterSection {
+  background-color: var(--surface-base);
+  border-radius: var(--radius-container);
+  padding: var(--spacing-4);
+  border: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+/* ============================================================================
+ * BOARD SECTION - Full height with scroll
+ * ============================================================================ */
+
+.boardSection {
+  flex: 1;
+  overflow: auto;
+  border-radius: var(--radius-container);
+  position: relative;
+}
+
+/* Custom scrollbar for kanban board */
+.boardSection::-webkit-scrollbar {
+  height: 8px;
+}
+
+.boardSection::-webkit-scrollbar-track {
+  background: var(--surface-layer);
+  border-radius: var(--radius-full);
+}
+
+.boardSection::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: var(--radius-full);
+}
+
+.boardSection::-webkit-scrollbar-thumb:hover {
+  background: var(--border-strong);
+}
+
+/* ============================================================================
+ * RESPONSIVE
+ * ============================================================================ */
+
+@media (max-width: 1024px) {
+  .content {
+    padding: var(--spacing-4);
+    padding-top: 0;
+  }
+
+  .filterSection {
+    padding: var(--spacing-3);
+  }
+}
+
+@media (max-width: 768px) {
+  .kanbanPage {
+    padding: var(--spacing-2);
+    gap: var(--spacing-2);
+  }
+
+  .main {
+    border-radius: var(--radius-control);
+  }
+
+  .content {
+    padding: var(--spacing-3);
+    padding-top: 0;
+  }
+
+  .filterSection {
+    border-radius: var(--radius-control);
+  }
+
+  .boardSection {
+    border-radius: var(--radius-control);
+  }
+}

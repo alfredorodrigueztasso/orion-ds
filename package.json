@@ -1,130 +1,109 @@
 {
-  "name": "@orion-ds/react",
-  "version": "2.0.3",
-  "type": "module",
-  "description": "Orion Design System - React component library with 40+ AI-ready components and 9 templates",
-  "author": "Orion Design System Team",
-  "main": "dist/index.cjs",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    },
-    "./dist/react.css": "./dist/react.css",
-    "./styles.css": "./dist/styles.css",
-    "./components/*": {
-      "types": "./dist/components/*/index.d.ts",
-      "import": "./dist/components/*/index.mjs",
-      "require": "./dist/components/*/index.cjs"
-    }
-  },
-  "files": [
-    "dist",
-    "README.md",
-    "LICENSE",
-    "AI_GUIDE.md",
-    "AI_QUICKREF.md",
-    "AI_COMPONENTS.md"
+  "name": "orion-design-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI-First Design System - The Chain of Truth",
+  "author": "Orion Team",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*",
+    "docs-react"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.build.json && vite build && npm run build:styles",
-    "build:styles": "node scripts/bundle-styles.js",
-    "type-check": "tsc --noEmit",
-    "dev": "vite",
-    "test": "vitest",
-    "test:ui": "vitest --ui",
-    "test:coverage": "vitest --coverage",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "prepublishOnly": "echo '❌ ERROR: Do not publish the root package. Use npm run release:patch instead.' && exit 1",
+    "build": "npm run build:tokens && npm run build:packages",
+    "build:tokens": "ts-node scripts/generate-types.ts && node scripts/build-tokens.js",
+    "build:packages": "turbo run build",
+    "build:react": "turbo run build --filter=@orion/core --filter=@orion/react",
+    "build:registry": "npx ts-node --transpile-only scripts/generate-registry.ts",
+    "build:registry-api": "npx ts-node --transpile-only scripts/build-registry-api.ts",
+    "build:mcp": "cd packages/mcp && npx tsc",
+    "build:cli": "cd packages/cli && npx tsc",
+    "build:all": "npm run build && npm run build:registry && npm run build:registry-api",
+    "type-check": "turbo run type-check",
+    "type-check:react": "turbo run type-check --filter=@orion/core --filter=@orion/react",
+    "validate": "node scripts/validate-tokens.js",
+    "validate:theme": "node scripts/validate-tokens.js theme.css",
+    "validate:code": "node packages/validate/dist/cli.js",
+    "audit": "npm run validate && npm run type-check && echo '✅ Token audit passed'",
+    "dev": "npx live-server --port=3000 --open=index.html",
+    "dev:packages": "turbo run dev --parallel",
+    "dev:react": "npm run dev --workspace=@orion/react",
+    "prepublish:check": "node scripts/pre-publish-check.js",
+    "publish:dry-run": "npm run audit && npm run build && npm run publish:dry-run:packages",
+    "publish:dry-run:packages": "cd packages/core && npm publish --dry-run && cd ../react && npm publish --dry-run",
+    "publish:packages": "cd packages/core && npm publish && cd ../react && npm publish",
+    "version:patch": "npm version patch --workspaces --no-git-tag-version",
+    "version:minor": "npm version minor --workspaces --no-git-tag-version",
+    "version:major": "npm version major --workspaces --no-git-tag-version",
+    "release:patch": "node scripts/release.js patch",
+    "release:minor": "node scripts/release.js minor",
+    "release:major": "node scripts/release.js major",
+    "release:dry": "node scripts/release.js patch --dry-run",
+    "lint": "eslint packages/",
+    "lint:fix": "eslint packages/ --fix",
+    "format": "prettier --write \"packages/**/*.{ts,tsx,json,css,md}\"",
+    "format:check": "prettier --check \"packages/**/*.{ts,tsx,json,css,md}\"",
+    "lint:css": "stylelint \"packages/**/*.css\"",
+    "lint:css:fix": "stylelint \"packages/**/*.css\" --fix",
+    "create:component": "node scripts/create-component.js",
+    "prepare": "husky"
   },
   "keywords": [
-    "react",
-    "components",
-    "orion",
     "design-system",
-    "typescript",
-    "ui",
-    "component-library",
+    "ai-first",
+    "tokens",
     "css-variables",
-    "theme",
-    "dark-mode",
-    "accessible",
-    "wcag"
+    "orion"
   ],
-  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/orion-ds/orion",
-    "directory": "packages/react"
+    "url": "https://github.com/orion-ds/orion"
   },
-  "homepage": "https://github.com/orion-ds/orion#readme",
-  "bugs": {
-    "url": "https://github.com/orion-ds/orion/issues"
-  },
-  "aiMetadata": {
-    "setupRequired": [
-      "@orion-ds/react/styles.css"
-    ],
-    "alternativeSetup": [
-      "@orion-ds/core/theme.css",
-      "@orion-ds/react/dist/react.css"
-    ],
-    "entryPoints": [
-      "AI_GUIDE.md",
-      "AI_QUICKREF.md",
-      "AI_COMPONENTS.md"
-    ],
-    "wrapperRequired": "ThemeProvider",
-    "iconLibrary": "lucide-react",
-    "breakingChangesV2": [
-      "Hero: headline -> title",
-      "CTA: headline -> title",
-      "DetailPanel: subtitle -> description",
-      "ThemeProvider: options -> flat props (defaultTheme, defaultBrand)"
-    ]
-  },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
-  },
-  "peerDependencies": {
-    "@orion-ds/core": "^1.2.0",
-    "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0"
-  },
-  "dependencies": {
-    "@types/react-syntax-highlighter": "^15.5.13",
-    "date-fns": "^4.1.0",
-    "lucide-react": "^0.563.0",
-    "react-markdown": "^10.1.0",
-    "react-syntax-highlighter": "^16.1.0",
-    "recharts": "^3.7.0",
-    "remark-gfm": "^4.0.1"
+  "packageManager": "pnpm@10.28.1",
+  "engines": {
+    "node": ">=16.0.0"
   },
   "devDependencies": {
-    "@storybook/addon-essentials": "^8.6.14",
-    "@storybook/addon-interactions": "^8.6.14",
-    "@storybook/addon-links": "^8.6.15",
-    "@storybook/blocks": "^8.6.14",
-    "@storybook/react": "^8.6.15",
-    "@storybook/react-vite": "^8.6.15",
-    "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.2",
-    "@testing-library/user-event": "^14.6.1",
-    "@types/node": "^25.2.1",
-    "@types/react": "^19.2.9",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^5.1.2",
-    "@vitest/ui": "^4.0.18",
-    "jsdom": "^27.4.0",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "storybook": "^8.6.15",
+    "@eslint/js": "^9.39.2",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.8.1",
+    "stylelint": "^17.3.0",
+    "stylelint-config-standard": "^40.0.0",
+    "ts-node": "^10.9.2",
+    "turbo": "^2.7.5",
     "typescript": "^5.9.3",
-    "vite": "^7.3.1",
-    "vitest": "^4.0.18"
+    "typescript-eslint": "^8.53.1"
+  },
+  "lint-staged": {
+    "packages/**/*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "packages/**/*.css": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "packages/**/*.{json,md}": [
+      "prettier --write"
+    ]
+  },
+  "orion": {
+    "tokenPath": "tokens/",
+    "themePath": "theme.css",
+    "brands": [
+      "orion",
+      "unitec",
+      "laureate",
+      "uvm"
+    ],
+    "defaultBrand": "orion",
+    "defaultTheme": "dark"
   }
 }

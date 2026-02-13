@@ -1,0 +1,86 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "toggle-group",
+  "type": "registry:component",
+  "title": "ToggleGroup",
+  "description": "ToggleGroup component",
+  "category": "utilities",
+  "files": [
+    {
+      "path": "packages/react/src/components/ToggleGroup/ToggleGroup.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/ToggleGroup/ToggleGroup.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/ToggleGroup/ToggleGroup.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/ToggleGroup/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "type",
+      "type": "ToggleGroupType",
+      "description": "Whether single or multiple items can be pressed. */",
+      "required": true,
+      "values": [
+        "single",
+        "multiple"
+      ]
+    },
+    {
+      "name": "value",
+      "type": "string | string[]",
+      "description": "Controlled value (string for single, string[] for multiple). */"
+    },
+    {
+      "name": "defaultValue",
+      "type": "string | string[]",
+      "description": "Default value for uncontrolled usage. */"
+    },
+    {
+      "name": "onValueChange",
+      "type": "(value: string | string[]) => void",
+      "description": "Callback when value changes. */"
+    },
+    {
+      "name": "variant",
+      "type": "ToggleGroupVariant",
+      "description": "Visual variant propagated to items. @default 'default' */",
+      "default": "default",
+      "values": [
+        "default",
+        "outline"
+      ]
+    },
+    {
+      "name": "size",
+      "type": "ToggleGroupSize",
+      "description": "Size propagated to items. @default 'md' */",
+      "default": "md",
+      "values": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disable all items. */"
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#toggle-group",
+    "local": "/library.html#toggle-group"
+  },
+  "import": "import { ToggleGroup } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

@@ -1,0 +1,86 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "divider",
+  "type": "registry:component",
+  "title": "Divider",
+  "description": "Visual separator between content",
+  "category": "layout",
+  "files": [
+    {
+      "path": "packages/react/src/components/Divider/Divider.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Divider/Divider.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Divider/Divider.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Divider/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "orientation",
+      "type": "DividerOrientation",
+      "description": "Orientation of the divider",
+      "default": "horizontal",
+      "values": [
+        "horizontal",
+        "vertical"
+      ]
+    },
+    {
+      "name": "variant",
+      "type": "DividerVariant",
+      "description": "Visual variant of the divider",
+      "default": "solid",
+      "values": [
+        "solid",
+        "dashed",
+        "dotted"
+      ]
+    },
+    {
+      "name": "spacing",
+      "type": "'none' | 'sm' | 'md' | 'lg'",
+      "description": "Spacing around the divider",
+      "default": "md",
+      "values": [
+        "none",
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Optional label to display in the center of the divider"
+    }
+  ],
+  "tokens": [
+    "--border-subtle"
+  ],
+  "examples": [
+    {
+      "title": "Horizontal divider",
+      "code": "<Divider />"
+    },
+    {
+      "title": "With label",
+      "code": "<Divider label=\"OR\" />"
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#divider",
+    "local": "/library.html#divider"
+  },
+  "import": "import { Divider } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

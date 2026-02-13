@@ -1,0 +1,28 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "metric-cards",
+  "type": "registry:section",
+  "title": "MetricCards",
+  "description": "MetricCards section component",
+  "category": "marketing",
+  "files": [
+    {
+      "path": "packages/react/src/sections/MetricCards/MetricCards.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/sections/MetricCards/MetricCards.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/sections/MetricCards/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#metric-cards",
+    "local": "/library.html#metric-cards"
+  },
+  "import": "import { MetricCards } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

@@ -1,0 +1,157 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "modal",
+  "type": "registry:component",
+  "title": "Modal",
+  "description": "Dialog overlay for focused interactions",
+  "category": "overlays",
+  "files": [
+    {
+      "path": "packages/react/src/components/Modal/Modal.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Modal/Modal.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Modal/Modal.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Modal/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "Whether the modal is open",
+      "required": true
+    },
+    {
+      "name": "onClose",
+      "type": "() => void",
+      "description": "Callback when modal should close",
+      "required": true
+    },
+    {
+      "name": "size",
+      "type": "ModalSize",
+      "description": "Modal size",
+      "default": "md",
+      "values": [
+        "sm",
+        "md",
+        "lg",
+        "xl",
+        "full"
+      ]
+    },
+    {
+      "name": "closeOnBackdrop",
+      "type": "boolean",
+      "description": "Close on backdrop click",
+      "default": true
+    },
+    {
+      "name": "closeOnEscape",
+      "type": "boolean",
+      "description": "Close on Escape key",
+      "default": true
+    },
+    {
+      "name": "showCloseButton",
+      "type": "boolean",
+      "description": "Show close button",
+      "default": true
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "description": "Additional class name"
+    }
+  ],
+  "subComponents": [
+    {
+      "name": "Modal.Header",
+      "description": "Modal header with title",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "Modal.Body",
+      "description": "Modal content area",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "Modal.Footer",
+      "description": "Modal footer with actions",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "tokens": [
+    "--surface-base",
+    "--surface-overlay",
+    "--border-subtle",
+    "--radius-container",
+    "--shadow-xl"
+  ],
+  "examples": [
+    {
+      "title": "Basic modal",
+      "code": "<Modal open={isOpen} onClose={() => setIsOpen(false)}>\n  <Modal.Header>Confirm Action</Modal.Header>\n  <Modal.Body>Are you sure?</Modal.Body>\n  <Modal.Footer>\n    <Button variant=\"secondary\" onClick={() => setIsOpen(false)}>Cancel</Button>\n    <Button variant=\"primary\" onClick={handleConfirm}>Confirm</Button>\n  </Modal.Footer>\n</Modal>"
+    },
+    {
+      "title": "Large modal",
+      "code": "<Modal open={isOpen} onClose={handleClose} size=\"lg\">\n  <Modal.Header>Edit Profile</Modal.Header>\n  <Modal.Body>\n    <Field label=\"Name\" />\n    <Field label=\"Email\" type=\"email\" />\n  </Modal.Body>\n</Modal>"
+    }
+  ],
+  "accessibility": {
+    "role": "dialog",
+    "ariaAttributes": [
+      "aria-modal",
+      "aria-labelledby",
+      "aria-describedby"
+    ],
+    "keyboardNav": [
+      {
+        "key": "Escape",
+        "action": "Close modal"
+      },
+      {
+        "key": "Tab",
+        "action": "Navigate within modal (focus trap)"
+      }
+    ],
+    "notes": [
+      "Focus is trapped within modal",
+      "Focus returns to trigger on close"
+    ]
+  },
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#modal",
+    "local": "/library.html#modal"
+  },
+  "import": "import { Modal } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

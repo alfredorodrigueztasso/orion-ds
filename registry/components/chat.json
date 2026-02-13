@@ -1,0 +1,50 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "chat",
+  "type": "registry:component",
+  "title": "Chat",
+  "description": "Chat component",
+  "category": "utilities",
+  "files": [
+    {
+      "path": "packages/react/src/components/Chat/Chat.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Chat/Chat.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Chat/Chat.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Chat/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "tokens": [
+    "--surface-base",
+    "--surface-subtle",
+    "--border-subtle",
+    "--text-primary",
+    "--text-secondary",
+    "--interactive-primary"
+  ],
+  "examples": [
+    {
+      "title": "Basic chat",
+      "code": "<Chat>\n  <Chat.Header title=\"Support\" />\n  <Chat.Messages messages={messages} />\n  <Chat.Input onSend={handleSend} />\n</Chat>"
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#chat",
+    "local": "/library.html#chat"
+  },
+  "import": "import { Chat } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'",
+  "registryDependencies": [
+    "button"
+  ]
+}

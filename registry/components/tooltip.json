@@ -1,0 +1,88 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "tooltip",
+  "type": "registry:component",
+  "title": "Tooltip",
+  "description": "Contextual help on hover",
+  "category": "overlays",
+  "files": [
+    {
+      "path": "packages/react/src/components/Tooltip/Tooltip.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Tooltip/Tooltip.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Tooltip/Tooltip.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Tooltip/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "content",
+      "type": "ReactNode",
+      "description": "Tooltip content",
+      "required": true
+    },
+    {
+      "name": "placement",
+      "type": "TooltipPlacement",
+      "description": "Tooltip placement",
+      "default": "top",
+      "values": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ]
+    },
+    {
+      "name": "delay",
+      "type": "number",
+      "description": "Delay before showing (ms)",
+      "default": 200
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disable tooltip",
+      "default": false
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "description": "Additional class name"
+    }
+  ],
+  "tokens": [
+    "--surface-layer",
+    "--text-primary",
+    "--radius-sm",
+    "--shadow-md"
+  ],
+  "examples": [
+    {
+      "title": "Basic tooltip",
+      "code": "<Tooltip content=\"This is helpful info\">\n  <Button variant=\"ghost\">Hover me</Button>\n</Tooltip>"
+    }
+  ],
+  "accessibility": {
+    "role": "tooltip",
+    "ariaAttributes": [
+      "aria-describedby"
+    ]
+  },
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#tooltip",
+    "local": "/library.html#tooltip"
+  },
+  "import": "import { Tooltip } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

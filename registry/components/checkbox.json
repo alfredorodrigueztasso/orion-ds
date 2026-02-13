@@ -1,0 +1,103 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "checkbox",
+  "type": "registry:component",
+  "title": "Checkbox",
+  "description": "Checkbox input for multiple selections",
+  "category": "forms",
+  "files": [
+    {
+      "path": "packages/react/src/components/Checkbox/Checkbox.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Checkbox/Checkbox.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Checkbox/Checkbox.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Checkbox/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Checkbox label text."
+    },
+    {
+      "name": "helperText",
+      "type": "string",
+      "description": "Helper text displayed below the checkbox."
+    },
+    {
+      "name": "error",
+      "type": "string",
+      "description": "Error message."
+    },
+    {
+      "name": "size",
+      "type": "CheckboxSize",
+      "description": "Checkbox size variant.",
+      "default": "md",
+      "values": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    {
+      "name": "indeterminate",
+      "type": "boolean",
+      "description": "Indeterminate state (partially checked).",
+      "default": false
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "description": "Accessible label for screen readers when no visible label is provided.",
+      "required": true
+    },
+    {
+      "name": "aria-describedby",
+      "type": "string",
+      "description": "Additional element IDs that describe this checkbox.",
+      "required": true
+    }
+  ],
+  "tokens": [
+    "--interactive-primary",
+    "--border-subtle",
+    "--radius-sm"
+  ],
+  "examples": [
+    {
+      "title": "Basic checkbox",
+      "code": "<Checkbox label=\"I agree to the terms\" checked={agreed} onChange={setAgreed} />"
+    }
+  ],
+  "accessibility": {
+    "role": "checkbox",
+    "ariaAttributes": [
+      "aria-checked",
+      "aria-label"
+    ],
+    "keyboardNav": [
+      {
+        "key": "Space",
+        "action": "Toggle checkbox"
+      }
+    ]
+  },
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#checkbox",
+    "local": "/library.html#checkbox"
+  },
+  "import": "import { Checkbox } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

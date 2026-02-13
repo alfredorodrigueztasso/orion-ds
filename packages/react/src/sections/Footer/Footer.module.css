@@ -1,0 +1,394 @@
+/**
+ * Footer Component Styles
+ *
+ * Uses CSS Modules for scoped styling.
+ * All values reference semantic tokens via CSS variables.
+ */
+
+.footer {
+  position: relative;
+}
+
+/* ============================================================================
+ * MAIN CONTENT AREA
+ * ============================================================================ */
+
+.main {
+  display: grid;
+  gap: var(--spacing-8);
+  margin-bottom: var(--spacing-12);
+}
+
+/* ============================================================================
+ * VARIANT LAYOUTS
+ * ============================================================================ */
+
+/* Default variant - multi-column */
+.variant-default {
+  & .main {
+    grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+    align-items: start;
+  }
+
+  & .brandColumn {
+    max-width: 320px;
+    padding-right: var(--spacing-8);
+  }
+
+  & .linkGroups {
+    display: contents;
+  }
+}
+
+/* When there are fewer link groups, adjust the grid */
+.variant-default:has(.linkGroups > :nth-child(3):last-child) {
+  & .main {
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  }
+}
+
+.variant-default:has(.linkGroups > :nth-child(2):last-child) {
+  & .main {
+    grid-template-columns: 1.5fr 1fr 1fr;
+  }
+}
+
+.variant-default:has(.linkGroups > :first-child:last-child) {
+  & .main {
+    grid-template-columns: 1.5fr 1fr;
+  }
+}
+
+/* Minimal variant - simple row */
+.variant-minimal {
+  & .main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--spacing-8);
+  }
+
+  & .linkGroups {
+    display: flex;
+    gap: var(--spacing-12);
+  }
+
+  & .linkGroup {
+    min-width: auto;
+  }
+}
+
+/* Centered variant */
+.variant-centered {
+  & .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  & .brandColumn {
+    align-items: center;
+  }
+
+  & .linkGroups {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-12);
+  }
+
+  & .bottom {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-4);
+  }
+}
+
+/* ============================================================================
+ * BRAND COLUMN
+ * ============================================================================ */
+
+.brandColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.brandHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--interactive-primary);
+}
+
+.brandName {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+
+.brandDescription {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-14);
+  color: var(--text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+}
+
+/* ============================================================================
+ * LINK GROUPS
+ * ============================================================================ */
+
+.linkGroup {
+  min-width: 150px;
+}
+
+.groupTitle {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-4) 0;
+}
+
+.linkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.linkItem {
+  margin: 0;
+}
+
+.link {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-14);
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+
+  &:hover {
+    color: var(--text-primary);
+  }
+}
+
+/* ============================================================================
+ * SOCIAL LINKS
+ * ============================================================================ */
+
+.socialLinks {
+  display: flex;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-2);
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-control);
+  color: var(--text-secondary);
+  background: transparent;
+  transition:
+    color var(--transition-fast),
+    background var(--transition-fast);
+
+  &:hover {
+    color: var(--text-primary);
+    background: var(--surface-layer);
+  }
+}
+
+/* ============================================================================
+ * NEWSLETTER
+ * ============================================================================ */
+
+.newsletter {
+  max-width: 320px;
+}
+
+/* ============================================================================
+ * BOTTOM BAR
+ * ============================================================================ */
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-4);
+  padding-top: var(--spacing-6);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.copyright {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-12);
+  color: var(--text-tertiary);
+  margin: 0;
+}
+
+.legalLinks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-1);
+}
+
+.legalLink {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-12);
+  color: var(--text-tertiary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+
+  &:hover {
+    color: var(--text-secondary);
+  }
+}
+
+.legalSeparator {
+  color: var(--text-tertiary);
+  margin: 0 var(--spacing-2);
+}
+
+/* ============================================================================
+ * RESPONSIVE ADJUSTMENTS
+ * ============================================================================ */
+
+/* Large tablet (1024px and below) */
+@media (max-width: 1024px) {
+  .variant-default {
+    & .main {
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: var(--spacing-6);
+    }
+
+    & .brandColumn {
+      grid-column: 1 / -1;
+      max-width: 100%;
+      padding-right: 0;
+      margin-bottom: var(--spacing-4);
+    }
+  }
+
+  /* Override the :has selectors for tablet */
+  .variant-default:has(.linkGroups > :nth-child(3):last-child),
+  .variant-default:has(.linkGroups > :nth-child(2):last-child),
+  .variant-default:has(.linkGroups > :first-child:last-child) {
+    & .main {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+}
+
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+  .variant-default {
+    & .main {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-6);
+    }
+
+    & .brandColumn {
+      grid-column: 1 / -1;
+      max-width: none;
+      margin-bottom: var(--spacing-4);
+    }
+  }
+
+  /* Override the :has selectors for mobile */
+  .variant-default:has(.linkGroups > :nth-child(3):last-child),
+  .variant-default:has(.linkGroups > :nth-child(2):last-child),
+  .variant-default:has(.linkGroups > :first-child:last-child) {
+    & .main {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .variant-minimal {
+    & .main {
+      flex-direction: column;
+      gap: var(--spacing-6);
+    }
+
+    & .linkGroups {
+      flex-wrap: wrap;
+      gap: var(--spacing-6);
+    }
+  }
+
+  .variant-centered {
+    & .linkGroups {
+      gap: var(--spacing-6);
+    }
+  }
+
+  .bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-3);
+  }
+
+  .legalLinks {
+    flex-wrap: wrap;
+    gap: var(--spacing-2);
+  }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+  .main {
+    gap: var(--spacing-6);
+    margin-bottom: var(--spacing-8);
+  }
+
+  .variant-default {
+    & .main {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Override the :has selectors for small mobile */
+  .variant-default:has(.linkGroups > :nth-child(3):last-child),
+  .variant-default:has(.linkGroups > :nth-child(2):last-child),
+  .variant-default:has(.linkGroups > :first-child:last-child) {
+    & .main {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .variant-minimal {
+    & .linkGroups {
+      flex-direction: column;
+      gap: var(--spacing-4);
+    }
+  }
+
+  .linkGroup {
+    min-width: auto;
+  }
+
+  .newsletter {
+    max-width: 100%;
+  }
+
+  .socialLinks {
+    flex-wrap: wrap;
+  }
+}

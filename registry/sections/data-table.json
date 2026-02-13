@@ -1,0 +1,28 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "data-table",
+  "type": "registry:section",
+  "title": "DataTable",
+  "description": "DataTable section component",
+  "category": "marketing",
+  "files": [
+    {
+      "path": "packages/react/src/sections/DataTable/DataTable.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/sections/DataTable/DataTable.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/sections/DataTable/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#data-table",
+    "local": "/library.html#data-table"
+  },
+  "import": "import { DataTable } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

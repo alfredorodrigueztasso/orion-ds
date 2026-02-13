@@ -1,0 +1,28 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "section",
+  "type": "registry:section",
+  "title": "Section",
+  "description": "Section section component",
+  "category": "marketing",
+  "files": [
+    {
+      "path": "packages/react/src/sections/Section/Section.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/sections/Section/Section.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/sections/Section/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#section",
+    "local": "/library.html#section"
+  },
+  "import": "import { Section } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "about-page-template",
+  "type": "registry:template",
+  "title": "About Page",
+  "description": "AboutPage page template",
+  "category": "marketing",
+  "files": [
+    {
+      "path": "packages/react/src/templates/marketing/AboutPageTemplate/AboutPageTemplate.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#about-page-template",
+    "local": "/library.html#about-page-template"
+  },
+  "import": "import { AboutPageTemplate } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

@@ -1,0 +1,119 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "textarea",
+  "type": "registry:component",
+  "title": "Textarea",
+  "description": "Textarea component",
+  "category": "forms",
+  "files": [
+    {
+      "path": "packages/react/src/components/Textarea/Textarea.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Textarea/Textarea.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Textarea/Textarea.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Textarea/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Textarea label text."
+    },
+    {
+      "name": "helperText",
+      "type": "string",
+      "description": "Helper text displayed below the textarea."
+    },
+    {
+      "name": "error",
+      "type": "string",
+      "description": "Error message."
+    },
+    {
+      "name": "size",
+      "type": "TextareaSize",
+      "description": "Textarea size variant.",
+      "default": "md",
+      "values": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    {
+      "name": "resize",
+      "type": "TextareaResize",
+      "description": "Resize behavior.",
+      "default": "vertical",
+      "values": [
+        "none",
+        "vertical",
+        "horizontal",
+        "both"
+      ]
+    },
+    {
+      "name": "showCounter",
+      "type": "boolean",
+      "description": "Show character counter.",
+      "default": false
+    },
+    {
+      "name": "maxLength",
+      "type": "number",
+      "description": "Maximum character length."
+    },
+    {
+      "name": "optional",
+      "type": "boolean",
+      "description": "Shows \"(optional)\" indicator next to label.",
+      "default": false
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "description": "Accessible label for screen readers when no visible label is provided.",
+      "required": true
+    },
+    {
+      "name": "aria-describedby",
+      "type": "string",
+      "description": "Additional element IDs that describe this textarea.",
+      "required": true
+    }
+  ],
+  "tokens": [
+    "--surface-base",
+    "--border-subtle",
+    "--text-primary",
+    "--radius-control",
+    "--font-secondary"
+  ],
+  "examples": [
+    {
+      "title": "Basic textarea",
+      "code": "<Textarea label=\"Message\" placeholder=\"Type your message...\" rows={4} />"
+    },
+    {
+      "title": "With character count",
+      "code": "<Textarea label=\"Bio\" maxLength={280} showCount />"
+    }
+  ],
+  "modeAware": true,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#textarea",
+    "local": "/library.html#textarea"
+  },
+  "import": "import { Textarea } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

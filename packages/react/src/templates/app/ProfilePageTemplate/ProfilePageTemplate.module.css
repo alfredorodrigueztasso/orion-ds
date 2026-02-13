@@ -1,0 +1,292 @@
+/**
+ * ProfilePageTemplate Styles
+ *
+ * Modern, elegant profile page layout.
+ * Uses CSS variables for all values.
+ */
+
+.profilePage {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--surface-subtle);
+  padding: var(--spacing-4);
+  gap: var(--spacing-4);
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: transparent;
+  /* Container is invisible - components have their own backgrounds */
+  overflow: visible;
+}
+
+.content {
+  flex: 1;
+  padding: var(--spacing-6);
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: var(--spacing-6);
+}
+
+.contentNoAside {
+  grid-template-columns: 1fr;
+}
+
+/* ============================================================================
+ * PROFILE HEADER CARD - Modern, elegant design
+ * ============================================================================ */
+
+.profileHeader {
+  background-color: var(--surface-base);
+  border-radius: var(--radius-container);
+  padding: var(--spacing-8);
+  display: flex;
+  gap: var(--spacing-8);
+  align-items: flex-start;
+  border: 1px solid var(--border-subtle);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle gradient accent at top */
+.profileHeader::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--interactive-primary), var(--interactive-primary-hover));
+}
+
+/* Avatar - Larger and more prominent */
+.profileAvatar {
+  width: 120px;
+  height: 120px;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: var(--surface-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 4px solid var(--surface-base);
+  box-shadow: var(--shadow-md);
+  position: relative;
+}
+
+.profileAvatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Profile Info */
+.profileInfo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.profileNameRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.profileName {
+  font-family: var(--font-primary);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin: 0;
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.02em;
+}
+
+.profileRole {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-16);
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: var(--line-height-relaxed);
+}
+
+.profileBio {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-14);
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: var(--line-height-relaxed);
+  max-width: 600px;
+}
+
+/* Metadata Items - More prominent */
+.profileMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-6);
+  margin-top: var(--spacing-2);
+}
+
+.profileMetaItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  color: var(--text-secondary);
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-14);
+}
+
+.profileMetaItem svg {
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+
+/* Profile Actions - Better spacing */
+.profileActions {
+  display: flex;
+  gap: var(--spacing-3);
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+/* ============================================================================
+ * MAIN CONTENT AREA
+ * ============================================================================ */
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+/* ============================================================================
+ * ACTIVITY SIDEBAR - Enhanced styling
+ * ============================================================================ */
+
+.aside {
+  background-color: var(--surface-base);
+  border-radius: var(--radius-container);
+  padding: var(--spacing-6);
+  height: fit-content;
+  position: sticky;
+  top: var(--spacing-6);
+  border: 1px solid var(--border-subtle);
+}
+
+.asideHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-4);
+  padding-bottom: var(--spacing-4);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.asideTitle {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================================================
+ * RESPONSIVE
+ * ============================================================================ */
+
+@media (max-width: 1200px) {
+  .content {
+    grid-template-columns: 1fr 320px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+
+  .aside {
+    position: static;
+  }
+
+  .profileHeader {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--spacing-8) var(--spacing-6);
+  }
+
+  .profileHeader::before {
+    height: 80px;
+    background: linear-gradient(180deg, var(--interactive-primary), transparent);
+    opacity: 0.1;
+  }
+
+  .profileAvatar {
+    margin-top: var(--spacing-4);
+  }
+
+  .profileInfo {
+    align-items: center;
+  }
+
+  .profileNameRow {
+    justify-content: center;
+  }
+
+  .profileMeta {
+    justify-content: center;
+  }
+
+  .profileBio {
+    text-align: center;
+  }
+
+  .profileActions {
+    align-self: center;
+    margin-top: var(--spacing-2);
+  }
+}
+
+@media (max-width: 768px) {
+  .profilePage {
+    padding: var(--spacing-2);
+    gap: var(--spacing-2);
+  }
+
+  .main {
+    border-radius: var(--radius-control);
+  }
+}
+
+@media (max-width: 640px) {
+  .content {
+    padding: var(--spacing-4);
+  }
+
+  .profileHeader {
+    padding: var(--spacing-6) var(--spacing-4);
+  }
+
+  .profileAvatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .profileName {
+    font-size: var(--font-size-24);
+  }
+
+  .profileMeta {
+    gap: var(--spacing-4);
+  }
+}

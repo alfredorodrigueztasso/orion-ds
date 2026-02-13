@@ -1,0 +1,101 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "list",
+  "type": "registry:component",
+  "title": "List",
+  "description": "List component",
+  "category": "data-display",
+  "files": [
+    {
+      "path": "packages/react/src/components/List/List.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/List/List.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/List/List.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/List/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "items",
+      "type": "ListItem[]",
+      "description": "List items",
+      "required": true
+    },
+    {
+      "name": "size",
+      "type": "ListSize",
+      "description": "Size variant",
+      "default": "md",
+      "values": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    {
+      "name": "variant",
+      "type": "ListVariant",
+      "description": "Visual variant",
+      "default": "default",
+      "values": [
+        "default",
+        "bordered",
+        "divided"
+      ]
+    },
+    {
+      "name": "interactive",
+      "type": "boolean",
+      "description": "Whether the list items are interactive (hoverable/clickable)",
+      "default": false
+    },
+    {
+      "name": "selectable",
+      "type": "boolean",
+      "description": "Whether items can be selected",
+      "default": false
+    },
+    {
+      "name": "onSelect",
+      "type": "(item: ListItem) => void",
+      "description": "Callback when an item is selected"
+    },
+    {
+      "name": "renderItem",
+      "type": "(item: ListItem, index: number) => ReactNode",
+      "description": "Render custom list item content"
+    },
+    {
+      "name": "emptyContent",
+      "type": "ReactNode",
+      "description": "Custom empty state when no items"
+    }
+  ],
+  "tokens": [
+    "--surface-base",
+    "--border-subtle",
+    "--text-primary"
+  ],
+  "examples": [
+    {
+      "title": "Basic list",
+      "code": "<List\n  items={[\n    { id: '1', primary: 'Item 1', secondary: 'Description' },\n    { id: '2', primary: 'Item 2', secondary: 'Description' },\n  ]}\n/>"
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#list",
+    "local": "/library.html#list"
+  },
+  "import": "import { List } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "collapsible",
+  "type": "registry:component",
+  "title": "Collapsible",
+  "description": "Collapsible component",
+  "category": "utilities",
+  "files": [
+    {
+      "path": "packages/react/src/components/Collapsible/Collapsible.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Collapsible/Collapsible.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Collapsible/Collapsible.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Collapsible/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "Controlled open state. */"
+    },
+    {
+      "name": "defaultOpen",
+      "type": "boolean",
+      "description": "Default open state for uncontrolled usage. */"
+    },
+    {
+      "name": "onOpenChange",
+      "type": "(open: boolean) => void",
+      "description": "Callback when open state changes. */"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disable the trigger. */"
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#collapsible",
+    "local": "/library.html#collapsible"
+  },
+  "import": "import { Collapsible } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

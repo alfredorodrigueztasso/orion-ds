@@ -1,0 +1,71 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "toggle",
+  "type": "registry:component",
+  "title": "Toggle",
+  "description": "Toggle component",
+  "category": "utilities",
+  "files": [
+    {
+      "path": "packages/react/src/components/Toggle/Toggle.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Toggle/Toggle.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Toggle/Toggle.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Toggle/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "pressed",
+      "type": "boolean",
+      "description": "Controlled pressed state. */"
+    },
+    {
+      "name": "defaultPressed",
+      "type": "boolean",
+      "description": "Default pressed state for uncontrolled usage. */"
+    },
+    {
+      "name": "onPressedChange",
+      "type": "(pressed: boolean) => void",
+      "description": "Callback when pressed state changes. */"
+    },
+    {
+      "name": "variant",
+      "type": "ToggleVariant",
+      "description": "Visual variant. @default 'default' */",
+      "default": "default",
+      "values": [
+        "default",
+        "outline"
+      ]
+    },
+    {
+      "name": "size",
+      "type": "ToggleSize",
+      "description": "Size of the toggle. @default 'md' */",
+      "default": "md",
+      "values": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#toggle",
+    "local": "/library.html#toggle"
+  },
+  "import": "import { Toggle } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

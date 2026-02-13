@@ -1,0 +1,92 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "alert",
+  "type": "registry:component",
+  "title": "Alert",
+  "description": "Feedback message with icon",
+  "category": "feedback",
+  "files": [
+    {
+      "path": "packages/react/src/components/Alert/Alert.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Alert/Alert.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Alert/Alert.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Alert/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "variant",
+      "type": "AlertVariant",
+      "description": "Alert variant (status type)",
+      "default": "info",
+      "values": [
+        "success",
+        "error",
+        "warning",
+        "info"
+      ]
+    },
+    {
+      "name": "title",
+      "type": "string",
+      "description": "Alert title (optional)"
+    },
+    {
+      "name": "dismissible",
+      "type": "boolean",
+      "description": "Show close button",
+      "default": false
+    },
+    {
+      "name": "onClose",
+      "type": "() => void",
+      "description": "Close button callback"
+    },
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "description": "Custom icon (overrides default status icon)"
+    }
+  ],
+  "tokens": [
+    "--status-info",
+    "--status-success",
+    "--status-warning",
+    "--status-error",
+    "--radius-control"
+  ],
+  "examples": [
+    {
+      "title": "Info alert",
+      "code": "<Alert variant=\"info\" title=\"Info\">This is an informational message.</Alert>"
+    },
+    {
+      "title": "Error alert",
+      "code": "<Alert variant=\"error\" title=\"Error\">Something went wrong.</Alert>"
+    },
+    {
+      "title": "Dismissible alert",
+      "code": "<Alert variant=\"success\" title=\"Saved\" onDismiss={() => {}}>Changes saved successfully.</Alert>"
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#alert",
+    "local": "/library.html#alert"
+  },
+  "import": "import { Alert } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'",
+  "dependencies": [
+    "lucide-react"
+  ]
+}

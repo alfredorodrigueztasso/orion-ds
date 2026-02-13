@@ -1,0 +1,64 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "alert-dialog",
+  "type": "registry:component",
+  "title": "AlertDialog",
+  "description": "AlertDialog component",
+  "category": "utilities",
+  "files": [
+    {
+      "path": "packages/react/src/components/AlertDialog/AlertDialog.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/AlertDialog/AlertDialog.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/AlertDialog/AlertDialog.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/AlertDialog/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "Whether the dialog is open",
+      "required": true
+    },
+    {
+      "name": "onClose",
+      "type": "() => void",
+      "description": "Callback when dialog should close",
+      "required": true
+    },
+    {
+      "name": "closeOnBackdrop",
+      "type": "boolean",
+      "description": "Close on backdrop click",
+      "default": false
+    },
+    {
+      "name": "closeOnEscape",
+      "type": "boolean",
+      "description": "Close on Escape key",
+      "default": false
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "description": "Additional class name"
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#alert-dialog",
+    "local": "/library.html#alert-dialog"
+  },
+  "import": "import { AlertDialog } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

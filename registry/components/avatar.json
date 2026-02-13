@@ -1,0 +1,106 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "avatar",
+  "type": "registry:component",
+  "title": "Avatar",
+  "description": "User profile image or initials",
+  "category": "data-display",
+  "files": [
+    {
+      "path": "packages/react/src/components/Avatar/Avatar.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Avatar/Avatar.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Avatar/Avatar.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Avatar/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "src",
+      "type": "string",
+      "description": "Avatar image source"
+    },
+    {
+      "name": "alt",
+      "type": "string",
+      "description": "Alt text for image"
+    },
+    {
+      "name": "initials",
+      "type": "string",
+      "description": "User initials (fallback if no image)"
+    },
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "description": "Icon element (fallback if no image or initials)"
+    },
+    {
+      "name": "size",
+      "type": "AvatarSize",
+      "description": "Avatar size",
+      "default": "md",
+      "values": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+        "2xl",
+        "3xl",
+        "4xl",
+        "5xl",
+        "profile"
+      ]
+    },
+    {
+      "name": "status",
+      "type": "'online' | 'offline' | 'away' | 'busy'",
+      "description": "Show online status indicator",
+      "default": false,
+      "values": [
+        "online",
+        "offline",
+        "away",
+        "busy"
+      ]
+    },
+    {
+      "name": "interactive",
+      "type": "boolean",
+      "description": "Make avatar clickable",
+      "default": false
+    }
+  ],
+  "tokens": [
+    "--surface-layer",
+    "--text-secondary",
+    "--radius-full"
+  ],
+  "examples": [
+    {
+      "title": "With image",
+      "code": "<Avatar src=\"/user.jpg\" alt=\"John Doe\" size=\"md\" />"
+    },
+    {
+      "title": "With initials",
+      "code": "<Avatar initials=\"JD\" size=\"lg\" />"
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#avatar",
+    "local": "/library.html#avatar"
+  },
+  "import": "import { Avatar } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "container",
+  "type": "registry:section",
+  "title": "Container",
+  "description": "Container section component",
+  "category": "marketing",
+  "files": [
+    {
+      "path": "packages/react/src/sections/Container/Container.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/sections/Container/Container.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/sections/Container/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#container",
+    "local": "/library.html#container"
+  },
+  "import": "import { Container } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

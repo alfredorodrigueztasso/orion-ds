@@ -1,0 +1,125 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "stepper",
+  "type": "registry:component",
+  "title": "Stepper",
+  "description": "Stepper component",
+  "category": "navigation",
+  "files": [
+    {
+      "path": "packages/react/src/components/Stepper/Stepper.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Stepper/Stepper.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Stepper/Stepper.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Stepper/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "steps",
+      "type": "StepItem[]",
+      "description": "Array of step items",
+      "required": true
+    },
+    {
+      "name": "currentStep",
+      "type": "number",
+      "description": "Current active step index (0-based)",
+      "default": 0
+    },
+    {
+      "name": "onStepClick",
+      "type": "(stepIndex: number, step: StepItem) => void",
+      "description": "Callback when a step is clicked (if clickable)"
+    },
+    {
+      "name": "clickable",
+      "type": "boolean",
+      "description": "Whether steps are clickable",
+      "default": false
+    },
+    {
+      "name": "orientation",
+      "type": "StepperOrientation",
+      "description": "Stepper orientation",
+      "default": "horizontal",
+      "values": [
+        "horizontal",
+        "vertical"
+      ]
+    },
+    {
+      "name": "size",
+      "type": "StepperSize",
+      "description": "Size variant",
+      "default": "md",
+      "values": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    {
+      "name": "showNumbers",
+      "type": "boolean",
+      "description": "Whether to show step numbers",
+      "default": true
+    },
+    {
+      "name": "showConnectors",
+      "type": "boolean",
+      "description": "Whether to show connector lines between steps",
+      "default": true
+    },
+    {
+      "name": "showCheckmarks",
+      "type": "boolean",
+      "description": "Whether completed steps should be marked with a checkmark",
+      "default": true
+    },
+    {
+      "name": "labelPosition",
+      "type": "'bottom' | 'right'",
+      "description": "Alternative label position (only for horizontal orientation)",
+      "default": "bottom",
+      "values": [
+        "bottom",
+        "right"
+      ]
+    },
+    {
+      "name": "scrollable",
+      "type": "boolean",
+      "description": "Enable horizontal scrolling on mobile for better UX with many steps",
+      "default": false
+    }
+  ],
+  "tokens": [
+    "--interactive-primary",
+    "--surface-layer",
+    "--text-primary",
+    "--text-secondary"
+  ],
+  "examples": [
+    {
+      "title": "Basic stepper",
+      "code": "<Stepper\n  steps={[\n    { label: 'Account', status: 'completed' },\n    { label: 'Profile', status: 'active' },\n    { label: 'Review', status: 'pending' },\n  ]}\n  activeStep={1}\n/>"
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#stepper",
+    "local": "/library.html#stepper"
+  },
+  "import": "import { Stepper } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

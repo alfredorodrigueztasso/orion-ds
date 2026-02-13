@@ -1,0 +1,20 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "contact-page-template",
+  "type": "registry:template",
+  "title": "Contact Page",
+  "description": "ContactPage page template",
+  "category": "marketing",
+  "files": [
+    {
+      "path": "packages/react/src/templates/marketing/ContactPageTemplate/ContactPageTemplate.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#contact-page-template",
+    "local": "/library.html#contact-page-template"
+  },
+  "import": "import { ContactPageTemplate } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

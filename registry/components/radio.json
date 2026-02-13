@@ -1,0 +1,95 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "radio",
+  "type": "registry:component",
+  "title": "Radio",
+  "description": "Radio button for single selection",
+  "category": "forms",
+  "files": [
+    {
+      "path": "packages/react/src/components/Radio/Radio.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Radio/Radio.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Radio/Radio.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Radio/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Radio label text."
+    },
+    {
+      "name": "helperText",
+      "type": "string",
+      "description": "Helper text displayed below the radio."
+    },
+    {
+      "name": "error",
+      "type": "string",
+      "description": "Error message."
+    },
+    {
+      "name": "size",
+      "type": "RadioSize",
+      "description": "Radio size variant.",
+      "default": "md",
+      "values": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "description": "Accessible label for screen readers when no visible label is provided.",
+      "required": true
+    },
+    {
+      "name": "aria-describedby",
+      "type": "string",
+      "description": "Additional element IDs that describe this radio.",
+      "required": true
+    }
+  ],
+  "tokens": [
+    "--interactive-primary",
+    "--border-subtle"
+  ],
+  "examples": [
+    {
+      "title": "Radio group",
+      "code": "<Radio name=\"plan\" label=\"Free\" value=\"free\" />\n<Radio name=\"plan\" label=\"Pro\" value=\"pro\" />\n<Radio name=\"plan\" label=\"Enterprise\" value=\"enterprise\" />"
+    }
+  ],
+  "accessibility": {
+    "role": "radio",
+    "ariaAttributes": [
+      "aria-checked"
+    ],
+    "keyboardNav": [
+      {
+        "key": "ArrowUp/Down",
+        "action": "Navigate options"
+      }
+    ]
+  },
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#radio",
+    "local": "/library.html#radio"
+  },
+  "import": "import { Radio } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

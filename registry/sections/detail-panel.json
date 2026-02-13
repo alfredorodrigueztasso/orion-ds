@@ -1,0 +1,28 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "detail-panel",
+  "type": "registry:section",
+  "title": "DetailPanel",
+  "description": "DetailPanel section component",
+  "category": "marketing",
+  "files": [
+    {
+      "path": "packages/react/src/sections/DetailPanel/DetailPanel.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/sections/DetailPanel/DetailPanel.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/sections/DetailPanel/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#detail-panel",
+    "local": "/library.html#detail-panel"
+  },
+  "import": "import { DetailPanel } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}
