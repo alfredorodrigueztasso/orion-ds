@@ -37,6 +37,8 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
+    "bench": "vitest bench --run",
+    "measure:bundle-size": "node scripts/measure-bundle-size.js",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
