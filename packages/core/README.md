@@ -1,4 +1,42 @@
-# @orion/core
+# ⚠️ @orion/core (DEPRECATED)
+
+**This package has been merged into @orion-ds/react v3.0.0 and is no longer maintained.**
+
+## Migration Guide
+
+If you're using `@orion-ds/core`, please migrate to `@orion-ds/react@^3.0.0`:
+
+```bash
+npm uninstall @orion-ds/core
+npm install @orion-ds/react@^3.0.0
+```
+
+### Before (v2.x)
+
+```bash
+npm install @orion-ds/core @orion-ds/react
+```
+
+```typescript
+import '@orion-ds/core/theme.css';
+import '@orion-ds/react/dist/react.css';
+import type { Theme, Brand } from '@orion-ds/core';
+```
+
+### After (v3.x)
+
+```bash
+npm install @orion-ds/react@^3.0.0
+```
+
+```typescript
+import '@orion-ds/react/styles.css'; // Single import
+import type { Theme, Brand } from '@orion-ds/react';
+```
+
+---
+
+## Legacy Documentation
 
 Core design tokens and utilities for the Orion Design System.
 

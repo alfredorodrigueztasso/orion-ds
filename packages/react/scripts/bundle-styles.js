@@ -25,7 +25,7 @@ const __dirname = dirname(__filename);
 const DIST_DIR = resolve(__dirname, '../dist');
 
 // Paths to source CSS files
-const THEME_CSS_PATH = resolve(__dirname, '../../core/dist/theme.css');
+const THEME_CSS_PATH = resolve(__dirname, '../assets/theme.css');
 const REACT_CSS_PATH = resolve(DIST_DIR, 'react.css');
 const OUTPUT_PATH = resolve(DIST_DIR, 'styles.css');
 
@@ -35,7 +35,7 @@ function bundleStyles() {
   // Check if theme.css exists
   if (!existsSync(THEME_CSS_PATH)) {
     console.error(`Error: theme.css not found at ${THEME_CSS_PATH}`);
-    console.error('Make sure @orion-ds/core is built first: npm run build -w @orion-ds/core');
+    console.error('Make sure npm run copy:assets ran successfully during build.');
     process.exit(1);
   }
 
@@ -52,7 +52,7 @@ function bundleStyles() {
 
   // Resolve @import url('tokens/generated.css') by inlining its contents
   // This prevents a broken relative import in the published bundle
-  const GENERATED_CSS_PATH = resolve(__dirname, '../../core/dist/tokens/generated.css');
+  const GENERATED_CSS_PATH = resolve(__dirname, '../assets/tokens/generated.css');
   let themeCss = themeCssRaw;
   if (existsSync(GENERATED_CSS_PATH)) {
     const generatedCss = readFileSync(GENERATED_CSS_PATH, 'utf-8');
@@ -92,6 +92,10 @@ ${reactCss}
   // Write bundle
   writeFileSync(OUTPUT_PATH, bundle, 'utf-8');
 
+  // Also write theme.css standalone
+  const THEME_OUTPUT_PATH = resolve(DIST_DIR, 'theme.css');
+  writeFileSync(THEME_OUTPUT_PATH, themeCss, 'utf-8');
+
   // Calculate sizes for logging
   const themeSize = (themeCss.length / 1024).toFixed(1);
   const reactSize = (reactCss.length / 1024).toFixed(1);
@@ -101,6 +105,7 @@ ${reactCss}
   console.log(`  react.css: ${reactSize}KB`);
   console.log(`  styles.css: ${bundleSize}KB (bundle)`);
   console.log(`Bundle created at: ${OUTPUT_PATH}`);
+  console.log(`Theme created at: ${THEME_OUTPUT_PATH}`);
 }
 
 bundleStyles();

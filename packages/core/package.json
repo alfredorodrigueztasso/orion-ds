@@ -1,7 +1,8 @@
 {
   "name": "@orion-ds/core",
-  "version": "1.2.4",
-  "description": "Orion Design System - Core tokens and utilities",
+  "version": "1.3.0",
+  "deprecated": "⚠️ DEPRECATED: Merged into @orion-ds/react v3.0.0. Install @orion-ds/react instead.",
+  "description": "Orion Design System - Core tokens and utilities (DEPRECATED - use @orion-ds/react v3.0.0+)",
   "author": "Orion Design System Team",
   "main": "dist/index.js",
   "module": "dist/index.js",

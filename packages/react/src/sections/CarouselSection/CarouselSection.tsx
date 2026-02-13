@@ -37,7 +37,7 @@ import { Section } from '../Section';
 import { Container } from '../Container';
 import { Carousel } from '../../components/Carousel';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { spacing } from '@orion-ds/core';
+import { spacing } from '../../tokens/primitives';
 import styles from './CarouselSection.module.css';
 
 // Parse spacing token values (e.g., "24px" -> 24)

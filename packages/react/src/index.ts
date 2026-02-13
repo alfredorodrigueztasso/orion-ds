@@ -401,11 +401,12 @@ export type { ThemeProviderProps } from './contexts';
 export * from './utils';
 
 // ============================================================================
-// RE-EXPORTS FROM CORE
+// RE-EXPORTS FROM TOKENS
 // ============================================================================
 
-// Re-export core types for convenience
-export type { Theme, Brand } from '@orion-ds/core';
+// Re-export token types and utilities for convenience
+export type { Theme, Brand } from './tokens/types';
+export { spacing, primitives, getToken, getSemanticToken, getBrand } from './tokens';
 
 // ============================================================================
 // SECTIONS (Pre-built UI Blocks)

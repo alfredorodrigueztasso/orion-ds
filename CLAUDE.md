@@ -6,13 +6,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Orion Design System** is an AI-first design system built on the "Chain of Truth" principle. It's a token-governed framework that eliminates UI hallucination by enforcing strict separation between primitives, semantics, and components. The system supports multiple brands and themes with zero visual drift through automated validation.
 
-### TypeScript Migration (NEW)
+### TypeScript & Consolidation (v3.0.0+)
 
-The system now includes a **TypeScript-based monorepo architecture** with three npm packages:
+The system now includes a **TypeScript-based monorepo architecture**:
 
-- **@orion/core**: Design tokens with full TypeScript types
-- **@orion/react**: Type-safe React component library
-- **@orion/vue**: Type-safe Vue 3 composables
+- **@orion-ds/react v3.0.0+**: Type-safe React component library **with integrated design tokens** (previously separate `@orion-ds/core`)
+- **@orion-ds/vue**: Type-safe Vue 3 composables
+- **@orion-ds/core v1.3.0**: **DEPRECATED** - Tokens are now included in @orion-ds/react
+
+**Migration:** If using `@orion-ds/core`, migrate to `@orion-ds/react@^3.0.0` - see [MIGRATION_V3.md](./MIGRATION_V3.md).
 
 See [TYPESCRIPT_SETUP.md](./TYPESCRIPT_SETUP.md) for complete setup instructions.
 
@@ -355,28 +357,36 @@ Button sizes scale contextually per mode using a proportional system. Each mode 
 
 Without fonts, text will fallback to system fonts (Times New Roman, etc.)
 
-### React Component CSS Import
+### React Component CSS Import (v3.0.0+)
 
-When using `@orion-ds/react`, import styles using ONE of these methods:
+When using `@orion-ds/react@^3.0.0`, import styles using:
 
-**Option 1: Single Import (Recommended)**
+**Single Import (Recommended - All you need)**
 ```typescript
-import '@orion-ds/react/styles.css';      // Combined bundle (tokens + components)
+import '@orion-ds/react/styles.css';  // Complete bundle (tokens + components)
 ```
 
-**Option 2: Separate Imports**
+This single import includes:
+- ✅ All design tokens (colors, spacing, typography, etc.)
+- ✅ All component styles
+- ✅ Theme switching (light/dark)
+- ✅ Brand support (orion, red, deepblue, orange, lemon)
+
+**Alternative: If you need theme.css separately**
 ```typescript
-import '@orion-ds/core/theme.css';        // Design tokens
-import '@orion-ds/react/dist/react.css';  // Component styles
+import '@orion-ds/react/theme.css';    // Design tokens only
+import '@orion-ds/react/dist/react.css'; // Component styles
 ```
 
 Missing CSS imports will result in unstyled components.
+
+**⚠️ Deprecated:** `@orion-ds/core` is no longer needed - tokens are included in React v3.0.0+. See [MIGRATION_V3.md](./MIGRATION_V3.md) for migration details.
 
 ## TypeScript Development Workflow (NEW)
 
 ### 1. Working with Tokens
 
-#### Using @orion/core (Type-Safe Tokens)
+#### Using @orion-ds/react (Type-Safe Tokens - v3.0.0+)
 
 ```typescript
 import {
@@ -387,7 +397,7 @@ import {
   type Theme,
   type Brand,
   type TokenPath
-} from '@orion/core';
+} from '@orion-ds/react';
 
 // Access primitives with autocomplete
 const color = primitives.color.brand.orion[500]; // "#1B5BFF"
@@ -635,7 +645,9 @@ See `/packages/react/LUCIDE_ICONS.md` for complete icon documentation.
 ```vue
 <script setup lang="ts">
 import { useTheme } from '@orion-ds/vue';
-import '@orion-ds/core/theme.css';
+// Note: Design tokens are now included in @orion-ds/react
+// Vue users can reference @orion-ds/react/styles.css or theme.css
+import '@orion-ds/react/theme.css';
 
 const { theme, brand, setTheme, toggleTheme } = useTheme();
 </script>
@@ -646,6 +658,8 @@ const { theme, brand, setTheme, toggleTheme } = useTheme();
   </button>
 </template>
 ```
+
+**Note:** Vue 3 development uses tokens from @orion-ds/react v3.0.0+. If you have a separate Vue-specific token package, import from that instead. For now, use `@orion-ds/react/theme.css` or create an alias in your bundler config.
 
 ## Component Generation Workflow
 

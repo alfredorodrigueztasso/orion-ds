@@ -1,8 +1,10 @@
-# @orion-ds/react
+# @orion-ds/react (v3.0.0)
 
-> **Orion Design System** - AI-First React Component Library
+> **Orion Design System** - AI-First React Component Library with Integrated Tokens
 
 TypeScript-first React component library built on the Orion Design System. Features 40+ components, 30+ sections, and 9 page templates with full type safety, theme switching, and multi-brand support.
+
+**New in v3.0.0**: Design tokens and theming from `@orion-ds/core` are now included. No need for separate Core package!
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-100%25-blue)](https://www.typescriptlang.org/)
 [![Tests](https://img.shields.io/badge/tests-passing-brightgreen)](#)
@@ -22,31 +24,30 @@ TypeScript-first React component library built on the Orion Design System. Featu
 
 ## Compatibility
 
-| Dependency         | Supported Versions     |
-| ------------------ | ---------------------- |
-| **React**          | `^18.0.0 \|\| ^19.0.0` |
-| **React DOM**      | `^18.0.0 \|\| ^19.0.0` |
-| **@orion-ds/core** | `^1.2.0`               |
+| Dependency    | Supported Versions     |
+| ------------- | ---------------------- |
+| **React**     | `^18.0.0 \|\| ^19.0.0` |
+| **React DOM** | `^18.0.0 \|\| ^19.0.0` |
 
 The library uses standard React APIs (`forwardRef`, `useState`, `useEffect`, `useContext`, `useRef`, etc.) and does not rely on React 19-exclusive features, so it works with both React 18 and 19.
 
 ## Installation
 
-### Option A: npm install (full library)
+### Option A: npm install (Recommended)
 
 \`\`\`bash
-npm install @orion-ds/react @orion-ds/core
+npm install @orion-ds/react
 
 # or
 
-pnpm add @orion-ds/react @orion-ds/core
+pnpm add @orion-ds/react
 
 # or
 
-yarn add @orion-ds/react @orion-ds/core
+yarn add @orion-ds/react
 \`\`\`
 
-> **Note**: `@orion-ds/core` is a peer dependency that must be installed alongside `@orion-ds/react`.
+**No need for `@orion-ds/core`** - tokens and theming are now included!
 
 ### Option B: CLI copy (own the code)
 
@@ -62,25 +63,21 @@ See [@orion-ds/cli README](../cli/README.md) for full documentation.
 
 ## CSS Setup
 
-### Option 1: Single Import (Recommended)
-
-The simplest approach - one import that includes both design tokens and component styles:
+### Single Import (All you need)
 
 \`\`\`tsx
 // In your app entry file (e.g., main.tsx, App.tsx)
 import '@orion-ds/react/styles.css';
 \`\`\`
 
-### Option 2: Separate Imports
+This single import includes:
 
-If you need more control or are using @orion-ds/core elsewhere:
+- ✅ All design tokens (colors, spacing, typography, etc.)
+- ✅ All component styles
+- ✅ Theme switching (light/dark)
+- ✅ Brand support (orion, red, deepblue, orange, lemon)
 
-\`\`\`tsx
-import '@orion-ds/core/theme.css'; // Design tokens
-import '@orion-ds/react/dist/react.css'; // Component styles
-\`\`\`
-
-> **⚠️ IMPORTANT**: Missing CSS imports will result in unstyled components. In development, ThemeProvider will warn you if styles are missing.
+> **⚠️ IMPORTANT**: Don't forget the CSS import! Without it, components will be unstyled. In development, ThemeProvider will warn you if styles are missing.
 
 ## Quick Start
 

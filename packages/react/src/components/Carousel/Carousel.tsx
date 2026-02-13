@@ -32,7 +32,7 @@ import { forwardRef, useRef, useState, useEffect, useCallback } from 'react';
 import type { CarouselProps } from './Carousel.types';
 import { CarouselCard } from './CarouselCard';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { spacing } from '@orion-ds/core';
+import { spacing } from '../../tokens/primitives';
 import styles from './Carousel.module.css';
 
 // Parse spacing token values (e.g., "24px" -> 24)

@@ -24,8 +24,6 @@ export default defineConfig({
         'react-dom',
         'react-dom/client',
         'react-dom/server',
-        '@orion/core',
-        '@orion-ds/core',
       ],
       output: {
         globals: {

@@ -205,10 +205,7 @@ export function validateCode(code: string, fileName?: string): ValidationResult 
 
   // File-level checks
   if (code.includes("from '@orion-ds/react'") || code.includes('from "@orion-ds/react"')) {
-    if (
-      !code.includes('@orion-ds/react/styles.css') &&
-      !code.includes('@orion-ds/core/theme.css')
-    ) {
+    if (!code.includes('@orion-ds/react/styles.css')) {
       suggestions.push("Missing CSS import: import '@orion-ds/react/styles.css'");
     }
   }

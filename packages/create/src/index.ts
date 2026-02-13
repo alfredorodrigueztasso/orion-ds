@@ -84,8 +84,7 @@ function generatePackageJson(name: string): string {
         preview: 'vite preview',
       },
       dependencies: {
-        '@orion-ds/core': '^1.2.0',
-        '@orion-ds/react': '^2.0.0',
+        '@orion-ds/react': '^3.0.0',
         'lucide-react': '^0.563.0',
         react: '^19.0.0',
         'react-dom': '^19.0.0',

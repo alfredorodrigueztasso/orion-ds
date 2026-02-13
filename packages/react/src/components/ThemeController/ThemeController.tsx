@@ -21,7 +21,7 @@
 
 import React from 'react';
 import type { ThemeControllerProps } from './ThemeController.types';
-import type { Brand } from '@orion-ds/core';
+import type { Brand } from '../../tokens/types';
 import { useTheme } from '../../hooks';
 import { useThemeContext } from '../../contexts/ThemeContext';
 import { Card } from '../Card';
