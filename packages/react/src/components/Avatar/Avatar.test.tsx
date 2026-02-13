@@ -22,7 +22,9 @@ describe('Avatar', () => {
 
   it('renders default fallback icon when no image, initials, or icon', () => {
     const { container } = render(<Avatar />);
-    expect(container.textContent).toContain('👤');
+    // Default icon is lucide User icon
+    const icon = container.querySelector('[data-icon="User"]');
+    expect(icon).toBeInTheDocument();
   });
 
   it('fallbacks to initials when image fails to load', () => {
@@ -54,7 +56,9 @@ describe('Avatar', () => {
 
     fireEvent.error(img);
 
-    expect(container.textContent).toContain('👤');
+    // Should render lucide User icon
+    const icon = container.querySelector('[data-icon="User"]');
+    expect(icon).toBeInTheDocument();
   });
 
   it('applies xs size class', () => {
@@ -225,8 +229,9 @@ describe('Avatar', () => {
   describe('Edge cases', () => {
     it('handles empty initials', () => {
       const { container } = render(<Avatar initials="" />);
-      // Should fallback to default icon
-      expect(container.textContent).toContain('👤');
+      // Should fallback to lucide User icon
+      const icon = container.querySelector('[data-icon="User"]');
+      expect(icon).toBeInTheDocument();
     });
 
     it('handles long initials (truncates in CSS)', () => {
@@ -240,8 +245,9 @@ describe('Avatar', () => {
     });
 
     it('handles missing alt text', () => {
-      render(<Avatar src="/user.jpg" />);
-      const img = screen.getByRole('img');
+      const { container } = render(<Avatar src="/user.jpg" />);
+      const img = container.querySelector('img');
+      expect(img).toBeInTheDocument();
       expect(img).toHaveAttribute('alt', '');
     });
   });
