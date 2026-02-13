@@ -41,6 +41,8 @@
     "test:e2e:headed": "playwright test --headed",
     "test:e2e:debug": "playwright test --debug",
     "test:e2e:report": "playwright show-report",
+    "test:visual": "npm run build-storybook && npm run percy",
+    "percy": "percy storybook storybook-static",
     "bench": "vitest bench --run",
     "measure:bundle-size": "node scripts/measure-bundle-size.js",
     "storybook": "storybook dev -p 6006",
@@ -111,6 +113,8 @@
     "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
+    "@percy/cli": "^1.31.8",
+    "@percy/storybook": "^10.0.0",
     "@playwright/test": "^1.58.2",
     "@storybook/addon-a11y": "^8.6.15",
     "@storybook/addon-essentials": "^8.6.14",
