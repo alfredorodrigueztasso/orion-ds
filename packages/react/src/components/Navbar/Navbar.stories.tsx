@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Navbar } from './Navbar';
 import { Button } from '../Button/Button';
 
-const meta = {
+const meta: Meta<typeof Navbar> = {
   title: 'Components/Navigation/Navbar',
   component: Navbar,
   parameters: {

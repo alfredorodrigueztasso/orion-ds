@@ -303,9 +303,9 @@
   -webkit-mask: radial-gradient(
     farthest-side,
     transparent calc(100% - 2.5px),
-    #000 calc(100% - 2px)
+    var(--text-primary) calc(100% - 2px)
   );
-  mask: radial-gradient(farthest-side, transparent calc(100% - 2.5px), #000 calc(100% - 2px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 2.5px), var(--text-primary) calc(100% - 2px));
   animation: thinkingSpin 1.2s linear infinite;
 }
 

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { ProgressBar } from './ProgressBar';
 import { Card } from '../Card';
 
-const meta = {
+const meta: Meta<typeof ProgressBar> = {
   title: 'Components/Feedback/ProgressBar',
   component: ProgressBar,
   parameters: {

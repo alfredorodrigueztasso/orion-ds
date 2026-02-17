@@ -151,6 +151,7 @@ export const Disabled: Story = {
 };
 
 export const DisabledItem: Story = {
+  args: { type: 'single' as const },
   render: () => (
     <ToggleGroup type="single" defaultValue="left">
       <ToggleGroup.Item value="left" aria-label="Left">
@@ -170,6 +171,7 @@ export const DisabledItem: Story = {
 };
 
 export const Controlled: Story = {
+  args: { type: 'single' as const },
   render: () => {
     const [value, setValue] = useState<string | string[]>('system');
 
@@ -202,6 +204,7 @@ export const Controlled: Story = {
 };
 
 export const AllSizes: Story = {
+  args: { type: 'single' as const },
   render: () => (
     <div
       style={{
@@ -282,6 +285,7 @@ export const AllSizes: Story = {
 };
 
 export const TextFormattingToolbar: Story = {
+  args: { type: 'single' as const },
   render: () => {
     const [formatting, setFormatting] = useState<string | string[]>([]);
     const [alignment, setAlignment] = useState<string | string[]>('left');

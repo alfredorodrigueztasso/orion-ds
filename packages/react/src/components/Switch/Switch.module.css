@@ -63,7 +63,7 @@
   height: 26px;
 
   /* iOS-style off state: light gray */
-  background: rgba(120, 120, 128, 0.16);
+  background: var(--surface-subtle);
   border: none;
   border-radius: var(--radius-full);
 
@@ -81,11 +81,9 @@
   left: 2px;
   width: 22px;
   height: 22px;
-  background: #ffffff;
+  background: var(--color-neutral-0);
   border-radius: 50%;
-  box-shadow:
-    0 2px 4px rgba(0, 0, 0, 0.15),
-    0 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
   transition: transform 0.2s ease-in-out;
 }
 
@@ -138,7 +136,7 @@
 }
 
 .input:checked + .labelWrapper .thumb {
-  background: #ffffff;
+  background: var(--color-neutral-0);
 }
 
 /* Thumb position when checked - by size */
@@ -159,7 +157,7 @@
  * ============================================================================ */
 
 .labelWrapper:hover .track {
-  background: rgba(120, 120, 128, 0.24);
+  background: var(--surface-layer);
 }
 
 .input:checked + .labelWrapper:hover .track {
@@ -187,12 +185,12 @@
 }
 
 .input:disabled + .labelWrapper .track {
-  background: rgba(120, 120, 128, 0.08);
+  background: var(--border-subtle);
 }
 
 .input:disabled + .labelWrapper .thumb {
-  background: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: var(--color-neutral-0);
+  box-shadow: var(--shadow-flat);
 }
 
 .input:disabled:checked + .labelWrapper .track {
@@ -201,7 +199,7 @@
 }
 
 .input:disabled:checked + .labelWrapper .thumb {
-  background: #ffffff;
+  background: var(--color-neutral-0);
 }
 
 /* ============================================================================

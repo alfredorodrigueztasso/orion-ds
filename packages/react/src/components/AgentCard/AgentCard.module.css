@@ -35,8 +35,7 @@
 .agentCard.clickable:hover,
 .agentCard.draggable:hover {
   transform: translateY(-8px);  /* Elevación pronunciada */
-  box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.12),
-              0 8px 16px -4px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-lg);
 }
 
 .agentCard.dragging:hover {
@@ -178,7 +177,7 @@
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-control);
   box-shadow: var(--shadow-lg);
-  z-index: 10;
+  z-index: var(--z-dropdown);
   overflow: hidden;
 }
 

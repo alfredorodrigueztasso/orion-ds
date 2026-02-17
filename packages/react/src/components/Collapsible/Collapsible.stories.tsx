@@ -250,7 +250,7 @@ export const MultipleItems: Story = {
 export const TagsList: Story = {
   render: () => {
     const [open, setOpen] = useState(false);
-    const [tags, setTags] = useState(['React', 'TypeScript', 'CSS Modules']);
+    const [tags] = useState(['React', 'TypeScript', 'CSS Modules']);
 
     return (
       <div style={{ width: '360px' }}>

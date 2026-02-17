@@ -35,6 +35,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  args: { maxLength: 6 },
   render: () => (
     <InputOTP maxLength={6}>
       <InputOTP.Group>
@@ -53,6 +54,7 @@ export const Default: Story = {
 };
 
 export const FourDigit: Story = {
+  args: { maxLength: 6 },
   render: () => (
     <InputOTP maxLength={4}>
       <InputOTP.Group>
@@ -66,6 +68,7 @@ export const FourDigit: Story = {
 };
 
 export const Alphanumeric: Story = {
+  args: { maxLength: 6 },
   render: () => (
     <InputOTP maxLength={6} type="alphanumeric">
       <InputOTP.Group>
@@ -81,6 +84,7 @@ export const Alphanumeric: Story = {
 };
 
 export const SmallSize: Story = {
+  args: { maxLength: 6 },
   render: () => (
     <InputOTP maxLength={6} size="sm">
       <InputOTP.Group>
@@ -99,6 +103,7 @@ export const SmallSize: Story = {
 };
 
 export const LargeSize: Story = {
+  args: { maxLength: 6 },
   render: () => (
     <InputOTP maxLength={6} size="lg">
       <InputOTP.Group>
@@ -117,6 +122,7 @@ export const LargeSize: Story = {
 };
 
 export const Disabled: Story = {
+  args: { maxLength: 6 },
   render: () => (
     <InputOTP maxLength={6} disabled>
       <InputOTP.Group>
@@ -135,6 +141,7 @@ export const Disabled: Story = {
 };
 
 export const WithDefaultValue: Story = {
+  args: { maxLength: 6 },
   render: () => (
     <InputOTP maxLength={6} defaultValue="123">
       <InputOTP.Group>
@@ -153,6 +160,7 @@ export const WithDefaultValue: Story = {
 };
 
 export const Controlled: Story = {
+  args: { maxLength: 6 },
   render: () => {
     const [value, setValue] = useState('');
     const [completed, setCompleted] = useState(false);
@@ -201,6 +209,7 @@ export const Controlled: Story = {
 };
 
 export const AllSizes: Story = {
+  args: { maxLength: 6 },
   render: () => (
     <div
       style={{
@@ -275,6 +284,7 @@ export const AllSizes: Story = {
 };
 
 export const VerificationForm: Story = {
+  args: { maxLength: 6 },
   render: () => {
     const [value, setValue] = useState('');
     const [status, setStatus] = useState<'idle' | 'verifying' | 'success' | 'error'>('idle');
@@ -379,6 +389,7 @@ export const VerificationForm: Story = {
 };
 
 export const CustomSeparator: Story = {
+  args: { maxLength: 6 },
   render: () => (
     <InputOTP maxLength={6}>
       <InputOTP.Group>

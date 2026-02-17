@@ -8,5 +8,13 @@ import type { RenderResult } from '@testing-library/react';
  */
 export async function expectNoA11yViolations({ container }: Pick<RenderResult, 'container'>) {
   const results = await axe(container);
-  expect(results).toHaveNoViolations();
+  // Check if there are any violations
+  expect(results.violations).toEqual([]);
+  // If violations exist, format them for better error messages
+  if (results.violations.length > 0) {
+    const violationMessages = results.violations.map(
+      (v) => `${v.id}: ${v.description}\n  ${v.nodes.map((n) => n.html).join('\n  ')}`
+    );
+    throw new Error(`Accessibility violations found:\n${violationMessages.join('\n\n')}`);
+  }
 }

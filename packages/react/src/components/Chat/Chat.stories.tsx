@@ -6,7 +6,7 @@ import { Button } from '../Button';
 import { MoreVertical, Copy, RefreshCw, ThumbsUp, ThumbsDown } from 'lucide-react';
 import type { ChatMessage, ChatConversation, ChatAttachment } from './Chat.types';
 
-const meta = {
+const meta: Meta<typeof Chat> = {
   title: 'Components/Chat/Chat',
   component: Chat,
   parameters: {

@@ -37,14 +37,14 @@
 
 /* Glass with light scheme - for dark/colored backgrounds */
 .glass.schemeLight {
-  background: rgba(255, 255, 255, 0.1);
-  border-bottom-color: rgba(255, 255, 255, 0.1);
+  background: var(--overlay-light-subtle);
+  border-bottom-color: var(--overlay-light-subtle);
 }
 
 /* Glass with dark scheme - for light backgrounds */
 .glass.schemeDark {
-  background: rgba(255, 255, 255, 0.7);
-  border-bottom-color: rgba(0, 0, 0, 0.05);
+  background: var(--overlay-light);
+  border-bottom-color: var(--overlay-dark-subtle);
 }
 
 /* ============================================================================
@@ -53,25 +53,25 @@
 
 /* Light color scheme - white/light text for dark backgrounds */
 .schemeLight .brand {
-  color: rgba(255, 255, 255, 0.95);
+  color: var(--color-neutral-0);
 }
 
 .schemeLight .link {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--color-neutral-100);
 }
 
 .schemeLight .link:hover {
-  color: rgba(255, 255, 255, 1);
-  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-neutral-0);
+  background: var(--overlay-light-subtle);
 }
 
 .schemeLight .link.active {
-  color: rgba(255, 255, 255, 1);
-  background: rgba(255, 255, 255, 0.15);
+  color: var(--color-neutral-0);
+  background: var(--overlay-light);
 }
 
 .schemeLight .toggleLine {
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--color-neutral-0);
 }
 
 /* Dark color scheme - dark text for light backgrounds */
@@ -85,7 +85,7 @@
 
 .schemeDark .link:hover {
   color: var(--text-primary);
-  background: rgba(0, 0, 0, 0.05);
+  background: var(--overlay-dark-subtle);
 }
 
 .schemeDark .link.active {
