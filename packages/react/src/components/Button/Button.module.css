@@ -59,14 +59,14 @@
   }
 }
 
-/* Secondary variant */
+/* Secondary variant - uses transparency for better hierarchy on colored backgrounds */
 .secondary {
-  background: var(--interactive-secondary);
+  background: color-mix(in srgb, var(--surface-base) 50%, transparent);
   color: var(--interactive-secondary-text);
   border-color: var(--border-subtle);
 
   &:hover:not(:disabled) {
-    background: var(--interactive-secondary-hover);
+    background: color-mix(in srgb, var(--surface-base) 60%, transparent);
     border-color: var(--border-strong);
   }
 
@@ -92,7 +92,7 @@
 /* Danger variant */
 .danger {
   background: var(--status-error);
-  color: var(--text-inverse);
+  color: var(--color-neutral-0);
 
   &:hover:not(:disabled) {
     background: color-mix(in srgb, var(--status-error) 85%, var(--color-neutral-1000));
@@ -101,6 +101,27 @@
   &:active:not(:disabled) {
     transform: translateY(1px);
   }
+}
+
+/* Inverse variant - for use on colored backgrounds */
+/* Always white background (doesn't change in dark mode) */
+.inverse {
+  background: var(--color-neutral-0);
+  color: var(--interactive-primary);
+  border-color: transparent;
+
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--color-neutral-0) 92%, var(--color-neutral-900));
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+}
+
+/* Lemon brand uses black text for better contrast on white */
+:global([data-brand='lemon']) .inverse {
+  color: var(--color-neutral-1000);
 }
 
 /* ============================================================================
@@ -189,7 +210,18 @@
 }
 
 .danger .spinner {
-  border: 2px solid var(--text-inverse);
+  border: 2px solid var(--color-neutral-0);
+  border-top-color: transparent;
+}
+
+.inverse .spinner {
+  border: 2px solid var(--interactive-primary);
+  border-top-color: transparent;
+}
+
+/* Lemon brand spinner uses black for visibility */
+:global([data-brand='lemon']) .inverse .spinner {
+  border: 2px solid var(--color-neutral-1000);
   border-top-color: transparent;
 }
 

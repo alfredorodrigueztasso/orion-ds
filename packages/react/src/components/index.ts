@@ -61,6 +61,9 @@ export type { TooltipProps, TooltipPlacement } from './Tooltip';
 export { Avatar } from './Avatar';
 export type { AvatarProps, AvatarSize } from './Avatar';
 
+export { AgentCard } from './AgentCard';
+export type { AgentCardProps, AgentStatus } from './AgentCard';
+
 export { Table } from './Table';
 export type { TableProps, TableColumn, TableSize, SortDirection } from './Table';
 

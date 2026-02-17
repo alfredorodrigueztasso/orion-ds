@@ -23,7 +23,7 @@ const meta = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'secondary', 'ghost'],
+      options: ['primary', 'secondary', 'ghost', 'danger', 'inverse'],
       description: 'Button visual style',
     },
     size: {
@@ -67,6 +67,47 @@ export const Ghost: Story = {
   },
 };
 
+export const Danger: Story = {
+  args: {
+    variant: 'danger',
+    children: 'Danger Button',
+  },
+};
+
+export const Inverse: Story = {
+  args: {
+    variant: 'inverse',
+    children: 'Inverse Button',
+  },
+};
+
+// Inverse on colored background - combine with regular secondary/ghost for supporting actions
+export const InverseOnColoredBackground: Story = {
+  render: () => (
+    <div
+      style={{
+        background: 'var(--interactive-primary)',
+        padding: 'var(--spacing-8)',
+        borderRadius: 'var(--radius-container)',
+        display: 'flex',
+        gap: 'var(--spacing-4)',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      <h3 style={{ color: 'white', margin: 0, fontFamily: 'var(--font-primary)' }}>
+        Summer Sale - 50% Off
+      </h3>
+      <p style={{ color: 'white', margin: 0 }}>Limited time offer on all products</p>
+      <div style={{ display: 'flex', gap: 'var(--spacing-3)', flexWrap: 'wrap' }}>
+        <Button variant="inverse">Shop Now</Button>
+        <Button variant="secondary">Learn More</Button>
+        <Button variant="ghost">Skip</Button>
+      </div>
+    </div>
+  ),
+};
+
 // Sizes
 export const Small: Story = {
   args: {
@@ -104,25 +145,6 @@ export const FullWidth: Story = {
   },
 };
 
-// With icons (using unicode for simplicity)
-export const WithIcon: Story = {
-  args: {
-    children: (
-      <>
-        <span style={{ marginRight: 'var(--spacing-2)' }}>➕</span>
-        Add Item
-      </>
-    ),
-  },
-};
-
-export const IconOnly: Story = {
-  args: {
-    'aria-label': 'Add',
-    children: '➕',
-    size: 'sm',
-  },
-};
 // All sizes showcase
 export const AllSizes: Story = {
   render: () => (
@@ -224,6 +246,9 @@ export const LoadingAllVariants: Story = {
       <Button variant="danger" isLoading>
         Danger
       </Button>
+      <Button variant="inverse" isLoading>
+        Inverse
+      </Button>
     </div>
   ),
 };
@@ -235,6 +260,8 @@ export const AllVariants: Story = {
       <Button variant="primary">Primary</Button>
       <Button variant="secondary">Secondary</Button>
       <Button variant="ghost">Ghost</Button>
+      <Button variant="danger">Danger</Button>
+      <Button variant="inverse">Inverse</Button>
     </div>
   ),
 };

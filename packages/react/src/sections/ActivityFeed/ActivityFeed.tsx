@@ -31,19 +31,24 @@ import {
   Upload,
   Circle,
 } from 'lucide-react';
+import { Chip } from '../../components/Chip';
+import { Button } from '../../components/Button';
 import type { ActivityFeedProps, ActivityItem } from './ActivityFeed.types';
 import styles from './ActivityFeed.module.css';
 
+// Icon size constant (matches --size-icon-sm: 16px)
+const ICON_SIZE = 16;
+
 // Type to icon mapping
 const typeIcons: Record<string, React.ReactNode> = {
-  comment: <MessageSquare size={16} />,
-  update: <Edit size={16} />,
-  create: <Plus size={16} />,
-  delete: <Trash2 size={16} />,
-  assign: <UserPlus size={16} />,
-  complete: <CheckCircle size={16} />,
-  upload: <Upload size={16} />,
-  default: <Circle size={16} />,
+  comment: <MessageSquare size={ICON_SIZE} />,
+  update: <Edit size={ICON_SIZE} />,
+  create: <Plus size={ICON_SIZE} />,
+  delete: <Trash2 size={ICON_SIZE} />,
+  assign: <UserPlus size={ICON_SIZE} />,
+  complete: <CheckCircle size={ICON_SIZE} />,
+  upload: <Upload size={ICON_SIZE} />,
+  default: <Circle size={ICON_SIZE} />,
 };
 
 // Activity item component
@@ -136,17 +141,15 @@ export const ActivityFeed = forwardRef<HTMLDivElement, ActivityFeedProps>(
         {showFilters && filters && filters.length > 0 && (
           <div className={styles.filters}>
             {filters.map((filter) => (
-              <button
+              <Chip
                 key={filter.value}
-                type="button"
-                className={`${styles.filterButton} ${activeFilter === filter.value ? styles.filterActive : ''}`}
+                clickable
+                selected={activeFilter === filter.value}
                 onClick={() => onFilterChange?.(filter.value)}
               >
                 {filter.label}
-                {filter.count !== undefined && (
-                  <span className={styles.filterCount}>{filter.count}</span>
-                )}
-              </button>
+                {filter.count !== undefined && ` (${filter.count})`}
+              </Chip>
             ))}
           </div>
         )}
@@ -184,9 +187,9 @@ export const ActivityFeed = forwardRef<HTMLDivElement, ActivityFeedProps>(
 
         {/* Load more */}
         {hasMore && !loading && (
-          <button type="button" className={styles.loadMore} onClick={onLoadMore}>
+          <Button variant="secondary" onClick={onLoadMore} style={{ width: '100%', marginTop: 'var(--spacing-2)' }}>
             Load more
-          </button>
+          </Button>
         )}
       </div>
     );

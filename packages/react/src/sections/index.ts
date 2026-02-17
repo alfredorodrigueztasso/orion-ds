@@ -248,6 +248,9 @@ export type {
   ActivityFilter,
 } from './ActivityFeed';
 
+export { AgentFolder } from './AgentFolder';
+export type { AgentFolderProps, SortOption } from './AgentFolder';
+
 export { DetailPanel } from './DetailPanel';
 export type { DetailPanelProps, DetailPanelSize, DetailPanelPosition } from './DetailPanel';
 

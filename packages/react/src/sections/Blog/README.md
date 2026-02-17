@@ -5,10 +5,10 @@
 ## Quick Start
 
 ```tsx
-import { Blog, Badge } from '@orion/react';
+import { Blog } from '@orion/react';
 
 <Blog
-  eyebrow={<Badge>Blog</Badge>}
+  eyebrow="Blog"
   title="Latest Articles"
   description="Insights, tutorials, and updates from our team"
   articles={[

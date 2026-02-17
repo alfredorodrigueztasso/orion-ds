@@ -183,7 +183,7 @@
 
 .messageBubbleUser {
   background: var(--interactive-primary);
-  color: var(--interactive-primary-text);
+  color: var(--text-on-brand-primary);
   box-shadow: var(--shadow-sm);
   width: fit-content;
   max-width: 100%;

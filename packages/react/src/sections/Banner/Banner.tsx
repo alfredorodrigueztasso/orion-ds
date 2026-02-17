@@ -5,6 +5,8 @@
  */
 
 import React from 'react';
+import { X } from 'lucide-react';
+import { Button } from '../../components/Button';
 import type { BannerProps } from './Banner.types';
 import styles from './Banner.module.css';
 
@@ -55,14 +57,20 @@ export const Banner: React.FC<BannerProps> = ({
       {(ctaLabel || secondaryCtaLabel) && (
         <div className={styles.actions}>
           {ctaLabel && ctaHref && (
-            <a href={ctaHref} className={`${styles.ctaButton} ${styles.ctaPrimary}`}>
+            <Button
+              variant={variant === 'split' ? 'primary' : 'inverse'}
+              onClick={() => window.location.href = ctaHref}
+            >
               {ctaLabel}
-            </a>
+            </Button>
           )}
           {secondaryCtaLabel && secondaryCtaHref && (
-            <a href={secondaryCtaHref} className={`${styles.ctaButton} ${styles.ctaSecondary}`}>
+            <Button
+              variant={variant === 'split' ? 'secondary' : 'ghost'}
+              onClick={() => window.location.href = secondaryCtaHref}
+            >
               {secondaryCtaLabel}
-            </a>
+            </Button>
           )}
         </div>
       )}
@@ -91,19 +99,15 @@ export const Banner: React.FC<BannerProps> = ({
       </div>
 
       {dismissible && (
-        <button className={styles.dismissButton} onClick={onDismiss} aria-label="Dismiss banner">
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
-        </button>
+        <div className={styles.dismissButton}>
+          <Button
+            iconOnly
+            icon={<X size={20} />}
+            variant="ghost"
+            onClick={onDismiss}
+            aria-label="Dismiss banner"
+          />
+        </div>
       )}
     </section>
   );

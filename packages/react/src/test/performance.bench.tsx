@@ -83,7 +83,7 @@ describe('Component Render Performance', () => {
   describe('Modal', () => {
     bench('renders closed modal', () => {
       render(
-        <Modal isOpen={false} onClose={() => {}}>
+        <Modal open={false} onClose={() => {}}>
           <Modal.Header>Title</Modal.Header>
           <Modal.Body>Content</Modal.Body>
         </Modal>,
@@ -92,7 +92,7 @@ describe('Component Render Performance', () => {
 
     bench('renders open modal', () => {
       render(
-        <Modal isOpen={true} onClose={() => {}}>
+        <Modal open={true} onClose={() => {}}>
           <Modal.Header>Title</Modal.Header>
           <Modal.Body>Content</Modal.Body>
           <Modal.Footer>
@@ -107,15 +107,13 @@ describe('Component Render Performance', () => {
   describe('Dropdown', () => {
     bench('renders closed dropdown', () => {
       render(
-        <Dropdown>
-          <Dropdown.Trigger>
-            <Button variant="secondary">Menu</Button>
-          </Dropdown.Trigger>
-          <Dropdown.Content>
-            <Dropdown.Item>Item 1</Dropdown.Item>
-            <Dropdown.Item>Item 2</Dropdown.Item>
-          </Dropdown.Content>
-        </Dropdown>,
+        <Dropdown
+          trigger={<Button variant="secondary">Menu</Button>}
+          items={[
+            { id: '1', label: 'Item 1', onClick: () => {} },
+            { id: '2', label: 'Item 2', onClick: () => {} },
+          ]}
+        />,
       );
     });
   });
@@ -123,35 +121,27 @@ describe('Component Render Performance', () => {
   describe('Tabs', () => {
     bench('renders tabs with 3 items', () => {
       render(
-        <Tabs defaultValue="tab1">
-          <Tabs.List>
-            <Tabs.Trigger value="tab1">Tab 1</Tabs.Trigger>
-            <Tabs.Trigger value="tab2">Tab 2</Tabs.Trigger>
-            <Tabs.Trigger value="tab3">Tab 3</Tabs.Trigger>
-          </Tabs.List>
-          <Tabs.Content value="tab1">Content 1</Tabs.Content>
-          <Tabs.Content value="tab2">Content 2</Tabs.Content>
-          <Tabs.Content value="tab3">Content 3</Tabs.Content>
-        </Tabs>,
+        <Tabs
+          tabs={[
+            { id: 'tab1', label: 'Tab 1', content: <div>Content 1</div> },
+            { id: 'tab2', label: 'Tab 2', content: <div>Content 2</div> },
+            { id: 'tab3', label: 'Tab 3', content: <div>Content 3</div> },
+          ]}
+          defaultTab="tab1"
+        />,
       );
     });
 
     bench('renders tabs with 10 items', () => {
       render(
-        <Tabs defaultValue="tab1">
-          <Tabs.List>
-            {Array.from({ length: 10 }, (_, i) => (
-              <Tabs.Trigger key={i} value={`tab${i + 1}`}>
-                Tab {i + 1}
-              </Tabs.Trigger>
-            ))}
-          </Tabs.List>
-          {Array.from({ length: 10 }, (_, i) => (
-            <Tabs.Content key={i} value={`tab${i + 1}`}>
-              Content {i + 1}
-            </Tabs.Content>
-          ))}
-        </Tabs>,
+        <Tabs
+          tabs={Array.from({ length: 10 }, (_, i) => ({
+            id: `tab${i + 1}`,
+            label: `Tab ${i + 1}`,
+            content: <div>Content {i + 1}</div>,
+          }))}
+          defaultTab="tab1"
+        />,
       );
     });
   });

@@ -63,7 +63,7 @@
 
 .toast {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: var(--spacing-3);
   padding: var(--spacing-4);
   background: var(--surface-base);

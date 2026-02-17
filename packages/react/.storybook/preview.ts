@@ -1,6 +1,6 @@
 import type { Preview } from '@storybook/react';
 import React from 'react';
-import '@orion-ds/core/theme.css';
+import '../dist/styles.css';
 // Fonts are loaded via preview-head.html for iframe support
 // CSS modules are imported directly with each component
 

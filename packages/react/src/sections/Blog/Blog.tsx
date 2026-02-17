@@ -6,6 +6,7 @@
 
 import React from 'react';
 import type { BlogProps, BlogArticle } from './Blog.types';
+import { Badge } from '../../components/Badge/Badge';
 import styles from './Blog.module.css';
 
 /**
@@ -34,9 +35,8 @@ const ArticleCard: React.FC<{
       <div className={styles.articleContent}>
         <div className={styles.articleMeta}>
           {showCategory && article.category && (
-            <span className={styles.category}>{article.category}</span>
+            <Badge variant="primary" size="sm">{article.category}</Badge>
           )}
-          {showDate && article.date && <span className={styles.date}>{article.date}</span>}
           {showReadTime && article.readTime && (
             <span className={styles.readTime}>{article.readTime} min read</span>
           )}
@@ -51,9 +51,9 @@ const ArticleCard: React.FC<{
         {article.tags && article.tags.length > 0 && (
           <div className={styles.tags}>
             {article.tags.map((tag, index) => (
-              <span key={index} className={styles.tag}>
+              <Badge key={index} variant="neutral" size="sm">
                 {tag}
-              </span>
+              </Badge>
             ))}
           </div>
         )}
@@ -67,7 +67,10 @@ const ArticleCard: React.FC<{
                 className={styles.authorAvatar}
               />
             )}
-            <span className={styles.authorName}>{article.author.name}</span>
+            <div className={styles.authorInfo}>
+              <span className={styles.authorName}>{article.author.name}</span>
+              {showDate && article.date && <span className={styles.date}>{article.date}</span>}
+            </div>
           </div>
         )}
       </div>

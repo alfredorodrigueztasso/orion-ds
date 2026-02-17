@@ -40,7 +40,7 @@
 
 .title {
   font-family: var(--font-primary);
-  font-size: var(--font-size-4xl);
+  font-size: var(--font-size-48);
   font-weight: var(--font-weight-bold);
   color: var(--text-primary);
   margin: 0 0 var(--spacing-4) 0;
@@ -124,37 +124,24 @@
 .articleMeta {
   display: flex;
   align-items: center;
-  gap: var(--spacing-3);
+  justify-content: space-between;
+  gap: var(--spacing-2);
   margin-bottom: var(--spacing-3);
   font-size: var(--font-size-sm);
 }
 
-.category {
-  display: inline-block;
-  padding: var(--spacing-1) var(--spacing-2);
-  background: var(--interactive-primary);
-  color: var(--interactive-primary-text);
-  border-radius: var(--radius-sm);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-medium);
-}
-
 .date {
   color: var(--text-tertiary);
+  font-size: var(--font-size-xs);
 }
 
 .readTime {
   color: var(--text-tertiary);
 }
 
-.readTime::before {
-  content: '·';
-  margin-right: var(--spacing-3);
-}
-
 .articleTitle {
-  font-family: var(--font-primary);
-  font-size: var(--font-size-xl);
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-24);
   font-weight: var(--font-weight-semibold);
   color: var(--text-primary);
   margin: 0 0 var(--spacing-2) 0;
@@ -162,7 +149,7 @@
 }
 
 .featuredMain .articleTitle {
-  font-size: var(--font-size-2xl);
+  font-size: var(--font-size-32);
 }
 
 .articleTitle a {
@@ -187,11 +174,9 @@
 
 .author {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--spacing-3);
   margin-top: var(--spacing-4);
-  padding-top: var(--spacing-4);
-  border-top: 1px solid var(--border-subtle);
 }
 
 .authorAvatar {
@@ -200,6 +185,12 @@
   border-radius: 50%;
   object-fit: cover;
   background: var(--surface-subtle);
+}
+
+.authorInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
 }
 
 .authorName {
@@ -223,6 +214,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  max-width: 800px;
 }
 
 /* View All */
@@ -253,14 +245,6 @@
   margin-top: var(--spacing-3);
 }
 
-.tag {
-  font-size: var(--font-size-xs);
-  color: var(--text-tertiary);
-  background: var(--surface-subtle);
-  padding: var(--spacing-1) var(--spacing-2);
-  border-radius: var(--radius-sm);
-}
-
 /* Responsive */
 @media (max-width: 1024px) {
   .grid[data-columns='4'] {
@@ -282,7 +266,7 @@
   }
 
   .title {
-    font-size: var(--font-size-3xl);
+    font-size: var(--font-size-32);
   }
 
   .grid[data-columns='2'],

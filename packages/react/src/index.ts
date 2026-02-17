@@ -298,6 +298,10 @@ export type { ChipProps, ChipVariant, ChipSize } from './components/Chip';
 export { EmptyState } from './components/EmptyState';
 export type { EmptyStateProps, EmptyStateSize } from './components/EmptyState';
 
+// Agent Cards
+export { AgentCard } from './components/AgentCard';
+export type { AgentCardProps, AgentStatus } from './components/AgentCard';
+
 // Pagination
 export { Pagination } from './components/Pagination';
 export type { PaginationProps, PaginationSize } from './components/Pagination';

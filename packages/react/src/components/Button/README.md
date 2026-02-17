@@ -24,12 +24,13 @@
 
 ## Variants Guide
 
-| Variant     | Semantic Meaning   | Use When                                          | Example                                |
-| ----------- | ------------------ | ------------------------------------------------- | -------------------------------------- |
-| `primary`   | Main action        | Primary CTA - Submit, Save, Continue, Get Started | Form submissions, main hero CTA        |
-| `secondary` | Supporting action  | Secondary CTA - Cancel, Back, Learn More          | Paired with primary button             |
-| `ghost`     | Subtle action      | Tertiary - Close, Dismiss, Skip                   | Modal close, subtle navigation         |
-| `danger`    | Destructive action | Irreversible - Delete, Remove, Unsubscribe        | Deleting data, canceling subscriptions |
+| Variant     | Semantic Meaning          | Use When                                          | Example                                |
+| ----------- | ------------------------- | ------------------------------------------------- | -------------------------------------- |
+| `primary`   | Main action               | Primary CTA - Submit, Save, Continue, Get Started | Form submissions, main hero CTA        |
+| `secondary` | Supporting action         | Secondary CTA - Cancel, Back, Learn More          | Paired with primary button             |
+| `ghost`     | Subtle action             | Tertiary - Close, Dismiss, Skip                   | Modal close, subtle navigation         |
+| `danger`    | Destructive action        | Irreversible - Delete, Remove, Unsubscribe        | Deleting data, canceling subscriptions |
+| `inverse`   | Primary CTA on colored bg | Hero CTAs, Banners, Overlays                      | "Get Started" on blue banner           |
 
 ### Visual Hierarchy
 
@@ -90,7 +91,45 @@ import { Button } from '@orion/react';
 
 // Danger
 <Button variant="danger">Delete Account</Button>
+
+// Inverse (for colored backgrounds)
+<Button variant="inverse">Get Started</Button>
 ```
+
+### Inverse Variant (for Colored Backgrounds)
+
+```tsx
+import { Button } from '@orion/react';
+
+// Use inverse on colored backgrounds
+<section style={{ background: 'var(--interactive-primary)', padding: '4rem' }}>
+  <h1>Welcome to Orion</h1>
+  <Button variant="inverse">Get Started</Button>
+  <Button variant="ghost" style={{ color: 'white', border: '2px solid white' }}>
+    Learn More
+  </Button>
+</section>
+
+// Use cases
+<Banner variant="default">
+  <Button variant="inverse">Sign Up Free</Button>
+</Banner>
+
+<Hero backgroundImage="/hero.jpg">
+  <Button variant="inverse">Explore Features</Button>
+</Hero>
+```
+
+**When to use `inverse`**:
+- ✅ Banners with brand-colored backgrounds
+- ✅ Hero sections over images with dark overlays
+- ✅ CTAs on gradient backgrounds
+- ✅ Any context where `primary` doesn't provide enough contrast
+
+**When NOT to use `inverse`**:
+- ❌ On white/light backgrounds (use `primary` instead)
+- ❌ In forms or data tables (use `primary` or `secondary`)
+- ❌ As secondary actions (use `secondary` or `ghost`)
 
 ### With Icons
 

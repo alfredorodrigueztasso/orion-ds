@@ -26,3 +26,12 @@ export type {
 
 export { ChatPageTemplate } from './ChatPageTemplate';
 export type { ChatPageTemplateProps } from './ChatPageTemplate';
+
+export { AgentLibraryTemplate } from './AgentLibraryTemplate';
+export type {
+  AgentLibraryTemplateProps,
+  NavbarConfig,
+  PageHeaderConfig,
+  Workspace,
+  DragEndEvent,
+} from './AgentLibraryTemplate';

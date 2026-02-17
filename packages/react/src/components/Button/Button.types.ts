@@ -17,6 +17,11 @@ import type { ButtonHTMLAttributes, ReactNode } from 'react';
  * - `secondary`: Supporting action - Cancel, Back, Learn More
  * - `ghost`: Subtle/tertiary action - Close, Dismiss, Skip
  * - `danger`: Destructive action - Delete, Remove, Unsubscribe
+ * - `inverse`: Primary CTA on colored backgrounds - Hero CTAs, Banners
+ *
+ * @note
+ * For colored backgrounds, use `inverse` for primary actions and combine with
+ * regular `secondary` or `ghost` variants for supporting actions.
  *
  * @example
  * ```tsx
@@ -24,9 +29,10 @@ import type { ButtonHTMLAttributes, ReactNode } from 'react';
  * <Button variant="secondary">Cancel</Button>  // Supporting action
  * <Button variant="ghost">Skip</Button>        // Subtle action
  * <Button variant="danger">Delete</Button>     // Destructive action
+ * <Button variant="inverse">Get Started</Button> // CTA on colored bg
  * ```
  */
-export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
+export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'inverse';
 
 /**
  * Button sizes - automatically adapt to current mode (display/product/app).

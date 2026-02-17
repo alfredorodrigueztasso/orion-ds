@@ -21,6 +21,9 @@ import { forwardRef } from 'react';
 import type { ButtonProps } from './Button.types';
 import styles from './Button.module.css';
 
+// Convert kebab-case to camelCase for CSS Modules
+const toCamelCase = (str: string) => str.replace(/-([a-z])/g, (g) => g[1]?.toUpperCase() || '');
+
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
@@ -39,10 +42,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref,
   ) => {
+    // Convert variant to camelCase for CSS Modules access
+    const variantClass = styles[toCamelCase(variant) as keyof typeof styles] as string | undefined;
+
     // Combine class names
     const classNames = [
       styles.button,
-      styles[variant],
+      variantClass,
       styles[size],
       fullWidth && styles.fullWidth,
       iconOnly && styles.iconOnly,

@@ -23,45 +23,6 @@
   border-bottom: 1px solid var(--border-subtle);
 }
 
-.filterButton {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-2);
-  padding: var(--spacing-1-5) var(--spacing-3);
-  font-family: var(--font-secondary);
-  font-size: var(--font-size-13);
-  font-weight: var(--font-weight-medium);
-  color: var(--text-secondary);
-  background: var(--surface-subtle);
-  border: 1px solid transparent;
-  border-radius: var(--radius-full);
-  cursor: pointer;
-  transition: all var(--mode-hover-duration);
-}
-
-.filterButton:hover {
-  color: var(--text-primary);
-  background: var(--surface-layer);
-}
-
-.filterActive {
-  color: var(--interactive-primary);
-  background: var(--status-info-bg);
-  border-color: var(--interactive-primary);
-}
-
-.filterCount {
-  font-size: var(--font-size-11);
-  background: var(--surface-base);
-  padding: var(--spacing-0-5) var(--spacing-1-5);
-  border-radius: var(--radius-full);
-}
-
-.filterActive .filterCount {
-  background: var(--interactive-primary);
-  color: var(--interactive-primary-text);
-}
-
 /* ============================================================================
  * LIST
  * ============================================================================ */
@@ -85,12 +46,21 @@
 
 .item {
   display: flex;
+  align-items: flex-start;
   gap: var(--spacing-3);
-  padding: var(--spacing-3) 0;
+  padding: var(--spacing-4) 0;
+}
+
+.item:first-child {
+  padding-top: 0;
 }
 
 .itemCompact {
-  padding: var(--spacing-2) 0;
+  padding: var(--spacing-2-5) 0;
+}
+
+.itemCompact:first-child {
+  padding-top: 0;
 }
 
 /* Icon column */
@@ -105,8 +75,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: var(--size-icon-xl);
+  height: var(--size-icon-xl);
   border-radius: var(--radius-full);
   background: var(--surface-subtle);
   color: var(--text-secondary);
@@ -139,9 +109,9 @@
 }
 
 .connector {
-  width: 2px;
+  width: var(--border-width-bold);
   flex: 1;
-  min-height: 16px;
+  min-height: var(--size-icon-sm);
   background: var(--border-subtle);
   margin-top: var(--spacing-2);
 }
@@ -152,36 +122,39 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-1);
+  gap: var(--spacing-2);
 }
 
 .header {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--spacing-1);
+  align-items: center;
+  gap: var(--spacing-2);
   font-family: var(--font-secondary);
   font-size: var(--font-size-14);
-  line-height: var(--line-height-relaxed);
+  line-height: var(--line-height-tight);
+  min-height: var(--size-icon-xl);
 }
 
 .actor {
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-2);
+  flex-shrink: 0;
 }
 
 .avatar {
-  width: 20px;
-  height: 20px;
+  width: var(--size-avatar-xs);
+  height: var(--size-avatar-xs);
   border-radius: var(--radius-full);
   object-fit: cover;
+  flex-shrink: 0;
 }
 
 .actorName {
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-bold);
   color: var(--text-primary);
   text-decoration: none;
+  white-space: nowrap;
 }
 
 a.actorName:hover {
@@ -190,13 +163,16 @@ a.actorName:hover {
 
 .title {
   color: var(--text-primary);
+  flex: 1;
+  min-width: 0;
 }
 
 .time {
   color: var(--text-tertiary);
   font-size: var(--font-size-12);
-  margin-left: auto;
+  white-space: nowrap;
   flex-shrink: 0;
+  margin-left: var(--spacing-2);
 }
 
 .description {
@@ -207,14 +183,12 @@ a.actorName:hover {
   padding: var(--spacing-2) var(--spacing-3);
   background: var(--surface-subtle);
   border-radius: var(--radius-sm);
-  margin-top: var(--spacing-1);
 }
 
 .metadata {
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing-3);
-  margin-top: var(--spacing-1);
 }
 
 .metadataItem {
@@ -242,13 +216,27 @@ a.actorName:hover {
  * COMPACT MODE
  * ============================================================================ */
 
+.compact .item {
+  gap: var(--spacing-2);
+}
+
 .compact .iconWrapper {
-  width: 24px;
-  height: 24px;
+  width: var(--size-icon-lg);
+  height: var(--size-icon-lg);
+}
+
+.compact .content {
+  gap: var(--spacing-1-5);
 }
 
 .compact .header {
   font-size: var(--font-size-13);
+  min-height: var(--size-icon-lg);
+  gap: var(--spacing-2);
+}
+
+.compact .actor {
+  gap: var(--spacing-2);
 }
 
 .compact .description {
@@ -267,8 +255,8 @@ a.actorName:hover {
 }
 
 .skeletonIcon {
-  width: 32px;
-  height: 32px;
+  width: var(--size-icon-xl);
+  height: var(--size-icon-xl);
   border-radius: var(--radius-full);
   background: var(--surface-subtle);
   animation: pulse 1.5s ease-in-out infinite;
@@ -283,7 +271,7 @@ a.actorName:hover {
 
 .skeletonTitle {
   width: 60%;
-  height: 16px;
+  height: var(--size-icon-sm);
   border-radius: var(--radius-sm);
   background: var(--surface-subtle);
   animation: pulse 1.5s ease-in-out infinite;
@@ -291,7 +279,7 @@ a.actorName:hover {
 
 .skeletonDesc {
   width: 80%;
-  height: 12px;
+  height: var(--font-size-12);
   border-radius: var(--radius-sm);
   background: var(--surface-subtle);
   animation: pulse 1.5s ease-in-out infinite;
@@ -310,23 +298,4 @@ a.actorName:hover {
 /* ============================================================================
  * LOAD MORE
  * ============================================================================ */
-
-.loadMore {
-  width: 100%;
-  padding: var(--spacing-3);
-  font-family: var(--font-secondary);
-  font-size: var(--font-size-13);
-  font-weight: var(--font-weight-medium);
-  color: var(--text-secondary);
-  background: var(--surface-subtle);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  transition: all var(--mode-hover-duration);
-  margin-top: var(--spacing-2);
-}
-
-.loadMore:hover {
-  color: var(--text-primary);
-  background: var(--surface-layer);
-}
+/* Removed - Now uses Orion Button component */
