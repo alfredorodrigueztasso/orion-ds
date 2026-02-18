@@ -91,6 +91,9 @@ export type {
 } from './Navbar';
 
 // Overlays
+export { Dropdown } from './Dropdown';
+export type { DropdownProps, DropdownItem, DropdownGroup, DropdownPlacement } from './Dropdown';
+
 export { Modal } from './Modal';
 export type {
   ModalProps,

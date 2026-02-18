@@ -1,0 +1,21 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "pricing-page-template",
+  "type": "registry:template",
+  "title": "Pricing Page",
+  "description": "PricingPage page template",
+  "category": "marketing",
+  "files": [
+    {
+      "path": "packages/react/src/templates/marketing/PricingPageTemplate/PricingPageTemplate.tsx",
+      "type": "registry:component",
+      "content": "/**\n * PricingPageTemplate\n *\n * A complete pricing page template composing Orion sections.\n * Designed for SaaS and product pricing pages.\n */\n\nimport { forwardRef } from 'react';\nimport type { PricingPageTemplateProps } from './PricingPageTemplate.types';\n\n// Components\nimport { Navbar } from '../../../components/Navbar';\n\n// Sections\nimport { Hero } from '../../../sections/Hero';\nimport { CarouselSection } from '../../../sections/CarouselSection';\nimport { Pricing } from '../../../sections/Pricing';\nimport { Comparison } from '../../../sections/Comparison';\nimport { FAQ } from '../../../sections/FAQ';\nimport { CTA } from '../../../sections/CTA';\nimport { Footer } from '../../../sections/Footer';\n\n/**\n * PricingPageTemplate - Full pricing page composition\n *\n * Combines Hero, Pricing cards, Comparison table, and FAQ into a complete pricing page.\n *\n * @example\n * ```tsx\n * <PricingPageTemplate\n *   hero={{ headline: 'Choose your plan' }}\n *   pricing={{ plans: pricingPlans }}\n *   comparison={{ columns: cols, features: features }}\n * />\n * ```\n */\nexport const PricingPageTemplate = forwardRef<HTMLDivElement, PricingPageTemplateProps>(\n  (\n    { navbar, hero, featuresCarousel, pricing, comparison, faq, cta, footer, children, ...rest },\n    ref,\n  ) => {\n    return (\n      <div ref={ref} {...rest}>\n        {/* Navigation */}\n        {navbar && <Navbar {...navbar} />}\n\n        {/* Hero Section - Typically smaller for pricing pages */}\n        <Hero {...hero} />\n\n        {/* Key Features Carousel (Product variant) */}\n        {featuresCarousel && (\n          <CarouselSection\n            variant=\"product\"\n            aspectRatio=\"4/3\"\n            peek={true}\n            gap=\"md\"\n            {...featuresCarousel}\n          />\n        )}\n\n        {/* Pricing Cards - Required */}\n        <Pricing {...pricing} />\n\n        {/* Feature Comparison Table */}\n        {comparison && <Comparison {...comparison} />}\n\n        {/* Pricing FAQ */}\n        {faq && <FAQ {...faq} />}\n\n        {/* Call to Action */}\n        {cta && <CTA {...cta} />}\n\n        {/* Custom Content */}\n        {children}\n\n        {/* Footer */}\n        {footer && <Footer {...footer} />}\n      </div>\n    );\n  },\n);\n\nPricingPageTemplate.displayName = 'PricingPageTemplate';\n\nexport default PricingPageTemplate;\n"
+    }
+  ],
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#pricing-page-template",
+    "local": "/library.html#pricing-page-template"
+  },
+  "import": "import { PricingPageTemplate } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

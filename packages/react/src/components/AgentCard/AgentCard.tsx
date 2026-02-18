@@ -19,12 +19,13 @@
  * ```
  */
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Edit, Trash2, MoreVertical } from 'lucide-react';
 import type { AgentCardProps } from './AgentCard.types';
 import { Card } from '../Card';
 import { Avatar } from '../Avatar';
-import { useIsMobile } from '../../hooks/useMediaQuery';
+import { Button } from '../Button';
+import { Dropdown } from '../Dropdown';
 import styles from './AgentCard.module.css';
 
 export const AgentCard: React.FC<AgentCardProps> = ({
@@ -43,14 +44,8 @@ export const AgentCard: React.FC<AgentCardProps> = ({
   className,
   ...rest
 }) => {
-    const isMobile = useIsMobile();
     const isImageAvatar = typeof avatar === 'string';
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isDraggingState, setIsDraggingState] = useState(isDragging);
-    const menuRef = useRef<HTMLDivElement>(null);
-
-    // Responsive avatar size: xl (64px) for mobile, lg (48px) for tablet+
-    const avatarSize = isMobile ? 'xl' : 'lg';
 
     const classNames = [
       styles.agentCard,
@@ -62,29 +57,8 @@ export const AgentCard: React.FC<AgentCardProps> = ({
       .filter(Boolean)
       .join(' ');
 
-    const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-      // Don't trigger card click if clicking action menu
-      if ((e.target as HTMLElement).closest(`.${styles.actionMenu}`)) {
-        return;
-      }
+    const handleClick = () => {
       onClick?.();
-    };
-
-    const handleMenuToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.stopPropagation();
-      setIsMenuOpen(!isMenuOpen);
-    };
-
-    const handleEdit = (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.stopPropagation();
-      setIsMenuOpen(false);
-      onEdit?.();
-    };
-
-    const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.stopPropagation();
-      setIsMenuOpen(false);
-      onDelete?.();
     };
 
     // Drag and drop handlers
@@ -106,19 +80,10 @@ export const AgentCard: React.FC<AgentCardProps> = ({
       e.dataTransfer.dropEffect = 'move';
     };
 
-    // Close menu when clicking outside
-    useEffect(() => {
-      const handleClickOutside = (event: MouseEvent) => {
-        if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-          setIsMenuOpen(false);
-        }
-      };
-
-      if (isMenuOpen) {
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
-      }
-    }, [isMenuOpen]);
+    const dropdownItems = [
+      ...(onEdit   ? [{ id: 'edit',   label: 'Edit',   icon: <Edit size={16} />,   onClick: onEdit }]  : []),
+      ...(onDelete ? [{ id: 'delete', label: 'Delete', icon: <Trash2 size={16} />, danger: true, onClick: onDelete }] : []),
+    ];
 
     return (
       <Card
@@ -138,7 +103,7 @@ export const AgentCard: React.FC<AgentCardProps> = ({
         <Card.Header>
           <div className={styles.headerContent}>
             {isImageAvatar ? (
-              <Avatar src={avatar} alt={title} size={avatarSize} />
+              <Avatar src={avatar} alt={title} size="lg" />
             ) : (
               <div className={styles.iconAvatar}>{avatar}</div>
             )}
@@ -155,45 +120,23 @@ export const AgentCard: React.FC<AgentCardProps> = ({
                 )
               )}
 
-              {/* Actions Menu Button */}
-              {(onEdit || onDelete) && (
-                <div className={styles.actionMenu} ref={menuRef}>
-                  <button
-                    type="button"
-                    onClick={handleMenuToggle}
-                    className={styles.menuButton}
-                    aria-label="Actions"
-                    aria-expanded={isMenuOpen}
-                  >
-                    <MoreVertical size={20} />
-                  </button>
-
-                  {/* Dropdown Menu */}
-                  {isMenuOpen && (
-                    <div className={styles.dropdown}>
-                      {onEdit && (
-                        <button
-                          type="button"
-                          onClick={handleEdit}
-                          className={styles.dropdownItem}
-                        >
-                          <Edit size={16} />
-                          <span>Edit</span>
-                        </button>
-                      )}
-                      {onDelete && (
-                        <button
-                          type="button"
-                          onClick={handleDelete}
-                          className={`${styles.dropdownItem} ${styles.deleteItem}`}
-                        >
-                          <Trash2 size={16} />
-                          <span>Delete</span>
-                        </button>
-                      )}
-                    </div>
-                  )}
-                </div>
+              {/* Actions Menu via Dropdown component */}
+              {dropdownItems.length > 0 && (
+                <Dropdown
+                  trigger={
+                    <Button
+                      variant="ghost"
+                      iconOnly
+                      size="sm"
+                      icon={<MoreVertical size={20} />}
+                      aria-label="Actions"
+                      onDragStart={(e) => e.stopPropagation()}
+                    />
+                  }
+                  items={dropdownItems}
+                  placement="bottom-end"
+                  minWidth={140}
+                />
               )}
             </div>
           </div>

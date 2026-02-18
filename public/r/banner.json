@@ -1,0 +1,31 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "banner",
+  "type": "registry:section",
+  "title": "Banner",
+  "description": "Banner section component",
+  "category": "marketing",
+  "files": [
+    {
+      "path": "packages/react/src/sections/Banner/Banner.tsx",
+      "type": "registry:component",
+      "content": "/**\n * Banner Section Component\n *\n * A promotional banner section with multiple style variants.\n */\n\nimport React from 'react';\nimport { X } from 'lucide-react';\nimport { Button } from '../../components/Button';\nimport type { BannerProps } from './Banner.types';\nimport styles from './Banner.module.css';\n\n/**\n * Banner section for promotions and announcements\n */\nexport const Banner: React.FC<BannerProps> = ({\n  eyebrow,\n  title,\n  description,\n  ctaLabel,\n  ctaHref,\n  secondaryCtaLabel,\n  secondaryCtaHref,\n  variant = 'default',\n  backgroundImage,\n  sideImage,\n  imagePosition = 'right',\n  backgroundColor,\n  gradient,\n  dismissible = false,\n  onDismiss,\n  fullWidth = false,\n  compact = false,\n  centered = true,\n  className,\n  style,\n  ...rest\n}) => {\n  const customStyle: React.CSSProperties = {\n    ...style,\n    ...(backgroundImage &&\n      variant === 'image' && {\n        backgroundImage: `url(${backgroundImage})`,\n      }),\n    ...(backgroundColor && { backgroundColor }),\n    ...(gradient &&\n      variant === 'gradient' && {\n        background: gradient,\n      }),\n  };\n\n  const renderContent = () => (\n    <div className={styles.content}>\n      {eyebrow && <span className={styles.eyebrow}>{eyebrow}</span>}\n      <h2 className={styles.title}>{title}</h2>\n      {description && <p className={styles.description}>{description}</p>}\n      {(ctaLabel || secondaryCtaLabel) && (\n        <div className={styles.actions}>\n          {ctaLabel && ctaHref && (\n            <Button\n              variant={variant === 'split' ? 'primary' : 'inverse'}\n              onClick={() => window.location.href = ctaHref}\n            >\n              {ctaLabel}\n            </Button>\n          )}\n          {secondaryCtaLabel && secondaryCtaHref && (\n            <Button\n              variant={variant === 'split' ? 'secondary' : 'ghost'}\n              onClick={() => window.location.href = secondaryCtaHref}\n            >\n              {secondaryCtaLabel}\n            </Button>\n          )}\n        </div>\n      )}\n    </div>\n  );\n\n  return (\n    <section\n      className={`${styles.banner} ${className || ''}`}\n      data-variant={variant}\n      data-compact={compact}\n      data-centered={centered && variant !== 'split'}\n      data-full-width={fullWidth}\n      style={customStyle}\n      {...rest}\n    >\n      <div className={styles.container}>\n        {variant === 'split' && sideImage ? (\n          <div className={styles.splitLayout} data-image-position={imagePosition}>\n            <div className={styles.splitContent}>{renderContent()}</div>\n            <img src={sideImage} alt=\"\" className={styles.splitImage} aria-hidden=\"true\" />\n          </div>\n        ) : (\n          renderContent()\n        )}\n      </div>\n\n      {dismissible && (\n        <div className={styles.dismissButton}>\n          <Button\n            iconOnly\n            icon={<X size={20} />}\n            variant=\"ghost\"\n            onClick={onDismiss}\n            aria-label=\"Dismiss banner\"\n          />\n        </div>\n      )}\n    </section>\n  );\n};\n\nBanner.displayName = 'Banner';\n"
+    },
+    {
+      "path": "packages/react/src/sections/Banner/Banner.types.ts",
+      "type": "registry:types",
+      "content": "/**\n * Banner Section Types\n *\n * Type definitions for the Orion Banner section component.\n */\n\nimport type { HTMLAttributes, ReactNode } from 'react';\n\n/**\n * Banner variant styles\n */\nexport type BannerVariant = 'default' | 'gradient' | 'image' | 'split';\n\n/**\n * Banner section props\n *\n * @example\n * ```tsx\n * <Banner\n *   title=\"Summer Sale\"\n *   description=\"Up to 50% off on selected items\"\n *   ctaLabel=\"Shop Now\"\n *   ctaHref=\"/sale\"\n *   variant=\"gradient\"\n * />\n * ```\n */\nexport interface BannerProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {\n  /**\n   * Optional eyebrow/badge text\n   */\n  eyebrow?: ReactNode;\n\n  /**\n   * Banner title\n   */\n  title: ReactNode;\n\n  /**\n   * Banner description\n   */\n  description?: ReactNode;\n\n  /**\n   * Primary CTA button label\n   */\n  ctaLabel?: string;\n\n  /**\n   * Primary CTA button href\n   */\n  ctaHref?: string;\n\n  /**\n   * Secondary CTA label\n   */\n  secondaryCtaLabel?: string;\n\n  /**\n   * Secondary CTA href\n   */\n  secondaryCtaHref?: string;\n\n  /**\n   * Banner variant\n   * @default 'default'\n   */\n  variant?: BannerVariant;\n\n  /**\n   * Background image URL (for 'image' and 'split' variants)\n   */\n  backgroundImage?: string;\n\n  /**\n   * Side image URL (for 'split' variant)\n   */\n  sideImage?: string;\n\n  /**\n   * Image position for split variant\n   * @default 'right'\n   */\n  imagePosition?: 'left' | 'right';\n\n  /**\n   * Custom background color\n   */\n  backgroundColor?: string;\n\n  /**\n   * Custom gradient (overrides default)\n   */\n  gradient?: string;\n\n  /**\n   * Dismissible banner\n   * @default false\n   */\n  dismissible?: boolean;\n\n  /**\n   * On dismiss callback\n   */\n  onDismiss?: () => void;\n\n  /**\n   * Full width (no max-width constraint)\n   * @default false\n   */\n  fullWidth?: boolean;\n\n  /**\n   * Compact mode\n   * @default false\n   */\n  compact?: boolean;\n\n  /**\n   * Center content\n   * @default true\n   */\n  centered?: boolean;\n}\n"
+    },
+    {
+      "path": "packages/react/src/sections/Banner/index.ts",
+      "type": "registry:index",
+      "content": "export { Banner } from './Banner';\nexport type { BannerProps, BannerVariant } from './Banner.types';\n"
+    }
+  ],
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#banner",
+    "local": "/library.html#banner"
+  },
+  "import": "import { Banner } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

@@ -113,7 +113,7 @@ export const UserMenu: Story = {
           style={{
             width: 'var(--spacing-8)',
             height: 'var(--spacing-8)',
-            borderRadius: '50%',
+            borderRadius: 'var(--radius-full)',
             background: 'var(--interactive-primary)',
             display: 'flex',
             alignItems: 'center',

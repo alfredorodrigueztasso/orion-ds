@@ -1,0 +1,21 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "about-page-template",
+  "type": "registry:template",
+  "title": "About Page",
+  "description": "AboutPage page template",
+  "category": "marketing",
+  "files": [
+    {
+      "path": "packages/react/src/templates/marketing/AboutPageTemplate/AboutPageTemplate.tsx",
+      "type": "registry:component",
+      "content": "/**\n * AboutPageTemplate\n *\n * A complete about/company page template composing Orion sections.\n * Designed for company about pages, team pages, and culture showcases.\n */\n\nimport { forwardRef } from 'react';\nimport type { AboutPageTemplateProps } from './AboutPageTemplate.types';\n\n// Components\nimport { Navbar } from '../../../components/Navbar';\n\n// Sections\nimport { Hero } from '../../../sections/Hero';\nimport { CarouselSection } from '../../../sections/CarouselSection';\nimport { Stats } from '../../../sections/Stats';\nimport { Timeline } from '../../../sections/Timeline';\nimport { Team } from '../../../sections/Team';\nimport { CTA } from '../../../sections/CTA';\nimport { Footer } from '../../../sections/Footer';\n\n/**\n * AboutPageTemplate - Full about page composition\n *\n * Combines Hero, Stats, Timeline, Team, and Gallery into a complete about page.\n *\n * @example\n * ```tsx\n * <AboutPageTemplate\n *   hero={{ headline: 'Our Mission' }}\n *   stats={{ stats: companyStats }}\n *   timeline={{ events: companyHistory }}\n *   team={{ members: teamMembers }}\n * />\n * ```\n */\nexport const AboutPageTemplate = forwardRef<HTMLDivElement, AboutPageTemplateProps>(\n  (\n    {\n      navbar,\n      hero,\n      storyCarousel,\n      stats,\n      timeline,\n      galleryCarousel,\n      team,\n      cta,\n      footer,\n      children,\n      ...rest\n    },\n    ref,\n  ) => {\n    return (\n      <div ref={ref} {...rest}>\n        {/* Navigation */}\n        {navbar && <Navbar {...navbar} />}\n\n        {/* Hero Section - Required */}\n        <Hero {...hero} />\n\n        {/* Company Story Carousel (Editorial) */}\n        {storyCarousel && (\n          <CarouselSection\n            variant=\"editorial\"\n            aspectRatio=\"16/9\"\n            peek={true}\n            showNavigation={true}\n            {...storyCarousel}\n          />\n        )}\n\n        {/* Company Stats */}\n        {stats && <Stats {...stats} />}\n\n        {/* Company Timeline/History */}\n        {timeline && <Timeline {...timeline} />}\n\n        {/* Office/Culture Gallery (Gallery variant) */}\n        {galleryCarousel && (\n          <CarouselSection\n            variant=\"gallery\"\n            aspectRatio=\"4/3\"\n            peek={true}\n            gap=\"md\"\n            {...galleryCarousel}\n          />\n        )}\n\n        {/* Team Section */}\n        {team && <Team {...team} />}\n\n        {/* Call to Action (Careers, Contact, etc.) */}\n        {cta && <CTA {...cta} />}\n\n        {/* Custom Content */}\n        {children}\n\n        {/* Footer */}\n        {footer && <Footer {...footer} />}\n      </div>\n    );\n  },\n);\n\nAboutPageTemplate.displayName = 'AboutPageTemplate';\n\nexport default AboutPageTemplate;\n"
+    }
+  ],
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#about-page-template",
+    "local": "/library.html#about-page-template"
+  },
+  "import": "import { AboutPageTemplate } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

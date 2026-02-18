@@ -19,6 +19,19 @@ const meta: Meta<typeof AgentCard> = {
     status: {
       control: 'select',
       options: ['draft', 'published', 'archived'],
+      description: 'Status badge — hidden when badge prop is provided',
+    },
+    draggable: {
+      control: 'boolean',
+      description: 'Enables HTML5 drag & drop with grab cursor',
+    },
+    isDragging: {
+      control: 'boolean',
+      description: 'Dragging state — dims card and applies scale(0.98)',
+    },
+    badge: {
+      control: false,
+      description: 'Custom ReactNode badge — overrides status when provided',
     },
     onClick: { action: 'clicked' },
     onEdit: { action: 'edit' },

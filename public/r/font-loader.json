@@ -1,0 +1,75 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "font-loader",
+  "type": "registry:component",
+  "title": "FontLoader",
+  "description": "Internal utility that automatically injects Google Fonts (Libre Baskerville, DM Sans, JetBrains Mono) into the document head. Since v1.1.4, ThemeProvider includes FontLoader by default. Only use directly if you disabled auto font loading with disableAutoFontLoading prop.",
+  "category": "internal",
+  "files": [
+    {
+      "path": "packages/react/src/components/FontLoader/FontLoader.tsx",
+      "type": "registry:component",
+      "content": "/**\n * FontLoader Component\n *\n * Automatically injects Google Fonts into the document head.\n * This ensures all brand fonts are available without manual HTML setup.\n *\n * **Note:** Since v1.1.4, ThemeProvider includes FontLoader automatically.\n * You don't need to add this component manually unless you've disabled\n * auto font loading with `disableAutoFontLoading` prop.\n *\n * @example\n * ```tsx\n * // ThemeProvider loads fonts automatically - no FontLoader needed!\n * import { ThemeProvider } from '@orion-ds/react';\n *\n * function App() {\n *   return (\n *     <ThemeProvider>\n *       <YourComponents />\n *     </ThemeProvider>\n *   );\n * }\n * ```\n *\n * @example\n * ```tsx\n * // Use standalone only if you need callbacks or custom loading behavior\n * <FontLoader onLoad={() => console.log('Fonts ready!')} />\n * ```\n */\n\nimport { useEffect, useState } from 'react';\nimport { GOOGLE_FONTS_URL, FONT_PRECONNECT_URLS, ALL_FONTS, waitForFonts } from '../../utils/fonts';\n\nexport interface FontLoaderProps {\n  /**\n   * Callback when fonts are loaded\n   */\n  onLoad?: () => void;\n\n  /**\n   * Callback when fonts fail to load\n   */\n  onError?: (error: Error) => void;\n\n  /**\n   * Show loading state while fonts are loading\n   * @default false\n   */\n  showLoadingState?: boolean;\n\n  /**\n   * Custom loading component\n   */\n  loadingComponent?: React.ReactNode;\n\n  /**\n   * Children to render (will wait for fonts if showLoadingState is true)\n   */\n  children?: React.ReactNode;\n}\n\n/**\n * FontLoader - Injects Google Fonts into the document head\n *\n * Place this component near the root of your app to ensure\n * all brand fonts are loaded automatically.\n */\nexport function FontLoader({\n  onLoad,\n  onError,\n  showLoadingState = false,\n  loadingComponent,\n  children,\n}: FontLoaderProps) {\n  const [isLoaded, setIsLoaded] = useState(false);\n  const [isInjected, setIsInjected] = useState(false);\n\n  // Inject font links into head\n  useEffect(() => {\n    if (typeof document === 'undefined' || isInjected) return;\n\n    const head = document.head;\n\n    // Check if fonts are already loaded\n    const existingLink = head.querySelector(`link[href*=\"fonts.googleapis.com\"]`);\n    if (existingLink) {\n      setIsInjected(true);\n      setIsLoaded(true);\n      onLoad?.();\n      return;\n    }\n\n    try {\n      // Add preconnect links for faster loading\n      FONT_PRECONNECT_URLS.forEach((url, index) => {\n        const preconnect = document.createElement('link');\n        preconnect.rel = 'preconnect';\n        preconnect.href = url;\n        if (index === 1) {\n          preconnect.crossOrigin = 'anonymous';\n        }\n        preconnect.setAttribute('data-orion-fonts', 'preconnect');\n        head.appendChild(preconnect);\n      });\n\n      // Add Google Fonts stylesheet\n      const link = document.createElement('link');\n      link.rel = 'stylesheet';\n      link.href = GOOGLE_FONTS_URL;\n      link.setAttribute('data-orion-fonts', 'stylesheet');\n\n      link.onload = async () => {\n        // Wait for fonts to actually be ready\n        try {\n          await waitForFonts([...ALL_FONTS]);\n          setIsLoaded(true);\n          onLoad?.();\n        } catch {\n          // Fonts might still work, just not all loaded\n          setIsLoaded(true);\n          onLoad?.();\n        }\n      };\n\n      link.onerror = () => {\n        const error = new Error('Failed to load Google Fonts');\n        console.error('[Orion] Failed to load fonts from Google Fonts');\n        onError?.(error);\n        setIsLoaded(true); // Still allow rendering\n      };\n\n      head.appendChild(link);\n      setIsInjected(true);\n    } catch (err) {\n      console.error('[Orion] Error injecting font links:', err);\n      onError?.(err instanceof Error ? err : new Error('Font injection failed'));\n      setIsLoaded(true);\n    }\n  }, [isInjected, onLoad, onError]);\n\n  // If showLoadingState is enabled, wait for fonts\n  if (showLoadingState && !isLoaded) {\n    return loadingComponent ? <>{loadingComponent}</> : null;\n  }\n\n  return children ? <>{children}</> : null;\n}\n\nFontLoader.displayName = 'FontLoader';\n"
+    },
+    {
+      "path": "packages/react/src/components/FontLoader/index.ts",
+      "type": "registry:index",
+      "content": "/**\n * FontLoader Component - Loads brand fonts from Google Fonts.\n *\n * Note: ThemeProvider automatically includes FontLoader by default.\n * Only use directly if disabling auto-loading.\n *\n * @example\n * ```tsx\n * import { FontLoader } from '@orion-ds/react';\n *\n * // Usually not needed - ThemeProvider handles this automatically\n * // Only use if you disabled auto-loading:\n * <ThemeProvider disableAutoFontLoading>\n *   <FontLoader />\n *   <App />\n * </ThemeProvider>\n * ```\n */\nexport { FontLoader } from './FontLoader';\nexport type { FontLoaderProps } from './FontLoader';\n"
+    }
+  ],
+  "props": [
+    {
+      "name": "onLoad",
+      "type": "() => void",
+      "description": "Callback when fonts are loaded successfully."
+    },
+    {
+      "name": "onError",
+      "type": "(error: Error) => void",
+      "description": "Callback when fonts fail to load."
+    },
+    {
+      "name": "showLoadingState",
+      "type": "boolean",
+      "description": "Show loading state while fonts are loading. When true, children are hidden until fonts load.",
+      "default": false
+    },
+    {
+      "name": "loadingComponent",
+      "type": "ReactNode",
+      "description": "Custom loading component displayed while fonts load (requires showLoadingState)."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "description": "Children to render. Will wait for fonts if showLoadingState is true."
+    }
+  ],
+  "tokens": [],
+  "examples": [
+    {
+      "title": "Automatic via ThemeProvider (recommended)",
+      "code": "// Fonts load automatically - no FontLoader needed!\nimport { ThemeProvider } from '@orion-ds/react';\n\nfunction App() {\n  return (\n    <ThemeProvider>\n      <YourComponents />\n    </ThemeProvider>\n  );\n}"
+    },
+    {
+      "title": "Standalone with callbacks",
+      "code": "// Only use if you disabled auto-loading\n<ThemeProvider disableAutoFontLoading>\n  <FontLoader\n    onLoad={() => console.log('Fonts ready!')}\n    onError={(err) => console.error(err)}\n  />\n  <App />\n</ThemeProvider>"
+    },
+    {
+      "title": "With loading state",
+      "code": "<FontLoader showLoadingState loadingComponent={<Spinner />}>\n  <App />\n</FontLoader>"
+    }
+  ],
+  "accessibility": {
+    "notes": [
+      "Injects preconnect links for faster font loading",
+      "Falls back to system fonts if Google Fonts fails to load",
+      "Does not block rendering by default (showLoadingState is false)"
+    ]
+  },
+  "modeAware": false,
+  "internal": true,
+  "import": "import { FontLoader } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'",
+  "dependencies": []
+}
