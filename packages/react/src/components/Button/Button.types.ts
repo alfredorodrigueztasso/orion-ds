@@ -14,25 +14,39 @@ import type { ButtonHTMLAttributes, ReactNode } from 'react';
  *
  * @semanticGuide
  * - `primary`: Main CTA - Submit, Save, Continue, Get Started
- * - `secondary`: Supporting action - Cancel, Back, Learn More
- * - `ghost`: Subtle/tertiary action - Close, Dismiss, Skip
+ * - `secondary`: Supporting action ON LIGHT BACKGROUNDS - Cancel, Back, Learn More
+ * - `secondaryInverse`: Supporting action ON DARK/COLORED BACKGROUNDS - Learn More on hero photo
+ * - `ghost`: Subtle/tertiary action ON LIGHT BACKGROUNDS - Close, Dismiss, Skip
+ * - `ghostInverse`: Subtle/tertiary action ON DARK/COLORED BACKGROUNDS - Skip on banner
  * - `danger`: Destructive action - Delete, Remove, Unsubscribe
  * - `inverse`: Primary CTA on colored backgrounds - Hero CTAs, Banners
  *
- * @note
- * For colored backgrounds, use `inverse` for primary actions and combine with
- * regular `secondary` or `ghost` variants for supporting actions.
+ * @backgroundContext
+ * Use regular variants (secondary, ghost) on light/white backgrounds.
+ * Use inverse variants (secondaryInverse, ghostInverse) on dark/colored/photo backgrounds.
  *
- * @example
+ * @example Light background context
  * ```tsx
- * <Button variant="primary">Save</Button>      // Main action
- * <Button variant="secondary">Cancel</Button>  // Supporting action
- * <Button variant="ghost">Skip</Button>        // Subtle action
- * <Button variant="danger">Delete</Button>     // Destructive action
- * <Button variant="inverse">Get Started</Button> // CTA on colored bg
+ * <Button variant="primary">Save</Button>           // Main action
+ * <Button variant="secondary">Cancel</Button>       // Supporting
+ * <Button variant="ghost">Skip</Button>             // Tertiary
+ * ```
+ *
+ * @example Dark/colored background context (hero, photo, colored banner)
+ * ```tsx
+ * <Button variant="inverse">Get Started</Button>         // Primary on brand bg
+ * <Button variant="secondaryInverse">Learn More</Button> // Supporting on photo
+ * <Button variant="ghostInverse">Skip</Button>           // Tertiary on dark bg
  * ```
  */
-export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'inverse';
+export type ButtonVariant =
+  | 'primary'
+  | 'secondary'
+  | 'secondaryInverse'
+  | 'ghost'
+  | 'ghostInverse'
+  | 'danger'
+  | 'inverse';
 
 /**
  * Button sizes - automatically adapt to current mode (display/product/app).
@@ -99,9 +113,16 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    *
    * @semanticGuide
    * - `primary`: Main CTA (Submit, Save, Continue)
-   * - `secondary`: Supporting action (Cancel, Back)
-   * - `ghost`: Subtle action (Close, Dismiss)
+   * - `secondary`: Supporting action on LIGHT backgrounds (Cancel, Back)
+   * - `secondaryInverse`: Supporting action on DARK/COLORED backgrounds
+   * - `ghost`: Subtle action on LIGHT backgrounds (Close, Dismiss)
+   * - `ghostInverse`: Subtle action on DARK/COLORED backgrounds
    * - `danger`: Destructive action (Delete, Remove)
+   * - `inverse`: Primary CTA on colored backgrounds
+   *
+   * @backgroundContext
+   * Use `secondary`/`ghost` on white/light backgrounds.
+   * Use `secondaryInverse`/`ghostInverse` on dark/colored/photo backgrounds.
    *
    * @default 'primary'
    */

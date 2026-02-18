@@ -59,18 +59,58 @@
   }
 }
 
-/* Secondary variant - uses transparency for better hierarchy on colored backgrounds */
+/* Secondary variant - glassmorphism for LIGHT backgrounds */
 .secondary {
-  background: color-mix(in srgb, var(--surface-base) 50%, transparent);
-  color: var(--interactive-secondary-text);
-  border-color: var(--border-subtle);
+  /* Dark neutral gray background with glassmorphism */
+  background: color-mix(in srgb, var(--color-neutral-pure-900) 15%, transparent);
+  color: var(--text-primary); /* Dark text in light, white in dark (via token) */
+  border: 1px solid color-mix(in srgb, var(--color-neutral-pure-900) 12%, transparent);
+
+  /* Mode-aware backdrop blur (Display mode only) */
+  backdrop-filter: blur(var(--mode-blur-amount, var(--blur-md)));
+  -webkit-backdrop-filter: blur(var(--mode-blur-amount, var(--blur-md)));
 
   &:hover:not(:disabled) {
-    background: color-mix(in srgb, var(--surface-base) 60%, transparent);
-    border-color: var(--border-strong);
+    background: color-mix(in srgb, var(--color-neutral-pure-900) 25%, transparent);
+    border-color: color-mix(in srgb, var(--color-neutral-pure-900) 20%, transparent);
   }
 
   &:active:not(:disabled) {
+    background: color-mix(in srgb, var(--color-neutral-pure-900) 35%, transparent);
+    transform: translateY(1px);
+  }
+
+  /* Dark mode: flip to white overlay so button is visible on dark backgrounds */
+  :global([data-theme="dark"]) & {
+    background: color-mix(in srgb, var(--color-neutral-0) 15%, transparent);
+    border-color: color-mix(in srgb, var(--color-neutral-0) 15%, transparent);
+
+    &:hover:not(:disabled) {
+      background: color-mix(in srgb, var(--color-neutral-0) 22%, transparent);
+      border-color: color-mix(in srgb, var(--color-neutral-0) 20%, transparent);
+    }
+
+    &:active:not(:disabled) {
+      background: color-mix(in srgb, var(--color-neutral-0) 30%, transparent);
+    }
+  }
+}
+
+/* Secondary Inverse variant - for DARK/COLORED backgrounds */
+/* Always the same in light and dark mode (theme-invariant) */
+.secondaryInverse {
+  /* Fixed 20% white overlay — uses color-neutral-0 (primitive, never changes) */
+  background: color-mix(in srgb, var(--color-neutral-0) 20%, transparent);
+  color: var(--color-neutral-0); /* Always white regardless of theme */
+  border: 1px solid color-mix(in srgb, var(--color-neutral-0) 20%, transparent);
+
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--color-neutral-0) 30%, transparent);
+    border-color: color-mix(in srgb, var(--color-neutral-0) 30%, transparent);
+  }
+
+  &:active:not(:disabled) {
+    background: color-mix(in srgb, var(--color-neutral-0) 40%, transparent);
     transform: translateY(1px);
   }
 }
@@ -89,13 +129,32 @@
   }
 }
 
+/* Ghost Inverse variant - for dark/colored backgrounds */
+/* Always the same in light and dark mode (theme-invariant) */
+.ghostInverse {
+  background: transparent;
+  color: var(--color-neutral-0); /* Always white regardless of theme */
+
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--color-neutral-0) 15%, transparent);
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+}
+
 /* Danger variant */
 .danger {
   background: var(--status-error);
   color: var(--color-neutral-0);
 
   &:hover:not(:disabled) {
-    background: color-mix(in srgb, var(--status-error) 85%, var(--color-neutral-1000));
+    background: color-mix(
+      in srgb,
+      var(--status-error) 85%,
+      var(--color-neutral-1000)
+    );
   }
 
   &:active:not(:disabled) {
@@ -111,7 +170,11 @@
   border-color: transparent;
 
   &:hover:not(:disabled) {
-    background: color-mix(in srgb, var(--color-neutral-0) 92%, var(--color-neutral-900));
+    background: color-mix(
+      in srgb,
+      var(--color-neutral-0) 92%,
+      var(--color-neutral-900)
+    );
   }
 
   &:active:not(:disabled) {
@@ -120,7 +183,7 @@
 }
 
 /* Lemon brand uses black text for better contrast on white */
-:global([data-brand='lemon']) .inverse {
+:global([data-brand="lemon"]) .inverse {
   color: var(--color-neutral-1000);
 }
 
@@ -200,12 +263,22 @@
 }
 
 .secondary .spinner {
-  border: 2px solid var(--interactive-secondary-text);
+  border: 2px solid var(--text-primary);
+  border-top-color: transparent;
+}
+
+.secondaryInverse .spinner {
+  border: 2px solid var(--color-neutral-0); /* Always white - theme-invariant */
   border-top-color: transparent;
 }
 
 .ghost .spinner {
   border: 2px solid var(--text-primary);
+  border-top-color: transparent;
+}
+
+.ghostInverse .spinner {
+  border: 2px solid var(--color-neutral-0); /* Always white - theme-invariant */
   border-top-color: transparent;
 }
 
@@ -220,7 +293,7 @@
 }
 
 /* Lemon brand spinner uses black for visibility */
-:global([data-brand='lemon']) .inverse .spinner {
+:global([data-brand="lemon"]) .inverse .spinner {
   border: 2px solid var(--color-neutral-1000);
   border-top-color: transparent;
 }

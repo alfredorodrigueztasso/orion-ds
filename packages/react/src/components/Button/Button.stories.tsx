@@ -23,7 +23,7 @@ const meta = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'secondary', 'ghost', 'danger', 'inverse'],
+      options: ['primary', 'secondary', 'secondaryInverse', 'ghost', 'ghostInverse', 'danger', 'inverse'],
       description: 'Button visual style',
     },
     size: {
@@ -81,6 +81,20 @@ export const Inverse: Story = {
   },
 };
 
+export const SecondaryInverse: Story = {
+  args: {
+    variant: 'secondaryInverse',
+    children: 'Secondary Inverse Button',
+  },
+};
+
+export const GhostInverse: Story = {
+  args: {
+    variant: 'ghostInverse',
+    children: 'Ghost Inverse Button',
+  },
+};
+
 // Inverse on colored background - combine with regular secondary/ghost for supporting actions
 export const InverseOnColoredBackground: Story = {
   render: () => (
@@ -101,8 +115,8 @@ export const InverseOnColoredBackground: Story = {
       <p style={{ color: 'white', margin: 0 }}>Limited time offer on all products</p>
       <div style={{ display: 'flex', gap: 'var(--spacing-3)', flexWrap: 'wrap' }}>
         <Button variant="inverse">Shop Now</Button>
-        <Button variant="secondary">Learn More</Button>
-        <Button variant="ghost">Skip</Button>
+        <Button variant="secondaryInverse">Learn More</Button>
+        <Button variant="ghostInverse">Skip</Button>
       </div>
     </div>
   ),
@@ -240,8 +254,14 @@ export const LoadingAllVariants: Story = {
       <Button variant="secondary" isLoading>
         Secondary
       </Button>
+      <Button variant="secondaryInverse" isLoading>
+        Sec. Inverse
+      </Button>
       <Button variant="ghost" isLoading>
         Ghost
+      </Button>
+      <Button variant="ghostInverse" isLoading>
+        Ghost Inv.
       </Button>
       <Button variant="danger" isLoading>
         Danger
@@ -259,9 +279,174 @@ export const AllVariants: Story = {
     <div style={{ display: 'flex', gap: 'var(--spacing-4)', flexWrap: 'wrap' }}>
       <Button variant="primary">Primary</Button>
       <Button variant="secondary">Secondary</Button>
+      <Button variant="secondaryInverse">Secondary Inverse</Button>
       <Button variant="ghost">Ghost</Button>
+      <Button variant="ghostInverse">Ghost Inverse</Button>
       <Button variant="danger">Danger</Button>
       <Button variant="inverse">Inverse</Button>
+    </div>
+  ),
+};
+
+// Design reference — 4-quadrant grid matching the design spec
+export const DesignReference: Story = {
+  render: () => (
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2px', width: '800px' }}>
+      {/* Light */}
+      <div
+        style={{
+          background: 'var(--color-neutral-0)',
+          padding: 'var(--spacing-8)',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 'var(--spacing-6)',
+        }}
+        data-theme="light"
+      >
+        <span style={{ fontFamily: 'var(--font-secondary)', fontSize: '14px', color: 'var(--text-secondary)' }}>Light</span>
+        <div style={{ display: 'flex', gap: 'var(--spacing-3)', flexWrap: 'wrap', alignItems: 'center' }}>
+          <Button variant="primary">Primary</Button>
+          <Button variant="secondary">Secondary</Button>
+          <Button variant="ghost">Ghost</Button>
+          <Button variant="danger">Danger</Button>
+        </div>
+      </div>
+
+      {/* Dark */}
+      <div
+        style={{
+          background: '#000000',
+          padding: 'var(--spacing-8)',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 'var(--spacing-6)',
+        }}
+        data-theme="dark"
+      >
+        <span style={{ fontFamily: 'var(--font-secondary)', fontSize: '14px', color: 'rgba(255,255,255,0.6)' }}>Dark</span>
+        <div style={{ display: 'flex', gap: 'var(--spacing-3)', flexWrap: 'wrap', alignItems: 'center' }}>
+          <Button variant="primary">Primary</Button>
+          <Button variant="secondary">Secondary</Button>
+          <Button variant="ghost">Ghost</Button>
+          <Button variant="danger">Danger</Button>
+        </div>
+      </div>
+
+      {/* Inverse Light */}
+      <div
+        style={{
+          background: 'var(--interactive-primary)',
+          padding: 'var(--spacing-8)',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 'var(--spacing-6)',
+        }}
+        data-theme="light"
+      >
+        <span style={{ fontFamily: 'var(--font-secondary)', fontSize: '14px', color: 'rgba(255,255,255,0.8)' }}>Inverse Light</span>
+        <div style={{ display: 'flex', gap: 'var(--spacing-3)', flexWrap: 'wrap', alignItems: 'center' }}>
+          <Button variant="inverse">Primary</Button>
+          <Button variant="secondaryInverse">Secondary</Button>
+          <Button variant="ghostInverse">Ghost</Button>
+          <Button variant="danger">Danger</Button>
+        </div>
+      </div>
+
+      {/* Inverse Dark */}
+      <div
+        style={{
+          background: 'var(--interactive-primary)',
+          padding: 'var(--spacing-8)',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 'var(--spacing-6)',
+        }}
+        data-theme="dark"
+      >
+        <span style={{ fontFamily: 'var(--font-secondary)', fontSize: '14px', color: 'rgba(255,255,255,0.8)' }}>Inverse Dark</span>
+        <div style={{ display: 'flex', gap: 'var(--spacing-3)', flexWrap: 'wrap', alignItems: 'center' }}>
+          <Button variant="inverse">Primary</Button>
+          <Button variant="secondaryInverse">Secondary</Button>
+          <Button variant="ghostInverse">Ghost</Button>
+          <Button variant="danger">Danger</Button>
+        </div>
+      </div>
+    </div>
+  ),
+  parameters: {
+    layout: 'centered',
+  },
+};
+
+// Showcase inverse variants on dark/colored backgrounds
+export const InverseVariantsOnDarkBackgrounds: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-6)' }}>
+      {/* Dark Photo Background */}
+      <div
+        style={{
+          background: 'linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.5)), url("https://images.unsplash.com/photo-1557683316-973673baf926?w=800") center/cover',
+          padding: 'var(--spacing-8)',
+          borderRadius: 'var(--radius-container)',
+          display: 'flex',
+          gap: 'var(--spacing-4)',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <h3 style={{ color: 'white', margin: 0, fontFamily: 'var(--font-primary)' }}>
+          On Dark Photo Background
+        </h3>
+        <div style={{ display: 'flex', gap: 'var(--spacing-3)', flexWrap: 'wrap' }}>
+          <Button variant="inverse">Get Started</Button>
+          <Button variant="secondaryInverse">Learn More</Button>
+          <Button variant="ghostInverse">Skip</Button>
+        </div>
+      </div>
+
+      {/* Colored Brand Background */}
+      <div
+        style={{
+          background: 'var(--interactive-primary)',
+          padding: 'var(--spacing-8)',
+          borderRadius: 'var(--radius-container)',
+          display: 'flex',
+          gap: 'var(--spacing-4)',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <h3 style={{ color: 'white', margin: 0, fontFamily: 'var(--font-primary)' }}>
+          On Brand Color Background
+        </h3>
+        <div style={{ display: 'flex', gap: 'var(--spacing-3)', flexWrap: 'wrap' }}>
+          <Button variant="inverse">Shop Now</Button>
+          <Button variant="secondaryInverse">Learn More</Button>
+          <Button variant="ghostInverse">Maybe Later</Button>
+        </div>
+      </div>
+
+      {/* Gradient Background */}
+      <div
+        style={{
+          background: 'linear-gradient(135deg, var(--color-brand-400), var(--color-brand-600))',
+          padding: 'var(--spacing-8)',
+          borderRadius: 'var(--radius-container)',
+          display: 'flex',
+          gap: 'var(--spacing-4)',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <h3 style={{ color: 'white', margin: 0, fontFamily: 'var(--font-primary)' }}>
+          On Gradient Background
+        </h3>
+        <div style={{ display: 'flex', gap: 'var(--spacing-3)', flexWrap: 'wrap' }}>
+          <Button variant="inverse">Join Now</Button>
+          <Button variant="secondaryInverse">Preview</Button>
+          <Button variant="ghostInverse">Not Now</Button>
+        </div>
+      </div>
     </div>
   ),
 };

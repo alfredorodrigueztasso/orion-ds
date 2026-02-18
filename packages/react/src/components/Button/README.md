@@ -22,23 +22,68 @@
 
 ---
 
+## Background Context Rule (Critical)
+
+> **Default rule**: Always use regular variants (`primary`, `secondary`, `ghost`). Only switch to inverse variants when the **surface itself is a brand color, gradient, or photo** — not because of dark mode.
+
+> ⚠️ **Dark mode ≠ inverse.** Regular variants (`primary`, `secondary`, `ghost`) automatically adapt to dark mode via CSS tokens. You never need to switch to inverse just because the theme is dark.
+
+| Background                          | Use                                           | Why                                           |
+| ----------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| White surface (light mode default)  | `primary`, `secondary`, `ghost`, `danger`     | Regular variants designed for this            |
+| Dark surface (`data-theme="dark"`)  | `primary`, `secondary`, `ghost`, `danger`     | Same variants — they adapt automatically      |
+| Brand color (`--interactive-primary`)| `inverse`, `secondaryInverse`, `ghostInverse` | Colored surface needs contrast-specific style |
+| Gradient background                 | `inverse`, `secondaryInverse`, `ghostInverse` | Same reason — colored surface                 |
+| Photo / dark overlay                | `inverse`, `secondaryInverse`, `ghostInverse` | Dark-colored surface, not dark mode           |
+
+```tsx
+// ✅ CORRECT — white/light background
+<Button variant="primary">Save</Button>
+<Button variant="secondary">Cancel</Button>
+<Button variant="ghost">Skip</Button>
+
+// ✅ CORRECT — dark background (dark mode)
+<Button variant="primary">Save</Button>        // Still blue
+<Button variant="secondary">Cancel</Button>    // Adapts automatically
+
+// ✅ CORRECT — colored/photo background
+<section style={{ background: 'var(--interactive-primary)' }}>
+  <Button variant="inverse">Get Started</Button>
+  <Button variant="secondaryInverse">Learn More</Button>
+  <Button variant="ghostInverse">Skip</Button>
+</section>
+
+// ❌ WRONG — inverse on white background
+<Button variant="inverse">Save</Button>         // White bg looks broken
+<Button variant="secondaryInverse">Cancel</Button> // Invisible on white
+```
+
+---
+
 ## Variants Guide
 
-| Variant     | Semantic Meaning          | Use When                                          | Example                                |
-| ----------- | ------------------------- | ------------------------------------------------- | -------------------------------------- |
-| `primary`   | Main action               | Primary CTA - Submit, Save, Continue, Get Started | Form submissions, main hero CTA        |
-| `secondary` | Supporting action         | Secondary CTA - Cancel, Back, Learn More          | Paired with primary button             |
-| `ghost`     | Subtle action             | Tertiary - Close, Dismiss, Skip                   | Modal close, subtle navigation         |
-| `danger`    | Destructive action        | Irreversible - Delete, Remove, Unsubscribe        | Deleting data, canceling subscriptions |
-| `inverse`   | Primary CTA on colored bg | Hero CTAs, Banners, Overlays                      | "Get Started" on blue banner           |
+| Variant              | Surface type              | Semantic Meaning          | Use When                                          |
+| -------------------- | ------------------------- | ------------------------- | ------------------------------------------------- |
+| `primary`            | Any theme (light or dark) | Main action               | Primary CTA - Submit, Save, Continue, Get Started |
+| `secondary`          | Any theme (light or dark) | Supporting action         | Secondary CTA - Cancel, Back, Learn More          |
+| `ghost`              | Any theme (light or dark) | Subtle action             | Tertiary - Close, Dismiss, Skip                   |
+| `danger`             | Any surface               | Destructive action        | Irreversible - Delete, Remove, Unsubscribe        |
+| `inverse`            | Colored surface only      | Primary CTA on colored bg | "Get Started" on brand banner or hero             |
+| `secondaryInverse`   | Colored surface only      | Supporting on colored bg  | "Learn More" next to an inverse primary           |
+| `ghostInverse`       | Colored surface only      | Subtle on colored bg      | "Skip" or "Maybe Later" on colored banner         |
 
 ### Visual Hierarchy
 
 ```
-Primary  > Secondary > Ghost > Danger (when not destructive context)
+Regular:  Primary  > Secondary > Ghost     (light mode AND dark mode)
+Inverse:  Inverse  > SecondaryInverse > GhostInverse  (colored surfaces only)
 ```
 
-**Rule:** Only ONE primary button per logical section.
+**Rules:**
+- Only ONE primary (or inverse) button per logical section
+- **Dark mode uses the same regular variants** — `secondary` becomes white-overlay automatically, `ghost` becomes white text automatically
+- Inverse variants are **theme-invariant** — they look identical in light and dark mode because they're designed for the colored surface, not the theme
+- `danger` works on any surface and has no inverse version
 
 ---
 
@@ -58,7 +103,15 @@ Sizes adapt to the current mode (`display`, `product`, `app`):
 
 ```typescript
 interface ButtonProps {
-  variant?: 'primary' | 'secondary' | 'ghost' | 'danger'; // default: 'primary'
+  variant?:
+    | 'primary'          // Main CTA — white/light/dark backgrounds (default)
+    | 'secondary'        // Supporting action — white/light/dark backgrounds
+    | 'ghost'            // Subtle action — white/light/dark backgrounds
+    | 'danger'           // Destructive action — any background
+    | 'inverse'          // Primary CTA — colored/photo backgrounds only
+    | 'secondaryInverse' // Supporting action — colored/photo backgrounds only
+    | 'ghostInverse';    // Subtle action — colored/photo backgrounds only
+  // default: 'primary'
   size?: 'sm' | 'md' | 'lg'; // default: 'md'
   isLoading?: boolean; // default: false
   fullWidth?: boolean; // default: false
@@ -96,40 +149,44 @@ import { Button } from '@orion/react';
 <Button variant="inverse">Get Started</Button>
 ```
 
-### Inverse Variant (for Colored Backgrounds)
+### Inverse Variants (for Colored / Photo Backgrounds)
+
+Use the full set of inverse variants to maintain visual hierarchy on colored backgrounds:
 
 ```tsx
 import { Button } from '@orion/react';
 
-// Use inverse on colored backgrounds
+// On brand-colored background — use all three inverse variants
 <section style={{ background: 'var(--interactive-primary)', padding: '4rem' }}>
   <h1>Welcome to Orion</h1>
-  <Button variant="inverse">Get Started</Button>
-  <Button variant="ghost" style={{ color: 'white', border: '2px solid white' }}>
-    Learn More
-  </Button>
+  <Button variant="inverse">Get Started</Button>           // Primary CTA
+  <Button variant="secondaryInverse">Learn More</Button>   // Supporting
+  <Button variant="ghostInverse">Skip</Button>             // Subtle / tertiary
 </section>
 
-// Use cases
-<Banner variant="default">
-  <Button variant="inverse">Sign Up Free</Button>
-</Banner>
-
+// On photo/dark overlay background
 <Hero backgroundImage="/hero.jpg">
-  <Button variant="inverse">Explore Features</Button>
+  <Button variant="inverse" size="lg">Explore Features</Button>
+  <Button variant="secondaryInverse" size="lg">See Pricing</Button>
 </Hero>
+
+// In a Banner component
+<Banner variant="brand">
+  <Button variant="inverse">Sign Up Free</Button>
+  <Button variant="ghostInverse">Learn More</Button>
+</Banner>
 ```
 
-**When to use `inverse`**:
-- ✅ Banners with brand-colored backgrounds
-- ✅ Hero sections over images with dark overlays
-- ✅ CTAs on gradient backgrounds
-- ✅ Any context where `primary` doesn't provide enough contrast
+**When to use inverse variants**:
+- ✅ Backgrounds using `var(--interactive-primary)` or any brand color
+- ✅ Gradient backgrounds (`var(--color-brand-400)` to `var(--color-brand-600)`)
+- ✅ Photo backgrounds with dark overlays
+- ✅ Any context where regular variants lack contrast
 
-**When NOT to use `inverse`**:
-- ❌ On white/light backgrounds (use `primary` instead)
-- ❌ In forms or data tables (use `primary` or `secondary`)
-- ❌ As secondary actions (use `secondary` or `ghost`)
+**When NOT to use inverse variants**:
+- ❌ White / light backgrounds → use `primary`, `secondary`, `ghost`
+- ❌ In forms, tables, dashboards → always use regular variants
+- ❌ Dark mode alone is not a reason to use inverse — dark mode adapts `secondary` and `ghost` automatically
 
 ### With Icons
 
@@ -368,4 +425,46 @@ All buttons have visible `:focus-visible` states. Do not override.
 <Button variant="danger" onClick={openDeleteConfirmation}>
   Delete Account
 </Button>
+```
+
+### Inverse Variants on Regular Backgrounds
+
+```tsx
+// WRONG - inverse on white background looks broken (white on white)
+<div style={{ background: 'white' }}>
+  <Button variant="inverse">Save</Button>
+</div>
+
+// WRONG - using inline styles to fake inverse instead of the right variant
+<Button variant="ghost" style={{ color: 'white', border: '2px solid white' }}>
+  Learn More
+</Button>
+
+// CORRECT - use regular variants on white/light backgrounds
+<div style={{ background: 'white' }}>
+  <Button variant="primary">Save</Button>
+  <Button variant="secondary">Learn More</Button>
+</div>
+
+// CORRECT - use inverse variants only on colored/photo backgrounds
+<section style={{ background: 'var(--interactive-primary)' }}>
+  <Button variant="inverse">Save</Button>
+  <Button variant="secondaryInverse">Learn More</Button>
+</section>
+```
+
+### Wrong Inverse for Supporting Actions
+
+```tsx
+// WRONG - using primary inverse for a supporting action on colored bg
+<section style={{ background: 'var(--interactive-primary)' }}>
+  <Button variant="inverse">Get Started</Button>
+  <Button variant="inverse">Learn More</Button>  // ❌ Two primary-level buttons
+</section>
+
+// CORRECT - maintain hierarchy with the full inverse set
+<section style={{ background: 'var(--interactive-primary)' }}>
+  <Button variant="inverse">Get Started</Button>          // Primary
+  <Button variant="secondaryInverse">Learn More</Button>  // Supporting
+</section>
 ```
