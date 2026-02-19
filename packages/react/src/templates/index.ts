@@ -6,7 +6,31 @@
  *
  * @example
  * ```tsx
- * import { LandingPageTemplate, DashboardTemplate } from '@orion/react';
+ * import {
+ *   AgentWorkspace,      // ChatBuilder
+ *   DashboardTemplate,   // App
+ *   LandingPageTemplate, // Marketing
+ * } from '@orion/react';
+ *
+ * // AI Agent workspace
+ * function AgentLibrary() {
+ *   return (
+ *     <AgentWorkspace
+ *       folders={[...]}
+ *       looseAgents={[...]}
+ *     />
+ *   );
+ * }
+ *
+ * // App dashboard
+ * function AppPage() {
+ *   return (
+ *     <DashboardTemplate
+ *       pageHeader={{ title: 'Dashboard' }}
+ *       metrics={{ metrics: [...] }}
+ *     />
+ *   );
+ * }
  *
  * // Marketing page
  * function MarketingPage() {
@@ -17,38 +41,28 @@
  *     />
  *   );
  * }
- *
- * // App page
- * function AppPage() {
- *   return (
- *     <DashboardTemplate
- *       pageHeader={{ title: 'Dashboard' }}
- *       metrics={{ metrics: [...] }}
- *     />
- *   );
- * }
  * ```
  *
  * @packageDocumentation
  */
 
 // ============================================================================
-// MARKETING TEMPLATES
+// CHATBUILDER TEMPLATES
 // ============================================================================
 
 export {
-  LandingPageTemplate,
-  PricingPageTemplate,
-  AboutPageTemplate,
-  ContactPageTemplate,
-} from './marketing';
+  AgentWorkspace,
+  ChatPageTemplate,
+} from "./app";
 
 export type {
-  LandingPageTemplateProps,
-  PricingPageTemplateProps,
-  AboutPageTemplateProps,
-  ContactPageTemplateProps,
-} from './marketing';
+  AgentWorkspaceProps,
+  NavbarConfig,
+  PageHeaderConfig,
+  Workspace,
+  DragEndEvent,
+  ChatPageTemplateProps,
+} from "./app";
 
 // ============================================================================
 // APP TEMPLATES
@@ -59,11 +73,37 @@ export {
   SettingsTemplate,
   ProfilePageTemplate,
   KanbanPageTemplate,
-} from './app';
+  LoginTemplate,
+} from "./app";
 
 export type {
   DashboardTemplateProps,
+  DashboardLayout,
   SettingsTemplateProps,
+  SettingsSection,
   ProfilePageTemplateProps,
+  ProfileHeader,
   KanbanPageTemplateProps,
-} from './app';
+  LoginTemplateProps,
+  LoginFormConfig,
+  LoginEditorial,
+  SocialProvider,
+} from "./app";
+
+// ============================================================================
+// MARKETING TEMPLATES
+// ============================================================================
+
+export {
+  LandingPageTemplate,
+  PricingPageTemplate,
+  AboutPageTemplate,
+  ContactPageTemplate,
+} from "./marketing";
+
+export type {
+  LandingPageTemplateProps,
+  PricingPageTemplateProps,
+  AboutPageTemplateProps,
+  ContactPageTemplateProps,
+} from "./marketing";
