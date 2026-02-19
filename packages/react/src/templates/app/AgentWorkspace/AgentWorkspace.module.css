@@ -1,0 +1,241 @@
+/**
+ * AgentLibraryTemplate Styles
+ *
+ * Styles for the full page agent library template.
+ * Uses semantic tokens for AI-first compliance.
+ */
+
+.template {
+  min-height: 100vh;
+  background-color: var(--surface-subtle);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Workspace selector in navbar */
+.workspaceSelector {
+  margin-left: var(--spacing-4);
+}
+
+.workspaceButton {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-2) var(--spacing-3);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-control);
+  background-color: var(--surface-base);
+  color: var(--text-primary);
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.workspaceButton:hover {
+  background-color: var(--surface-subtle);
+  border-color: var(--border-interactive);
+}
+
+.workspaceButton:focus-visible {
+  outline: 2px solid var(--interactive-primary);
+  outline-offset: 2px;
+}
+
+/* User menu button */
+.userButton {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: var(--radius-full);
+  transition: opacity var(--transition-fast);
+}
+
+.userButton:hover {
+  opacity: 0.8;
+}
+
+.userButton:focus-visible {
+  outline: 2px solid var(--interactive-primary);
+  outline-offset: 2px;
+}
+
+/* Remove top padding when PageHeader is inside the content container */
+.pageHeaderInContent {
+  padding-top: 0 !important;
+}
+
+/* Product mode: increase title size above 30px */
+:global([data-mode="product"]) .pageHeaderInContent {
+  --mode-text-title: var(--font-size-32);
+}
+
+/* Page header title with icon */
+.titleWithIcon {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  color: var(--text-primary);
+}
+
+/* Icon uses brand primary color */
+.titleIcon {
+  display: inline-flex;
+  align-items: center;
+  color: var(--interactive-primary);
+}
+
+/* Header actions group */
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+/* Main content area */
+.content {
+  flex: 1;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--spacing-6);
+}
+
+/* Folders container */
+.folders {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+  margin-top: var(--spacing-6);
+}
+
+/* Loose agents section */
+.looseAgentsSection {
+  margin-top: var(--spacing-6);
+}
+
+.looseAgentsTitle {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 var(--spacing-4) 0;
+}
+
+.looseAgentsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-4);
+}
+
+/* Empty state */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--spacing-16) var(--spacing-8);
+  min-height: 60vh;
+}
+
+.emptyIcon {
+  color: var(--text-tertiary);
+  margin-bottom: var(--spacing-6);
+}
+
+.emptyTitle {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-24);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-3) 0;
+}
+
+.emptyDescription {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-16);
+  color: var(--text-secondary);
+  margin: 0 0 var(--spacing-6) 0;
+  max-width: 480px;
+}
+
+/* More actions button — desktop shows without Nueva carpeta, mobile shows with it */
+.moreActionsDesktop {
+  display: flex;
+}
+
+.moreActionsMobile {
+  display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .looseAgentsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .content {
+    padding: var(--spacing-4);
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: var(--spacing-3);
+  }
+
+  .looseAgentsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Hide "Nueva carpeta" button — it moves into the more actions dropdown */
+  .hideOnMobile {
+    display: none;
+  }
+
+  /* Swap more actions dropdowns */
+  .moreActionsDesktop {
+    display: none;
+  }
+
+  .moreActionsMobile {
+    display: flex;
+  }
+
+  .workspaceSelector {
+    display: none; /* Hide on mobile, show in mobile menu */
+  }
+
+  .emptyState {
+    padding: var(--spacing-8) var(--spacing-4);
+    min-height: 50vh;
+  }
+
+  .emptyIcon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .emptyTitle {
+    font-size: var(--font-size-20);
+  }
+
+  .emptyDescription {
+    font-size: var(--font-size-14);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .workspaceButton,
+  .userButton {
+    transition: none;
+  }
+}

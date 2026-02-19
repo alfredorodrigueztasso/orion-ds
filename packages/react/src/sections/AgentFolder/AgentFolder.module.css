@@ -10,13 +10,15 @@
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-container);
   padding: var(--spacing-6);
-  margin-bottom: var(--spacing-4);
-  transition: border-color var(--transition-normal), background-color var(--transition-normal);
+  margin-bottom: 0;
+  transition:
+    border-color var(--transition-normal),
+    background-color var(--transition-normal);
 }
 
 /* Drop target visual */
 .folder.dropTarget,
-.folder[data-drop-active='true'] {
+.folder[data-drop-active="true"] {
   border: 2px dashed var(--interactive-primary);
   background-color: var(--surface-subtle);
 }
@@ -27,7 +29,6 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--spacing-4);
-  margin-bottom: var(--spacing-4);
 }
 
 /* Collapsible trigger button */
@@ -72,9 +73,9 @@
 
 /* Folder title */
 .title {
-  font-family: var(--font-primary);
+  font-family: var(--font-secondary);
   font-size: var(--font-size-18);
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-bold);
   color: var(--text-primary);
   margin: 0;
   line-height: 1.4;
@@ -92,63 +93,10 @@
   gap: var(--spacing-2);
 }
 
-/* Sort button */
-.sortButton {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-2);
-  padding: var(--spacing-2) var(--spacing-3);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-control);
-  background-color: var(--surface-base);
-  color: var(--text-secondary);
-  font-family: var(--font-secondary);
-  font-size: var(--font-size-14);
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-
-.sortButton:hover {
-  background-color: var(--surface-subtle);
-  border-color: var(--border-interactive);
-  color: var(--text-primary);
-}
-
-.sortButton:focus-visible {
-  outline: 2px solid var(--interactive-primary);
-  outline-offset: 2px;
-}
-
-/* Folder menu button */
-.menuButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  padding: 0;
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-control);
-  background-color: var(--surface-base);
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-
-.menuButton:hover {
-  background-color: var(--surface-subtle);
-  border-color: var(--border-interactive);
-  color: var(--text-primary);
-}
-
-.menuButton:focus-visible {
-  outline: 2px solid var(--interactive-primary);
-  outline-offset: 2px;
-}
-
 /* Content area (collapsible) */
 .content {
   padding-top: var(--spacing-4);
+  padding-bottom: var(--spacing-3);
 }
 
 /* Agent cards grid */
@@ -170,14 +118,19 @@
     grid-template-columns: 1fr;
   }
 
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
+  /* Badge: hide label text, show only the count */
+  .badgeLabel {
+    display: none;
   }
 
-  .actions {
-    width: 100%;
-    justify-content: flex-end;
+  /* Sort button: icon-only on mobile */
+  .sortDropdown button > span:not([aria-hidden="true"]) {
+    display: none;
+  }
+
+  .sortDropdown button {
+    width: 32px;
+    padding: 0;
   }
 }
 
@@ -201,11 +154,6 @@
   }
 
   .chevron {
-    transition: none;
-  }
-
-  .sortButton,
-  .menuButton {
     transition: none;
   }
 }

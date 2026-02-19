@@ -8,6 +8,9 @@ Templates are complete, ready-to-use page layouts that compose multiple sections
 
 ```tsx
 import {
+  // ChatBuilder Templates
+  AgentWorkspace,
+  ChatPageTemplate,
   // App Templates
   DashboardTemplate,
   KanbanPageTemplate,
@@ -19,12 +22,19 @@ import {
   AboutPageTemplate,
   ContactPageTemplate,
   PricingPageTemplate,
-} from '@orion/react';
+} from "@orion/react";
 ```
 
 ---
 
-## Available Templates (9 Total)
+## Available Templates (11 Total)
+
+### ChatBuilder Templates
+
+| Template           | Purpose                       | Required Props |
+| ------------------ | ----------------------------- | -------------- |
+| `AgentWorkspace`   | AI agent library with folders | -              |
+| `ChatPageTemplate` | Full-screen chat interface    | -              |
 
 ### App Templates
 
@@ -62,8 +72,8 @@ import {
 ### App Template Example
 
 ```tsx
-import { DashboardTemplate, ThemeProvider } from '@orion/react';
-import '@orion/react/styles.css';
+import { DashboardTemplate, ThemeProvider } from "@orion/react";
+import "@orion/react/styles.css";
 
 function Dashboard() {
   return (
@@ -73,20 +83,24 @@ function Dashboard() {
           sections: [
             {
               items: [
-                { id: 'dashboard', label: 'Dashboard', href: '/' },
-                { id: 'analytics', label: 'Analytics', href: '/analytics' },
+                { id: "dashboard", label: "Dashboard", href: "/" },
+                { id: "analytics", label: "Analytics", href: "/analytics" },
               ],
             },
           ],
-          activeItem: 'dashboard',
+          activeItem: "dashboard",
         }}
         pageHeader={{
-          title: 'Dashboard',
-          description: 'Overview of your business',
+          title: "Dashboard",
+          description: "Overview of your business",
         }}
         metrics={{
           metrics: [
-            { label: 'Revenue', value: '$45,231', trend: { value: '+20%', positive: true } },
+            {
+              label: "Revenue",
+              value: "$45,231",
+              trend: { value: "+20%", positive: true },
+            },
           ],
         }}
       />
@@ -98,8 +112,13 @@ function Dashboard() {
 ### Marketing Template Example
 
 ```tsx
-import { LandingPageTemplate, ThemeProvider, Button, Badge } from '@orion/react';
-import '@orion/react/styles.css';
+import {
+  LandingPageTemplate,
+  ThemeProvider,
+  Button,
+  Badge,
+} from "@orion/react";
+import "@orion/react/styles.css";
 
 function LandingPage() {
   return (
@@ -107,17 +126,17 @@ function LandingPage() {
       <LandingPageTemplate
         hero={{
           badge: <Badge variant="brand">New</Badge>,
-          headline: 'Build Products 10x Faster',
-          description: 'The all-in-one platform for modern teams.',
+          headline: "Build Products 10x Faster",
+          description: "The all-in-one platform for modern teams.",
           primaryAction: <Button size="lg">Get Started</Button>,
         }}
         features={{
-          title: 'Features',
-          items: [{ title: 'Fast', description: 'Lightning fast performance' }],
+          title: "Features",
+          items: [{ title: "Fast", description: "Lightning fast performance" }],
         }}
         footer={{
-          brand: { name: 'Acme' },
-          copyright: '2024 Acme Inc.',
+          brand: { name: "Acme" },
+          copyright: "2024 Acme Inc.",
         }}
       />
     </ThemeProvider>
@@ -210,6 +229,11 @@ function MyDashboard() {
 ## Documentation
 
 Each template has its own README with detailed documentation:
+
+### ChatBuilder Templates
+
+- [AgentWorkspace](./app/AgentWorkspace/README.md) — Foundation template for managing AI agents
+- [ChatPageTemplate](./app/ChatPageTemplate/) — Full-screen chat interface (documentation pending)
 
 ### App Templates
 

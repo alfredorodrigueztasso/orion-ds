@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { useState, useCallback } from 'react';
-import { ChatPageTemplate } from './ChatPageTemplate';
-import type { ChatMessage, ChatConversation } from '../../../components/Chat';
+import type { Meta, StoryObj } from "@storybook/react";
+import { useState, useCallback } from "react";
+import { ChatPageTemplate } from "./ChatPageTemplate";
+import type { ChatMessage, ChatConversation } from "../../../components/Chat";
 
 const meta = {
-  title: 'Templates/App/ChatPageTemplate',
+  title: "Templates/ChatBuilder/ChatPageTemplate",
   component: ChatPageTemplate,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 } satisfies Meta<typeof ChatPageTemplate>;
 
 export default meta;
@@ -18,44 +18,44 @@ type Story = StoryObj<typeof meta>;
 // Sample data
 const sampleConversations: ChatConversation[] = [
   {
-    id: '1',
-    title: 'React Hooks Discussion',
+    id: "1",
+    title: "React Hooks Discussion",
     preview: "Here's a simple example of useState...",
     updatedAt: new Date(Date.now() - 1000 * 60 * 2),
     messageCount: 4,
   },
   {
-    id: '2',
-    title: 'TypeScript Generics',
-    preview: 'Generics allow you to write flexible...',
+    id: "2",
+    title: "TypeScript Generics",
+    preview: "Generics allow you to write flexible...",
     updatedAt: new Date(Date.now() - 1000 * 60 * 60),
     messageCount: 8,
   },
   {
-    id: '3',
-    title: 'CSS Grid Layout',
-    preview: 'Grid is perfect for 2D layouts...',
+    id: "3",
+    title: "CSS Grid Layout",
+    preview: "Grid is perfect for 2D layouts...",
     updatedAt: new Date(Date.now() - 1000 * 60 * 60 * 24),
     messageCount: 3,
   },
   {
-    id: '4',
-    title: 'Node.js Best Practices',
-    preview: 'Always use async/await for cleaner...',
+    id: "4",
+    title: "Node.js Best Practices",
+    preview: "Always use async/await for cleaner...",
     updatedAt: new Date(Date.now() - 1000 * 60 * 60 * 48),
     messageCount: 12,
   },
   {
-    id: '5',
-    title: 'Database Design Patterns',
-    preview: 'Normalization helps reduce redundancy...',
+    id: "5",
+    title: "Database Design Patterns",
+    preview: "Normalization helps reduce redundancy...",
     updatedAt: new Date(Date.now() - 1000 * 60 * 60 * 72),
     messageCount: 6,
   },
   {
-    id: '6',
-    title: 'API Design Best Practices',
-    preview: 'RESTful APIs should be stateless...',
+    id: "6",
+    title: "API Design Best Practices",
+    preview: "RESTful APIs should be stateless...",
     updatedAt: new Date(Date.now() - 1000 * 60 * 60 * 96),
     messageCount: 9,
   },
@@ -63,15 +63,15 @@ const sampleConversations: ChatConversation[] = [
 
 const sampleMessages: ChatMessage[] = [
   {
-    id: '1',
-    role: 'user',
-    content: 'Hello! Can you help me understand how React hooks work?',
+    id: "1",
+    role: "user",
+    content: "Hello! Can you help me understand how React hooks work?",
     timestamp: new Date(Date.now() - 1000 * 60 * 5),
-    status: 'sent',
+    status: "sent",
   },
   {
-    id: '2',
-    role: 'assistant',
+    id: "2",
+    role: "assistant",
     content: `Of course! React hooks are functions that let you "hook into" React state and lifecycle features from function components. Here are the most commonly used hooks:
 
 1. **useState** - Adds state to functional components
@@ -83,18 +83,18 @@ const sampleMessages: ChatMessage[] = [
 
 Would you like me to explain any of these in more detail?`,
     timestamp: new Date(Date.now() - 1000 * 60 * 4),
-    status: 'sent',
+    status: "sent",
   },
   {
-    id: '3',
-    role: 'user',
-    content: 'Yes, can you show me an example of useState?',
+    id: "3",
+    role: "user",
+    content: "Yes, can you show me an example of useState?",
     timestamp: new Date(Date.now() - 1000 * 60 * 3),
-    status: 'sent',
+    status: "sent",
   },
   {
-    id: '4',
-    role: 'assistant',
+    id: "4",
+    role: "assistant",
     content: `Here's a simple example of \`useState\`:
 
 \`\`\`tsx
@@ -121,7 +121,7 @@ Key points:
 
 The state persists between re-renders, unlike regular variables.`,
     timestamp: new Date(Date.now() - 1000 * 60 * 2),
-    status: 'sent',
+    status: "sent",
   },
 ];
 
@@ -170,7 +170,7 @@ Does this help clarify things?`,
 export const Default: Story = {
   render: function DefaultStory() {
     const [conversations, setConversations] = useState(sampleConversations);
-    const [activeId, setActiveId] = useState('1');
+    const [activeId, setActiveId] = useState("1");
     const [messages, setMessages] = useState(sampleMessages);
     const [isTyping, setIsTyping] = useState(false);
 
@@ -178,17 +178,19 @@ export const Default: Story = {
       (content: string) => {
         const userMessage: ChatMessage = {
           id: Date.now().toString(),
-          role: 'user',
+          role: "user",
           content,
           timestamp: new Date(),
-          status: 'sent',
+          status: "sent",
         };
         setMessages((prev) => [...prev, userMessage]);
 
         // Update conversation preview
         setConversations((prev) =>
           prev.map((c) =>
-            c.id === activeId ? { ...c, preview: content.slice(0, 50), updatedAt: new Date() } : c,
+            c.id === activeId
+              ? { ...c, preview: content.slice(0, 50), updatedAt: new Date() }
+              : c,
           ),
         );
 
@@ -205,7 +207,7 @@ export const Default: Story = {
 
           const assistantMessage: ChatMessage = {
             id: (Date.now() + 1).toString(),
-            role: 'assistant',
+            role: "assistant",
             content: responseContent,
             timestamp: new Date(),
             isStreaming: true,
@@ -220,8 +222,8 @@ export const Default: Story = {
     const handleNewConversation = useCallback(() => {
       const newConv: ChatConversation = {
         id: Date.now().toString(),
-        title: 'New Conversation',
-        preview: '',
+        title: "New Conversation",
+        preview: "",
         updatedAt: new Date(),
         messageCount: 0,
       };
@@ -235,7 +237,7 @@ export const Default: Story = {
         setConversations((prev) => prev.filter((c) => c.id !== id));
         if (activeId === id) {
           const remaining = conversations.filter((c) => c.id !== id);
-          setActiveId(remaining[0]?.id || '');
+          setActiveId(remaining[0]?.id || "");
           setMessages([]);
         }
       },
@@ -259,10 +261,11 @@ export const Default: Story = {
         onDeleteConversation={handleDeleteConversation}
         isTyping={isTyping}
         user={{
-          name: 'John Doe',
-          avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100',
+          name: "John Doe",
+          avatar:
+            "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100",
         }}
-        onLogout={() => alert('Logout clicked')}
+        onLogout={() => alert("Logout clicked")}
       />
     );
   },
@@ -271,36 +274,49 @@ export const Default: Story = {
 export const WithCustomLogo: Story = {
   args: {
     conversations: sampleConversations,
-    activeConversationId: '1',
+    activeConversationId: "1",
     messages: sampleMessages,
     user: {
-      name: 'Jane Smith',
+      name: "Jane Smith",
     },
     logo: (
-      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)' }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "var(--spacing-2)",
+        }}
+      >
         <div
           style={{
             width: 28,
             height: 28,
-            borderRadius: 'var(--radius-sm)',
-            background: 'var(--interactive-primary)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'var(--interactive-primary-text)',
-            fontWeight: 'var(--font-weight-bold)',
-            fontSize: 'var(--font-size-14)',
+            borderRadius: "var(--radius-sm)",
+            background: "var(--interactive-primary)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "var(--interactive-primary-text)",
+            fontWeight: "var(--font-weight-bold)",
+            fontSize: "var(--font-size-14)",
           }}
         >
           AI
         </div>
-        <span style={{ fontWeight: 'var(--font-weight-medium)', color: 'var(--text-primary)' }}>
+        <span
+          style={{
+            fontWeight: "var(--font-weight-medium)",
+            color: "var(--text-primary)",
+          }}
+        >
           Acme Chat
         </span>
       </div>
     ),
   },
-  render: (args) => <ChatPageTemplate {...args} onLogout={() => alert('Logout')} />,
+  render: (args) => (
+    <ChatPageTemplate {...args} onLogout={() => alert("Logout")} />
+  ),
 };
 
 export const EmptyState: Story = {
@@ -308,22 +324,26 @@ export const EmptyState: Story = {
     conversations: [],
     messages: [],
     user: {
-      name: 'New User',
+      name: "New User",
     },
   },
   render: (args) => (
-    <ChatPageTemplate {...args} onNewConversation={() => alert('Creating first conversation...')} />
+    <ChatPageTemplate
+      {...args}
+      onNewConversation={() => alert("Creating first conversation...")}
+    />
   ),
 };
 
 export const NewConversation: Story = {
   args: {
     conversations: sampleConversations,
-    activeConversationId: 'new',
+    activeConversationId: "new",
     messages: [],
     user: {
-      name: 'John Doe',
-      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100',
+      name: "John Doe",
+      avatar:
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100",
     },
   },
   render: (args) => <ChatPageTemplate {...args} onNewConversation={() => {}} />,
@@ -332,15 +352,15 @@ export const NewConversation: Story = {
 export const MobileView: Story = {
   args: {
     conversations: sampleConversations,
-    activeConversationId: '1',
+    activeConversationId: "1",
     messages: sampleMessages,
     user: {
-      name: 'Mobile User',
+      name: "Mobile User",
     },
   },
   parameters: {
     viewport: {
-      defaultViewport: 'mobile1',
+      defaultViewport: "mobile1",
     },
   },
   render: (args) => <ChatPageTemplate {...args} />,
@@ -349,15 +369,15 @@ export const MobileView: Story = {
 export const TabletView: Story = {
   args: {
     conversations: sampleConversations,
-    activeConversationId: '1',
+    activeConversationId: "1",
     messages: sampleMessages,
     user: {
-      name: 'Tablet User',
+      name: "Tablet User",
     },
   },
   parameters: {
     viewport: {
-      defaultViewport: 'tablet',
+      defaultViewport: "tablet",
     },
   },
   render: (args) => <ChatPageTemplate {...args} />,
@@ -366,15 +386,16 @@ export const TabletView: Story = {
 export const DarkMode: Story = {
   args: {
     conversations: sampleConversations,
-    activeConversationId: '1',
+    activeConversationId: "1",
     messages: sampleMessages,
     user: {
-      name: 'Dark Mode User',
-      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100',
+      name: "Dark Mode User",
+      avatar:
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100",
     },
   },
   render: (args) => (
-    <div data-theme="dark" style={{ height: '100vh' }}>
+    <div data-theme="dark" style={{ height: "100vh" }}>
       <ChatPageTemplate {...args} />
     </div>
   ),
@@ -387,14 +408,14 @@ export const LongConversation: Story = {
     for (let i = 0; i < 20; i++) {
       longMessages.push({
         id: `user-${i}`,
-        role: 'user',
+        role: "user",
         content: `This is user message number ${i + 1}. It contains some text to simulate a real conversation.`,
         timestamp: new Date(Date.now() - (20 - i) * 1000 * 60 * 5),
-        status: 'sent',
+        status: "sent",
       });
       longMessages.push({
         id: `assistant-${i}`,
-        role: 'assistant',
+        role: "assistant",
         content: `This is assistant response number ${i + 1}. Here's a longer response to demonstrate how the chat handles more content.
 
 Key points:
@@ -412,7 +433,7 @@ Would you like to know more?`,
         conversations={sampleConversations}
         activeConversationId="1"
         messages={longMessages}
-        user={{ name: 'Test User' }}
+        user={{ name: "Test User" }}
       />
     );
   },
@@ -422,15 +443,15 @@ export const WithCodeExample: Story = {
   render: () => {
     const codeMessages: ChatMessage[] = [
       {
-        id: '1',
-        role: 'user',
-        content: 'Can you show me how to create a custom React hook?',
+        id: "1",
+        role: "user",
+        content: "Can you show me how to create a custom React hook?",
         timestamp: new Date(Date.now() - 1000 * 60 * 3),
-        status: 'sent',
+        status: "sent",
       },
       {
-        id: '2',
-        role: 'assistant',
+        id: "2",
+        role: "assistant",
         content: `Here's an example of a custom React hook for managing local storage:
 
 \`\`\`typescript
@@ -490,7 +511,7 @@ This hook:
         conversations={sampleConversations}
         activeConversationId="1"
         messages={codeMessages}
-        user={{ name: 'Developer' }}
+        user={{ name: "Developer" }}
       />
     );
   },
