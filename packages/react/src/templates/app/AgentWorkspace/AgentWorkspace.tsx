@@ -45,6 +45,7 @@ import { AgentCard } from "../../../components/AgentCard";
 import { Button } from "../../../components/Button";
 import { Dropdown } from "../../../components/Dropdown";
 import { Avatar } from "../../../components/Avatar";
+import { Divider } from "../../../components/Divider";
 import {
   FolderPlus,
   Plus,
@@ -71,6 +72,7 @@ export const AgentWorkspace: React.FC<AgentWorkspaceProps> = ({
 }) => {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [overId, setOverId] = useState<string | null>(null);
+  const [completedFolderId, setCompletedFolderId] = useState<string | null>(null);
 
   // Drag & drop sensors
   const sensors = useSensors(
@@ -122,6 +124,9 @@ export const AgentWorkspace: React.FC<AgentWorkspaceProps> = ({
     // If dropping into a different folder, call the onDrop handler
     if (sourceFolder && targetFolder && sourceFolder.id !== targetFolder.id) {
       targetFolder.onDrop?.(agentId, targetFolderId);
+      // Set completed feedback
+      setCompletedFolderId(targetFolderId);
+      setTimeout(() => setCompletedFolderId(null), 600);
     }
 
     setActiveId(null);
@@ -333,10 +338,20 @@ export const AgentWorkspace: React.FC<AgentWorkspaceProps> = ({
                   <AgentFolder
                     {...folder}
                     isDropTarget={overId === folder.id}
+                    isDropCompleted={completedFolderId === folder.id}
                     agents={folder.agents.map((agent) => ({
                       ...agent,
                       draggable: true,
                       isDragging: agent.id === activeId,
+                      availableFolders: folders
+                        ?.filter((f) => f.id !== folder.id)
+                        .map((f) => ({ id: f.id, title: f.title })),
+                      onMoveToFolder: (targetFolderId: string) => {
+                        const targetFolder = folders?.find(
+                          (f) => f.id === targetFolderId,
+                        );
+                        targetFolder?.onDrop?.(agent.id, targetFolderId);
+                      },
                     }))}
                   />
                 </div>
@@ -344,9 +359,11 @@ export const AgentWorkspace: React.FC<AgentWorkspaceProps> = ({
             </div>
 
             {/* Drag overlay (ghost card being dragged) */}
-            <DragOverlay>
+            <DragOverlay dropAnimation={{ duration: 150, easing: "ease-out" }}>
               {activeId && activeAgent ? (
-                <AgentCard {...activeAgent} isDragging />
+                <div style={{ transform: "rotate(2deg)", cursor: "grabbing" }}>
+                  <AgentCard {...activeAgent} isDragging />
+                </div>
               ) : null}
             </DragOverlay>
           </DndContext>
@@ -354,7 +371,22 @@ export const AgentWorkspace: React.FC<AgentWorkspaceProps> = ({
           // No drag & drop
           <div className={styles.folders}>
             {folders.map((folder) => (
-              <AgentFolder key={folder.id} {...folder} />
+              <AgentFolder
+                key={folder.id}
+                {...folder}
+                agents={folder.agents.map((agent) => ({
+                  ...agent,
+                  availableFolders: folders
+                    ?.filter((f) => f.id !== folder.id)
+                    .map((f) => ({ id: f.id, title: f.title })),
+                  onMoveToFolder: (targetFolderId: string) => {
+                    const targetFolder = folders?.find(
+                      (f) => f.id === targetFolderId,
+                    );
+                    targetFolder?.onDrop?.(agent.id, targetFolderId);
+                  },
+                }))}
+              />
             ))}
           </div>
         )}
@@ -362,14 +394,26 @@ export const AgentWorkspace: React.FC<AgentWorkspaceProps> = ({
         {/* Loose agents (agents without folder) */}
         {looseAgents && looseAgents.length > 0 && (
           <div className={styles.looseAgentsSection}>
-            <h3 className={styles.looseAgentsTitle}>Sin carpeta</h3>
+            <Divider label="Sin carpeta" spacing="lg" />
             <div className={styles.looseAgentsGrid}>
               {looseAgents.map((agent) => (
                 <div
                   key={agent.id}
                   draggable={enableDragDrop && agent.draggable}
                 >
-                  <AgentCard {...agent} />
+                  <AgentCard
+                    {...agent}
+                    availableFolders={folders?.map((f) => ({
+                      id: f.id,
+                      title: f.title,
+                    }))}
+                    onMoveToFolder={(targetFolderId: string) => {
+                      const targetFolder = folders?.find(
+                        (f) => f.id === targetFolderId,
+                      );
+                      targetFolder?.onDrop?.(agent.id, targetFolderId);
+                    }}
+                  />
                 </div>
               ))}
             </div>

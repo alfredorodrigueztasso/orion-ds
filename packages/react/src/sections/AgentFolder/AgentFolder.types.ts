@@ -4,8 +4,8 @@
  * Type definitions for the AgentFolder section - collapsible folder for organizing AI agents.
  */
 
-import type { HTMLAttributes } from 'react';
-import type { AgentCardProps } from '../../components/AgentCard';
+import type { HTMLAttributes } from "react";
+import type { AgentCardProps } from "../../components/AgentCard";
 
 /**
  * Sort option for agent ordering
@@ -40,7 +40,10 @@ export interface SortOption {
  * />
  * ```
  */
-export interface AgentFolderProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onDrop'> {
+export interface AgentFolderProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "onDrop"
+> {
   /**
    * Unique folder identifier
    */
@@ -88,7 +91,7 @@ export interface AgentFolderProps extends Omit<HTMLAttributes<HTMLDivElement>, '
   onDrop?: (agentId: string, folderId: string) => void;
 
   /**
-   * Edit folder handler
+   * Rename folder handler
    */
   onFolderEdit?: () => void;
 
@@ -98,8 +101,19 @@ export interface AgentFolderProps extends Omit<HTMLAttributes<HTMLDivElement>, '
   onFolderDelete?: () => void;
 
   /**
+   * Invite participants to folder handler
+   */
+  onFolderInvite?: () => void;
+
+  /**
    * Is this folder currently a valid drop target
    * @internal
    */
   isDropTarget?: boolean;
+
+  /**
+   * Briefly set to true after a successful drop for micro-feedback
+   * @internal
+   */
+  isDropCompleted?: boolean;
 }

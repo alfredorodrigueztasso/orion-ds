@@ -22,14 +22,15 @@
  * ```
  */
 
-import React, { useState } from 'react';
-import type { AgentFolderProps } from './AgentFolder.types';
-import { Collapsible } from '../../components/Collapsible';
-import { Dropdown } from '../../components/Dropdown';
-import { Badge } from '../../components/Badge';
-import { AgentCard } from '../../components/AgentCard';
-import { ChevronDown, MoreVertical } from 'lucide-react';
-import styles from './AgentFolder.module.css';
+import React, { useState } from "react";
+import type { AgentFolderProps } from "./AgentFolder.types";
+import { Collapsible } from "../../components/Collapsible";
+import { Dropdown } from "../../components/Dropdown";
+import { Badge } from "../../components/Badge";
+import { Button } from "../../components/Button";
+import { AgentCard } from "../../components/AgentCard";
+import { ChevronDown, MoreHorizontal } from "lucide-react";
+import styles from "./AgentFolder.module.css";
 
 export const AgentFolder: React.FC<AgentFolderProps> = ({
   id,
@@ -43,7 +44,9 @@ export const AgentFolder: React.FC<AgentFolderProps> = ({
   onDrop,
   onFolderEdit,
   onFolderDelete,
+  onFolderInvite,
   isDropTarget = false,
+  isDropCompleted = false,
   className,
   ...rest
 }) => {
@@ -51,20 +54,23 @@ export const AgentFolder: React.FC<AgentFolderProps> = ({
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-    e.dataTransfer.dropEffect = 'move';
+    e.dataTransfer.dropEffect = "move";
   };
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-    const agentId = e.dataTransfer.getData('agentId');
+    const agentId = e.dataTransfer.getData("agentId");
     if (agentId && onDrop) {
       onDrop(agentId, id);
     }
   };
 
-  const handleDragStart = (e: React.DragEvent<HTMLDivElement>, agentId: string) => {
-    e.dataTransfer.effectAllowed = 'move';
-    e.dataTransfer.setData('agentId', agentId);
+  const handleDragStart = (
+    e: React.DragEvent<HTMLDivElement>,
+    agentId: string,
+  ) => {
+    e.dataTransfer.effectAllowed = "move";
+    e.dataTransfer.setData("agentId", agentId);
   };
 
   // Build sort dropdown items
@@ -79,17 +85,26 @@ export const AgentFolder: React.FC<AgentFolderProps> = ({
     ...(onFolderEdit
       ? [
           {
-            id: 'edit',
-            label: 'Editar carpeta',
+            id: "rename",
+            label: "Cambiar nombre",
             onClick: onFolderEdit,
+          },
+        ]
+      : []),
+    ...(onFolderInvite
+      ? [
+          {
+            id: "invite",
+            label: "Invitar participantes",
+            onClick: onFolderInvite,
           },
         ]
       : []),
     ...(onFolderDelete
       ? [
           {
-            id: 'delete',
-            label: 'Eliminar carpeta',
+            id: "delete",
+            label: "Eliminar carpeta",
             danger: true,
             onClick: onFolderDelete,
           },
@@ -100,10 +115,11 @@ export const AgentFolder: React.FC<AgentFolderProps> = ({
   const classNames = [
     styles.folder,
     isDropTarget && styles.dropTarget,
+    isDropCompleted && styles.dropCompleted,
     className,
   ]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
 
   return (
     <div
@@ -120,40 +136,51 @@ export const AgentFolder: React.FC<AgentFolderProps> = ({
           <Collapsible.Trigger className={styles.trigger}>
             <ChevronDown
               size={20}
-              className={`${styles.chevron} ${isExpanded ? styles.expanded : ''}`}
+              className={`${styles.chevron} ${isExpanded ? styles.expanded : ""}`}
             />
             <h2 className={styles.title}>{title}</h2>
             <Badge variant="neutral" className={styles.badge}>
-              {agentCount} {agentCount === 1 ? 'Agente' : 'Agentes'}
+              {agentCount}
+              <span className={styles.badgeLabel}>
+                {" "}
+                {agentCount === 1 ? "Agente" : "Agentes"}
+              </span>
             </Badge>
           </Collapsible.Trigger>
 
           <div className={styles.actions}>
             {/* Sort dropdown */}
             {sortOptions && sortOptions.length > 0 && (
-              <Dropdown
-                trigger={
-                  <button className={styles.sortButton} aria-label="Sort agents">
-                    {sortOptions.find((opt) => opt.value === selectedSort)?.label ||
-                      'Ordenar'}
-                    <ChevronDown size={16} />
-                  </button>
-                }
-                items={sortDropdownItems}
-                placement="bottom-end"
-              />
+              <div className={styles.sortDropdown}>
+                <Dropdown
+                  trigger={
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      iconRight={<ChevronDown size={16} />}
+                      aria-label="Sort agents"
+                    >
+                      {sortOptions.find((opt) => opt.value === selectedSort)
+                        ?.label || "Ordenar"}
+                    </Button>
+                  }
+                  items={sortDropdownItems}
+                  placement="bottom-end"
+                />
+              </div>
             )}
 
             {/* Folder actions menu */}
             {folderActionsItems.length > 0 && (
               <Dropdown
                 trigger={
-                  <button
-                    className={styles.menuButton}
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    iconOnly
+                    icon={<MoreHorizontal size={20} />}
                     aria-label="Folder actions"
-                  >
-                    <MoreVertical size={20} />
-                  </button>
+                  />
                 }
                 items={folderActionsItems}
                 placement="bottom-end"
@@ -182,6 +209,9 @@ export const AgentFolder: React.FC<AgentFolderProps> = ({
                     <AgentCard {...agent} />
                   </div>
                 ))}
+                {isDropTarget && (
+                  <div className={styles.dropPlaceholder} aria-hidden="true" />
+                )}
               </div>
             )}
           </div>
@@ -191,4 +221,4 @@ export const AgentFolder: React.FC<AgentFolderProps> = ({
   );
 };
 
-AgentFolder.displayName = 'AgentFolder';
+AgentFolder.displayName = "AgentFolder";

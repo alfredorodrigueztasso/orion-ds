@@ -79,6 +79,19 @@ import { Bot, Sparkles, FolderPlus, Plus } from "lucide-react";
 
 ---
 
+## Regla de Tipografía SaaS (Global)
+
+En todos los templates y módulos SaaS de Orion, se usa exclusivamente `--font-secondary` (DM Sans) como tipografía base de UI. `--font-primary` (Libre Baskerville) queda reservada solo para contextos display/marketing (hero, branding, etc.).
+
+| Contexto | Fuente | Token | Ubicación |
+|---|---|---|---|
+| Títulos, labels, navegación, cards | DM Sans | `var(--font-secondary)` | Todo UI de SaaS |
+| Hero marketing, branding, display | Libre Baskerville | `var(--font-primary)` | Solo marketing/display |
+
+Esta regla garantiza consistencia visual, legibilidad en interfaces funcionales y optimización para densidad informativa en todos los productos SaaS.
+
+---
+
 ## Sections & Components Used
 
 | Section/Component | Required | Purpose                            |

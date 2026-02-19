@@ -116,16 +116,6 @@
   margin-top: var(--spacing-6);
 }
 
-.looseAgentsTitle {
-  font-family: var(--font-secondary);
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-medium);
-  color: var(--text-tertiary);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin: 0 0 var(--spacing-4) 0;
-}
-
 .looseAgentsGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -149,7 +139,7 @@
 }
 
 .emptyTitle {
-  font-family: var(--font-primary);
+  font-family: var(--font-secondary);
   font-size: var(--font-size-24);
   font-weight: var(--font-weight-semibold);
   color: var(--text-primary);

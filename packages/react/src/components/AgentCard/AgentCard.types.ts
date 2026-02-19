@@ -4,12 +4,12 @@
  * Type definitions for the AgentCard component - specialized card for AI agents.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Agent status types
  */
-export type AgentStatus = 'draft' | 'published' | 'archived';
+export type AgentStatus = "draft" | "published" | "archived";
 
 /**
  * AgentCard component props
@@ -87,4 +87,14 @@ export interface AgentCardProps extends HTMLAttributes<HTMLDivElement> {
    * @internal
    */
   isDragging?: boolean;
+
+  /**
+   * Available folders the agent can be moved to
+   */
+  availableFolders?: Array<{ id: string; title: string }>;
+
+  /**
+   * Called when user selects a folder to move this agent
+   */
+  onMoveToFolder?: (folderId: string) => void;
 }

@@ -12,14 +12,22 @@
   padding: var(--spacing-6);
   margin-bottom: 0;
   transition:
-    border-color var(--transition-normal),
-    background-color var(--transition-normal);
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 /* Drop target visual */
 .folder.dropTarget,
 .folder[data-drop-active="true"] {
   border: 2px dashed var(--interactive-primary);
+  background-color: var(--surface-subtle);
+  box-shadow: 0 0 0 3px var(--border-interactive);
+}
+
+/* Micro-feedback: successful drop */
+.folder.dropCompleted {
+  border-color: var(--status-success);
   background-color: var(--surface-subtle);
 }
 
@@ -145,6 +153,16 @@
   font-size: var(--font-size-14);
   color: var(--text-tertiary);
   margin: 0;
+}
+
+/* Drop placeholder: shows where the dragged card will be placed */
+.dropPlaceholder {
+  border: 2px dashed var(--interactive-primary);
+  border-radius: var(--radius-container);
+  background-color: var(--surface-layer);
+  min-height: 88px;
+  opacity: 0.5;
+  transition: opacity var(--transition-fast);
 }
 
 /* Reduced motion support */
