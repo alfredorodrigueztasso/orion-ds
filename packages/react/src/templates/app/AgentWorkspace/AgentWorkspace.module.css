@@ -10,6 +10,7 @@
   background-color: var(--surface-subtle);
   display: flex;
   flex-direction: column;
+  overflow: visible;
 }
 
 /* Workspace selector in navbar */
@@ -101,6 +102,7 @@
   width: 100%;
   margin: 0 auto;
   padding: var(--spacing-6);
+  overflow: visible;
 }
 
 /* Folders container */
@@ -109,6 +111,7 @@
   flex-direction: column;
   gap: var(--spacing-6);
   margin-top: var(--spacing-6);
+  overflow: visible;
 }
 
 /* Loose agents section */
@@ -154,15 +157,6 @@
   max-width: 480px;
 }
 
-/* More actions button — desktop shows without Nueva carpeta, mobile shows with it */
-.moreActionsDesktop {
-  display: flex;
-}
-
-.moreActionsMobile {
-  display: none;
-}
-
 /* Responsive adjustments */
 @media (max-width: 1200px) {
   .looseAgentsGrid {
@@ -183,20 +177,6 @@
 
   .looseAgentsGrid {
     grid-template-columns: 1fr;
-  }
-
-  /* Hide "Nueva carpeta" button — it moves into the more actions dropdown */
-  .hideOnMobile {
-    display: none;
-  }
-
-  /* Swap more actions dropdowns */
-  .moreActionsDesktop {
-    display: none;
-  }
-
-  .moreActionsMobile {
-    display: flex;
   }
 
   .workspaceSelector {
@@ -222,10 +202,143 @@
   }
 }
 
+/* Workspace panel (Popover content) */
+.workspacePanel {
+  /* Let Popover control the width (max 320px) */
+}
+
+.workspacePanelCount {
+  font-size: var(--font-size-12);
+  color: var(--text-tertiary);
+  font-family: var(--font-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-3);
+}
+
+.workspacePanelActive {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-3);
+  margin-bottom: var(--spacing-3);
+}
+
+.workspacePanelInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.workspacePanelName {
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  font-family: var(--font-secondary);
+  margin-bottom: var(--spacing-2);
+  line-height: 1.3;
+}
+
+.workspacePanelMeta {
+  font-size: var(--font-size-13);
+  color: var(--text-secondary);
+  font-family: var(--font-secondary);
+  margin-bottom: var(--spacing-1);
+  line-height: 1.4;
+}
+
+.workspacePanelMeta:last-child {
+  margin-bottom: 0;
+}
+
+.workspacePanelActions {
+  display: flex;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-3);
+}
+
+.workspacePanelDivider {
+  margin: 0 calc(-1 * var(--spacing-4));
+  margin-bottom: var(--spacing-3);
+}
+
+.workspacePanelList {
+  margin-bottom: var(--spacing-3);
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: var(--spacing-1);
+}
+
+.workspaceListItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-2) var(--spacing-3);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+  margin-bottom: var(--spacing-2);
+  border-radius: var(--radius-control);
+}
+
+.workspaceListItem:last-child {
+  margin-bottom: 0;
+}
+
+.workspaceListItem:hover {
+  background-color: var(--surface-subtle);
+}
+
+.workspaceListItemInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.workspaceListItemName {
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  font-family: var(--font-secondary);
+  margin-bottom: var(--spacing-1);
+}
+
+.workspaceListItemRole {
+  font-size: var(--font-size-12);
+  color: var(--text-secondary);
+  font-family: var(--font-secondary);
+}
+
+.workspacePanelFooter {
+  margin-top: var(--spacing-3);
+  padding-top: var(--spacing-3);
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* Scrollbar styling for workspace list */
+.workspacePanelList::-webkit-scrollbar {
+  width: 6px;
+}
+
+.workspacePanelList::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.workspacePanelList::-webkit-scrollbar-thumb {
+  background-color: var(--border-subtle);
+  border-radius: 3px;
+  transition: background-color var(--transition-fast);
+}
+
+.workspacePanelList::-webkit-scrollbar-thumb:hover {
+  background-color: var(--border-interactive);
+}
+
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   .workspaceButton,
-  .userButton {
+  .userButton,
+  .workspaceListItem {
+    transition: none;
+  }
+
+  .workspacePanelList::-webkit-scrollbar-thumb {
     transition: none;
   }
 }
