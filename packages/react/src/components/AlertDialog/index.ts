@@ -16,7 +16,7 @@
  * </AlertDialog>
  * ```
  */
-export { AlertDialog } from './AlertDialog';
+export { AlertDialog } from "./AlertDialog";
 export type {
   AlertDialogProps,
   AlertDialogVariant,
@@ -24,4 +24,4 @@ export type {
   AlertDialogTitleProps,
   AlertDialogDescriptionProps,
   AlertDialogActionsProps,
-} from './AlertDialog.types';
+} from "./AlertDialog.types";

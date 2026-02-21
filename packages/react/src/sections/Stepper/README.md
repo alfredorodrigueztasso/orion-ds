@@ -5,13 +5,13 @@
 ## Quick Start
 
 ```tsx
-import { Stepper } from '@orion/react';
+import { Stepper } from "@orion/react";
 
 <Stepper
   steps={[
-    { id: 'details', label: 'Details' },
-    { id: 'payment', label: 'Payment' },
-    { id: 'confirm', label: 'Confirmation' },
+    { id: "details", label: "Details" },
+    { id: "payment", label: "Payment" },
+    { id: "confirm", label: "Confirmation" },
   ]}
   activeStep={1}
   onStepClick={(index) => setActiveStep(index)}
@@ -48,10 +48,10 @@ interface StepperProps {
   allowClickOnFuture?: boolean; // Click future steps - default: false
 
   // Display
-  orientation?: 'horizontal' | 'vertical'; // default: 'horizontal'
+  orientation?: "horizontal" | "vertical"; // default: 'horizontal'
   showStepNumbers?: boolean; // Show numbers - default: true
-  connectorStyle?: 'solid' | 'dashed' | 'dotted'; // default: 'solid'
-  size?: 'sm' | 'md' | 'lg'; // default: 'md'
+  connectorStyle?: "solid" | "dashed" | "dotted"; // default: 'solid'
+  size?: "sm" | "md" | "lg"; // default: 'md'
   alternativeLabel?: boolean; // Labels below (horizontal) - default: false
 }
 
@@ -75,9 +75,9 @@ interface StepItem {
 ```tsx
 <Stepper
   steps={[
-    { id: 'step1', label: 'Step 1' },
-    { id: 'step2', label: 'Step 2' },
-    { id: 'step3', label: 'Step 3' },
+    { id: "step1", label: "Step 1" },
+    { id: "step2", label: "Step 2" },
+    { id: "step3", label: "Step 3" },
   ]}
   activeStep={0}
 />
@@ -88,7 +88,11 @@ interface StepItem {
 ```tsx
 const [activeStep, setActiveStep] = useState(0);
 
-<Stepper steps={steps} activeStep={activeStep} onStepClick={(index) => setActiveStep(index)} />;
+<Stepper
+  steps={steps}
+  activeStep={activeStep}
+  onStepClick={(index) => setActiveStep(index)}
+/>;
 ```
 
 ---
@@ -244,7 +248,12 @@ steps={[
 Labels below step indicators (horizontal only).
 
 ```tsx
-<Stepper orientation="horizontal" alternativeLabel steps={steps} activeStep={activeStep} />
+<Stepper
+  orientation="horizontal"
+  alternativeLabel
+  steps={steps}
+  activeStep={activeStep}
+/>
 ```
 
 ---
@@ -254,17 +263,17 @@ Labels below step indicators (horizontal only).
 ### Checkout Flow
 
 ```tsx
-import { Stepper, Button, FormSection, Field } from '@orion/react';
-import { useState } from 'react';
+import { Stepper, Button, FormSection, Field } from "@orion/react";
+import { useState } from "react";
 
 function CheckoutWizard() {
   const [activeStep, setActiveStep] = useState(0);
   const [formData, setFormData] = useState({});
 
   const steps = [
-    { id: 'shipping', label: 'Shipping', description: 'Delivery address' },
-    { id: 'payment', label: 'Payment', description: 'Payment method' },
-    { id: 'review', label: 'Review', description: 'Confirm order' },
+    { id: "shipping", label: "Shipping", description: "Delivery address" },
+    { id: "payment", label: "Payment", description: "Payment method" },
+    { id: "review", label: "Review", description: "Confirm order" },
   ];
 
   const handleNext = () => {
@@ -291,7 +300,7 @@ function CheckoutWizard() {
         allowClickOnFuture={false}
       />
 
-      <div style={{ marginTop: 'var(--spacing-8)' }}>
+      <div style={{ marginTop: "var(--spacing-8)" }}>
         {activeStep === 0 && (
           <FormSection title="Shipping Address">
             <Field label="Address" type="text" />
@@ -314,15 +323,25 @@ function CheckoutWizard() {
           </FormSection>
         )}
 
-        <div style={{ display: 'flex', gap: 'var(--spacing-4)', marginTop: 'var(--spacing-6)' }}>
-          <Button variant="ghost" onClick={handleBack} disabled={activeStep === 0}>
+        <div
+          style={{
+            display: "flex",
+            gap: "var(--spacing-4)",
+            marginTop: "var(--spacing-6)",
+          }}
+        >
+          <Button
+            variant="ghost"
+            onClick={handleBack}
+            disabled={activeStep === 0}
+          >
             Back
           </Button>
           <Button
             variant="primary"
             onClick={activeStep === steps.length - 1 ? submitOrder : handleNext}
           >
-            {activeStep === steps.length - 1 ? 'Place Order' : 'Continue'}
+            {activeStep === steps.length - 1 ? "Place Order" : "Continue"}
           </Button>
         </div>
       </div>
@@ -334,31 +353,36 @@ function CheckoutWizard() {
 ### Account Setup Wizard
 
 ```tsx
-import { User, Building, Users, Check } from 'lucide-react';
+import { User, Building, Users, Check } from "lucide-react";
 
 <Stepper
   orientation="vertical"
   steps={[
     {
-      id: 'profile',
-      label: 'Your Profile',
+      id: "profile",
+      label: "Your Profile",
       icon: <User size={20} />,
-      description: 'Basic information',
+      description: "Basic information",
     },
     {
-      id: 'company',
-      label: 'Company Details',
+      id: "company",
+      label: "Company Details",
       icon: <Building size={20} />,
-      description: 'Organization info',
+      description: "Organization info",
     },
     {
-      id: 'team',
-      label: 'Invite Team',
+      id: "team",
+      label: "Invite Team",
       icon: <Users size={20} />,
-      description: 'Add team members',
+      description: "Add team members",
       optional: true,
     },
-    { id: 'done', label: 'All Set!', icon: <Check size={20} />, description: 'Ready to start' },
+    {
+      id: "done",
+      label: "All Set!",
+      icon: <Check size={20} />,
+      description: "Ready to start",
+    },
   ]}
   activeStep={activeStep}
   onStepClick={setActiveStep}
@@ -371,9 +395,14 @@ import { User, Building, Users, Check } from 'lucide-react';
 ```tsx
 <Stepper
   steps={[
-    { id: 'info', label: 'Information' },
-    { id: 'details', label: 'Details', error: hasErrors, errorMessage: 'Please fix errors' },
-    { id: 'submit', label: 'Submit' },
+    { id: "info", label: "Information" },
+    {
+      id: "details",
+      label: "Details",
+      error: hasErrors,
+      errorMessage: "Please fix errors",
+    },
+    { id: "submit", label: "Submit" },
   ]}
   activeStep={1}
 />
@@ -384,10 +413,10 @@ import { User, Building, Users, Check } from 'lucide-react';
 ```tsx
 <Stepper
   steps={[
-    { id: '1', label: 'Step 1' },
-    { id: '2', label: 'Step 2' },
-    { id: '3', label: 'Step 3' },
-    { id: '4', label: 'Step 4' },
+    { id: "1", label: "Step 1" },
+    { id: "2", label: "Step 2" },
+    { id: "3", label: "Step 3" },
+    { id: "4", label: "Step 4" },
   ]}
   activeStep={2}
   size="sm"
@@ -409,12 +438,12 @@ import { User, Building, Users, Check } from 'lucide-react';
 ```tsx
 // Good: Descriptive step labels
 {
-  label: 'Enter Shipping Address';
+  label: "Enter Shipping Address";
 }
 
 // Avoid: Vague labels
 {
-  label: 'Step 2';
+  label: "Step 2";
 }
 ```
 

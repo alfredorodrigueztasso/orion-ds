@@ -15,11 +15,11 @@
  * />
  * ```
  */
-export { Stepper } from './Stepper';
+export { Stepper } from "./Stepper";
 export type {
   StepperProps,
   StepItem,
   StepStatus,
   StepperOrientation,
   StepperSize,
-} from './Stepper.types';
+} from "./Stepper.types";

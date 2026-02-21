@@ -5,12 +5,12 @@
 ## Quick Start
 
 ```tsx
-import { LandingPageTemplate, Button, Badge, Navbar } from '@orion/react';
-import { Zap, Shield, Rocket, Twitter, Github } from 'lucide-react';
+import { LandingPageTemplate, Button, Badge, Navbar } from "@orion/react";
+import { Zap, Shield, Rocket, Twitter, Github } from "lucide-react";
 
 <LandingPageTemplate
   navbar={{
-    variant: 'solid',
+    variant: "solid",
     sticky: true,
     children: (
       <>
@@ -28,38 +28,50 @@ import { Zap, Shield, Rocket, Twitter, Github } from 'lucide-react';
   }}
   hero={{
     badge: <Badge variant="brand">New</Badge>,
-    headline: 'Build Products 10x Faster',
-    description: 'The all-in-one platform for modern development teams.',
+    headline: "Build Products 10x Faster",
+    description: "The all-in-one platform for modern development teams.",
     primaryAction: <Button size="lg">Start Free Trial</Button>,
     secondaryAction: (
       <Button variant="ghost" size="lg">
         Watch Demo
       </Button>
     ),
-    align: 'center',
-    size: 'lg',
+    align: "center",
+    size: "lg",
   }}
   features={{
-    id: 'features',
-    eyebrow: 'Features',
-    title: 'Everything you need',
+    id: "features",
+    eyebrow: "Features",
+    title: "Everything you need",
     items: [
-      { icon: <Zap size={24} />, title: 'Fast', description: 'Lightning fast performance' },
-      { icon: <Shield size={24} />, title: 'Secure', description: 'Enterprise-grade security' },
-      { icon: <Rocket size={24} />, title: 'Scalable', description: 'Grows with your needs' },
+      {
+        icon: <Zap size={24} />,
+        title: "Fast",
+        description: "Lightning fast performance",
+      },
+      {
+        icon: <Shield size={24} />,
+        title: "Secure",
+        description: "Enterprise-grade security",
+      },
+      {
+        icon: <Rocket size={24} />,
+        title: "Scalable",
+        description: "Grows with your needs",
+      },
     ],
     columns: 3,
   }}
   pricing={{
-    id: 'pricing',
-    eyebrow: 'Pricing',
-    title: 'Simple pricing',
+    id: "pricing",
+    eyebrow: "Pricing",
+    title: "Simple pricing",
     plans: [
       {
-        name: 'Starter',
-        price: '$0',
-        period: '/month',
-        features: [{ text: '5 projects', included: true }],
+        name: "Starter",
+        price: "$0",
+        period: "/month",
+        features: [{ text: "5 projects", included: true }],
         action: (
           <Button variant="secondary" fullWidth>
             Get Started
@@ -67,31 +79,39 @@ import { Zap, Shield, Rocket, Twitter, Github } from 'lucide-react';
         ),
       },
       {
-        name: 'Pro',
-        price: '$29',
-        period: '/month',
-        features: [{ text: 'Unlimited projects', included: true }],
+        name: "Pro",
+        price: "$29",
+        period: "/month",
+        features: [{ text: "Unlimited projects", included: true }],
         action: <Button fullWidth>Start Trial</Button>,
         popular: true,
       },
     ],
   }}
   footer={{
-    brand: { name: 'Acme', description: 'Building the future.' },
+    brand: { name: "Acme", description: "Building the future." },
     linkGroups: [
       {
-        title: 'Product',
+        title: "Product",
         links: [
-          { label: 'Features', href: '#features' },
-          { label: 'Pricing', href: '#pricing' },
+          { label: "Features", href: "#features" },
+          { label: "Pricing", href: "#pricing" },
         ],
       },
     ],
     socialLinks: [
-      { label: 'Twitter', href: 'https://twitter.com', icon: <Twitter size={20} /> },
-      { label: 'GitHub', href: 'https://github.com', icon: <Github size={20} /> },
+      {
+        label: "Twitter",
+        href: "https://twitter.com",
+        icon: <Twitter size={20} />,
+      },
+      {
+        label: "GitHub",
+        href: "https://github.com",
+        icon: <Github size={20} />,
+      },
     ],
-    copyright: '2024 Acme Inc. All rights reserved.',
+    copyright: "2024 Acme Inc. All rights reserved.",
   }}
 />;
 ```
@@ -137,7 +157,10 @@ import { Zap, Shield, Rocket, Twitter, Github } from 'lucide-react';
 ## Props Reference
 
 ```typescript
-interface LandingPageTemplateProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
+interface LandingPageTemplateProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "title"
+> {
   /**
    * Navbar configuration
    */
@@ -152,7 +175,7 @@ interface LandingPageTemplateProps extends Omit<HTMLAttributes<HTMLDivElement>, 
    * Editorial carousel for featured stories/content
    * Displays as magazine-style with large images and text overlays
    */
-  featuredCarousel?: Omit<CarouselSectionProps, 'variant'>;
+  featuredCarousel?: Omit<CarouselSectionProps, "variant">;
 
   /**
    * Logo cloud for social proof
@@ -173,7 +196,7 @@ interface LandingPageTemplateProps extends Omit<HTMLAttributes<HTMLDivElement>, 
    * Product carousel for showcasing features/products
    * Displays as product showcase cards
    */
-  productCarousel?: Omit<CarouselSectionProps, 'variant'>;
+  productCarousel?: Omit<CarouselSectionProps, "variant">;
 
   /**
    * Pricing section
@@ -214,7 +237,7 @@ interface LandingPageTemplateProps extends Omit<HTMLAttributes<HTMLDivElement>, 
 ### Full Landing Page
 
 ```tsx
-import { LandingPageTemplate, Button, Badge, Navbar, Hero } from '@orion/react';
+import { LandingPageTemplate, Button, Badge, Navbar, Hero } from "@orion/react";
 import {
   Zap,
   Shield,
@@ -225,18 +248,20 @@ import {
   Twitter,
   Github,
   Linkedin,
-} from 'lucide-react';
+} from "lucide-react";
 
 function LandingPage() {
   return (
     <LandingPageTemplate
       navbar={{
-        variant: 'solid',
+        variant: "solid",
         sticky: true,
         children: (
           <>
             <Navbar.Brand href="/">
-              <span style={{ fontWeight: 700, fontSize: 'var(--text-xl)' }}>Acme</span>
+              <span style={{ fontWeight: 700, fontSize: "var(--text-xl)" }}>
+                Acme
+              </span>
             </Navbar.Brand>
             <Navbar.Nav>
               <Navbar.Link href="#features">Features</Navbar.Link>
@@ -258,88 +283,98 @@ function LandingPage() {
           </>
         ),
         description:
-          'The all-in-one platform for modern development teams. Ship features, not infrastructure.',
+          "The all-in-one platform for modern development teams. Ship features, not infrastructure.",
         primaryAction: <Button size="lg">Start Free Trial</Button>,
         secondaryAction: (
           <Button variant="ghost" size="lg">
             Watch Demo
           </Button>
         ),
-        align: 'center',
-        size: 'lg',
+        align: "center",
+        size: "lg",
       }}
       logoCloud={{
         logos: [
-          { name: 'Company 1', logo: <img src="/logos/c1.svg" alt="Company 1" /> },
-          { name: 'Company 2', logo: <img src="/logos/c2.svg" alt="Company 2" /> },
-          { name: 'Company 3', logo: <img src="/logos/c3.svg" alt="Company 3" /> },
+          {
+            name: "Company 1",
+            logo: <img src="/logos/c1.svg" alt="Company 1" />,
+          },
+          {
+            name: "Company 2",
+            logo: <img src="/logos/c2.svg" alt="Company 2" />,
+          },
+          {
+            name: "Company 3",
+            logo: <img src="/logos/c3.svg" alt="Company 3" />,
+          },
         ],
-        title: 'Trusted by industry leaders',
+        title: "Trusted by industry leaders",
       }}
       features={{
-        id: 'features',
-        eyebrow: 'Features',
-        title: 'Everything you need to ship faster',
-        description: 'Built for modern teams who value speed, quality, and developer experience.',
+        id: "features",
+        eyebrow: "Features",
+        title: "Everything you need to ship faster",
+        description:
+          "Built for modern teams who value speed, quality, and developer experience.",
         items: [
           {
             icon: <Zap size={24} />,
-            title: 'Lightning Fast',
-            description: 'Optimized for performance at every level.',
+            title: "Lightning Fast",
+            description: "Optimized for performance at every level.",
           },
           {
             icon: <Shield size={24} />,
-            title: 'Secure by Default',
-            description: 'Enterprise-grade security with SOC2 compliance.',
+            title: "Secure by Default",
+            description: "Enterprise-grade security with SOC2 compliance.",
           },
           {
             icon: <Rocket size={24} />,
-            title: 'Scale Infinitely',
-            description: 'Our infrastructure grows with your needs.',
+            title: "Scale Infinitely",
+            description: "Our infrastructure grows with your needs.",
           },
           {
             icon: <BarChart3 size={24} />,
-            title: 'Analytics Built-in',
-            description: 'Real-time insights and reporting.',
+            title: "Analytics Built-in",
+            description: "Real-time insights and reporting.",
           },
           {
             icon: <Users size={24} />,
-            title: 'Team Collaboration',
-            description: 'Work together seamlessly.',
+            title: "Team Collaboration",
+            description: "Work together seamlessly.",
           },
           {
             icon: <Globe size={24} />,
-            title: 'Global CDN',
-            description: 'Content delivered from edge locations worldwide.',
+            title: "Global CDN",
+            description: "Content delivered from edge locations worldwide.",
           },
         ],
         columns: 3,
       }}
       stats={{
-        eyebrow: 'By the Numbers',
-        title: 'Trusted by thousands',
+        eyebrow: "By the Numbers",
+        title: "Trusted by thousands",
         stats: [
-          { value: '10K+', label: 'Active Users' },
-          { value: '99.9%', label: 'Uptime' },
-          { value: '50M+', label: 'API Calls/Day' },
-          { value: '150+', label: 'Countries' },
+          { value: "10K+", label: "Active Users" },
+          { value: "99.9%", label: "Uptime" },
+          { value: "50M+", label: "API Calls/Day" },
+          { value: "150+", label: "Countries" },
         ],
       }}
       pricing={{
-        id: 'pricing',
-        eyebrow: 'Pricing',
-        title: 'Simple, transparent pricing',
-        description: 'No hidden fees. No surprises. Cancel anytime.',
+        id: "pricing",
+        eyebrow: "Pricing",
+        title: "Simple, transparent pricing",
+        description: "No hidden fees. No surprises. Cancel anytime.",
         plans: [
           {
-            name: 'Starter',
-            price: '$0',
-            period: '/month',
-            description: 'Perfect for individuals',
+            name: "Starter",
+            price: "$0",
+            period: "/month",
+            description: "Perfect for individuals",
             features: [
-              { text: '5 projects', included: true },
-              { text: '10GB storage', included: true },
-              { text: 'API access', included: false },
+              { text: "5 projects", included: true },
+              { text: "10GB storage", included: true },
+              { text: "API access", included: false },
             ],
             action: (
               <Button variant="secondary" fullWidth>
@@ -348,14 +383,14 @@ function LandingPage() {
             ),
           },
           {
-            name: 'Pro',
-            price: '$29',
-            period: '/month',
-            description: 'For growing teams',
+            name: "Pro",
+            price: "$29",
+            period: "/month",
+            description: "For growing teams",
             features: [
-              { text: 'Unlimited projects', included: true },
-              { text: '100GB storage', included: true },
-              { text: 'API access', included: true },
+              { text: "Unlimited projects", included: true },
+              { text: "100GB storage", included: true },
+              { text: "API access", included: true },
             ],
             action: (
               <Button variant="primary" fullWidth>
@@ -365,13 +400,13 @@ function LandingPage() {
             popular: true,
           },
           {
-            name: 'Enterprise',
-            price: 'Custom',
-            description: 'For large organizations',
+            name: "Enterprise",
+            price: "Custom",
+            description: "For large organizations",
             features: [
-              { text: 'Everything in Pro', included: true },
-              { text: 'Unlimited storage', included: true },
-              { text: 'Dedicated support', included: true },
+              { text: "Everything in Pro", included: true },
+              { text: "Unlimited storage", included: true },
+              { text: "Dedicated support", included: true },
             ],
             action: (
               <Button variant="secondary" fullWidth>
@@ -382,51 +417,52 @@ function LandingPage() {
         ],
       }}
       testimonials={{
-        id: 'testimonials',
-        eyebrow: 'Testimonials',
-        title: 'Loved by teams worldwide',
+        id: "testimonials",
+        eyebrow: "Testimonials",
+        title: "Loved by teams worldwide",
         testimonials: [
           {
-            quote: 'This platform transformed how we build products.',
+            quote: "This platform transformed how we build products.",
             author: {
-              name: 'Sarah Chen',
-              role: 'CTO',
-              company: 'TechCorp',
+              name: "Sarah Chen",
+              role: "CTO",
+              company: "TechCorp",
               avatar: <img src="/avatars/sarah.jpg" alt="" />,
             },
           },
           {
-            quote: 'The developer experience is unmatched.',
+            quote: "The developer experience is unmatched.",
             author: {
-              name: 'Mike Johnson',
-              role: 'Lead Engineer',
-              company: 'StartupXYZ',
+              name: "Mike Johnson",
+              role: "Lead Engineer",
+              company: "StartupXYZ",
               avatar: <img src="/avatars/mike.jpg" alt="" />,
             },
           },
         ],
       }}
       faq={{
-        eyebrow: 'FAQ',
-        title: 'Frequently asked questions',
+        eyebrow: "FAQ",
+        title: "Frequently asked questions",
         items: [
           {
-            question: 'How do I get started?',
-            answer: 'Sign up for a free account and follow our quick start guide.',
+            question: "How do I get started?",
+            answer:
+              "Sign up for a free account and follow our quick start guide.",
           },
           {
-            question: 'Can I cancel my subscription anytime?',
-            answer: 'Yes, you can cancel at any time with no penalties.',
+            question: "Can I cancel my subscription anytime?",
+            answer: "Yes, you can cancel at any time with no penalties.",
           },
           {
-            question: 'Is there a free tier?',
-            answer: 'Yes! Our Starter plan is completely free.',
+            question: "Is there a free tier?",
+            answer: "Yes! Our Starter plan is completely free.",
           },
         ],
       }}
       cta={{
-        headline: 'Ready to get started?',
-        description: 'Join thousands of teams already building with Acme.',
+        headline: "Ready to get started?",
+        description: "Join thousands of teams already building with Acme.",
         actions: (
           <>
             <Button size="lg">Start Free Trial</Button>
@@ -438,29 +474,41 @@ function LandingPage() {
       }}
       footer={{
         brand: {
-          name: 'Acme Inc',
-          description: 'Building the future of development.',
+          name: "Acme Inc",
+          description: "Building the future of development.",
         },
         linkGroups: [
           {
-            title: 'Product',
+            title: "Product",
             links: [
-              { label: 'Features', href: '#features' },
-              { label: 'Pricing', href: '#pricing' },
+              { label: "Features", href: "#features" },
+              { label: "Pricing", href: "#pricing" },
             ],
           },
           {
-            title: 'Company',
+            title: "Company",
             links: [
-              { label: 'About', href: '/about' },
-              { label: 'Blog', href: '/blog' },
+              { label: "About", href: "/about" },
+              { label: "Blog", href: "/blog" },
             ],
           },
         ],
         socialLinks: [
-          { label: 'Twitter', href: 'https://twitter.com', icon: <Twitter size={20} /> },
-          { label: 'GitHub', href: 'https://github.com', icon: <Github size={20} /> },
-          { label: 'LinkedIn', href: 'https://linkedin.com', icon: <Linkedin size={20} /> },
+          {
+            label: "Twitter",
+            href: "https://twitter.com",
+            icon: <Twitter size={20} />,
+          },
+          {
+            label: "GitHub",
+            href: "https://github.com",
+            icon: <Github size={20} />,
+          },
+          {
+            label: "LinkedIn",
+            href: "https://linkedin.com",
+            icon: <Linkedin size={20} />,
+          },
         ],
         copyright: `${new Date().getFullYear()} Acme Inc. All rights reserved.`,
       }}
@@ -474,27 +522,27 @@ function LandingPage() {
 ```tsx
 <LandingPageTemplate
   hero={{
-    headline: 'Build Products 10x Faster',
-    description: 'The all-in-one platform for modern teams.',
+    headline: "Build Products 10x Faster",
+    description: "The all-in-one platform for modern teams.",
     primaryAction: <Button size="lg">Get Started</Button>,
-    align: 'center',
-    size: 'lg',
+    align: "center",
+    size: "lg",
   }}
   features={{
     items: [
-      { title: 'Fast', description: 'Lightning fast performance' },
-      { title: 'Secure', description: 'Enterprise-grade security' },
-      { title: 'Scalable', description: 'Grows with you' },
+      { title: "Fast", description: "Lightning fast performance" },
+      { title: "Secure", description: "Enterprise-grade security" },
+      { title: "Scalable", description: "Grows with you" },
     ],
     columns: 3,
   }}
   cta={{
-    headline: 'Ready to start?',
+    headline: "Ready to start?",
     actions: <Button size="lg">Sign Up Free</Button>,
   }}
   footer={{
-    brand: { name: 'Acme' },
-    copyright: '2024 Acme Inc.',
+    brand: { name: "Acme" },
+    copyright: "2024 Acme Inc.",
   }}
 />
 ```

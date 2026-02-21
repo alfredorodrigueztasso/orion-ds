@@ -2,5 +2,9 @@
  * Newsletter Component Exports
  */
 
-export { Newsletter } from './Newsletter';
-export type { NewsletterProps, NewsletterLayout, NewsletterSize } from './Newsletter.types';
+export { Newsletter } from "./Newsletter";
+export type {
+  NewsletterProps,
+  NewsletterLayout,
+  NewsletterSize,
+} from "./Newsletter.types";

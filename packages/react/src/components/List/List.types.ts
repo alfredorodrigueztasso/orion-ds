@@ -4,17 +4,17 @@
  * Type definitions for the Orion List component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * List size variants
  */
-export type ListSize = 'sm' | 'md' | 'lg';
+export type ListSize = "sm" | "md" | "lg";
 
 /**
  * List variant
  */
-export type ListVariant = 'default' | 'bordered' | 'divided';
+export type ListVariant = "default" | "bordered" | "divided";
 
 /**
  * List item
@@ -79,7 +79,10 @@ export interface ListItem {
  * />
  * ```
  */
-export interface ListProps extends Omit<HTMLAttributes<HTMLUListElement>, 'onSelect'> {
+export interface ListProps extends Omit<
+  HTMLAttributes<HTMLUListElement>,
+  "onSelect"
+> {
   /**
    * List items
    */

@@ -5,7 +5,7 @@
  * A standalone navigation breadcrumb trail for SaaS applications.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Breadcrumb item
@@ -91,5 +91,5 @@ export interface BreadcrumbsProps extends HTMLAttributes<HTMLElement> {
    * Size variant
    * @default "md"
    */
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
 }

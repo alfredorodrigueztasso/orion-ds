@@ -20,7 +20,7 @@
  * </Navbar>
  * ```
  */
-export { Navbar } from './Navbar';
+export { Navbar } from "./Navbar";
 export type {
   NavbarProps,
   NavbarBrandProps,
@@ -29,4 +29,4 @@ export type {
   NavbarActionsProps,
   NavbarHeight,
   NavbarVariant,
-} from './Navbar.types';
+} from "./Navbar.types";

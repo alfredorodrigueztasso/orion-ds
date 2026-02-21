@@ -22,7 +22,7 @@ _Extends all native `<a>` attributes._
 ### Basic
 
 ```tsx
-import { Link } from '@orion/react';
+import { Link } from "@orion/react";
 
 <Link href="/about">About us</Link>;
 ```
@@ -78,7 +78,7 @@ import { ArrowRight, ExternalLink } from 'lucide-react';
 
 ```tsx
 <p>
-  Read our <Link href="/terms">Terms of Service</Link> and{' '}
+  Read our <Link href="/terms">Terms of Service</Link> and{" "}
   <Link href="/privacy">Privacy Policy</Link> for more information.
 </p>
 ```
@@ -103,8 +103,8 @@ import { ArrowRight, ExternalLink } from 'lucide-react';
 
 ```tsx
 // Wrap with your router's Link component
-import { Link as RouterLink } from 'react-router-dom';
-import { Link } from '@orion/react';
+import { Link as RouterLink } from "react-router-dom";
+import { Link } from "@orion/react";
 
 <Link as={RouterLink} to="/dashboard" variant="brand">
   Go to Dashboard

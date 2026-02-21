@@ -3,8 +3,8 @@
  * Reads registry JSON files from the registry/ directory.
  */
 
-import * as fs from 'node:fs';
-import * as path from 'node:path';
+import * as fs from "node:fs";
+import * as path from "node:path";
 
 export interface RegistryComponent {
   $schema: string;
@@ -82,18 +82,24 @@ export interface TokenInfo {
  * 3. Relative to this package: ../../registry/
  */
 function findRegistryDir(): string {
-  const envPath = process.env['ORION_REGISTRY_PATH'];
+  const envPath = process.env["ORION_REGISTRY_PATH"];
   if (envPath && fs.existsSync(envPath)) return envPath;
 
-  const cwdPath = path.join(process.cwd(), 'registry');
+  const cwdPath = path.join(process.cwd(), "registry");
   if (fs.existsSync(cwdPath)) return cwdPath;
 
   // Relative to this file (packages/mcp/src/ -> ../../registry)
-  const relativePath = path.resolve(import.meta.dirname || '.', '..', '..', '..', 'registry');
+  const relativePath = path.resolve(
+    import.meta.dirname || ".",
+    "..",
+    "..",
+    "..",
+    "registry",
+  );
   if (fs.existsSync(relativePath)) return relativePath;
 
   throw new Error(
-    'Cannot find Orion registry. Set ORION_REGISTRY_PATH or run from the Orion root directory.',
+    "Cannot find Orion registry. Set ORION_REGISTRY_PATH or run from the Orion root directory.",
   );
 }
 
@@ -101,17 +107,23 @@ function findRegistryDir(): string {
  * Find the tokens directory.
  */
 function findTokensDir(): string {
-  const envPath = process.env['ORION_TOKENS_PATH'];
+  const envPath = process.env["ORION_TOKENS_PATH"];
   if (envPath && fs.existsSync(envPath)) return envPath;
 
-  const cwdPath = path.join(process.cwd(), 'tokens');
+  const cwdPath = path.join(process.cwd(), "tokens");
   if (fs.existsSync(cwdPath)) return cwdPath;
 
-  const relativePath = path.resolve(import.meta.dirname || '.', '..', '..', '..', 'tokens');
+  const relativePath = path.resolve(
+    import.meta.dirname || ".",
+    "..",
+    "..",
+    "..",
+    "tokens",
+  );
   if (fs.existsSync(relativePath)) return relativePath;
 
   throw new Error(
-    'Cannot find Orion tokens. Set ORION_TOKENS_PATH or run from the Orion root directory.',
+    "Cannot find Orion tokens. Set ORION_TOKENS_PATH or run from the Orion root directory.",
   );
 }
 
@@ -133,8 +145,8 @@ function getTokensDir(): string {
 
 export function getRegistryIndex(): RegistryIndex {
   if (_index) return _index;
-  const indexPath = path.join(getRegistryDir(), 'index.json');
-  _index = JSON.parse(fs.readFileSync(indexPath, 'utf-8'));
+  const indexPath = path.join(getRegistryDir(), "index.json");
+  _index = JSON.parse(fs.readFileSync(indexPath, "utf-8"));
   return _index!;
 }
 
@@ -142,10 +154,10 @@ export function getComponent(name: string): RegistryComponent | null {
   if (_components.has(name)) return _components.get(name)!;
 
   // Try components, then sections, then templates
-  for (const subdir of ['components', 'sections', 'templates']) {
+  for (const subdir of ["components", "sections", "templates"]) {
     const filePath = path.join(getRegistryDir(), subdir, `${name}.json`);
     if (fs.existsSync(filePath)) {
-      const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+      const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
       _components.set(name, data);
       return data;
     }
@@ -153,7 +165,10 @@ export function getComponent(name: string): RegistryComponent | null {
   return null;
 }
 
-export function listComponents(filter?: { category?: string; type?: string }): Array<{
+export function listComponents(filter?: {
+  category?: string;
+  type?: string;
+}): Array<{
   name: string;
   title: string;
   description: string;
@@ -188,7 +203,8 @@ export function searchComponents(query: string): Array<{
   return index.components
     .map((c) => {
       let score = 0;
-      const _searchText = `${c.name} ${c.title} ${c.description} ${c.category}`.toLowerCase();
+      const _searchText =
+        `${c.name} ${c.title} ${c.description} ${c.category}`.toLowerCase();
 
       for (const term of terms) {
         if (c.name.toLowerCase() === term) score += 10;
@@ -202,30 +218,57 @@ export function searchComponents(query: string): Array<{
       // Semantic matching for common queries
       const semanticMap: Record<string, string[]> = {
         form: [
-          'field',
-          'select',
-          'checkbox',
-          'radio',
-          'switch',
-          'textarea',
-          'slider',
-          'combobox',
-          'search-input',
+          "field",
+          "select",
+          "checkbox",
+          "radio",
+          "switch",
+          "textarea",
+          "slider",
+          "combobox",
+          "search-input",
         ],
-        input: ['field', 'select', 'textarea', 'search-input', 'combobox', 'slider'],
-        dialog: ['modal', 'drawer', 'popover'],
-        popup: ['modal', 'drawer', 'popover', 'dropdown', 'tooltip'],
-        menu: ['dropdown', 'navbar', 'sidebar', 'tabs'],
-        navigation: ['navbar', 'sidebar', 'tabs', 'breadcrumb', 'pagination', 'stepper'],
-        loading: ['spinner', 'skeleton', 'progress-bar'],
-        notification: ['toast', 'alert', 'badge'],
-        data: ['table', 'data-table', 'list', 'stat-card', 'metric-cards'],
-        layout: ['card', 'accordion', 'divider', 'container', 'section'],
-        text: ['link', 'badge', 'chip'],
-        chat: ['chat'],
-        ai: ['chat', 'command-bar'],
-        marketing: ['hero', 'cta', 'features', 'pricing', 'testimonials', 'faq'],
-        dashboard: ['data-table', 'metric-cards', 'sidebar', 'page-header', 'filter-bar'],
+        input: [
+          "field",
+          "select",
+          "textarea",
+          "search-input",
+          "combobox",
+          "slider",
+        ],
+        dialog: ["modal", "drawer", "popover"],
+        popup: ["modal", "drawer", "popover", "dropdown", "tooltip"],
+        menu: ["dropdown", "navbar", "sidebar", "tabs"],
+        navigation: [
+          "navbar",
+          "sidebar",
+          "tabs",
+          "breadcrumb",
+          "pagination",
+          "stepper",
+        ],
+        loading: ["spinner", "skeleton", "progress-bar"],
+        notification: ["toast", "alert", "badge"],
+        data: ["table", "data-table", "list", "stat-card", "metric-cards"],
+        layout: ["card", "accordion", "divider", "container", "section"],
+        text: ["link", "badge", "chip"],
+        chat: ["chat"],
+        ai: ["chat", "command-bar"],
+        marketing: [
+          "hero",
+          "cta",
+          "features",
+          "pricing",
+          "testimonials",
+          "faq",
+        ],
+        dashboard: [
+          "data-table",
+          "metric-cards",
+          "sidebar",
+          "page-header",
+          "filter-bar",
+        ],
       };
 
       for (const term of terms) {
@@ -248,22 +291,26 @@ export function loadTokens(): Map<string, TokenInfo> {
     const tokensDir = getTokensDir();
 
     // Load light theme tokens
-    const lightPath = path.join(tokensDir, 'light.json');
-    const darkPath = path.join(tokensDir, 'dark.json');
-    const primaryPath = path.join(tokensDir, 'primary.json');
+    const lightPath = path.join(tokensDir, "light.json");
+    const darkPath = path.join(tokensDir, "dark.json");
+    const primaryPath = path.join(tokensDir, "primary.json");
 
     if (fs.existsSync(lightPath) && fs.existsSync(darkPath)) {
-      const light = JSON.parse(fs.readFileSync(lightPath, 'utf-8'));
-      const dark = JSON.parse(fs.readFileSync(darkPath, 'utf-8'));
+      const light = JSON.parse(fs.readFileSync(lightPath, "utf-8"));
+      const dark = JSON.parse(fs.readFileSync(darkPath, "utf-8"));
 
       // Build token map from semantic tokens
-      function walkTokens(obj: Record<string, unknown>, prefix: string, category: string): void {
+      function walkTokens(
+        obj: Record<string, unknown>,
+        prefix: string,
+        category: string,
+      ): void {
         for (const [key, value] of Object.entries(obj)) {
           const tokenName = prefix ? `${prefix}-${key}` : key;
-          if (typeof value === 'string') {
+          if (typeof value === "string") {
             const existing = _tokens.get(tokenName);
             if (existing) {
-              existing.values['dark'] = value;
+              existing.values["dark"] = value;
             } else {
               _tokens.set(tokenName, {
                 name: `--${tokenName}`,
@@ -272,52 +319,61 @@ export function loadTokens(): Map<string, TokenInfo> {
                 description: `Semantic token: ${tokenName}`,
               });
             }
-          } else if (typeof value === 'object' && value !== null) {
-            walkTokens(value as Record<string, unknown>, tokenName, category || key);
+          } else if (typeof value === "object" && value !== null) {
+            walkTokens(
+              value as Record<string, unknown>,
+              tokenName,
+              category || key,
+            );
           }
         }
       }
 
       // Start from 'semantic' key if it exists, otherwise walk whole object
-      const lightSemantic = (light as Record<string, unknown>)['semantic'] ?? light;
-      walkTokens(lightSemantic as Record<string, unknown>, '', 'semantic');
+      const lightSemantic =
+        (light as Record<string, unknown>)["semantic"] ?? light;
+      walkTokens(lightSemantic as Record<string, unknown>, "", "semantic");
       // Walk dark to add dark values
       function walkDark(obj: Record<string, unknown>, prefix: string): void {
         for (const [key, value] of Object.entries(obj)) {
           const tokenName = prefix ? `${prefix}-${key}` : key;
-          if (typeof value === 'string') {
+          if (typeof value === "string") {
             const existing = _tokens.get(tokenName);
             if (existing) {
-              existing.values['dark'] = value;
+              existing.values["dark"] = value;
             }
-          } else if (typeof value === 'object' && value !== null) {
+          } else if (typeof value === "object" && value !== null) {
             walkDark(value as Record<string, unknown>, tokenName);
           }
         }
       }
-      const darkSemantic = (dark as Record<string, unknown>)['semantic'] ?? dark;
-      walkDark(darkSemantic as Record<string, unknown>, '');
+      const darkSemantic =
+        (dark as Record<string, unknown>)["semantic"] ?? dark;
+      walkDark(darkSemantic as Record<string, unknown>, "");
     }
 
     // Load primitives
     if (fs.existsSync(primaryPath)) {
-      const primary = JSON.parse(fs.readFileSync(primaryPath, 'utf-8'));
-      function walkPrimitives(obj: Record<string, unknown>, prefix: string): void {
+      const primary = JSON.parse(fs.readFileSync(primaryPath, "utf-8"));
+      function walkPrimitives(
+        obj: Record<string, unknown>,
+        prefix: string,
+      ): void {
         for (const [key, value] of Object.entries(obj)) {
           const tokenName = prefix ? `${prefix}-${key}` : key;
-          if (typeof value === 'string') {
+          if (typeof value === "string") {
             _tokens.set(tokenName, {
               name: `--${tokenName}`,
-              category: 'primitive',
+              category: "primitive",
               values: { default: value },
               description: `Primitive token: ${tokenName}`,
             });
-          } else if (typeof value === 'object' && value !== null) {
+          } else if (typeof value === "object" && value !== null) {
             walkPrimitives(value as Record<string, unknown>, tokenName);
           }
         }
       }
-      walkPrimitives(primary, '');
+      walkPrimitives(primary, "");
     }
   } catch {
     // Tokens loading is optional, server works without it
@@ -329,7 +385,7 @@ export function loadTokens(): Map<string, TokenInfo> {
 export function getToken(name: string): TokenInfo | null {
   const tokens = loadTokens();
   // Try with and without -- prefix
-  const cleanName = name.replace(/^--/, '');
+  const cleanName = name.replace(/^--/, "");
   // Direct lookup
   if (tokens.has(cleanName)) return tokens.get(cleanName)!;
   // Try partial match (e.g., "surface-base" matches key "surface-base")
@@ -341,7 +397,7 @@ export function getToken(name: string): TokenInfo | null {
   // Try prefix match — "interactive-primary" should find "interactive-primary-default", etc.
   const prefixMatches: TokenInfo[] = [];
   for (const [key, value] of tokens) {
-    if (key.startsWith(cleanName + '-') || key === cleanName) {
+    if (key.startsWith(cleanName + "-") || key === cleanName) {
       prefixMatches.push(value);
     }
   }

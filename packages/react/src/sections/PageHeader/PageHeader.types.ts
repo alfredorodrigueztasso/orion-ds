@@ -5,7 +5,7 @@
  * Designed for Product Mode (SaaS dashboards) with breadcrumbs, actions, and tabs.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Breadcrumb item
@@ -55,12 +55,16 @@ export interface PageHeaderTab {
 /**
  * PageHeader size variant
  */
-export type PageHeaderSize = 'sm' | 'md' | 'lg';
+export type PageHeaderSize = "sm" | "md" | "lg";
 
 /**
  * PageHeader visual variant
  */
-export type PageHeaderVariant = 'default' | 'compact' | 'with-tabs' | 'transparent';
+export type PageHeaderVariant =
+  | "default"
+  | "compact"
+  | "with-tabs"
+  | "transparent";
 
 /**
  * PageHeader section props
@@ -78,7 +82,10 @@ export type PageHeaderVariant = 'default' | 'compact' | 'with-tabs' | 'transpare
  * />
  * ```
  */
-export interface PageHeaderProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
+export interface PageHeaderProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "title"
+> {
   /**
    * Page title
    */

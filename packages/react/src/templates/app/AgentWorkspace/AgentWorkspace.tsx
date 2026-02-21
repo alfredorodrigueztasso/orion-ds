@@ -2,10 +2,40 @@
  * AgentWorkspace
  *
  * Full page template for managing AI agents organized in collapsible folders and ungrouped agents.
- * Supports drag & drop between folders, sorting, and folder management.
+ * Supports native HTML5 drag & drop between folders with rich visual feedback, sorting, and folder management.
+ *
+ * ## Drag & Drop System
+ * Uses a hybrid approach combining:
+ * - **@dnd-kit/core**: Provides DragOverlay for visual ghost card while dragging
+ * - **Native HTML5 DnD**: AgentFolder implements native onDragOver/onDrop for responsive feedback
+ *
+ * ## Features
+ * - **Drop target visual feedback**: Folders highlight when dragging agents over them
+ * - **Dynamic insertion indicators**: Blue line shows exact drop position within folder
+ * - **Real-time state updates**: Agents move between folders with state synchronization
+ * - **Automatic cleanup**: Visual states reset after drop or when leaving folder
+ * - **Workspace management**: Dropdown selector for switching between workspaces
+ * - **Folder sorting**: Per-folder sort options
+ * - **Loose agents**: Agents not assigned to any folder
+ *
+ * ## State Management
+ * Parent component should implement:
+ * - `onDrop` handler for each folder to move agents: `(agentId, targetFolderId, insertionIndex?) => void`
+ * - State management for folders and their agents
+ * - Optional: workspace switching, folder CRUD operations
  *
  * @example
  * ```tsx
+ * const [folders, setFolders] = useState(initialFolders);
+ *
+ * const handleDrop = (agentId: string, targetFolderId: string, index?: number) => {
+ *   setFolders(prev => {
+ *     // Find source folder containing agent
+ *     // Remove agent from source, add to target at specified index
+ *     // Update agentCount in both folders
+ *   });
+ * };
+ *
  * <AgentWorkspace
  *   navbar={{
  *     logo: <img src="/logo.svg" alt="Logo" />,
@@ -15,16 +45,14 @@
  *   }}
  *   pageHeader={{
  *     title: 'AI Agents',
- *     icon: <Bot size={24} />,
- *     actions: (
- *       <>
- *         <Button onClick={onCreateFolder}>New Folder</Button>
- *         <Button variant="primary" onClick={onCreateAgent}>New Agent</Button>
- *       </>
- *     )
+ *     icon: <Bot size={24} />
  *   }}
- *   folders={folders}
+ *   folders={folders.map(folder => ({
+ *     ...folder,
+ *     onDrop: (agentId, folderId, index) => handleDrop(agentId, folderId, index)
+ *   }))}
  *   looseAgents={agentsWithoutFolder}
+ *   enableDragDrop={true}
  * />
  * ```
  */
@@ -43,16 +71,17 @@ import { PageHeader } from "../../../sections/PageHeader";
 import { AgentFolder } from "../../../sections/AgentFolder";
 import { AgentCard } from "../../../components/AgentCard";
 import { Button } from "../../../components/Button";
-import { Dropdown } from "../../../components/Dropdown";
+import { Popover } from "../../../components/Popover";
 import { Avatar } from "../../../components/Avatar";
 import { Divider } from "../../../components/Divider";
 import {
   FolderPlus,
   Plus,
-  Bot,
   ChevronDown,
   Sparkles,
-  MoreHorizontal,
+  Settings,
+  Users,
+  Bot,
 } from "lucide-react";
 import styles from "./AgentWorkspace.module.css";
 
@@ -72,7 +101,9 @@ export const AgentWorkspace: React.FC<AgentWorkspaceProps> = ({
 }) => {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [overId, setOverId] = useState<string | null>(null);
-  const [completedFolderId, setCompletedFolderId] = useState<string | null>(null);
+  const [completedFolderId, setCompletedFolderId] = useState<string | null>(
+    null,
+  );
 
   // Drag & drop sensors
   const sensors = useSensors(
@@ -121,9 +152,9 @@ export const AgentWorkspace: React.FC<AgentWorkspaceProps> = ({
       (folder) => folder.id === targetFolderId,
     );
 
-    // If dropping into a different folder, call the onDrop handler
+    // If dropping into a different folder, set visual feedback
+    // The actual drop handler is managed by AgentFolder's native onDrop with insertion index
     if (sourceFolder && targetFolder && sourceFolder.id !== targetFolder.id) {
-      targetFolder.onDrop?.(agentId, targetFolderId);
       // Set completed feedback
       setCompletedFolderId(targetFolderId);
       setTimeout(() => setCompletedFolderId(null), 600);
@@ -132,44 +163,6 @@ export const AgentWorkspace: React.FC<AgentWorkspaceProps> = ({
     setActiveId(null);
     setOverId(null);
   };
-
-  // Build workspace dropdown items
-  const workspaceItems = navbar?.workspaces?.map((workspace) => ({
-    id: workspace.id,
-    label: workspace.name,
-    onClick: () => navbar.onWorkspaceChange?.(workspace.id),
-  }));
-
-  // More actions items — desktop: Invitar + Configuración only
-  const moreActionsDesktop = [
-    {
-      id: "invite",
-      label: "Invitar participantes",
-      onClick: onInviteParticipants || (() => {}),
-    },
-    {
-      id: "settings",
-      label: "Configuración",
-      onClick: onSettings || (() => {}),
-    },
-  ];
-
-  // More actions items — mobile: adds Nueva carpeta at the top
-  const moreActionsMobile = [
-    ...(onCreateFolder
-      ? [{ id: "new-folder", label: "Nueva carpeta", onClick: onCreateFolder }]
-      : []),
-    {
-      id: "invite",
-      label: "Invitar participantes",
-      onClick: onInviteParticipants || (() => {}),
-    },
-    {
-      id: "settings",
-      label: "Configuración",
-      onClick: onSettings || (() => {}),
-    },
-  ];
 
   // Build page header actions with create buttons
   const headerActions = (
@@ -194,36 +187,6 @@ export const AgentWorkspace: React.FC<AgentWorkspaceProps> = ({
           Nuevo agente
         </Button>
       )}
-      {/* Desktop: more actions without Nueva carpeta */}
-      <div className={styles.moreActionsDesktop}>
-        <Dropdown
-          trigger={
-            <Button
-              variant="ghost"
-              iconOnly
-              icon={<MoreHorizontal size={20} />}
-              aria-label="Más acciones"
-            />
-          }
-          items={moreActionsDesktop}
-          placement="bottom-end"
-        />
-      </div>
-      {/* Mobile: more actions including Nueva carpeta */}
-      <div className={styles.moreActionsMobile}>
-        <Dropdown
-          trigger={
-            <Button
-              variant="ghost"
-              iconOnly
-              icon={<MoreHorizontal size={20} />}
-              aria-label="Más acciones"
-            />
-          }
-          items={moreActionsMobile}
-          placement="bottom-end"
-        />
-      </div>
       {pageHeader?.actions}
     </div>
   );
@@ -235,21 +198,147 @@ export const AgentWorkspace: React.FC<AgentWorkspaceProps> = ({
       {/* Navbar */}
       {navbar && (
         <Navbar sticky bordered>
-          <Navbar.Brand href="#">
-            {navbar.logo || <Bot size={24} />}
-          </Navbar.Brand>
-
           {navbar.workspaces && navbar.workspaces.length > 0 && (
             <div className={styles.workspaceSelector}>
-              <Dropdown
+              <Popover
                 trigger={
                   <button className={styles.workspaceButton}>
+                    {(navbar.workspaceAvatar ||
+                      navbar.workspaceIcon ||
+                      navbar.workspaceInitials) && (
+                      <Avatar
+                        size="xs"
+                        src={navbar.workspaceAvatar}
+                        icon={navbar.workspaceIcon}
+                        initials={navbar.workspaceInitials}
+                      />
+                    )}
                     {navbar.workspaceName || "Workspace"}
                     <ChevronDown size={16} />
                   </button>
                 }
-                items={workspaceItems}
+                content={
+                  <div className={styles.workspacePanel}>
+                    {/* Header: workspace count */}
+                    {navbar.workspaces.length > 0 && (
+                      <div className={styles.workspacePanelCount}>
+                        {navbar.workspaces.length} Organizaciones
+                      </div>
+                    )}
+
+                    {/* Active workspace section */}
+                    <div className={styles.workspacePanelActive}>
+                      <Avatar
+                        size="lg"
+                        src={navbar.workspaceAvatar}
+                        icon={navbar.workspaceIcon}
+                        initials={navbar.workspaceInitials}
+                      />
+                      <div className={styles.workspacePanelInfo}>
+                        <div className={styles.workspacePanelName}>
+                          {navbar.workspaceName || "Workspace"}
+                        </div>
+                        {navbar.workspaceRole && (
+                          <div className={styles.workspacePanelMeta}>
+                            {navbar.workspaceRole}
+                          </div>
+                        )}
+                        {navbar.workspaceParticipantCount !== undefined && (
+                          <div className={styles.workspacePanelMeta}>
+                            {navbar.workspaceParticipantCount} participantes
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Action buttons */}
+                    {(navbar.onWorkspaceSettings ||
+                      navbar.onWorkspaceInvite) && (
+                      <div className={styles.workspacePanelActions}>
+                        {navbar.onWorkspaceSettings && (
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            icon={<Settings size={16} />}
+                            onClick={navbar.onWorkspaceSettings}
+                          >
+                            Configuración
+                          </Button>
+                        )}
+                        {navbar.onWorkspaceInvite && (
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            icon={<Users size={16} />}
+                            onClick={navbar.onWorkspaceInvite}
+                          >
+                            Participantes
+                          </Button>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Divider and list of other workspaces */}
+                    {navbar.workspaces.length > 1 && (
+                      <>
+                        <div className={styles.workspacePanelDivider}>
+                          <Divider />
+                        </div>
+
+                        <div className={styles.workspacePanelList}>
+                          {navbar.workspaces
+                            .filter(
+                              (ws) =>
+                                !navbar.activeWorkspaceId ||
+                                ws.id !== navbar.activeWorkspaceId,
+                            )
+                            .map((workspace) => (
+                              <div
+                                key={workspace.id}
+                                className={styles.workspaceListItem}
+                                onClick={() =>
+                                  navbar.onWorkspaceChange?.(workspace.id)
+                                }
+                              >
+                                <Avatar
+                                  size="xs"
+                                  src={workspace.avatar}
+                                  icon={workspace.icon}
+                                  initials={workspace.initials}
+                                />
+                                <div className={styles.workspaceListItemInfo}>
+                                  <div className={styles.workspaceListItemName}>
+                                    {workspace.name}
+                                  </div>
+                                  {workspace.role && (
+                                    <div
+                                      className={styles.workspaceListItemRole}
+                                    >
+                                      {workspace.role}
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+                            ))}
+                        </div>
+                      </>
+                    )}
+
+                    {/* Footer: create workspace */}
+                    <div className={styles.workspacePanelFooter}>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        icon={<Plus size={16} />}
+                        onClick={navbar.onCreateWorkspace}
+                      >
+                        Nueva organización
+                      </Button>
+                    </div>
+                  </div>
+                }
                 placement="bottom-start"
+                showArrow={false}
               />
             </div>
           )}
@@ -334,27 +423,30 @@ export const AgentWorkspace: React.FC<AgentWorkspaceProps> = ({
           >
             <div className={styles.folders}>
               {folders.map((folder) => (
-                <div key={folder.id} id={folder.id} data-folder-id={folder.id}>
-                  <AgentFolder
-                    {...folder}
-                    isDropTarget={overId === folder.id}
-                    isDropCompleted={completedFolderId === folder.id}
-                    agents={folder.agents.map((agent) => ({
-                      ...agent,
-                      draggable: true,
-                      isDragging: agent.id === activeId,
-                      availableFolders: folders
-                        ?.filter((f) => f.id !== folder.id)
-                        .map((f) => ({ id: f.id, title: f.title })),
-                      onMoveToFolder: (targetFolderId: string) => {
-                        const targetFolder = folders?.find(
-                          (f) => f.id === targetFolderId,
-                        );
-                        targetFolder?.onDrop?.(agent.id, targetFolderId);
-                      },
-                    }))}
-                  />
-                </div>
+                <AgentFolder
+                  key={folder.id}
+                  {...folder}
+                  isDropTarget={overId === folder.id}
+                  isDropCompleted={completedFolderId === folder.id}
+                  onDrop={(agentId, targetFolderId, insertionIndex) => {
+                    // Call the parent handler to move the agent
+                    folder.onDrop?.(agentId, targetFolderId, insertionIndex);
+                  }}
+                  agents={folder.agents.map((agent) => ({
+                    ...agent,
+                    draggable: true,
+                    isDragging: agent.id === activeId,
+                    availableFolders: folders
+                      ?.filter((f) => f.id !== folder.id)
+                      .map((f) => ({ id: f.id, title: f.title })),
+                    onMoveToFolder: (targetFolderId: string) => {
+                      const targetFolder = folders?.find(
+                        (f) => f.id === targetFolderId,
+                      );
+                      targetFolder?.onDrop?.(agent.id, targetFolderId);
+                    },
+                  }))}
+                />
               ))}
             </div>
 

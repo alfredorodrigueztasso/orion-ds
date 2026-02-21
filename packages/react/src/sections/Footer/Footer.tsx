@@ -20,19 +20,19 @@
  * ```
  */
 
-import { forwardRef } from 'react';
-import type { FooterProps, FooterLink } from './Footer.types';
-import { Section } from '../Section';
-import { Container } from '../Container';
-import styles from './Footer.module.css';
+import { forwardRef } from "react";
+import type { FooterProps, FooterLink } from "./Footer.types";
+import { Section } from "../Section";
+import { Container } from "../Container";
+import styles from "./Footer.module.css";
 
 const FooterLinkItem = ({ link }: { link: FooterLink }) => (
   <li className={styles.linkItem}>
     <a
       href={link.href}
       className={styles.link}
-      target={link.external ? '_blank' : undefined}
-      rel={link.external ? 'noopener noreferrer' : undefined}
+      target={link.external ? "_blank" : undefined}
+      rel={link.external ? "noopener noreferrer" : undefined}
     >
       {link.label}
     </a>
@@ -48,8 +48,8 @@ export const Footer = forwardRef<HTMLElement, FooterProps>(
       newsletter,
       copyright,
       legalLinks,
-      variant = 'default',
-      background = 'subtle',
+      variant = "default",
+      background = "subtle",
       className,
       ...rest
     },
@@ -57,11 +57,12 @@ export const Footer = forwardRef<HTMLElement, FooterProps>(
   ) => {
     const currentYear = new Date().getFullYear();
     const copyrightText =
-      copyright || `© ${currentYear} ${brand?.name || 'Company'}. All rights reserved.`;
+      copyright ||
+      `© ${currentYear} ${brand?.name || "Company"}. All rights reserved.`;
 
     const classNames = [styles.footer, styles[`variant-${variant}`], className]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
       <Section
@@ -80,7 +81,9 @@ export const Footer = forwardRef<HTMLElement, FooterProps>(
             {brand && (
               <div className={styles.brandColumn}>
                 <div className={styles.brandHeader}>
-                  {brand.logo && <span className={styles.logo}>{brand.logo}</span>}
+                  {brand.logo && (
+                    <span className={styles.logo}>{brand.logo}</span>
+                  )}
                   <span className={styles.brandName}>{brand.name}</span>
                 </div>
 
@@ -89,22 +92,24 @@ export const Footer = forwardRef<HTMLElement, FooterProps>(
                 )}
 
                 {/* Social links (in brand column for default variant) */}
-                {socialLinks && socialLinks.length > 0 && variant === 'default' && (
-                  <div className={styles.socialLinks}>
-                    {socialLinks.map((social) => (
-                      <a
-                        key={social.label}
-                        href={social.href}
-                        className={styles.socialLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={social.label}
-                      >
-                        {social.icon}
-                      </a>
-                    ))}
-                  </div>
-                )}
+                {socialLinks &&
+                  socialLinks.length > 0 &&
+                  variant === "default" && (
+                    <div className={styles.socialLinks}>
+                      {socialLinks.map((social) => (
+                        <a
+                          key={social.label}
+                          href={social.href}
+                          className={styles.socialLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={social.label}
+                        >
+                          {social.icon}
+                        </a>
+                      ))}
+                    </div>
+                  )}
               </div>
             )}
 
@@ -125,7 +130,9 @@ export const Footer = forwardRef<HTMLElement, FooterProps>(
             )}
 
             {/* Newsletter */}
-            {newsletter && <div className={styles.newsletter}>{newsletter}</div>}
+            {newsletter && (
+              <div className={styles.newsletter}>{newsletter}</div>
+            )}
           </div>
 
           {/* Bottom bar */}
@@ -139,8 +146,8 @@ export const Footer = forwardRef<HTMLElement, FooterProps>(
                     <a
                       href={link.href}
                       className={styles.legalLink}
-                      target={link.external ? '_blank' : undefined}
-                      rel={link.external ? 'noopener noreferrer' : undefined}
+                      target={link.external ? "_blank" : undefined}
+                      rel={link.external ? "noopener noreferrer" : undefined}
                     >
                       {link.label}
                     </a>
@@ -153,7 +160,7 @@ export const Footer = forwardRef<HTMLElement, FooterProps>(
             )}
 
             {/* Social links (in bottom bar for minimal/centered variants) */}
-            {socialLinks && socialLinks.length > 0 && variant !== 'default' && (
+            {socialLinks && socialLinks.length > 0 && variant !== "default" && (
               <div className={styles.socialLinks}>
                 {socialLinks.map((social) => (
                   <a
@@ -176,4 +183,4 @@ export const Footer = forwardRef<HTMLElement, FooterProps>(
   },
 );
 
-Footer.displayName = 'Footer';
+Footer.displayName = "Footer";

@@ -31,9 +31,9 @@
  * ```
  */
 
-import React, { useState, useRef, useCallback } from 'react';
-import type { TabsProps } from './Tabs.types';
-import styles from './Tabs.module.css';
+import React, { useState, useRef, useCallback } from "react";
+import type { TabsProps } from "./Tabs.types";
+import styles from "./Tabs.module.css";
 
 export const Tabs: React.FC<TabsProps> = ({
   tabs,
@@ -47,7 +47,9 @@ export const Tabs: React.FC<TabsProps> = ({
   const isControlled = controlledActiveTab !== undefined;
 
   // Internal state for uncontrolled mode
-  const [internalActiveTab, setInternalActiveTab] = useState(defaultTab || tabs[0]?.id || '');
+  const [internalActiveTab, setInternalActiveTab] = useState(
+    defaultTab || tabs[0]?.id || "",
+  );
 
   // Refs for tab buttons
   const tabRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
@@ -75,7 +77,9 @@ export const Tabs: React.FC<TabsProps> = ({
       if (enabledTabs.length === 0) return;
 
       // Wrap around
-      const wrappedIndex = ((index % enabledTabs.length) + enabledTabs.length) % enabledTabs.length;
+      const wrappedIndex =
+        ((index % enabledTabs.length) + enabledTabs.length) %
+        enabledTabs.length;
       const targetTab = enabledTabs[wrappedIndex];
       if (!targetTab) return;
       const tabElement = tabRefs.current.get(targetTab.id);
@@ -88,22 +92,24 @@ export const Tabs: React.FC<TabsProps> = ({
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent, currentTabId: string) => {
       const enabledTabs = getEnabledTabs();
-      const currentIndex = enabledTabs.findIndex((tab) => tab.id === currentTabId);
+      const currentIndex = enabledTabs.findIndex(
+        (tab) => tab.id === currentTabId,
+      );
 
       switch (event.key) {
-        case 'ArrowLeft':
+        case "ArrowLeft":
           event.preventDefault();
           focusTabByIndex(currentIndex - 1);
           break;
-        case 'ArrowRight':
+        case "ArrowRight":
           event.preventDefault();
           focusTabByIndex(currentIndex + 1);
           break;
-        case 'Home':
+        case "Home":
           event.preventDefault();
           focusTabByIndex(0);
           break;
-        case 'End':
+        case "End":
           event.preventDefault();
           focusTabByIndex(enabledTabs.length - 1);
           break;
@@ -115,9 +121,13 @@ export const Tabs: React.FC<TabsProps> = ({
   // Find active tab content
   const activeTabData = tabs.find((tab) => tab.id === activeTab);
 
-  const containerClasses = [styles.container, fullWidth && styles.fullWidth, className]
+  const containerClasses = [
+    styles.container,
+    fullWidth && styles.fullWidth,
+    className,
+  ]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
 
   return (
     <div className={containerClasses}>
@@ -126,7 +136,9 @@ export const Tabs: React.FC<TabsProps> = ({
         {tabs.map((tab) => {
           const isActive = tab.id === activeTab;
 
-          const tabClasses = [styles.tab, isActive && styles.active].filter(Boolean).join(' ');
+          const tabClasses = [styles.tab, isActive && styles.active]
+            .filter(Boolean)
+            .join(" ");
 
           return (
             <button
@@ -156,7 +168,9 @@ export const Tabs: React.FC<TabsProps> = ({
               <span>{tab.label}</span>
 
               {/* Badge */}
-              {tab.badge !== undefined && <span className={styles.badge}>{tab.badge}</span>}
+              {tab.badge !== undefined && (
+                <span className={styles.badge}>{tab.badge}</span>
+              )}
             </button>
           );
         })}
@@ -178,4 +192,4 @@ export const Tabs: React.FC<TabsProps> = ({
   );
 };
 
-Tabs.displayName = 'Tabs';
+Tabs.displayName = "Tabs";

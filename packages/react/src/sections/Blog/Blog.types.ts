@@ -4,7 +4,7 @@
  * Type definitions for the Orion Blog/ArticleList section component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Blog article item
@@ -67,7 +67,7 @@ export interface BlogArticle {
 /**
  * Blog layout variants
  */
-export type BlogLayout = 'grid' | 'list' | 'featured';
+export type BlogLayout = "grid" | "list" | "featured";
 
 /**
  * Blog section props
@@ -91,7 +91,7 @@ export type BlogLayout = 'grid' | 'list' | 'featured';
  * />
  * ```
  */
-export interface BlogProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
+export interface BlogProps extends Omit<HTMLAttributes<HTMLElement>, "title"> {
   /**
    * Optional eyebrow text
    */
@@ -152,7 +152,7 @@ export interface BlogProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
    * Background style
    * @default 'base'
    */
-  background?: 'base' | 'subtle' | 'none';
+  background?: "base" | "subtle" | "none";
 
   /**
    * View all link

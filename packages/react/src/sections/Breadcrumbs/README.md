@@ -5,13 +5,13 @@
 ## Quick Start
 
 ```tsx
-import { Breadcrumbs } from '@orion/react';
+import { Breadcrumbs } from "@orion/react";
 
 <Breadcrumbs
   items={[
-    { id: 'home', label: 'Home', href: '/' },
-    { id: 'projects', label: 'Projects', href: '/projects' },
-    { id: 'alpha', label: 'Project Alpha' },
+    { id: "home", label: "Home", href: "/" },
+    { id: "projects", label: "Projects", href: "/projects" },
+    { id: "alpha", label: "Project Alpha" },
   ]}
 />;
 ```
@@ -40,7 +40,7 @@ interface BreadcrumbsProps {
   // Display
   separator?: ReactNode; // Custom separator - default: "/"
   showHomeIcon?: boolean; // Show home icon - default: false
-  size?: 'sm' | 'md' | 'lg'; // Size variant - default: 'md'
+  size?: "sm" | "md" | "lg"; // Size variant - default: 'md'
 
   // Collapsing
   maxItems?: number; // Max items before collapse
@@ -66,9 +66,9 @@ interface BreadcrumbItem {
 ```tsx
 <Breadcrumbs
   items={[
-    { id: 'home', label: 'Home', href: '/' },
-    { id: 'settings', label: 'Settings', href: '/settings' },
-    { id: 'profile', label: 'Profile' }, // Current page (no href)
+    { id: "home", label: "Home", href: "/" },
+    { id: "settings", label: "Settings", href: "/settings" },
+    { id: "profile", label: "Profile" }, // Current page (no href)
   ]}
 />
 ```
@@ -79,9 +79,9 @@ interface BreadcrumbItem {
 <Breadcrumbs
   showHomeIcon
   items={[
-    { id: 'home', label: 'Home', href: '/' },
-    { id: 'docs', label: 'Documentation', href: '/docs' },
-    { id: 'api', label: 'API Reference' },
+    { id: "home", label: "Home", href: "/" },
+    { id: "docs", label: "Documentation", href: "/docs" },
+    { id: "api", label: "API Reference" },
   ]}
 />
 ```
@@ -122,12 +122,16 @@ Automatically collapse breadcrumbs when exceeding `maxItems`.
   itemsBeforeCollapse={1}
   itemsAfterCollapse={2}
   items={[
-    { id: '1', label: 'Home', href: '/' },
-    { id: '2', label: 'Products', href: '/products' },
-    { id: '3', label: 'Electronics', href: '/products/electronics' },
-    { id: '4', label: 'Computers', href: '/products/electronics/computers' },
-    { id: '5', label: 'Laptops', href: '/products/electronics/computers/laptops' },
-    { id: '6', label: 'MacBook Pro' },
+    { id: "1", label: "Home", href: "/" },
+    { id: "2", label: "Products", href: "/products" },
+    { id: "3", label: "Electronics", href: "/products/electronics" },
+    { id: "4", label: "Computers", href: "/products/electronics/computers" },
+    {
+      id: "5",
+      label: "Laptops",
+      href: "/products/electronics/computers/laptops",
+    },
+    { id: "6", label: "MacBook Pro" },
   ]}
 />
 // Renders: Home / ... / Computers / Laptops / MacBook Pro
@@ -160,13 +164,18 @@ Automatically collapse breadcrumbs when exceeding `maxItems`.
 ## With Icons
 
 ```tsx
-import { Home, Folder, File } from 'lucide-react';
+import { Home, Folder, File } from "lucide-react";
 
 <Breadcrumbs
   items={[
-    { id: 'home', label: 'Home', href: '/', icon: <Home size={16} /> },
-    { id: 'projects', label: 'Projects', href: '/projects', icon: <Folder size={16} /> },
-    { id: 'doc', label: 'Document.pdf', icon: <File size={16} /> },
+    { id: "home", label: "Home", href: "/", icon: <Home size={16} /> },
+    {
+      id: "projects",
+      label: "Projects",
+      href: "/projects",
+      icon: <Folder size={16} />,
+    },
+    { id: "doc", label: "Document.pdf", icon: <File size={16} /> },
   ]}
 />;
 ```
@@ -178,17 +187,33 @@ import { Home, Folder, File } from 'lucide-react';
 ### SaaS Dashboard Breadcrumbs
 
 ```tsx
-import { Breadcrumbs } from '@orion/react';
-import { Home, Settings, User } from 'lucide-react';
+import { Breadcrumbs } from "@orion/react";
+import { Home, Settings, User } from "lucide-react";
 
 function DashboardBreadcrumbs({ currentPage }) {
   const items = [
-    { id: 'home', label: 'Dashboard', href: '/dashboard', icon: <Home size={16} /> },
-    { id: 'settings', label: 'Settings', href: '/settings', icon: <Settings size={16} /> },
-    { id: 'profile', label: 'Profile', icon: <User size={16} /> },
+    {
+      id: "home",
+      label: "Dashboard",
+      href: "/dashboard",
+      icon: <Home size={16} />,
+    },
+    {
+      id: "settings",
+      label: "Settings",
+      href: "/settings",
+      icon: <Settings size={16} />,
+    },
+    { id: "profile", label: "Profile", icon: <User size={16} /> },
   ];
 
-  return <Breadcrumbs items={items} separator={<ChevronRight size={14} />} size="sm" />;
+  return (
+    <Breadcrumbs
+      items={items}
+      separator={<ChevronRight size={14} />}
+      size="sm"
+    />
+  );
 }
 ```
 
@@ -199,12 +224,12 @@ function DashboardBreadcrumbs({ currentPage }) {
   showHomeIcon
   maxItems={5}
   items={[
-    { id: 'home', label: 'Home', href: '/' },
-    { id: 'shop', label: 'Shop', href: '/shop' },
-    { id: 'clothing', label: 'Clothing', href: '/shop/clothing' },
-    { id: 'women', label: 'Women', href: '/shop/clothing/women' },
-    { id: 'dresses', label: 'Dresses', href: '/shop/clothing/women/dresses' },
-    { id: 'product', label: 'Summer Floral Dress' },
+    { id: "home", label: "Home", href: "/" },
+    { id: "shop", label: "Shop", href: "/shop" },
+    { id: "clothing", label: "Clothing", href: "/shop/clothing" },
+    { id: "women", label: "Women", href: "/shop/clothing/women" },
+    { id: "dresses", label: "Dresses", href: "/shop/clothing/women/dresses" },
+    { id: "product", label: "Summer Floral Dress" },
   ]}
 />
 ```
@@ -214,9 +239,9 @@ function DashboardBreadcrumbs({ currentPage }) {
 ```tsx
 <Breadcrumbs
   items={[
-    { id: 'docs', label: 'Docs', href: '/docs' },
-    { id: 'components', label: 'Components', href: '/docs/components' },
-    { id: 'button', label: 'Button' },
+    { id: "docs", label: "Docs", href: "/docs" },
+    { id: "components", label: "Components", href: "/docs/components" },
+    { id: "button", label: "Button" },
   ]}
   separator="/"
 />
@@ -225,7 +250,7 @@ function DashboardBreadcrumbs({ currentPage }) {
 ### With Click Handlers (SPA Navigation)
 
 ```tsx
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 function BreadcrumbNav() {
   const navigate = useNavigate();
@@ -233,9 +258,9 @@ function BreadcrumbNav() {
   return (
     <Breadcrumbs
       items={[
-        { id: 'home', label: 'Home', onClick: () => navigate('/') },
-        { id: 'users', label: 'Users', onClick: () => navigate('/users') },
-        { id: 'user', label: 'John Doe' },
+        { id: "home", label: "Home", onClick: () => navigate("/") },
+        { id: "users", label: "Users", onClick: () => navigate("/users") },
+        { id: "user", label: "John Doe" },
       ]}
     />
   );
@@ -255,12 +280,12 @@ function BreadcrumbNav() {
 ```tsx
 // Good: Descriptive labels
 {
-  label: 'User Settings';
+  label: "User Settings";
 }
 
 // Avoid: Abbreviated labels without context
 {
-  label: 'Usr Set';
+  label: "Usr Set";
 }
 ```
 

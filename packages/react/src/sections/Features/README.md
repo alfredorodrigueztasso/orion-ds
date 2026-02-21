@@ -5,17 +5,25 @@
 ## Quick Start
 
 ```tsx
-import { Features, Badge } from '@orion/react';
-import { Zap, Shield, Code } from 'lucide-react';
+import { Features, Badge } from "@orion/react";
+import { Zap, Shield, Code } from "lucide-react";
 
 <Features
   eyebrow={<Badge>Features</Badge>}
   title="Everything you need"
   description="Powerful features designed for modern apps"
   items={[
-    { icon: <Zap size={24} />, title: 'Fast', description: 'Lightning speed' },
-    { icon: <Shield size={24} />, title: 'Secure', description: 'Bank-grade security' },
-    { icon: <Code size={24} />, title: 'Developer First', description: 'Built for devs' },
+    { icon: <Zap size={24} />, title: "Fast", description: "Lightning speed" },
+    {
+      icon: <Shield size={24} />,
+      title: "Secure",
+      description: "Bank-grade security",
+    },
+    {
+      icon: <Code size={24} />,
+      title: "Developer First",
+      description: "Built for devs",
+    },
   ]}
   columns={3}
 />;
@@ -51,7 +59,7 @@ interface FeaturesProps {
   centered?: boolean; // Center header text - default: true
 
   // Styling
-  background?: 'base' | 'subtle' | 'none'; // default: 'subtle'
+  background?: "base" | "subtle" | "none"; // default: 'subtle'
   interactive?: boolean; // Enable hover effects - default: true
 }
 
@@ -76,8 +84,16 @@ Best for larger feature descriptions or fewer items.
 <Features
   title="Core Features"
   items={[
-    { icon: <Zap />, title: 'Fast', description: 'Detailed description here...' },
-    { icon: <Shield />, title: 'Secure', description: 'Detailed description here...' },
+    {
+      icon: <Zap />,
+      title: "Fast",
+      description: "Detailed description here...",
+    },
+    {
+      icon: <Shield />,
+      title: "Secure",
+      description: "Detailed description here...",
+    },
   ]}
   columns={2}
 />
@@ -188,8 +204,8 @@ import { Zap } from 'lucide-react';
 ### SaaS Features Grid
 
 ```tsx
-import { Features, Badge } from '@orion/react';
-import { Zap, Shield, Cloud, Users, BarChart, Lock } from 'lucide-react';
+import { Features, Badge } from "@orion/react";
+import { Zap, Shield, Cloud, Users, BarChart, Lock } from "lucide-react";
 
 <Features
   eyebrow={<Badge variant="brand">Features</Badge>}
@@ -198,33 +214,33 @@ import { Zap, Shield, Cloud, Users, BarChart, Lock } from 'lucide-react';
   items={[
     {
       icon: <Zap size={24} />,
-      title: 'Lightning Fast',
-      description: 'Sub-second response times with global CDN.',
+      title: "Lightning Fast",
+      description: "Sub-second response times with global CDN.",
     },
     {
       icon: <Shield size={24} />,
-      title: 'Enterprise Security',
-      description: 'SOC 2 Type II certified with end-to-end encryption.',
+      title: "Enterprise Security",
+      description: "SOC 2 Type II certified with end-to-end encryption.",
     },
     {
       icon: <Cloud size={24} />,
-      title: 'Auto-Scaling',
-      description: 'Handles traffic spikes automatically.',
+      title: "Auto-Scaling",
+      description: "Handles traffic spikes automatically.",
     },
     {
       icon: <Users size={24} />,
-      title: 'Team Collaboration',
-      description: 'Real-time editing with role-based access.',
+      title: "Team Collaboration",
+      description: "Real-time editing with role-based access.",
     },
     {
       icon: <BarChart size={24} />,
-      title: 'Advanced Analytics',
-      description: 'Insights that drive better decisions.',
+      title: "Advanced Analytics",
+      description: "Insights that drive better decisions.",
     },
     {
       icon: <Lock size={24} />,
-      title: 'SSO Ready',
-      description: 'SAML and OAuth support out of the box.',
+      title: "SSO Ready",
+      description: "SAML and OAuth support out of the box.",
     },
   ]}
   columns={3}
@@ -239,21 +255,21 @@ import { Zap, Shield, Cloud, Users, BarChart, Lock } from 'lucide-react';
   items={[
     {
       icon: <Sparkles size={24} />,
-      title: 'AI Assistant',
-      description: 'Get smart suggestions as you type.',
-      badge: 'New',
+      title: "AI Assistant",
+      description: "Get smart suggestions as you type.",
+      badge: "New",
     },
     {
       icon: <Rocket size={24} />,
-      title: 'Instant Deploy',
-      description: 'One-click deployments to production.',
-      badge: 'Popular',
+      title: "Instant Deploy",
+      description: "One-click deployments to production.",
+      badge: "Popular",
     },
     {
       icon: <Globe size={24} />,
-      title: 'Edge Functions',
-      description: 'Run code at the edge, globally.',
-      badge: 'Beta',
+      title: "Edge Functions",
+      description: "Run code at the edge, globally.",
+      badge: "Beta",
     },
   ]}
   columns={3}
@@ -266,10 +282,13 @@ import { Zap, Shield, Cloud, Users, BarChart, Lock } from 'lucide-react';
 <Features
   title="Simple Pricing Includes"
   items={[
-    { title: 'Unlimited Projects', description: 'No limits on what you build.' },
-    { title: 'Priority Support', description: 'Get help when you need it.' },
-    { title: '99.9% Uptime SLA', description: 'Reliable infrastructure.' },
-    { title: 'Custom Domains', description: 'Your brand, your domain.' },
+    {
+      title: "Unlimited Projects",
+      description: "No limits on what you build.",
+    },
+    { title: "Priority Support", description: "Get help when you need it." },
+    { title: "99.9% Uptime SLA", description: "Reliable infrastructure." },
+    { title: "Custom Domains", description: "Your brand, your domain." },
   ]}
   columns={4}
   interactive={false}

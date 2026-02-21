@@ -16,7 +16,7 @@
  * </Command>
  * ```
  */
-export { Command } from './Command';
+export { Command } from "./Command";
 export type {
   CommandProps,
   CommandDialogProps,
@@ -27,4 +27,4 @@ export type {
   CommandItemProps,
   CommandSeparatorProps,
   CommandShortcutProps,
-} from './Command.types';
+} from "./Command.types";

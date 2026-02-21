@@ -1,6 +1,9 @@
-import type { HTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 
-export interface CollapsibleProps extends Omit<HTMLAttributes<HTMLDivElement>, 'defaultValue'> {
+export interface CollapsibleProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "defaultValue"
+> {
   /** Controlled open state. */
   open?: boolean;
   /** Default open state for uncontrolled usage. */

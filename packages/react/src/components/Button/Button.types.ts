@@ -7,7 +7,7 @@
  * @see {@link ./README.md} for full documentation
  */
 
-import type { ButtonHTMLAttributes, ReactNode } from 'react';
+import type { ButtonHTMLAttributes, ReactNode } from "react";
 
 /**
  * Button visual variants - each has specific semantic meaning.
@@ -40,13 +40,13 @@ import type { ButtonHTMLAttributes, ReactNode } from 'react';
  * ```
  */
 export type ButtonVariant =
-  | 'primary'
-  | 'secondary'
-  | 'secondaryInverse'
-  | 'ghost'
-  | 'ghostInverse'
-  | 'danger'
-  | 'inverse';
+  | "primary"
+  | "secondary"
+  | "secondaryInverse"
+  | "ghost"
+  | "ghostInverse"
+  | "danger"
+  | "inverse";
 
 /**
  * Button sizes - automatically adapt to current mode (display/product/app).
@@ -68,7 +68,7 @@ export type ButtonVariant =
  * <Button size="lg">Get Started</Button>    // Hero CTA
  * ```
  */
-export type ButtonSize = 'sm' | 'md' | 'lg';
+export type ButtonSize = "sm" | "md" | "lg";
 
 /**
  * Button component props

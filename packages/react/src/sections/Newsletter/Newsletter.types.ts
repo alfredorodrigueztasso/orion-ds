@@ -4,17 +4,17 @@
  * Type definitions for the Orion Newsletter section component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Newsletter layout variant
  */
-export type NewsletterLayout = 'inline' | 'stacked' | 'card';
+export type NewsletterLayout = "inline" | "stacked" | "card";
 
 /**
  * Newsletter size variant
  */
-export type NewsletterSize = 'sm' | 'md' | 'lg';
+export type NewsletterSize = "sm" | "md" | "lg";
 
 /**
  * Newsletter section props
@@ -30,7 +30,10 @@ export type NewsletterSize = 'sm' | 'md' | 'lg';
  * />
  * ```
  */
-export interface NewsletterProps extends Omit<HTMLAttributes<HTMLElement>, 'title' | 'onSubmit'> {
+export interface NewsletterProps extends Omit<
+  HTMLAttributes<HTMLElement>,
+  "title" | "onSubmit"
+> {
   /**
    * Optional eyebrow/badge above title
    */
@@ -92,7 +95,7 @@ export interface NewsletterProps extends Omit<HTMLAttributes<HTMLElement>, 'titl
    * Background style
    * @default 'subtle'
    */
-  background?: 'base' | 'subtle' | 'brand' | 'none';
+  background?: "base" | "subtle" | "brand" | "none";
 
   /**
    * Center align content

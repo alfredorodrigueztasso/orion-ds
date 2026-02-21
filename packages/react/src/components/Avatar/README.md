@@ -19,7 +19,7 @@ User or entity representation with image, initials, or icon fallback.
 ### With Image
 
 ```tsx
-import { Avatar } from '@orion/react';
+import { Avatar } from "@orion/react";
 
 <Avatar src="/avatars/john.jpg" alt="John Doe" />;
 ```
@@ -34,7 +34,7 @@ import { Avatar } from '@orion/react';
 ### With Icon
 
 ```tsx
-import { User } from 'lucide-react';
+import { User } from "lucide-react";
 
 <Avatar icon={<User size={20} />} />;
 ```
@@ -76,17 +76,22 @@ The avatar displays in this priority order:
 ### Interactive (Clickable)
 
 ```tsx
-<Avatar src="/user.jpg" alt="Profile" interactive onClick={() => openProfile()} />
+<Avatar
+  src="/user.jpg"
+  alt="Profile"
+  interactive
+  onClick={() => openProfile()}
+/>
 ```
 
 ### Avatar Group
 
 ```tsx
-<div style={{ display: 'flex', marginLeft: '-8px' }}>
-  <Avatar src="/user1.jpg" style={{ marginLeft: '-8px' }} />
-  <Avatar src="/user2.jpg" style={{ marginLeft: '-8px' }} />
-  <Avatar src="/user3.jpg" style={{ marginLeft: '-8px' }} />
-  <Avatar initials="+5" style={{ marginLeft: '-8px' }} />
+<div style={{ display: "flex", marginLeft: "-8px" }}>
+  <Avatar src="/user1.jpg" style={{ marginLeft: "-8px" }} />
+  <Avatar src="/user2.jpg" style={{ marginLeft: "-8px" }} />
+  <Avatar src="/user3.jpg" style={{ marginLeft: "-8px" }} />
+  <Avatar initials="+5" style={{ marginLeft: "-8px" }} />
 </div>
 ```
 

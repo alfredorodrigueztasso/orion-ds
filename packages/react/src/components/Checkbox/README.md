@@ -22,7 +22,7 @@ _Extends all native `<input>` attributes except `size` and `type`._
 ### Basic
 
 ```tsx
-import { Checkbox } from '@orion/react';
+import { Checkbox } from "@orion/react";
 
 <Checkbox label="Accept terms and conditions" />;
 ```
@@ -30,7 +30,7 @@ import { Checkbox } from '@orion/react';
 ### Controlled
 
 ```tsx
-import { useState } from 'react';
+import { useState } from "react";
 
 function Example() {
   const [checked, setChecked] = useState(false);
@@ -54,7 +54,10 @@ function Example() {
 ### With Error
 
 ```tsx
-<Checkbox label="I agree to the terms" error="You must accept the terms to continue" />
+<Checkbox
+  label="I agree to the terms"
+  error="You must accept the terms to continue"
+/>
 ```
 
 ### Sizes
@@ -97,7 +100,9 @@ function SelectAll() {
           checked={item.checked}
           onChange={(e) => {
             setItems(
-              items.map((i) => (i.id === item.id ? { ...i, checked: e.target.checked } : i)),
+              items.map((i) =>
+                i.id === item.id ? { ...i, checked: e.target.checked } : i,
+              ),
             );
           }}
         />
@@ -113,11 +118,13 @@ function SelectAll() {
 function CheckboxGroup() {
   const [selected, setSelected] = useState<string[]>([]);
 
-  const options = ['React', 'Vue', 'Angular', 'Svelte'];
+  const options = ["React", "Vue", "Angular", "Svelte"];
 
   const toggle = (option: string) => {
     setSelected((prev) =>
-      prev.includes(option) ? prev.filter((o) => o !== option) : [...prev, option],
+      prev.includes(option)
+        ? prev.filter((o) => o !== option)
+        : [...prev, option],
     );
   };
 

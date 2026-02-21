@@ -4,12 +4,12 @@
  * Type definitions for the Orion Banner section component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Banner variant styles
  */
-export type BannerVariant = 'default' | 'gradient' | 'image' | 'split';
+export type BannerVariant = "default" | "gradient" | "image" | "split";
 
 /**
  * Banner section props
@@ -25,7 +25,10 @@ export type BannerVariant = 'default' | 'gradient' | 'image' | 'split';
  * />
  * ```
  */
-export interface BannerProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
+export interface BannerProps extends Omit<
+  HTMLAttributes<HTMLElement>,
+  "title"
+> {
   /**
    * Optional eyebrow/badge text
    */
@@ -81,7 +84,7 @@ export interface BannerProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> 
    * Image position for split variant
    * @default 'right'
    */
-  imagePosition?: 'left' | 'right';
+  imagePosition?: "left" | "right";
 
   /**
    * Custom background color

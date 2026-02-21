@@ -24,12 +24,18 @@
  * ```
  */
 
-import React from 'react';
-import { AlertCircle } from 'lucide-react';
-import type { ErrorBoundaryProps, ErrorBoundaryState } from './ErrorBoundary.types';
-import styles from './ErrorBoundary.module.css';
+import React from "react";
+import { AlertCircle } from "lucide-react";
+import type {
+  ErrorBoundaryProps,
+  ErrorBoundaryState,
+} from "./ErrorBoundary.types";
+import styles from "./ErrorBoundary.module.css";
 
-export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+export class ErrorBoundary extends React.Component<
+  ErrorBoundaryProps,
+  ErrorBoundaryState
+> {
   constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false, error: null };
@@ -61,7 +67,7 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
     if (this.state.hasError && this.state.error) {
       const { fallback } = this.props;
 
-      if (typeof fallback === 'function') {
+      if (typeof fallback === "function") {
         return fallback(this.state.error, this.reset);
       }
 
@@ -74,7 +80,11 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
           <AlertCircle size={32} className={styles.icon} />
           <p className={styles.title}>Something went wrong</p>
           <p className={styles.message}>{this.state.error.message}</p>
-          <button className={styles.resetButton} onClick={this.reset} type="button">
+          <button
+            className={styles.resetButton}
+            onClick={this.reset}
+            type="button"
+          >
             Try again
           </button>
         </div>

@@ -5,7 +5,7 @@
  * A drag & drop file upload zone for SaaS applications.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Uploaded file item
@@ -39,7 +39,7 @@ export interface UploadedFile {
   /**
    * Upload status
    */
-  status: 'pending' | 'uploading' | 'completed' | 'error';
+  status: "pending" | "uploading" | "completed" | "error";
 
   /**
    * Error message if status is 'error'
@@ -70,7 +70,10 @@ export interface UploadedFile {
  * />
  * ```
  */
-export interface FileUploaderProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
+export interface FileUploaderProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "onChange"
+> {
   /**
    * Accepted file types (MIME types or extensions)
    */
@@ -139,7 +142,7 @@ export interface FileUploaderProps extends Omit<HTMLAttributes<HTMLDivElement>, 
    * Variant style
    * @default "default"
    */
-  variant?: 'default' | 'minimal' | 'card';
+  variant?: "default" | "minimal" | "card";
 
   /**
    * Error message

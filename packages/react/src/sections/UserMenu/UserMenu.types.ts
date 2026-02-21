@@ -5,7 +5,7 @@
  * A dropdown profile menu for SaaS applications.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * User menu item
@@ -94,7 +94,7 @@ export interface UserInfo {
   /**
    * Status indicator
    */
-  status?: 'online' | 'away' | 'busy' | 'offline';
+  status?: "online" | "away" | "busy" | "offline";
 
   /**
    * Role or subscription tier
@@ -116,7 +116,10 @@ export interface UserInfo {
  * />
  * ```
  */
-export interface UserMenuProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
+export interface UserMenuProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "children"
+> {
   /**
    * User information
    */
@@ -146,7 +149,7 @@ export interface UserMenuProps extends Omit<HTMLAttributes<HTMLDivElement>, 'chi
    * Menu alignment
    * @default "end"
    */
-  align?: 'start' | 'end';
+  align?: "start" | "end";
 
   /**
    * Show user info header in dropdown

@@ -41,9 +41,9 @@
       "type": "registry:section"
     },
     {
-      "name": "agent-library-template",
-      "title": "Agent Library",
-      "description": "AgentLibrary page template",
+      "name": "agent-workspace",
+      "title": "Agent Workspace",
+      "description": "AgentWorkspace page template",
       "category": "app",
       "type": "registry:template"
     },
@@ -193,6 +193,13 @@
       "description": "Collapsible component",
       "category": "utilities",
       "type": "registry:component"
+    },
+    {
+      "name": "collapsible-folder",
+      "title": "CollapsibleFolder",
+      "description": "CollapsibleFolder section component",
+      "category": "marketing",
+      "type": "registry:section"
     },
     {
       "name": "combobox",
@@ -728,6 +735,6 @@
     }
   ],
   "totalComponents": 50,
-  "totalSections": 42,
+  "totalSections": 43,
   "totalTemplates": 11
 }

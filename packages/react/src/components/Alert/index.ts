@@ -11,5 +11,5 @@
  * <Alert variant="error" title="Error" onClose={() => {}}>Something went wrong.</Alert>
  * ```
  */
-export { Alert } from './Alert';
-export type { AlertProps, AlertVariant } from './Alert.types';
+export { Alert } from "./Alert";
+export type { AlertProps, AlertVariant } from "./Alert.types";

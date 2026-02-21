@@ -5,14 +5,30 @@
 ## Quick Start
 
 ```tsx
-import { MetricCards } from '@orion/react';
+import { MetricCards } from "@orion/react";
 
 <MetricCards
   metrics={[
-    { label: 'Revenue', value: '$12,345', change: { value: '+12%', positive: true } },
-    { label: 'Users', value: '1,234', change: { value: '+5%', positive: true } },
-    { label: 'Conversion', value: '3.2%', change: { value: '-0.5%', positive: false } },
-    { label: 'Avg. Order', value: '$89.50', change: { value: '+8%', positive: true } },
+    {
+      label: "Revenue",
+      value: "$12,345",
+      change: { value: "+12%", positive: true },
+    },
+    {
+      label: "Users",
+      value: "1,234",
+      change: { value: "+5%", positive: true },
+    },
+    {
+      label: "Conversion",
+      value: "3.2%",
+      change: { value: "-0.5%", positive: false },
+    },
+    {
+      label: "Avg. Order",
+      value: "$89.50",
+      change: { value: "+8%", positive: true },
+    },
   ]}
   columns={4}
 />;
@@ -44,7 +60,7 @@ interface MetricCardsProps {
   columns?: 2 | 3 | 4 | 5; // Grid columns - default: 4
 
   // Display
-  variant?: 'default' | 'compact' | 'detailed'; // default: 'default'
+  variant?: "default" | "compact" | "detailed"; // default: 'default'
   loading?: boolean; // Loading state - default: false
 }
 
@@ -223,9 +239,9 @@ Includes sparklines and descriptions.
 ```tsx
 <MetricCards
   metrics={[
-    { label: 'Revenue', value: '$45,231' },
-    { label: 'Users', value: '', loading: true }, // This card is loading
-    { label: 'Orders', value: '234' },
+    { label: "Revenue", value: "$45,231" },
+    { label: "Users", value: "", loading: true }, // This card is loading
+    { label: "Orders", value: "234" },
   ]}
 />
 ```
@@ -237,43 +253,43 @@ Includes sparklines and descriptions.
 ### E-commerce Dashboard
 
 ```tsx
-import { MetricCards } from '@orion/react';
-import { DollarSign, ShoppingCart, Users, TrendingUp } from 'lucide-react';
+import { MetricCards } from "@orion/react";
+import { DollarSign, ShoppingCart, Users, TrendingUp } from "lucide-react";
 
 <MetricCards
   columns={4}
   metrics={[
     {
-      label: 'Total Revenue',
-      value: '$124,592.00',
+      label: "Total Revenue",
+      value: "$124,592.00",
       icon: <DollarSign size={20} />,
-      change: { value: '+12.5%', positive: true, label: 'vs last month' },
+      change: { value: "+12.5%", positive: true, label: "vs last month" },
       sparkline: [45, 52, 48, 61, 58, 72, 85, 91, 88, 95],
-      href: '/reports/revenue',
+      href: "/reports/revenue",
     },
     {
-      label: 'Orders',
-      value: '1,429',
+      label: "Orders",
+      value: "1,429",
       icon: <ShoppingCart size={20} />,
-      change: { value: '+8.2%', positive: true, label: 'vs last month' },
+      change: { value: "+8.2%", positive: true, label: "vs last month" },
       sparkline: [120, 132, 145, 142, 158, 165, 172, 180, 178, 192],
-      href: '/orders',
+      href: "/orders",
     },
     {
-      label: 'Customers',
-      value: '3,847',
+      label: "Customers",
+      value: "3,847",
       icon: <Users size={20} />,
-      change: { value: '+15.3%', positive: true, label: 'vs last month' },
+      change: { value: "+15.3%", positive: true, label: "vs last month" },
       sparkline: [280, 295, 310, 325, 340, 355, 370, 385, 400, 420],
-      href: '/customers',
+      href: "/customers",
     },
     {
-      label: 'Conversion Rate',
-      value: '3.24%',
+      label: "Conversion Rate",
+      value: "3.24%",
       icon: <TrendingUp size={20} />,
-      change: { value: '-0.4%', positive: false, label: 'vs last month' },
+      change: { value: "-0.4%", positive: false, label: "vs last month" },
       sparkline: [3.5, 3.4, 3.3, 3.2, 3.1, 3.0, 3.1, 3.2, 3.3, 3.24],
-      href: '/reports/conversion',
+      href: "/reports/conversion",
     },
   ]}
 />;
@@ -287,28 +303,28 @@ import { DollarSign, ShoppingCart, Users, TrendingUp } from 'lucide-react';
   variant="detailed"
   metrics={[
     {
-      label: 'MRR',
-      value: '$48,352',
-      change: { value: '+$2,340', positive: true },
-      description: 'Monthly Recurring Revenue',
+      label: "MRR",
+      value: "$48,352",
+      change: { value: "+$2,340", positive: true },
+      description: "Monthly Recurring Revenue",
     },
     {
-      label: 'Active Users',
-      value: '12,847',
-      change: { value: '+892', positive: true },
-      description: 'Last 30 days',
+      label: "Active Users",
+      value: "12,847",
+      change: { value: "+892", positive: true },
+      description: "Last 30 days",
     },
     {
-      label: 'Churn Rate',
-      value: '2.4%',
-      change: { value: '-0.3%', positive: true }, // Lower churn is positive
-      description: 'Monthly churn',
+      label: "Churn Rate",
+      value: "2.4%",
+      change: { value: "-0.3%", positive: true }, // Lower churn is positive
+      description: "Monthly churn",
     },
     {
-      label: 'NPS Score',
-      value: '72',
-      change: { value: '+5', positive: true },
-      description: 'Net Promoter Score',
+      label: "NPS Score",
+      value: "72",
+      change: { value: "+5", positive: true },
+      description: "Net Promoter Score",
     },
   ]}
 />
@@ -321,11 +337,11 @@ import { DollarSign, ShoppingCart, Users, TrendingUp } from 'lucide-react';
   columns={5}
   variant="compact"
   metrics={[
-    { label: 'Views', value: '24.5K' },
-    { label: 'Clicks', value: '1.2K' },
-    { label: 'CTR', value: '4.9%' },
-    { label: 'Conversions', value: '342' },
-    { label: 'Revenue', value: '$8.4K' },
+    { label: "Views", value: "24.5K" },
+    { label: "Clicks", value: "1.2K" },
+    { label: "CTR", value: "4.9%" },
+    { label: "Conversions", value: "342" },
+    { label: "Revenue", value: "$8.4K" },
   ]}
 />
 ```
@@ -342,20 +358,20 @@ function LiveMetrics() {
       columns={3}
       metrics={[
         {
-          label: 'Active Sessions',
-          value: data?.sessions.toLocaleString() ?? '-',
+          label: "Active Sessions",
+          value: data?.sessions.toLocaleString() ?? "-",
           change: {
-            value: data?.sessionsChange ?? '-',
+            value: data?.sessionsChange ?? "-",
             positive: (data?.sessionsChange ?? 0) > 0,
           },
         },
         {
-          label: 'Requests/min',
-          value: data?.rpm.toLocaleString() ?? '-',
+          label: "Requests/min",
+          value: data?.rpm.toLocaleString() ?? "-",
           sparkline: data?.rpmHistory,
         },
         {
-          label: 'Error Rate',
+          label: "Error Rate",
           value: `${data?.errorRate ?? 0}%`,
           change: {
             value: `${data?.errorRateChange ?? 0}%`,
@@ -381,12 +397,12 @@ function LiveMetrics() {
 ```tsx
 // Good: Clear metric labels
 {
-  label: 'Monthly Recurring Revenue (MRR)';
+  label: "Monthly Recurring Revenue (MRR)";
 }
 
 // Avoid: Abbreviated labels without context
 {
-  label: 'MRR';
+  label: "MRR";
 }
 ```
 

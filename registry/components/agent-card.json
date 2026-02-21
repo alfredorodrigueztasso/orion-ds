@@ -45,8 +45,7 @@
     {
       "name": "description",
       "type": "string",
-      "description": "Agent description (max 2 lines with ellipsis)",
-      "required": true
+      "description": "Agent description (max 2 lines with ellipsis). Space is always reserved"
     },
     {
       "name": "timestamp",
@@ -54,19 +53,9 @@
       "description": "Timestamp text (e.g., \"Hace 2 horas\")"
     },
     {
-      "name": "status",
-      "type": "AgentStatus",
-      "description": "Agent status indicator",
-      "values": [
-        "draft",
-        "published",
-        "archived"
-      ]
-    },
-    {
-      "name": "badge",
-      "type": "ReactNode",
-      "description": "Optional badge component"
+      "name": "isMultiAgent",
+      "type": "boolean",
+      "description": "When true, shows a \"Multi\" badge indicating this is a multi-agent."
     },
     {
       "name": "onClick",
@@ -93,6 +82,22 @@
       "name": "isDragging",
       "type": "boolean",
       "description": "Currently being dragged"
+    },
+    {
+      "name": "availableFolders",
+      "type": "Array<{ id: string",
+      "description": "Available folders the agent can be moved to"
+    },
+    {
+      "name": "title",
+      "type": "string }>",
+      "description": "",
+      "required": true
+    },
+    {
+      "name": "onMoveToFolder",
+      "type": "(folderId: string) => void",
+      "description": "Called when user selects a folder to move this agent"
     }
   ],
   "tokens": [

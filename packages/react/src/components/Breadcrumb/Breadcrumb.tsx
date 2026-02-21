@@ -29,18 +29,18 @@
  * ```
  */
 
-import React from 'react';
-import { Home } from 'lucide-react';
-import type { BreadcrumbProps, BreadcrumbItem } from './Breadcrumb.types';
-import styles from './Breadcrumb.module.css';
+import React from "react";
+import { Home } from "lucide-react";
+import type { BreadcrumbProps, BreadcrumbItem } from "./Breadcrumb.types";
+import styles from "./Breadcrumb.module.css";
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   items,
-  separator = 'chevron',
+  separator = "chevron",
   customSeparator,
   showHomeIcon = false,
   maxItems,
-  size = 'md',
+  size = "md",
   className,
   linkProps,
 }) => {
@@ -56,7 +56,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
 
     return [
       ...(firstItem ? [firstItem] : []),
-      { label: '...', href: undefined } as BreadcrumbItem, // Ellipsis
+      { label: "...", href: undefined } as BreadcrumbItem, // Ellipsis
       ...lastItems,
     ];
   }, [items, maxItems]);
@@ -65,29 +65,39 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   const renderSeparator = (index: number) => {
     const separatorClasses = [
       styles.separator,
-      separator === 'chevron' && styles.chevron,
-      separator === 'slash' && styles.slash,
+      separator === "chevron" && styles.chevron,
+      separator === "slash" && styles.slash,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
-    if (separator === 'custom' && customSeparator) {
+    if (separator === "custom" && customSeparator) {
       return (
-        <span key={`sep-${index}`} className={styles.separator} aria-hidden="true">
+        <span
+          key={`sep-${index}`}
+          className={styles.separator}
+          aria-hidden="true"
+        >
           {customSeparator}
         </span>
       );
     }
 
-    return <span key={`sep-${index}`} className={separatorClasses} aria-hidden="true" />;
+    return (
+      <span
+        key={`sep-${index}`}
+        className={separatorClasses}
+        aria-hidden="true"
+      />
+    );
   };
 
   // Get icon size based on breadcrumb size
   const getIconSize = () => {
     switch (size) {
-      case 'sm':
+      case "sm":
         return 14;
-      case 'lg':
+      case "lg":
         return 18;
       default:
         return 16;
@@ -107,7 +117,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   // Render individual breadcrumb item
   const renderItem = (item: BreadcrumbItem, index: number) => {
     const isLast = index === processedItems.length - 1;
-    const isEllipsis = item.label === '...';
+    const isEllipsis = item.label === "...";
 
     // Ellipsis (collapsed items indicator)
     if (isEllipsis) {
@@ -123,7 +133,11 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     // Current page (last item, non-clickable)
     if (isLast || !item.href) {
       return (
-        <li key={index} className={styles.item} aria-current={isLast ? 'page' : undefined}>
+        <li
+          key={index}
+          className={styles.item}
+          aria-current={isLast ? "page" : undefined}
+        >
           <span className={styles.current}>
             {index === 0 && renderHomeIcon()}
             {item.icon && <span className={styles.icon}>{item.icon}</span>}
@@ -146,7 +160,9 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   };
 
   // Container classes
-  const breadcrumbClasses = [styles.breadcrumb, styles[size], className].filter(Boolean).join(' ');
+  const breadcrumbClasses = [styles.breadcrumb, styles[size], className]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <nav aria-label="Breadcrumb">
@@ -162,4 +178,4 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   );
 };
 
-Breadcrumb.displayName = 'Breadcrumb';
+Breadcrumb.displayName = "Breadcrumb";

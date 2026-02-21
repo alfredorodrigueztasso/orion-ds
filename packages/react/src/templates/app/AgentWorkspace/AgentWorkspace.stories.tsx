@@ -5,6 +5,7 @@
  */
 
 import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 import { AgentWorkspace } from "./AgentWorkspace";
 import { EmptyState as EmptyStateComponent } from "../../../sections/EmptyState";
 import { Button } from "../../../components/Button";
@@ -36,7 +37,6 @@ const sampleFolders: AgentFolderProps[] = [
         title: "UVM Agent",
         description: "Agent for Universidad Virtual de México",
         timestamp: "Hace 2 horas",
-        status: "published",
       },
       {
         id: "agent-2",
@@ -48,9 +48,10 @@ const sampleFolders: AgentFolderProps[] = [
           />
         ),
         title: "Premium Support",
-        description: "Premium customer support agent",
+        description:
+          "Coordinates intake, resolution and follow-up across multiple specialized support agents",
         timestamp: "Hace 5 horas",
-        status: "published",
+        isMultiAgent: true,
       },
     ],
     defaultExpanded: true,
@@ -69,9 +70,10 @@ const sampleFolders: AgentFolderProps[] = [
         id: "agent-3",
         avatar: "https://api.dicebear.com/7.x/bottts/svg?seed=campus1",
         title: "Campus Assistant",
-        description: "Helps students navigate online campus",
+        description:
+          "Orchestrates enrollment, schedule and campus services agents to guide students end to end",
         timestamp: "Hace 1 día",
-        status: "published",
+        isMultiAgent: true,
       },
       {
         id: "agent-4",
@@ -79,15 +81,15 @@ const sampleFolders: AgentFolderProps[] = [
         title: "Student Support",
         description: "Answers common student questions",
         timestamp: "Hace 3 días",
-        status: "draft",
       },
       {
         id: "agent-5",
         avatar: <Sparkles size={32} />,
         title: "Research Helper",
-        description: "Assists with academic research",
+        description:
+          "Delegates tasks to search, synthesis and citation agents for comprehensive academic research",
         timestamp: "Hace 1 semana",
-        status: "published",
+        isMultiAgent: true,
       },
       {
         id: "agent-6",
@@ -95,7 +97,6 @@ const sampleFolders: AgentFolderProps[] = [
         title: "Quick FAQ Bot",
         description: "Fast answers to frequently asked questions",
         timestamp: "Hace 2 semanas",
-        status: "published",
       },
     ],
     defaultExpanded: true,
@@ -116,7 +117,6 @@ const sampleFolders: AgentFolderProps[] = [
         title: "Legacy Bot",
         description: "Old version, no longer in use",
         timestamp: "Archivado hace 3 meses",
-        status: "archived",
       },
     ],
     defaultExpanded: false,
@@ -129,57 +129,175 @@ const sampleLooseAgents = [
     id: "agent-loose-1",
     avatar: "https://api.dicebear.com/7.x/bottts/svg?seed=loose1",
     title: "General Purpose Bot",
-    description: "Unassigned agent available for any task",
+    description:
+      "Unassigned multi-agent that coordinates multiple task-specific agents for any workflow",
     timestamp: "Hace 6 horas",
-    status: "published" as const,
+    isMultiAgent: true,
   },
 ];
 
-// Default template - shows complete workspace with folders and loose agents
-export const Default: Story = {
-  args: {
-    navbar: {
-      logo: <Building2 size={24} />,
-      workspaceName: "Universidad Virtual de México",
-      workspaces: [
-        { id: "uvm", name: "Universidad Virtual de México" },
-        { id: "campus", name: "Campus Online" },
-        { id: "postgrado", name: "Postgrado" },
-        { id: "research", name: "Research Team" },
-      ],
-      onWorkspaceChange: (id) => console.log("Workspace changed:", id),
-      userAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=john",
-      userName: "John Doe",
-      onUserMenuClick: () => console.log("User menu clicked"),
-    },
-    pageHeader: {
-      title: "Agentes IA",
-      icon: <Sparkles size={28} />,
-    },
-    folders: sampleFolders.map((folder) => ({
+// Helper to create dropHandler for stateful wrappers
+function createDropHandler(
+  setFolders: React.Dispatch<React.SetStateAction<any>>,
+) {
+  return (agentId: string, targetFolderId: string) => {
+    setFolders((prevFolders: any[]) => {
+      let sourceFolder: AgentFolderProps | null = null;
+      let agentToMove = null;
+
+      for (const folder of prevFolders) {
+        const agent = folder.agents.find((a: any) => a.id === agentId);
+        if (agent) {
+          sourceFolder = folder;
+          agentToMove = agent;
+          break;
+        }
+      }
+
+      if (!sourceFolder || !agentToMove || sourceFolder.id === targetFolderId) {
+        return prevFolders;
+      }
+
+      return prevFolders.map((folder) => {
+        if (folder.id === sourceFolder!.id) {
+          return {
+            ...folder,
+            agents: folder.agents.filter((a: any) => a.id !== agentId),
+            agentCount: folder.agents.length - 1,
+          };
+        }
+        if (folder.id === targetFolderId) {
+          return {
+            ...folder,
+            agents: [...folder.agents, agentToMove!],
+            agentCount: folder.agents.length + 1,
+          };
+        }
+        return folder;
+      });
+    });
+  };
+}
+
+// Wrapper component that manages state for drag & drop
+function DefaultWrapper() {
+  const [folders, setFolders] = useState(
+    sampleFolders.map((folder) => ({
       ...folder,
       agents: folder.agents.map((agent) => ({
         ...agent,
         draggable: true,
-        onClick: () => console.log("Agent clicked:", agent.id),
-        onEdit: () => console.log("Edit agent:", agent.id),
-        onDelete: () => console.log("Delete agent:", agent.id),
       })),
-      onDrop: (agentId, folderId) =>
-        console.log("Agent", agentId, "dropped into folder", folderId),
-      onSortChange: (value) =>
-        console.log("Sort changed in folder", folder.id, ":", value),
-      onFolderEdit: () => console.log("Rename folder:", folder.id),
-      onFolderDelete: () => console.log("Delete folder:", folder.id),
-      onFolderInvite: () => console.log("Invite to folder:", folder.id),
     })),
-    looseAgents: sampleLooseAgents,
-    onCreateFolder: () => console.log("Create folder"),
-    onCreateAgent: () => console.log("Create agent"),
-    onInviteParticipants: () => console.log("Invite participants"),
-    onSettings: () => console.log("Settings"),
-    enableDragDrop: true,
-  },
+  );
+
+  const handleDrop = createDropHandler(setFolders);
+
+  return (
+    <AgentWorkspace
+      navbar={{
+        logo: <Building2 size={24} />,
+        workspaceName: "Universidad Virtual de México",
+        workspaceIcon: <Building2 size={20} />,
+        activeWorkspaceId: "uvm",
+        workspaceRole: "Propietario",
+        workspaceParticipantCount: 32,
+        workspaces: [
+          {
+            id: "uvm",
+            name: "Universidad Virtual de México",
+            initials: "UVM",
+            role: "Propietario",
+          },
+          {
+            id: "campus",
+            name: "Campus Online",
+            initials: "CO",
+            role: "Propietario",
+          },
+          {
+            id: "postgrado",
+            name: "Postgrado",
+            initials: "PG",
+            role: "Editor",
+          },
+          {
+            id: "research",
+            name: "Research Team",
+            initials: "RT",
+            role: "Viewer",
+          },
+          {
+            id: "innovation",
+            name: "Innovation Lab",
+            initials: "IL",
+            role: "Propietario",
+          },
+          {
+            id: "development",
+            name: "Development Hub",
+            initials: "DH",
+            role: "Editor",
+          },
+          {
+            id: "quality",
+            name: "Quality Assurance",
+            initials: "QA",
+            role: "Viewer",
+          },
+          {
+            id: "support",
+            name: "Customer Support",
+            initials: "CS",
+            role: "Propietario",
+          },
+          {
+            id: "analytics",
+            name: "Analytics Platform",
+            initials: "AP",
+            role: "Editor",
+          },
+        ],
+        onWorkspaceChange: (id) => console.log("Workspace changed:", id),
+        onWorkspaceSettings: () => console.log("Workspace settings"),
+        onWorkspaceInvite: () => console.log("Invite participants"),
+        onCreateWorkspace: () => console.log("Create workspace"),
+        userAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=john",
+        userName: "John Doe",
+        onUserMenuClick: () => console.log("User menu clicked"),
+      }}
+      pageHeader={{
+        title: "Agentes IA",
+        icon: <Sparkles size={28} />,
+      }}
+      folders={folders.map((folder) => ({
+        ...folder,
+        agents: folder.agents.map((agent) => ({
+          ...agent,
+          onClick: () => console.log("Agent clicked:", agent.id),
+          onEdit: () => console.log("Edit agent:", agent.id),
+          onDelete: () => console.log("Delete agent:", agent.id),
+        })),
+        onDrop: (agentId, folderId) => handleDrop(agentId, folderId),
+        onSortChange: (value) =>
+          console.log("Sort changed in folder", folder.id, ":", value),
+        onFolderEdit: () => console.log("Rename folder:", folder.id),
+        onFolderDelete: () => console.log("Delete folder:", folder.id),
+        onFolderInvite: () => console.log("Invite to folder:", folder.id),
+      }))}
+      looseAgents={sampleLooseAgents}
+      onCreateFolder={() => console.log("Create folder")}
+      onCreateAgent={() => console.log("Create agent")}
+      onInviteParticipants={() => console.log("Invite participants")}
+      onSettings={() => console.log("Settings")}
+      enableDragDrop={true}
+    />
+  );
+}
+
+// Default template - shows complete workspace with folders and loose agents
+export const Default: Story = {
+  render: () => <DefaultWrapper />,
 };
 
 // Empty state - shows complete template structure without folders
@@ -244,104 +362,217 @@ export const NoDragDrop: Story = {
 };
 
 // With interactive agents (edit/delete actions)
-export const InteractiveAgents: Story = {
-  args: {
-    pageHeader: {
-      title: "Agentes IA",
-      icon: <Sparkles size={28} />,
-    },
-    folders: sampleFolders.map((folder) => ({
+function InteractiveAgentsWrapper() {
+  const [folders, setFolders] = useState(
+    sampleFolders.map((folder) => ({
       ...folder,
       agents: folder.agents.map((agent) => ({
+        ...agent,
+        draggable: true,
+      })),
+    })),
+  );
+
+  const handleDrop = createDropHandler(setFolders);
+
+  return (
+    <AgentWorkspace
+      pageHeader={{
+        title: "Agentes IA",
+        icon: <Sparkles size={28} />,
+      }}
+      folders={folders.map((folder) => ({
+        ...folder,
+        agents: folder.agents.map((agent) => ({
+          ...agent,
+          onClick: () => console.log("Agent clicked:", agent.id),
+          onEdit: () => console.log("Edit agent:", agent.id),
+          onDelete: () => console.log("Delete agent:", agent.id),
+        })),
+        onDrop: (agentId, folderId) => handleDrop(agentId, folderId),
+        onFolderEdit: () => console.log("Rename folder:", folder.id),
+        onFolderDelete: () => console.log("Delete folder:", folder.id),
+        onFolderInvite: () => console.log("Invite to folder:", folder.id),
+      }))}
+      looseAgents={sampleLooseAgents.map((agent) => ({
         ...agent,
         onClick: () => console.log("Agent clicked:", agent.id),
         onEdit: () => console.log("Edit agent:", agent.id),
         onDelete: () => console.log("Delete agent:", agent.id),
-      })),
-      onFolderEdit: () => console.log("Rename folder:", folder.id),
-      onFolderDelete: () => console.log("Delete folder:", folder.id),
-      onFolderInvite: () => console.log("Invite to folder:", folder.id),
-    })),
-    looseAgents: sampleLooseAgents.map((agent) => ({
-      ...agent,
-      onClick: () => console.log("Agent clicked:", agent.id),
-      onEdit: () => console.log("Edit agent:", agent.id),
-      onDelete: () => console.log("Delete agent:", agent.id),
-    })),
-    onCreateFolder: () => console.log("Create folder"),
-    onCreateAgent: () => console.log("Create agent"),
-  },
+      }))}
+      onCreateFolder={() => console.log("Create folder")}
+      onCreateAgent={() => console.log("Create agent")}
+    />
+  );
+}
+
+export const InteractiveAgents: Story = {
+  render: () => <InteractiveAgentsWrapper />,
 };
 
 // Full featured (navbar + all interactions + drag & drop + loose agents)
-export const FullFeatured: Story = {
-  args: {
-    navbar: {
-      logo: <Building2 size={24} />,
-      workspaceName: "Universidad Virtual de México",
-      workspaces: [
-        { id: "uvm", name: "Universidad Virtual de México" },
-        { id: "campus", name: "Campus Online" },
-        { id: "postgrado", name: "Postgrado" },
-        { id: "research", name: "Research Team" },
-      ],
-      onWorkspaceChange: (id) => console.log("Workspace changed:", id),
-      userAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=john",
-      userName: "John Doe",
-      onUserMenuClick: () => console.log("User menu clicked"),
-    },
-    pageHeader: {
-      title: "Agentes IA",
-      icon: <Sparkles size={28} />,
-    },
-    folders: sampleFolders.map((folder) => ({
+function FullFeaturedWrapper() {
+  const [folders, setFolders] = useState(
+    sampleFolders.map((folder) => ({
       ...folder,
       agents: folder.agents.map((agent) => ({
+        ...agent,
+        draggable: true,
+      })),
+    })),
+  );
+
+  const handleDrop = createDropHandler(setFolders);
+
+  return (
+    <AgentWorkspace
+      navbar={{
+        logo: <Building2 size={24} />,
+        workspaceName: "Universidad Virtual de México",
+        workspaceIcon: <Building2 size={20} />,
+        activeWorkspaceId: "uvm",
+        workspaceRole: "Propietario",
+        workspaceParticipantCount: 32,
+        workspaces: [
+          {
+            id: "uvm",
+            name: "Universidad Virtual de México",
+            initials: "UVM",
+            role: "Propietario",
+          },
+          {
+            id: "campus",
+            name: "Campus Online",
+            initials: "CO",
+            role: "Propietario",
+          },
+          {
+            id: "postgrado",
+            name: "Postgrado",
+            initials: "PG",
+            role: "Editor",
+          },
+          {
+            id: "research",
+            name: "Research Team",
+            initials: "RT",
+            role: "Viewer",
+          },
+          {
+            id: "innovation",
+            name: "Innovation Lab",
+            initials: "IL",
+            role: "Propietario",
+          },
+          {
+            id: "development",
+            name: "Development Hub",
+            initials: "DH",
+            role: "Editor",
+          },
+          {
+            id: "quality",
+            name: "Quality Assurance",
+            initials: "QA",
+            role: "Viewer",
+          },
+          {
+            id: "support",
+            name: "Customer Support",
+            initials: "CS",
+            role: "Propietario",
+          },
+          {
+            id: "analytics",
+            name: "Analytics Platform",
+            initials: "AP",
+            role: "Editor",
+          },
+        ],
+        onWorkspaceChange: (id) => console.log("Workspace changed:", id),
+        onWorkspaceSettings: () => console.log("Workspace settings"),
+        onWorkspaceInvite: () => console.log("Invite participants"),
+        onCreateWorkspace: () => console.log("Create workspace"),
+        userAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=john",
+        userName: "John Doe",
+        onUserMenuClick: () => console.log("User menu clicked"),
+      }}
+      pageHeader={{
+        title: "Agentes IA",
+        icon: <Sparkles size={28} />,
+      }}
+      folders={folders.map((folder) => ({
+        ...folder,
+        agents: folder.agents.map((agent) => ({
+          ...agent,
+          onClick: () => console.log("Agent clicked:", agent.id),
+          onEdit: () => console.log("Edit agent:", agent.id),
+          onDelete: () => console.log("Delete agent:", agent.id),
+        })),
+        onDrop: (agentId, folderId) => handleDrop(agentId, folderId),
+        onSortChange: (value) =>
+          console.log("Sort changed in folder", folder.id, ":", value),
+        onFolderEdit: () => console.log("Rename folder:", folder.id),
+        onFolderDelete: () => console.log("Delete folder:", folder.id),
+        onFolderInvite: () => console.log("Invite to folder:", folder.id),
+      }))}
+      looseAgents={sampleLooseAgents.map((agent) => ({
         ...agent,
         draggable: true,
         onClick: () => console.log("Agent clicked:", agent.id),
         onEdit: () => console.log("Edit agent:", agent.id),
         onDelete: () => console.log("Delete agent:", agent.id),
-      })),
-      onDrop: (agentId, folderId) =>
-        console.log("Agent", agentId, "dropped into folder", folderId),
-      onSortChange: (value) =>
-        console.log("Sort changed in folder", folder.id, ":", value),
-      onFolderEdit: () => console.log("Rename folder:", folder.id),
-      onFolderDelete: () => console.log("Delete folder:", folder.id),
-      onFolderInvite: () => console.log("Invite to folder:", folder.id),
-    })),
-    looseAgents: sampleLooseAgents.map((agent) => ({
-      ...agent,
-      draggable: true,
-      onClick: () => console.log("Agent clicked:", agent.id),
-      onEdit: () => console.log("Edit agent:", agent.id),
-      onDelete: () => console.log("Delete agent:", agent.id),
-    })),
-    onCreateFolder: () => console.log("Create folder"),
-    onCreateAgent: () => console.log("Create agent"),
-    onInviteParticipants: () => console.log("Invite participants"),
-    onSettings: () => console.log("Settings"),
-    enableDragDrop: true,
-  },
+      }))}
+      onCreateFolder={() => console.log("Create folder")}
+      onCreateAgent={() => console.log("Create agent")}
+      onInviteParticipants={() => console.log("Invite participants")}
+      onSettings={() => console.log("Settings")}
+      enableDragDrop={true}
+    />
+  );
+}
+
+export const FullFeatured: Story = {
+  render: () => <FullFeaturedWrapper />,
 };
 
 // Mobile view (responsive testing)
+function MobileWrapper() {
+  const [folders, setFolders] = useState(
+    sampleFolders.slice(0, 2).map((folder) => ({
+      ...folder,
+      agents: folder.agents.map((agent) => ({
+        ...agent,
+        draggable: true,
+      })),
+    })),
+  );
+
+  const handleDrop = createDropHandler(setFolders);
+
+  return (
+    <AgentWorkspace
+      navbar={{
+        logo: <Building2 size={24} />,
+        userAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=mobile",
+      }}
+      pageHeader={{
+        title: "Agentes IA",
+        icon: <Sparkles size={28} />,
+      }}
+      folders={folders.map((folder) => ({
+        ...folder,
+        onDrop: (agentId, folderId) => handleDrop(agentId, folderId),
+      }))}
+      looseAgents={sampleLooseAgents}
+      onCreateFolder={() => console.log("Create folder")}
+      onCreateAgent={() => console.log("Create agent")}
+    />
+  );
+}
+
 export const Mobile: Story = {
-  args: {
-    navbar: {
-      logo: <Building2 size={24} />,
-      userAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=mobile",
-    },
-    pageHeader: {
-      title: "Agentes IA",
-      icon: <Sparkles size={28} />,
-    },
-    folders: sampleFolders.slice(0, 2), // Show fewer folders for mobile
-    looseAgents: sampleLooseAgents,
-    onCreateFolder: () => console.log("Create folder"),
-    onCreateAgent: () => console.log("Create agent"),
-  },
+  render: () => <MobileWrapper />,
   parameters: {
     viewport: {
       defaultViewport: "mobile1",

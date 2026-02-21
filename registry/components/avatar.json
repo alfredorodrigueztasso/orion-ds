@@ -64,7 +64,7 @@
     },
     {
       "name": "status",
-      "type": "'online' | 'offline' | 'away' | 'busy'",
+      "type": "\"online\" | \"offline\" | \"away\" | \"busy\"",
       "description": "Show online status indicator",
       "default": false,
       "values": [

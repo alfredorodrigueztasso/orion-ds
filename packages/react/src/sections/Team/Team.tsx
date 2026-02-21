@@ -27,12 +27,12 @@
  * ```
  */
 
-import { forwardRef } from 'react';
-import type { TeamProps } from './Team.types';
-import { Section } from '../Section';
-import { Container } from '../Container';
-import { TeamMemberCard } from './TeamMemberCard';
-import styles from './Team.module.css';
+import { forwardRef } from "react";
+import type { TeamProps } from "./Team.types";
+import { Section } from "../Section";
+import { Container } from "../Container";
+import { TeamMemberCard } from "./TeamMemberCard";
+import styles from "./Team.module.css";
 
 export const Team = forwardRef<HTMLElement, TeamProps>(
   (
@@ -42,8 +42,8 @@ export const Team = forwardRef<HTMLElement, TeamProps>(
       description,
       members,
       columns = 4,
-      variant = 'default',
-      background = 'base',
+      variant = "default",
+      background = "base",
       centered = true,
       className,
       ...rest
@@ -54,22 +54,34 @@ export const Team = forwardRef<HTMLElement, TeamProps>(
 
     const classNames = [styles.team, centered && styles.centered, className]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
-      <Section ref={ref} spacing="lg" background={background} className={classNames} {...rest}>
+      <Section
+        ref={ref}
+        spacing="lg"
+        background={background}
+        className={classNames}
+        {...rest}
+      >
         <Container size="xl">
           {hasHeader && (
             <header className={styles.header}>
               {eyebrow && <div className={styles.eyebrow}>{eyebrow}</div>}
               {title && <h2 className={styles.title}>{title}</h2>}
-              {description && <p className={styles.description}>{description}</p>}
+              {description && (
+                <p className={styles.description}>{description}</p>
+              )}
             </header>
           )}
 
           <div className={`${styles.grid} ${styles[`cols-${columns}`]}`}>
             {members.map((member, index) => (
-              <TeamMemberCard key={member.name || index} member={member} variant={variant} />
+              <TeamMemberCard
+                key={member.name || index}
+                member={member}
+                variant={variant}
+              />
             ))}
           </div>
         </Container>
@@ -78,4 +90,4 @@ export const Team = forwardRef<HTMLElement, TeamProps>(
   },
 );
 
-Team.displayName = 'Team';
+Team.displayName = "Team";

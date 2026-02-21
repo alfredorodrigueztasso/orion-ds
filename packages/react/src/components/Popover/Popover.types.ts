@@ -4,29 +4,29 @@
  * Type definitions for the Orion Popover component.
  */
 
-import type { HTMLAttributes, ReactNode, RefObject } from 'react';
+import type { HTMLAttributes, ReactNode, RefObject } from "react";
 
 /**
  * Popover placement options
  */
 export type PopoverPlacement =
-  | 'top'
-  | 'top-start'
-  | 'top-end'
-  | 'bottom'
-  | 'bottom-start'
-  | 'bottom-end'
-  | 'left'
-  | 'left-start'
-  | 'left-end'
-  | 'right'
-  | 'right-start'
-  | 'right-end';
+  | "top"
+  | "top-start"
+  | "top-end"
+  | "bottom"
+  | "bottom-start"
+  | "bottom-end"
+  | "left"
+  | "left-start"
+  | "left-end"
+  | "right"
+  | "right-start"
+  | "right-end";
 
 /**
  * Popover trigger types
  */
-export type PopoverTrigger = 'click' | 'hover' | 'focus' | 'manual';
+export type PopoverTrigger = "click" | "hover" | "focus" | "manual";
 
 /**
  * Popover component props
@@ -39,7 +39,10 @@ export type PopoverTrigger = 'click' | 'hover' | 'focus' | 'manual';
  * />
  * ```
  */
-export interface PopoverProps extends Omit<HTMLAttributes<HTMLDivElement>, 'content'> {
+export interface PopoverProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "content"
+> {
   /**
    * The trigger element that opens the popover
    */

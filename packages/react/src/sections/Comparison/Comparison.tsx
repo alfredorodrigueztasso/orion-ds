@@ -4,9 +4,9 @@
  * A comparison table for products, plans, or features.
  */
 
-import React, { useMemo } from 'react';
-import type { ComparisonProps, ComparisonFeature } from './Comparison.types';
-import styles from './Comparison.module.css';
+import React, { useMemo } from "react";
+import type { ComparisonProps, ComparisonFeature } from "./Comparison.types";
+import styles from "./Comparison.module.css";
 
 /**
  * Check icon for true values
@@ -57,18 +57,18 @@ export const Comparison: React.FC<ComparisonProps> = ({
   showCategories = true,
   showDescriptions = false,
   stickyHeader = true,
-  background = 'base',
+  background = "base",
   compact = false,
   className,
   ...rest
 }) => {
   // Group features by category if categories exist
   const groupedFeatures = useMemo(() => {
-    if (!showCategories) return { '': features };
+    if (!showCategories) return { "": features };
 
     const groups: Record<string, ComparisonFeature[]> = {};
     features.forEach((feature) => {
-      const category = feature.category || '';
+      const category = feature.category || "";
       if (!groups[category]) groups[category] = [];
       groups[category].push(feature);
     });
@@ -76,7 +76,7 @@ export const Comparison: React.FC<ComparisonProps> = ({
   }, [features, showCategories]);
 
   const renderValue = (value: boolean | string | React.ReactNode) => {
-    if (typeof value === 'boolean') {
+    if (typeof value === "boolean") {
       return value ? <CheckIcon /> : <CrossIcon />;
     }
     return value;
@@ -84,7 +84,7 @@ export const Comparison: React.FC<ComparisonProps> = ({
 
   return (
     <section
-      className={`${styles.comparison} ${className || ''}`}
+      className={`${styles.comparison} ${className || ""}`}
       data-background={background}
       data-sticky={stickyHeader}
       data-compact={compact}
@@ -106,11 +106,20 @@ export const Comparison: React.FC<ComparisonProps> = ({
                 <th className={styles.featureLabelHeader}>Features</th>
                 {columns.map((column, index) => (
                   <th key={index}>
-                    <div className={styles.columnHeader} data-highlighted={column.highlighted}>
-                      {column.badge && <span className={styles.columnBadge}>{column.badge}</span>}
+                    <div
+                      className={styles.columnHeader}
+                      data-highlighted={column.highlighted}
+                    >
+                      {column.badge && (
+                        <span className={styles.columnBadge}>
+                          {column.badge}
+                        </span>
+                      )}
                       <h3 className={styles.columnTitle}>{column.title}</h3>
                       {column.subtitle && (
-                        <p className={styles.columnSubtitle}>{column.subtitle}</p>
+                        <p className={styles.columnSubtitle}>
+                          {column.subtitle}
+                        </p>
                       )}
                       {column.ctaLabel && column.ctaHref && (
                         <div className={styles.columnCta}>
@@ -125,34 +134,40 @@ export const Comparison: React.FC<ComparisonProps> = ({
               </tr>
             </thead>
             <tbody className={styles.tableBody}>
-              {Object.entries(groupedFeatures).map(([category, categoryFeatures]) => (
-                <React.Fragment key={category || 'default'}>
-                  {showCategories && category && (
-                    <tr className={styles.categoryRow}>
-                      <td colSpan={columns.length + 1}>{category}</td>
-                    </tr>
-                  )}
-                  {categoryFeatures.map((feature, featureIndex) => (
-                    <tr key={featureIndex}>
-                      <td>
-                        <div className={styles.featureName}>{feature.name}</div>
-                        {showDescriptions && feature.description && (
-                          <div className={styles.featureDescription}>{feature.description}</div>
-                        )}
-                      </td>
-                      {feature.values.map((value, valueIndex) => (
-                        <td
-                          key={valueIndex}
-                          className={styles.valueCell}
-                          data-highlighted={columns[valueIndex]?.highlighted}
-                        >
-                          {renderValue(value)}
+              {Object.entries(groupedFeatures).map(
+                ([category, categoryFeatures]) => (
+                  <React.Fragment key={category || "default"}>
+                    {showCategories && category && (
+                      <tr className={styles.categoryRow}>
+                        <td colSpan={columns.length + 1}>{category}</td>
+                      </tr>
+                    )}
+                    {categoryFeatures.map((feature, featureIndex) => (
+                      <tr key={featureIndex}>
+                        <td>
+                          <div className={styles.featureName}>
+                            {feature.name}
+                          </div>
+                          {showDescriptions && feature.description && (
+                            <div className={styles.featureDescription}>
+                              {feature.description}
+                            </div>
+                          )}
                         </td>
-                      ))}
-                    </tr>
-                  ))}
-                </React.Fragment>
-              ))}
+                        {feature.values.map((value, valueIndex) => (
+                          <td
+                            key={valueIndex}
+                            className={styles.valueCell}
+                            data-highlighted={columns[valueIndex]?.highlighted}
+                          >
+                            {renderValue(value)}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </React.Fragment>
+                ),
+              )}
             </tbody>
           </table>
         </div>
@@ -161,4 +176,4 @@ export const Comparison: React.FC<ComparisonProps> = ({
   );
 };
 
-Comparison.displayName = 'Comparison';
+Comparison.displayName = "Comparison";

@@ -27,8 +27,8 @@ Range input for selecting numeric values.
 ### Basic
 
 ```tsx
-import { Slider } from '@orion/react';
-import { useState } from 'react';
+import { Slider } from "@orion/react";
+import { useState } from "react";
 
 function Example() {
   const [value, setValue] = useState(50);
@@ -141,9 +141,9 @@ function Example() {
 <Slider
   value={value}
   onChange={setValue}
-  onChangeStart={() => console.log('Started dragging')}
+  onChangeStart={() => console.log("Started dragging")}
   onChangeEnd={(finalValue) => {
-    console.log('Finished at:', finalValue);
+    console.log("Finished at:", finalValue);
     saveToAPI(finalValue);
   }}
 />
@@ -152,15 +152,20 @@ function Example() {
 ### Volume Control
 
 ```tsx
-import { Volume2, VolumeX } from 'lucide-react';
+import { Volume2, VolumeX } from "lucide-react";
 
 function VolumeControl() {
   const [volume, setVolume] = useState(50);
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+    <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
       <VolumeX size={20} />
-      <Slider value={volume} onChange={setVolume} label="Volume" style={{ width: 150 }} />
+      <Slider
+        value={volume}
+        onChange={setVolume}
+        label="Volume"
+        style={{ width: 150 }}
+      />
       <Volume2 size={20} />
     </div>
   );

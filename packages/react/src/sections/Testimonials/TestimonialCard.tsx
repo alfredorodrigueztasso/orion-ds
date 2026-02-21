@@ -4,22 +4,26 @@
  * Internal component for rendering individual testimonial cards.
  */
 
-import type { TestimonialCardProps } from './Testimonials.types';
-import { Card } from '../../components';
-import { Star } from 'lucide-react';
-import styles from './Testimonials.module.css';
+import type { TestimonialCardProps } from "./Testimonials.types";
+import { Card } from "../../components";
+import { Star } from "lucide-react";
+import styles from "./Testimonials.module.css";
 
 export const TestimonialCard = ({
   testimonial,
-  variant = 'default',
+  variant = "default",
   className,
 }: TestimonialCardProps) => {
   const { quote, author, rating } = testimonial;
   const { name, role, company, avatar } = author;
 
-  const classNames = [styles.testimonialCard, styles[`variant-${variant}`], className]
+  const classNames = [
+    styles.testimonialCard,
+    styles[`variant-${variant}`],
+    className,
+  ]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
 
   const content = (
     <>
@@ -30,7 +34,7 @@ export const TestimonialCard = ({
               key={i}
               size={16}
               className={i < rating ? styles.starFilled : styles.starEmpty}
-              fill={i < rating ? 'currentColor' : 'none'}
+              fill={i < rating ? "currentColor" : "none"}
             />
           ))}
         </div>
@@ -47,7 +51,7 @@ export const TestimonialCard = ({
           {(role || company) && (
             <span className={styles.authorRole}>
               {role}
-              {role && company && ', '}
+              {role && company && ", "}
               {company}
             </span>
           )}
@@ -56,15 +60,18 @@ export const TestimonialCard = ({
     </>
   );
 
-  if (variant === 'minimal') {
+  if (variant === "minimal") {
     return <div className={classNames}>{content}</div>;
   }
 
   return (
-    <Card variant={variant === 'cards' ? 'elevated' : 'base'} className={classNames}>
+    <Card
+      variant={variant === "cards" ? "elevated" : "base"}
+      className={classNames}
+    >
       <Card.Body>{content}</Card.Body>
     </Card>
   );
 };
 
-TestimonialCard.displayName = 'TestimonialCard';
+TestimonialCard.displayName = "TestimonialCard";

@@ -4,17 +4,17 @@
  * Type definitions for the Orion Divider component.
  */
 
-import type { HTMLAttributes } from 'react';
+import type { HTMLAttributes } from "react";
 
 /**
  * Divider orientation
  */
-export type DividerOrientation = 'horizontal' | 'vertical';
+export type DividerOrientation = "horizontal" | "vertical";
 
 /**
  * Divider visual variants
  */
-export type DividerVariant = 'solid' | 'dashed' | 'dotted';
+export type DividerVariant = "solid" | "dashed" | "dotted";
 
 /**
  * Divider component props
@@ -43,7 +43,7 @@ export interface DividerProps extends HTMLAttributes<HTMLHRElement> {
    * Spacing around the divider
    * @default 'md'
    */
-  spacing?: 'none' | 'sm' | 'md' | 'lg';
+  spacing?: "none" | "sm" | "md" | "lg";
 
   /**
    * Optional label to display in the center of the divider

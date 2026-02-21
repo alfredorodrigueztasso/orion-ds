@@ -15,17 +15,17 @@
  * ```
  */
 
-import { forwardRef, useState, useRef, useEffect } from 'react';
-import { ChevronDown } from 'lucide-react';
-import type { UserMenuProps, UserMenuItem } from './UserMenu.types';
-import styles from './UserMenu.module.css';
+import { forwardRef, useState, useRef, useEffect } from "react";
+import { ChevronDown } from "lucide-react";
+import type { UserMenuProps, UserMenuItem } from "./UserMenu.types";
+import styles from "./UserMenu.module.css";
 
 // Status indicator colors
 const statusColors: Record<string, string> = {
-  online: 'var(--text-success)',
-  away: 'var(--text-warning)',
-  busy: 'var(--text-error)',
-  offline: 'var(--text-tertiary)',
+  online: "var(--text-success)",
+  away: "var(--text-warning)",
+  busy: "var(--text-error)",
+  offline: "var(--text-tertiary)",
 };
 
 export const UserMenu = forwardRef<HTMLDivElement, UserMenuProps>(
@@ -36,7 +36,7 @@ export const UserMenu = forwardRef<HTMLDivElement, UserMenuProps>(
       open: controlledOpen,
       onOpenChange,
       trigger,
-      align = 'end',
+      align = "end",
       showHeader = true,
       compact = false,
       className,
@@ -71,22 +71,23 @@ export const UserMenu = forwardRef<HTMLDivElement, UserMenuProps>(
       };
 
       if (isOpen) {
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
+        document.addEventListener("mousedown", handleClickOutside);
+        return () =>
+          document.removeEventListener("mousedown", handleClickOutside);
       }
     }, [isOpen]);
 
     // Close on escape
     useEffect(() => {
       const handleEscape = (event: KeyboardEvent) => {
-        if (event.key === 'Escape' && isOpen) {
+        if (event.key === "Escape" && isOpen) {
           setOpen(false);
           triggerRef.current?.focus();
         }
       };
 
-      document.addEventListener('keydown', handleEscape);
-      return () => document.removeEventListener('keydown', handleEscape);
+      document.addEventListener("keydown", handleEscape);
+      return () => document.removeEventListener("keydown", handleEscape);
     }, [isOpen]);
 
     const handleItemClick = (item: UserMenuItem) => {
@@ -97,24 +98,24 @@ export const UserMenu = forwardRef<HTMLDivElement, UserMenuProps>(
 
     const getInitials = (name: string) => {
       return name
-        .split(' ')
+        .split(" ")
         .map((n) => n[0])
-        .join('')
+        .join("")
         .toUpperCase()
         .slice(0, 2);
     };
 
-    const classNames = [styles.userMenu, className].filter(Boolean).join(' ');
+    const classNames = [styles.userMenu, className].filter(Boolean).join(" ");
     const triggerClasses = [styles.trigger, compact && styles.triggerCompact]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
     const dropdownClasses = [
       styles.dropdown,
       isOpen && styles.dropdownOpen,
-      align === 'start' && styles.dropdownStart,
+      align === "start" && styles.dropdownStart,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
       <div ref={ref} className={classNames} {...rest}>
@@ -132,7 +133,11 @@ export const UserMenu = forwardRef<HTMLDivElement, UserMenuProps>(
           >
             <div className={styles.avatar}>
               {user.avatar ? (
-                <img src={user.avatar} alt={user.name} className={styles.avatarImage} />
+                <img
+                  src={user.avatar}
+                  alt={user.name}
+                  className={styles.avatarImage}
+                />
               ) : (
                 <span className={styles.avatarInitials}>
                   {user.initials || getInitials(user.name)}
@@ -149,11 +154,13 @@ export const UserMenu = forwardRef<HTMLDivElement, UserMenuProps>(
               <>
                 <div className={styles.triggerInfo}>
                   <span className={styles.triggerName}>{user.name}</span>
-                  {user.role && <span className={styles.triggerRole}>{user.role}</span>}
+                  {user.role && (
+                    <span className={styles.triggerRole}>{user.role}</span>
+                  )}
                 </div>
                 <ChevronDown
                   size={16}
-                  className={`${styles.chevron} ${isOpen ? styles.chevronOpen : ''}`}
+                  className={`${styles.chevron} ${isOpen ? styles.chevronOpen : ""}`}
                 />
               </>
             )}
@@ -166,7 +173,11 @@ export const UserMenu = forwardRef<HTMLDivElement, UserMenuProps>(
             <div className={styles.header}>
               <div className={styles.headerAvatar}>
                 {user.avatar ? (
-                  <img src={user.avatar} alt={user.name} className={styles.avatarImage} />
+                  <img
+                    src={user.avatar}
+                    alt={user.name}
+                    className={styles.avatarImage}
+                  />
                 ) : (
                   <span className={styles.avatarInitials}>
                     {user.initials || getInitials(user.name)}
@@ -175,14 +186,18 @@ export const UserMenu = forwardRef<HTMLDivElement, UserMenuProps>(
               </div>
               <div className={styles.headerInfo}>
                 <span className={styles.headerName}>{user.name}</span>
-                {user.email && <span className={styles.headerEmail}>{user.email}</span>}
+                {user.email && (
+                  <span className={styles.headerEmail}>{user.email}</span>
+                )}
               </div>
             </div>
           )}
 
           {sections.map((section, sectionIndex) => (
             <div key={section.id} className={styles.section}>
-              {section.label && <div className={styles.sectionLabel}>{section.label}</div>}
+              {section.label && (
+                <div className={styles.sectionLabel}>{section.label}</div>
+              )}
               {section.items.map((item) => {
                 const itemClasses = [
                   styles.item,
@@ -190,7 +205,7 @@ export const UserMenu = forwardRef<HTMLDivElement, UserMenuProps>(
                   item.disabled && styles.itemDisabled,
                 ]
                   .filter(Boolean)
-                  .join(' ');
+                  .join(" ");
 
                 if (item.href && !item.disabled) {
                   return (
@@ -201,7 +216,9 @@ export const UserMenu = forwardRef<HTMLDivElement, UserMenuProps>(
                       role="menuitem"
                       onClick={() => setOpen(false)}
                     >
-                      {item.icon && <span className={styles.itemIcon}>{item.icon}</span>}
+                      {item.icon && (
+                        <span className={styles.itemIcon}>{item.icon}</span>
+                      )}
                       <span>{item.label}</span>
                     </a>
                   );
@@ -216,12 +233,16 @@ export const UserMenu = forwardRef<HTMLDivElement, UserMenuProps>(
                     disabled={item.disabled}
                     onClick={() => handleItemClick(item)}
                   >
-                    {item.icon && <span className={styles.itemIcon}>{item.icon}</span>}
+                    {item.icon && (
+                      <span className={styles.itemIcon}>{item.icon}</span>
+                    )}
                     <span>{item.label}</span>
                   </button>
                 );
               })}
-              {sectionIndex < sections.length - 1 && <div className={styles.divider} />}
+              {sectionIndex < sections.length - 1 && (
+                <div className={styles.divider} />
+              )}
             </div>
           ))}
         </div>
@@ -230,4 +251,4 @@ export const UserMenu = forwardRef<HTMLDivElement, UserMenuProps>(
   },
 );
 
-UserMenu.displayName = 'UserMenu';
+UserMenu.displayName = "UserMenu";

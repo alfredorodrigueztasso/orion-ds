@@ -5,17 +5,17 @@
  * A slide-over panel for viewing and editing entity details.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * DetailPanel size
  */
-export type DetailPanelSize = 'sm' | 'md' | 'lg' | 'xl';
+export type DetailPanelSize = "sm" | "md" | "lg" | "xl";
 
 /**
  * DetailPanel position
  */
-export type DetailPanelPosition = 'right' | 'left';
+export type DetailPanelPosition = "right" | "left";
 
 /**
  * DetailPanel section props
@@ -33,7 +33,10 @@ export type DetailPanelPosition = 'right' | 'left';
  * </DetailPanel>
  * ```
  */
-export interface DetailPanelProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
+export interface DetailPanelProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "title"
+> {
   /**
    * Whether the panel is open
    */

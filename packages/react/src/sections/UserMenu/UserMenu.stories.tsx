@@ -1,16 +1,25 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
-import { User, Settings, CreditCard, HelpCircle, LogOut, Moon, Bell, Shield } from 'lucide-react';
-import { UserMenu } from './UserMenu';
-import type { UserMenuSection } from './UserMenu.types';
+import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
+import {
+  User,
+  Settings,
+  CreditCard,
+  HelpCircle,
+  LogOut,
+  Moon,
+  Bell,
+  Shield,
+} from "lucide-react";
+import { UserMenu } from "./UserMenu";
+import type { UserMenuSection } from "./UserMenu.types";
 
 const meta: Meta<typeof UserMenu> = {
-  title: 'Sections/App/UserMenu',
+  title: "Sections/App/UserMenu",
   component: UserMenu,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
@@ -18,37 +27,52 @@ type Story = StoryObj<typeof UserMenu>;
 
 // Sample user
 const sampleUser = {
-  name: 'John Doe',
-  email: 'john.doe@example.com',
-  avatar: 'https://i.pravatar.cc/150?img=1',
-  status: 'online' as const,
-  role: 'Admin',
+  name: "John Doe",
+  email: "john.doe@example.com",
+  avatar: "https://i.pravatar.cc/150?img=1",
+  status: "online" as const,
+  role: "Admin",
 };
 
 // Sample sections
 const sampleSections: UserMenuSection[] = [
   {
-    id: 'account',
+    id: "account",
     items: [
-      { id: 'profile', label: 'Profile', icon: <User size={18} /> },
-      { id: 'settings', label: 'Settings', icon: <Settings size={18} /> },
-      { id: 'billing', label: 'Billing', icon: <CreditCard size={18} />, href: '/billing' },
+      { id: "profile", label: "Profile", icon: <User size={18} /> },
+      { id: "settings", label: "Settings", icon: <Settings size={18} /> },
+      {
+        id: "billing",
+        label: "Billing",
+        icon: <CreditCard size={18} />,
+        href: "/billing",
+      },
     ],
   },
   {
-    id: 'preferences',
-    label: 'Preferences',
+    id: "preferences",
+    label: "Preferences",
     items: [
-      { id: 'notifications', label: 'Notifications', icon: <Bell size={18} /> },
-      { id: 'appearance', label: 'Dark mode', icon: <Moon size={18} /> },
-      { id: 'security', label: 'Security', icon: <Shield size={18} /> },
+      { id: "notifications", label: "Notifications", icon: <Bell size={18} /> },
+      { id: "appearance", label: "Dark mode", icon: <Moon size={18} /> },
+      { id: "security", label: "Security", icon: <Shield size={18} /> },
     ],
   },
   {
-    id: 'support',
+    id: "support",
     items: [
-      { id: 'help', label: 'Help & Support', icon: <HelpCircle size={18} />, href: '/help' },
-      { id: 'logout', label: 'Sign out', icon: <LogOut size={18} />, danger: true },
+      {
+        id: "help",
+        label: "Help & Support",
+        icon: <HelpCircle size={18} />,
+        href: "/help",
+      },
+      {
+        id: "logout",
+        label: "Sign out",
+        icon: <LogOut size={18} />,
+        danger: true,
+      },
     ],
   },
 ];
@@ -71,8 +95,8 @@ export const Interactive: Story = {
     const [open, setOpen] = useState(false);
 
     const handleItemClick = (itemId: string) => {
-      if (itemId === 'logout') {
-        alert('Signing out...');
+      if (itemId === "logout") {
+        alert("Signing out...");
       } else {
         alert(`Clicked: ${itemId}`);
       }
@@ -80,37 +104,44 @@ export const Interactive: Story = {
 
     const sections: UserMenuSection[] = [
       {
-        id: 'account',
+        id: "account",
         items: [
           {
-            id: 'profile',
-            label: 'Profile',
+            id: "profile",
+            label: "Profile",
             icon: <User size={18} />,
-            onClick: () => handleItemClick('profile'),
+            onClick: () => handleItemClick("profile"),
           },
           {
-            id: 'settings',
-            label: 'Settings',
+            id: "settings",
+            label: "Settings",
             icon: <Settings size={18} />,
-            onClick: () => handleItemClick('settings'),
+            onClick: () => handleItemClick("settings"),
           },
         ],
       },
       {
-        id: 'actions',
+        id: "actions",
         items: [
           {
-            id: 'logout',
-            label: 'Sign out',
+            id: "logout",
+            label: "Sign out",
             icon: <LogOut size={18} />,
             danger: true,
-            onClick: () => handleItemClick('logout'),
+            onClick: () => handleItemClick("logout"),
           },
         ],
       },
     ];
 
-    return <UserMenu user={sampleUser} sections={sections} open={open} onOpenChange={setOpen} />;
+    return (
+      <UserMenu
+        user={sampleUser}
+        sections={sections}
+        open={open}
+        onOpenChange={setOpen}
+      />
+    );
   },
 };
 
@@ -131,9 +162,9 @@ export const Compact: Story = {
 export const WithoutAvatar: Story = {
   args: {
     user: {
-      name: 'Jane Smith',
-      email: 'jane.smith@example.com',
-      status: 'away' as const,
+      name: "Jane Smith",
+      email: "jane.smith@example.com",
+      status: "away" as const,
     },
     sections: sampleSections,
   },
@@ -145,9 +176,9 @@ export const WithoutAvatar: Story = {
 export const CustomInitials: Story = {
   args: {
     user: {
-      name: 'Organization Account',
-      email: 'admin@org.com',
-      initials: 'ORG',
+      name: "Organization Account",
+      email: "admin@org.com",
+      initials: "ORG",
     },
     sections: sampleSections,
   },
@@ -158,24 +189,42 @@ export const CustomInitials: Story = {
  */
 export const StatusIndicators: Story = {
   render: () => (
-    <div style={{ display: 'flex', gap: 'var(--spacing-6)', alignItems: 'flex-start' }}>
+    <div
+      style={{
+        display: "flex",
+        gap: "var(--spacing-6)",
+        alignItems: "flex-start",
+      }}
+    >
       <UserMenu
-        user={{ ...sampleUser, status: 'online' }}
+        user={{ ...sampleUser, status: "online" }}
         sections={sampleSections.slice(0, 1)}
         compact
       />
       <UserMenu
-        user={{ ...sampleUser, status: 'away', avatar: 'https://i.pravatar.cc/150?img=2' }}
+        user={{
+          ...sampleUser,
+          status: "away",
+          avatar: "https://i.pravatar.cc/150?img=2",
+        }}
         sections={sampleSections.slice(0, 1)}
         compact
       />
       <UserMenu
-        user={{ ...sampleUser, status: 'busy', avatar: 'https://i.pravatar.cc/150?img=3' }}
+        user={{
+          ...sampleUser,
+          status: "busy",
+          avatar: "https://i.pravatar.cc/150?img=3",
+        }}
         sections={sampleSections.slice(0, 1)}
         compact
       />
       <UserMenu
-        user={{ ...sampleUser, status: 'offline', avatar: 'https://i.pravatar.cc/150?img=4' }}
+        user={{
+          ...sampleUser,
+          status: "offline",
+          avatar: "https://i.pravatar.cc/150?img=4",
+        }}
         sections={sampleSections.slice(0, 1)}
         compact
       />
@@ -201,11 +250,11 @@ export const AlignStart: Story = {
   args: {
     user: sampleUser,
     sections: sampleSections,
-    align: 'start',
+    align: "start",
   },
   decorators: [
     (Story) => (
-      <div style={{ paddingLeft: '200px' }}>
+      <div style={{ paddingLeft: "200px" }}>
         <Story />
       </div>
     ),
@@ -220,21 +269,33 @@ export const WithDisabledItems: Story = {
     user: sampleUser,
     sections: [
       {
-        id: 'account',
+        id: "account",
         items: [
-          { id: 'profile', label: 'Profile', icon: <User size={18} /> },
-          { id: 'settings', label: 'Settings', icon: <Settings size={18} />, disabled: true },
+          { id: "profile", label: "Profile", icon: <User size={18} /> },
           {
-            id: 'billing',
-            label: 'Billing (Upgrade required)',
+            id: "settings",
+            label: "Settings",
+            icon: <Settings size={18} />,
+            disabled: true,
+          },
+          {
+            id: "billing",
+            label: "Billing (Upgrade required)",
             icon: <CreditCard size={18} />,
             disabled: true,
           },
         ],
       },
       {
-        id: 'actions',
-        items: [{ id: 'logout', label: 'Sign out', icon: <LogOut size={18} />, danger: true }],
+        id: "actions",
+        items: [
+          {
+            id: "logout",
+            label: "Sign out",
+            icon: <LogOut size={18} />,
+            danger: true,
+          },
+        ],
       },
     ],
   },
@@ -246,15 +307,15 @@ export const WithDisabledItems: Story = {
 export const Minimal: Story = {
   args: {
     user: {
-      name: 'Guest User',
-      email: 'guest@example.com',
+      name: "Guest User",
+      email: "guest@example.com",
     },
     sections: [
       {
-        id: 'actions',
+        id: "actions",
         items: [
-          { id: 'settings', label: 'Settings', icon: <Settings size={18} /> },
-          { id: 'logout', label: 'Sign out', danger: true },
+          { id: "settings", label: "Settings", icon: <Settings size={18} /> },
+          { id: "logout", label: "Sign out", danger: true },
         ],
       },
     ],

@@ -11,5 +11,5 @@
  * <Badge variant="brand" size="sm">New</Badge>
  * ```
  */
-export { Badge } from './Badge';
-export type { BadgeProps, BadgeVariant, BadgeSize } from './Badge.types';
+export { Badge } from "./Badge";
+export type { BadgeProps, BadgeVariant, BadgeSize } from "./Badge.types";

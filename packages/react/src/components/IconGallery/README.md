@@ -28,7 +28,7 @@ Available categories:
 ### Basic
 
 ```tsx
-import { IconGallery } from '@orion/react';
+import { IconGallery } from "@orion/react";
 
 <IconGallery />;
 ```
@@ -73,7 +73,7 @@ This is primarily a **documentation component** for exploring the icon library. 
 
 ```tsx
 // In your components
-import { Search, User, Settings } from 'lucide-react';
+import { Search, User, Settings } from "lucide-react";
 
 <Button icon={<Search size={20} />}>Search</Button>;
 ```

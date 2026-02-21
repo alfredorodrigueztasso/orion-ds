@@ -4,8 +4,8 @@
  * Type definitions for the settings page template.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
-import type { SettingsLayoutProps } from '../../../sections/SettingsLayout';
+import type { HTMLAttributes, ReactNode } from "react";
+import type { SettingsLayoutProps } from "../../../sections/SettingsLayout";
 
 /**
  * Settings section content
@@ -38,7 +38,10 @@ export interface SettingsSection {
  * />
  * ```
  */
-export interface SettingsTemplateProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
+export interface SettingsTemplateProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "title"
+> {
   /**
    * Page title
    */
@@ -52,7 +55,7 @@ export interface SettingsTemplateProps extends Omit<HTMLAttributes<HTMLDivElemen
   /**
    * Navigation groups (passed to SettingsLayout)
    */
-  navigation: SettingsLayoutProps['navigation'];
+  navigation: SettingsLayoutProps["navigation"];
 
   /**
    * Section content mapped by ID

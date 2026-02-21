@@ -4,17 +4,17 @@
  * Type definitions for the dashboard page template.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
-import type { SidebarProps } from '../../../sections/Sidebar';
-import type { PageHeaderProps } from '../../../sections/PageHeader';
-import type { MetricCardsProps } from '../../../sections/MetricCards';
-import type { DataTableProps } from '../../../sections/DataTable';
-import type { ActivityFeedProps } from '../../../sections/ActivityFeed';
+import type { HTMLAttributes, ReactNode } from "react";
+import type { SidebarProps } from "../../../sections/Sidebar";
+import type { PageHeaderProps } from "../../../sections/PageHeader";
+import type { MetricCardsProps } from "../../../sections/MetricCards";
+import type { DataTableProps } from "../../../sections/DataTable";
+import type { ActivityFeedProps } from "../../../sections/ActivityFeed";
 
 /**
  * Dashboard layout variant
  */
-export type DashboardLayout = 'default' | 'split' | 'compact';
+export type DashboardLayout = "default" | "split" | "compact";
 
 /**
  * DashboardTemplate props

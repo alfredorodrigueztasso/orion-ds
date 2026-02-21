@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from './Button';
+import type { Meta, StoryObj } from "@storybook/react";
+import { Button } from "./Button";
 import {
   Search,
   Download,
@@ -11,33 +11,41 @@ import {
   Heart,
   ExternalLink,
   Menu,
-} from 'lucide-react';
+} from "lucide-react";
 
 const meta = {
-  title: 'Components/Forms/Button',
+  title: "Components/Actions/Button",
   component: Button,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     variant: {
-      control: 'select',
-      options: ['primary', 'secondary', 'secondaryInverse', 'ghost', 'ghostInverse', 'danger', 'inverse'],
-      description: 'Button visual style',
+      control: "select",
+      options: [
+        "primary",
+        "secondary",
+        "secondaryInverse",
+        "ghost",
+        "ghostInverse",
+        "danger",
+        "inverse",
+      ],
+      description: "Button visual style",
     },
     size: {
-      control: 'select',
-      options: ['sm', 'md', 'lg'],
-      description: 'Button size',
+      control: "select",
+      options: ["sm", "md", "lg"],
+      description: "Button size",
     },
     fullWidth: {
-      control: 'boolean',
-      description: 'Make button full width',
+      control: "boolean",
+      description: "Make button full width",
     },
     disabled: {
-      control: 'boolean',
-      description: 'Disable button',
+      control: "boolean",
+      description: "Disable button",
     },
   },
 } satisfies Meta<typeof Button>;
@@ -48,50 +56,50 @@ type Story = StoryObj<typeof meta>;
 // Default button
 export const Primary: Story = {
   args: {
-    variant: 'primary',
-    children: 'Primary Button',
+    variant: "primary",
+    children: "Primary Button",
   },
 };
 
 export const Secondary: Story = {
   args: {
-    variant: 'secondary',
-    children: 'Secondary Button',
+    variant: "secondary",
+    children: "Secondary Button",
   },
 };
 
 export const Ghost: Story = {
   args: {
-    variant: 'ghost',
-    children: 'Ghost Button',
+    variant: "ghost",
+    children: "Ghost Button",
   },
 };
 
 export const Danger: Story = {
   args: {
-    variant: 'danger',
-    children: 'Danger Button',
+    variant: "danger",
+    children: "Danger Button",
   },
 };
 
 export const Inverse: Story = {
   args: {
-    variant: 'inverse',
-    children: 'Inverse Button',
+    variant: "inverse",
+    children: "Inverse Button",
   },
 };
 
 export const SecondaryInverse: Story = {
   args: {
-    variant: 'secondaryInverse',
-    children: 'Secondary Inverse Button',
+    variant: "secondaryInverse",
+    children: "Secondary Inverse Button",
   },
 };
 
 export const GhostInverse: Story = {
   args: {
-    variant: 'ghostInverse',
-    children: 'Ghost Inverse Button',
+    variant: "ghostInverse",
+    children: "Ghost Inverse Button",
   },
 };
 
@@ -100,20 +108,26 @@ export const InverseOnColoredBackground: Story = {
   render: () => (
     <div
       style={{
-        background: 'var(--interactive-primary)',
-        padding: 'var(--spacing-8)',
-        borderRadius: 'var(--radius-container)',
-        display: 'flex',
-        gap: 'var(--spacing-4)',
-        flexDirection: 'column',
-        alignItems: 'center',
+        background: "var(--interactive-primary)",
+        padding: "var(--spacing-8)",
+        borderRadius: "var(--radius-container)",
+        display: "flex",
+        gap: "var(--spacing-4)",
+        flexDirection: "column",
+        alignItems: "center",
       }}
     >
-      <h3 style={{ color: 'white', margin: 0, fontFamily: 'var(--font-primary)' }}>
+      <h3
+        style={{ color: "white", margin: 0, fontFamily: "var(--font-primary)" }}
+      >
         Summer Sale - 50% Off
       </h3>
-      <p style={{ color: 'white', margin: 0 }}>Limited time offer on all products</p>
-      <div style={{ display: 'flex', gap: 'var(--spacing-3)', flexWrap: 'wrap' }}>
+      <p style={{ color: "white", margin: 0 }}>
+        Limited time offer on all products
+      </p>
+      <div
+        style={{ display: "flex", gap: "var(--spacing-3)", flexWrap: "wrap" }}
+      >
         <Button variant="inverse">Shop Now</Button>
         <Button variant="secondaryInverse">Learn More</Button>
         <Button variant="ghostInverse">Skip</Button>
@@ -125,22 +139,22 @@ export const InverseOnColoredBackground: Story = {
 // Sizes
 export const Small: Story = {
   args: {
-    size: 'sm',
-    children: 'Small Button',
+    size: "sm",
+    children: "Small Button",
   },
 };
 
 export const Medium: Story = {
   args: {
-    size: 'md',
-    children: 'Medium Button',
+    size: "md",
+    children: "Medium Button",
   },
 };
 
 export const Large: Story = {
   args: {
-    size: 'lg',
-    children: 'Large Button',
+    size: "lg",
+    children: "Large Button",
   },
 };
 
@@ -148,14 +162,14 @@ export const Large: Story = {
 export const Disabled: Story = {
   args: {
     disabled: true,
-    children: 'Disabled Button',
+    children: "Disabled Button",
   },
 };
 
 export const FullWidth: Story = {
   args: {
     fullWidth: true,
-    children: 'Full Width Button',
+    children: "Full Width Button",
   },
 };
 
@@ -163,7 +177,12 @@ export const FullWidth: Story = {
 export const AllSizes: Story = {
   render: () => (
     <div
-      style={{ display: 'flex', gap: 'var(--spacing-4)', alignItems: 'center', flexWrap: 'wrap' }}
+      style={{
+        display: "flex",
+        gap: "var(--spacing-4)",
+        alignItems: "center",
+        flexWrap: "wrap",
+      }}
     >
       <Button size="sm">Small</Button>
       <Button size="md">Medium</Button>
@@ -176,7 +195,7 @@ export const AllSizes: Story = {
 export const LucideIconsLeft: Story = {
   args: {},
   render: () => (
-    <div style={{ display: 'flex', gap: 'var(--spacing-2)', flexWrap: 'wrap' }}>
+    <div style={{ display: "flex", gap: "var(--spacing-2)", flexWrap: "wrap" }}>
       <Button icon={<Search size={20} />}>Search</Button>
       <Button icon={<Download size={20} />} variant="secondary">
         Download
@@ -195,7 +214,7 @@ export const LucideIconsLeft: Story = {
 export const LucideIconsRight: Story = {
   args: {},
   render: () => (
-    <div style={{ display: 'flex', gap: 'var(--spacing-2)', flexWrap: 'wrap' }}>
+    <div style={{ display: "flex", gap: "var(--spacing-2)", flexWrap: "wrap" }}>
       <Button iconRight={<ChevronDown size={20} />}>Dropdown</Button>
       <Button iconRight={<ExternalLink size={20} />} variant="secondary">
         External
@@ -211,11 +230,26 @@ export const LucideIconsRight: Story = {
 export const LucideIconsOnly: Story = {
   args: {},
   render: () => (
-    <div style={{ display: 'flex', gap: 'var(--spacing-2)' }}>
+    <div style={{ display: "flex", gap: "var(--spacing-2)" }}>
       <Button iconOnly icon={<Search size={20} />} aria-label="Search" />
-      <Button iconOnly icon={<Heart size={20} />} variant="secondary" aria-label="Like" />
-      <Button iconOnly icon={<Trash2 size={20} />} variant="danger" aria-label="Delete" />
-      <Button iconOnly icon={<Settings size={20} />} variant="ghost" aria-label="Settings" />
+      <Button
+        iconOnly
+        icon={<Heart size={20} />}
+        variant="secondary"
+        aria-label="Like"
+      />
+      <Button
+        iconOnly
+        icon={<Trash2 size={20} />}
+        variant="danger"
+        aria-label="Delete"
+      />
+      <Button
+        iconOnly
+        icon={<Settings size={20} />}
+        variant="ghost"
+        aria-label="Settings"
+      />
     </div>
   ),
 };
@@ -224,11 +258,14 @@ export const LucideIconsOnly: Story = {
 export const LucideIconsBoth: Story = {
   args: {},
   render: () => (
-    <div style={{ display: 'flex', gap: 'var(--spacing-2)', flexWrap: 'wrap' }}>
+    <div style={{ display: "flex", gap: "var(--spacing-2)", flexWrap: "wrap" }}>
       <Button icon={<Menu size={20} />} iconRight={<ChevronDown size={20} />}>
         Menu Options
       </Button>
-      <Button icon={<Download size={20} />} iconRight={<ExternalLink size={20} />}>
+      <Button
+        icon={<Download size={20} />}
+        iconRight={<ExternalLink size={20} />}
+      >
         Download File
       </Button>
     </div>
@@ -239,7 +276,7 @@ export const LucideIconsBoth: Story = {
 export const LucideWithLoading: Story = {
   args: {
     icon: <Download size={20} />,
-    children: 'Downloading...',
+    children: "Downloading...",
     isLoading: true,
   },
 };
@@ -247,7 +284,7 @@ export const LucideWithLoading: Story = {
 // Loading states for all variants
 export const LoadingAllVariants: Story = {
   render: () => (
-    <div style={{ display: 'flex', gap: 'var(--spacing-4)', flexWrap: 'wrap' }}>
+    <div style={{ display: "flex", gap: "var(--spacing-4)", flexWrap: "wrap" }}>
       <Button variant="primary" isLoading>
         Primary
       </Button>
@@ -276,7 +313,7 @@ export const LoadingAllVariants: Story = {
 // All variants showcase
 export const AllVariants: Story = {
   render: () => (
-    <div style={{ display: 'flex', gap: 'var(--spacing-4)', flexWrap: 'wrap' }}>
+    <div style={{ display: "flex", gap: "var(--spacing-4)", flexWrap: "wrap" }}>
       <Button variant="primary">Primary</Button>
       <Button variant="secondary">Secondary</Button>
       <Button variant="secondaryInverse">Secondary Inverse</Button>
@@ -291,20 +328,42 @@ export const AllVariants: Story = {
 // Design reference — 4-quadrant grid matching the design spec
 export const DesignReference: Story = {
   render: () => (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2px', width: '800px' }}>
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: "var(--spacing-05)",
+        width: "800px",
+      }}
+    >
       {/* Light */}
       <div
         style={{
-          background: 'var(--color-neutral-0)',
-          padding: 'var(--spacing-8)',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 'var(--spacing-6)',
+          background: "var(--color-neutral-0)",
+          padding: "var(--spacing-8)",
+          display: "flex",
+          flexDirection: "column",
+          gap: "var(--spacing-6)",
         }}
         data-theme="light"
       >
-        <span style={{ fontFamily: 'var(--font-secondary)', fontSize: '14px', color: 'var(--text-secondary)' }}>Light</span>
-        <div style={{ display: 'flex', gap: 'var(--spacing-3)', flexWrap: 'wrap', alignItems: 'center' }}>
+        <span
+          style={{
+            fontFamily: "var(--font-secondary)",
+            fontSize: "var(--font-size-14)",
+            color: "var(--text-secondary)",
+          }}
+        >
+          Light
+        </span>
+        <div
+          style={{
+            display: "flex",
+            gap: "var(--spacing-3)",
+            flexWrap: "wrap",
+            alignItems: "center",
+          }}
+        >
           <Button variant="primary">Primary</Button>
           <Button variant="secondary">Secondary</Button>
           <Button variant="ghost">Ghost</Button>
@@ -315,16 +374,31 @@ export const DesignReference: Story = {
       {/* Dark */}
       <div
         style={{
-          background: '#000000',
-          padding: 'var(--spacing-8)',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 'var(--spacing-6)',
+          background: "var(--surface-base)",
+          padding: "var(--spacing-8)",
+          display: "flex",
+          flexDirection: "column",
+          gap: "var(--spacing-6)",
         }}
         data-theme="dark"
       >
-        <span style={{ fontFamily: 'var(--font-secondary)', fontSize: '14px', color: 'rgba(255,255,255,0.6)' }}>Dark</span>
-        <div style={{ display: 'flex', gap: 'var(--spacing-3)', flexWrap: 'wrap', alignItems: 'center' }}>
+        <span
+          style={{
+            fontFamily: "var(--font-secondary)",
+            fontSize: "var(--font-size-14)",
+            color: "var(--text-secondary)",
+          }}
+        >
+          Dark
+        </span>
+        <div
+          style={{
+            display: "flex",
+            gap: "var(--spacing-3)",
+            flexWrap: "wrap",
+            alignItems: "center",
+          }}
+        >
           <Button variant="primary">Primary</Button>
           <Button variant="secondary">Secondary</Button>
           <Button variant="ghost">Ghost</Button>
@@ -335,16 +409,31 @@ export const DesignReference: Story = {
       {/* Inverse Light */}
       <div
         style={{
-          background: 'var(--interactive-primary)',
-          padding: 'var(--spacing-8)',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 'var(--spacing-6)',
+          background: "var(--interactive-primary)",
+          padding: "var(--spacing-8)",
+          display: "flex",
+          flexDirection: "column",
+          gap: "var(--spacing-6)",
         }}
         data-theme="light"
       >
-        <span style={{ fontFamily: 'var(--font-secondary)', fontSize: '14px', color: 'rgba(255,255,255,0.8)' }}>Inverse Light</span>
-        <div style={{ display: 'flex', gap: 'var(--spacing-3)', flexWrap: 'wrap', alignItems: 'center' }}>
+        <span
+          style={{
+            fontFamily: "var(--font-secondary)",
+            fontSize: "var(--font-size-14)",
+            color: "var(--interactive-primary-text)",
+          }}
+        >
+          Inverse Light
+        </span>
+        <div
+          style={{
+            display: "flex",
+            gap: "var(--spacing-3)",
+            flexWrap: "wrap",
+            alignItems: "center",
+          }}
+        >
           <Button variant="inverse">Primary</Button>
           <Button variant="secondaryInverse">Secondary</Button>
           <Button variant="ghostInverse">Ghost</Button>
@@ -355,16 +444,31 @@ export const DesignReference: Story = {
       {/* Inverse Dark */}
       <div
         style={{
-          background: 'var(--interactive-primary)',
-          padding: 'var(--spacing-8)',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 'var(--spacing-6)',
+          background: "var(--interactive-primary)",
+          padding: "var(--spacing-8)",
+          display: "flex",
+          flexDirection: "column",
+          gap: "var(--spacing-6)",
         }}
         data-theme="dark"
       >
-        <span style={{ fontFamily: 'var(--font-secondary)', fontSize: '14px', color: 'rgba(255,255,255,0.8)' }}>Inverse Dark</span>
-        <div style={{ display: 'flex', gap: 'var(--spacing-3)', flexWrap: 'wrap', alignItems: 'center' }}>
+        <span
+          style={{
+            fontFamily: "var(--font-secondary)",
+            fontSize: "var(--font-size-14)",
+            color: "var(--interactive-primary-text)",
+          }}
+        >
+          Inverse Dark
+        </span>
+        <div
+          style={{
+            display: "flex",
+            gap: "var(--spacing-3)",
+            flexWrap: "wrap",
+            alignItems: "center",
+          }}
+        >
           <Button variant="inverse">Primary</Button>
           <Button variant="secondaryInverse">Secondary</Button>
           <Button variant="ghostInverse">Ghost</Button>
@@ -374,30 +478,45 @@ export const DesignReference: Story = {
     </div>
   ),
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
 };
 
 // Showcase inverse variants on dark/colored backgrounds
 export const InverseVariantsOnDarkBackgrounds: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-6)' }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-6)",
+      }}
+    >
       {/* Dark Photo Background */}
       <div
         style={{
-          background: 'linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.5)), url("https://images.unsplash.com/photo-1557683316-973673baf926?w=800") center/cover',
-          padding: 'var(--spacing-8)',
-          borderRadius: 'var(--radius-container)',
-          display: 'flex',
-          gap: 'var(--spacing-4)',
-          flexDirection: 'column',
-          alignItems: 'center',
+          background:
+            'linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.5)), url("https://images.unsplash.com/photo-1557683316-973673baf926?w=800") center/cover',
+          padding: "var(--spacing-8)",
+          borderRadius: "var(--radius-container)",
+          display: "flex",
+          gap: "var(--spacing-4)",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
-        <h3 style={{ color: 'white', margin: 0, fontFamily: 'var(--font-primary)' }}>
+        <h3
+          style={{
+            color: "white",
+            margin: 0,
+            fontFamily: "var(--font-primary)",
+          }}
+        >
           On Dark Photo Background
         </h3>
-        <div style={{ display: 'flex', gap: 'var(--spacing-3)', flexWrap: 'wrap' }}>
+        <div
+          style={{ display: "flex", gap: "var(--spacing-3)", flexWrap: "wrap" }}
+        >
           <Button variant="inverse">Get Started</Button>
           <Button variant="secondaryInverse">Learn More</Button>
           <Button variant="ghostInverse">Skip</Button>
@@ -407,19 +526,27 @@ export const InverseVariantsOnDarkBackgrounds: Story = {
       {/* Colored Brand Background */}
       <div
         style={{
-          background: 'var(--interactive-primary)',
-          padding: 'var(--spacing-8)',
-          borderRadius: 'var(--radius-container)',
-          display: 'flex',
-          gap: 'var(--spacing-4)',
-          flexDirection: 'column',
-          alignItems: 'center',
+          background: "var(--interactive-primary)",
+          padding: "var(--spacing-8)",
+          borderRadius: "var(--radius-container)",
+          display: "flex",
+          gap: "var(--spacing-4)",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
-        <h3 style={{ color: 'white', margin: 0, fontFamily: 'var(--font-primary)' }}>
+        <h3
+          style={{
+            color: "white",
+            margin: 0,
+            fontFamily: "var(--font-primary)",
+          }}
+        >
           On Brand Color Background
         </h3>
-        <div style={{ display: 'flex', gap: 'var(--spacing-3)', flexWrap: 'wrap' }}>
+        <div
+          style={{ display: "flex", gap: "var(--spacing-3)", flexWrap: "wrap" }}
+        >
           <Button variant="inverse">Shop Now</Button>
           <Button variant="secondaryInverse">Learn More</Button>
           <Button variant="ghostInverse">Maybe Later</Button>
@@ -429,19 +556,28 @@ export const InverseVariantsOnDarkBackgrounds: Story = {
       {/* Gradient Background */}
       <div
         style={{
-          background: 'linear-gradient(135deg, var(--color-brand-400), var(--color-brand-600))',
-          padding: 'var(--spacing-8)',
-          borderRadius: 'var(--radius-container)',
-          display: 'flex',
-          gap: 'var(--spacing-4)',
-          flexDirection: 'column',
-          alignItems: 'center',
+          background:
+            "linear-gradient(135deg, var(--color-brand-400), var(--color-brand-600))",
+          padding: "var(--spacing-8)",
+          borderRadius: "var(--radius-container)",
+          display: "flex",
+          gap: "var(--spacing-4)",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
-        <h3 style={{ color: 'white', margin: 0, fontFamily: 'var(--font-primary)' }}>
+        <h3
+          style={{
+            color: "white",
+            margin: 0,
+            fontFamily: "var(--font-primary)",
+          }}
+        >
           On Gradient Background
         </h3>
-        <div style={{ display: 'flex', gap: 'var(--spacing-3)', flexWrap: 'wrap' }}>
+        <div
+          style={{ display: "flex", gap: "var(--spacing-3)", flexWrap: "wrap" }}
+        >
           <Button variant="inverse">Join Now</Button>
           <Button variant="secondaryInverse">Preview</Button>
           <Button variant="ghostInverse">Not Now</Button>

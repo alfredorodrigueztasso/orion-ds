@@ -9,10 +9,10 @@
  * <DatePicker mode="range" selected={range} onSelect={setRange} presets={presets} />
  * ```
  */
-export { DatePicker } from './DatePicker';
+export { DatePicker } from "./DatePicker";
 export type {
   DatePickerProps,
   DatePickerSingleProps,
   DatePickerRangeProps,
   DatePickerPreset,
-} from './DatePicker.types';
+} from "./DatePicker.types";

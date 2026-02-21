@@ -2,42 +2,48 @@
  * orion add <name...> — Copy components from the registry to the project
  */
 
-import * as readline from 'node:readline';
-import { loadConfig } from '../lib/config.js';
+import * as readline from "node:readline";
+import { loadConfig } from "../lib/config.js";
 import {
   fetchIndex,
   fetchComponent,
   fetchIndexLocal,
   fetchComponentLocal,
-} from '../lib/registry.js';
-import { resolveAll } from '../lib/resolver.js';
-import { writeComponents } from '../lib/writer.js';
-import { installDeps } from '../lib/package-manager.js';
-import * as logger from '../lib/logger.js';
-import type { RegistryIndex, RegistryItem } from '../types.js';
+} from "../lib/registry.js";
+import { resolveAll } from "../lib/resolver.js";
+import { writeComponents } from "../lib/writer.js";
+import { installDeps } from "../lib/package-manager.js";
+import * as logger from "../lib/logger.js";
+import type { RegistryIndex, RegistryItem } from "../types.js";
 
 function confirm(question: string): Promise<boolean> {
-  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
   return new Promise((resolve) => {
-    rl.question(`${question} ${logger.dim('(y/N)')} `, (answer) => {
+    rl.question(`${question} ${logger.dim("(y/N)")} `, (answer) => {
       rl.close();
-      resolve(answer.trim().toLowerCase() === 'y' || answer.trim().toLowerCase() === 'yes');
+      resolve(
+        answer.trim().toLowerCase() === "y" ||
+          answer.trim().toLowerCase() === "yes",
+      );
     });
   });
 }
 
 export async function add(args: string[]): Promise<void> {
   const cwd = process.cwd();
-  const yes = args.includes('--yes') || args.includes('-y');
-  const overwrite = args.includes('--overwrite');
-  const local = args.includes('--local');
+  const yes = args.includes("--yes") || args.includes("-y");
+  const overwrite = args.includes("--overwrite");
+  const local = args.includes("--local");
 
   // Filter out flags to get component names
-  const names = args.filter((a) => !a.startsWith('--') && !a.startsWith('-'));
+  const names = args.filter((a) => !a.startsWith("--") && !a.startsWith("-"));
 
   if (names.length === 0) {
-    logger.error('No components specified. Usage: orion add <name...>');
-    logger.info('  Example: orion add button card modal');
+    logger.error("No components specified. Usage: orion add <name...>");
+    logger.info("  Example: orion add button card modal");
     logger.info('  Run "orion list" to see available components.');
     process.exit(1);
   }
@@ -68,7 +74,7 @@ export async function add(args: string[]): Promise<void> {
   const indexNames = new Set(index.items.map((i) => i.name));
   const invalid = names.filter((n) => !indexNames.has(n));
   if (invalid.length > 0) {
-    logger.error(`Unknown components: ${invalid.join(', ')}`);
+    logger.error(`Unknown components: ${invalid.join(", ")}`);
     logger.info('Run "orion list" to see available components.');
     process.exit(1);
   }
@@ -80,10 +86,10 @@ export async function add(args: string[]): Promise<void> {
       const item = local
         ? fetchComponentLocal(cwd, name)
         : await fetchComponent(config.registryUrl, name);
-      s.stop(`  ${logger.green('+')} ${name}`);
+      s.stop(`  ${logger.green("+")} ${name}`);
       return item;
     } catch (err) {
-      s.stop(`  ${logger.red('x')} ${name} — ${(err as Error).message}`);
+      s.stop(`  ${logger.red("x")} ${name} — ${(err as Error).message}`);
       throw err;
     }
   };
@@ -99,14 +105,14 @@ export async function add(args: string[]): Promise<void> {
 
   // Confirm extra dependencies
   if (resolved.extraDeps.length > 0 && !yes) {
-    logger.info('');
+    logger.info("");
     logger.info(`The following dependencies will also be installed:`);
     for (const dep of resolved.extraDeps) {
       logger.info(`  ${logger.cyan(dep)}`);
     }
-    const ok = await confirm('\nProceed?');
+    const ok = await confirm("\nProceed?");
     if (!ok) {
-      logger.info('Aborted.');
+      logger.info("Aborted.");
       return;
     }
   }
@@ -116,14 +122,14 @@ export async function add(args: string[]): Promise<void> {
 
   if (result.writtenFiles.length === 0) {
     logger.warn(
-      'No files were written. All components already exist (use --overwrite to replace).',
+      "No files were written. All components already exist (use --overwrite to replace).",
     );
     return;
   }
 
   // Print written files
-  logger.info('');
-  logger.info(logger.bold('Files:'));
+  logger.info("");
+  logger.info(logger.bold("Files:"));
   for (const f of result.writtenFiles) {
     logger.info(`  ${logger.dim(f)}`);
   }
@@ -134,19 +140,21 @@ export async function add(args: string[]): Promise<void> {
   }
 
   // Print import hints
-  logger.info('');
-  logger.success('Done!');
-  logger.info('');
-  logger.info('Import:');
+  logger.info("");
+  logger.success("Done!");
+  logger.info("");
+  logger.info("Import:");
   for (const item of resolved.items) {
     if (names.includes(item.name)) {
       const dir =
-        item.type === 'registry:section'
+        item.type === "registry:section"
           ? config.sectionDir
-          : item.type === 'registry:template'
+          : item.type === "registry:template"
             ? config.templateDir
             : config.componentDir;
-      logger.info(`  ${logger.cyan(`import { ${item.title} } from './${dir}/${item.name}'`)}`);
+      logger.info(
+        `  ${logger.cyan(`import { ${item.title} } from './${dir}/${item.name}'`)}`,
+      );
     }
   }
 }

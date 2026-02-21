@@ -1,4 +1,4 @@
-export { InputOTP } from './InputOTP';
+export { InputOTP } from "./InputOTP";
 export type {
   InputOTPProps,
   InputOTPGroupProps,
@@ -6,4 +6,4 @@ export type {
   InputOTPSeparatorProps,
   InputOTPType,
   InputOTPSize,
-} from './InputOTP.types';
+} from "./InputOTP.types";

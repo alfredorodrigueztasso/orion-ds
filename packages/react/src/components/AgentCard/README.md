@@ -19,18 +19,18 @@ Specialized card component for displaying AI agent information. Built as a compo
 
 ```typescript
 interface AgentCardProps extends HTMLAttributes<HTMLDivElement> {
-  id: string;                        // Unique agent identifier (used for drag & drop)
-  avatar: string | ReactNode;        // Image URL or icon component (e.g. <Bot size={32} />)
-  title: string;                     // Agent name
-  description: string;               // Short description — truncated after 2 lines
-  timestamp?: string;                // Footer text (e.g. "Updated 2 hours ago")
-  status?: 'draft' | 'published' | 'archived';  // Status badge
-  badge?: ReactNode;                 // Custom badge — overrides status when provided
-  onClick?: () => void;              // Makes the card clickable (adds hover lift)
-  onEdit?: () => void;               // Adds Edit option to the actions menu
-  onDelete?: () => void;             // Adds Delete option to the actions menu (danger style)
-  draggable?: boolean;               // Enables HTML5 drag & drop  @default false
-  isDragging?: boolean;              // External dragging state (dimmed + scale)  @internal
+  id: string; // Unique agent identifier (used for drag & drop)
+  avatar: string | ReactNode; // Image URL or icon component (e.g. <Bot size={32} />)
+  title: string; // Agent name
+  description: string; // Short description — truncated after 2 lines
+  timestamp?: string; // Footer text (e.g. "Updated 2 hours ago")
+  status?: "draft" | "published" | "archived"; // Status badge
+  badge?: ReactNode; // Custom badge — overrides status when provided
+  onClick?: () => void; // Makes the card clickable (adds hover lift)
+  onEdit?: () => void; // Adds Edit option to the actions menu
+  onDelete?: () => void; // Adds Delete option to the actions menu (danger style)
+  draggable?: boolean; // Enables HTML5 drag & drop  @default false
+  isDragging?: boolean; // External dragging state (dimmed + scale)  @internal
 }
 ```
 
@@ -38,12 +38,12 @@ interface AgentCardProps extends HTMLAttributes<HTMLDivElement> {
 
 ## Internal Composition
 
-| Orion Component | Used For |
-|----------------|----------|
-| `Card` | Outer container with `Card.Header`, `Card.Body`, `Card.Footer` |
-| `Avatar` | Image avatar (`size="lg"`, 48px) |
-| `Button` | Actions menu trigger (`variant="ghost"`, `iconOnly`, `size="sm"`) |
-| `Dropdown` | Actions menu popup (`placement="bottom-end"`, portal-rendered) |
+| Orion Component | Used For                                                          |
+| --------------- | ----------------------------------------------------------------- |
+| `Card`          | Outer container with `Card.Header`, `Card.Body`, `Card.Footer`    |
+| `Avatar`        | Image avatar (`size="lg"`, 48px)                                  |
+| `Button`        | Actions menu trigger (`variant="ghost"`, `iconOnly`, `size="sm"`) |
+| `Dropdown`      | Actions menu popup (`placement="bottom-end"`, portal-rendered)    |
 
 ---
 
@@ -63,14 +63,14 @@ interface AgentCardProps extends HTMLAttributes<HTMLDivElement> {
 ### Icon (ReactNode)
 
 ```tsx
-import { Bot } from 'lucide-react';
+import { Bot } from "lucide-react";
 
 <AgentCard
   id="agent-2"
   avatar={<Bot size={32} />}
   title="AI Research Agent"
   description="Conducts research and synthesis"
-/>
+/>;
 ```
 
 Icon avatars render inside a 48×48 circular container with `var(--surface-subtle)` background.
@@ -124,6 +124,7 @@ When `onEdit` and/or `onDelete` are provided, a `···` button appears in the h
 ```
 
 Adding `onClick` enables:
+
 - `cursor: pointer`
 - Hover lift via `var(--mode-hover-lift)` (mode-aware: Display = −4px, Product = 0px, App = −2px)
 - `box-shadow: var(--shadow-lg)` on hover
@@ -145,6 +146,7 @@ The actions menu click does NOT propagate to `onClick`.
 ```
 
 When dragging starts:
+
 - `cursor: grabbing`
 - `opacity: 0.5`
 - `transform: scale(0.98)`
@@ -171,7 +173,7 @@ The actions menu button has `onDragStart` stopped so it doesn't trigger card dra
 ### Full Featured
 
 ```tsx
-import { Star } from 'lucide-react';
+import { Star } from "lucide-react";
 
 <AgentCard
   id="agent-1"
@@ -180,23 +182,31 @@ import { Star } from 'lucide-react';
   description="Advanced customer support with sentiment analysis and auto-escalation"
   timestamp="Updated today"
   status="published"
-  badge={<Star size={16} fill="var(--status-warning)" color="var(--status-warning)" />}
-  onClick={() => navigate('/agents/agent-1')}
-  onEdit={() => openEditor('agent-1')}
-  onDelete={() => confirmDelete('agent-1')}
+  badge={
+    <Star
+      size={16}
+      fill="var(--status-warning)"
+      color="var(--status-warning)"
+    />
+  }
+  onClick={() => navigate("/agents/agent-1")}
+  onEdit={() => openEditor("agent-1")}
+  onDelete={() => confirmDelete("agent-1")}
   draggable
-/>
+/>;
 ```
 
 ### Grid Layout
 
 ```tsx
-<div style={{
-  display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-  gap: 'var(--spacing-4)',
-}}>
-  {agents.map(agent => (
+<div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+    gap: "var(--spacing-4)",
+  }}
+>
+  {agents.map((agent) => (
     <AgentCard
       key={agent.id}
       id={agent.id}

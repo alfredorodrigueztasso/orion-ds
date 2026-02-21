@@ -174,7 +174,7 @@
 
 /* Ensure buttons inside rightIcon are accessible */
 .rightIconInteractive button,
-.rightIconInteractive [role='button'] {
+.rightIconInteractive [role="button"] {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -188,12 +188,12 @@
 }
 
 .rightIconInteractive button:hover,
-.rightIconInteractive [role='button']:hover {
+.rightIconInteractive [role="button"]:hover {
   color: var(--text-primary);
 }
 
 .rightIconInteractive button:focus-visible,
-.rightIconInteractive [role='button']:focus-visible {
+.rightIconInteractive [role="button"]:focus-visible {
   outline: 2px solid var(--interactive-primary);
   outline-offset: 2px;
 }
@@ -321,7 +321,7 @@
   }
 
   .rightIconInteractive button,
-  .rightIconInteractive [role='button'] {
+  .rightIconInteractive [role="button"] {
     transition: none;
   }
 }

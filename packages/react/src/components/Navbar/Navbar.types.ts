@@ -4,22 +4,22 @@
  * Type definitions for the Orion Navbar component.
  */
 
-import type { ReactNode, HTMLAttributes } from 'react';
+import type { ReactNode, HTMLAttributes } from "react";
 
 /**
  * Navbar height variants
  */
-export type NavbarHeight = 'sm' | 'md' | 'lg';
+export type NavbarHeight = "sm" | "md" | "lg";
 
 /**
  * Navbar background variants
  */
-export type NavbarVariant = 'solid' | 'transparent' | 'glass';
+export type NavbarVariant = "solid" | "transparent" | "glass";
 
 /**
  * Navbar color scheme (for transparent/glass variants on colored backgrounds)
  */
-export type NavbarColorScheme = 'auto' | 'light' | 'dark';
+export type NavbarColorScheme = "auto" | "light" | "dark";
 
 /**
  * Navbar component props

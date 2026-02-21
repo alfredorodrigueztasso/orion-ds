@@ -5,23 +5,23 @@
  * Designed for marketing sites and product landing pages.
  */
 
-import { forwardRef } from 'react';
-import type { LandingPageTemplateProps } from './LandingPageTemplate.types';
+import { forwardRef } from "react";
+import type { LandingPageTemplateProps } from "./LandingPageTemplate.types";
 
 // Components
-import { Navbar } from '../../../components/Navbar';
+import { Navbar } from "../../../components/Navbar";
 
 // Sections
-import { Hero } from '../../../sections/Hero';
-import { CarouselSection } from '../../../sections/CarouselSection';
-import { LogoCloud } from '../../../sections/LogoCloud';
-import { Features } from '../../../sections/Features';
-import { Stats } from '../../../sections/Stats';
-import { Pricing } from '../../../sections/Pricing';
-import { Testimonials } from '../../../sections/Testimonials';
-import { FAQ } from '../../../sections/FAQ';
-import { CTA } from '../../../sections/CTA';
-import { Footer } from '../../../sections/Footer';
+import { Hero } from "../../../sections/Hero";
+import { CarouselSection } from "../../../sections/CarouselSection";
+import { LogoCloud } from "../../../sections/LogoCloud";
+import { Features } from "../../../sections/Features";
+import { Stats } from "../../../sections/Stats";
+import { Pricing } from "../../../sections/Pricing";
+import { Testimonials } from "../../../sections/Testimonials";
+import { FAQ } from "../../../sections/FAQ";
+import { CTA } from "../../../sections/CTA";
+import { Footer } from "../../../sections/Footer";
 
 /**
  * LandingPageTemplate - Full landing page composition
@@ -38,7 +38,10 @@ import { Footer } from '../../../sections/Footer';
  * />
  * ```
  */
-export const LandingPageTemplate = forwardRef<HTMLDivElement, LandingPageTemplateProps>(
+export const LandingPageTemplate = forwardRef<
+  HTMLDivElement,
+  LandingPageTemplateProps
+>(
   (
     {
       navbar,
@@ -119,6 +122,6 @@ export const LandingPageTemplate = forwardRef<HTMLDivElement, LandingPageTemplat
   },
 );
 
-LandingPageTemplate.displayName = 'LandingPageTemplate';
+LandingPageTemplate.displayName = "LandingPageTemplate";
 
 export default LandingPageTemplate;

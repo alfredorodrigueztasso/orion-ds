@@ -15,9 +15,9 @@
  * ```
  */
 
-import { forwardRef } from 'react';
-import type { EmptyStateProps } from './EmptyState.types';
-import styles from './EmptyState.module.css';
+import { forwardRef } from "react";
+import type { EmptyStateProps } from "./EmptyState.types";
+import styles from "./EmptyState.module.css";
 
 export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(
   (
@@ -28,8 +28,8 @@ export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(
       description,
       action,
       secondaryAction,
-      variant = 'default',
-      size = 'md',
+      variant = "default",
+      size = "md",
       className,
       ...rest
     },
@@ -42,12 +42,14 @@ export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
       <div ref={ref} className={classNames} {...rest}>
         <div className={styles.content}>
-          {illustration && <div className={styles.illustration}>{illustration}</div>}
+          {illustration && (
+            <div className={styles.illustration}>{illustration}</div>
+          )}
 
           {icon && !illustration && <div className={styles.icon}>{icon}</div>}
 
@@ -68,4 +70,4 @@ export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(
   },
 );
 
-EmptyState.displayName = 'EmptyState';
+EmptyState.displayName = "EmptyState";

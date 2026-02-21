@@ -1,12 +1,12 @@
-import type { HTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 
-export type ToggleGroupType = 'single' | 'multiple';
-export type ToggleGroupVariant = 'default' | 'outline';
-export type ToggleGroupSize = 'sm' | 'md' | 'lg';
+export type ToggleGroupType = "single" | "multiple";
+export type ToggleGroupVariant = "default" | "outline";
+export type ToggleGroupSize = "sm" | "md" | "lg";
 
 export interface ToggleGroupProps extends Omit<
   HTMLAttributes<HTMLDivElement>,
-  'onChange' | 'defaultValue'
+  "onChange" | "defaultValue"
 > {
   /** Whether single or multiple items can be pressed. */
   type: ToggleGroupType;
@@ -27,7 +27,7 @@ export interface ToggleGroupProps extends Omit<
 
 export interface ToggleGroupItemProps extends Omit<
   ButtonHTMLAttributes<HTMLButtonElement>,
-  'value'
+  "value"
 > {
   /** Unique value for this item. */
   value: string;

@@ -5,7 +5,7 @@
 ## Quick Start
 
 ```tsx
-import { CTA, Button } from '@orion/react';
+import { CTA, Button } from "@orion/react";
 
 <CTA
   headline="Ready to get started?"
@@ -45,11 +45,11 @@ interface CTAProps {
   footnote?: ReactNode; // Text below actions (disclaimers, etc.)
 
   // Styling
-  variant?: 'default' | 'brand' | 'subtle' | 'outline'; // default: 'brand'
-  size?: 'sm' | 'md' | 'lg'; // default: 'md'
+  variant?: "default" | "brand" | "subtle" | "outline"; // default: 'brand'
+  size?: "sm" | "md" | "lg"; // default: 'md'
 
   // Layout
-  align?: 'left' | 'center'; // default: 'center'
+  align?: "left" | "center"; // default: 'center'
   contained?: boolean; // Card layout vs full-width - default: true
 }
 ```
@@ -119,7 +119,11 @@ Outlined container with transparent background.
 Compact CTA for inline use or secondary prompts.
 
 ```tsx
-<CTA size="sm" headline="Need help?" actions={<Button>Contact Support</Button>} />
+<CTA
+  size="sm"
+  headline="Need help?"
+  actions={<Button>Contact Support</Button>}
+/>
 ```
 
 ### Medium (`size="md"`) — Default
@@ -164,7 +168,11 @@ Maximum impact for primary conversion points.
 CTA wrapped in a card with rounded corners and padding.
 
 ```tsx
-<CTA contained={true} headline="Upgrade to Pro" actions={<Button size="lg">Upgrade</Button>} />
+<CTA
+  contained={true}
+  headline="Upgrade to Pro"
+  actions={<Button size="lg">Upgrade</Button>}
+/>
 ```
 
 ### Full-Width Section
@@ -213,7 +221,10 @@ CTA spans the full section width without card styling.
 ### Single CTA
 
 ```tsx
-<CTA headline="Start your free trial" actions={<Button size="lg">Get Started</Button>} />
+<CTA
+  headline="Start your free trial"
+  actions={<Button size="lg">Get Started</Button>}
+/>
 ```
 
 ### Primary + Secondary CTA
@@ -235,7 +246,7 @@ CTA spans the full section width without card styling.
 ### With Icons
 
 ```tsx
-import { ArrowRight, Play } from 'lucide-react';
+import { ArrowRight, Play } from "lucide-react";
 
 <CTA
   headline="See it in action"
@@ -273,7 +284,7 @@ Add disclaimers, terms, or additional context below actions.
   actions={<Button size="lg">Subscribe — $29/mo</Button>}
   footnote={
     <>
-      By subscribing, you agree to our <a href="/terms">Terms of Service</a> and{' '}
+      By subscribing, you agree to our <a href="/terms">Terms of Service</a> and{" "}
       <a href="/privacy">Privacy Policy</a>.
     </>
   }
@@ -317,11 +328,14 @@ Softer approach for content-focused pages.
   headline="Stay in the loop"
   description="Get weekly updates on new features and best practices."
   actions={
-    <div style={{ display: 'flex', gap: 'var(--spacing-2)' }}>
+    <div style={{ display: "flex", gap: "var(--spacing-2)" }}>
       <input
         type="email"
         placeholder="Enter your email"
-        style={{ padding: 'var(--spacing-3)', borderRadius: 'var(--radius-control)' }}
+        style={{
+          padding: "var(--spacing-3)",
+          borderRadius: "var(--radius-control)",
+        }}
       />
       <Button>Subscribe</Button>
     </div>

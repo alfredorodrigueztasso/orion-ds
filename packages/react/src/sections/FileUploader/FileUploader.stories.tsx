@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { useState, useCallback } from 'react';
-import { FileUploader } from './FileUploader';
-import type { UploadedFile } from './FileUploader.types';
+import type { Meta, StoryObj } from "@storybook/react";
+import { useState, useCallback } from "react";
+import { FileUploader } from "./FileUploader";
+import type { UploadedFile } from "./FileUploader.types";
 
 const meta: Meta<typeof FileUploader> = {
-  title: 'Sections/App/FileUploader',
+  title: "Sections/App/FileUploader",
   component: FileUploader,
   parameters: {
-    layout: 'padded',
+    layout: "padded",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
@@ -18,27 +18,27 @@ type Story = StoryObj<typeof FileUploader>;
 // Sample uploaded files
 const sampleFiles: UploadedFile[] = [
   {
-    id: '1',
-    name: 'document.pdf',
+    id: "1",
+    name: "document.pdf",
     size: 1024 * 1024 * 2.5, // 2.5 MB
-    type: 'application/pdf',
-    status: 'completed',
+    type: "application/pdf",
+    status: "completed",
   },
   {
-    id: '2',
-    name: 'image.png',
+    id: "2",
+    name: "image.png",
     size: 1024 * 512, // 512 KB
-    type: 'image/png',
-    status: 'uploading',
+    type: "image/png",
+    status: "uploading",
     progress: 65,
-    preview: 'https://picsum.photos/100/100?random=1',
+    preview: "https://picsum.photos/100/100?random=1",
   },
   {
-    id: '3',
-    name: 'spreadsheet.xlsx',
+    id: "3",
+    name: "spreadsheet.xlsx",
     size: 1024 * 1024 * 1.2,
-    type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-    status: 'completed',
+    type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    status: "completed",
   },
 ];
 
@@ -47,10 +47,10 @@ const sampleFiles: UploadedFile[] = [
  */
 export const Default: Story = {
   args: {
-    accept: ['image/*', '.pdf', '.doc', '.docx'],
+    accept: ["image/*", ".pdf", ".doc", ".docx"],
     maxSize: 10 * 1024 * 1024, // 10 MB
     maxFiles: 5,
-    onFilesAdded: (files: File[]) => console.log('Files added:', files),
+    onFilesAdded: (files: File[]) => console.log("Files added:", files),
   },
 };
 
@@ -67,10 +67,12 @@ export const Interactive: Story = {
         name: file.name,
         size: file.size,
         type: file.type,
-        status: 'uploading' as const,
+        status: "uploading" as const,
         progress: 0,
         file,
-        preview: file.type.startsWith('image/') ? URL.createObjectURL(file) : undefined,
+        preview: file.type.startsWith("image/")
+          ? URL.createObjectURL(file)
+          : undefined,
       }));
 
       setFiles((prev) => [...prev, ...uploadedFiles]);
@@ -86,14 +88,16 @@ export const Interactive: Story = {
             setFiles((prev) =>
               prev.map((f) =>
                 f.id === uploadedFile.id
-                  ? { ...f, status: 'completed' as const, progress: 100 }
+                  ? { ...f, status: "completed" as const, progress: 100 }
                   : f,
               ),
             );
           } else {
             setFiles((prev) =>
               prev.map((f) =>
-                f.id === uploadedFile.id ? { ...f, progress: Math.min(progress, 99) } : f,
+                f.id === uploadedFile.id
+                  ? { ...f, progress: Math.min(progress, 99) }
+                  : f,
               ),
             );
           }
@@ -113,7 +117,7 @@ export const Interactive: Story = {
 
     return (
       <FileUploader
-        accept={['image/*', '.pdf']}
+        accept={["image/*", ".pdf"]}
         maxSize={5 * 1024 * 1024}
         maxFiles={3}
         files={files}
@@ -131,8 +135,8 @@ export const Interactive: Story = {
 export const WithFiles: Story = {
   args: {
     files: sampleFiles,
-    onFileRemove: (id: string) => console.log('Remove file:', id),
-    onFilesAdded: (files: File[]) => console.log('Files added:', files),
+    onFileRemove: (id: string) => console.log("Remove file:", id),
+    onFilesAdded: (files: File[]) => console.log("Files added:", files),
   },
 };
 
@@ -141,10 +145,10 @@ export const WithFiles: Story = {
  */
 export const ImagesOnly: Story = {
   args: {
-    accept: ['image/*'],
-    placeholder: 'Drag and drop images here, or click to browse',
+    accept: ["image/*"],
+    placeholder: "Drag and drop images here, or click to browse",
     maxSize: 5 * 1024 * 1024,
-    onFilesAdded: (files: File[]) => console.log('Files added:', files),
+    onFilesAdded: (files: File[]) => console.log("Files added:", files),
   },
 };
 
@@ -155,9 +159,9 @@ export const SingleFile: Story = {
   args: {
     multiple: false,
     maxFiles: 1,
-    accept: ['.pdf'],
-    placeholder: 'Upload a PDF document',
-    onFilesAdded: (files: File[]) => console.log('File added:', files[0]),
+    accept: [".pdf"],
+    placeholder: "Upload a PDF document",
+    onFilesAdded: (files: File[]) => console.log("File added:", files[0]),
   },
 };
 
@@ -167,8 +171,8 @@ export const SingleFile: Story = {
 export const Compact: Story = {
   args: {
     compact: true,
-    accept: ['image/*', '.pdf'],
-    onFilesAdded: (files: File[]) => console.log('Files added:', files),
+    accept: ["image/*", ".pdf"],
+    onFilesAdded: (files: File[]) => console.log("Files added:", files),
   },
 };
 
@@ -177,9 +181,9 @@ export const Compact: Story = {
  */
 export const Minimal: Story = {
   args: {
-    variant: 'minimal',
-    accept: ['image/*', '.pdf'],
-    onFilesAdded: (files: File[]) => console.log('Files added:', files),
+    variant: "minimal",
+    accept: ["image/*", ".pdf"],
+    onFilesAdded: (files: File[]) => console.log("Files added:", files),
   },
 };
 
@@ -188,10 +192,10 @@ export const Minimal: Story = {
  */
 export const Card: Story = {
   args: {
-    variant: 'card',
-    accept: ['image/*', '.pdf', '.doc', '.docx'],
+    variant: "card",
+    accept: ["image/*", ".pdf", ".doc", ".docx"],
     maxSize: 10 * 1024 * 1024,
-    onFilesAdded: (files: File[]) => console.log('Files added:', files),
+    onFilesAdded: (files: File[]) => console.log("Files added:", files),
   },
 };
 
@@ -200,9 +204,9 @@ export const Card: Story = {
  */
 export const WithError: Story = {
   args: {
-    accept: ['image/*'],
-    error: 'File type not supported. Please upload an image.',
-    onFilesAdded: (files: File[]) => console.log('Files added:', files),
+    accept: ["image/*"],
+    error: "File type not supported. Please upload an image.",
+    onFilesAdded: (files: File[]) => console.log("Files added:", files),
   },
 };
 
@@ -212,7 +216,7 @@ export const WithError: Story = {
 export const Disabled: Story = {
   args: {
     disabled: true,
-    placeholder: 'File upload is disabled',
+    placeholder: "File upload is disabled",
   },
 };
 
@@ -223,7 +227,7 @@ export const WithoutFileList: Story = {
   args: {
     showFileList: false,
     files: sampleFiles,
-    onFilesAdded: (files: File[]) => console.log('Files added:', files),
+    onFilesAdded: (files: File[]) => console.log("Files added:", files),
   },
 };
 
@@ -234,37 +238,37 @@ export const FileStatuses: Story = {
   args: {
     files: [
       {
-        id: '1',
-        name: 'pending-file.pdf',
+        id: "1",
+        name: "pending-file.pdf",
         size: 1024 * 500,
-        type: 'application/pdf',
-        status: 'pending',
+        type: "application/pdf",
+        status: "pending",
       },
       {
-        id: '2',
-        name: 'uploading-file.png',
+        id: "2",
+        name: "uploading-file.png",
         size: 1024 * 1024,
-        type: 'image/png',
-        status: 'uploading',
+        type: "image/png",
+        status: "uploading",
         progress: 45,
       },
       {
-        id: '3',
-        name: 'completed-file.docx',
+        id: "3",
+        name: "completed-file.docx",
         size: 1024 * 750,
-        type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-        status: 'completed',
+        type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        status: "completed",
       },
       {
-        id: '4',
-        name: 'failed-file.xlsx',
+        id: "4",
+        name: "failed-file.xlsx",
         size: 1024 * 1024 * 5,
-        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-        status: 'error',
-        error: 'Upload failed',
+        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        status: "error",
+        error: "Upload failed",
       },
     ],
-    onFileRemove: (id: string) => console.log('Remove file:', id),
+    onFileRemove: (id: string) => console.log("Remove file:", id),
   },
 };
 
@@ -274,8 +278,8 @@ export const FileStatuses: Story = {
 export const LargeFileLimit: Story = {
   args: {
     maxSize: 100 * 1024 * 1024, // 100 MB
-    placeholder: 'Upload large files (up to 100MB)',
-    helperText: 'Supported formats: Any file type',
-    onFilesAdded: (files: File[]) => console.log('Files added:', files),
+    placeholder: "Upload large files (up to 100MB)",
+    helperText: "Supported formats: Any file type",
+    onFilesAdded: (files: File[]) => console.log("Files added:", files),
   },
 };

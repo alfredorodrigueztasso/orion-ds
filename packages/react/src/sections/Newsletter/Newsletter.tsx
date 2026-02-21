@@ -18,13 +18,13 @@
  * ```
  */
 
-import { forwardRef, useCallback, useState } from 'react';
-import type { NewsletterProps } from './Newsletter.types';
-import { Section } from '../Section';
-import { Container } from '../Container';
-import { Button, Field, Card } from '../../components';
-import { CheckCircle, AlertCircle } from 'lucide-react';
-import styles from './Newsletter.module.css';
+import { forwardRef, useCallback, useState } from "react";
+import type { NewsletterProps } from "./Newsletter.types";
+import { Section } from "../Section";
+import { Container } from "../Container";
+import { Button, Field, Card } from "../../components";
+import { CheckCircle, AlertCircle } from "lucide-react";
+import styles from "./Newsletter.module.css";
 
 export const Newsletter = forwardRef<HTMLElement, NewsletterProps>(
   (
@@ -32,14 +32,14 @@ export const Newsletter = forwardRef<HTMLElement, NewsletterProps>(
       eyebrow,
       title,
       description,
-      placeholder = 'Enter your email',
-      buttonText = 'Subscribe',
+      placeholder = "Enter your email",
+      buttonText = "Subscribe",
       submitButton,
       onSubmit,
       disclaimer,
-      layout = 'inline',
-      size = 'md',
-      background = 'subtle',
+      layout = "inline",
+      size = "md",
+      background = "subtle",
       centered = true,
       successMessage,
       errorMessage,
@@ -50,7 +50,7 @@ export const Newsletter = forwardRef<HTMLElement, NewsletterProps>(
     ref,
   ) => {
     const hasHeader = eyebrow || title || description;
-    const [email, setEmail] = useState('');
+    const [email, setEmail] = useState("");
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState(false);
 
@@ -74,7 +74,7 @@ export const Newsletter = forwardRef<HTMLElement, NewsletterProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     const renderForm = () => {
       if (submitted && successMessage) {
@@ -111,8 +111,12 @@ export const Newsletter = forwardRef<HTMLElement, NewsletterProps>(
               aria-label="Email address"
             />
             {submitButton || (
-              <Button type="submit" disabled={loading || !email} className={styles.submitButton}>
-                {loading ? 'Sending...' : buttonText}
+              <Button
+                type="submit"
+                disabled={loading || !email}
+                className={styles.submitButton}
+              >
+                {loading ? "Sending..." : buttonText}
               </Button>
             )}
           </div>
@@ -139,13 +143,13 @@ export const Newsletter = forwardRef<HTMLElement, NewsletterProps>(
     return (
       <Section
         ref={ref}
-        spacing={size === 'lg' ? 'lg' : 'md'}
+        spacing={size === "lg" ? "lg" : "md"}
         background={background}
         className={classNames}
         {...rest}
       >
         <Container size="md">
-          {layout === 'card' ? (
+          {layout === "card" ? (
             <Card variant="elevated" className={styles.card}>
               <Card.Body className={styles.cardBody}>{content}</Card.Body>
             </Card>
@@ -158,4 +162,4 @@ export const Newsletter = forwardRef<HTMLElement, NewsletterProps>(
   },
 );
 
-Newsletter.displayName = 'Newsletter';
+Newsletter.displayName = "Newsletter";

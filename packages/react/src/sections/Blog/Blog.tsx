@@ -4,10 +4,10 @@
  * A versatile blog/article list section for displaying posts.
  */
 
-import React from 'react';
-import type { BlogProps, BlogArticle } from './Blog.types';
-import { Badge } from '../../components/Badge/Badge';
-import styles from './Blog.module.css';
+import React from "react";
+import type { BlogProps, BlogArticle } from "./Blog.types";
+import { Badge } from "../../components/Badge/Badge";
+import styles from "./Blog.module.css";
 
 /**
  * Article Card Component
@@ -28,14 +28,22 @@ const ArticleCard: React.FC<{
   featured = false,
 }) => {
   return (
-    <article className={`${styles.article} ${featured ? styles.featuredMain : ''}`}>
+    <article
+      className={`${styles.article} ${featured ? styles.featuredMain : ""}`}
+    >
       {article.image && (
-        <img src={article.image} alt={article.title} className={styles.articleImage} />
+        <img
+          src={article.image}
+          alt={article.title}
+          className={styles.articleImage}
+        />
       )}
       <div className={styles.articleContent}>
         <div className={styles.articleMeta}>
           {showCategory && article.category && (
-            <Badge variant="primary" size="sm">{article.category}</Badge>
+            <Badge variant="primary" size="sm">
+              {article.category}
+            </Badge>
           )}
           {showReadTime && article.readTime && (
             <span className={styles.readTime}>{article.readTime} min read</span>
@@ -43,7 +51,11 @@ const ArticleCard: React.FC<{
         </div>
 
         <h3 className={styles.articleTitle}>
-          {article.href ? <a href={article.href}>{article.title}</a> : article.title}
+          {article.href ? (
+            <a href={article.href}>{article.title}</a>
+          ) : (
+            article.title
+          )}
         </h3>
 
         <p className={styles.excerpt}>{article.excerpt}</p>
@@ -69,7 +81,9 @@ const ArticleCard: React.FC<{
             )}
             <div className={styles.authorInfo}>
               <span className={styles.authorName}>{article.author.name}</span>
-              {showDate && article.date && <span className={styles.date}>{article.date}</span>}
+              {showDate && article.date && (
+                <span className={styles.date}>{article.date}</span>
+              )}
             </div>
           </div>
         )}
@@ -86,20 +100,20 @@ export const Blog: React.FC<BlogProps> = ({
   title,
   description,
   articles,
-  layout = 'grid',
+  layout = "grid",
   columns = 3,
   showAuthor = true,
   showDate = true,
   showCategory = true,
   showReadTime = true,
-  background = 'base',
+  background = "base",
   viewAllHref,
-  viewAllText = 'View all articles',
+  viewAllText = "View all articles",
   className,
   ...rest
 }) => {
   const renderArticles = () => {
-    if (layout === 'featured' && articles.length > 0) {
+    if (layout === "featured" && articles.length > 0) {
       const [featuredArticle, ...restArticles] = articles;
       if (!featuredArticle) return null;
       return (
@@ -126,10 +140,13 @@ export const Blog: React.FC<BlogProps> = ({
       );
     }
 
-    const layoutClass = layout === 'list' ? styles.list : styles.grid;
+    const layoutClass = layout === "list" ? styles.list : styles.grid;
 
     return (
-      <div className={layoutClass} data-columns={layout === 'grid' ? columns : undefined}>
+      <div
+        className={layoutClass}
+        data-columns={layout === "grid" ? columns : undefined}
+      >
         {articles.map((article) => (
           <ArticleCard
             key={article.id}
@@ -145,7 +162,11 @@ export const Blog: React.FC<BlogProps> = ({
   };
 
   return (
-    <section className={`${styles.blog} ${className || ''}`} data-background={background} {...rest}>
+    <section
+      className={`${styles.blog} ${className || ""}`}
+      data-background={background}
+      {...rest}
+    >
       <div className={styles.container}>
         {(eyebrow || title || description) && (
           <header className={styles.header}>
@@ -170,4 +191,4 @@ export const Blog: React.FC<BlogProps> = ({
   );
 };
 
-Blog.displayName = 'Blog';
+Blog.displayName = "Blog";

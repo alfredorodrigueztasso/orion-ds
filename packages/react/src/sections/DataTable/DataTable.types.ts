@@ -5,7 +5,7 @@
  * Designed for Product Mode (SaaS dashboards) data management.
  */
 
-import type { HTMLAttributes, ReactNode, Key } from 'react';
+import type { HTMLAttributes, ReactNode, Key } from "react";
 
 /**
  * Column definition for the table
@@ -35,7 +35,7 @@ export interface DataTableColumn<T = unknown> {
    * Text alignment
    * @default 'left'
    */
-  align?: 'left' | 'center' | 'right';
+  align?: "left" | "center" | "right";
 
   /**
    * Whether column is sortable
@@ -51,7 +51,7 @@ export interface DataTableColumn<T = unknown> {
   /**
    * Whether column is sticky
    */
-  sticky?: 'left' | 'right';
+  sticky?: "left" | "right";
 
   /**
    * Hide column on mobile
@@ -72,7 +72,7 @@ export interface DataTableSort {
   /**
    * Sort direction
    */
-  direction: 'asc' | 'desc';
+  direction: "asc" | "desc";
 }
 
 /**
@@ -118,7 +118,7 @@ export interface DataTableFilter {
   /**
    * Filter type
    */
-  type: 'text' | 'select' | 'date' | 'dateRange';
+  type: "text" | "select" | "date" | "dateRange";
 
   /**
    * Options for select type
@@ -153,7 +153,7 @@ export interface DataTableBulkAction {
   /**
    * Action variant for styling
    */
-  variant?: 'default' | 'danger';
+  variant?: "default" | "danger";
 
   /**
    * Action callback
@@ -183,7 +183,7 @@ export interface DataTableRowAction<T = unknown> {
   /**
    * Action variant
    */
-  variant?: 'default' | 'danger';
+  variant?: "default" | "danger";
 
   /**
    * Action callback
@@ -241,7 +241,7 @@ export interface DataTableEmptyState {
  */
 export interface DataTableProps<T = Record<string, unknown>> extends Omit<
   HTMLAttributes<HTMLDivElement>,
-  'onChange'
+  "onChange"
 > {
   /**
    * Column definitions
@@ -302,7 +302,9 @@ export interface DataTableProps<T = Record<string, unknown>> extends Omit<
   /**
    * Pagination change handler
    */
-  onPaginationChange?: (pagination: Pick<DataTablePagination, 'page' | 'pageSize'>) => void;
+  onPaginationChange?: (
+    pagination: Pick<DataTablePagination, "page" | "pageSize">,
+  ) => void;
 
   /**
    * Enable row selection
@@ -414,7 +416,10 @@ export interface DataTableToolbarProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * DataTable.Pagination sub-component props
  */
-export interface DataTablePaginationProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
+export interface DataTablePaginationProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "onChange"
+> {
   /**
    * Pagination state
    */
@@ -423,7 +428,9 @@ export interface DataTablePaginationProps extends Omit<HTMLAttributes<HTMLDivEle
   /**
    * Change handler
    */
-  onChange: (pagination: Pick<DataTablePagination, 'page' | 'pageSize'>) => void;
+  onChange: (
+    pagination: Pick<DataTablePagination, "page" | "pageSize">,
+  ) => void;
 }
 
 /**

@@ -1,4 +1,4 @@
-import type { ReactNode, ErrorInfo } from 'react';
+import type { ReactNode, ErrorInfo } from "react";
 
 export interface ErrorBoundaryProps {
   /** Content to render when no error has occurred */

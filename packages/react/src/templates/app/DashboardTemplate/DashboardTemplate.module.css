@@ -74,13 +74,18 @@
 
 /* Add subtle top accent */
 .aside::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: var(--spacing-6);
   right: var(--spacing-6);
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border-subtle), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--border-subtle),
+    transparent
+  );
 }
 
 /* ============================================================================

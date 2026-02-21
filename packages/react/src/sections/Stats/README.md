@@ -5,16 +5,16 @@
 ## Quick Start
 
 ```tsx
-import { Stats, Badge } from '@orion/react';
+import { Stats, Badge } from "@orion/react";
 
 <Stats
   eyebrow={<Badge>By the Numbers</Badge>}
   title="Trusted by thousands"
   stats={[
-    { value: '10K+', label: 'Active Users' },
-    { value: '99.9%', label: 'Uptime' },
-    { value: '$5M+', label: 'Processed' },
-    { value: '4.9', label: 'Rating' },
+    { value: "10K+", label: "Active Users" },
+    { value: "99.9%", label: "Uptime" },
+    { value: "$5M+", label: "Processed" },
+    { value: "4.9", label: "Rating" },
   ]}
 />;
 ```
@@ -49,8 +49,8 @@ interface StatsProps {
   centered?: boolean; // Center content - default: true
 
   // Styling
-  variant?: 'default' | 'cards' | 'inline'; // default: 'default'
-  background?: 'base' | 'subtle' | 'brand' | 'none'; // default: 'subtle'
+  variant?: "default" | "cards" | "inline"; // default: 'default'
+  background?: "base" | "subtle" | "brand" | "none"; // default: 'subtle'
   highlightValue?: boolean; // Brand gradient on values - default: false
 }
 
@@ -138,10 +138,10 @@ Simple grid with dividers between stats.
 <Stats
   variant="default"
   stats={[
-    { value: '10K+', label: 'Users' },
-    { value: '99.9%', label: 'Uptime' },
-    { value: '$5M+', label: 'Processed' },
-    { value: '4.9', label: 'Rating' },
+    { value: "10K+", label: "Users" },
+    { value: "99.9%", label: "Uptime" },
+    { value: "$5M+", label: "Processed" },
+    { value: "4.9", label: "Rating" },
   ]}
 />
 ```
@@ -154,9 +154,9 @@ Individual cards for each stat.
 <Stats
   variant="cards"
   stats={[
-    { value: '10K+', label: 'Users', icon: <Users size={24} /> },
-    { value: '99.9%', label: 'Uptime', icon: <Server size={24} /> },
-    { value: '$5M+', label: 'Processed', icon: <DollarSign size={24} /> },
+    { value: "10K+", label: "Users", icon: <Users size={24} /> },
+    { value: "99.9%", label: "Uptime", icon: <Server size={24} /> },
+    { value: "$5M+", label: "Processed", icon: <DollarSign size={24} /> },
   ]}
   columns={3}
 />
@@ -170,9 +170,9 @@ Compact inline layout for tight spaces.
 <Stats
   variant="inline"
   stats={[
-    { value: '1.2K', label: 'Stars' },
-    { value: '200', label: 'Forks' },
-    { value: '50', label: 'Contributors' },
+    { value: "1.2K", label: "Stars" },
+    { value: "200", label: "Forks" },
+    { value: "50", label: "Contributors" },
   ]}
   columns={3}
 />
@@ -188,8 +188,8 @@ Compact inline layout for tight spaces.
 <Stats
   columns={2}
   stats={[
-    { value: '$100M+', label: 'Funding Raised' },
-    { value: '500+', label: 'Companies' },
+    { value: "$100M+", label: "Funding Raised" },
+    { value: "500+", label: "Companies" },
   ]}
 />
 ```
@@ -200,9 +200,9 @@ Compact inline layout for tight spaces.
 <Stats
   columns={3}
   stats={[
-    { value: '10K+', label: 'Users' },
-    { value: '99.9%', label: 'Uptime' },
-    { value: '24/7', label: 'Support' },
+    { value: "10K+", label: "Users" },
+    { value: "99.9%", label: "Uptime" },
+    { value: "24/7", label: "Support" },
   ]}
 />
 ```
@@ -213,10 +213,10 @@ Compact inline layout for tight spaces.
 <Stats
   columns={4}
   stats={[
-    { value: '10K+', label: 'Users' },
-    { value: '99.9%', label: 'Uptime' },
-    { value: '$5M+', label: 'Processed' },
-    { value: '4.9', label: 'Rating' },
+    { value: "10K+", label: "Users" },
+    { value: "99.9%", label: "Uptime" },
+    { value: "$5M+", label: "Processed" },
+    { value: "4.9", label: "Rating" },
   ]}
 />
 ```
@@ -231,8 +231,8 @@ Apply brand gradient to stat values for visual impact.
 <Stats
   highlightValue
   stats={[
-    { value: '10K+', label: 'Users' },
-    { value: '99.9%', label: 'Uptime' },
+    { value: "10K+", label: "Users" },
+    { value: "99.9%", label: "Uptime" },
   ]}
 />
 ```
@@ -262,36 +262,36 @@ Apply brand gradient to stat values for visual impact.
 ### SaaS Metrics
 
 ```tsx
-import { Stats, Badge } from '@orion/react';
-import { Users, Server, CreditCard, Star } from 'lucide-react';
+import { Stats, Badge } from "@orion/react";
+import { Users, Server, CreditCard, Star } from "lucide-react";
 
 <Stats
   eyebrow={<Badge variant="brand">By the Numbers</Badge>}
   title="Trusted by thousands worldwide"
   stats={[
     {
-      value: '10,000+',
-      label: 'Active Users',
+      value: "10,000+",
+      label: "Active Users",
       icon: <Users size={24} />,
-      trend: { value: '+15%', positive: true },
+      trend: { value: "+15%", positive: true },
     },
     {
-      value: '99.99%',
-      label: 'Uptime SLA',
+      value: "99.99%",
+      label: "Uptime SLA",
       icon: <Server size={24} />,
-      description: 'Enterprise-grade reliability',
+      description: "Enterprise-grade reliability",
     },
     {
-      value: '$50M+',
-      label: 'Processed',
+      value: "$50M+",
+      label: "Processed",
       icon: <CreditCard size={24} />,
-      trend: { value: '+23%', positive: true },
+      trend: { value: "+23%", positive: true },
     },
     {
-      value: '4.9/5',
-      label: 'User Rating',
+      value: "4.9/5",
+      label: "User Rating",
       icon: <Star size={24} />,
-      description: 'Based on 1,000+ reviews',
+      description: "Based on 1,000+ reviews",
     },
   ]}
   variant="cards"
@@ -305,10 +305,10 @@ import { Users, Server, CreditCard, Star } from 'lucide-react';
 <Stats
   title="Growing Fast"
   stats={[
-    { value: 'Series B', label: 'Funding Round' },
-    { value: '$50M', label: 'Total Raised' },
-    { value: '150+', label: 'Team Members' },
-    { value: '12', label: 'Countries' },
+    { value: "Series B", label: "Funding Round" },
+    { value: "$50M", label: "Total Raised" },
+    { value: "150+", label: "Team Members" },
+    { value: "12", label: "Countries" },
   ]}
   background="brand"
 />
@@ -321,10 +321,14 @@ import { Users, Server, CreditCard, Star } from 'lucide-react';
   variant="inline"
   centered={false}
   stats={[
-    { value: '12.5K', label: 'GitHub Stars', trend: { value: '+500', positive: true } },
-    { value: '1.2K', label: 'Forks' },
-    { value: '150', label: 'Contributors' },
-    { value: '98%', label: 'Issues Closed' },
+    {
+      value: "12.5K",
+      label: "GitHub Stars",
+      trend: { value: "+500", positive: true },
+    },
+    { value: "1.2K", label: "Forks" },
+    { value: "150", label: "Contributors" },
+    { value: "98%", label: "Issues Closed" },
   ]}
   columns={4}
   background="subtle"
@@ -339,19 +343,19 @@ import { Users, Server, CreditCard, Star } from 'lucide-react';
   columns={3}
   stats={[
     {
-      value: '$12,345',
-      label: 'Monthly Revenue',
-      trend: { value: '+8.2%', positive: true },
+      value: "$12,345",
+      label: "Monthly Revenue",
+      trend: { value: "+8.2%", positive: true },
     },
     {
-      value: '1,234',
-      label: 'Active Subscriptions',
-      trend: { value: '+12%', positive: true },
+      value: "1,234",
+      label: "Active Subscriptions",
+      trend: { value: "+12%", positive: true },
     },
     {
-      value: '2.3%',
-      label: 'Churn Rate',
-      trend: { value: '-0.5%', positive: true }, // Decrease is good
+      value: "2.3%",
+      label: "Churn Rate",
+      trend: { value: "-0.5%", positive: true }, // Decrease is good
     },
   ]}
   background="base"

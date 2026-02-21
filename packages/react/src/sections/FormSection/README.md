@@ -5,7 +5,7 @@
 ## Quick Start
 
 ```tsx
-import { FormSection, Field, Button } from '@orion/react';
+import { FormSection, Field, Button } from "@orion/react";
 
 <FormSection
   title="Profile Information"
@@ -53,7 +53,7 @@ interface FormSectionProps {
   defaultCollapsed?: boolean; // Start collapsed - default: false
 
   // Display
-  variant?: 'default' | 'card' | 'inline'; // Visual style - default: 'default'
+  variant?: "default" | "card" | "inline"; // Visual style - default: 'default'
   divider?: boolean; // Show bottom divider - default: false
   disabled?: boolean; // Disable all fields - default: false
 }
@@ -69,7 +69,7 @@ interface FormSectionGroupProps {
 // Sub-component for action buttons
 interface FormSectionActionsProps {
   children: ReactNode; // Buttons
-  align?: 'start' | 'center' | 'end' | 'between'; // default: 'end'
+  align?: "start" | "center" | "end" | "between"; // default: 'end'
 }
 ```
 
@@ -128,7 +128,11 @@ Side-by-side title and fields layout (settings page style).
 Make sections expandable/collapsible.
 
 ```tsx
-<FormSection collapsible title="Advanced Settings" description="Additional configuration options.">
+<FormSection
+  collapsible
+  title="Advanced Settings"
+  description="Additional configuration options."
+>
   <Field label="Debug Mode" type="checkbox" />
   <Field label="Log Level" type="select" options={logLevels} />
 </FormSection>
@@ -279,8 +283,8 @@ Disable all fields in a section.
 ### Settings Page
 
 ```tsx
-import { FormSection, Field, Button } from '@orion/react';
-import { User, Bell, Shield, CreditCard } from 'lucide-react';
+import { FormSection, Field, Button } from "@orion/react";
+import { User, Bell, Shield, CreditCard } from "lucide-react";
 
 function SettingsPage() {
   return (
@@ -339,7 +343,12 @@ function SettingsPage() {
         collapsible
         defaultCollapsed
       >
-        <Field label="Card Number" type="text" placeholder="**** **** **** 4242" disabled />
+        <Field
+          label="Card Number"
+          type="text"
+          placeholder="**** **** **** 4242"
+          disabled
+        />
         <FormSection.Actions>
           <Button variant="secondary">Update Payment Method</Button>
         </FormSection.Actions>

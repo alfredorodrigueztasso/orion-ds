@@ -17,31 +17,31 @@
  * ```
  */
 
-import { forwardRef, useState, type FormEvent } from 'react';
-import type { LoginTemplateProps } from './LoginTemplate.types';
+import { forwardRef, useState, type FormEvent } from "react";
+import type { LoginTemplateProps } from "./LoginTemplate.types";
 
 // Orion Components
-import { Button } from '../../../components/Button';
-import { Field } from '../../../components/Field';
-import { Checkbox } from '../../../components/Checkbox';
-import { Link } from '../../../components/Link';
-import { Divider } from '../../../components/Divider';
+import { Button } from "../../../components/Button";
+import { Field } from "../../../components/Field";
+import { Checkbox } from "../../../components/Checkbox";
+import { Link } from "../../../components/Link";
+import { Divider } from "../../../components/Divider";
 
-import styles from './LoginTemplate.module.css';
+import styles from "./LoginTemplate.module.css";
 
 export const LoginTemplate = forwardRef<HTMLDivElement, LoginTemplateProps>(
   (
     {
       logo,
-      title = 'Welcome back',
-      subtitle = 'Sign in to your account',
+      title = "Welcome back",
+      subtitle = "Sign in to your account",
       formConfig = {},
       socialProviders = [],
-      socialLabel = 'Or continue with',
+      socialLabel = "Or continue with",
       showSignUp = true,
       signUpPrompt = "Don't have an account?",
-      signUpLabel = 'Sign up',
-      signUpHref = '/signup',
+      signUpLabel = "Sign up",
+      signUpHref = "/signup",
       editorial,
       onSubmit,
       isLoading = false,
@@ -52,21 +52,21 @@ export const LoginTemplate = forwardRef<HTMLDivElement, LoginTemplateProps>(
     },
     ref,
   ) => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [rememberMe, setRememberMe] = useState(false);
 
     const {
-      emailLabel = 'Email',
-      emailPlaceholder = 'you@example.com',
-      passwordLabel = 'Password',
-      passwordPlaceholder = 'Enter your password',
-      submitLabel = 'Sign in',
+      emailLabel = "Email",
+      emailPlaceholder = "you@example.com",
+      passwordLabel = "Password",
+      passwordPlaceholder = "Enter your password",
+      submitLabel = "Sign in",
       showRememberMe = true,
-      rememberMeLabel = 'Remember me',
+      rememberMeLabel = "Remember me",
       showForgotPassword = true,
-      forgotPasswordLabel = 'Forgot password?',
-      forgotPasswordHref = '/forgot-password',
+      forgotPasswordLabel = "Forgot password?",
+      forgotPasswordHref = "/forgot-password",
     } = formConfig;
 
     const handleSubmit = (e: FormEvent) => {
@@ -80,7 +80,7 @@ export const LoginTemplate = forwardRef<HTMLDivElement, LoginTemplateProps>(
     return (
       <div
         ref={ref}
-        className={`${styles.login} ${className || ''}`}
+        className={`${styles.login} ${className || ""}`}
         data-single-column={!hasEditorial}
         {...rest}
       >
@@ -101,16 +101,18 @@ export const LoginTemplate = forwardRef<HTMLDivElement, LoginTemplateProps>(
               <div className={styles.socialSection}>
                 <div className={styles.socialButtons}>
                   {socialProviders.map((provider, index) => {
-                    const ButtonElement = provider.href ? 'a' : 'button';
+                    const ButtonElement = provider.href ? "a" : "button";
                     return (
                       <ButtonElement
                         key={index}
                         className={styles.socialButton}
                         onClick={provider.onClick}
                         href={provider.href}
-                        type={provider.href ? undefined : 'button'}
+                        type={provider.href ? undefined : "button"}
                       >
-                        <span className={styles.socialIcon}>{provider.icon}</span>
+                        <span className={styles.socialIcon}>
+                          {provider.icon}
+                        </span>
                         <span>Continue with {provider.name}</span>
                       </ButtonElement>
                     );
@@ -170,7 +172,12 @@ export const LoginTemplate = forwardRef<HTMLDivElement, LoginTemplateProps>(
               )}
 
               {/* Submit Button */}
-              <Button type="submit" variant="primary" fullWidth isLoading={isLoading}>
+              <Button
+                type="submit"
+                variant="primary"
+                fullWidth
+                isLoading={isLoading}
+              >
                 {submitLabel}
               </Button>
             </form>
@@ -206,10 +213,14 @@ export const LoginTemplate = forwardRef<HTMLDivElement, LoginTemplateProps>(
             ) : (
               <div className={styles.editorialContent}>
                 {editorial.headline && (
-                  <h2 className={styles.editorialHeadline}>{editorial.headline}</h2>
+                  <h2 className={styles.editorialHeadline}>
+                    {editorial.headline}
+                  </h2>
                 )}
                 {editorial.description && (
-                  <p className={styles.editorialDescription}>{editorial.description}</p>
+                  <p className={styles.editorialDescription}>
+                    {editorial.description}
+                  </p>
                 )}
                 {editorial.quote && (
                   <div className={styles.testimonial}>
@@ -217,14 +228,20 @@ export const LoginTemplate = forwardRef<HTMLDivElement, LoginTemplateProps>(
                     {(editorial.author || editorial.authorRole) && (
                       <div className={styles.author}>
                         {editorial.authorAvatar && (
-                          <div className={styles.authorAvatar}>{editorial.authorAvatar}</div>
+                          <div className={styles.authorAvatar}>
+                            {editorial.authorAvatar}
+                          </div>
                         )}
                         <div className={styles.authorInfo}>
                           {editorial.author && (
-                            <p className={styles.authorName}>{editorial.author}</p>
+                            <p className={styles.authorName}>
+                              {editorial.author}
+                            </p>
                           )}
                           {editorial.authorRole && (
-                            <p className={styles.authorRole}>{editorial.authorRole}</p>
+                            <p className={styles.authorRole}>
+                              {editorial.authorRole}
+                            </p>
                           )}
                         </div>
                       </div>
@@ -240,6 +257,6 @@ export const LoginTemplate = forwardRef<HTMLDivElement, LoginTemplateProps>(
   },
 );
 
-LoginTemplate.displayName = 'LoginTemplate';
+LoginTemplate.displayName = "LoginTemplate";
 
 export default LoginTemplate;

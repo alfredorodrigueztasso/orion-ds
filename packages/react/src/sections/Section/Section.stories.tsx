@@ -1,25 +1,25 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { Section } from './Section';
+import type { Meta, StoryObj } from "@storybook/react";
+import { Section } from "./Section";
 
 const meta = {
-  title: 'Sections/Layout/Section',
+  title: "Sections/Layout/Section",
   component: Section,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     background: {
-      control: 'select',
-      options: ['base', 'subtle', 'sunken', 'brand', 'none'],
+      control: "select",
+      options: ["base", "subtle", "sunken", "brand", "none"],
     },
     spacing: {
-      control: 'select',
-      options: ['none', 'sm', 'md', 'lg', 'xl'],
+      control: "select",
+      options: ["none", "sm", "md", "lg", "xl"],
     },
     as: {
-      control: 'select',
-      options: ['section', 'div', 'article', 'aside', 'header', 'footer'],
+      control: "select",
+      options: ["section", "div", "article", "aside", "header", "footer"],
     },
   },
 } satisfies Meta<typeof Section>;
@@ -28,10 +28,11 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const content = (
-  <div style={{ textAlign: 'center' }}>
+  <div style={{ textAlign: "center" }}>
     <h2>Section Content</h2>
     <p>
-      This is a generic section wrapper that provides consistent spacing and background options.
+      This is a generic section wrapper that provides consistent spacing and
+      background options.
     </p>
   </div>
 );
@@ -44,56 +45,56 @@ export const Default: Story = {
 
 export const BaseBackground: Story = {
   args: {
-    background: 'base',
+    background: "base",
     children: content,
   },
 };
 
 export const SubtleBackground: Story = {
   args: {
-    background: 'subtle',
+    background: "subtle",
     children: content,
   },
 };
 
 export const SunkenBackground: Story = {
   args: {
-    background: 'sunken',
+    background: "sunken",
     children: content,
   },
 };
 
 export const BrandBackground: Story = {
   args: {
-    background: 'brand',
+    background: "brand",
     children: content,
   },
 };
 
 export const SmallSpacing: Story = {
   args: {
-    spacing: 'sm',
+    spacing: "sm",
     children: content,
   },
 };
 
 export const LargeSpacing: Story = {
   args: {
-    spacing: 'lg',
+    spacing: "lg",
     children: content,
   },
 };
 
 export const ExtraLargeSpacing: Story = {
   args: {
-    spacing: 'xl',
+    spacing: "xl",
     children: content,
   },
 };
 
 export const NoSpacing: Story = {
   args: {
-    spacing: 'none',
+    spacing: "none",
     children: content,
   },
 };
@@ -122,7 +123,7 @@ export const WithBothBorders: Story = {
 
 export const AsArticle: Story = {
   args: {
-    as: 'article',
+    as: "article",
     children: (
       <article>
         <h2>Article Section</h2>
@@ -134,11 +135,11 @@ export const AsArticle: Story = {
 
 export const AsFooter: Story = {
   args: {
-    as: 'footer',
-    background: 'subtle',
-    spacing: 'md',
+    as: "footer",
+    background: "subtle",
+    spacing: "md",
     children: (
-      <footer style={{ textAlign: 'center' }}>
+      <footer style={{ textAlign: "center" }}>
         <p>Footer content goes here</p>
       </footer>
     ),

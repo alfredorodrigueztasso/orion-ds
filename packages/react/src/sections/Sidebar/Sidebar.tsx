@@ -21,28 +21,35 @@
  * ```
  */
 
-import { forwardRef, useState } from 'react';
-import { ChevronLeft, ChevronRight, ChevronDown } from 'lucide-react';
+import { forwardRef, useState } from "react";
+import { ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
 import type {
   SidebarProps,
   SidebarItemProps,
   SidebarSectionProps,
   SidebarDividerProps,
-} from './Sidebar.types';
-import styles from './Sidebar.module.css';
+} from "./Sidebar.types";
+import styles from "./Sidebar.module.css";
 
 // Sidebar.Divider sub-component
 const SidebarDivider = forwardRef<HTMLHRElement, SidebarDividerProps>(
   ({ className, ...rest }, ref) => (
-    <hr ref={ref} className={`${styles.divider} ${className || ''}`} {...rest} />
+    <hr
+      ref={ref}
+      className={`${styles.divider} ${className || ""}`}
+      {...rest}
+    />
   ),
 );
 
-SidebarDivider.displayName = 'Sidebar.Divider';
+SidebarDivider.displayName = "Sidebar.Divider";
 
 // Sidebar.Item sub-component
 const SidebarItemComponent = forwardRef<HTMLElement, SidebarItemProps>(
-  ({ item, active = false, collapsed = false, depth = 0, className, ...rest }, ref) => {
+  (
+    { item, active = false, collapsed = false, depth = 0, className, ...rest },
+    ref,
+  ) => {
     const [expanded, setExpanded] = useState(false);
     const hasChildren = item.children && item.children.length > 0;
 
@@ -54,7 +61,7 @@ const SidebarItemComponent = forwardRef<HTMLElement, SidebarItemProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     const handleClick = (e: React.MouseEvent) => {
       if (hasChildren) {
@@ -72,11 +79,13 @@ const SidebarItemComponent = forwardRef<HTMLElement, SidebarItemProps>(
         {!collapsed && (
           <>
             <span className={styles.itemLabel}>{item.label}</span>
-            {item.badge && <span className={styles.itemBadge}>{item.badge}</span>}
+            {item.badge && (
+              <span className={styles.itemBadge}>{item.badge}</span>
+            )}
             {hasChildren && (
               <ChevronDown
                 size={16}
-                className={`${styles.itemChevron} ${expanded ? styles.chevronExpanded : ''}`}
+                className={`${styles.itemChevron} ${expanded ? styles.chevronExpanded : ""}`}
               />
             )}
           </>
@@ -84,23 +93,25 @@ const SidebarItemComponent = forwardRef<HTMLElement, SidebarItemProps>(
       </>
     );
 
-    const Tag = item.href && !hasChildren ? 'a' : 'button';
+    const Tag = item.href && !hasChildren ? "a" : "button";
     const tagProps =
       item.href && !hasChildren
         ? { href: item.href }
-        : { type: 'button' as const, onClick: handleClick };
+        : { type: "button" as const, onClick: handleClick };
 
     return (
       <li className={styles.itemWrapper}>
         <Tag
           ref={ref as React.Ref<HTMLButtonElement & HTMLAnchorElement>}
           className={classNames}
-          aria-current={active ? 'page' : undefined}
+          aria-current={active ? "page" : undefined}
           aria-disabled={item.disabled}
           title={collapsed ? item.label : undefined}
           style={{
             paddingLeft:
-              !collapsed && depth > 0 ? `calc(var(--spacing-3) + ${depth * 12}px)` : undefined,
+              !collapsed && depth > 0
+                ? `calc(var(--spacing-3) + ${depth * 12}px)`
+                : undefined,
           }}
           {...tagProps}
           {...rest}
@@ -125,14 +136,20 @@ const SidebarItemComponent = forwardRef<HTMLElement, SidebarItemProps>(
   },
 );
 
-SidebarItemComponent.displayName = 'Sidebar.Item';
+SidebarItemComponent.displayName = "Sidebar.Item";
 
 // Sidebar.Section sub-component
 const SidebarSectionComponent = forwardRef<HTMLDivElement, SidebarSectionProps>(
   ({ section, activeItem, collapsed = false, className, ...rest }, ref) => {
     return (
-      <div ref={ref} className={`${styles.section} ${className || ''}`} {...rest}>
-        {section.title && !collapsed && <div className={styles.sectionTitle}>{section.title}</div>}
+      <div
+        ref={ref}
+        className={`${styles.section} ${className || ""}`}
+        {...rest}
+      >
+        {section.title && !collapsed && (
+          <div className={styles.sectionTitle}>{section.title}</div>
+        )}
         <ul className={styles.sectionItems}>
           {section.items.map((item) => (
             <SidebarItemComponent
@@ -148,7 +165,7 @@ const SidebarSectionComponent = forwardRef<HTMLDivElement, SidebarSectionProps>(
   },
 );
 
-SidebarSectionComponent.displayName = 'Sidebar.Section';
+SidebarSectionComponent.displayName = "Sidebar.Section";
 
 // Main Sidebar component
 const SidebarBase = forwardRef<HTMLElement, SidebarProps>(
@@ -160,7 +177,7 @@ const SidebarBase = forwardRef<HTMLElement, SidebarProps>(
       onCollapsedChange,
       header,
       footer,
-      variant = 'default',
+      variant = "default",
       width = 240,
       collapsedWidth = 64,
       className,
@@ -176,11 +193,11 @@ const SidebarBase = forwardRef<HTMLElement, SidebarProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     const sidebarStyle = {
       ...style,
-      '--sidebar-width': `${collapsed ? collapsedWidth : width}px`,
+      "--sidebar-width": `${collapsed ? collapsedWidth : width}px`,
     } as React.CSSProperties;
 
     const handleToggle = () => {
@@ -211,7 +228,7 @@ const SidebarBase = forwardRef<HTMLElement, SidebarProps>(
             type="button"
             className={styles.collapseToggle}
             onClick={handleToggle}
-            aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+            aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           >
             {collapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
           </button>
@@ -221,7 +238,7 @@ const SidebarBase = forwardRef<HTMLElement, SidebarProps>(
   },
 );
 
-SidebarBase.displayName = 'Sidebar';
+SidebarBase.displayName = "Sidebar";
 
 // Compose with sub-components
 export const Sidebar = Object.assign(SidebarBase, {

@@ -18,7 +18,7 @@
  * ```
  */
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback } from "react";
 
 /**
  * Options for useDisclosure hook
@@ -82,7 +82,9 @@ export interface UseDisclosureReturn {
  * @param options - Configuration options
  * @returns Disclosure state and control functions
  */
-export function useDisclosure(options: UseDisclosureOptions = {}): UseDisclosureReturn {
+export function useDisclosure(
+  options: UseDisclosureOptions = {},
+): UseDisclosureReturn {
   const { defaultOpen = false, onOpen, onClose, onChange } = options;
 
   const [isOpen, setIsOpen] = useState(defaultOpen);

@@ -19,10 +19,10 @@
  * ```
  */
 
-import { forwardRef, useId } from 'react';
-import { AlertCircle } from 'lucide-react';
-import type { RadioProps } from './Radio.types';
-import styles from './Radio.module.css';
+import { forwardRef, useId } from "react";
+import { AlertCircle } from "lucide-react";
+import type { RadioProps } from "./Radio.types";
+import styles from "./Radio.module.css";
 
 export const Radio = forwardRef<HTMLInputElement, RadioProps>(
   (
@@ -30,13 +30,13 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
       label,
       helperText,
       error,
-      size = 'md',
+      size = "md",
       className,
       id,
       disabled,
       required,
-      'aria-label': ariaLabel,
-      'aria-describedby': ariaDescribedBy,
+      "aria-label": ariaLabel,
+      "aria-describedby": ariaDescribedBy,
       ...rest
     },
     ref,
@@ -54,13 +54,14 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
     if (error) describedByIds.push(errorId);
     if (helperText && !error) describedByIds.push(helperId);
     if (ariaDescribedBy) describedByIds.push(ariaDescribedBy);
-    const computedDescribedBy = describedByIds.length > 0 ? describedByIds.join(' ') : undefined;
+    const computedDescribedBy =
+      describedByIds.length > 0 ? describedByIds.join(" ") : undefined;
 
     // Ensure radio has an accessible name
     const hasAccessibleName = Boolean(label || ariaLabel);
-    if (!hasAccessibleName && process.env.NODE_ENV === 'development') {
+    if (!hasAccessibleName && process.env.NODE_ENV === "development") {
       console.warn(
-        'Radio: Missing accessible name. Provide either a `label` prop or `aria-label` for screen reader users.',
+        "Radio: Missing accessible name. Provide either a `label` prop or `aria-label` for screen reader users.",
       );
     }
 
@@ -72,7 +73,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
       <div className={containerClasses}>
@@ -85,7 +86,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
           disabled={disabled}
           required={required}
           aria-required={required || undefined}
-          aria-invalid={error ? 'true' : 'false'}
+          aria-invalid={error ? "true" : "false"}
           aria-describedby={computedDescribedBy}
           aria-label={!label ? ariaLabel : undefined}
           {...rest}
@@ -120,7 +121,12 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
 
         {/* Error message */}
         {error && (
-          <p id={errorId} className={styles.errorMessage} role="alert" aria-live="assertive">
+          <p
+            id={errorId}
+            className={styles.errorMessage}
+            role="alert"
+            aria-live="assertive"
+          >
             <AlertCircle size={14} aria-hidden="true" />
             <span>{error}</span>
           </p>
@@ -130,4 +136,4 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
   },
 );
 
-Radio.displayName = 'Radio';
+Radio.displayName = "Radio";

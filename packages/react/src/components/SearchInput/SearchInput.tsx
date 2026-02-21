@@ -14,23 +14,23 @@
  * ```
  */
 
-import { forwardRef, useCallback } from 'react';
-import { Search, X, Loader2 } from 'lucide-react';
-import type { SearchInputProps } from './SearchInput.types';
-import styles from './SearchInput.module.css';
+import { forwardRef, useCallback } from "react";
+import { Search, X, Loader2 } from "lucide-react";
+import type { SearchInputProps } from "./SearchInput.types";
+import styles from "./SearchInput.module.css";
 
 export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
   (
     {
-      size = 'md',
+      size = "md",
       value,
       onClear,
       onSearch,
       showClear = true,
       showSearchButton = false,
       searchIcon,
-      clearLabel = 'Clear search',
-      searchLabel = 'Search',
+      clearLabel = "Clear search",
+      searchLabel = "Search",
       loading = false,
       fullWidth = false,
       disabled = false,
@@ -40,11 +40,11 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
     },
     ref,
   ) => {
-    const hasValue = value !== undefined && value !== '';
+    const hasValue = value !== undefined && value !== "";
 
     const handleKeyDown = useCallback(
       (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter' && onSearch) {
+        if (e.key === "Enter" && onSearch) {
           onSearch(e.currentTarget.value);
         }
         onKeyDown?.(e);
@@ -57,7 +57,7 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
     }, [onClear]);
 
     const handleSearchClick = useCallback(() => {
-      if (onSearch && typeof value === 'string') {
+      if (onSearch && typeof value === "string") {
         onSearch(value);
       }
     }, [onSearch, value]);
@@ -71,17 +71,20 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     // Size-specific class for input padding (CSS Modules requires flat classes)
-    const sizeClassMap = { sm: 'Sm', md: 'Md', lg: 'Lg' } as const;
+    const sizeClassMap = { sm: "Sm", md: "Md", lg: "Lg" } as const;
     const sizeKey = sizeClassMap[size];
 
-    const inputClasses = [styles.input, styles[`input${sizeKey}`]].join(' ');
+    const inputClasses = [styles.input, styles[`input${sizeKey}`]].join(" ");
 
-    const searchIconClasses = [styles.searchIcon, styles[`searchIcon${sizeKey}`]].join(' ');
+    const searchIconClasses = [
+      styles.searchIcon,
+      styles[`searchIcon${sizeKey}`],
+    ].join(" ");
 
-    const iconSize = size === 'sm' ? 16 : size === 'lg' ? 22 : 18;
+    const iconSize = size === "sm" ? 16 : size === "lg" ? 22 : 18;
 
     return (
       <div className={containerClasses}>
@@ -130,4 +133,4 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
   },
 );
 
-SearchInput.displayName = 'SearchInput';
+SearchInput.displayName = "SearchInput";

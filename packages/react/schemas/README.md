@@ -50,7 +50,7 @@ Each schema includes:
 ### 1. Load Schema Index
 
 ```javascript
-const schemas = require('@orion/react/schemas/index.json');
+const schemas = require("@orion/react/schemas/index.json");
 ```
 
 ### 2. Reference in Prompts
@@ -67,7 +67,7 @@ Use the Button component from @orion/react with these valid props:
 
 ```javascript
 // Use AJV or similar to validate props against schema
-const Ajv = require('ajv');
+const Ajv = require("ajv");
 const ajv = new Ajv();
 const validate = ajv.compile(buttonSchema);
 ```

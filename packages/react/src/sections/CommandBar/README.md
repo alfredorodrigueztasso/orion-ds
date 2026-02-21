@@ -5,9 +5,9 @@
 ## Quick Start
 
 ```tsx
-import { CommandBar, Button } from '@orion/react';
-import { Home, Settings, Users, FileText, Search } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { CommandBar, Button } from "@orion/react";
+import { Home, Settings, Users, FileText, Search } from "lucide-react";
+import { useState, useEffect } from "react";
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -15,13 +15,13 @@ function App() {
   // Open with keyboard shortcut
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
         setOpen(true);
       }
     };
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   return (
@@ -35,24 +35,24 @@ function App() {
         onOpenChange={setOpen}
         commands={[
           {
-            id: 'home',
-            label: 'Go to Home',
+            id: "home",
+            label: "Go to Home",
             icon: <Home size={16} />,
-            onSelect: () => navigate('/'),
+            onSelect: () => navigate("/"),
           },
           {
-            id: 'settings',
-            label: 'Settings',
+            id: "settings",
+            label: "Settings",
             icon: <Settings size={16} />,
-            shortcut: '⌘,',
-            onSelect: () => navigate('/settings'),
+            shortcut: "⌘,",
+            onSelect: () => navigate("/settings"),
           },
           {
-            id: 'users',
-            label: 'Manage Users',
+            id: "users",
+            label: "Manage Users",
             icon: <Users size={16} />,
-            category: 'Admin',
-            onSelect: () => navigate('/users'),
+            category: "Admin",
+            onSelect: () => navigate("/users"),
           },
         ]}
       />
@@ -206,18 +206,33 @@ Commands with the same `category` are grouped together.
 <CommandBar
   commands={[
     // Navigation (grouped)
-    { id: 'home', label: 'Home', category: 'Navigation', onSelect: () => {} },
-    { id: 'projects', label: 'Projects', category: 'Navigation', onSelect: () => {} },
-    { id: 'settings', label: 'Settings', category: 'Navigation', onSelect: () => {} },
+    { id: "home", label: "Home", category: "Navigation", onSelect: () => {} },
+    {
+      id: "projects",
+      label: "Projects",
+      category: "Navigation",
+      onSelect: () => {},
+    },
+    {
+      id: "settings",
+      label: "Settings",
+      category: "Navigation",
+      onSelect: () => {},
+    },
 
     // Actions (grouped)
-    { id: 'new', label: 'Create New', category: 'Actions', onSelect: () => {} },
-    { id: 'import', label: 'Import', category: 'Actions', onSelect: () => {} },
-    { id: 'export', label: 'Export', category: 'Actions', onSelect: () => {} },
+    { id: "new", label: "Create New", category: "Actions", onSelect: () => {} },
+    { id: "import", label: "Import", category: "Actions", onSelect: () => {} },
+    { id: "export", label: "Export", category: "Actions", onSelect: () => {} },
 
     // Admin (grouped)
-    { id: 'users', label: 'Manage Users', category: 'Admin', onSelect: () => {} },
-    { id: 'billing', label: 'Billing', category: 'Admin', onSelect: () => {} },
+    {
+      id: "users",
+      label: "Manage Users",
+      category: "Admin",
+      onSelect: () => {},
+    },
+    { id: "billing", label: "Billing", category: "Admin", onSelect: () => {} },
   ]}
 />
 ```
@@ -233,13 +248,19 @@ const [recentCommands, setRecentCommands] = useState([]);
 
 const handleSelect = (command) => {
   // Add to recent
-  setRecentCommands((prev) => [command, ...prev.filter((c) => c.id !== command.id)].slice(0, 5));
+  setRecentCommands((prev) =>
+    [command, ...prev.filter((c) => c.id !== command.id)].slice(0, 5),
+  );
 
   // Execute command
   command.onSelect();
 };
 
-<CommandBar commands={commands} recentCommands={recentCommands} onSelect={handleSelect} />;
+<CommandBar
+  commands={commands}
+  recentCommands={recentCommands}
+  onSelect={handleSelect}
+/>;
 ```
 
 ---
@@ -252,10 +273,10 @@ const handleSelect = (command) => {
   footer={
     <div
       style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        fontSize: '0.75rem',
-        color: 'var(--text-tertiary)',
+        display: "flex",
+        justifyContent: "space-between",
+        fontSize: "0.75rem",
+        color: "var(--text-tertiary)",
       }}
     >
       <span>↑↓ Navigate</span>
@@ -273,7 +294,7 @@ const handleSelect = (command) => {
 ### Full Application Command Bar
 
 ```tsx
-import { CommandBar } from '@orion/react';
+import { CommandBar } from "@orion/react";
 import {
   Home,
   Settings,
@@ -286,7 +307,7 @@ import {
   Moon,
   Sun,
   LogOut,
-} from 'lucide-react';
+} from "lucide-react";
 
 function AppCommandBar() {
   const [open, setOpen] = useState(false);
@@ -295,82 +316,82 @@ function AppCommandBar() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
         setOpen(true);
       }
     };
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   const commands = [
     // Navigation
     {
-      id: 'home',
-      label: 'Go to Dashboard',
+      id: "home",
+      label: "Go to Dashboard",
       icon: <Home size={16} />,
-      category: 'Navigation',
-      shortcut: '⌘H',
-      onSelect: () => navigate('/'),
+      category: "Navigation",
+      shortcut: "⌘H",
+      onSelect: () => navigate("/"),
     },
     {
-      id: 'projects',
-      label: 'View Projects',
+      id: "projects",
+      label: "View Projects",
       icon: <FileText size={16} />,
-      category: 'Navigation',
-      onSelect: () => navigate('/projects'),
+      category: "Navigation",
+      onSelect: () => navigate("/projects"),
     },
     {
-      id: 'settings',
-      label: 'Open Settings',
+      id: "settings",
+      label: "Open Settings",
       icon: <Settings size={16} />,
-      category: 'Navigation',
-      shortcut: '⌘,',
-      onSelect: () => navigate('/settings'),
+      category: "Navigation",
+      shortcut: "⌘,",
+      onSelect: () => navigate("/settings"),
     },
 
     // Quick Actions
     {
-      id: 'new-project',
-      label: 'Create New Project',
-      description: 'Start a fresh project',
+      id: "new-project",
+      label: "Create New Project",
+      description: "Start a fresh project",
       icon: <Plus size={16} />,
-      category: 'Actions',
-      shortcut: '⌘N',
+      category: "Actions",
+      shortcut: "⌘N",
       onSelect: () => openNewProjectModal(),
     },
     {
-      id: 'import',
-      label: 'Import Data',
+      id: "import",
+      label: "Import Data",
       icon: <Upload size={16} />,
-      category: 'Actions',
+      category: "Actions",
       onSelect: () => openImportModal(),
     },
     {
-      id: 'export',
-      label: 'Export Data',
+      id: "export",
+      label: "Export Data",
       icon: <Download size={16} />,
-      category: 'Actions',
+      category: "Actions",
       onSelect: () => exportData(),
     },
 
     // Appearance
     {
-      id: 'theme',
-      label: theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode',
-      icon: theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />,
-      category: 'Appearance',
-      keywords: ['dark', 'light', 'theme', 'mode'],
+      id: "theme",
+      label: theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode",
+      icon: theme === "dark" ? <Sun size={16} /> : <Moon size={16} />,
+      category: "Appearance",
+      keywords: ["dark", "light", "theme", "mode"],
       onSelect: toggleTheme,
     },
 
     // Account
     {
-      id: 'logout',
-      label: 'Sign Out',
+      id: "logout",
+      label: "Sign Out",
       icon: <LogOut size={16} />,
-      category: 'Account',
+      category: "Account",
       onSelect: () => signOut(),
     },
   ];
@@ -382,7 +403,13 @@ function AppCommandBar() {
       commands={commands}
       placeholder="Search commands..."
       footer={
-        <div style={{ display: 'flex', gap: 'var(--spacing-4)', fontSize: '0.75rem' }}>
+        <div
+          style={{
+            display: "flex",
+            gap: "var(--spacing-4)",
+            fontSize: "0.75rem",
+          }}
+        >
           <span>
             <kbd>↑↓</kbd> Navigate
           </span>
@@ -410,7 +437,7 @@ const searchCommands = useMemo(() => {
       label: page.title,
       description: page.excerpt,
       icon: <FileText size={16} />,
-      category: 'Pages',
+      category: "Pages",
       keywords: page.tags,
       onSelect: () => navigate(`/page/${page.slug}`),
     })),
@@ -421,7 +448,7 @@ const searchCommands = useMemo(() => {
       label: user.name,
       description: user.email,
       icon: <User size={16} />,
-      category: 'Users',
+      category: "Users",
       onSelect: () => navigate(`/users/${user.id}`),
     })),
   ];

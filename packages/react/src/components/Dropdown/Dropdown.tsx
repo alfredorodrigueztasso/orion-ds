@@ -24,15 +24,15 @@ import {
   cloneElement,
   isValidElement,
   useImperativeHandle,
-} from 'react';
-import { createPortal } from 'react-dom';
+} from "react";
+import { createPortal } from "react-dom";
 import type {
   DropdownProps,
   DropdownItem,
   DropdownPlacement,
   DropdownMenuItemProps,
-} from './Dropdown.types';
-import styles from './Dropdown.module.css';
+} from "./Dropdown.types";
+import styles from "./Dropdown.module.css";
 
 /**
  * Calculate dropdown position
@@ -50,27 +50,29 @@ const calculatePosition = (
   let left = 0;
 
   switch (placement) {
-    case 'bottom-start':
+    case "bottom-start":
       top = triggerRect.bottom + scrollY + offset;
       left = triggerRect.left + scrollX;
       break;
-    case 'bottom':
+    case "bottom":
       top = triggerRect.bottom + scrollY + offset;
-      left = triggerRect.left + scrollX + (triggerRect.width - menuRect.width) / 2;
+      left =
+        triggerRect.left + scrollX + (triggerRect.width - menuRect.width) / 2;
       break;
-    case 'bottom-end':
+    case "bottom-end":
       top = triggerRect.bottom + scrollY + offset;
       left = triggerRect.right + scrollX - menuRect.width;
       break;
-    case 'top-start':
+    case "top-start":
       top = triggerRect.top + scrollY - menuRect.height - offset;
       left = triggerRect.left + scrollX;
       break;
-    case 'top':
+    case "top":
       top = triggerRect.top + scrollY - menuRect.height - offset;
-      left = triggerRect.left + scrollX + (triggerRect.width - menuRect.width) / 2;
+      left =
+        triggerRect.left + scrollX + (triggerRect.width - menuRect.width) / 2;
       break;
-    case 'top-end':
+    case "top-end":
       top = triggerRect.top + scrollY - menuRect.height - offset;
       left = triggerRect.right + scrollX - menuRect.width;
       break;
@@ -86,7 +88,9 @@ const MenuItem = ({
   item,
   onSelect,
   onNavigate,
-}: DropdownMenuItemProps & { onNavigate?: (direction: 'up' | 'down') => void }) => {
+}: DropdownMenuItemProps & {
+  onNavigate?: (direction: "up" | "down") => void;
+}) => {
   const handleClick = () => {
     if (!item.disabled) {
       item.onClick?.();
@@ -95,21 +99,25 @@ const MenuItem = ({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === ' ') {
+    if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       handleClick();
-    } else if (e.key === 'ArrowDown') {
+    } else if (e.key === "ArrowDown") {
       e.preventDefault();
-      onNavigate?.('down');
-    } else if (e.key === 'ArrowUp') {
+      onNavigate?.("down");
+    } else if (e.key === "ArrowUp") {
       e.preventDefault();
-      onNavigate?.('up');
+      onNavigate?.("up");
     }
   };
 
-  const itemClasses = [styles.item, item.disabled && styles.disabled, item.danger && styles.danger]
+  const itemClasses = [
+    styles.item,
+    item.disabled && styles.disabled,
+    item.danger && styles.danger,
+  ]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
 
   return (
     <div
@@ -141,7 +149,7 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
       trigger,
       items = [],
       groups = [],
-      placement = 'bottom-start',
+      placement = "bottom-start",
       open: controlledOpen,
       onOpenChange,
       onSelect,
@@ -197,8 +205,8 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
     useEffect(() => {
       if (isOpen) {
         requestAnimationFrame(updatePosition);
-        window.addEventListener('resize', updatePosition);
-        window.addEventListener('scroll', updatePosition, true);
+        window.addEventListener("resize", updatePosition);
+        window.addEventListener("scroll", updatePosition, true);
 
         // Focus first item when menu opens
         requestAnimationFrame(() => {
@@ -210,8 +218,8 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
         });
 
         return () => {
-          window.removeEventListener('resize', updatePosition);
-          window.removeEventListener('scroll', updatePosition, true);
+          window.removeEventListener("resize", updatePosition);
+          window.removeEventListener("scroll", updatePosition, true);
         };
       }
     }, [isOpen, updatePosition]);
@@ -232,8 +240,9 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
         }
       };
 
-      document.addEventListener('mousedown', handleClickOutside);
-      return () => document.removeEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
+      return () =>
+        document.removeEventListener("mousedown", handleClickOutside);
     }, [isOpen, setIsOpen]);
 
     // Handle escape key
@@ -241,13 +250,13 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
       if (!isOpen) return;
 
       const handleEscape = (event: KeyboardEvent) => {
-        if (event.key === 'Escape') {
+        if (event.key === "Escape") {
           setIsOpen(false);
         }
       };
 
-      document.addEventListener('keydown', handleEscape);
-      return () => document.removeEventListener('keydown', handleEscape);
+      document.addEventListener("keydown", handleEscape);
+      return () => document.removeEventListener("keydown", handleEscape);
     }, [isOpen, setIsOpen]);
 
     const handleToggle = useCallback(() => {
@@ -266,12 +275,12 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
 
     // Handle keyboard navigation
     const handleNavigate = useCallback(
-      (direction: 'up' | 'down') => {
+      (direction: "up" | "down") => {
         const totalItems = allItemsFlat.length;
         if (totalItems === 0) return;
 
         let newIndex: number;
-        if (direction === 'down') {
+        if (direction === "down") {
           newIndex = focusedIndex < totalItems - 1 ? focusedIndex + 1 : 0;
         } else {
           newIndex = focusedIndex > 0 ? focusedIndex - 1 : totalItems - 1;
@@ -288,8 +297,8 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
     const triggerElement = isValidElement(trigger)
       ? cloneElement(trigger as React.ReactElement<Record<string, unknown>>, {
           onClick: handleToggle,
-          'aria-expanded': isOpen,
-          'aria-haspopup': 'menu',
+          "aria-expanded": isOpen,
+          "aria-haspopup": "menu",
         })
       : trigger;
 
@@ -298,7 +307,7 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
 
     const menuClasses = [styles.menu, isOpen && styles.visible, className]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     // Track flat index for ref assignment
     let flatIndex = 0;
@@ -318,7 +327,9 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
       >
         {allItems.map((group, groupIndex) => (
           <div key={groupIndex} className={styles.group}>
-            {group.label && <div className={styles.groupLabel}>{group.label}</div>}
+            {group.label && (
+              <div className={styles.groupLabel}>{group.label}</div>
+            )}
             {group.items.map((item) => {
               const currentIndex = flatIndex;
               if (!item.disabled) {
@@ -360,4 +371,4 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
   },
 );
 
-Dropdown.displayName = 'Dropdown';
+Dropdown.displayName = "Dropdown";

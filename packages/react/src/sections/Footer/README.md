@@ -5,38 +5,46 @@
 ## Quick Start
 
 ```tsx
-import { Footer } from '@orion/react';
-import { Twitter, Github, Linkedin } from 'lucide-react';
+import { Footer } from "@orion/react";
+import { Twitter, Github, Linkedin } from "lucide-react";
 
 <Footer
   brand={{
-    name: 'Orion',
-    description: 'The AI-first design system',
+    name: "Orion",
+    description: "The AI-first design system",
   }}
   linkGroups={[
     {
-      title: 'Product',
+      title: "Product",
       links: [
-        { label: 'Features', href: '/features' },
-        { label: 'Pricing', href: '/pricing' },
+        { label: "Features", href: "/features" },
+        { label: "Pricing", href: "/pricing" },
       ],
     },
     {
-      title: 'Company',
+      title: "Company",
       links: [
-        { label: 'About', href: '/about' },
-        { label: 'Blog', href: '/blog' },
+        { label: "About", href: "/about" },
+        { label: "Blog", href: "/blog" },
       ],
     },
   ]}
   socialLinks={[
-    { label: 'Twitter', href: 'https://twitter.com/orion', icon: <Twitter size={20} /> },
-    { label: 'GitHub', href: 'https://github.com/orion', icon: <Github size={20} /> },
+    {
+      label: "Twitter",
+      href: "https://twitter.com/orion",
+      icon: <Twitter size={20} />,
+    },
+    {
+      label: "GitHub",
+      href: "https://github.com/orion",
+      icon: <Github size={20} />,
+    },
   ]}
   copyright="© 2024 Orion. All rights reserved."
   legalLinks={[
-    { label: 'Privacy', href: '/privacy' },
-    { label: 'Terms', href: '/terms' },
+    { label: "Privacy", href: "/privacy" },
+    { label: "Terms", href: "/terms" },
   ]}
 />;
 ```
@@ -72,8 +80,8 @@ interface FooterProps {
   copyright?: string; // Copyright text
 
   // Styling
-  variant?: 'default' | 'minimal' | 'centered'; // default: 'default'
-  background?: 'base' | 'subtle' | 'sunken'; // default: 'subtle'
+  variant?: "default" | "minimal" | "centered"; // default: 'default'
+  background?: "base" | "subtle" | "sunken"; // default: 'subtle'
 }
 
 interface FooterBrand {
@@ -129,15 +137,15 @@ Compact footer with essential info only.
 ```tsx
 <Footer
   variant="minimal"
-  brand={{ name: 'Orion' }}
+  brand={{ name: "Orion" }}
   socialLinks={[
-    { label: 'Twitter', href: '#', icon: <Twitter size={20} /> },
-    { label: 'GitHub', href: '#', icon: <Github size={20} /> },
+    { label: "Twitter", href: "#", icon: <Twitter size={20} /> },
+    { label: "GitHub", href: "#", icon: <Github size={20} /> },
   ]}
   copyright="© 2024 Orion"
   legalLinks={[
-    { label: 'Privacy', href: '/privacy' },
-    { label: 'Terms', href: '/terms' },
+    { label: "Privacy", href: "/privacy" },
+    { label: "Terms", href: "/terms" },
   ]}
 />
 ```
@@ -164,7 +172,7 @@ Centered layout for simple landing pages.
 ```tsx
 <Footer
   brand={{
-    name: 'Acme Inc',
+    name: "Acme Inc",
   }}
 />
 ```
@@ -174,7 +182,7 @@ Centered layout for simple landing pages.
 ```tsx
 <Footer
   brand={{
-    name: 'Acme Inc',
+    name: "Acme Inc",
     logo: <img src="/logo.svg" alt="" height={32} />,
   }}
 />
@@ -185,9 +193,9 @@ Centered layout for simple landing pages.
 ```tsx
 <Footer
   brand={{
-    name: 'Acme Inc',
+    name: "Acme Inc",
     logo: <img src="/logo.svg" alt="" height={32} />,
-    description: 'Making the world a better place through innovative software.',
+    description: "Making the world a better place through innovative software.",
   }}
 />
 ```
@@ -202,38 +210,38 @@ Organize navigation into logical columns.
 <Footer
   linkGroups={[
     {
-      title: 'Product',
+      title: "Product",
       links: [
-        { label: 'Features', href: '/features' },
-        { label: 'Pricing', href: '/pricing' },
-        { label: 'Integrations', href: '/integrations' },
-        { label: 'Changelog', href: '/changelog' },
+        { label: "Features", href: "/features" },
+        { label: "Pricing", href: "/pricing" },
+        { label: "Integrations", href: "/integrations" },
+        { label: "Changelog", href: "/changelog" },
       ],
     },
     {
-      title: 'Company',
+      title: "Company",
       links: [
-        { label: 'About', href: '/about' },
-        { label: 'Blog', href: '/blog' },
-        { label: 'Careers', href: '/careers' },
-        { label: 'Press', href: '/press' },
+        { label: "About", href: "/about" },
+        { label: "Blog", href: "/blog" },
+        { label: "Careers", href: "/careers" },
+        { label: "Press", href: "/press" },
       ],
     },
     {
-      title: 'Resources',
+      title: "Resources",
       links: [
-        { label: 'Documentation', href: '/docs' },
-        { label: 'API Reference', href: '/api' },
-        { label: 'Community', href: '/community' },
-        { label: 'Support', href: '/support' },
+        { label: "Documentation", href: "/docs" },
+        { label: "API Reference", href: "/api" },
+        { label: "Community", href: "/community" },
+        { label: "Support", href: "/support" },
       ],
     },
     {
-      title: 'Legal',
+      title: "Legal",
       links: [
-        { label: 'Privacy', href: '/privacy' },
-        { label: 'Terms', href: '/terms' },
-        { label: 'Security', href: '/security' },
+        { label: "Privacy", href: "/privacy" },
+        { label: "Terms", href: "/terms" },
+        { label: "Security", href: "/security" },
       ],
     },
   ]}
@@ -259,15 +267,35 @@ Organize navigation into logical columns.
 ### Common Social Platforms
 
 ```tsx
-import { Twitter, Github, Linkedin, Youtube, Instagram } from 'lucide-react';
+import { Twitter, Github, Linkedin, Youtube, Instagram } from "lucide-react";
 
 <Footer
   socialLinks={[
-    { label: 'Twitter', href: 'https://twitter.com/acme', icon: <Twitter size={20} /> },
-    { label: 'GitHub', href: 'https://github.com/acme', icon: <Github size={20} /> },
-    { label: 'LinkedIn', href: 'https://linkedin.com/company/acme', icon: <Linkedin size={20} /> },
-    { label: 'YouTube', href: 'https://youtube.com/@acme', icon: <Youtube size={20} /> },
-    { label: 'Instagram', href: 'https://instagram.com/acme', icon: <Instagram size={20} /> },
+    {
+      label: "Twitter",
+      href: "https://twitter.com/acme",
+      icon: <Twitter size={20} />,
+    },
+    {
+      label: "GitHub",
+      href: "https://github.com/acme",
+      icon: <Github size={20} />,
+    },
+    {
+      label: "LinkedIn",
+      href: "https://linkedin.com/company/acme",
+      icon: <Linkedin size={20} />,
+    },
+    {
+      label: "YouTube",
+      href: "https://youtube.com/@acme",
+      icon: <Youtube size={20} />,
+    },
+    {
+      label: "Instagram",
+      href: "https://instagram.com/acme",
+      icon: <Instagram size={20} />,
+    },
   ]}
 />;
 ```
@@ -311,9 +339,9 @@ Add a custom newsletter signup component.
 <Footer
   copyright="© 2024 Acme Inc. All rights reserved."
   legalLinks={[
-    { label: 'Privacy Policy', href: '/privacy' },
-    { label: 'Terms of Service', href: '/terms' },
-    { label: 'Cookie Policy', href: '/cookies' },
+    { label: "Privacy Policy", href: "/privacy" },
+    { label: "Terms of Service", href: "/terms" },
+    { label: "Cookie Policy", href: "/cookies" },
   ]}
 />
 ```
@@ -324,7 +352,7 @@ If no `copyright` prop is provided, it auto-generates based on brand name and cu
 
 ```tsx
 <Footer
-  brand={{ name: 'Acme Inc' }}
+  brand={{ name: "Acme Inc" }}
   // Renders: "© 2024 Acme Inc. All rights reserved."
 />
 ```
@@ -351,55 +379,71 @@ If no `copyright` prop is provided, it auto-generates based on brand name and cu
 ### SaaS Product Footer
 
 ```tsx
-import { Footer } from '@orion/react';
-import { Twitter, Github, Linkedin, Youtube } from 'lucide-react';
+import { Footer } from "@orion/react";
+import { Twitter, Github, Linkedin, Youtube } from "lucide-react";
 
 <Footer
   brand={{
-    name: 'Orion',
+    name: "Orion",
     logo: <img src="/logo.svg" alt="" height={32} />,
-    description: 'The AI-first design system for modern teams.',
+    description: "The AI-first design system for modern teams.",
   }}
   linkGroups={[
     {
-      title: 'Product',
+      title: "Product",
       links: [
-        { label: 'Features', href: '/features' },
-        { label: 'Pricing', href: '/pricing' },
-        { label: 'Integrations', href: '/integrations' },
-        { label: 'Changelog', href: '/changelog' },
+        { label: "Features", href: "/features" },
+        { label: "Pricing", href: "/pricing" },
+        { label: "Integrations", href: "/integrations" },
+        { label: "Changelog", href: "/changelog" },
       ],
     },
     {
-      title: 'Developers',
+      title: "Developers",
       links: [
-        { label: 'Documentation', href: '/docs' },
-        { label: 'API Reference', href: '/api' },
-        { label: 'SDK', href: '/sdk' },
-        { label: 'Status', href: 'https://status.orion.io', external: true },
+        { label: "Documentation", href: "/docs" },
+        { label: "API Reference", href: "/api" },
+        { label: "SDK", href: "/sdk" },
+        { label: "Status", href: "https://status.orion.io", external: true },
       ],
     },
     {
-      title: 'Company',
+      title: "Company",
       links: [
-        { label: 'About', href: '/about' },
-        { label: 'Blog', href: '/blog' },
-        { label: 'Careers', href: '/careers' },
-        { label: 'Contact', href: '/contact' },
+        { label: "About", href: "/about" },
+        { label: "Blog", href: "/blog" },
+        { label: "Careers", href: "/careers" },
+        { label: "Contact", href: "/contact" },
       ],
     },
   ]}
   socialLinks={[
-    { label: 'Twitter', href: 'https://twitter.com/orion', icon: <Twitter size={20} /> },
-    { label: 'GitHub', href: 'https://github.com/orion', icon: <Github size={20} /> },
-    { label: 'LinkedIn', href: 'https://linkedin.com/orion', icon: <Linkedin size={20} /> },
-    { label: 'YouTube', href: 'https://youtube.com/@orion', icon: <Youtube size={20} /> },
+    {
+      label: "Twitter",
+      href: "https://twitter.com/orion",
+      icon: <Twitter size={20} />,
+    },
+    {
+      label: "GitHub",
+      href: "https://github.com/orion",
+      icon: <Github size={20} />,
+    },
+    {
+      label: "LinkedIn",
+      href: "https://linkedin.com/orion",
+      icon: <Linkedin size={20} />,
+    },
+    {
+      label: "YouTube",
+      href: "https://youtube.com/@orion",
+      icon: <Youtube size={20} />,
+    },
   ]}
   copyright="© 2024 Orion Design System. All rights reserved."
   legalLinks={[
-    { label: 'Privacy', href: '/privacy' },
-    { label: 'Terms', href: '/terms' },
-    { label: 'Security', href: '/security' },
+    { label: "Privacy", href: "/privacy" },
+    { label: "Terms", href: "/terms" },
+    { label: "Security", href: "/security" },
   ]}
 />;
 ```
@@ -410,12 +454,12 @@ import { Twitter, Github, Linkedin, Youtube } from 'lucide-react';
 <Footer
   variant="centered"
   brand={{
-    name: 'LaunchPad',
-    description: 'Ship your startup faster.',
+    name: "LaunchPad",
+    description: "Ship your startup faster.",
   }}
   socialLinks={[
-    { label: 'Twitter', href: '#', icon: <Twitter size={20} /> },
-    { label: 'GitHub', href: '#', icon: <Github size={20} /> },
+    { label: "Twitter", href: "#", icon: <Twitter size={20} /> },
+    { label: "GitHub", href: "#", icon: <Github size={20} /> },
   ]}
   copyright="© 2024 LaunchPad"
 />
@@ -426,12 +470,12 @@ import { Twitter, Github, Linkedin, Youtube } from 'lucide-react';
 ```tsx
 <Footer
   variant="minimal"
-  brand={{ name: 'AppName' }}
+  brand={{ name: "AppName" }}
   legalLinks={[
-    { label: 'Privacy', href: '/privacy' },
-    { label: 'Terms', href: '/terms' },
+    { label: "Privacy", href: "/privacy" },
+    { label: "Terms", href: "/terms" },
   ]}
-  socialLinks={[{ label: 'Twitter', href: '#', icon: <Twitter size={20} /> }]}
+  socialLinks={[{ label: "Twitter", href: "#", icon: <Twitter size={20} /> }]}
 />
 ```
 

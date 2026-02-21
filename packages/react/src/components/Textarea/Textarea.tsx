@@ -27,10 +27,16 @@
  * ```
  */
 
-import React, { forwardRef, useState, useCallback, useEffect, useId } from 'react';
-import { AlertCircle } from 'lucide-react';
-import type { TextareaProps } from './Textarea.types';
-import styles from './Textarea.module.css';
+import React, {
+  forwardRef,
+  useState,
+  useCallback,
+  useEffect,
+  useId,
+} from "react";
+import { AlertCircle } from "lucide-react";
+import type { TextareaProps } from "./Textarea.types";
+import styles from "./Textarea.module.css";
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
@@ -38,8 +44,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       label,
       helperText,
       error,
-      size = 'md',
-      resize = 'vertical',
+      size = "md",
+      resize = "vertical",
       showCounter = false,
       maxLength,
       className,
@@ -50,8 +56,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       disabled,
       required,
       optional = false,
-      'aria-label': ariaLabel,
-      'aria-describedby': ariaDescribedBy,
+      "aria-label": ariaLabel,
+      "aria-describedby": ariaDescribedBy,
       ...rest
     },
     ref,
@@ -98,33 +104,34 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     if (helperText && !error) describedByIds.push(helperId);
     if (showCounter && maxLength) describedByIds.push(counterId);
     if (ariaDescribedBy) describedByIds.push(ariaDescribedBy);
-    const computedDescribedBy = describedByIds.length > 0 ? describedByIds.join(' ') : undefined;
+    const computedDescribedBy =
+      describedByIds.length > 0 ? describedByIds.join(" ") : undefined;
 
     // Ensure textarea has an accessible name
     const hasAccessibleName = Boolean(label || ariaLabel);
-    if (!hasAccessibleName && process.env.NODE_ENV === 'development') {
+    if (!hasAccessibleName && process.env.NODE_ENV === "development") {
       console.warn(
-        'Textarea: Missing accessible name. Provide either a `label` prop or `aria-label` for screen reader users.',
+        "Textarea: Missing accessible name. Provide either a `label` prop or `aria-label` for screen reader users.",
       );
     }
 
     // Calculate counter classes and status
     const getCounterStatus = () => {
-      if (!maxLength) return 'normal';
+      if (!maxLength) return "normal";
       const percentage = (charCount / maxLength) * 100;
-      if (percentage >= 100) return 'error';
-      if (percentage >= 90) return 'warning';
-      return 'normal';
+      if (percentage >= 100) return "error";
+      if (percentage >= 90) return "warning";
+      return "normal";
     };
 
     const counterStatus = getCounterStatus();
     const counterClasses = [
       styles.counter,
-      counterStatus === 'warning' && styles.counterWarning,
-      counterStatus === 'error' && styles.counterError,
+      counterStatus === "warning" && styles.counterWarning,
+      counterStatus === "error" && styles.counterError,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     // Container classes
     const containerClasses = [
@@ -136,7 +143,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     // Show footer if counter or helper text exists
     const showFooter = showCounter || (helperText && !error);
@@ -172,7 +179,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           disabled={disabled}
           required={required}
           aria-required={required || undefined}
-          aria-invalid={error ? 'true' : 'false'}
+          aria-invalid={error ? "true" : "false"}
           aria-describedby={computedDescribedBy}
           aria-label={!label ? ariaLabel : undefined}
           {...rest}
@@ -190,7 +197,12 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
 
             {/* Character counter - announced to screen readers */}
             {showCounter && maxLength && (
-              <span id={counterId} className={counterClasses} aria-live="polite" aria-atomic="true">
+              <span
+                id={counterId}
+                className={counterClasses}
+                aria-live="polite"
+                aria-atomic="true"
+              >
                 {charCount}/{maxLength}
               </span>
             )}
@@ -199,7 +211,12 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
 
         {/* Error message */}
         {error && (
-          <p id={errorId} className={styles.errorMessage} role="alert" aria-live="assertive">
+          <p
+            id={errorId}
+            className={styles.errorMessage}
+            role="alert"
+            aria-live="assertive"
+          >
             <AlertCircle size={14} aria-hidden="true" />
             <span>{error}</span>
           </p>
@@ -209,4 +226,4 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   },
 );
 
-Textarea.displayName = 'Textarea';
+Textarea.displayName = "Textarea";

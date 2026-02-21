@@ -5,7 +5,7 @@
  * attachments, reactions, retry, and various states.
  */
 
-import React from 'react';
+import React from "react";
 import {
   User,
   Bot,
@@ -15,18 +15,18 @@ import {
   RotateCcw,
   ThumbsUp,
   ThumbsDown,
-} from 'lucide-react';
-import type { ChatMessageProps } from '../Chat.types';
-import { ChatMarkdown } from './ChatMarkdown';
-import { ChatAttachment } from './ChatAttachment';
-import styles from '../Chat.module.css';
+} from "lucide-react";
+import type { ChatMessageProps } from "../Chat.types";
+import { ChatMarkdown } from "./ChatMarkdown";
+import { ChatAttachment } from "./ChatAttachment";
+import styles from "../Chat.module.css";
 
 // Format timestamp
 const formatTimestamp = (date?: Date): string => {
-  if (!date) return '';
-  return new Intl.DateTimeFormat('en-US', {
-    hour: 'numeric',
-    minute: '2-digit',
+  if (!date) return "";
+  return new Intl.DateTimeFormat("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
     hour12: true,
   }).format(date);
 };
@@ -34,11 +34,11 @@ const formatTimestamp = (date?: Date): string => {
 // Get status icon
 const getStatusIcon = (status?: string) => {
   switch (status) {
-    case 'sending':
+    case "sending":
       return <Clock size={12} />;
-    case 'sent':
+    case "sent":
       return <Check size={12} />;
-    case 'error':
+    case "error":
       return <AlertCircle size={12} />;
     default:
       return null;
@@ -63,21 +63,23 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
   className,
   ...rest
 }) => {
-  const isUser = role === 'user';
-  const isSystem = role === 'system';
-  const isAssistant = role === 'assistant';
+  const isUser = role === "user";
+  const isSystem = role === "system";
+  const isAssistant = role === "assistant";
   const shouldShowAvatar = showAvatar ?? false;
 
   // System messages have a different layout
   if (isSystem) {
     return (
       <div
-        className={[styles.message, className].filter(Boolean).join(' ')}
+        className={[styles.message, className].filter(Boolean).join(" ")}
         role="listitem"
         {...rest}
       >
         <div className={styles.messageContent}>
-          <div className={styles.messageBubbleSystem}>{children || content}</div>
+          <div className={styles.messageBubbleSystem}>
+            {children || content}
+          </div>
         </div>
       </div>
     );
@@ -92,7 +94,7 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
         className,
       ]
         .filter(Boolean)
-        .join(' ')}
+        .join(" ")}
       role="listitem"
       {...rest}
     >
@@ -104,7 +106,7 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
             isUser ? styles.messageAvatarUser : styles.messageAvatarAssistant,
           ]
             .filter(Boolean)
-            .join(' ')}
+            .join(" ")}
           aria-hidden="true"
         >
           {avatar || (isUser ? <User size={18} /> : <Bot size={18} />)}
@@ -120,10 +122,13 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
             isUser ? styles.messageBubbleUser : styles.messageBubbleAssistant,
           ]
             .filter(Boolean)
-            .join(' ')}
+            .join(" ")}
         >
           {children || (
-            <ChatMarkdown content={content} className={isUser ? styles.markdownUser : undefined} />
+            <ChatMarkdown
+              content={content}
+              className={isUser ? styles.markdownUser : undefined}
+            />
           )}
 
           {/* Streaming cursor */}
@@ -138,7 +143,7 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
                 key={attachment.id}
                 attachment={attachment}
                 onClick={
-                  attachment.type === 'image' && onImageClick
+                  attachment.type === "image" && onImageClick
                     ? () => onImageClick(attachment)
                     : undefined
                 }
@@ -150,22 +155,27 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
         {/* Footer (timestamp, status, actions, reactions) */}
         <div className={styles.messageFooter}>
           {timestamp && (
-            <span className={styles.messageTimestamp}>{formatTimestamp(timestamp)}</span>
+            <span className={styles.messageTimestamp}>
+              {formatTimestamp(timestamp)}
+            </span>
           )}
 
           {status && (
             <span
-              className={[styles.messageStatus, status === 'error' && styles.messageStatusError]
+              className={[
+                styles.messageStatus,
+                status === "error" && styles.messageStatusError,
+              ]
                 .filter(Boolean)
-                .join(' ')}
+                .join(" ")}
             >
               {getStatusIcon(status)}
-              {status === 'error' && 'Failed to send'}
+              {status === "error" && "Failed to send"}
             </span>
           )}
 
           {/* Retry button for failed messages */}
-          {status === 'error' && onRetry && (
+          {status === "error" && onRetry && (
             <button
               className={styles.messageRetry}
               onClick={onRetry}
@@ -181,33 +191,36 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
           {/* Reactions for assistant messages */}
           {isAssistant && onReaction && (
             <div
-              className={[styles.messageReactions, reaction && styles.messageReactionsVisible]
+              className={[
+                styles.messageReactions,
+                reaction && styles.messageReactionsVisible,
+              ]
                 .filter(Boolean)
-                .join(' ')}
+                .join(" ")}
             >
               <button
                 className={[
                   styles.messageReactionButton,
-                  reaction === 'like' && styles.messageReactionActive,
+                  reaction === "like" && styles.messageReactionActive,
                 ]
                   .filter(Boolean)
-                  .join(' ')}
-                onClick={() => onReaction('like')}
+                  .join(" ")}
+                onClick={() => onReaction("like")}
                 aria-label="Like this response"
-                aria-pressed={reaction === 'like'}
+                aria-pressed={reaction === "like"}
               >
                 <ThumbsUp size={14} />
               </button>
               <button
                 className={[
                   styles.messageReactionButton,
-                  reaction === 'dislike' && styles.messageReactionActive,
+                  reaction === "dislike" && styles.messageReactionActive,
                 ]
                   .filter(Boolean)
-                  .join(' ')}
-                onClick={() => onReaction('dislike')}
+                  .join(" ")}
+                onClick={() => onReaction("dislike")}
                 aria-label="Dislike this response"
-                aria-pressed={reaction === 'dislike'}
+                aria-pressed={reaction === "dislike"}
               >
                 <ThumbsDown size={14} />
               </button>
@@ -219,4 +232,4 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
   );
 };
 
-ChatMessage.displayName = 'ChatMessage';
+ChatMessage.displayName = "ChatMessage";

@@ -4,17 +4,17 @@
  * Type definitions for the Orion Skeleton component.
  */
 
-import type { HTMLAttributes } from 'react';
+import type { HTMLAttributes } from "react";
 
 /**
  * Skeleton shape variants
  */
-export type SkeletonVariant = 'text' | 'circular' | 'rectangular' | 'rounded';
+export type SkeletonVariant = "text" | "circular" | "rectangular" | "rounded";
 
 /**
  * Skeleton animation types
  */
-export type SkeletonAnimation = 'pulse' | 'wave' | 'none';
+export type SkeletonAnimation = "pulse" | "wave" | "none";
 
 /**
  * Skeleton component props

@@ -1,30 +1,30 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { User, Bell, Lock, CreditCard } from 'lucide-react';
-import { FormSection } from './FormSection';
-import { Button } from '../../components/Button';
-import { Field } from '../../components/Field';
+import type { Meta, StoryObj } from "@storybook/react";
+import { User, Bell, Lock, CreditCard } from "lucide-react";
+import { FormSection } from "./FormSection";
+import { Button } from "@orion-ds/react";
+import { Field } from "@orion-ds/react";
 
 const meta: Meta<typeof FormSection> = {
-  title: 'Sections/App/FormSection',
+  title: "Sections/App/FormSection",
   component: FormSection,
   parameters: {
-    layout: 'padded',
+    layout: "padded",
     docs: {
       description: {
         component:
-          'A form section for settings pages and structured form layouts. Optimized for Product Mode with clear hierarchy and efficient space usage.',
+          "A form section for settings pages and structured form layouts. Optimized for Product Mode with clear hierarchy and efficient space usage.",
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     variant: {
-      control: 'select',
-      options: ['default', 'card', 'inline'],
+      control: "select",
+      options: ["default", "card", "inline"],
     },
-    collapsible: { control: 'boolean' },
-    divider: { control: 'boolean' },
-    disabled: { control: 'boolean' },
+    collapsible: { control: "boolean" },
+    divider: { control: "boolean" },
+    disabled: { control: "boolean" },
   },
 };
 
@@ -33,8 +33,8 @@ type Story = StoryObj<typeof FormSection>;
 
 export const Default: Story = {
   args: {
-    title: 'Profile Information',
-    description: 'Update your personal details and public profile.',
+    title: "Profile Information",
+    description: "Update your personal details and public profile.",
     children: (
       <>
         <FormSection.Group columns={2}>
@@ -42,7 +42,11 @@ export const Default: Story = {
           <Field label="Last Name" type="text" placeholder="Doe" />
         </FormSection.Group>
         <Field label="Email" type="email" placeholder="john@example.com" />
-        <Field label="Bio" type="textarea" placeholder="Tell us about yourself..." />
+        <Field
+          label="Bio"
+          type="textarea"
+          placeholder="Tell us about yourself..."
+        />
       </>
     ),
     actions: (
@@ -57,12 +61,16 @@ export const Default: Story = {
 export const WithIcon: Story = {
   args: {
     icon: <User size={20} />,
-    title: 'Personal Details',
-    description: 'Manage your account information.',
+    title: "Personal Details",
+    description: "Manage your account information.",
     children: (
       <>
         <Field label="Display Name" type="text" placeholder="johndoe" />
-        <Field label="Phone Number" type="tel" placeholder="+1 (555) 123-4567" />
+        <Field
+          label="Phone Number"
+          type="tel"
+          placeholder="+1 (555) 123-4567"
+        />
       </>
     ),
   },
@@ -70,34 +78,79 @@ export const WithIcon: Story = {
 
 export const CardVariant: Story = {
   args: {
-    variant: 'card',
+    variant: "card",
     icon: <Bell size={20} />,
-    title: 'Notification Preferences',
-    description: 'Choose how you want to be notified.',
+    title: "Notification Preferences",
+    description: "Choose how you want to be notified.",
     children: (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-4)' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "var(--spacing-4)",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
           <div>
-            <div style={{ fontWeight: 'var(--font-weight-medium)' }}>Email Notifications</div>
-            <div style={{ fontSize: 'var(--font-size-14)', color: 'var(--text-secondary)' }}>
+            <div style={{ fontWeight: "var(--font-weight-medium)" }}>
+              Email Notifications
+            </div>
+            <div
+              style={{
+                fontSize: "var(--font-size-14)",
+                color: "var(--text-secondary)",
+              }}
+            >
               Receive updates via email
             </div>
           </div>
           <input type="checkbox" defaultChecked />
         </div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
           <div>
-            <div style={{ fontWeight: 'var(--font-weight-medium)' }}>Push Notifications</div>
-            <div style={{ fontSize: 'var(--font-size-14)', color: 'var(--text-secondary)' }}>
+            <div style={{ fontWeight: "var(--font-weight-medium)" }}>
+              Push Notifications
+            </div>
+            <div
+              style={{
+                fontSize: "var(--font-size-14)",
+                color: "var(--text-secondary)",
+              }}
+            >
               Receive push notifications
             </div>
           </div>
           <input type="checkbox" />
         </div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
           <div>
-            <div style={{ fontWeight: 'var(--font-weight-medium)' }}>SMS Alerts</div>
-            <div style={{ fontSize: 'var(--font-size-14)', color: 'var(--text-secondary)' }}>
+            <div style={{ fontWeight: "var(--font-weight-medium)" }}>
+              SMS Alerts
+            </div>
+            <div
+              style={{
+                fontSize: "var(--font-size-14)",
+                color: "var(--text-secondary)",
+              }}
+            >
               Get important alerts via SMS
             </div>
           </div>
@@ -110,9 +163,9 @@ export const CardVariant: Story = {
 
 export const InlineVariant: Story = {
   args: {
-    variant: 'inline',
-    title: 'Password',
-    description: 'Update your password to keep your account secure.',
+    variant: "inline",
+    title: "Password",
+    description: "Update your password to keep your account secure.",
     children: (
       <>
         <Field label="Current Password" type="password" />
@@ -132,23 +185,49 @@ export const Collapsible: Story = {
   args: {
     collapsible: true,
     icon: <Lock size={20} />,
-    title: 'Security Settings',
-    description: 'Configure security options for your account.',
+    title: "Security Settings",
+    description: "Configure security options for your account.",
     children: (
       <>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
           <div>
-            <div style={{ fontWeight: 'var(--font-weight-medium)' }}>Two-Factor Authentication</div>
-            <div style={{ fontSize: 'var(--font-size-14)', color: 'var(--text-secondary)' }}>
+            <div style={{ fontWeight: "var(--font-weight-medium)" }}>
+              Two-Factor Authentication
+            </div>
+            <div
+              style={{
+                fontSize: "var(--font-size-14)",
+                color: "var(--text-secondary)",
+              }}
+            >
               Add an extra layer of security
             </div>
           </div>
           <input type="checkbox" />
         </div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
           <div>
-            <div style={{ fontWeight: 'var(--font-weight-medium)' }}>Session Timeout</div>
-            <div style={{ fontSize: 'var(--font-size-14)', color: 'var(--text-secondary)' }}>
+            <div style={{ fontWeight: "var(--font-weight-medium)" }}>
+              Session Timeout
+            </div>
+            <div
+              style={{
+                fontSize: "var(--font-size-14)",
+                color: "var(--text-secondary)",
+              }}
+            >
               Auto logout after inactivity
             </div>
           </div>
@@ -164,11 +243,15 @@ export const CollapsedByDefault: Story = {
     collapsible: true,
     defaultCollapsed: true,
     icon: <CreditCard size={20} />,
-    title: 'Billing Information',
-    description: 'Manage your payment methods and billing address.',
+    title: "Billing Information",
+    description: "Manage your payment methods and billing address.",
     children: (
       <>
-        <Field label="Card Number" type="text" placeholder="4242 4242 4242 4242" />
+        <Field
+          label="Card Number"
+          type="text"
+          placeholder="4242 4242 4242 4242"
+        />
         <FormSection.Group columns={2}>
           <Field label="Expiry Date" type="text" placeholder="MM/YY" />
           <Field label="CVV" type="text" placeholder="123" />
@@ -181,8 +264,8 @@ export const CollapsedByDefault: Story = {
 export const WithDivider: Story = {
   args: {
     divider: true,
-    title: 'Account Settings',
-    description: 'Basic account configuration.',
+    title: "Account Settings",
+    description: "Basic account configuration.",
     children: (
       <>
         <Field label="Username" type="text" />
@@ -195,12 +278,16 @@ export const WithDivider: Story = {
 
 export const MultipleGroups: Story = {
   args: {
-    title: 'Address Information',
-    description: 'Enter your shipping address.',
+    title: "Address Information",
+    description: "Enter your shipping address.",
     children: (
       <>
         <Field label="Street Address" type="text" placeholder="123 Main St" />
-        <Field label="Address Line 2" type="text" placeholder="Apt, Suite, etc." />
+        <Field
+          label="Address Line 2"
+          type="text"
+          placeholder="Apt, Suite, etc."
+        />
         <FormSection.Group columns={3}>
           <Field label="City" type="text" placeholder="San Francisco" />
           <Field label="State" type="text" placeholder="CA" />
@@ -212,7 +299,7 @@ export const MultipleGroups: Story = {
     actions: (
       <FormSection.Actions align="between">
         <Button variant="ghost">Clear Form</Button>
-        <div style={{ display: 'flex', gap: 'var(--spacing-2)' }}>
+        <div style={{ display: "flex", gap: "var(--spacing-2)" }}>
           <Button variant="secondary">Cancel</Button>
           <Button>Save Address</Button>
         </div>

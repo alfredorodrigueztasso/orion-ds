@@ -5,8 +5,8 @@
 ## Quick Start
 
 ```tsx
-import { SettingsTemplate, Field, Button } from '@orion/react';
-import { User, Shield, Bell, CreditCard } from 'lucide-react';
+import { SettingsTemplate, Field, Button } from "@orion/react";
+import { User, Shield, Bell, CreditCard } from "lucide-react";
 
 <SettingsTemplate
   title="Settings"
@@ -14,16 +14,20 @@ import { User, Shield, Bell, CreditCard } from 'lucide-react';
   navigation={[
     {
       items: [
-        { id: 'profile', label: 'Profile', icon: <User size={20} /> },
-        { id: 'security', label: 'Security', icon: <Shield size={20} /> },
-        { id: 'notifications', label: 'Notifications', icon: <Bell size={20} /> },
-        { id: 'billing', label: 'Billing', icon: <CreditCard size={20} /> },
+        { id: "profile", label: "Profile", icon: <User size={20} /> },
+        { id: "security", label: "Security", icon: <Shield size={20} /> },
+        {
+          id: "notifications",
+          label: "Notifications",
+          icon: <Bell size={20} />,
+        },
+        { id: "billing", label: "Billing", icon: <CreditCard size={20} /> },
       ],
     },
   ]}
   sections={[
     {
-      id: 'profile',
+      id: "profile",
       content: (
         <form>
           <Field label="Name" defaultValue="John Doe" />
@@ -33,7 +37,7 @@ import { User, Shield, Bell, CreditCard } from 'lucide-react';
       ),
     },
     {
-      id: 'security',
+      id: "security",
       content: (
         <form>
           <Field label="Current Password" type="password" />
@@ -72,7 +76,10 @@ import { User, Shield, Bell, CreditCard } from 'lucide-react';
 ## Props Reference
 
 ```typescript
-interface SettingsTemplateProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
+interface SettingsTemplateProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "title"
+> {
   /**
    * Page title
    */
@@ -86,7 +93,7 @@ interface SettingsTemplateProps extends Omit<HTMLAttributes<HTMLDivElement>, 'ti
   /**
    * Navigation groups (passed to SettingsLayout)
    */
-  navigation: SettingsLayoutProps['navigation'];
+  navigation: SettingsLayoutProps["navigation"];
 
   /**
    * Section content mapped by ID
@@ -134,8 +141,8 @@ interface SettingsSection {
 ### Full Settings Page
 
 ```tsx
-import { SettingsTemplate, Field, Button, Switch, Select } from '@orion/react';
-import { User, Shield, Bell, CreditCard, Palette, Globe } from 'lucide-react';
+import { SettingsTemplate, Field, Button, Switch, Select } from "@orion/react";
+import { User, Shield, Bell, CreditCard, Palette, Globe } from "lucide-react";
 
 function SettingsPage() {
   return (
@@ -144,45 +151,70 @@ function SettingsPage() {
       description="Manage your account and preferences"
       navigation={[
         {
-          title: 'Account',
+          title: "Account",
           items: [
-            { id: 'profile', label: 'Profile', icon: <User size={20} /> },
-            { id: 'security', label: 'Security', icon: <Shield size={20} /> },
+            { id: "profile", label: "Profile", icon: <User size={20} /> },
+            { id: "security", label: "Security", icon: <Shield size={20} /> },
           ],
         },
         {
-          title: 'Preferences',
+          title: "Preferences",
           items: [
-            { id: 'notifications', label: 'Notifications', icon: <Bell size={20} /> },
-            { id: 'appearance', label: 'Appearance', icon: <Palette size={20} /> },
-            { id: 'language', label: 'Language', icon: <Globe size={20} /> },
+            {
+              id: "notifications",
+              label: "Notifications",
+              icon: <Bell size={20} />,
+            },
+            {
+              id: "appearance",
+              label: "Appearance",
+              icon: <Palette size={20} />,
+            },
+            { id: "language", label: "Language", icon: <Globe size={20} /> },
           ],
         },
         {
-          title: 'Billing',
-          items: [{ id: 'billing', label: 'Billing', icon: <CreditCard size={20} /> }],
+          title: "Billing",
+          items: [
+            { id: "billing", label: "Billing", icon: <CreditCard size={20} /> },
+          ],
         },
       ]}
       sections={[
         {
-          id: 'profile',
+          id: "profile",
           content: (
             <div className="settings-section">
               <h3>Profile Information</h3>
               <p>Update your personal information.</p>
-              <form style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-4)' }}>
+              <form
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "var(--spacing-4)",
+                }}
+              >
                 <div
                   style={{
-                    display: 'grid',
-                    gridTemplateColumns: '1fr 1fr',
-                    gap: 'var(--spacing-4)',
+                    display: "grid",
+                    gridTemplateColumns: "1fr 1fr",
+                    gap: "var(--spacing-4)",
                   }}
                 >
                   <Field label="First Name" defaultValue="John" />
                   <Field label="Last Name" defaultValue="Doe" />
                 </div>
-                <Field label="Email" type="email" defaultValue="john@example.com" />
-                <Field label="Bio" as="textarea" rows={4} placeholder="Tell us about yourself" />
+                <Field
+                  label="Email"
+                  type="email"
+                  defaultValue="john@example.com"
+                />
+                <Field
+                  label="Bio"
+                  as="textarea"
+                  rows={4}
+                  placeholder="Tell us about yourself"
+                />
                 <div>
                   <Button type="submit">Save Changes</Button>
                 </div>
@@ -191,17 +223,17 @@ function SettingsPage() {
           ),
         },
         {
-          id: 'security',
+          id: "security",
           content: (
             <div className="settings-section">
               <h3>Password</h3>
               <p>Update your password to keep your account secure.</p>
               <form
                 style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 'var(--spacing-4)',
-                  maxWidth: '400px',
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "var(--spacing-4)",
+                  maxWidth: "400px",
                 }}
               >
                 <Field label="Current Password" type="password" />
@@ -212,47 +244,67 @@ function SettingsPage() {
                 </div>
               </form>
 
-              <h3 style={{ marginTop: 'var(--spacing-8)' }}>Two-Factor Authentication</h3>
+              <h3 style={{ marginTop: "var(--spacing-8)" }}>
+                Two-Factor Authentication
+              </h3>
               <p>Add an extra layer of security to your account.</p>
               <Button variant="secondary">Enable 2FA</Button>
             </div>
           ),
         },
         {
-          id: 'notifications',
+          id: "notifications",
           content: (
             <div className="settings-section">
               <h3>Notification Preferences</h3>
               <p>Choose how you want to be notified.</p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-4)' }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "var(--spacing-4)",
+                }}
+              >
                 <div
-                  style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
                 >
                   <div>
                     <strong>Email Notifications</strong>
-                    <p style={{ margin: 0, color: 'var(--text-secondary)' }}>
+                    <p style={{ margin: 0, color: "var(--text-secondary)" }}>
                       Receive updates via email
                     </p>
                   </div>
                   <Switch defaultChecked />
                 </div>
                 <div
-                  style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
                 >
                   <div>
                     <strong>Push Notifications</strong>
-                    <p style={{ margin: 0, color: 'var(--text-secondary)' }}>
+                    <p style={{ margin: 0, color: "var(--text-secondary)" }}>
                       Receive push notifications
                     </p>
                   </div>
                   <Switch defaultChecked />
                 </div>
                 <div
-                  style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
                 >
                   <div>
                     <strong>Marketing Emails</strong>
-                    <p style={{ margin: 0, color: 'var(--text-secondary)' }}>
+                    <p style={{ margin: 0, color: "var(--text-secondary)" }}>
                       Receive product updates
                     </p>
                   </div>
@@ -263,7 +315,7 @@ function SettingsPage() {
           ),
         },
         {
-          id: 'appearance',
+          id: "appearance",
           content: (
             <div className="settings-section">
               <h3>Appearance</h3>
@@ -271,9 +323,9 @@ function SettingsPage() {
               <Select
                 label="Theme"
                 options={[
-                  { value: 'light', label: 'Light' },
-                  { value: 'dark', label: 'Dark' },
-                  { value: 'system', label: 'System' },
+                  { value: "light", label: "Light" },
+                  { value: "dark", label: "Dark" },
+                  { value: "system", label: "System" },
                 ]}
                 defaultValue="system"
               />
@@ -281,25 +333,25 @@ function SettingsPage() {
           ),
         },
         {
-          id: 'language',
+          id: "language",
           content: (
             <div className="settings-section">
               <h3>Language & Region</h3>
               <Select
                 label="Language"
                 options={[
-                  { value: 'en', label: 'English' },
-                  { value: 'es', label: 'Spanish' },
-                  { value: 'fr', label: 'French' },
+                  { value: "en", label: "English" },
+                  { value: "es", label: "Spanish" },
+                  { value: "fr", label: "French" },
                 ]}
                 defaultValue="en"
               />
               <Select
                 label="Timezone"
                 options={[
-                  { value: 'utc', label: 'UTC' },
-                  { value: 'pst', label: 'Pacific Time' },
-                  { value: 'est', label: 'Eastern Time' },
+                  { value: "utc", label: "UTC" },
+                  { value: "pst", label: "Pacific Time" },
+                  { value: "est", label: "Eastern Time" },
                 ]}
                 defaultValue="pst"
               />
@@ -307,7 +359,7 @@ function SettingsPage() {
           ),
         },
         {
-          id: 'billing',
+          id: "billing",
           content: (
             <div className="settings-section">
               <h3>Billing Information</h3>
@@ -323,7 +375,7 @@ function SettingsPage() {
       ]}
       defaultSection="profile"
       onSectionChange={(sectionId) => {
-        console.log('Section changed to:', sectionId);
+        console.log("Section changed to:", sectionId);
       }}
     />
   );
@@ -334,7 +386,7 @@ function SettingsPage() {
 
 ```tsx
 function ControlledSettings() {
-  const [activeSection, setActiveSection] = useState('profile');
+  const [activeSection, setActiveSection] = useState("profile");
 
   return (
     <SettingsTemplate
@@ -342,14 +394,14 @@ function ControlledSettings() {
       navigation={[
         {
           items: [
-            { id: 'profile', label: 'Profile', icon: <User size={20} /> },
-            { id: 'security', label: 'Security', icon: <Shield size={20} /> },
+            { id: "profile", label: "Profile", icon: <User size={20} /> },
+            { id: "security", label: "Security", icon: <Shield size={20} /> },
           ],
         },
       ]}
       sections={[
-        { id: 'profile', content: <ProfileForm /> },
-        { id: 'security', content: <SecurityForm /> },
+        { id: "profile", content: <ProfileForm /> },
+        { id: "security", content: <SecurityForm /> },
       ]}
       activeSection={activeSection}
       onSectionChange={setActiveSection}
@@ -381,14 +433,14 @@ function ControlledSettings() {
   navigation={[
     {
       items: [
-        { id: 'general', label: 'General' },
-        { id: 'advanced', label: 'Advanced' },
+        { id: "general", label: "General" },
+        { id: "advanced", label: "Advanced" },
       ],
     },
   ]}
   sections={[
-    { id: 'general', content: <GeneralSettings /> },
-    { id: 'advanced', content: <AdvancedSettings /> },
+    { id: "general", content: <GeneralSettings /> },
+    { id: "advanced", content: <AdvancedSettings /> },
   ]}
   defaultSection="general"
 />

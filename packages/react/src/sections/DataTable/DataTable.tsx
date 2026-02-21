@@ -20,7 +20,7 @@
  * ```
  */
 
-import { forwardRef, useState, useMemo, useCallback, type Key } from 'react';
+import { forwardRef, useState, useMemo, useCallback, type Key } from "react";
 import {
   Search,
   ChevronUp,
@@ -29,7 +29,7 @@ import {
   ChevronRight,
   MoreHorizontal,
   Inbox,
-} from 'lucide-react';
+} from "lucide-react";
 import type {
   DataTableProps,
   DataTableToolbarProps,
@@ -37,13 +37,13 @@ import type {
   DataTableEmptyStateProps,
   DataTableSort,
   DataTableColumn,
-} from './DataTable.types';
-import styles from './DataTable.module.css';
+} from "./DataTable.types";
+import styles from "./DataTable.module.css";
 
 // Toolbar sub-component
 const DataTableToolbar = forwardRef<HTMLDivElement, DataTableToolbarProps>(
   ({ left, right, children, className, ...rest }, ref) => (
-    <div ref={ref} className={`${styles.toolbar} ${className || ''}`} {...rest}>
+    <div ref={ref} className={`${styles.toolbar} ${className || ""}`} {...rest}>
       {left && <div className={styles.toolbarLeft}>{left}</div>}
       {children}
       {right && <div className={styles.toolbarRight}>{right}</div>}
@@ -51,97 +51,114 @@ const DataTableToolbar = forwardRef<HTMLDivElement, DataTableToolbarProps>(
   ),
 );
 
-DataTableToolbar.displayName = 'DataTable.Toolbar';
+DataTableToolbar.displayName = "DataTable.Toolbar";
 
 // Pagination sub-component
-const DataTablePaginationComponent = forwardRef<HTMLDivElement, DataTablePaginationProps>(
-  ({ pagination, onChange, className, ...rest }, ref) => {
-    const { page, pageSize, total, pageSizeOptions = [10, 25, 50, 100] } = pagination;
-    const totalPages = Math.ceil(total / pageSize);
-    const startItem = (page - 1) * pageSize + 1;
-    const endItem = Math.min(page * pageSize, total);
+const DataTablePaginationComponent = forwardRef<
+  HTMLDivElement,
+  DataTablePaginationProps
+>(({ pagination, onChange, className, ...rest }, ref) => {
+  const {
+    page,
+    pageSize,
+    total,
+    pageSizeOptions = [10, 25, 50, 100],
+  } = pagination;
+  const totalPages = Math.ceil(total / pageSize);
+  const startItem = (page - 1) * pageSize + 1;
+  const endItem = Math.min(page * pageSize, total);
 
-    const handlePageChange = (newPage: number) => {
-      if (newPage >= 1 && newPage <= totalPages) {
-        onChange({ page: newPage, pageSize });
-      }
-    };
+  const handlePageChange = (newPage: number) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      onChange({ page: newPage, pageSize });
+    }
+  };
 
-    const handlePageSizeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-      onChange({ page: 1, pageSize: Number(e.target.value) });
-    };
+  const handlePageSizeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    onChange({ page: 1, pageSize: Number(e.target.value) });
+  };
 
-    return (
-      <div ref={ref} className={`${styles.pagination} ${className || ''}`} {...rest}>
-        <div className={styles.paginationInfo}>
-          <span className={styles.paginationText}>
-            {startItem}-{endItem} of {total}
-          </span>
-          <select
-            className={styles.pageSizeSelect}
-            value={pageSize}
-            onChange={handlePageSizeChange}
-          >
-            {pageSizeOptions.map((size) => (
-              <option key={size} value={size}>
-                {size} / page
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className={styles.paginationControls}>
-          <button
-            type="button"
-            className={styles.paginationButton}
-            onClick={() => handlePageChange(page - 1)}
-            disabled={page <= 1}
-            aria-label="Previous page"
-          >
-            <ChevronLeft size={16} />
-          </button>
-          <span className={styles.paginationPages}>
-            {page} / {totalPages}
-          </span>
-          <button
-            type="button"
-            className={styles.paginationButton}
-            onClick={() => handlePageChange(page + 1)}
-            disabled={page >= totalPages}
-            aria-label="Next page"
-          >
-            <ChevronRight size={16} />
-          </button>
-        </div>
+  return (
+    <div
+      ref={ref}
+      className={`${styles.pagination} ${className || ""}`}
+      {...rest}
+    >
+      <div className={styles.paginationInfo}>
+        <span className={styles.paginationText}>
+          {startItem}-{endItem} of {total}
+        </span>
+        <select
+          className={styles.pageSizeSelect}
+          value={pageSize}
+          onChange={handlePageSizeChange}
+        >
+          {pageSizeOptions.map((size) => (
+            <option key={size} value={size}>
+              {size} / page
+            </option>
+          ))}
+        </select>
       </div>
-    );
-  },
-);
 
-DataTablePaginationComponent.displayName = 'DataTable.Pagination';
+      <div className={styles.paginationControls}>
+        <button
+          type="button"
+          className={styles.paginationButton}
+          onClick={() => handlePageChange(page - 1)}
+          disabled={page <= 1}
+          aria-label="Previous page"
+        >
+          <ChevronLeft size={16} />
+        </button>
+        <span className={styles.paginationPages}>
+          {page} / {totalPages}
+        </span>
+        <button
+          type="button"
+          className={styles.paginationButton}
+          onClick={() => handlePageChange(page + 1)}
+          disabled={page >= totalPages}
+          aria-label="Next page"
+        >
+          <ChevronRight size={16} />
+        </button>
+      </div>
+    </div>
+  );
+});
+
+DataTablePaginationComponent.displayName = "DataTable.Pagination";
 
 // Empty state sub-component
-const DataTableEmptyStateComponent = forwardRef<HTMLDivElement, DataTableEmptyStateProps>(
-  ({ state, className, ...rest }, ref) => (
-    <div ref={ref} className={`${styles.emptyState} ${className || ''}`} {...rest}>
-      {state.icon && <div className={styles.emptyIcon}>{state.icon}</div>}
-      <h3 className={styles.emptyTitle}>{state.title}</h3>
-      {state.description && <p className={styles.emptyDescription}>{state.description}</p>}
-      {state.action && <div className={styles.emptyAction}>{state.action}</div>}
-    </div>
-  ),
-);
+const DataTableEmptyStateComponent = forwardRef<
+  HTMLDivElement,
+  DataTableEmptyStateProps
+>(({ state, className, ...rest }, ref) => (
+  <div
+    ref={ref}
+    className={`${styles.emptyState} ${className || ""}`}
+    {...rest}
+  >
+    {state.icon && <div className={styles.emptyIcon}>{state.icon}</div>}
+    <h3 className={styles.emptyTitle}>{state.title}</h3>
+    {state.description && (
+      <p className={styles.emptyDescription}>{state.description}</p>
+    )}
+    {state.action && <div className={styles.emptyAction}>{state.action}</div>}
+  </div>
+));
 
-DataTableEmptyStateComponent.displayName = 'DataTable.EmptyState';
+DataTableEmptyStateComponent.displayName = "DataTable.EmptyState";
 
 // Main DataTable component
 function DataTableInner<T extends Record<string, unknown>>(
   {
     columns,
     data,
-    rowKey = 'id' as keyof T,
+    rowKey = "id" as keyof T,
     searchable = false,
-    searchPlaceholder = 'Search...',
+    searchPlaceholder = "Search...",
     searchValue: controlledSearchValue,
     onSearchChange,
     pagination,
@@ -168,7 +185,7 @@ function DataTableInner<T extends Record<string, unknown>>(
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   // Internal state for uncontrolled mode
-  const [internalSearchValue, setInternalSearchValue] = useState('');
+  const [internalSearchValue, setInternalSearchValue] = useState("");
   const [internalSelectedKeys, setInternalSelectedKeys] = useState<Key[]>([]);
   const [internalSort, setInternalSort] = useState<DataTableSort | undefined>();
   const [actionMenuOpen, setActionMenuOpen] = useState<Key | null>(null);
@@ -181,7 +198,7 @@ function DataTableInner<T extends Record<string, unknown>>(
   // Get row key
   const getRowKey = useCallback(
     (row: T, index: number): Key => {
-      if (typeof rowKey === 'function') {
+      if (typeof rowKey === "function") {
         return rowKey(row, index);
       }
       return (row[rowKey] as Key) ?? index;
@@ -205,13 +222,13 @@ function DataTableInner<T extends Record<string, unknown>>(
 
     let newSort: DataTableSort | undefined;
     if (sort?.key === column.key) {
-      if (sort.direction === 'asc') {
-        newSort = { key: column.key, direction: 'desc' };
+      if (sort.direction === "asc") {
+        newSort = { key: column.key, direction: "desc" };
       } else {
         newSort = undefined;
       }
     } else {
-      newSort = { key: column.key, direction: 'asc' };
+      newSort = { key: column.key, direction: "asc" };
     }
 
     if (onSortChange) {
@@ -251,7 +268,9 @@ function DataTableInner<T extends Record<string, unknown>>(
     if (!onSearchChange && searchValue) {
       const lowerSearch = searchValue.toLowerCase();
       result = result.filter((row) =>
-        Object.values(row).some((val) => String(val).toLowerCase().includes(lowerSearch)),
+        Object.values(row).some((val) =>
+          String(val).toLowerCase().includes(lowerSearch),
+        ),
       );
     }
 
@@ -261,7 +280,7 @@ function DataTableInner<T extends Record<string, unknown>>(
         const aVal = a[sort.key];
         const bVal = b[sort.key];
         const comparison = String(aVal).localeCompare(String(bVal));
-        return sort.direction === 'asc' ? comparison : -comparison;
+        return sort.direction === "asc" ? comparison : -comparison;
       });
     }
 
@@ -270,7 +289,7 @@ function DataTableInner<T extends Record<string, unknown>>(
 
   const classNames = [styles.dataTable, compact && styles.compact, className]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
 
   const tableClassNames = [
     styles.table,
@@ -279,15 +298,16 @@ function DataTableInner<T extends Record<string, unknown>>(
     stickyHeader && styles.stickyHeader,
   ]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
 
   const isAllSelected = data.length > 0 && selectedKeys.length === data.length;
-  const isPartialSelected = selectedKeys.length > 0 && selectedKeys.length < data.length;
+  const isPartialSelected =
+    selectedKeys.length > 0 && selectedKeys.length < data.length;
 
   const defaultEmptyState = {
     icon: <Inbox size={48} />,
-    title: 'No data',
-    description: 'There are no items to display.',
+    title: "No data",
+    description: "There are no items to display.",
   };
 
   return (
@@ -298,12 +318,14 @@ function DataTableInner<T extends Record<string, unknown>>(
           <div className={styles.toolbarLeft}>
             {selectable && selectedKeys.length > 0 && bulkActions && (
               <div className={styles.bulkActions}>
-                <span className={styles.selectedCount}>{selectedKeys.length} selected</span>
+                <span className={styles.selectedCount}>
+                  {selectedKeys.length} selected
+                </span>
                 {bulkActions.map((action) => (
                   <button
                     key={action.key}
                     type="button"
-                    className={`${styles.bulkAction} ${action.variant === 'danger' ? styles.bulkActionDanger : ''}`}
+                    className={`${styles.bulkAction} ${action.variant === "danger" ? styles.bulkActionDanger : ""}`}
                     onClick={() => action.onClick(selectedKeys)}
                   >
                     {action.icon}
@@ -339,7 +361,9 @@ function DataTableInner<T extends Record<string, unknown>>(
             <div className={styles.spinner} />
           </div>
         ) : processedData.length === 0 ? (
-          <DataTableEmptyStateComponent state={emptyState || defaultEmptyState} />
+          <DataTableEmptyStateComponent
+            state={emptyState || defaultEmptyState}
+          />
         ) : (
           <table className={tableClassNames}>
             <thead className={styles.thead}>
@@ -361,7 +385,7 @@ function DataTableInner<T extends Record<string, unknown>>(
                 {columns.map((column) => (
                   <th
                     key={column.key}
-                    className={`${styles.th} ${column.sortable ? styles.sortable : ''} ${column.sticky ? styles[`sticky-${column.sticky}`] : ''} ${column.hideOnMobile ? styles.hideOnMobile : ''}`}
+                    className={`${styles.th} ${column.sortable ? styles.sortable : ""} ${column.sticky ? styles[`sticky-${column.sticky}`] : ""} ${column.hideOnMobile ? styles.hideOnMobile : ""}`}
                     style={{
                       width: column.width,
                       minWidth: column.minWidth,
@@ -374,13 +398,16 @@ function DataTableInner<T extends Record<string, unknown>>(
                       {column.sortable && (
                         <span className={styles.sortIcon}>
                           {sort?.key === column.key ? (
-                            sort.direction === 'asc' ? (
+                            sort.direction === "asc" ? (
                               <ChevronUp size={14} />
                             ) : (
                               <ChevronDown size={14} />
                             )
                           ) : (
-                            <ChevronUp size={14} className={styles.sortIconInactive} />
+                            <ChevronUp
+                              size={14}
+                              className={styles.sortIconInactive}
+                            />
                           )}
                         </span>
                       )}
@@ -402,11 +429,15 @@ function DataTableInner<T extends Record<string, unknown>>(
                 return (
                   <tr
                     key={key}
-                    className={`${styles.tr} ${isSelected ? styles.trSelected : ''}`}
+                    className={`${styles.tr} ${isSelected ? styles.trSelected : ""}`}
                     onClick={(e) => {
                       if (
-                        (e.target as HTMLElement).closest(`.${styles.checkbox}`) ||
-                        (e.target as HTMLElement).closest(`.${styles.actionMenu}`)
+                        (e.target as HTMLElement).closest(
+                          `.${styles.checkbox}`,
+                        ) ||
+                        (e.target as HTMLElement).closest(
+                          `.${styles.actionMenu}`,
+                        )
                       ) {
                         return;
                       }
@@ -427,12 +458,12 @@ function DataTableInner<T extends Record<string, unknown>>(
                     {columns.map((column) => (
                       <td
                         key={column.key}
-                        className={`${styles.td} ${column.sticky ? styles[`sticky-${column.sticky}`] : ''} ${column.hideOnMobile ? styles.hideOnMobile : ''}`}
+                        className={`${styles.td} ${column.sticky ? styles[`sticky-${column.sticky}`] : ""} ${column.hideOnMobile ? styles.hideOnMobile : ""}`}
                         style={{ textAlign: column.align }}
                       >
                         {column.render
                           ? column.render(row[column.key], row, rowIndex)
-                          : String(row[column.key] ?? '')}
+                          : String(row[column.key] ?? "")}
                       </td>
                     ))}
                     {rowActions && rowActions.length > 0 && (
@@ -441,7 +472,11 @@ function DataTableInner<T extends Record<string, unknown>>(
                           <button
                             type="button"
                             className={styles.actionMenuTrigger}
-                            onClick={() => setActionMenuOpen(actionMenuOpen === key ? null : key)}
+                            onClick={() =>
+                              setActionMenuOpen(
+                                actionMenuOpen === key ? null : key,
+                              )
+                            }
                             aria-label="Row actions"
                           >
                             <MoreHorizontal size={16} />
@@ -449,12 +484,14 @@ function DataTableInner<T extends Record<string, unknown>>(
                           {actionMenuOpen === key && (
                             <div className={styles.actionMenuDropdown}>
                               {rowActions
-                                .filter((action) => !action.show || action.show(row))
+                                .filter(
+                                  (action) => !action.show || action.show(row),
+                                )
                                 .map((action) => (
                                   <button
                                     key={action.key}
                                     type="button"
-                                    className={`${styles.actionMenuItem} ${action.variant === 'danger' ? styles.actionMenuItemDanger : ''}`}
+                                    className={`${styles.actionMenuItem} ${action.variant === "danger" ? styles.actionMenuItemDanger : ""}`}
                                     onClick={() => {
                                       action.onClick(row);
                                       setActionMenuOpen(null);
@@ -489,7 +526,9 @@ function DataTableInner<T extends Record<string, unknown>>(
 }
 
 // Forward ref with generic support
-export const DataTable = forwardRef(DataTableInner) as <T extends Record<string, unknown>>(
+export const DataTable = forwardRef(DataTableInner) as <
+  T extends Record<string, unknown>,
+>(
   props: DataTableProps<T> & { ref?: React.ForwardedRef<HTMLDivElement> },
 ) => ReturnType<typeof DataTableInner>;
 

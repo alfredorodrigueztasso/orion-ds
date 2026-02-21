@@ -5,8 +5,8 @@
 ## Quick Start
 
 ```tsx
-import { EmptyState, Button } from '@orion/react';
-import { Inbox } from 'lucide-react';
+import { EmptyState, Button } from "@orion/react";
+import { Inbox } from "lucide-react";
 
 <EmptyState
   icon={<Inbox size={48} />}
@@ -46,8 +46,8 @@ interface EmptyStateProps {
   secondaryAction?: ReactNode; // Secondary action (link/button)
 
   // Layout
-  variant?: 'default' | 'compact' | 'full-page'; // default: 'default'
-  size?: 'sm' | 'md' | 'lg'; // default: 'md'
+  variant?: "default" | "compact" | "full-page"; // default: 'default'
+  size?: "sm" | "md" | "lg"; // default: 'md'
 }
 ```
 
@@ -165,7 +165,11 @@ import { FileText, Inbox, Search, Users, FolderOpen } from 'lucide-react';
 <EmptyState
   variant="full-page"
   illustration={
-    <img src="/illustrations/empty-projects.svg" alt="" style={{ width: 200, height: 200 }} />
+    <img
+      src="/illustrations/empty-projects.svg"
+      alt=""
+      style={{ width: 200, height: 200 }}
+    />
   }
   title="No projects yet"
   description="Create your first project to start collaborating."
@@ -180,7 +184,11 @@ import { FileText, Inbox, Search, Users, FolderOpen } from 'lucide-react';
 ### Primary Action Only
 
 ```tsx
-<EmptyState icon={<Plus size={48} />} title="No items" action={<Button>Add Item</Button>} />
+<EmptyState
+  icon={<Plus size={48} />}
+  title="No items"
+  action={<Button>Add Item</Button>}
+/>
 ```
 
 ### Primary + Secondary Actions
@@ -219,8 +227,8 @@ import { FileText, Inbox, Search, Users, FolderOpen } from 'lucide-react';
   data={[]}
   emptyState={{
     icon: <Users size={48} />,
-    title: 'No users found',
-    description: 'Try adjusting your search or filters.',
+    title: "No users found",
+    description: "Try adjusting your search or filters.",
     action: <Button onClick={clearFilters}>Clear Filters</Button>,
   }}
 />
@@ -269,7 +277,7 @@ import { FileText, Inbox, Search, Users, FolderOpen } from 'lucide-react';
 
 ```tsx
 <EmptyState
-  icon={<AlertCircle size={48} style={{ color: 'var(--status-error)' }} />}
+  icon={<AlertCircle size={48} style={{ color: "var(--status-error)" }} />}
   title="Something went wrong"
   description="We couldn't load your data. Please try again."
   action={<Button onClick={retry}>Retry</Button>}

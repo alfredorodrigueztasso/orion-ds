@@ -23,8 +23,8 @@
  * ```
  */
 
-import React from 'react';
-import type { ChatProps } from './Chat.types';
+import React from "react";
+import type { ChatProps } from "./Chat.types";
 import {
   ChatMessage,
   ChatMessages,
@@ -39,14 +39,14 @@ import {
   ChatFileUpload,
   ChatAttachment,
   ChatSidebar,
-} from './components';
-import styles from './Chat.module.css';
+} from "./components";
+import styles from "./Chat.module.css";
 
 // Main Chat container
 const ChatRoot: React.FC<ChatProps> = ({ children, className, ...rest }) => {
   return (
     <div
-      className={[styles.chat, className].filter(Boolean).join(' ')}
+      className={[styles.chat, className].filter(Boolean).join(" ")}
       role="region"
       aria-label="Chat interface"
       {...rest}
@@ -56,7 +56,7 @@ const ChatRoot: React.FC<ChatProps> = ({ children, className, ...rest }) => {
   );
 };
 
-ChatRoot.displayName = 'Chat';
+ChatRoot.displayName = "Chat";
 
 // Type for the compound component
 type ChatComponent = React.FC<ChatProps> & {
@@ -92,16 +92,16 @@ Chat.Attachment = ChatAttachment;
 Chat.Sidebar = ChatSidebar;
 
 // Sub-component display names
-Chat.Header.displayName = 'Chat.Header';
-Chat.Messages.displayName = 'Chat.Messages';
-Chat.Message.displayName = 'Chat.Message';
-Chat.Input.displayName = 'Chat.Input';
-Chat.TypingIndicator.displayName = 'Chat.TypingIndicator';
-Chat.CodeBlock.displayName = 'Chat.CodeBlock';
-Chat.Markdown.displayName = 'Chat.Markdown';
-Chat.ImagePreview.displayName = 'Chat.ImagePreview';
-Chat.AudioPlayer.displayName = 'Chat.AudioPlayer';
-Chat.VoiceRecorder.displayName = 'Chat.VoiceRecorder';
-Chat.FileUpload.displayName = 'Chat.FileUpload';
-Chat.Attachment.displayName = 'Chat.Attachment';
-Chat.Sidebar.displayName = 'Chat.Sidebar';
+Chat.Header.displayName = "Chat.Header";
+Chat.Messages.displayName = "Chat.Messages";
+Chat.Message.displayName = "Chat.Message";
+Chat.Input.displayName = "Chat.Input";
+Chat.TypingIndicator.displayName = "Chat.TypingIndicator";
+Chat.CodeBlock.displayName = "Chat.CodeBlock";
+Chat.Markdown.displayName = "Chat.Markdown";
+Chat.ImagePreview.displayName = "Chat.ImagePreview";
+Chat.AudioPlayer.displayName = "Chat.AudioPlayer";
+Chat.VoiceRecorder.displayName = "Chat.VoiceRecorder";
+Chat.FileUpload.displayName = "Chat.FileUpload";
+Chat.Attachment.displayName = "Chat.Attachment";
+Chat.Sidebar.displayName = "Chat.Sidebar";

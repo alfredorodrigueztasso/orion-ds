@@ -22,7 +22,7 @@
  * }
  * ```
  */
-export { ToastProvider, useToast } from './Toast';
+export { ToastProvider, useToast } from "./Toast";
 export type {
   Toast,
   ToastOptions,
@@ -30,4 +30,4 @@ export type {
   ToastPosition,
   ToastProviderProps,
   ToastContextValue,
-} from './Toast.types';
+} from "./Toast.types";

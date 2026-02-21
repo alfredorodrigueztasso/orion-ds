@@ -72,10 +72,10 @@ import {
   ShoppingCart,
   DollarSign,
   CreditCard,
-} from 'lucide-react';
+} from "lucide-react";
 
 // Re-export all Lucide icons for convenience
-export * from 'lucide-react';
+export * from "lucide-react";
 
 // Re-export common icons individually
 export {

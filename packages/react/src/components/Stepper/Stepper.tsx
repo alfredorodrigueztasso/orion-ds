@@ -16,10 +16,10 @@
  * ```
  */
 
-import { forwardRef, useCallback, useRef, useEffect } from 'react';
-import { Check, AlertCircle } from 'lucide-react';
-import type { StepperProps, StepProps, StepStatus } from './Stepper.types';
-import styles from './Stepper.module.css';
+import { forwardRef, useCallback, useRef, useEffect } from "react";
+import { Check, AlertCircle } from "lucide-react";
+import type { StepperProps, StepProps, StepStatus } from "./Stepper.types";
+import styles from "./Stepper.module.css";
 
 /**
  * Individual Step Component
@@ -43,7 +43,7 @@ const Step = ({
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
-      if ((e.key === 'Enter' || e.key === ' ') && clickable && !step.disabled) {
+      if ((e.key === "Enter" || e.key === " ") && clickable && !step.disabled) {
         e.preventDefault();
         onClick?.();
       }
@@ -60,13 +60,13 @@ const Step = ({
     step.disabled && styles.disabled,
   ]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
 
-  const iconSize = size === 'sm' ? 14 : size === 'lg' ? 20 : 16;
+  const iconSize = size === "sm" ? 14 : size === "lg" ? 20 : 16;
 
   const renderIndicator = () => {
     // Error state
-    if (status === 'error' || step.error) {
+    if (status === "error" || step.error) {
       return <AlertCircle size={iconSize} />;
     }
 
@@ -76,7 +76,7 @@ const Step = ({
     }
 
     // Checkmark for completed
-    if (status === 'complete' && showCheckmark) {
+    if (status === "complete" && showCheckmark) {
       return <Check size={iconSize} />;
     }
 
@@ -91,9 +91,9 @@ const Step = ({
   return (
     <div
       className={stepClasses}
-      role={clickable ? 'button' : undefined}
+      role={clickable ? "button" : undefined}
       tabIndex={clickable && !step.disabled ? 0 : undefined}
-      aria-current={status === 'current' ? 'step' : undefined}
+      aria-current={status === "current" ? "step" : undefined}
       aria-disabled={step.disabled}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
@@ -105,8 +105,10 @@ const Step = ({
           {step.title}
           {step.optional && <span className={styles.optional}>(Optional)</span>}
         </span>
-        {step.description && <span className={styles.description}>{step.description}</span>}
-        {(step.error || status === 'error') && step.errorMessage && (
+        {step.description && (
+          <span className={styles.description}>{step.description}</span>
+        )}
+        {(step.error || status === "error") && step.errorMessage && (
           <span className={styles.errorMessage}>{step.errorMessage}</span>
         )}
       </div>
@@ -121,12 +123,12 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
       currentStep = 0,
       onStepClick,
       clickable = false,
-      orientation = 'horizontal',
-      size = 'md',
+      orientation = "horizontal",
+      size = "md",
       showNumbers = true,
       showConnectors = true,
       showCheckmarks = true,
-      labelPosition = 'bottom',
+      labelPosition = "bottom",
       scrollable = false,
       className,
       ...rest
@@ -142,19 +144,19 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
         const currentItem = items[currentStep] as HTMLElement | undefined;
         if (currentItem) {
           currentItem.scrollIntoView({
-            behavior: 'smooth',
-            block: 'nearest',
-            inline: 'center',
+            behavior: "smooth",
+            block: "nearest",
+            inline: "center",
           });
         }
       }
     }, [currentStep, scrollable]);
 
     const getStepStatus = (index: number): StepStatus => {
-      if (steps[index]?.error) return 'error';
-      if (index < currentStep) return 'complete';
-      if (index === currentStep) return 'current';
-      return 'upcoming';
+      if (steps[index]?.error) return "error";
+      if (index < currentStep) return "complete";
+      if (index === currentStep) return "current";
+      return "upcoming";
     };
 
     const handleStepClick = useCallback(
@@ -176,10 +178,16 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
-      <div ref={ref} className={containerClasses} role="navigation" aria-label="Progress" {...rest}>
+      <div
+        ref={ref}
+        className={containerClasses}
+        role="navigation"
+        aria-label="Progress"
+        {...rest}
+      >
         <ol ref={listRef} className={styles.list}>
           {steps.map((step, index) => (
             <li key={step.id} className={styles.item}>
@@ -196,7 +204,7 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
               />
               {showConnectors && index < steps.length - 1 && (
                 <div
-                  className={`${styles.connector} ${index < currentStep ? styles.complete : ''}`}
+                  className={`${styles.connector} ${index < currentStep ? styles.complete : ""}`}
                   aria-hidden="true"
                 />
               )}
@@ -208,4 +216,4 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
   },
 );
 
-Stepper.displayName = 'Stepper';
+Stepper.displayName = "Stepper";

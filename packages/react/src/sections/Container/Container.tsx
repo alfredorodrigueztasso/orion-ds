@@ -13,12 +13,22 @@
  * ```
  */
 
-import { forwardRef } from 'react';
-import type { ContainerProps } from './Container.types';
-import styles from './Container.module.css';
+import { forwardRef } from "react";
+import type { ContainerProps } from "./Container.types";
+import styles from "./Container.module.css";
 
 export const Container = forwardRef<HTMLDivElement, ContainerProps>(
-  ({ size = 'lg', centered = true, padded = true, className, children, ...rest }, ref) => {
+  (
+    {
+      size = "lg",
+      centered = true,
+      padded = true,
+      className,
+      children,
+      ...rest
+    },
+    ref,
+  ) => {
     const classNames = [
       styles.container,
       styles[size],
@@ -27,7 +37,7 @@ export const Container = forwardRef<HTMLDivElement, ContainerProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
       <div ref={ref} className={classNames} {...rest}>
@@ -37,4 +47,4 @@ export const Container = forwardRef<HTMLDivElement, ContainerProps>(
   },
 );
 
-Container.displayName = 'Container';
+Container.displayName = "Container";

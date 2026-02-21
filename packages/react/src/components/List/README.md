@@ -36,13 +36,13 @@ interface ListItem {
 ### Basic
 
 ```tsx
-import { List } from '@orion/react';
+import { List } from "@orion/react";
 
 <List
   items={[
-    { id: '1', primary: 'Item 1' },
-    { id: '2', primary: 'Item 2' },
-    { id: '3', primary: 'Item 3' },
+    { id: "1", primary: "Item 1" },
+    { id: "2", primary: "Item 2" },
+    { id: "3", primary: "Item 3" },
   ]}
 />;
 ```
@@ -52,8 +52,8 @@ import { List } from '@orion/react';
 ```tsx
 <List
   items={[
-    { id: '1', primary: 'John Doe', secondary: 'john@example.com' },
-    { id: '2', primary: 'Jane Smith', secondary: 'jane@example.com' },
+    { id: "1", primary: "John Doe", secondary: "john@example.com" },
+    { id: "2", primary: "Jane Smith", secondary: "jane@example.com" },
   ]}
 />
 ```
@@ -88,18 +88,18 @@ import { User, Mail, Settings } from 'lucide-react';
 <List
   items={[
     {
-      id: '1',
-      primary: 'Notifications',
+      id: "1",
+      primary: "Notifications",
       trailing: <Switch />,
     },
     {
-      id: '2',
-      primary: 'Messages',
+      id: "2",
+      primary: "Messages",
       trailing: <Badge variant="error">5</Badge>,
     },
     {
-      id: '3',
-      primary: 'Storage',
+      id: "3",
+      primary: "Storage",
       trailing: <span>75%</span>,
     },
   ]}
@@ -112,9 +112,9 @@ import { User, Mail, Settings } from 'lucide-react';
 <List
   interactive
   items={[
-    { id: '1', primary: 'Edit profile', onClick: () => navigate('/profile') },
-    { id: '2', primary: 'Settings', onClick: () => navigate('/settings') },
-    { id: '3', primary: 'Sign out', onClick: handleSignOut },
+    { id: "1", primary: "Edit profile", onClick: () => navigate("/profile") },
+    { id: "2", primary: "Settings", onClick: () => navigate("/settings") },
+    { id: "3", primary: "Sign out", onClick: handleSignOut },
   ]}
 />
 ```
@@ -165,7 +165,7 @@ function SelectableList() {
 <List
   items={users}
   renderItem={(user, index) => (
-    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+    <div style={{ display: "flex", justifyContent: "space-between" }}>
       <div>
         <strong>{user.primary}</strong>
         <p>{user.secondary}</p>
@@ -181,7 +181,9 @@ function SelectableList() {
 ```tsx
 <List
   items={filteredItems}
-  emptyContent={<EmptyState title="No items" description="Add items to see them here" />}
+  emptyContent={
+    <EmptyState title="No items" description="Add items to see them here" />
+  }
 />
 ```
 

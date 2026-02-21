@@ -5,29 +5,32 @@
  * and theme-aware highlighting.
  */
 
-import React, { useState, useCallback } from 'react';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { oneDark, oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Copy, Check } from 'lucide-react';
-import type { ChatCodeBlockProps } from '../Chat.types';
-import { useThemeContext } from '../../../contexts';
-import styles from '../Chat.module.css';
+import React, { useState, useCallback } from "react";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import {
+  oneDark,
+  oneLight,
+} from "react-syntax-highlighter/dist/esm/styles/prism";
+import { Copy, Check } from "lucide-react";
+import type { ChatCodeBlockProps } from "../Chat.types";
+import { useThemeContext } from "../../../contexts";
+import styles from "../Chat.module.css";
 
 // Map common language aliases
 const normalizeLanguage = (lang?: string): string => {
-  if (!lang) return 'text';
+  if (!lang) return "text";
 
   const aliases: Record<string, string> = {
-    js: 'javascript',
-    ts: 'typescript',
-    jsx: 'jsx',
-    tsx: 'tsx',
-    py: 'python',
-    rb: 'ruby',
-    sh: 'bash',
-    shell: 'bash',
-    yml: 'yaml',
-    md: 'markdown',
+    js: "javascript",
+    ts: "typescript",
+    jsx: "jsx",
+    tsx: "tsx",
+    py: "python",
+    rb: "ruby",
+    sh: "bash",
+    shell: "bash",
+    yml: "yaml",
+    md: "markdown",
   };
 
   return aliases[lang.toLowerCase()] || lang.toLowerCase();
@@ -38,14 +41,14 @@ export const ChatCodeBlock: React.FC<ChatCodeBlockProps> = ({
   language,
   showLineNumbers = false,
   showCopyButton = true,
-  maxHeight = '400px',
+  maxHeight = "400px",
   className,
   ...rest
 }) => {
   const [copied, setCopied] = useState(false);
 
   // Get current theme for syntax highlighting
-  let currentTheme: 'light' | 'dark' = 'dark';
+  let currentTheme: "light" | "dark" = "dark";
   try {
     const ctx = useThemeContext();
     currentTheme = ctx.theme;
@@ -59,15 +62,18 @@ export const ChatCodeBlock: React.FC<ChatCodeBlockProps> = ({
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      console.error('Failed to copy code:', err);
+      console.error("Failed to copy code:", err);
     }
   }, [code]);
 
   const normalizedLang = normalizeLanguage(language);
-  const highlightStyle = currentTheme === 'light' ? oneLight : oneDark;
+  const highlightStyle = currentTheme === "light" ? oneLight : oneDark;
 
   return (
-    <div className={[styles.codeBlock, className].filter(Boolean).join(' ')} {...rest}>
+    <div
+      className={[styles.codeBlock, className].filter(Boolean).join(" ")}
+      {...rest}
+    >
       {/* Header with language and copy button */}
       <div className={styles.codeBlockHeader}>
         <span className={styles.codeBlockLanguage}>{normalizedLang}</span>
@@ -75,9 +81,9 @@ export const ChatCodeBlock: React.FC<ChatCodeBlockProps> = ({
           <button
             className={[styles.codeBlockCopy, copied && styles.codeBlockCopied]
               .filter(Boolean)
-              .join(' ')}
+              .join(" ")}
             onClick={handleCopy}
-            aria-label={copied ? 'Copied!' : 'Copy code'}
+            aria-label={copied ? "Copied!" : "Copy code"}
           >
             {copied ? (
               <>
@@ -103,13 +109,13 @@ export const ChatCodeBlock: React.FC<ChatCodeBlockProps> = ({
           customStyle={{
             margin: 0,
             padding: 0,
-            background: 'transparent',
-            fontSize: 'inherit',
-            lineHeight: 'inherit',
+            background: "transparent",
+            fontSize: "inherit",
+            lineHeight: "inherit",
           }}
           codeTagProps={{
             style: {
-              fontFamily: 'var(--font-mono)',
+              fontFamily: "var(--font-mono)",
             },
           }}
         >
@@ -120,4 +126,4 @@ export const ChatCodeBlock: React.FC<ChatCodeBlockProps> = ({
   );
 };
 
-ChatCodeBlock.displayName = 'ChatCodeBlock';
+ChatCodeBlock.displayName = "ChatCodeBlock";

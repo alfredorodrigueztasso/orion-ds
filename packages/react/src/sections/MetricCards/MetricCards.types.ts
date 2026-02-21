@@ -5,7 +5,7 @@
  * Designed for Product Mode (SaaS dashboards) KPI displays.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Trend indicator for a metric
@@ -96,7 +96,7 @@ export type MetricCardsColumns = 2 | 3 | 4 | 5;
 /**
  * MetricCards visual variant
  */
-export type MetricCardsVariant = 'default' | 'compact' | 'detailed';
+export type MetricCardsVariant = "default" | "compact" | "detailed";
 
 /**
  * MetricCards section props

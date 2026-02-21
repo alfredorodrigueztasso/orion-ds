@@ -5,7 +5,7 @@
  * A drag-and-drop board for task management (Trello/Linear style).
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Kanban card/item
@@ -44,7 +44,7 @@ export interface KanbanCard {
   /**
    * Priority level
    */
-  priority?: 'low' | 'medium' | 'high' | 'urgent';
+  priority?: "low" | "medium" | "high" | "urgent";
 
   /**
    * Custom metadata
@@ -74,7 +74,15 @@ export interface KanbanLabel {
   /**
    * Label color
    */
-  color: 'red' | 'orange' | 'yellow' | 'green' | 'blue' | 'purple' | 'pink' | 'gray';
+  color:
+    | "red"
+    | "orange"
+    | "yellow"
+    | "green"
+    | "blue"
+    | "purple"
+    | "pink"
+    | "gray";
 }
 
 /**
@@ -114,7 +122,7 @@ export interface KanbanColumn {
   /**
    * Column color/variant
    */
-  color?: 'default' | 'blue' | 'green' | 'yellow' | 'red' | 'purple';
+  color?: "default" | "blue" | "green" | "yellow" | "red" | "purple";
 
   /**
    * Cards in this column

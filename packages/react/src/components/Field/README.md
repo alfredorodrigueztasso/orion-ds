@@ -61,7 +61,7 @@ interface FieldProps {
 
   // Layout
   fullWidth?: boolean; // default: false
-  size?: 'sm' | 'md' | 'lg'; // default: 'md'
+  size?: "sm" | "md" | "lg"; // default: 'md'
   optional?: boolean; // Shows "(optional)" indicator
 
   // Standard HTML input props
@@ -102,21 +102,21 @@ import { Field } from '@orion/react';
 ### With Validation
 
 ```tsx
-import { Field } from '@orion/react';
-import { useState } from 'react';
+import { Field } from "@orion/react";
+import { useState } from "react";
 
 function EmailField() {
-  const [email, setEmail] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const value = e.target.value;
     setEmail(value);
 
-    if (value && !value.includes('@')) {
-      setError('Please enter a valid email');
+    if (value && !value.includes("@")) {
+      setError("Please enter a valid email");
     } else {
-      setError('');
+      setError("");
     }
   };
 
@@ -249,12 +249,12 @@ import { Field } from '@orion/react';
 ### Login Form
 
 ```tsx
-import { Field, Button, Card } from '@orion/react';
-import { Mail, Lock } from 'lucide-react';
+import { Field, Button, Card } from "@orion/react";
+import { Mail, Lock } from "lucide-react";
 
 function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -299,13 +299,19 @@ function LoginForm() {
 ### Contact Form
 
 ```tsx
-import { Field, Textarea, Button } from '@orion/react';
-import { User, Mail, Building } from 'lucide-react';
+import { Field, Textarea, Button } from "@orion/react";
+import { User, Mail, Building } from "lucide-react";
 
 function ContactForm() {
   return (
     <form>
-      <Field label="Name" name="name" leftIcon={<User size={18} />} required fullWidth />
+      <Field
+        label="Name"
+        name="name"
+        leftIcon={<User size={18} />}
+        required
+        fullWidth
+      />
       <Field
         label="Email"
         type="email"
@@ -314,8 +320,20 @@ function ContactForm() {
         required
         fullWidth
       />
-      <Field label="Company" name="company" leftIcon={<Building size={18} />} optional fullWidth />
-      <Textarea label="Message" name="message" placeholder="How can we help?" required fullWidth />
+      <Field
+        label="Company"
+        name="company"
+        leftIcon={<Building size={18} />}
+        optional
+        fullWidth
+      />
+      <Textarea
+        label="Message"
+        name="message"
+        placeholder="How can we help?"
+        required
+        fullWidth
+      />
       <Button type="submit" fullWidth>
         Send Message
       </Button>

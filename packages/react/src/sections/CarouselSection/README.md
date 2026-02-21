@@ -16,15 +16,15 @@ A full-page carousel section with title, description, and navigation controls. B
 ## Installation
 
 ```tsx
-import { CarouselSection } from '@orion/react';
+import { CarouselSection } from "@orion/react";
 // or
-import { CarouselSection } from '@orion/react/sections';
+import { CarouselSection } from "@orion/react/sections";
 ```
 
 ## Basic Usage
 
 ```tsx
-import { CarouselSection, Badge } from '@orion/react';
+import { CarouselSection, Badge } from "@orion/react";
 
 function FeaturedStories() {
   return (
@@ -35,17 +35,17 @@ function FeaturedStories() {
       items={[
         {
           image: <img src="/hero-1.jpg" alt="" />,
-          eyebrow: 'Design',
-          title: 'The future of interfaces',
-          description: 'How AI is reshaping how we build',
-          overlay: 'gradient',
+          eyebrow: "Design",
+          title: "The future of interfaces",
+          description: "How AI is reshaping how we build",
+          overlay: "gradient",
         },
         {
           image: <img src="/hero-2.jpg" alt="" />,
-          eyebrow: 'Engineering',
-          title: 'Building at scale',
-          description: 'Lessons from shipping to millions',
-          overlay: 'gradient',
+          eyebrow: "Engineering",
+          title: "Building at scale",
+          description: "Lessons from shipping to millions",
+          overlay: "gradient",
         },
       ]}
     />
@@ -112,7 +112,12 @@ Magazine-style cards ideal for blog posts, case studies, and articles.
 Product showcase cards with separate content area.
 
 ```tsx
-<CarouselSection title="Featured Products" variant="product" aspectRatio="1/1" items={products} />
+<CarouselSection
+  title="Featured Products"
+  variant="product"
+  aspectRatio="1/1"
+  items={products}
+/>
 ```
 
 ### Gallery
@@ -120,7 +125,12 @@ Product showcase cards with separate content area.
 Image gallery with hover-reveal captions.
 
 ```tsx
-<CarouselSection title="Photo Gallery" variant="gallery" aspectRatio="4/3" items={photos} />
+<CarouselSection
+  title="Photo Gallery"
+  variant="gallery"
+  aspectRatio="4/3"
+  items={photos}
+/>
 ```
 
 ## Auto-Scroll
@@ -177,7 +187,7 @@ interface CarouselItem {
   eyebrow?: string; // Category/tag text
   description?: string; // Subtitle/description
   action?: ReactNode; // Optional button/link
-  overlay?: 'none' | 'gradient' | 'dark';
+  overlay?: "none" | "gradient" | "dark";
 }
 ```
 

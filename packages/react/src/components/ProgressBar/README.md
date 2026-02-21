@@ -19,7 +19,7 @@ Visual indicator for task completion or loading progress.
 ### Basic
 
 ```tsx
-import { ProgressBar } from '@orion/react';
+import { ProgressBar } from "@orion/react";
 
 <ProgressBar value={65} />;
 ```
@@ -74,8 +74,12 @@ function FileUpload() {
 
   return (
     <div>
-      <ProgressBar value={progress} variant={progress === 100 ? 'success' : 'primary'} showLabel />
-      <p>{progress === 100 ? 'Upload complete!' : 'Uploading...'}</p>
+      <ProgressBar
+        value={progress}
+        variant={progress === 100 ? "success" : "primary"}
+        showLabel
+      />
+      <p>{progress === 100 ? "Upload complete!" : "Uploading..."}</p>
     </div>
   );
 }
@@ -87,7 +91,12 @@ function FileUpload() {
 function StepProgress({ currentStep, totalSteps }) {
   const progress = (currentStep / totalSteps) * 100;
 
-  return <ProgressBar value={progress} label={`Step ${currentStep} of ${totalSteps}`} />;
+  return (
+    <ProgressBar
+      value={progress}
+      label={`Step ${currentStep} of ${totalSteps}`}
+    />
+  );
 }
 ```
 

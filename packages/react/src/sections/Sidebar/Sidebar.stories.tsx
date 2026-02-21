@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
+import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 import {
   Home,
   Folder,
@@ -15,38 +15,44 @@ import {
   Plus,
   Box,
   ChevronDown,
-} from 'lucide-react';
-import { Sidebar } from './Sidebar';
-import { Button } from '../../components/Button';
-import { Dropdown } from '../../components/Dropdown';
+} from "lucide-react";
+import { Sidebar } from "./Sidebar";
+import { Button } from "@orion-ds/react";
+import { Dropdown } from "@orion-ds/react";
 
 const meta: Meta<typeof Sidebar> = {
-  title: 'Sections/App/Sidebar',
+  title: "Sections/App/Sidebar",
   component: Sidebar,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
     docs: {
       description: {
         component:
-          'A collapsible navigation sidebar for SaaS applications. Optimized for Product Mode with efficient space usage and clear hierarchy.',
+          "A collapsible navigation sidebar for SaaS applications. Optimized for Product Mode with efficient space usage and clear hierarchy.",
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     variant: {
-      control: 'select',
-      options: ['default', 'floating'],
+      control: "select",
+      options: ["default", "floating"],
     },
-    collapsed: { control: 'boolean' },
-    width: { control: 'number' },
-    collapsedWidth: { control: 'number' },
+    collapsed: { control: "boolean" },
+    width: { control: "number" },
+    collapsedWidth: { control: "number" },
   },
   decorators: [
     (Story) => (
-      <div style={{ height: '600px', display: 'flex' }}>
+      <div style={{ height: "600px", display: "flex" }}>
         <Story />
-        <div style={{ flex: 1, padding: 'var(--spacing-6)', background: 'var(--surface-subtle)' }}>
+        <div
+          style={{
+            flex: 1,
+            padding: "var(--spacing-6)",
+            background: "var(--surface-subtle)",
+          }}
+        >
           <p>Main content area</p>
         </div>
       </div>
@@ -60,24 +66,61 @@ type Story = StoryObj<typeof Sidebar>;
 const defaultSections = [
   {
     items: [
-      { id: 'dashboard', label: 'Dashboard', icon: <Home size={20} />, href: '#' },
-      { id: 'projects', label: 'Projects', icon: <Folder size={20} />, href: '#', badge: '12' },
-      { id: 'team', label: 'Team', icon: <Users size={20} />, href: '#' },
-      { id: 'analytics', label: 'Analytics', icon: <BarChart2 size={20} />, href: '#' },
+      {
+        id: "dashboard",
+        label: "Dashboard",
+        icon: <Home size={20} />,
+        href: "#",
+      },
+      {
+        id: "projects",
+        label: "Projects",
+        icon: <Folder size={20} />,
+        href: "#",
+        badge: "12",
+      },
+      { id: "team", label: "Team", icon: <Users size={20} />, href: "#" },
+      {
+        id: "analytics",
+        label: "Analytics",
+        icon: <BarChart2 size={20} />,
+        href: "#",
+      },
     ],
   },
   {
-    title: 'Communication',
+    title: "Communication",
     items: [
-      { id: 'messages', label: 'Messages', icon: <Mail size={20} />, href: '#', badge: '3' },
-      { id: 'calendar', label: 'Calendar', icon: <Calendar size={20} />, href: '#' },
+      {
+        id: "messages",
+        label: "Messages",
+        icon: <Mail size={20} />,
+        href: "#",
+        badge: "3",
+      },
+      {
+        id: "calendar",
+        label: "Calendar",
+        icon: <Calendar size={20} />,
+        href: "#",
+      },
     ],
   },
   {
-    title: 'Other',
+    title: "Other",
     items: [
-      { id: 'documents', label: 'Documents', icon: <FileText size={20} />, href: '#' },
-      { id: 'settings', label: 'Settings', icon: <Settings size={20} />, href: '#' },
+      {
+        id: "documents",
+        label: "Documents",
+        icon: <FileText size={20} />,
+        href: "#",
+      },
+      {
+        id: "settings",
+        label: "Settings",
+        icon: <Settings size={20} />,
+        href: "#",
+      },
     ],
   },
 ];
@@ -85,18 +128,26 @@ const defaultSections = [
 export const Default: Story = {
   args: {
     sections: defaultSections,
-    activeItem: 'dashboard',
+    activeItem: "dashboard",
     header: (
-      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)' }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "var(--spacing-2)",
+        }}
+      >
         <div
           style={{
-            width: '32px',
-            height: '32px',
-            borderRadius: 'var(--radius-sm)',
-            background: 'var(--interactive-primary)',
+            width: "32px",
+            height: "32px",
+            borderRadius: "var(--radius-sm)",
+            background: "var(--interactive-primary)",
           }}
         />
-        <span style={{ fontWeight: 'var(--font-weight-medium)' }}>Acme Inc</span>
+        <span style={{ fontWeight: "var(--font-weight-medium)" }}>
+          Acme Inc
+        </span>
       </div>
     ),
   },
@@ -105,22 +156,36 @@ export const Default: Story = {
 export const WithCollapse: Story = {
   render: (args) => {
     const [collapsed, setCollapsed] = useState(false);
-    return <Sidebar {...args} collapsed={collapsed} onCollapsedChange={setCollapsed} />;
+    return (
+      <Sidebar
+        {...args}
+        collapsed={collapsed}
+        onCollapsedChange={setCollapsed}
+      />
+    );
   },
   args: {
     sections: defaultSections,
-    activeItem: 'projects',
+    activeItem: "projects",
     header: (
-      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)' }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "var(--spacing-2)",
+        }}
+      >
         <div
           style={{
-            width: '32px',
-            height: '32px',
-            borderRadius: 'var(--radius-sm)',
-            background: 'var(--interactive-primary)',
+            width: "32px",
+            height: "32px",
+            borderRadius: "var(--radius-sm)",
+            background: "var(--interactive-primary)",
           }}
         />
-        <span style={{ fontWeight: 'var(--font-weight-medium)' }}>Acme Inc</span>
+        <span style={{ fontWeight: "var(--font-weight-medium)" }}>
+          Acme Inc
+        </span>
       </div>
     ),
   },
@@ -129,7 +194,7 @@ export const WithCollapse: Story = {
 export const Collapsed: Story = {
   args: {
     sections: defaultSections,
-    activeItem: 'dashboard',
+    activeItem: "dashboard",
     collapsed: true,
   },
 };
@@ -137,50 +202,76 @@ export const Collapsed: Story = {
 export const WithFooter: Story = {
   args: {
     sections: defaultSections,
-    activeItem: 'dashboard',
+    activeItem: "dashboard",
     header: (
-      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)' }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "var(--spacing-2)",
+        }}
+      >
         <div
           style={{
-            width: '32px',
-            height: '32px',
-            borderRadius: 'var(--radius-sm)',
-            background: 'var(--interactive-primary)',
+            width: "32px",
+            height: "32px",
+            borderRadius: "var(--radius-sm)",
+            background: "var(--interactive-primary)",
           }}
         />
-        <span style={{ fontWeight: 'var(--font-weight-medium)' }}>Acme Inc</span>
+        <span style={{ fontWeight: "var(--font-weight-medium)" }}>
+          Acme Inc
+        </span>
       </div>
     ),
     footer: (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-2)' }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "var(--spacing-2)",
+        }}
+      >
         <div
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 'var(--spacing-3)',
-            padding: 'var(--spacing-2)',
+            display: "flex",
+            alignItems: "center",
+            gap: "var(--spacing-3)",
+            padding: "var(--spacing-2)",
           }}
         >
           <div
             style={{
-              width: '36px',
-              height: '36px',
-              borderRadius: '50%',
-              background: 'var(--surface-subtle)',
+              width: "36px",
+              height: "36px",
+              borderRadius: "50%",
+              background: "var(--surface-subtle)",
             }}
           />
           <div>
             <div
-              style={{ fontWeight: 'var(--font-weight-medium)', fontSize: 'var(--font-size-14)' }}
+              style={{
+                fontWeight: "var(--font-weight-medium)",
+                fontSize: "var(--font-size-14)",
+              }}
             >
               John Doe
             </div>
-            <div style={{ fontSize: 'var(--font-size-12)', color: 'var(--text-secondary)' }}>
+            <div
+              style={{
+                fontSize: "var(--font-size-12)",
+                color: "var(--text-secondary)",
+              }}
+            >
               Admin
             </div>
           </div>
         </div>
-        <Button variant="ghost" size="sm" style={{ width: '100%', justifyContent: 'flex-start' }}>
+        <Button
+          variant="ghost"
+          size="sm"
+          style={{ width: "100%", justifyContent: "flex-start" }}
+        >
           <LogOut size={16} />
           <span>Sign out</span>
         </Button>
@@ -194,38 +285,53 @@ export const WithNestedItems: Story = {
     sections: [
       {
         items: [
-          { id: 'dashboard', label: 'Dashboard', icon: <Home size={20} />, href: '#' },
           {
-            id: 'projects',
-            label: 'Projects',
+            id: "dashboard",
+            label: "Dashboard",
+            icon: <Home size={20} />,
+            href: "#",
+          },
+          {
+            id: "projects",
+            label: "Projects",
             icon: <Folder size={20} />,
             children: [
-              { id: 'active', label: 'Active', href: '#' },
-              { id: 'archived', label: 'Archived', href: '#' },
-              { id: 'drafts', label: 'Drafts', href: '#' },
+              { id: "active", label: "Active", href: "#" },
+              { id: "archived", label: "Archived", href: "#" },
+              { id: "drafts", label: "Drafts", href: "#" },
             ],
           },
           {
-            id: 'reports',
-            label: 'Reports',
+            id: "reports",
+            label: "Reports",
             icon: <BarChart2 size={20} />,
             children: [
-              { id: 'sales', label: 'Sales', href: '#' },
-              { id: 'traffic', label: 'Traffic', href: '#' },
-              { id: 'users', label: 'Users', href: '#' },
+              { id: "sales", label: "Sales", href: "#" },
+              { id: "traffic", label: "Traffic", href: "#" },
+              { id: "users", label: "Users", href: "#" },
             ],
           },
         ],
       },
       {
-        title: 'Settings',
+        title: "Settings",
         items: [
-          { id: 'account', label: 'Account', icon: <Settings size={20} />, href: '#' },
-          { id: 'help', label: 'Help', icon: <HelpCircle size={20} />, href: '#' },
+          {
+            id: "account",
+            label: "Account",
+            icon: <Settings size={20} />,
+            href: "#",
+          },
+          {
+            id: "help",
+            label: "Help",
+            icon: <HelpCircle size={20} />,
+            href: "#",
+          },
         ],
       },
     ],
-    activeItem: 'dashboard',
+    activeItem: "dashboard",
   },
 };
 
@@ -234,34 +340,58 @@ export const WithDisabledItems: Story = {
     sections: [
       {
         items: [
-          { id: 'dashboard', label: 'Dashboard', icon: <Home size={20} />, href: '#' },
-          { id: 'projects', label: 'Projects', icon: <Folder size={20} />, href: '#' },
           {
-            id: 'premium',
-            label: 'Premium Features',
+            id: "dashboard",
+            label: "Dashboard",
+            icon: <Home size={20} />,
+            href: "#",
+          },
+          {
+            id: "projects",
+            label: "Projects",
+            icon: <Folder size={20} />,
+            href: "#",
+          },
+          {
+            id: "premium",
+            label: "Premium Features",
             icon: <BarChart2 size={20} />,
-            href: '#',
+            href: "#",
             disabled: true,
-            badge: 'Pro',
+            badge: "Pro",
           },
         ],
       },
     ],
-    activeItem: 'dashboard',
+    activeItem: "dashboard",
   },
 };
 
 export const CustomHeader: Story = {
   args: {
     sections: defaultSections,
-    activeItem: 'dashboard',
+    activeItem: "dashboard",
     header: (
       <div
-        style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-3)', width: '100%' }}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "var(--spacing-3)",
+          width: "100%",
+        }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
           <span
-            style={{ fontWeight: 'var(--font-weight-medium)', fontSize: 'var(--font-size-18)' }}
+            style={{
+              fontWeight: "var(--font-weight-medium)",
+              fontSize: "var(--font-size-18)",
+            }}
           >
             Workspace
           </span>
@@ -271,14 +401,14 @@ export const CustomHeader: Story = {
         </div>
         <div
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 'var(--spacing-2)',
-            padding: 'var(--spacing-2) var(--spacing-3)',
-            background: 'var(--surface-subtle)',
-            borderRadius: 'var(--radius-sm)',
-            fontSize: 'var(--font-size-14)',
-            color: 'var(--text-secondary)',
+            display: "flex",
+            alignItems: "center",
+            gap: "var(--spacing-2)",
+            padding: "var(--spacing-2) var(--spacing-3)",
+            background: "var(--surface-subtle)",
+            borderRadius: "var(--radius-sm)",
+            fontSize: "var(--font-size-14)",
+            color: "var(--text-secondary)",
           }}
         >
           <Search size={14} />
@@ -291,20 +421,28 @@ export const CustomHeader: Story = {
 
 export const Floating: Story = {
   args: {
-    variant: 'floating',
+    variant: "floating",
     sections: defaultSections,
-    activeItem: 'dashboard',
+    activeItem: "dashboard",
     header: (
-      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)' }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "var(--spacing-2)",
+        }}
+      >
         <div
           style={{
-            width: '32px',
-            height: '32px',
-            borderRadius: 'var(--radius-sm)',
-            background: 'var(--interactive-primary)',
+            width: "32px",
+            height: "32px",
+            borderRadius: "var(--radius-sm)",
+            background: "var(--interactive-primary)",
           }}
         />
-        <span style={{ fontWeight: 'var(--font-weight-medium)' }}>Acme Inc</span>
+        <span style={{ fontWeight: "var(--font-weight-medium)" }}>
+          Acme Inc
+        </span>
       </div>
     ),
   },
@@ -312,14 +450,14 @@ export const Floating: Story = {
     (Story) => (
       <div
         style={{
-          height: '600px',
-          display: 'flex',
-          padding: '0',
-          background: 'var(--surface-subtle)',
+          height: "600px",
+          display: "flex",
+          padding: "0",
+          background: "var(--surface-subtle)",
         }}
       >
         <Story />
-        <div style={{ flex: 1, padding: 'var(--spacing-6)' }}>
+        <div style={{ flex: 1, padding: "var(--spacing-6)" }}>
           <p>Main content area</p>
         </div>
       </div>
@@ -332,22 +470,33 @@ export const Floating: Story = {
 export const WithoutHeader: Story = {
   args: {
     sections: defaultSections,
-    activeItem: 'dashboard',
+    activeItem: "dashboard",
   },
 };
 
 export const WithLogo: Story = {
   args: {
     header: (
-      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)' }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "var(--spacing-2)",
+        }}
+      >
         <Box size={24} />
-        <span style={{ fontWeight: 'var(--font-weight-medium)', fontSize: 'var(--font-size-16)' }}>
+        <span
+          style={{
+            fontWeight: "var(--font-weight-medium)",
+            fontSize: "var(--font-size-16)",
+          }}
+        >
           Acme Inc
         </span>
       </div>
     ),
     sections: defaultSections,
-    activeItem: 'dashboard',
+    activeItem: "dashboard",
   },
 };
 
@@ -361,14 +510,14 @@ export const WithDropdown: Story = {
           </Button>
         }
         items={[
-          { id: 'ws1', label: 'Personal' },
-          { id: 'ws2', label: 'Team' },
-          { id: 'ws3', label: 'Enterprise' },
+          { id: "ws1", label: "Personal" },
+          { id: "ws2", label: "Team" },
+          { id: "ws3", label: "Enterprise" },
         ]}
       />
     ),
     sections: defaultSections,
-    activeItem: 'dashboard',
+    activeItem: "dashboard",
   },
 };
 
@@ -377,15 +526,21 @@ export const WithLogoAndActions: Story = {
     header: (
       <div
         style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          width: '100%',
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          width: "100%",
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)' }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "var(--spacing-2)",
+          }}
+        >
           <Box size={24} />
-          <span style={{ fontWeight: 'var(--font-weight-medium)' }}>Acme</span>
+          <span style={{ fontWeight: "var(--font-weight-medium)" }}>Acme</span>
         </div>
         <Button
           variant="ghost"
@@ -397,6 +552,6 @@ export const WithLogoAndActions: Story = {
       </div>
     ),
     sections: defaultSections,
-    activeItem: 'dashboard',
+    activeItem: "dashboard",
   },
 };

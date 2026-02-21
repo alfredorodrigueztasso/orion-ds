@@ -7,7 +7,7 @@
 import type { HTMLAttributes, ReactNode } from "react";
 
 /**
- * Agent status types
+ * @deprecated Status badges are no longer displayed. Use `isMultiAgent` instead.
  */
 export type AgentStatus = "draft" | "published" | "archived";
 
@@ -22,6 +22,7 @@ export type AgentStatus = "draft" | "published" | "archived";
  *   title="UVM Agent"
  *   description="Agent for Universidad Virtual de México"
  *   timestamp="Hace 2 horas"
+ *   isMultiAgent
  * />
  * ```
  */
@@ -42,9 +43,10 @@ export interface AgentCardProps extends HTMLAttributes<HTMLDivElement> {
   title: string;
 
   /**
-   * Agent description (max 2 lines with ellipsis)
+   * Agent description (max 2 lines with ellipsis). Space is always reserved
+   * for 2 lines even when empty, ensuring consistent card height in grids.
    */
-  description: string;
+  description?: string;
 
   /**
    * Timestamp text (e.g., "Hace 2 horas")
@@ -52,14 +54,10 @@ export interface AgentCardProps extends HTMLAttributes<HTMLDivElement> {
   timestamp?: string;
 
   /**
-   * Agent status indicator
+   * When true, shows a "Multi" badge indicating this is a multi-agent.
+   * Only multi-agents show a badge; single agents show nothing.
    */
-  status?: AgentStatus;
-
-  /**
-   * Optional badge component
-   */
-  badge?: ReactNode;
+  isMultiAgent?: boolean;
 
   /**
    * Card click handler

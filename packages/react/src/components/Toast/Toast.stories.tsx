@@ -2,17 +2,17 @@
  * Toast Component Stories
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
-import { ToastProvider, useToast } from './Toast';
-import { Button } from '../Button';
+import type { Meta, StoryObj } from "@storybook/react";
+import { ToastProvider, useToast } from "./Toast";
+import { Button } from "../Button";
 
 const meta: Meta<typeof ToastProvider> = {
-  title: 'Components/Feedback/Toast',
+  title: "Components/Overlays/Toast",
   component: ToastProvider,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   decorators: [
     (Story) => (
       <ToastProvider>
@@ -30,16 +30,32 @@ const ToastDemo = () => {
   const { toast, success, error, warning, info } = useToast();
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-3)' }}>
-      <Button onClick={() => toast({ message: 'This is a basic toast notification' })}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-3)",
+      }}
+    >
+      <Button
+        onClick={() => toast({ message: "This is a basic toast notification" })}
+      >
         Basic Toast
       </Button>
-      <Button onClick={() => success('Operation completed successfully!')}>Success Toast</Button>
-      <Button onClick={() => error('Something went wrong. Please try again.')}>Error Toast</Button>
-      <Button onClick={() => warning('Please review your changes before proceeding.')}>
+      <Button onClick={() => success("Operation completed successfully!")}>
+        Success Toast
+      </Button>
+      <Button onClick={() => error("Something went wrong. Please try again.")}>
+        Error Toast
+      </Button>
+      <Button
+        onClick={() => warning("Please review your changes before proceeding.")}
+      >
         Warning Toast
       </Button>
-      <Button onClick={() => info('Here is some helpful information.')}>Info Toast</Button>
+      <Button onClick={() => info("Here is some helpful information.")}>
+        Info Toast
+      </Button>
     </div>
   );
 };
@@ -56,9 +72,10 @@ export const WithTitle: Story = {
         <Button
           onClick={() =>
             toast({
-              title: 'File uploaded',
-              message: 'Your file has been uploaded successfully and is now being processed.',
-              variant: 'success',
+              title: "File uploaded",
+              message:
+                "Your file has been uploaded successfully and is now being processed.",
+              variant: "success",
             })
           }
         >
@@ -78,10 +95,10 @@ export const WithAction: Story = {
         <Button
           onClick={() =>
             toast({
-              message: 'Item moved to trash',
+              message: "Item moved to trash",
               action: {
-                label: 'Undo',
-                onClick: () => console.log('Undo clicked'),
+                label: "Undo",
+                onClick: () => console.log("Undo clicked"),
               },
             })
           }
@@ -102,7 +119,7 @@ export const LongDuration: Story = {
         <Button
           onClick={() =>
             toast({
-              message: 'This toast will stay for 10 seconds',
+              message: "This toast will stay for 10 seconds",
               duration: 10000,
             })
           }
@@ -123,7 +140,7 @@ export const NoDismiss: Story = {
         <Button
           onClick={() =>
             toast({
-              message: 'This toast cannot be manually dismissed',
+              message: "This toast cannot be manually dismissed",
               dismissible: false,
               duration: 3000,
             })
@@ -145,12 +162,12 @@ export const PersistentToast: Story = {
         <Button
           onClick={() =>
             toast({
-              title: 'Action Required',
-              message: 'Please complete your profile to continue.',
+              title: "Action Required",
+              message: "Please complete your profile to continue.",
               duration: 0,
               action: {
-                label: 'Complete Profile',
-                onClick: () => console.log('Navigate to profile'),
+                label: "Complete Profile",
+                onClick: () => console.log("Navigate to profile"),
               },
             })
           }
@@ -170,10 +187,10 @@ export const MultipleToasts: Story = {
       return (
         <Button
           onClick={() => {
-            success('File saved');
-            setTimeout(() => warning('Low storage space'), 200);
-            setTimeout(() => error('Upload failed'), 400);
-            setTimeout(() => info('3 new messages'), 600);
+            success("File saved");
+            setTimeout(() => warning("Low storage space"), 200);
+            setTimeout(() => error("Upload failed"), 400);
+            setTimeout(() => info("3 new messages"), 600);
           }}
         >
           Show Multiple Toasts
@@ -189,12 +206,12 @@ export const DismissAll: Story = {
     const Component = () => {
       const { success, warning, error, dismissAll } = useToast();
       return (
-        <div style={{ display: 'flex', gap: 'var(--spacing-3)' }}>
+        <div style={{ display: "flex", gap: "var(--spacing-3)" }}>
           <Button
             onClick={() => {
-              success('Toast 1');
-              setTimeout(() => warning('Toast 2'), 100);
-              setTimeout(() => error('Toast 3'), 200);
+              success("Toast 1");
+              setTimeout(() => warning("Toast 2"), 100);
+              setTimeout(() => error("Toast 3"), 200);
             }}
           >
             Show Toasts
@@ -250,10 +267,16 @@ export const AllVariants: Story = {
   render: () => {
     const Component = () => {
       const { toast } = useToast();
-      const variants = ['info', 'success', 'warning', 'error'] as const;
+      const variants = ["info", "success", "warning", "error"] as const;
 
       return (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-3)' }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "var(--spacing-3)",
+          }}
+        >
           {variants.map((variant) => (
             <Button
               key={variant}

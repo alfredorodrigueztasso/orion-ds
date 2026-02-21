@@ -1,23 +1,23 @@
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import { Badge } from './Badge';
+import { describe, it, expect } from "vitest";
+import { render, screen } from "@testing-library/react";
+import { Badge } from "./Badge";
 
-describe('Badge', () => {
-  it('renders with children', () => {
+describe("Badge", () => {
+  it("renders with children", () => {
     render(<Badge>Test Badge</Badge>);
-    expect(screen.getByText('Test Badge')).toBeInTheDocument();
+    expect(screen.getByText("Test Badge")).toBeInTheDocument();
   });
 
-  it('applies variant classes correctly', () => {
+  it("applies variant classes correctly", () => {
     const variants = [
-      'primary',
-      'secondary',
-      'neutral',
-      'success',
-      'error',
-      'warning',
-      'info',
-      'brand',
+      "primary",
+      "secondary",
+      "neutral",
+      "success",
+      "error",
+      "warning",
+      "info",
+      "brand",
     ] as const;
 
     variants.forEach((variant) => {
@@ -27,7 +27,7 @@ describe('Badge', () => {
     });
   });
 
-  it('applies size classes correctly', () => {
+  it("applies size classes correctly", () => {
     const { rerender, container } = render(<Badge size="sm">Small</Badge>);
     const badge = container.firstChild as HTMLElement;
     expect(badge.className).toMatch(/sm/);
@@ -39,33 +39,35 @@ describe('Badge', () => {
     expect((container.firstChild as HTMLElement).className).toMatch(/lg/);
   });
 
-  it('uses default variant when not specified', () => {
+  it("uses default variant when not specified", () => {
     const { container } = render(<Badge>Default</Badge>);
     expect((container.firstChild as HTMLElement).className).toMatch(/neutral/);
   });
 
-  it('uses default size when not specified', () => {
+  it("uses default size when not specified", () => {
     const { container } = render(<Badge>Default</Badge>);
     expect((container.firstChild as HTMLElement).className).toMatch(/md/);
   });
 
-  it('applies custom className', () => {
-    const { container } = render(<Badge className="custom-badge">Custom</Badge>);
-    expect(container.firstChild).toHaveClass('custom-badge');
+  it("applies custom className", () => {
+    const { container } = render(
+      <Badge className="custom-badge">Custom</Badge>,
+    );
+    expect(container.firstChild).toHaveClass("custom-badge");
   });
 
-  it('passes through additional props', () => {
+  it("passes through additional props", () => {
     render(<Badge data-testid="test-badge">Test</Badge>);
-    expect(screen.getByTestId('test-badge')).toBeInTheDocument();
+    expect(screen.getByTestId("test-badge")).toBeInTheDocument();
   });
 
-  it('renders with numbers', () => {
+  it("renders with numbers", () => {
     render(<Badge variant="error">99+</Badge>);
-    expect(screen.getByText('99+')).toBeInTheDocument();
+    expect(screen.getByText("99+")).toBeInTheDocument();
   });
 
-  it('renders with icons/symbols', () => {
+  it("renders with icons/symbols", () => {
     render(<Badge variant="success">✓</Badge>);
-    expect(screen.getByText('✓')).toBeInTheDocument();
+    expect(screen.getByText("✓")).toBeInTheDocument();
   });
 });

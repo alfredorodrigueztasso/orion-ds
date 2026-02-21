@@ -14,5 +14,5 @@
  * </Tooltip>
  * ```
  */
-export { Tooltip } from './Tooltip';
-export type { TooltipProps, TooltipPlacement } from './Tooltip.types';
+export { Tooltip } from "./Tooltip";
+export type { TooltipProps, TooltipPlacement } from "./Tooltip.types";

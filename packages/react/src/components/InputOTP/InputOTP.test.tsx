@@ -1,7 +1,7 @@
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { InputOTP } from './InputOTP';
+import { describe, it, expect, vi } from "vitest";
+import { render, screen, fireEvent } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { InputOTP } from "./InputOTP";
 
 function renderOTP(props: Partial<Parameters<typeof InputOTP>[0]> = {}) {
   return render(
@@ -21,100 +21,100 @@ function renderOTP(props: Partial<Parameters<typeof InputOTP>[0]> = {}) {
   );
 }
 
-describe('InputOTP', () => {
+describe("InputOTP", () => {
   // The hidden input has pointer-events: none (by design — clicks on container focus it).
   // Use pointerEventsCheck: 0 to bypass this in tests.
   const setupUser = () => userEvent.setup({ pointerEventsCheck: 0 });
 
-  it('renders the OTP container with slots and separator', () => {
+  it("renders the OTP container with slots and separator", () => {
     renderOTP();
 
-    expect(screen.getByRole('separator')).toBeInTheDocument();
+    expect(screen.getByRole("separator")).toBeInTheDocument();
     // Hidden input should be present
-    const input = screen.getByLabelText('OTP input, 6 digits');
+    const input = screen.getByLabelText("OTP input, 6 digits");
     expect(input).toBeInTheDocument();
   });
 
-  it('has proper aria-label on hidden input', () => {
+  it("has proper aria-label on hidden input", () => {
     renderOTP();
-    const input = screen.getByLabelText('OTP input, 6 digits');
+    const input = screen.getByLabelText("OTP input, 6 digits");
     expect(input).toBeInTheDocument();
   });
 
-  it('sets inputMode to numeric by default', () => {
+  it("sets inputMode to numeric by default", () => {
     renderOTP();
-    const input = screen.getByLabelText('OTP input, 6 digits');
-    expect(input).toHaveAttribute('inputMode', 'numeric');
+    const input = screen.getByLabelText("OTP input, 6 digits");
+    expect(input).toHaveAttribute("inputMode", "numeric");
   });
 
-  it('sets inputMode to text for alphanumeric type', () => {
-    renderOTP({ type: 'alphanumeric' });
-    const input = screen.getByLabelText('OTP input, 6 digits');
-    expect(input).toHaveAttribute('inputMode', 'text');
+  it("sets inputMode to text for alphanumeric type", () => {
+    renderOTP({ type: "alphanumeric" });
+    const input = screen.getByLabelText("OTP input, 6 digits");
+    expect(input).toHaveAttribute("inputMode", "text");
   });
 
-  it('accepts numeric input', async () => {
+  it("accepts numeric input", async () => {
     const user = setupUser();
     const onChange = vi.fn();
     renderOTP({ onChange });
 
-    const input = screen.getByLabelText('OTP input, 6 digits');
+    const input = screen.getByLabelText("OTP input, 6 digits");
     await user.click(input);
-    await user.type(input, '123');
+    await user.type(input, "123");
 
-    expect(onChange).toHaveBeenLastCalledWith('123');
+    expect(onChange).toHaveBeenLastCalledWith("123");
   });
 
-  it('filters non-numeric characters in numeric mode', async () => {
+  it("filters non-numeric characters in numeric mode", async () => {
     const onChange = vi.fn();
     renderOTP({ onChange });
 
-    const input = screen.getByLabelText('OTP input, 6 digits');
+    const input = screen.getByLabelText("OTP input, 6 digits");
 
     // Directly fire change events to test the filtering logic
-    fireEvent.change(input, { target: { value: '1a2b3' } });
+    fireEvent.change(input, { target: { value: "1a2b3" } });
 
-    expect(onChange).toHaveBeenCalledWith('123');
+    expect(onChange).toHaveBeenCalledWith("123");
   });
 
-  it('calls onComplete when all slots are filled', async () => {
+  it("calls onComplete when all slots are filled", async () => {
     const user = setupUser();
     const onComplete = vi.fn();
     renderOTP({ onComplete });
 
-    const input = screen.getByLabelText('OTP input, 6 digits');
+    const input = screen.getByLabelText("OTP input, 6 digits");
     await user.click(input);
-    await user.type(input, '123456');
+    await user.type(input, "123456");
 
-    expect(onComplete).toHaveBeenCalledWith('123456');
+    expect(onComplete).toHaveBeenCalledWith("123456");
   });
 
-  it('does not call onComplete when partially filled', async () => {
+  it("does not call onComplete when partially filled", async () => {
     const user = setupUser();
     const onComplete = vi.fn();
     renderOTP({ onComplete });
 
-    const input = screen.getByLabelText('OTP input, 6 digits');
+    const input = screen.getByLabelText("OTP input, 6 digits");
     await user.click(input);
-    await user.type(input, '123');
+    await user.type(input, "123");
 
     expect(onComplete).not.toHaveBeenCalled();
   });
 
-  it('respects maxLength', () => {
+  it("respects maxLength", () => {
     const onChange = vi.fn();
     renderOTP({ maxLength: 4, onChange });
 
-    const input = screen.getByLabelText('OTP input, 4 digits');
+    const input = screen.getByLabelText("OTP input, 4 digits");
 
     // Fire change with value exceeding maxLength
-    fireEvent.change(input, { target: { value: '123456' } });
+    fireEvent.change(input, { target: { value: "123456" } });
 
     // Should be truncated to 4
-    expect(onChange).toHaveBeenCalledWith('1234');
+    expect(onChange).toHaveBeenCalledWith("1234");
   });
 
-  it('works as controlled component', () => {
+  it("works as controlled component", () => {
     const { rerender } = render(
       <InputOTP maxLength={4} value="12">
         <InputOTP.Group>
@@ -126,8 +126,8 @@ describe('InputOTP', () => {
       </InputOTP>,
     );
 
-    const input = screen.getByLabelText('OTP input, 4 digits');
-    expect(input).toHaveValue('12');
+    const input = screen.getByLabelText("OTP input, 4 digits");
+    expect(input).toHaveValue("12");
 
     rerender(
       <InputOTP maxLength={4} value="1234">
@@ -140,27 +140,30 @@ describe('InputOTP', () => {
       </InputOTP>,
     );
 
-    expect(input).toHaveValue('1234');
+    expect(input).toHaveValue("1234");
   });
 
-  it('disables the input when disabled prop is set', () => {
+  it("disables the input when disabled prop is set", () => {
     renderOTP({ disabled: true });
-    const input = screen.getByLabelText('OTP input, 6 digits');
+    const input = screen.getByLabelText("OTP input, 6 digits");
     expect(input).toBeDisabled();
   });
 
-  it('sets autocomplete to one-time-code', () => {
+  it("sets autocomplete to one-time-code", () => {
     renderOTP();
-    const input = screen.getByLabelText('OTP input, 6 digits');
-    expect(input).toHaveAttribute('autoComplete', 'one-time-code');
+    const input = screen.getByLabelText("OTP input, 6 digits");
+    expect(input).toHaveAttribute("autoComplete", "one-time-code");
   });
 
-  it('applies custom className', () => {
-    renderOTP({ 'data-testid': 'otp-root', className: 'custom-class' } as Record<string, unknown>);
-    expect(screen.getByTestId('otp-root')).toHaveClass('custom-class');
+  it("applies custom className", () => {
+    renderOTP({
+      "data-testid": "otp-root",
+      className: "custom-class",
+    } as Record<string, unknown>);
+    expect(screen.getByTestId("otp-root")).toHaveClass("custom-class");
   });
 
-  it('forwards ref correctly', () => {
+  it("forwards ref correctly", () => {
     const ref = { current: null };
     render(
       <InputOTP ref={ref} maxLength={4}>
@@ -172,7 +175,7 @@ describe('InputOTP', () => {
     expect(ref.current).toBeInstanceOf(HTMLDivElement);
   });
 
-  it('renders separator with custom content', () => {
+  it("renders separator with custom content", () => {
     render(
       <InputOTP maxLength={4}>
         <InputOTP.Group>
@@ -187,18 +190,18 @@ describe('InputOTP', () => {
       </InputOTP>,
     );
 
-    expect(screen.getByText('/')).toBeInTheDocument();
+    expect(screen.getByText("/")).toBeInTheDocument();
   });
 
-  it('throws when Slot is used outside InputOTP', () => {
-    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+  it("throws when Slot is used outside InputOTP", () => {
+    const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
     expect(() => {
       render(<InputOTP.Slot index={0} />);
-    }).toThrow('InputOTP.Slot/Group/Separator must be used within an InputOTP');
+    }).toThrow("InputOTP.Slot/Group/Separator must be used within an InputOTP");
     consoleSpy.mockRestore();
   });
 
-  it('displays characters in filled slots', () => {
+  it("displays characters in filled slots", () => {
     render(
       <InputOTP maxLength={4} value="12">
         <InputOTP.Group>
@@ -210,9 +213,9 @@ describe('InputOTP', () => {
       </InputOTP>,
     );
 
-    expect(screen.getByTestId('slot-0')).toHaveTextContent('1');
-    expect(screen.getByTestId('slot-1')).toHaveTextContent('2');
-    expect(screen.getByTestId('slot-2')).toHaveTextContent('');
-    expect(screen.getByTestId('slot-3')).toHaveTextContent('');
+    expect(screen.getByTestId("slot-0")).toHaveTextContent("1");
+    expect(screen.getByTestId("slot-1")).toHaveTextContent("2");
+    expect(screen.getByTestId("slot-2")).toHaveTextContent("");
+    expect(screen.getByTestId("slot-3")).toHaveTextContent("");
   });
 });

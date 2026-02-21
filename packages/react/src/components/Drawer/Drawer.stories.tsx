@@ -2,26 +2,26 @@
  * Drawer Component Stories
  */
 
-import { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { Drawer } from './Drawer';
-import { Button } from '../Button';
+import { useState } from "react";
+import type { Meta, StoryObj } from "@storybook/react";
+import { Drawer } from "./Drawer";
+import { Button } from "../Button";
 
 const meta: Meta<typeof Drawer> = {
-  title: 'Components/Overlay/Drawer',
+  title: "Components/Overlays/Drawer",
   component: Drawer,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     placement: {
-      control: 'radio',
-      options: ['left', 'right', 'top', 'bottom'],
+      control: "radio",
+      options: ["left", "right", "top", "bottom"],
     },
     size: {
-      control: 'radio',
-      options: ['sm', 'md', 'lg', 'xl', 'full'],
+      control: "radio",
+      options: ["sm", "md", "lg", "xl", "full"],
     },
   },
 };
@@ -31,8 +31,8 @@ type Story = StoryObj<typeof Drawer>;
 
 // Interactive wrapper for stories
 const DrawerDemo = ({
-  placement = 'right',
-  size = 'md',
+  placement = "right",
+  size = "md",
   ...rest
 }: Partial<React.ComponentProps<typeof Drawer>>) => {
   const [open, setOpen] = useState(false);
@@ -50,9 +50,9 @@ const DrawerDemo = ({
         <Drawer.Header>Drawer Title</Drawer.Header>
         <Drawer.Body>
           <p>This is the drawer content. You can put any content here.</p>
-          <p style={{ marginTop: 'var(--spacing-4)' }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua.
+          <p style={{ marginTop: "var(--spacing-4)" }}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </Drawer.Body>
         <Drawer.Footer>
@@ -109,28 +109,35 @@ export const NavigationDrawer: Story = {
     return (
       <>
         <Button onClick={() => setOpen(true)}>Open Menu</Button>
-        <Drawer open={open} onClose={() => setOpen(false)} placement="left" size="sm">
+        <Drawer
+          open={open}
+          onClose={() => setOpen(false)}
+          placement="left"
+          size="sm"
+        >
           <Drawer.Header>Navigation</Drawer.Header>
           <Drawer.Body>
             <nav>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                {['Home', 'Products', 'About', 'Contact', 'Blog'].map((item) => (
-                  <li key={item}>
-                    <a
-                      href="#"
-                      style={{
-                        display: 'block',
-                        padding: 'var(--spacing-3) 0',
-                        color: 'var(--text-primary)',
-                        textDecoration: 'none',
-                        borderBottom: '1px solid var(--border-subtle)',
-                      }}
-                      onClick={() => setOpen(false)}
-                    >
-                      {item}
-                    </a>
-                  </li>
-                ))}
+              <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                {["Home", "Products", "About", "Contact", "Blog"].map(
+                  (item) => (
+                    <li key={item}>
+                      <a
+                        href="#"
+                        style={{
+                          display: "block",
+                          padding: "var(--spacing-3) 0",
+                          color: "var(--text-primary)",
+                          textDecoration: "none",
+                          borderBottom: "1px solid var(--border-subtle)",
+                        }}
+                        onClick={() => setOpen(false)}
+                      >
+                        {item}
+                      </a>
+                    </li>
+                  ),
+                )}
               </ul>
             </nav>
           </Drawer.Body>
@@ -147,46 +154,72 @@ export const SettingsDrawer: Story = {
     return (
       <>
         <Button onClick={() => setOpen(true)}>Open Settings</Button>
-        <Drawer open={open} onClose={() => setOpen(false)} placement="right" size="md">
+        <Drawer
+          open={open}
+          onClose={() => setOpen(false)}
+          placement="right"
+          size="md"
+        >
           <Drawer.Header>Settings</Drawer.Header>
           <Drawer.Body>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-6)' }}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "var(--spacing-6)",
+              }}
+            >
               <div>
                 <h4
                   style={{
-                    marginBottom: 'var(--spacing-2)',
-                    fontWeight: 'var(--font-weight-medium)',
+                    marginBottom: "var(--spacing-2)",
+                    fontWeight: "var(--font-weight-medium)",
                   }}
                 >
                   Appearance
                 </h4>
-                <p style={{ fontSize: 'var(--font-size-14)', color: 'var(--text-secondary)' }}>
+                <p
+                  style={{
+                    fontSize: "var(--font-size-14)",
+                    color: "var(--text-secondary)",
+                  }}
+                >
                   Customize how the app looks on your device.
                 </p>
               </div>
               <div>
                 <h4
                   style={{
-                    marginBottom: 'var(--spacing-2)',
-                    fontWeight: 'var(--font-weight-medium)',
+                    marginBottom: "var(--spacing-2)",
+                    fontWeight: "var(--font-weight-medium)",
                   }}
                 >
                   Notifications
                 </h4>
-                <p style={{ fontSize: 'var(--font-size-14)', color: 'var(--text-secondary)' }}>
+                <p
+                  style={{
+                    fontSize: "var(--font-size-14)",
+                    color: "var(--text-secondary)",
+                  }}
+                >
                   Configure when and how you receive notifications.
                 </p>
               </div>
               <div>
                 <h4
                   style={{
-                    marginBottom: 'var(--spacing-2)',
-                    fontWeight: 'var(--font-weight-medium)',
+                    marginBottom: "var(--spacing-2)",
+                    fontWeight: "var(--font-weight-medium)",
                   }}
                 >
                   Privacy
                 </h4>
-                <p style={{ fontSize: 'var(--font-size-14)', color: 'var(--text-secondary)' }}>
+                <p
+                  style={{
+                    fontSize: "var(--font-size-14)",
+                    color: "var(--text-secondary)",
+                  }}
+                >
                   Control your privacy settings and data sharing.
                 </p>
               </div>
@@ -208,10 +241,12 @@ export const AllPlacements: Story = {
   render: () => {
     const [openDrawer, setOpenDrawer] = useState<string | null>(null);
 
-    const placements = ['left', 'right', 'top', 'bottom'] as const;
+    const placements = ["left", "right", "top", "bottom"] as const;
 
     return (
-      <div style={{ display: 'flex', gap: 'var(--spacing-3)', flexWrap: 'wrap' }}>
+      <div
+        style={{ display: "flex", gap: "var(--spacing-3)", flexWrap: "wrap" }}
+      >
         {placements.map((placement) => (
           <div key={placement}>
             <Button onClick={() => setOpenDrawer(placement)}>

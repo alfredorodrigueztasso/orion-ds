@@ -5,37 +5,37 @@
 ## Quick Start
 
 ```tsx
-import { KanbanBoard } from '@orion/react';
+import { KanbanBoard } from "@orion/react";
 
 <KanbanBoard
   columns={[
     {
-      id: 'todo',
-      title: 'To Do',
+      id: "todo",
+      title: "To Do",
       cards: [
         {
-          id: '1',
-          title: 'Design homepage',
-          labels: [{ id: 'l1', text: 'Design', color: 'blue' }],
+          id: "1",
+          title: "Design homepage",
+          labels: [{ id: "l1", text: "Design", color: "blue" }],
         },
-        { id: '2', title: 'Setup database' },
+        { id: "2", title: "Setup database" },
       ],
     },
     {
-      id: 'in-progress',
-      title: 'In Progress',
+      id: "in-progress",
+      title: "In Progress",
       cards: [
         {
-          id: '3',
-          title: 'Implement auth',
-          assignees: [{ id: 'u1', name: 'John', avatar: '/john.jpg' }],
+          id: "3",
+          title: "Implement auth",
+          assignees: [{ id: "u1", name: "John", avatar: "/john.jpg" }],
         },
       ],
     },
     {
-      id: 'done',
-      title: 'Done',
-      cards: [{ id: '4', title: 'Project setup', priority: 'high' }],
+      id: "done",
+      title: "Done",
+      cards: [{ id: "4", title: "Project setup", priority: "high" }],
     },
   ]}
   onCardMove={(result) => handleMove(result)}
@@ -82,7 +82,7 @@ interface KanbanBoardProps {
 interface KanbanColumn {
   id: string; // Column ID
   title: string; // Column title
-  color?: 'default' | 'blue' | 'green' | 'yellow' | 'red' | 'purple';
+  color?: "default" | "blue" | "green" | "yellow" | "red" | "purple";
   cards: KanbanCard[]; // Cards in column
   limit?: number; // WIP limit
 }
@@ -94,7 +94,7 @@ interface KanbanCard {
   labels?: KanbanLabel[]; // Color labels
   assignees?: KanbanAssignee[]; // Assigned users
   dueDate?: string; // Due date
-  priority?: 'low' | 'medium' | 'high' | 'urgent';
+  priority?: "low" | "medium" | "high" | "urgent";
   metadata?: Record<string, ReactNode>;
   coverImage?: string; // Cover image URL
 }
@@ -102,7 +102,15 @@ interface KanbanCard {
 interface KanbanLabel {
   id: string;
   text: string;
-  color: 'red' | 'orange' | 'yellow' | 'green' | 'blue' | 'purple' | 'pink' | 'gray';
+  color:
+    | "red"
+    | "orange"
+    | "yellow"
+    | "green"
+    | "blue"
+    | "purple"
+    | "pink"
+    | "gray";
 }
 
 interface KanbanAssignee {
@@ -259,7 +267,8 @@ columns={[
 
 ```tsx
 const handleCardMove = (result: KanbanDragResult) => {
-  const { cardId, sourceColumnId, destinationColumnId, destinationIndex } = result;
+  const { cardId, sourceColumnId, destinationColumnId, destinationIndex } =
+    result;
 
   // Update your state/backend
   setColumns((prev) => {
@@ -319,71 +328,71 @@ const handleCardMove = (result: KanbanDragResult) => {
 ### Project Management Board
 
 ```tsx
-import { KanbanBoard, DetailPanel } from '@orion/react';
-import { useState } from 'react';
+import { KanbanBoard, DetailPanel } from "@orion/react";
+import { useState } from "react";
 
 function ProjectBoard() {
   const [columns, setColumns] = useState([
     {
-      id: 'backlog',
-      title: 'Backlog',
-      color: 'default',
+      id: "backlog",
+      title: "Backlog",
+      color: "default",
       cards: [
         {
-          id: '1',
-          title: 'User research',
-          labels: [{ id: 'l1', text: 'Research', color: 'blue' }],
+          id: "1",
+          title: "User research",
+          labels: [{ id: "l1", text: "Research", color: "blue" }],
         },
         {
-          id: '2',
-          title: 'Competitive analysis',
-          labels: [{ id: 'l1', text: 'Research', color: 'blue' }],
+          id: "2",
+          title: "Competitive analysis",
+          labels: [{ id: "l1", text: "Research", color: "blue" }],
         },
       ],
     },
     {
-      id: 'todo',
-      title: 'To Do',
-      color: 'blue',
+      id: "todo",
+      title: "To Do",
+      color: "blue",
       cards: [
         {
-          id: '3',
-          title: 'Design homepage wireframes',
-          labels: [{ id: 'l2', text: 'Design', color: 'purple' }],
-          assignees: [{ id: 'u1', name: 'Alice', avatar: '/alice.jpg' }],
-          dueDate: '2024-02-20',
+          id: "3",
+          title: "Design homepage wireframes",
+          labels: [{ id: "l2", text: "Design", color: "purple" }],
+          assignees: [{ id: "u1", name: "Alice", avatar: "/alice.jpg" }],
+          dueDate: "2024-02-20",
         },
       ],
     },
     {
-      id: 'doing',
-      title: 'In Progress',
-      color: 'yellow',
+      id: "doing",
+      title: "In Progress",
+      color: "yellow",
       limit: 3,
       cards: [
         {
-          id: '4',
-          title: 'Implement authentication',
-          labels: [{ id: 'l3', text: 'Backend', color: 'green' }],
-          assignees: [{ id: 'u2', name: 'Bob', avatar: '/bob.jpg' }],
-          priority: 'high',
+          id: "4",
+          title: "Implement authentication",
+          labels: [{ id: "l3", text: "Backend", color: "green" }],
+          assignees: [{ id: "u2", name: "Bob", avatar: "/bob.jpg" }],
+          priority: "high",
         },
       ],
     },
     {
-      id: 'review',
-      title: 'Review',
-      color: 'purple',
+      id: "review",
+      title: "Review",
+      color: "purple",
       limit: 2,
       cards: [],
     },
     {
-      id: 'done',
-      title: 'Done',
-      color: 'green',
+      id: "done",
+      title: "Done",
+      color: "green",
       cards: [
-        { id: '5', title: 'Project setup', priority: 'low' },
-        { id: '6', title: 'CI/CD pipeline' },
+        { id: "5", title: "Project setup", priority: "low" },
+        { id: "6", title: "CI/CD pipeline" },
       ],
     },
   ]);
@@ -422,26 +431,26 @@ function ProjectBoard() {
 <KanbanBoard
   columns={[
     {
-      id: 'sprint-backlog',
-      title: 'Sprint Backlog',
-      cards: sprintTasks.filter((t) => t.status === 'backlog'),
+      id: "sprint-backlog",
+      title: "Sprint Backlog",
+      cards: sprintTasks.filter((t) => t.status === "backlog"),
     },
     {
-      id: 'in-progress',
-      title: 'In Progress',
+      id: "in-progress",
+      title: "In Progress",
       limit: 5,
-      cards: sprintTasks.filter((t) => t.status === 'in-progress'),
+      cards: sprintTasks.filter((t) => t.status === "in-progress"),
     },
     {
-      id: 'testing',
-      title: 'Testing',
+      id: "testing",
+      title: "Testing",
       limit: 3,
-      cards: sprintTasks.filter((t) => t.status === 'testing'),
+      cards: sprintTasks.filter((t) => t.status === "testing"),
     },
     {
-      id: 'done',
-      title: 'Done',
-      cards: sprintTasks.filter((t) => t.status === 'done'),
+      id: "done",
+      title: "Done",
+      cards: sprintTasks.filter((t) => t.status === "done"),
     },
   ]}
   compact
@@ -454,9 +463,9 @@ function ProjectBoard() {
 ```tsx
 <KanbanBoard
   columns={[
-    { id: 'today', title: 'Today', color: 'red', cards: todayTasks },
-    { id: 'this-week', title: 'This Week', color: 'yellow', cards: weekTasks },
-    { id: 'later', title: 'Later', color: 'default', cards: laterTasks },
+    { id: "today", title: "Today", color: "red", cards: todayTasks },
+    { id: "this-week", title: "This Week", color: "yellow", cards: weekTasks },
+    { id: "later", title: "Later", color: "default", cards: laterTasks },
   ]}
   onCardMove={handleMove}
   onAddCard={addNewTask}
@@ -476,12 +485,12 @@ function ProjectBoard() {
 ```tsx
 // Good: Descriptive card titles
 {
-  title: 'Implement user authentication with OAuth';
+  title: "Implement user authentication with OAuth";
 }
 
 // Avoid: Vague titles
 {
-  title: 'Auth stuff';
+  title: "Auth stuff";
 }
 ```
 

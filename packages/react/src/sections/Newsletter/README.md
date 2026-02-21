@@ -5,7 +5,7 @@
 ## Quick Start
 
 ```tsx
-import { Newsletter, Badge } from '@orion/react';
+import { Newsletter, Badge } from "@orion/react";
 
 <Newsletter
   eyebrow={<Badge>Newsletter</Badge>}
@@ -13,7 +13,7 @@ import { Newsletter, Badge } from '@orion/react';
   description="Get the latest updates and news delivered to your inbox."
   placeholder="Enter your email"
   buttonText="Subscribe"
-  onSubmit={(email) => console.log('Subscribed:', email)}
+  onSubmit={(email) => console.log("Subscribed:", email)}
   disclaimer="We respect your privacy. Unsubscribe at any time."
 />;
 ```
@@ -54,10 +54,10 @@ interface NewsletterProps {
   errorMessage?: ReactNode; // Error feedback
 
   // Layout
-  layout?: 'inline' | 'stacked' | 'card'; // default: 'inline'
-  size?: 'sm' | 'md' | 'lg'; // default: 'md'
+  layout?: "inline" | "stacked" | "card"; // default: 'inline'
+  size?: "sm" | "md" | "lg"; // default: 'md'
   centered?: boolean; // Center content - default: true
-  background?: 'base' | 'subtle' | 'brand' | 'none'; // default: 'subtle'
+  background?: "base" | "subtle" | "brand" | "none"; // default: 'subtle'
 }
 ```
 
@@ -70,7 +70,11 @@ interface NewsletterProps {
 Input and button on the same line.
 
 ```tsx
-<Newsletter layout="inline" title="Subscribe to updates" onSubmit={handleSubscribe} />
+<Newsletter
+  layout="inline"
+  title="Subscribe to updates"
+  onSubmit={handleSubscribe}
+/>
 ```
 
 ### `layout="stacked"`
@@ -164,7 +168,7 @@ Prominent newsletter with extra spacing.
 ```tsx
 <Newsletter
   onSubmit={(email) => {
-    console.log('Subscribed:', email);
+    console.log("Subscribed:", email);
   }}
 />
 ```
@@ -185,7 +189,7 @@ function NewsletterSection() {
       await subscribeToNewsletter(email);
       setSuccess(true);
     } catch (err) {
-      setError('Failed to subscribe. Please try again.');
+      setError("Failed to subscribe. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -196,7 +200,7 @@ function NewsletterSection() {
       title="Subscribe to our newsletter"
       onSubmit={handleSubmit}
       loading={loading}
-      successMessage={success ? 'Thanks for subscribing!' : undefined}
+      successMessage={success ? "Thanks for subscribing!" : undefined}
       errorMessage={error}
     />
   );
@@ -208,7 +212,7 @@ function NewsletterSection() {
 ## Custom Submit Button
 
 ```tsx
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight } from "lucide-react";
 
 <Newsletter
   title="Join our community"
@@ -241,7 +245,7 @@ Add privacy notes or terms links.
   onSubmit={handleSubmit}
   disclaimer={
     <>
-      By subscribing, you agree to our <a href="/privacy">Privacy Policy</a> and{' '}
+      By subscribing, you agree to our <a href="/privacy">Privacy Policy</a> and{" "}
       <a href="/terms">Terms of Service</a>.
     </>
   }
@@ -255,7 +259,7 @@ Add privacy notes or terms links.
 ### Landing Page Newsletter
 
 ```tsx
-import { Newsletter, Badge } from '@orion/react';
+import { Newsletter, Badge } from "@orion/react";
 
 <Newsletter
   eyebrow={<Badge variant="brand">Newsletter</Badge>}
@@ -315,24 +319,26 @@ import { Newsletter, Badge } from '@orion/react';
 
 ```tsx
 function NewsletterWithStates() {
-  const [state, setState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [state, setState] = useState<"idle" | "loading" | "success" | "error">(
+    "idle",
+  );
 
   const handleSubmit = async (email: string) => {
-    setState('loading');
+    setState("loading");
     try {
       await api.subscribe(email);
-      setState('success');
+      setState("success");
     } catch {
-      setState('error');
+      setState("error");
     }
   };
 
-  if (state === 'success') {
+  if (state === "success") {
     return (
       <Section background="subtle" spacing="lg">
         <Container size="md">
-          <div style={{ textAlign: 'center' }}>
-            <CheckCircle size={48} style={{ color: 'var(--status-success)' }} />
+          <div style={{ textAlign: "center" }}>
+            <CheckCircle size={48} style={{ color: "var(--status-success)" }} />
             <h2>You're subscribed!</h2>
             <p>Check your inbox for a confirmation email.</p>
           </div>
@@ -345,8 +351,12 @@ function NewsletterWithStates() {
     <Newsletter
       title="Join our newsletter"
       onSubmit={handleSubmit}
-      loading={state === 'loading'}
-      errorMessage={state === 'error' ? 'Something went wrong. Please try again.' : undefined}
+      loading={state === "loading"}
+      errorMessage={
+        state === "error"
+          ? "Something went wrong. Please try again."
+          : undefined
+      }
     />
   );
 }

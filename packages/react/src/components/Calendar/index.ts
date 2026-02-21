@@ -9,7 +9,7 @@
  * <Calendar mode="range" selected={range} onSelect={setRange} />
  * ```
  */
-export { Calendar } from './Calendar';
+export { Calendar } from "./Calendar";
 export type {
   CalendarProps,
   CalendarMode,
@@ -17,4 +17,4 @@ export type {
   CalendarRangeProps,
   CalendarMultipleProps,
   DateRange,
-} from './Calendar.types';
+} from "./Calendar.types";

@@ -5,7 +5,7 @@
 ## Quick Start
 
 ```tsx
-import { Container } from '@orion/react';
+import { Container } from "@orion/react";
 
 <Container size="lg">
   <h1>Page Content</h1>
@@ -29,7 +29,7 @@ import { Container } from '@orion/react';
 ```typescript
 interface ContainerProps {
   // Size
-  size?: 'sm' | 'md' | 'lg' | 'xl' | 'full'; // default: 'lg'
+  size?: "sm" | "md" | "lg" | "xl" | "full"; // default: 'lg'
 
   // Layout
   centered?: boolean; // Center horizontally - default: true
@@ -105,7 +105,7 @@ No width constraint, uses full available width.
 
 ```tsx
 <Container size="full">
-  <img src="/hero-banner.jpg" alt="Banner" style={{ width: '100%' }} />
+  <img src="/hero-banner.jpg" alt="Banner" style={{ width: "100%" }} />
 </Container>
 ```
 
@@ -149,7 +149,7 @@ Edge-to-edge content within the container.
 
 ```tsx
 <Container padded={false}>
-  <img src="/full-width.jpg" alt="" style={{ width: '100%' }} />
+  <img src="/full-width.jpg" alt="" style={{ width: "100%" }} />
 </Container>
 ```
 
@@ -235,7 +235,11 @@ Different widths for different content sections.
 
     {/* Stats row */}
     <div
-      style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--spacing-4)' }}
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(4, 1fr)",
+        gap: "var(--spacing-4)",
+      }}
     >
       {stats.map((stat) => (
         <StatCard key={stat.id} {...stat} />

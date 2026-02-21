@@ -4,12 +4,12 @@
  * Type definitions for the Orion Modal component (dialog/overlay).
  */
 
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
 /**
  * Modal sizes
  */
-export type ModalSize = 'sm' | 'md' | 'lg' | 'xl' | 'full';
+export type ModalSize = "sm" | "md" | "lg" | "xl" | "full";
 
 /**
  * Modal component props

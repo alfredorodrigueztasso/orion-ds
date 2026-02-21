@@ -17,15 +17,15 @@
  * ```
  */
 
-import { forwardRef, useState, useCallback } from 'react';
-import { Menu, LogOut, Settings, User } from 'lucide-react';
-import { Chat } from '../../../components/Chat';
+import { forwardRef, useState, useCallback } from "react";
+import { Menu, LogOut, Settings, User } from "lucide-react";
+import { Chat } from "../../../components/Chat";
 import type {
   ChatPageTemplateProps,
   ChatMessage as ChatMessageType,
-} from '../../../components/Chat';
-import { useStreamingText } from '../../../components/Chat/hooks/useStreamingText';
-import styles from '../../../components/Chat/Chat.module.css';
+} from "../../../components/Chat";
+import { useStreamingText } from "../../../components/Chat/hooks/useStreamingText";
+import styles from "../../../components/Chat/Chat.module.css";
 
 /**
  * Internal wrapper that progressively reveals message content word-by-word.
@@ -46,7 +46,10 @@ function StreamingChatMessage({ message }: { message: ChatMessageType }) {
   );
 }
 
-export const ChatPageTemplate = forwardRef<HTMLDivElement, ChatPageTemplateProps>(
+export const ChatPageTemplate = forwardRef<
+  HTMLDivElement,
+  ChatPageTemplateProps
+>(
   (
     {
       // Sidebar props
@@ -84,7 +87,7 @@ export const ChatPageTemplate = forwardRef<HTMLDivElement, ChatPageTemplateProps
     return (
       <div
         ref={ref}
-        className={[styles.pageTemplate, className].filter(Boolean).join(' ')}
+        className={[styles.pageTemplate, className].filter(Boolean).join(" ")}
         {...rest}
       >
         {/* Sidebar with user footer */}
@@ -100,11 +103,17 @@ export const ChatPageTemplate = forwardRef<HTMLDivElement, ChatPageTemplateProps
             <div className={styles.pageTemplateSidebarHeader}>
               {/* Logo */}
               <div className={styles.pageTemplateSidebarHeaderLogo}>
-                {logo || <span className={styles.pageTemplateSidebarHeaderLogoText}>AI Chat</span>}
+                {logo || (
+                  <span className={styles.pageTemplateSidebarHeaderLogoText}>
+                    AI Chat
+                  </span>
+                )}
               </div>
               {/* Mobile close */}
               <button
-                className={[styles.inputButton, styles.sidebarCloseButton].join(' ')}
+                className={[styles.inputButton, styles.sidebarCloseButton].join(
+                  " ",
+                )}
                 onClick={() => setSidebarCollapsed(true)}
                 aria-label="Close sidebar"
               >
@@ -114,14 +123,14 @@ export const ChatPageTemplate = forwardRef<HTMLDivElement, ChatPageTemplateProps
           }
           footer={
             user && (
-              <div style={{ position: 'relative' }}>
+              <div style={{ position: "relative" }}>
                 <button
                   className={[
                     styles.pageTemplateUserButton,
                     showUserMenu && styles.pageTemplateUserButtonActive,
                   ]
                     .filter(Boolean)
-                    .join(' ')}
+                    .join(" ")}
                   onClick={() => setShowUserMenu(!showUserMenu)}
                   aria-expanded={showUserMenu}
                   aria-haspopup="menu"
@@ -138,7 +147,9 @@ export const ChatPageTemplate = forwardRef<HTMLDivElement, ChatPageTemplateProps
                       <User size={18} />
                     </div>
                   )}
-                  <span className={styles.pageTemplateUserName}>{user.name}</span>
+                  <span className={styles.pageTemplateUserName}>
+                    {user.name}
+                  </span>
                 </button>
 
                 {/* User menu dropdown */}
@@ -160,7 +171,7 @@ export const ChatPageTemplate = forwardRef<HTMLDivElement, ChatPageTemplateProps
                         className={[
                           styles.pageTemplateMenuItem,
                           styles.pageTemplateMenuItemDanger,
-                        ].join(' ')}
+                        ].join(" ")}
                         onClick={() => {
                           setShowUserMenu(false);
                           onLogout();
@@ -183,10 +194,16 @@ export const ChatPageTemplate = forwardRef<HTMLDivElement, ChatPageTemplateProps
           <Chat>
             {/* Header with mobile menu */}
             <Chat.Header
-              title={conversations.find((c) => c.id === activeConversationId)?.title || 'New Chat'}
+              title={
+                conversations.find((c) => c.id === activeConversationId)
+                  ?.title || "New Chat"
+              }
               actions={
                 <button
-                  className={[styles.inputButton, styles.sectionMobileMenuButton].join(' ')}
+                  className={[
+                    styles.inputButton,
+                    styles.sectionMobileMenuButton,
+                  ].join(" ")}
                   onClick={() => setSidebarCollapsed(false)}
                   aria-label="Open sidebar"
                 >
@@ -203,7 +220,9 @@ export const ChatPageTemplate = forwardRef<HTMLDivElement, ChatPageTemplateProps
                     <Chat.Markdown content="✨" />
                   </div>
                   <div>
-                    <h3 className={styles.emptyStateTitle}>How can I help you today?</h3>
+                    <h3 className={styles.emptyStateTitle}>
+                      How can I help you today?
+                    </h3>
                     <p className={styles.emptyStateText}>
                       Start a conversation by typing a message below.
                     </p>
@@ -231,7 +250,7 @@ export const ChatPageTemplate = forwardRef<HTMLDivElement, ChatPageTemplateProps
             {/* Input */}
             <Chat.Input
               onSend={handleSend}
-              placeholder={inputConfig?.placeholder || 'Message AI...'}
+              placeholder={inputConfig?.placeholder || "Message AI..."}
               allowAttachments={inputConfig?.allowAttachments ?? true}
               allowVoiceRecording={inputConfig?.allowVoiceRecording ?? true}
               maxLength={inputConfig?.maxLength}
@@ -253,4 +272,4 @@ export const ChatPageTemplate = forwardRef<HTMLDivElement, ChatPageTemplateProps
   },
 );
 
-ChatPageTemplate.displayName = 'ChatPageTemplate';
+ChatPageTemplate.displayName = "ChatPageTemplate";

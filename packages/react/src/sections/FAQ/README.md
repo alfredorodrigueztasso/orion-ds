@@ -5,7 +5,7 @@
 ## Quick Start
 
 ```tsx
-import { FAQ, Badge } from '@orion/react';
+import { FAQ, Badge } from "@orion/react";
 
 <FAQ
   eyebrow={<Badge>FAQ</Badge>}
@@ -13,19 +13,19 @@ import { FAQ, Badge } from '@orion/react';
   description="Find answers to common questions about our product."
   items={[
     {
-      question: 'How do I get started?',
+      question: "How do I get started?",
       answer:
         "Sign up for a free account and follow our quick start guide. You'll be up and running in under 5 minutes.",
     },
     {
-      question: 'Is there a free trial?',
+      question: "Is there a free trial?",
       answer:
-        'Yes! We offer a 14-day free trial with full access to all features. No credit card required.',
+        "Yes! We offer a 14-day free trial with full access to all features. No credit card required.",
     },
     {
-      question: 'Can I cancel anytime?',
+      question: "Can I cancel anytime?",
       answer:
-        'Absolutely. You can cancel your subscription at any time with no penalties or hidden fees.',
+        "Absolutely. You can cancel your subscription at any time with no penalties or hidden fees.",
     },
   ]}
 />;
@@ -61,11 +61,11 @@ interface FAQProps {
   centered?: boolean; // Center header - default: true
 
   // Behavior
-  variant?: 'accordion' | 'grid'; // default: 'accordion'
+  variant?: "accordion" | "grid"; // default: 'accordion'
   allowMultiple?: boolean; // Multiple items open - default: true
 
   // Styling
-  background?: 'base' | 'subtle' | 'none'; // default: 'base'
+  background?: "base" | "subtle" | "none"; // default: 'base'
 }
 
 interface FAQItem {
@@ -87,9 +87,9 @@ Expandable items that toggle open/closed.
 <FAQ
   variant="accordion"
   items={[
-    { question: 'How does billing work?', answer: '...' },
-    { question: 'Can I upgrade later?', answer: '...' },
-    { question: 'Do you offer refunds?', answer: '...' },
+    { question: "How does billing work?", answer: "..." },
+    { question: "Can I upgrade later?", answer: "..." },
+    { question: "Do you offer refunds?", answer: "..." },
   ]}
 />
 ```
@@ -103,10 +103,10 @@ Static display of all questions and answers.
   variant="grid"
   columns={2}
   items={[
-    { question: 'What is included?', answer: '...' },
-    { question: 'How long is the trial?', answer: '...' },
-    { question: 'Is support included?', answer: '...' },
-    { question: 'Can I cancel anytime?', answer: '...' },
+    { question: "What is included?", answer: "..." },
+    { question: "How long is the trial?", answer: "..." },
+    { question: "Is support included?", answer: "..." },
+    { question: "Can I cancel anytime?", answer: "..." },
   ]}
 />
 ```
@@ -214,7 +214,7 @@ Only one item can be open at a time.
 ### Product FAQ
 
 ```tsx
-import { FAQ, Badge } from '@orion/react';
+import { FAQ, Badge } from "@orion/react";
 
 <FAQ
   eyebrow={<Badge variant="brand">FAQ</Badge>}
@@ -222,37 +222,37 @@ import { FAQ, Badge } from '@orion/react';
   description="Everything you need to know about our product."
   items={[
     {
-      question: 'How do I get started?',
+      question: "How do I get started?",
       answer:
         "Sign up for a free account, complete the onboarding wizard, and you'll be ready to go in under 5 minutes. Our quick start guide will walk you through the basics.",
       defaultOpen: true,
     },
     {
-      question: 'Is there a free trial?',
+      question: "Is there a free trial?",
       answer:
-        'Yes! We offer a 14-day free trial with full access to all Pro features. No credit card required to start.',
+        "Yes! We offer a 14-day free trial with full access to all Pro features. No credit card required to start.",
     },
     {
-      question: 'What happens when my trial ends?',
+      question: "What happens when my trial ends?",
       answer:
-        'At the end of your trial, you can choose to upgrade to a paid plan or continue with our free tier. Your data is always preserved.',
+        "At the end of your trial, you can choose to upgrade to a paid plan or continue with our free tier. Your data is always preserved.",
     },
     {
-      question: 'Can I cancel my subscription anytime?',
+      question: "Can I cancel my subscription anytime?",
       answer:
-        'Absolutely. You can cancel at any time from your account settings. There are no cancellation fees or long-term commitments.',
+        "Absolutely. You can cancel at any time from your account settings. There are no cancellation fees or long-term commitments.",
     },
     {
-      question: 'Do you offer refunds?',
+      question: "Do you offer refunds?",
       answer:
         "We offer a 30-day money-back guarantee. If you're not satisfied, contact our support team for a full refund.",
     },
     {
-      question: 'How do I contact support?',
+      question: "How do I contact support?",
       answer: (
         <>
           You can reach our support team through:
-          <ul style={{ marginTop: 'var(--spacing-2)', marginBottom: 0 }}>
+          <ul style={{ marginTop: "var(--spacing-2)", marginBottom: 0 }}>
             <li>Email: support@example.com</li>
             <li>Live chat (Pro plans)</li>
             <li>Help center: help.example.com</li>
@@ -274,22 +274,22 @@ import { FAQ, Badge } from '@orion/react';
     {
       question: "What's the difference between plans?",
       answer:
-        'Our Starter plan is for individuals, Pro is for small teams, and Enterprise is for large organizations with custom needs. See our pricing page for a detailed comparison.',
+        "Our Starter plan is for individuals, Pro is for small teams, and Enterprise is for large organizations with custom needs. See our pricing page for a detailed comparison.",
     },
     {
-      question: 'Do you offer discounts?',
+      question: "Do you offer discounts?",
       answer:
-        'Yes! We offer 20% off for annual billing and special pricing for startups, non-profits, and educational institutions.',
+        "Yes! We offer 20% off for annual billing and special pricing for startups, non-profits, and educational institutions.",
     },
     {
-      question: 'Can I change plans later?',
+      question: "Can I change plans later?",
       answer:
         "You can upgrade or downgrade your plan at any time. Changes take effect immediately, and we'll prorate your billing.",
     },
     {
-      question: 'What payment methods do you accept?',
+      question: "What payment methods do you accept?",
       answer:
-        'We accept all major credit cards (Visa, Mastercard, Amex), PayPal, and bank transfers for Enterprise plans.',
+        "We accept all major credit cards (Visa, Mastercard, Amex), PayPal, and bank transfers for Enterprise plans.",
     },
   ]}
   columns={1}
@@ -306,28 +306,30 @@ import { FAQ, Badge } from '@orion/react';
   title="Technical Questions"
   items={[
     {
-      question: 'What browsers are supported?',
-      answer: 'We support the latest versions of Chrome, Firefox, Safari, and Edge.',
+      question: "What browsers are supported?",
+      answer:
+        "We support the latest versions of Chrome, Firefox, Safari, and Edge.",
     },
     {
-      question: 'Is there an API?',
-      answer: 'Yes, we have a comprehensive REST API with full documentation.',
+      question: "Is there an API?",
+      answer: "Yes, we have a comprehensive REST API with full documentation.",
     },
     {
-      question: 'Can I self-host?',
-      answer: 'Enterprise customers can opt for on-premise deployment.',
+      question: "Can I self-host?",
+      answer: "Enterprise customers can opt for on-premise deployment.",
     },
     {
-      question: 'Is my data encrypted?',
-      answer: 'Yes, all data is encrypted at rest and in transit using AES-256.',
+      question: "Is my data encrypted?",
+      answer:
+        "Yes, all data is encrypted at rest and in transit using AES-256.",
     },
     {
-      question: 'Do you have an SLA?',
-      answer: 'Pro and Enterprise plans include 99.9% uptime SLA.',
+      question: "Do you have an SLA?",
+      answer: "Pro and Enterprise plans include 99.9% uptime SLA.",
     },
     {
-      question: 'Where are servers located?',
-      answer: 'We have data centers in US, EU, and Asia-Pacific regions.',
+      question: "Where are servers located?",
+      answer: "We have data centers in US, EU, and Asia-Pacific regions.",
     },
   ]}
   background="base"

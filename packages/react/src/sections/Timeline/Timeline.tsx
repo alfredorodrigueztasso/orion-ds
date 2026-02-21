@@ -4,9 +4,9 @@
  * A vertical or horizontal timeline for displaying events chronologically.
  */
 
-import React from 'react';
-import type { TimelineProps, TimelineEvent } from './Timeline.types';
-import styles from './Timeline.module.css';
+import React from "react";
+import type { TimelineProps, TimelineEvent } from "./Timeline.types";
+import styles from "./Timeline.module.css";
 
 /**
  * Default marker icon
@@ -46,25 +46,26 @@ export const Timeline: React.FC<TimelineProps> = ({
   title,
   description,
   events,
-  orientation = 'vertical',
+  orientation = "vertical",
   alternating = false,
   showConnector = true,
-  background = 'base',
+  background = "base",
   compact = false,
   className,
   ...rest
 }) => {
-  const layoutClass = orientation === 'horizontal' ? styles.horizontal : styles.vertical;
+  const layoutClass =
+    orientation === "horizontal" ? styles.horizontal : styles.vertical;
 
   const getMarkerIcon = (event: TimelineEvent) => {
     if (event.icon) return event.icon;
-    if (event.status === 'completed') return <CheckIcon />;
+    if (event.status === "completed") return <CheckIcon />;
     return <DefaultMarker />;
   };
 
   return (
     <section
-      className={`${styles.timeline} ${className || ''}`}
+      className={`${styles.timeline} ${className || ""}`}
       data-background={background}
       data-compact={compact}
       {...rest}
@@ -81,20 +82,30 @@ export const Timeline: React.FC<TimelineProps> = ({
         <div
           className={layoutClass}
           data-connector={showConnector}
-          data-alternating={alternating && orientation === 'vertical'}
+          data-alternating={alternating && orientation === "vertical"}
         >
           {events.map((event) => (
-            <div key={event.id} className={styles.event} data-status={event.status || 'default'}>
+            <div
+              key={event.id}
+              className={styles.event}
+              data-status={event.status || "default"}
+            >
               <div className={styles.marker}>{getMarkerIcon(event)}</div>
               <div className={styles.eventContent}>
                 <span className={styles.eventDate}>{event.date}</span>
                 <h3 className={styles.eventTitle}>
-                  {event.href ? <a href={event.href}>{event.title}</a> : event.title}
+                  {event.href ? (
+                    <a href={event.href}>{event.title}</a>
+                  ) : (
+                    event.title
+                  )}
                 </h3>
                 {event.description && (
                   <p className={styles.eventDescription}>{event.description}</p>
                 )}
-                {event.content && <div className={styles.eventExtra}>{event.content}</div>}
+                {event.content && (
+                  <div className={styles.eventExtra}>{event.content}</div>
+                )}
               </div>
             </div>
           ))}
@@ -104,4 +115,4 @@ export const Timeline: React.FC<TimelineProps> = ({
   );
 };
 
-Timeline.displayName = 'Timeline';
+Timeline.displayName = "Timeline";

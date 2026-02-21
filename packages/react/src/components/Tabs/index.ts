@@ -15,5 +15,5 @@
  * />
  * ```
  */
-export { Tabs } from './Tabs';
-export type { TabsProps, TabItem } from './Tabs.types';
+export { Tabs } from "./Tabs";
+export type { TabsProps, TabItem } from "./Tabs.types";

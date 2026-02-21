@@ -2,21 +2,21 @@
  * SearchInput Component Stories
  */
 
-import { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { SearchInput } from './SearchInput';
+import { useState } from "react";
+import type { Meta, StoryObj } from "@storybook/react";
+import { SearchInput } from "./SearchInput";
 
 const meta: Meta<typeof SearchInput> = {
-  title: 'Components/Forms/SearchInput',
+  title: "Components/Forms/SearchInput",
   component: SearchInput,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     size: {
-      control: 'radio',
-      options: ['sm', 'md', 'lg'],
+      control: "radio",
+      options: ["sm", "md", "lg"],
     },
   },
 };
@@ -25,52 +25,65 @@ export default meta;
 type Story = StoryObj<typeof SearchInput>;
 
 // Interactive wrapper that accepts Storybook args
-const InteractiveSearchInput = (args: Partial<React.ComponentProps<typeof SearchInput>>) => {
-  const [value, setValue] = useState('');
+const InteractiveSearchInput = (
+  args: Partial<React.ComponentProps<typeof SearchInput>>,
+) => {
+  const [value, setValue] = useState("");
 
   return (
     <SearchInput
       {...args}
       value={value}
       onChange={(e) => setValue(e.target.value)}
-      onClear={() => setValue('')}
+      onClear={() => setValue("")}
     />
   );
 };
 
 export const Default: Story = {
   args: {
-    placeholder: 'Search...',
-    size: 'md',
+    placeholder: "Search...",
+    size: "md",
   },
   render: (args) => <InteractiveSearchInput {...args} />,
 };
 
 export const WithValue: Story = {
   args: {
-    placeholder: 'Search...',
-    size: 'md',
+    placeholder: "Search...",
+    size: "md",
   },
   render: (args) => <InteractiveSearchInput {...args} />,
 };
 
 export const WithSearchButton: Story = {
   render: () => {
-    const [value, setValue] = useState('');
-    const [lastSearch, setLastSearch] = useState('');
+    const [value, setValue] = useState("");
+    const [lastSearch, setLastSearch] = useState("");
 
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-4)' }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "var(--spacing-4)",
+        }}
+      >
         <SearchInput
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          onClear={() => setValue('')}
+          onClear={() => setValue("")}
           onSearch={(v) => setLastSearch(v)}
           placeholder="Search and press Enter or click button..."
           showSearchButton
         />
         {lastSearch && (
-          <p style={{ fontSize: 'var(--font-size-14)', color: 'var(--text-secondary)' }}>
+          <p
+            style={{
+              fontSize: "var(--font-size-14)",
+              color: "var(--text-secondary)",
+            }}
+          >
             Last search: "{lastSearch}"
           </p>
         )}
@@ -81,28 +94,28 @@ export const WithSearchButton: Story = {
 
 export const SmallSize: Story = {
   args: {
-    placeholder: 'Search...',
-    size: 'sm',
+    placeholder: "Search...",
+    size: "sm",
   },
   render: (args) => <InteractiveSearchInput {...args} />,
 };
 
 export const LargeSize: Story = {
   args: {
-    placeholder: 'Search...',
-    size: 'lg',
+    placeholder: "Search...",
+    size: "lg",
   },
   render: (args) => <InteractiveSearchInput {...args} />,
 };
 
 export const FullWidth: Story = {
   args: {
-    placeholder: 'Search...',
-    size: 'md',
+    placeholder: "Search...",
+    size: "md",
     fullWidth: true,
   },
   render: (args) => (
-    <div style={{ width: '400px' }}>
+    <div style={{ width: "400px" }}>
       <InteractiveSearchInput {...args} />
     </div>
   ),
@@ -111,7 +124,7 @@ export const FullWidth: Story = {
 export const Loading: Story = {
   render: () => {
     const [loading, setLoading] = useState(false);
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState("");
 
     const handleSearch = () => {
       setLoading(true);
@@ -122,7 +135,7 @@ export const Loading: Story = {
       <SearchInput
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        onClear={() => setValue('')}
+        onClear={() => setValue("")}
         onSearch={handleSearch}
         placeholder="Type and press Enter..."
         loading={loading}
@@ -133,8 +146,8 @@ export const Loading: Story = {
 
 export const NoClearButton: Story = {
   args: {
-    placeholder: 'Search...',
-    size: 'md',
+    placeholder: "Search...",
+    size: "md",
     showClear: false,
   },
   render: (args) => <InteractiveSearchInput {...args} />,
@@ -142,30 +155,30 @@ export const NoClearButton: Story = {
 
 export const Disabled: Story = {
   args: {
-    placeholder: 'Search disabled',
+    placeholder: "Search disabled",
     disabled: true,
   },
 };
 
 export const AllSizes: Story = {
   args: {
-    placeholder: 'Search...',
+    placeholder: "Search...",
   },
   render: (args) => (
     <div
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 'var(--spacing-4)',
-        alignItems: 'flex-start',
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-4)",
+        alignItems: "flex-start",
       }}
     >
       <div>
         <p
           style={{
-            marginBottom: 'var(--spacing-2)',
-            fontWeight: 'var(--font-weight-medium)',
-            fontSize: 'var(--font-size-14)',
+            marginBottom: "var(--spacing-2)",
+            fontWeight: "var(--font-weight-medium)",
+            fontSize: "var(--font-size-14)",
           }}
         >
           Small
@@ -175,9 +188,9 @@ export const AllSizes: Story = {
       <div>
         <p
           style={{
-            marginBottom: 'var(--spacing-2)',
-            fontWeight: 'var(--font-weight-medium)',
-            fontSize: 'var(--font-size-14)',
+            marginBottom: "var(--spacing-2)",
+            fontWeight: "var(--font-weight-medium)",
+            fontSize: "var(--font-size-14)",
           }}
         >
           Medium (Default)
@@ -187,9 +200,9 @@ export const AllSizes: Story = {
       <div>
         <p
           style={{
-            marginBottom: 'var(--spacing-2)',
-            fontWeight: 'var(--font-weight-medium)',
-            fontSize: 'var(--font-size-14)',
+            marginBottom: "var(--spacing-2)",
+            fontWeight: "var(--font-weight-medium)",
+            fontSize: "var(--font-size-14)",
           }}
         >
           Large
@@ -202,23 +215,33 @@ export const AllSizes: Story = {
 
 export const SearchWithResults: Story = {
   render: () => {
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState("");
     const [results, setResults] = useState<string[]>([]);
     const [loading, setLoading] = useState(false);
 
-    const items = ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry', 'Fig', 'Grape'];
+    const items = [
+      "Apple",
+      "Banana",
+      "Cherry",
+      "Date",
+      "Elderberry",
+      "Fig",
+      "Grape",
+    ];
 
     const handleSearch = (query: string) => {
       setLoading(true);
       setTimeout(() => {
-        const filtered = items.filter((item) => item.toLowerCase().includes(query.toLowerCase()));
+        const filtered = items.filter((item) =>
+          item.toLowerCase().includes(query.toLowerCase()),
+        );
         setResults(filtered);
         setLoading(false);
       }, 500);
     };
 
     return (
-      <div style={{ width: '300px' }}>
+      <div style={{ width: "300px" }}>
         <SearchInput
           value={value}
           onChange={(e) => {
@@ -230,7 +253,7 @@ export const SearchWithResults: Story = {
             }
           }}
           onClear={() => {
-            setValue('');
+            setValue("");
             setResults([]);
           }}
           placeholder="Search fruits..."
@@ -240,18 +263,18 @@ export const SearchWithResults: Story = {
         {results.length > 0 && (
           <div
             style={{
-              marginTop: 'var(--spacing-2)',
-              padding: 'var(--spacing-2)',
-              background: 'var(--surface-subtle)',
-              borderRadius: 'var(--radius-sm)',
+              marginTop: "var(--spacing-2)",
+              padding: "var(--spacing-2)",
+              background: "var(--surface-subtle)",
+              borderRadius: "var(--radius-sm)",
             }}
           >
             {results.map((item) => (
               <div
                 key={item}
                 style={{
-                  padding: 'var(--spacing-2)',
-                  cursor: 'pointer',
+                  padding: "var(--spacing-2)",
+                  cursor: "pointer",
                 }}
               >
                 {item}

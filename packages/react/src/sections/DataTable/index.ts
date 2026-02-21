@@ -1,4 +1,4 @@
-export { DataTable } from './DataTable';
+export { DataTable } from "./DataTable";
 export type {
   DataTableProps,
   DataTableColumn,
@@ -11,4 +11,4 @@ export type {
   DataTableToolbarProps,
   DataTablePaginationProps,
   DataTableEmptyStateProps,
-} from './DataTable.types';
+} from "./DataTable.types";

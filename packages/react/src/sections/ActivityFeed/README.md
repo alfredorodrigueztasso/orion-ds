@@ -5,26 +5,26 @@
 ## Quick Start
 
 ```tsx
-import { ActivityFeed } from '@orion/react';
+import { ActivityFeed } from "@orion/react";
 
 <ActivityFeed
   activities={[
     {
-      id: '1',
-      type: 'comment',
-      actor: { name: 'Jane Doe', avatar: '/avatars/jane.jpg' },
-      title: 'Commented on Project X',
-      description: 'Great progress on the design!',
-      timestamp: '2024-01-15T10:30:00Z',
-      relativeTime: '2 hours ago',
+      id: "1",
+      type: "comment",
+      actor: { name: "Jane Doe", avatar: "/avatars/jane.jpg" },
+      title: "Commented on Project X",
+      description: "Great progress on the design!",
+      timestamp: "2024-01-15T10:30:00Z",
+      relativeTime: "2 hours ago",
     },
     {
-      id: '2',
-      type: 'create',
-      actor: { name: 'John Smith', avatar: '/avatars/john.jpg' },
-      title: 'Created new document',
-      timestamp: '2024-01-15T09:00:00Z',
-      relativeTime: '3 hours ago',
+      id: "2",
+      type: "create",
+      actor: { name: "John Smith", avatar: "/avatars/john.jpg" },
+      title: "Created new document",
+      timestamp: "2024-01-15T09:00:00Z",
+      relativeTime: "3 hours ago",
     },
   ]}
 />;
@@ -70,9 +70,17 @@ interface ActivityFeedProps {
 
 interface ActivityItem {
   id: string; // Unique identifier
-  type?: 'comment' | 'update' | 'create' | 'delete' | 'assign' | 'complete' | 'upload' | 'default';
+  type?:
+    | "comment"
+    | "update"
+    | "create"
+    | "delete"
+    | "assign"
+    | "complete"
+    | "upload"
+    | "default";
   icon?: ReactNode; // Custom icon (overrides type)
-  iconVariant?: 'default' | 'success' | 'warning' | 'error' | 'info' | 'brand';
+  iconVariant?: "default" | "success" | "warning" | "error" | "info" | "brand";
   actor?: ActivityActor; // Who performed the action
   title: ReactNode; // Activity title/summary
   description?: ReactNode; // Additional details
@@ -206,16 +214,16 @@ import { Star } from 'lucide-react';
 ### With Filters
 
 ```tsx
-const [filter, setFilter] = useState('all');
+const [filter, setFilter] = useState("all");
 
 <ActivityFeed
   activities={activities}
   showFilters
   filters={[
-    { value: 'all', label: 'All Activity' },
-    { value: 'comment', label: 'Comments', count: 12 },
-    { value: 'update', label: 'Updates', count: 8 },
-    { value: 'create', label: 'Created', count: 5 },
+    { value: "all", label: "All Activity" },
+    { value: "comment", label: "Comments", count: 12 },
+    { value: "update", label: "Updates", count: 8 },
+    { value: "create", label: "Created", count: 5 },
   ]}
   activeFilter={filter}
   onFilterChange={setFilter}
@@ -266,23 +274,23 @@ const [filter, setFilter] = useState('all');
 ### Dashboard Activity Feed
 
 ```tsx
-import { ActivityFeed, Button } from '@orion/react';
-import { MessageSquare, FileText, CheckCircle, UserPlus } from 'lucide-react';
+import { ActivityFeed, Button } from "@orion/react";
+import { MessageSquare, FileText, CheckCircle, UserPlus } from "lucide-react";
 
 function DashboardActivity() {
   const [activities] = useState([
     {
-      id: '1',
-      type: 'comment',
-      actor: { name: 'Sarah Chen', avatar: '/avatars/sarah.jpg' },
+      id: "1",
+      type: "comment",
+      actor: { name: "Sarah Chen", avatar: "/avatars/sarah.jpg" },
       title: (
         <>
           Commented on <a href="#">Project Alpha</a>
         </>
       ),
       description: '"The new designs look fantastic! Ready for development."',
-      timestamp: '2024-01-15T10:30:00Z',
-      relativeTime: '10 minutes ago',
+      timestamp: "2024-01-15T10:30:00Z",
+      relativeTime: "10 minutes ago",
       actions: (
         <Button size="sm" variant="ghost">
           Reply
@@ -290,38 +298,38 @@ function DashboardActivity() {
       ),
     },
     {
-      id: '2',
-      type: 'complete',
-      iconVariant: 'success',
-      actor: { name: 'Marcus Johnson', avatar: '/avatars/marcus.jpg' },
+      id: "2",
+      type: "complete",
+      iconVariant: "success",
+      actor: { name: "Marcus Johnson", avatar: "/avatars/marcus.jpg" },
       title: (
         <>
           Completed task <a href="#">Update user dashboard</a>
         </>
       ),
-      timestamp: '2024-01-15T09:45:00Z',
-      relativeTime: '1 hour ago',
+      timestamp: "2024-01-15T09:45:00Z",
+      relativeTime: "1 hour ago",
     },
     {
-      id: '3',
-      type: 'assign',
-      actor: { name: 'Emily Rodriguez', avatar: '/avatars/emily.jpg' },
+      id: "3",
+      type: "assign",
+      actor: { name: "Emily Rodriguez", avatar: "/avatars/emily.jpg" },
       title: (
         <>
           Assigned <a href="#">API Integration</a> to John Smith
         </>
       ),
-      timestamp: '2024-01-15T09:00:00Z',
-      relativeTime: '2 hours ago',
+      timestamp: "2024-01-15T09:00:00Z",
+      relativeTime: "2 hours ago",
     },
     {
-      id: '4',
-      type: 'create',
-      iconVariant: 'brand',
-      actor: { name: 'David Kim', avatar: '/avatars/david.jpg' },
-      title: 'Created new project: Mobile App v2',
-      timestamp: '2024-01-15T08:30:00Z',
-      relativeTime: '2.5 hours ago',
+      id: "4",
+      type: "create",
+      iconVariant: "brand",
+      actor: { name: "David Kim", avatar: "/avatars/david.jpg" },
+      title: "Created new project: Mobile App v2",
+      timestamp: "2024-01-15T08:30:00Z",
+      relativeTime: "2.5 hours ago",
     },
   ]);
 
@@ -330,9 +338,9 @@ function DashboardActivity() {
       activities={activities}
       showFilters
       filters={[
-        { value: 'all', label: 'All' },
-        { value: 'comment', label: 'Comments' },
-        { value: 'complete', label: 'Completed' },
+        { value: "all", label: "All" },
+        { value: "comment", label: "Comments" },
+        { value: "complete", label: "Completed" },
       ]}
     />
   );
@@ -378,12 +386,12 @@ function DashboardActivity() {
 ```tsx
 // Good: Clear activity title
 {
-  title: 'Sarah Chen commented on Project Alpha';
+  title: "Sarah Chen commented on Project Alpha";
 }
 
 // Avoid: Vague titles
 {
-  title: 'New activity';
+  title: "New activity";
 }
 ```
 

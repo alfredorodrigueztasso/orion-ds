@@ -22,7 +22,7 @@ _Extends all native `<textarea>` attributes except `size`._
 ### Basic
 
 ```tsx
-import { Textarea } from '@orion/react';
+import { Textarea } from "@orion/react";
 
 <Textarea label="Description" placeholder="Enter a description..." />;
 ```
@@ -30,10 +30,10 @@ import { Textarea } from '@orion/react';
 ### Controlled
 
 ```tsx
-import { useState } from 'react';
+import { useState } from "react";
 
 function Example() {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
 
   return (
     <Textarea
@@ -49,13 +49,22 @@ function Example() {
 ### With Character Counter
 
 ```tsx
-<Textarea label="Bio" maxLength={500} showCounter placeholder="Max 500 characters" />
+<Textarea
+  label="Bio"
+  maxLength={500}
+  showCounter
+  placeholder="Max 500 characters"
+/>
 ```
 
 ### With Helper Text
 
 ```tsx
-<Textarea label="Feedback" helperText="Your feedback helps us improve" rows={4} />
+<Textarea
+  label="Feedback"
+  helperText="Your feedback helps us improve"
+  rows={4}
+/>
 ```
 
 ### With Error
@@ -95,7 +104,7 @@ function AutoGrowTextarea(props) {
 
   const handleInput = () => {
     if (ref.current) {
-      ref.current.style.height = 'auto';
+      ref.current.style.height = "auto";
       ref.current.style.height = `${ref.current.scrollHeight}px`;
     }
   };
@@ -107,7 +116,11 @@ function AutoGrowTextarea(props) {
 ### Disabled
 
 ```tsx
-<Textarea label="Read-only notes" value="This content cannot be edited" disabled />
+<Textarea
+  label="Read-only notes"
+  value="This content cannot be edited"
+  disabled
+/>
 ```
 
 ## Tokens Used

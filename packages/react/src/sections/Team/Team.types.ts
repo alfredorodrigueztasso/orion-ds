@@ -4,7 +4,7 @@
  * Type definitions for the Orion Team section component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Grid column count for team members
@@ -14,7 +14,7 @@ export type TeamColumns = 2 | 3 | 4;
 /**
  * Team card visual variant
  */
-export type TeamVariant = 'default' | 'cards' | 'compact';
+export type TeamVariant = "default" | "cards" | "compact";
 
 /**
  * Social link for team member
@@ -115,7 +115,7 @@ export interface TeamMemberCardProps extends HTMLAttributes<HTMLDivElement> {
  * />
  * ```
  */
-export interface TeamProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
+export interface TeamProps extends Omit<HTMLAttributes<HTMLElement>, "title"> {
   /**
    * Optional eyebrow/badge above title
    */
@@ -155,7 +155,7 @@ export interface TeamProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
    * Background style
    * @default 'base'
    */
-  background?: 'base' | 'subtle' | 'none';
+  background?: "base" | "subtle" | "none";
 
   /**
    * Center the header and members

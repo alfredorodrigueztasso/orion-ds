@@ -2,7 +2,7 @@
  * Resolver — BFS recursive dependency resolution for registryDependencies
  */
 
-import type { RegistryItem } from '../types.js';
+import type { RegistryItem } from "../types.js";
 
 interface FetchFn {
   (name: string): Promise<RegistryItem>;
@@ -17,7 +17,10 @@ export interface ResolveResult {
  * Resolve all registry dependencies (BFS) for a set of requested component names.
  * Returns deduplicated list of RegistryItems in dependency order.
  */
-export async function resolveAll(names: string[], fetchItem: FetchFn): Promise<ResolveResult> {
+export async function resolveAll(
+  names: string[],
+  fetchItem: FetchFn,
+): Promise<ResolveResult> {
   const resolved = new Map<string, RegistryItem>();
   const queue = [...names];
   const extraDeps: string[] = [];

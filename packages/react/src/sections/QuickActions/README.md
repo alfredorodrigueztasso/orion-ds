@@ -5,21 +5,36 @@
 ## Quick Start
 
 ```tsx
-import { QuickActions } from '@orion/react';
-import { Plus, Upload, Download, Share } from 'lucide-react';
+import { QuickActions } from "@orion/react";
+import { Plus, Upload, Download, Share } from "lucide-react";
 
 <QuickActions
   variant="fab"
   actions={[
-    { id: 'new', label: 'New Item', icon: <Plus size={20} />, onClick: () => openNewModal() },
-    { id: 'upload', label: 'Upload', icon: <Upload size={20} />, onClick: () => openUpload() },
     {
-      id: 'download',
-      label: 'Download',
+      id: "new",
+      label: "New Item",
+      icon: <Plus size={20} />,
+      onClick: () => openNewModal(),
+    },
+    {
+      id: "upload",
+      label: "Upload",
+      icon: <Upload size={20} />,
+      onClick: () => openUpload(),
+    },
+    {
+      id: "download",
+      label: "Download",
       icon: <Download size={20} />,
       onClick: () => startDownload(),
     },
-    { id: 'share', label: 'Share', icon: <Share size={20} />, onClick: () => openShare() },
+    {
+      id: "share",
+      label: "Share",
+      icon: <Share size={20} />,
+      onClick: () => openShare(),
+    },
   ]}
 />;
 ```
@@ -46,8 +61,13 @@ interface QuickActionsProps {
   actions: QuickAction[]; // REQUIRED - Action items
 
   // Display
-  variant?: 'fab' | 'bar' | 'menu'; // default: 'fab'
-  position?: 'bottom-right' | 'bottom-left' | 'bottom-center' | 'top-right' | 'top-left'; // default: 'bottom-right'
+  variant?: "fab" | "bar" | "menu"; // default: 'fab'
+  position?:
+    | "bottom-right"
+    | "bottom-left"
+    | "bottom-center"
+    | "top-right"
+    | "top-left"; // default: 'bottom-right'
 
   // FAB-specific
   primaryAction?: QuickAction; // Main action (shown when collapsed)
@@ -66,7 +86,7 @@ interface QuickAction {
   onClick: () => void; // REQUIRED - Click handler
   shortcut?: string; // Keyboard shortcut display
   disabled?: boolean; // Disabled state
-  variant?: 'default' | 'primary' | 'danger'; // Action style
+  variant?: "default" | "primary" | "danger"; // Action style
 }
 ```
 
@@ -82,8 +102,13 @@ Floating action button that expands to show actions.
 <QuickActions
   variant="fab"
   actions={[
-    { id: 'new', label: 'New', icon: <Plus size={20} />, onClick: create },
-    { id: 'upload', label: 'Upload', icon: <Upload size={20} />, onClick: upload },
+    { id: "new", label: "New", icon: <Plus size={20} />, onClick: create },
+    {
+      id: "upload",
+      label: "Upload",
+      icon: <Upload size={20} />,
+      onClick: upload,
+    },
   ]}
 />
 ```
@@ -97,9 +122,19 @@ Horizontal action bar.
   variant="bar"
   showLabels
   actions={[
-    { id: 'new', label: 'New', icon: <Plus size={20} />, onClick: create },
-    { id: 'upload', label: 'Upload', icon: <Upload size={20} />, onClick: upload },
-    { id: 'download', label: 'Download', icon: <Download size={20} />, onClick: download },
+    { id: "new", label: "New", icon: <Plus size={20} />, onClick: create },
+    {
+      id: "upload",
+      label: "Upload",
+      icon: <Upload size={20} />,
+      onClick: upload,
+    },
+    {
+      id: "download",
+      label: "Download",
+      icon: <Download size={20} />,
+      onClick: download,
+    },
   ]}
 />
 ```
@@ -112,9 +147,19 @@ Vertical menu style.
 <QuickActions
   variant="menu"
   actions={[
-    { id: 'new', label: 'New Item', icon: <Plus size={20} />, onClick: create },
-    { id: 'import', label: 'Import', icon: <Upload size={20} />, onClick: importData },
-    { id: 'export', label: 'Export', icon: <Download size={20} />, onClick: exportData },
+    { id: "new", label: "New Item", icon: <Plus size={20} />, onClick: create },
+    {
+      id: "import",
+      label: "Import",
+      icon: <Upload size={20} />,
+      onClick: importData,
+    },
+    {
+      id: "export",
+      label: "Export",
+      icon: <Download size={20} />,
+      onClick: exportData,
+    },
   ]}
 />
 ```
@@ -150,15 +195,25 @@ Set a primary action that's shown when FAB is collapsed.
 <QuickActions
   variant="fab"
   primaryAction={{
-    id: 'create',
-    label: 'Create',
+    id: "create",
+    label: "Create",
     icon: <Plus size={24} />,
     onClick: () => openCreateModal(),
-    variant: 'primary',
+    variant: "primary",
   }}
   actions={[
-    { id: 'upload', label: 'Upload File', icon: <Upload size={20} />, onClick: upload },
-    { id: 'import', label: 'Import Data', icon: <FileUp size={20} />, onClick: importData },
+    {
+      id: "upload",
+      label: "Upload File",
+      icon: <Upload size={20} />,
+      onClick: upload,
+    },
+    {
+      id: "import",
+      label: "Import Data",
+      icon: <FileUp size={20} />,
+      onClick: importData,
+    },
   ]}
 />
 ```
@@ -168,7 +223,11 @@ Set a primary action that's shown when FAB is collapsed.
 ## Custom Trigger Icon
 
 ```tsx
-<QuickActions variant="fab" triggerIcon={<Menu size={24} />} actions={actions} />
+<QuickActions
+  variant="fab"
+  triggerIcon={<Menu size={24} />}
+  actions={actions}
+/>
 ```
 
 ---
@@ -202,9 +261,27 @@ Display keyboard shortcuts alongside actions.
 ```tsx
 <QuickActions
   actions={[
-    { id: 'new', label: 'New', icon: <Plus size={20} />, onClick: create, shortcut: '⌘N' },
-    { id: 'save', label: 'Save', icon: <Save size={20} />, onClick: save, shortcut: '⌘S' },
-    { id: 'search', label: 'Search', icon: <Search size={20} />, onClick: search, shortcut: '⌘K' },
+    {
+      id: "new",
+      label: "New",
+      icon: <Plus size={20} />,
+      onClick: create,
+      shortcut: "⌘N",
+    },
+    {
+      id: "save",
+      label: "Save",
+      icon: <Save size={20} />,
+      onClick: save,
+      shortcut: "⌘S",
+    },
+    {
+      id: "search",
+      label: "Search",
+      icon: <Search size={20} />,
+      onClick: search,
+      shortcut: "⌘K",
+    },
   ]}
 />
 ```
@@ -216,24 +293,44 @@ Display keyboard shortcuts alongside actions.
 ### Document Editor FAB
 
 ```tsx
-import { QuickActions } from '@orion/react';
-import { Plus, FileText, Image, Table, Link } from 'lucide-react';
+import { QuickActions } from "@orion/react";
+import { Plus, FileText, Image, Table, Link } from "lucide-react";
 
 <QuickActions
   variant="fab"
   position="bottom-right"
   primaryAction={{
-    id: 'add',
-    label: 'Add Block',
+    id: "add",
+    label: "Add Block",
     icon: <Plus size={24} />,
     onClick: () => {},
-    variant: 'primary',
+    variant: "primary",
   }}
   actions={[
-    { id: 'text', label: 'Text Block', icon: <FileText size={20} />, onClick: addText },
-    { id: 'image', label: 'Image', icon: <Image size={20} />, onClick: addImage },
-    { id: 'table', label: 'Table', icon: <Table size={20} />, onClick: addTable },
-    { id: 'link', label: 'Embed Link', icon: <Link size={20} />, onClick: addEmbed },
+    {
+      id: "text",
+      label: "Text Block",
+      icon: <FileText size={20} />,
+      onClick: addText,
+    },
+    {
+      id: "image",
+      label: "Image",
+      icon: <Image size={20} />,
+      onClick: addImage,
+    },
+    {
+      id: "table",
+      label: "Table",
+      icon: <Table size={20} />,
+      onClick: addTable,
+    },
+    {
+      id: "link",
+      label: "Embed Link",
+      icon: <Link size={20} />,
+      onClick: addEmbed,
+    },
   ]}
 />;
 ```
@@ -246,10 +343,30 @@ import { Plus, FileText, Image, Table, Link } from 'lucide-react';
   position="bottom-center"
   showLabels
   actions={[
-    { id: 'filter', label: 'Filter', icon: <Filter size={20} />, onClick: openFilters },
-    { id: 'export', label: 'Export', icon: <Download size={20} />, onClick: exportData },
-    { id: 'share', label: 'Share', icon: <Share size={20} />, onClick: shareReport },
-    { id: 'settings', label: 'Settings', icon: <Settings size={20} />, onClick: openSettings },
+    {
+      id: "filter",
+      label: "Filter",
+      icon: <Filter size={20} />,
+      onClick: openFilters,
+    },
+    {
+      id: "export",
+      label: "Export",
+      icon: <Download size={20} />,
+      onClick: exportData,
+    },
+    {
+      id: "share",
+      label: "Share",
+      icon: <Share size={20} />,
+      onClick: shareReport,
+    },
+    {
+      id: "settings",
+      label: "Settings",
+      icon: <Settings size={20} />,
+      onClick: openSettings,
+    },
   ]}
 />
 ```
@@ -262,26 +379,31 @@ import { Plus, FileText, Image, Table, Link } from 'lucide-react';
   position="bottom-right"
   actions={[
     {
-      id: 'post',
-      label: 'Create Post',
+      id: "post",
+      label: "Create Post",
       icon: <PenSquare size={20} />,
       onClick: newPost,
-      shortcut: '⌘P',
+      shortcut: "⌘P",
     },
     {
-      id: 'story',
-      label: 'Add Story',
+      id: "story",
+      label: "Add Story",
       icon: <BookOpen size={20} />,
       onClick: newStory,
-      shortcut: '⌘S',
+      shortcut: "⌘S",
     },
-    { id: 'reel', label: 'Create Reel', icon: <Video size={20} />, onClick: newReel },
     {
-      id: 'live',
-      label: 'Go Live',
+      id: "reel",
+      label: "Create Reel",
+      icon: <Video size={20} />,
+      onClick: newReel,
+    },
+    {
+      id: "live",
+      label: "Go Live",
       icon: <Radio size={20} />,
       onClick: goLive,
-      variant: 'primary',
+      variant: "primary",
     },
   ]}
 />
@@ -295,9 +417,24 @@ import { Plus, FileText, Image, Table, Link } from 'lucide-react';
   position="bottom-right"
   offset={32}
   actions={[
-    { id: 'upload', label: 'Upload Files', icon: <Upload size={20} />, onClick: upload },
-    { id: 'folder', label: 'New Folder', icon: <FolderPlus size={20} />, onClick: newFolder },
-    { id: 'scan', label: 'Scan Document', icon: <Scan size={20} />, onClick: scan },
+    {
+      id: "upload",
+      label: "Upload Files",
+      icon: <Upload size={20} />,
+      onClick: upload,
+    },
+    {
+      id: "folder",
+      label: "New Folder",
+      icon: <FolderPlus size={20} />,
+      onClick: newFolder,
+    },
+    {
+      id: "scan",
+      label: "Scan Document",
+      icon: <Scan size={20} />,
+      onClick: scan,
+    },
   ]}
 />
 ```
@@ -311,11 +448,32 @@ import { Plus, FileText, Image, Table, Link } from 'lucide-react';
   fixed
   showLabels
   actions={[
-    { id: 'home', label: 'Home', icon: <Home size={20} />, onClick: goHome },
-    { id: 'search', label: 'Search', icon: <Search size={20} />, onClick: openSearch },
-    { id: 'add', label: 'Add', icon: <Plus size={20} />, onClick: create, variant: 'primary' },
-    { id: 'inbox', label: 'Inbox', icon: <Inbox size={20} />, onClick: goInbox },
-    { id: 'profile', label: 'Profile', icon: <User size={20} />, onClick: goProfile },
+    { id: "home", label: "Home", icon: <Home size={20} />, onClick: goHome },
+    {
+      id: "search",
+      label: "Search",
+      icon: <Search size={20} />,
+      onClick: openSearch,
+    },
+    {
+      id: "add",
+      label: "Add",
+      icon: <Plus size={20} />,
+      onClick: create,
+      variant: "primary",
+    },
+    {
+      id: "inbox",
+      label: "Inbox",
+      icon: <Inbox size={20} />,
+      onClick: goInbox,
+    },
+    {
+      id: "profile",
+      label: "Profile",
+      icon: <User size={20} />,
+      onClick: goProfile,
+    },
   ]}
 />
 ```
@@ -333,12 +491,12 @@ import { Plus, FileText, Image, Table, Link } from 'lucide-react';
 ```tsx
 // Good: Descriptive action labels
 {
-  label: 'Create New Document';
+  label: "Create New Document";
 }
 
 // Avoid: Icon-only without aria-label
 {
-  label: '';
+  label: "";
 } // Screen reader can't announce
 ```
 

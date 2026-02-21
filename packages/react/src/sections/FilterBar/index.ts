@@ -1,7 +1,7 @@
-export { FilterBar } from './FilterBar';
+export { FilterBar } from "./FilterBar";
 export type {
   FilterBarProps,
   FilterDefinition,
   FilterOption,
   ActiveFilter,
-} from './FilterBar.types';
+} from "./FilterBar.types";

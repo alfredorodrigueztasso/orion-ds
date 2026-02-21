@@ -1,100 +1,100 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
-import { Table } from './Table';
-import { Avatar } from '../Avatar';
-import { Badge } from '../Badge';
-import { Button } from '../Button';
-import { Card } from '../Card';
-import type { TableColumn, SortDirection } from './Table.types';
+import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
+import { Table } from "./Table";
+import { Avatar } from "../Avatar";
+import { Badge } from "../Badge";
+import { Button } from "../Button";
+import { Card } from "../Card";
+import type { TableColumn, SortDirection } from "./Table.types";
 
 interface User {
   id: number;
   name: string;
   email: string;
   role: string;
-  status: 'active' | 'inactive' | 'pending';
+  status: "active" | "inactive" | "pending";
   lastLogin: string;
 }
 
 const mockUsers: User[] = [
   {
     id: 1,
-    name: 'John Doe',
-    email: 'john@example.com',
-    role: 'Admin',
-    status: 'active',
-    lastLogin: '2024-01-20',
+    name: "John Doe",
+    email: "john@example.com",
+    role: "Admin",
+    status: "active",
+    lastLogin: "2024-01-20",
   },
   {
     id: 2,
-    name: 'Jane Smith',
-    email: 'jane@example.com',
-    role: 'User',
-    status: 'active',
-    lastLogin: '2024-01-19',
+    name: "Jane Smith",
+    email: "jane@example.com",
+    role: "User",
+    status: "active",
+    lastLogin: "2024-01-19",
   },
   {
     id: 3,
-    name: 'Bob Johnson',
-    email: 'bob@example.com',
-    role: 'Editor',
-    status: 'pending',
-    lastLogin: '2024-01-18',
+    name: "Bob Johnson",
+    email: "bob@example.com",
+    role: "Editor",
+    status: "pending",
+    lastLogin: "2024-01-18",
   },
   {
     id: 4,
-    name: 'Alice Williams',
-    email: 'alice@example.com',
-    role: 'User',
-    status: 'inactive',
-    lastLogin: '2024-01-15',
+    name: "Alice Williams",
+    email: "alice@example.com",
+    role: "User",
+    status: "inactive",
+    lastLogin: "2024-01-15",
   },
   {
     id: 5,
-    name: 'Charlie Brown',
-    email: 'charlie@example.com',
-    role: 'Admin',
-    status: 'active',
-    lastLogin: '2024-01-21',
+    name: "Charlie Brown",
+    email: "charlie@example.com",
+    role: "Admin",
+    status: "active",
+    lastLogin: "2024-01-21",
   },
 ];
 
 // Use any for Storybook compatibility with generic components
 const basicColumns: TableColumn<any>[] = [
-  { key: 'name', header: 'Name' },
-  { key: 'email', header: 'Email' },
-  { key: 'role', header: 'Role' },
-  { key: 'status', header: 'Status' },
+  { key: "name", header: "Name" },
+  { key: "email", header: "Email" },
+  { key: "role", header: "Role" },
+  { key: "status", header: "Status" },
 ];
 
 const meta = {
-  title: 'Components/Data Display/Table',
+  title: "Components/Data Display/Table",
   component: Table,
   parameters: {
-    layout: 'padded',
+    layout: "padded",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     size: {
-      control: 'select',
-      options: ['sm', 'md', 'lg'],
-      description: 'Table size',
+      control: "select",
+      options: ["sm", "md", "lg"],
+      description: "Table size",
     },
     striped: {
-      control: 'boolean',
-      description: 'Striped rows',
+      control: "boolean",
+      description: "Striped rows",
     },
     hoverable: {
-      control: 'boolean',
-      description: 'Hoverable rows',
+      control: "boolean",
+      description: "Hoverable rows",
     },
     bordered: {
-      control: 'boolean',
-      description: 'Bordered table',
+      control: "boolean",
+      description: "Bordered table",
     },
     borderless: {
-      control: 'boolean',
-      description: 'Remove container border (for Card integration)',
+      control: "boolean",
+      description: "Remove container border (for Card integration)",
     },
   },
 } satisfies Meta<typeof Table>;
@@ -134,7 +134,8 @@ export const Borderless: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Use `borderless` prop when placing Table inside a Card to avoid double borders.',
+        story:
+          "Use `borderless` prop when placing Table inside a Card to avoid double borders.",
       },
     },
   },
@@ -144,7 +145,7 @@ export const SmallSize: Story = {
   args: {
     columns: basicColumns,
     data: mockUsers,
-    size: 'sm',
+    size: "sm",
   },
 };
 
@@ -152,7 +153,7 @@ export const LargeSize: Story = {
   args: {
     columns: basicColumns,
     data: mockUsers,
-    size: 'lg',
+    size: "lg",
   },
 };
 
@@ -160,7 +161,7 @@ export const WithCaption: Story = {
   args: {
     columns: basicColumns,
     data: mockUsers,
-    caption: 'List of system users',
+    caption: "List of system users",
   },
 };
 
@@ -175,7 +176,7 @@ export const CustomEmptyMessage: Story = {
   args: {
     columns: basicColumns,
     data: [],
-    emptyMessage: 'No users found. Try adjusting your filters.',
+    emptyMessage: "No users found. Try adjusting your filters.",
   },
 };
 
@@ -183,19 +184,19 @@ export const WithSorting: Story = {
   args: { columns: basicColumns, data: mockUsers },
   render: () => {
     const sortableColumns: TableColumn<any>[] = [
-      { key: 'name', header: 'Name', sortable: true },
-      { key: 'email', header: 'Email', sortable: true },
-      { key: 'role', header: 'Role', sortable: true },
-      { key: 'status', header: 'Status' },
+      { key: "name", header: "Name", sortable: true },
+      { key: "email", header: "Email", sortable: true },
+      { key: "role", header: "Role", sortable: true },
+      { key: "status", header: "Status" },
     ];
 
     return (
-      <div style={{ maxWidth: '900px' }}>
+      <div style={{ maxWidth: "900px" }}>
         <Table
           columns={sortableColumns}
           data={mockUsers}
           onSortChange={(key, direction) => {
-            console.log('Sort changed:', key, direction);
+            console.log("Sort changed:", key, direction);
           }}
         />
       </div>
@@ -207,17 +208,17 @@ export const WithCustomCell: Story = {
   args: { columns: basicColumns, data: mockUsers },
   render: () => {
     const customColumns: TableColumn<any>[] = [
-      { key: 'name', header: 'Name' },
-      { key: 'email', header: 'Email' },
+      { key: "name", header: "Name" },
+      { key: "email", header: "Email" },
       {
-        key: 'status',
-        header: 'Status',
-        align: 'center',
+        key: "status",
+        header: "Status",
+        align: "center",
         cell: (user) => {
           const variantMap = {
-            active: 'success',
-            inactive: 'neutral',
-            pending: 'warning',
+            active: "success",
+            inactive: "neutral",
+            pending: "warning",
           } as const;
           return (
             <Badge variant={variantMap[user.status as keyof typeof variantMap]}>
@@ -227,14 +228,14 @@ export const WithCustomCell: Story = {
         },
       },
       {
-        key: 'lastLogin',
-        header: 'Last Login',
+        key: "lastLogin",
+        header: "Last Login",
         cell: (user) => new Date(user.lastLogin).toLocaleDateString(),
       },
     ];
 
     return (
-      <div style={{ maxWidth: '900px' }}>
+      <div style={{ maxWidth: "900px" }}>
         <Table columns={customColumns} data={mockUsers} striped hoverable />
       </div>
     );
@@ -249,10 +250,10 @@ export const ClickableRows: Story = {
     return (
       <div
         style={{
-          maxWidth: '900px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 'var(--spacing-4)',
+          maxWidth: "900px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "var(--spacing-4)",
         }}
       >
         <Table
@@ -264,7 +265,8 @@ export const ClickableRows: Story = {
         {selectedUser && (
           <Card>
             <Card.Body>
-              <strong>Selected User:</strong> {selectedUser.name} ({selectedUser.email})
+              <strong>Selected User:</strong> {selectedUser.name} (
+              {selectedUser.email})
             </Card.Body>
           </Card>
         )}
@@ -282,10 +284,10 @@ export const ControlledSorting: Story = {
     } | null>(null);
 
     const sortableColumns: TableColumn<any>[] = [
-      { key: 'name', header: 'Name', sortable: true },
-      { key: 'email', header: 'Email', sortable: true },
-      { key: 'role', header: 'Role', sortable: true },
-      { key: 'lastLogin', header: 'Last Login', sortable: true },
+      { key: "name", header: "Name", sortable: true },
+      { key: "email", header: "Email", sortable: true },
+      { key: "role", header: "Role", sortable: true },
+      { key: "lastLogin", header: "Last Login", sortable: true },
     ];
 
     // Sort data based on current sort state
@@ -295,28 +297,28 @@ export const ControlledSorting: Story = {
       const aValue = a[sortState.columnKey as keyof User];
       const bValue = b[sortState.columnKey as keyof User];
 
-      if (aValue < bValue) return sortState.direction === 'asc' ? -1 : 1;
-      if (aValue > bValue) return sortState.direction === 'asc' ? 1 : -1;
+      if (aValue < bValue) return sortState.direction === "asc" ? -1 : 1;
+      if (aValue > bValue) return sortState.direction === "asc" ? 1 : -1;
       return 0;
     });
 
     return (
       <div
         style={{
-          maxWidth: '900px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 'var(--spacing-4)',
+          maxWidth: "900px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "var(--spacing-4)",
         }}
       >
-        <p style={{ margin: 0, color: 'var(--text-secondary)' }}>
+        <p style={{ margin: 0, color: "var(--text-secondary)" }}>
           {sortState ? (
             <>
               Sorted by: <strong>{sortState.columnKey}</strong> (
-              {sortState.direction === 'asc' ? 'ascending' : 'descending'})
+              {sortState.direction === "asc" ? "ascending" : "descending"})
             </>
           ) : (
-            'Click column headers to sort'
+            "Click column headers to sort"
           )}
         </p>
         <Table
@@ -338,49 +340,62 @@ export const UserManagement: Story = {
   render: () => {
     const userColumns: TableColumn<any>[] = [
       {
-        key: 'name',
-        header: 'User',
+        key: "name",
+        header: "User",
         sortable: true,
         cell: (user) => (
-          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-3)' }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "var(--spacing-3)",
+            }}
+          >
             <Avatar
               initials={user.name
-                .split(' ')
+                .split(" ")
                 .map((n: string) => n[0])
-                .join('')}
+                .join("")}
               size="md"
             />
             <div>
-              <div style={{ fontWeight: 'var(--font-weight-medium)' }}>{user.name}</div>
-              <div style={{ fontSize: 'var(--font-size-12)', color: 'var(--text-secondary)' }}>
+              <div style={{ fontWeight: "var(--font-weight-medium)" }}>
+                {user.name}
+              </div>
+              <div
+                style={{
+                  fontSize: "var(--font-size-12)",
+                  color: "var(--text-secondary)",
+                }}
+              >
                 {user.email}
               </div>
             </div>
           </div>
         ),
-        width: '250px',
+        width: "250px",
       },
       {
-        key: 'role',
-        header: 'Role',
+        key: "role",
+        header: "Role",
         sortable: true,
-        align: 'center',
+        align: "center",
       },
       {
-        key: 'status',
-        header: 'Status',
+        key: "status",
+        header: "Status",
         sortable: true,
-        align: 'center',
+        align: "center",
         cell: (user) => {
           const variantMap = {
-            active: 'success',
-            inactive: 'neutral',
-            pending: 'warning',
+            active: "success",
+            inactive: "neutral",
+            pending: "warning",
           } as const;
           const labelMap = {
-            active: 'Active',
-            inactive: 'Inactive',
-            pending: 'Pending',
+            active: "Active",
+            inactive: "Inactive",
+            pending: "Pending",
           };
           return (
             <Badge variant={variantMap[user.status as keyof typeof variantMap]}>
@@ -390,17 +405,23 @@ export const UserManagement: Story = {
         },
       },
       {
-        key: 'actions',
-        header: 'Actions',
-        align: 'right',
+        key: "actions",
+        header: "Actions",
+        align: "right",
         cell: (user) => (
-          <div style={{ display: 'flex', gap: 'var(--spacing-2)', justifyContent: 'flex-end' }}>
+          <div
+            style={{
+              display: "flex",
+              gap: "var(--spacing-2)",
+              justifyContent: "flex-end",
+            }}
+          >
             <Button
               variant="secondary"
               size="sm"
               onClick={(e) => {
                 e.stopPropagation();
-                console.log('Edit', user.name);
+                console.log("Edit", user.name);
               }}
             >
               Edit
@@ -410,7 +431,7 @@ export const UserManagement: Story = {
               size="sm"
               onClick={(e) => {
                 e.stopPropagation();
-                console.log('Delete', user.name);
+                console.log("Delete", user.name);
               }}
             >
               Delete
@@ -421,14 +442,14 @@ export const UserManagement: Story = {
     ];
 
     return (
-      <Card style={{ maxWidth: '1000px' }}>
+      <Card style={{ maxWidth: "1000px" }}>
         <Card.Header>
           <div>
             <h3
               style={{
                 margin: 0,
-                fontSize: 'var(--font-size-18)',
-                fontWeight: 'var(--font-weight-medium)',
+                fontSize: "var(--font-size-18)",
+                fontWeight: "var(--font-weight-medium)",
               }}
             >
               User Management
@@ -436,9 +457,9 @@ export const UserManagement: Story = {
             <p
               style={{
                 margin: 0,
-                marginTop: 'var(--spacing-1)',
-                fontSize: 'var(--font-size-14)',
-                color: 'var(--text-secondary)',
+                marginTop: "var(--spacing-1)",
+                fontSize: "var(--font-size-14)",
+                color: "var(--text-secondary)",
               }}
             >
               Manage system users and their permissions
@@ -466,33 +487,40 @@ export const ProductCatalog: Story = {
     const products: Product[] = [
       {
         id: 1,
-        name: 'Wireless Headphones',
-        category: 'Audio',
+        name: "Wireless Headphones",
+        category: "Audio",
         price: 99.99,
         stock: 45,
         rating: 4.5,
       },
-      { id: 2, name: 'Smart Watch', category: 'Wearables', price: 299.99, stock: 23, rating: 4.8 },
+      {
+        id: 2,
+        name: "Smart Watch",
+        category: "Wearables",
+        price: 299.99,
+        stock: 23,
+        rating: 4.8,
+      },
       {
         id: 3,
-        name: 'Laptop Stand',
-        category: 'Accessories',
+        name: "Laptop Stand",
+        category: "Accessories",
         price: 49.99,
         stock: 120,
         rating: 4.2,
       },
       {
         id: 4,
-        name: 'USB-C Cable',
-        category: 'Accessories',
+        name: "USB-C Cable",
+        category: "Accessories",
         price: 19.99,
         stock: 200,
         rating: 4.7,
       },
       {
         id: 5,
-        name: 'Mechanical Keyboard',
-        category: 'Peripherals',
+        name: "Mechanical Keyboard",
+        category: "Peripherals",
         price: 149.99,
         stock: 67,
         rating: 4.9,
@@ -500,37 +528,47 @@ export const ProductCatalog: Story = {
     ];
 
     const productColumns: TableColumn<Product>[] = [
-      { key: 'name', header: 'Product', sortable: true },
-      { key: 'category', header: 'Category', sortable: true, align: 'center' },
+      { key: "name", header: "Product", sortable: true },
+      { key: "category", header: "Category", sortable: true, align: "center" },
       {
-        key: 'price',
-        header: 'Price',
+        key: "price",
+        header: "Price",
         sortable: true,
-        align: 'right',
+        align: "right",
         cell: (product) => `$${product.price.toFixed(2)}`,
       },
       {
-        key: 'stock',
-        header: 'Stock',
+        key: "stock",
+        header: "Stock",
         sortable: true,
-        align: 'center',
+        align: "center",
         cell: (product) => {
           const lowStock = product.stock < 50;
-          return <Badge variant={lowStock ? 'error' : 'success'}>{product.stock}</Badge>;
+          return (
+            <Badge variant={lowStock ? "error" : "success"}>
+              {product.stock}
+            </Badge>
+          );
         },
       },
       {
-        key: 'rating',
-        header: 'Rating',
+        key: "rating",
+        header: "Rating",
         sortable: true,
-        align: 'center',
+        align: "center",
         cell: (product) => `⭐ ${product.rating}`,
       },
     ];
 
     return (
-      <div style={{ maxWidth: '900px' }}>
-        <Table columns={productColumns} data={products} striped bordered hoverable />
+      <div style={{ maxWidth: "900px" }}>
+        <Table
+          columns={productColumns}
+          data={products}
+          striped
+          bordered
+          hoverable
+        />
       </div>
     );
   },
@@ -539,14 +577,14 @@ export const ProductCatalog: Story = {
 export const InsideCard: Story = {
   args: { columns: basicColumns, data: mockUsers },
   render: () => (
-    <Card style={{ maxWidth: '900px' }}>
+    <Card style={{ maxWidth: "900px" }}>
       <Card.Header>
         <div>
           <h3
             style={{
               margin: 0,
-              fontSize: 'var(--font-size-18)',
-              fontWeight: 'var(--font-weight-medium)',
+              fontSize: "var(--font-size-18)",
+              fontWeight: "var(--font-weight-medium)",
             }}
           >
             Users
@@ -554,9 +592,9 @@ export const InsideCard: Story = {
           <p
             style={{
               margin: 0,
-              marginTop: 'var(--spacing-1)',
-              fontSize: 'var(--font-size-14)',
-              color: 'var(--text-secondary)',
+              marginTop: "var(--spacing-1)",
+              fontSize: "var(--font-size-14)",
+              color: "var(--text-secondary)",
             }}
           >
             A table inside a Card using borderless prop
@@ -570,7 +608,7 @@ export const InsideCard: Story = {
     docs: {
       description: {
         story:
-          'When placing a Table inside a Card, use the `borderless` prop to remove the double border effect.',
+          "When placing a Table inside a Card, use the `borderless` prop to remove the double border effect.",
       },
     },
   },
@@ -580,6 +618,6 @@ export const WithCustomStyling: Story = {
   args: {
     columns: basicColumns,
     data: mockUsers,
-    className: 'custom-table',
+    className: "custom-table",
   },
 };

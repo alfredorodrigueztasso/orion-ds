@@ -2,33 +2,33 @@
  * Calendar Component Stories
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
-import { addDays } from 'date-fns';
-import { Calendar } from './Calendar';
-import type { DateRange } from './Calendar.types';
+import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
+import { addDays } from "date-fns";
+import { Calendar } from "./Calendar";
+import type { DateRange } from "./Calendar.types";
 
 const meta = {
-  title: 'Components/Data Entry/Calendar',
+  title: "Components/Overlays/Calendar",
   component: Calendar,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     mode: {
-      control: 'select',
-      options: ['single', 'range', 'multiple'],
-      description: 'Selection mode',
+      control: "select",
+      options: ["single", "range", "multiple"],
+      description: "Selection mode",
     },
     weekStartsOn: {
-      control: 'select',
+      control: "select",
       options: [0, 1, 2, 3, 4, 5, 6],
-      description: 'Day the week starts on (0=Sun, 1=Mon)',
+      description: "Day the week starts on (0=Sun, 1=Mon)",
     },
     showOutsideDays: {
-      control: 'boolean',
-      description: 'Show days from adjacent months',
+      control: "boolean",
+      description: "Show days from adjacent months",
     },
   },
 } satisfies Meta<typeof Calendar>;
@@ -75,16 +75,26 @@ export const WithMinMax: Story = {
     return (
       <div
         style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: 'var(--spacing-2)',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "var(--spacing-2)",
         }}
       >
-        <span style={{ fontSize: 'var(--font-size-13)', color: 'var(--text-secondary)' }}>
+        <span
+          style={{
+            fontSize: "var(--font-size-13)",
+            color: "var(--text-secondary)",
+          }}
+        >
           Only dates within the next 14 days are selectable
         </span>
-        <Calendar selected={date} onSelect={setDate} min={today} max={addDays(today, 14)} />
+        <Calendar
+          selected={date}
+          onSelect={setDate}
+          min={today}
+          max={addDays(today, 14)}
+        />
       </div>
     );
   },
@@ -100,13 +110,18 @@ export const WithDisabledDates: Story = {
     return (
       <div
         style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: 'var(--spacing-2)',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "var(--spacing-2)",
         }}
       >
-        <span style={{ fontSize: 'var(--font-size-13)', color: 'var(--text-secondary)' }}>
+        <span
+          style={{
+            fontSize: "var(--font-size-13)",
+            color: "var(--text-secondary)",
+          }}
+        >
           Weekends are disabled
         </span>
         <Calendar selected={date} onSelect={setDate} disabled={isWeekend} />
@@ -127,10 +142,14 @@ export const HideOutsideDays: Story = {
   render: () => {
     const [date, setDate] = useState<Date | undefined>(new Date());
 
-    return <Calendar selected={date} onSelect={setDate} showOutsideDays={false} />;
+    return (
+      <Calendar selected={date} onSelect={setDate} showOutsideDays={false} />
+    );
   },
 };
 
 export const Uncontrolled: Story = {
-  render: () => <Calendar onSelect={(date) => console.log('Selected:', date)} />,
+  render: () => (
+    <Calendar onSelect={(date) => console.log("Selected:", date)} />
+  ),
 };

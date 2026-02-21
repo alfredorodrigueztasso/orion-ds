@@ -1,0 +1,28 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "collapsible-folder",
+  "type": "registry:section",
+  "title": "CollapsibleFolder",
+  "description": "CollapsibleFolder section component",
+  "category": "marketing",
+  "files": [
+    {
+      "path": "packages/react/src/sections/CollapsibleFolder/CollapsibleFolder.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/sections/CollapsibleFolder/CollapsibleFolder.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/sections/CollapsibleFolder/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#collapsible-folder",
+    "local": "/library.html#collapsible-folder"
+  },
+  "import": "import { CollapsibleFolder } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

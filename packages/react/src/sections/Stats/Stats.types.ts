@@ -4,7 +4,7 @@
  * Type definitions for the Orion Stats section component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Grid column count for stat items
@@ -14,7 +14,7 @@ export type StatsColumns = 2 | 3 | 4;
 /**
  * Stats visual variant
  */
-export type StatsVariant = 'default' | 'cards' | 'inline';
+export type StatsVariant = "default" | "cards" | "inline";
 
 /**
  * Trend indicator for a stat
@@ -100,7 +100,7 @@ export interface StatItemCardProps extends HTMLAttributes<HTMLDivElement> {
  * />
  * ```
  */
-export interface StatsProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
+export interface StatsProps extends Omit<HTMLAttributes<HTMLElement>, "title"> {
   /**
    * Optional eyebrow/badge above title
    */
@@ -140,7 +140,7 @@ export interface StatsProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
    * Background style
    * @default 'subtle'
    */
-  background?: 'base' | 'subtle' | 'brand' | 'none';
+  background?: "base" | "subtle" | "brand" | "none";
 
   /**
    * Center the header and stats

@@ -7,7 +7,8 @@
   "license": "MIT",
   "workspaces": [
     "packages/*",
-    "docs-react"
+    "docs-react",
+    "docs-site"
   ],
   "scripts": {
     "prepublishOnly": "echo '❌ ERROR: Do not publish the root package. Use npm run release:patch instead.' && exit 1",
@@ -19,16 +20,19 @@
     "build:registry-api": "npx ts-node --transpile-only scripts/build-registry-api.ts",
     "build:mcp": "cd packages/mcp && npx tsc",
     "build:cli": "cd packages/cli && npx tsc",
+    "build:docs": "npm run build --workspace=docs-site",
     "build:all": "npm run build && npm run build:registry && npm run build:registry-api",
     "type-check": "turbo run type-check",
     "type-check:react": "turbo run type-check --filter=@orion/core --filter=@orion/react",
     "validate": "node scripts/validate-tokens.js",
     "validate:theme": "node scripts/validate-tokens.js theme.css",
     "validate:code": "node packages/validate/dist/cli.js",
+    "validate:previews": "node scripts/validate-previews.js",
     "audit": "npm run validate && npm run type-check && echo '✅ Token audit passed'",
     "dev": "npx live-server --port=3000 --open=index.html",
     "dev:packages": "turbo run dev --parallel",
     "dev:react": "npm run dev --workspace=@orion/react",
+    "dev:docs": "npm run dev --workspace=docs-site",
     "prepublish:check": "node scripts/pre-publish-check.js",
     "publish:dry-run": "npm run audit && npm run build && npm run publish:dry-run:packages",
     "publish:dry-run:packages": "cd packages/core && npm publish --dry-run && cd ../react && npm publish --dry-run",
@@ -76,6 +80,7 @@
     "prettier": "^3.8.1",
     "stylelint": "^17.3.0",
     "stylelint-config-standard": "^40.0.0",
+    "ts-morph": "^27.0.2",
     "ts-node": "^10.9.2",
     "turbo": "^2.7.5",
     "typescript": "^5.9.3",

@@ -4,17 +4,17 @@
  * Type definitions for the Orion Spinner component (loading indicator).
  */
 
-import type { HTMLAttributes } from 'react';
+import type { HTMLAttributes } from "react";
 
 /**
  * Spinner sizes
  */
-export type SpinnerSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type SpinnerSize = "xs" | "sm" | "md" | "lg" | "xl";
 
 /**
  * Spinner variants
  */
-export type SpinnerVariant = 'primary' | 'secondary' | 'neutral' | 'inverse';
+export type SpinnerVariant = "primary" | "secondary" | "neutral" | "inverse";
 
 /**
  * Spinner component props

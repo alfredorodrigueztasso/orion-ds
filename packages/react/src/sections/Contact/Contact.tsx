@@ -25,22 +25,34 @@
  * ```
  */
 
-import { forwardRef, useCallback, useState } from 'react';
-import type { ContactProps, ContactFormField } from './Contact.types';
-import { Section } from '../Section';
-import { Container } from '../Container';
-import { Button, Field, Textarea } from '../../components';
-import styles from './Contact.module.css';
+import { forwardRef, useCallback, useState } from "react";
+import type { ContactProps, ContactFormField } from "./Contact.types";
+import { Section } from "../Section";
+import { Container } from "../Container";
+import { Button, Field, Textarea } from "../../components";
+import styles from "./Contact.module.css";
 
 const defaultFields: ContactFormField[] = [
-  { name: 'name', label: 'Name', type: 'text', required: true, placeholder: 'Your name' },
-  { name: 'email', label: 'Email', type: 'email', required: true, placeholder: 'your@email.com' },
   {
-    name: 'message',
-    label: 'Message',
-    type: 'textarea',
+    name: "name",
+    label: "Name",
+    type: "text",
     required: true,
-    placeholder: 'How can we help?',
+    placeholder: "Your name",
+  },
+  {
+    name: "email",
+    label: "Email",
+    type: "email",
+    required: true,
+    placeholder: "your@email.com",
+  },
+  {
+    name: "message",
+    label: "Message",
+    type: "textarea",
+    required: true,
+    placeholder: "How can we help?",
     rows: 4,
   },
 ];
@@ -55,9 +67,9 @@ export const Contact = forwardRef<HTMLElement, ContactProps>(
       formFields = defaultFields,
       onSubmit,
       submitButton,
-      submitText = 'Send Message',
-      layout = 'split',
-      background = 'subtle',
+      submitText = "Send Message",
+      layout = "split",
+      background = "subtle",
       additionalContent,
       className,
       ...rest
@@ -84,13 +96,13 @@ export const Contact = forwardRef<HTMLElement, ContactProps>(
 
     const classNames = [styles.contact, styles[`layout-${layout}`], className]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     const renderForm = () => (
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.formFields}>
           {formFields.map((field) => {
-            if (field.type === 'textarea') {
+            if (field.type === "textarea") {
               return (
                 <Textarea
                   key={field.name}
@@ -99,8 +111,10 @@ export const Contact = forwardRef<HTMLElement, ContactProps>(
                   placeholder={field.placeholder}
                   required={field.required}
                   rows={field.rows || 4}
-                  value={formData[field.name] || ''}
-                  onChange={(e) => handleFieldChange(field.name, e.target.value)}
+                  value={formData[field.name] || ""}
+                  onChange={(e) =>
+                    handleFieldChange(field.name, e.target.value)
+                  }
                   className={styles.formField}
                 />
               );
@@ -111,10 +125,10 @@ export const Contact = forwardRef<HTMLElement, ContactProps>(
                 key={field.name}
                 label={field.label}
                 name={field.name}
-                type={field.type || 'text'}
+                type={field.type || "text"}
                 placeholder={field.placeholder}
                 required={field.required}
-                value={formData[field.name] || ''}
+                value={formData[field.name] || ""}
                 onChange={(e) => handleFieldChange(field.name, e.target.value)}
                 className={styles.formField}
               />
@@ -150,23 +164,33 @@ export const Contact = forwardRef<HTMLElement, ContactProps>(
           </div>
         ))}
 
-        {additionalContent && <div className={styles.additionalContent}>{additionalContent}</div>}
+        {additionalContent && (
+          <div className={styles.additionalContent}>{additionalContent}</div>
+        )}
       </div>
     );
 
     return (
-      <Section ref={ref} spacing="lg" background={background} className={classNames} {...rest}>
+      <Section
+        ref={ref}
+        spacing="lg"
+        background={background}
+        className={classNames}
+        {...rest}
+      >
         <Container size="lg">
           {hasHeader && (
             <header className={styles.header}>
               {eyebrow && <div className={styles.eyebrow}>{eyebrow}</div>}
               {title && <h2 className={styles.title}>{title}</h2>}
-              {description && <p className={styles.description}>{description}</p>}
+              {description && (
+                <p className={styles.description}>{description}</p>
+              )}
             </header>
           )}
 
           <div className={styles.content}>
-            {layout !== 'form-only' && hasContactInfo && renderContactInfo()}
+            {layout !== "form-only" && hasContactInfo && renderContactInfo()}
             {renderForm()}
           </div>
         </Container>
@@ -175,4 +199,4 @@ export const Contact = forwardRef<HTMLElement, ContactProps>(
   },
 );
 
-Contact.displayName = 'Contact';
+Contact.displayName = "Contact";

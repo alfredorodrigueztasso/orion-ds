@@ -4,12 +4,12 @@
  * Type definitions for the Orion EmptyState component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * EmptyState sizes
  */
-export type EmptyStateSize = 'sm' | 'md' | 'lg';
+export type EmptyStateSize = "sm" | "md" | "lg";
 
 /**
  * EmptyState component props

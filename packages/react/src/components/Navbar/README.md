@@ -64,8 +64,8 @@ Navbar uses dot notation for its subcomponents:
 
 ```typescript
 interface NavbarProps {
-  variant?: 'solid' | 'transparent' | 'glass'; // default: 'solid'
-  height?: 'sm' | 'md' | 'lg'; // default: 'md'
+  variant?: "solid" | "transparent" | "glass"; // default: 'solid'
+  height?: "sm" | "md" | "lg"; // default: 'md'
   sticky?: boolean; // default: false
   bordered?: boolean; // default: true
   className?: string;
@@ -118,7 +118,7 @@ interface NavbarActionsProps {
 ### Basic Navbar
 
 ```tsx
-import { Navbar, Button } from '@orion/react';
+import { Navbar, Button } from "@orion/react";
 
 <Navbar>
   <Navbar.Brand href="/">
@@ -139,7 +139,7 @@ import { Navbar, Button } from '@orion/react';
 ### Sticky Navbar
 
 ```tsx
-import { Navbar, Button } from '@orion/react';
+import { Navbar, Button } from "@orion/react";
 
 <Navbar sticky>
   <Navbar.Brand href="/">Logo</Navbar.Brand>
@@ -156,7 +156,7 @@ import { Navbar, Button } from '@orion/react';
 ### Transparent Variant (for Heroes)
 
 ```tsx
-import { Navbar, Button, Hero } from '@orion/react';
+import { Navbar, Button, Hero } from "@orion/react";
 
 <>
   <Navbar variant="transparent" sticky>
@@ -183,7 +183,7 @@ import { Navbar, Button, Hero } from '@orion/react';
 ### Glass Variant (Display Mode)
 
 ```tsx
-import { Navbar, Button } from '@orion/react';
+import { Navbar, Button } from "@orion/react";
 
 // Only in data-mode="display"
 <Navbar variant="glass" sticky>
@@ -201,8 +201,8 @@ import { Navbar, Button } from '@orion/react';
 ### Active Link State
 
 ```tsx
-import { Navbar } from '@orion/react';
-import { useLocation } from 'react-router-dom';
+import { Navbar } from "@orion/react";
+import { useLocation } from "react-router-dom";
 
 function AppNavbar() {
   const location = useLocation();
@@ -211,10 +211,16 @@ function AppNavbar() {
     <Navbar>
       <Navbar.Brand href="/">Logo</Navbar.Brand>
       <Navbar.Nav>
-        <Navbar.Link href="/dashboard" active={location.pathname === '/dashboard'}>
+        <Navbar.Link
+          href="/dashboard"
+          active={location.pathname === "/dashboard"}
+        >
           Dashboard
         </Navbar.Link>
-        <Navbar.Link href="/settings" active={location.pathname === '/settings'}>
+        <Navbar.Link
+          href="/settings"
+          active={location.pathname === "/settings"}
+        >
           Settings
         </Navbar.Link>
       </Navbar.Nav>
@@ -241,7 +247,7 @@ import { Navbar } from '@orion/react';
 ### Without Border
 
 ```tsx
-import { Navbar } from '@orion/react';
+import { Navbar } from "@orion/react";
 
 <Navbar bordered={false}>
   <Navbar.Brand href="/">Logo</Navbar.Brand>
@@ -252,8 +258,8 @@ import { Navbar } from '@orion/react';
 ### With Icons in Actions
 
 ```tsx
-import { Navbar, Button } from '@orion/react';
-import { Bell, User, Settings } from 'lucide-react';
+import { Navbar, Button } from "@orion/react";
+import { Bell, User, Settings } from "lucide-react";
 
 <Navbar>
   <Navbar.Brand href="/">Logo</Navbar.Brand>
@@ -261,9 +267,24 @@ import { Bell, User, Settings } from 'lucide-react';
     <Navbar.Link href="/dashboard">Dashboard</Navbar.Link>
   </Navbar.Nav>
   <Navbar.Actions>
-    <Button variant="ghost" iconOnly icon={<Bell size={20} />} aria-label="Notifications" />
-    <Button variant="ghost" iconOnly icon={<Settings size={20} />} aria-label="Settings" />
-    <Button variant="ghost" iconOnly icon={<User size={20} />} aria-label="Profile" />
+    <Button
+      variant="ghost"
+      iconOnly
+      icon={<Bell size={20} />}
+      aria-label="Notifications"
+    />
+    <Button
+      variant="ghost"
+      iconOnly
+      icon={<Settings size={20} />}
+      aria-label="Settings"
+    />
+    <Button
+      variant="ghost"
+      iconOnly
+      icon={<User size={20} />}
+      aria-label="Profile"
+    />
   </Navbar.Actions>
 </Navbar>;
 ```
@@ -271,8 +292,8 @@ import { Bell, User, Settings } from 'lucide-react';
 ### With Dropdown Menu
 
 ```tsx
-import { Navbar, Button, Dropdown } from '@orion/react';
-import { ChevronDown, User, Settings, LogOut } from 'lucide-react';
+import { Navbar, Button, Dropdown } from "@orion/react";
+import { ChevronDown, User, Settings, LogOut } from "lucide-react";
 
 <Navbar>
   <Navbar.Brand href="/">Logo</Navbar.Brand>
@@ -285,20 +306,31 @@ import { ChevronDown, User, Settings, LogOut } from 'lucide-react';
         </Button>
       }
       items={[
-        { label: 'Product A', href: '/products/a' },
-        { label: 'Product B', href: '/products/b' },
-        { label: 'Product C', href: '/products/c' },
+        { label: "Product A", href: "/products/a" },
+        { label: "Product B", href: "/products/b" },
+        { label: "Product C", href: "/products/c" },
       ]}
     />
   </Navbar.Nav>
   <Navbar.Actions>
     <Dropdown
-      trigger={<Button variant="ghost" iconOnly icon={<User size={20} />} aria-label="Account" />}
+      trigger={
+        <Button
+          variant="ghost"
+          iconOnly
+          icon={<User size={20} />}
+          aria-label="Account"
+        />
+      }
       items={[
-        { label: 'Profile', icon: <User size={16} />, href: '/profile' },
-        { label: 'Settings', icon: <Settings size={16} />, href: '/settings' },
-        { type: 'divider' },
-        { label: 'Sign Out', icon: <LogOut size={16} />, onClick: handleSignOut },
+        { label: "Profile", icon: <User size={16} />, href: "/profile" },
+        { label: "Settings", icon: <Settings size={16} />, href: "/settings" },
+        { type: "divider" },
+        {
+          label: "Sign Out",
+          icon: <LogOut size={16} />,
+          onClick: handleSignOut,
+        },
       ]}
     />
   </Navbar.Actions>
@@ -312,7 +344,7 @@ import { ChevronDown, User, Settings, LogOut } from 'lucide-react';
 ### Landing Page Navbar
 
 ```tsx
-import { Navbar, Button } from '@orion/react';
+import { Navbar, Button } from "@orion/react";
 
 <Navbar variant="solid" sticky>
   <Navbar.Brand href="/">
@@ -334,8 +366,8 @@ import { Navbar, Button } from '@orion/react';
 ### Dashboard Navbar
 
 ```tsx
-import { Navbar, Button, Avatar, SearchInput } from '@orion/react';
-import { Bell, HelpCircle } from 'lucide-react';
+import { Navbar, Button, Avatar, SearchInput } from "@orion/react";
+import { Bell, HelpCircle } from "lucide-react";
 
 <Navbar>
   <Navbar.Brand href="/dashboard">
@@ -345,8 +377,18 @@ import { Bell, HelpCircle } from 'lucide-react';
     <SearchInput placeholder="Search..." size="sm" style={{ width: 300 }} />
   </Navbar.Nav>
   <Navbar.Actions>
-    <Button variant="ghost" iconOnly icon={<HelpCircle size={20} />} aria-label="Help" />
-    <Button variant="ghost" iconOnly icon={<Bell size={20} />} aria-label="Notifications" />
+    <Button
+      variant="ghost"
+      iconOnly
+      icon={<HelpCircle size={20} />}
+      aria-label="Help"
+    />
+    <Button
+      variant="ghost"
+      iconOnly
+      icon={<Bell size={20} />}
+      aria-label="Notifications"
+    />
     <Avatar src="/user.jpg" name="John Doe" size="sm" />
   </Navbar.Actions>
 </Navbar>;
@@ -355,7 +397,7 @@ import { Bell, HelpCircle } from 'lucide-react';
 ### Minimal Navbar
 
 ```tsx
-import { Navbar, Button } from '@orion/react';
+import { Navbar, Button } from "@orion/react";
 
 <Navbar bordered={false}>
   <Navbar.Brand href="/">Logo</Navbar.Brand>
@@ -375,9 +417,9 @@ The Navbar component handles desktop layout. For mobile:
 2. Open a `<Drawer>` for mobile navigation
 
 ```tsx
-import { Navbar, Button, Drawer } from '@orion/react';
-import { Menu } from 'lucide-react';
-import { useDisclosure, useIsMobile } from '@orion/react';
+import { Navbar, Button, Drawer } from "@orion/react";
+import { Menu } from "lucide-react";
+import { useDisclosure, useIsMobile } from "@orion/react";
 
 function ResponsiveNavbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();

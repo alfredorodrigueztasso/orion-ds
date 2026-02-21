@@ -17,11 +17,19 @@
  * ```
  */
 
-import { forwardRef, useState, useRef, useEffect, useCallback, useId, useMemo } from 'react';
-import { createPortal } from 'react-dom';
-import { ChevronDown, X, Check, Loader2 } from 'lucide-react';
-import type { ComboboxProps, ComboboxOption } from './Combobox.types';
-import styles from './Combobox.module.css';
+import {
+  forwardRef,
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+  useId,
+  useMemo,
+} from "react";
+import { createPortal } from "react-dom";
+import { ChevronDown, X, Check, Loader2 } from "lucide-react";
+import type { ComboboxProps, ComboboxOption } from "./Combobox.types";
+import styles from "./Combobox.module.css";
 
 // Default filter function
 const defaultFilter = (option: ComboboxOption, inputValue: string): boolean => {
@@ -42,7 +50,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       value,
       onChange,
       onInputChange,
-      size = 'md',
+      size = "md",
       label,
       helperText,
       error,
@@ -52,7 +60,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       filterFn = defaultFilter,
       openOnFocus = true,
       minChars = 0,
-      emptyText = 'No results found',
+      emptyText = "No results found",
       renderOption,
       maxHeight = 300,
       fullWidth = false,
@@ -76,9 +84,13 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     const dropdownRef = useRef<HTMLDivElement>(null);
 
     const [isOpen, setIsOpen] = useState(false);
-    const [inputValue, setInputValue] = useState('');
+    const [inputValue, setInputValue] = useState("");
     const [highlightedIndex, setHighlightedIndex] = useState(-1);
-    const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0, width: 0 });
+    const [dropdownPosition, setDropdownPosition] = useState({
+      top: 0,
+      left: 0,
+      width: 0,
+    });
 
     // Find the selected option
     const selectedOption = useMemo(
@@ -91,7 +103,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       if (selectedOption) {
         setInputValue(selectedOption.label);
       } else if (!allowFreeInput) {
-        setInputValue('');
+        setInputValue("");
       }
     }, [selectedOption, allowFreeInput]);
 
@@ -116,12 +128,12 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     useEffect(() => {
       if (isOpen) {
         updatePosition();
-        window.addEventListener('resize', updatePosition);
-        window.addEventListener('scroll', updatePosition, true);
+        window.addEventListener("resize", updatePosition);
+        window.addEventListener("scroll", updatePosition, true);
 
         return () => {
-          window.removeEventListener('resize', updatePosition);
-          window.removeEventListener('scroll', updatePosition, true);
+          window.removeEventListener("resize", updatePosition);
+          window.removeEventListener("scroll", updatePosition, true);
         };
       }
     }, [isOpen, updatePosition]);
@@ -141,15 +153,16 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           setIsOpen(false);
           // Reset input if no selection
           if (!allowFreeInput && !value) {
-            setInputValue('');
+            setInputValue("");
           } else if (selectedOption) {
             setInputValue(selectedOption.label);
           }
         }
       };
 
-      document.addEventListener('mousedown', handleClickOutside);
-      return () => document.removeEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
+      return () =>
+        document.removeEventListener("mousedown", handleClickOutside);
     }, [isOpen, allowFreeInput, value, selectedOption]);
 
     const handleInputChange = useCallback(
@@ -164,11 +177,22 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
         }
 
         // Clear selection if input doesn't match and not allowing free input
-        if (selectedOption && newValue !== selectedOption.label && !allowFreeInput) {
+        if (
+          selectedOption &&
+          newValue !== selectedOption.label &&
+          !allowFreeInput
+        ) {
           onChange?.(null, null);
         }
       },
-      [isOpen, minChars, onInputChange, selectedOption, allowFreeInput, onChange],
+      [
+        isOpen,
+        minChars,
+        onInputChange,
+        selectedOption,
+        allowFreeInput,
+        onChange,
+      ],
     );
 
     const handleFocus = useCallback(
@@ -188,7 +212,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           if (!dropdownRef.current?.contains(document.activeElement)) {
             setIsOpen(false);
             if (!allowFreeInput && !value) {
-              setInputValue('');
+              setInputValue("");
             } else if (selectedOption) {
               setInputValue(selectedOption.label);
             }
@@ -216,7 +240,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       (e: React.MouseEvent) => {
         e.stopPropagation();
         onChange?.(null, null);
-        setInputValue('');
+        setInputValue("");
         inputRef.current?.focus();
       },
       [onChange],
@@ -225,52 +249,65 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     const handleKeyDown = useCallback(
       (e: React.KeyboardEvent<HTMLInputElement>) => {
         switch (e.key) {
-          case 'ArrowDown':
+          case "ArrowDown":
             e.preventDefault();
             if (!isOpen) {
               setIsOpen(true);
             } else {
-              setHighlightedIndex((prev) => Math.min(prev + 1, filteredOptions.length - 1));
+              setHighlightedIndex((prev) =>
+                Math.min(prev + 1, filteredOptions.length - 1),
+              );
             }
             break;
 
-          case 'ArrowUp':
+          case "ArrowUp":
             e.preventDefault();
             setHighlightedIndex((prev) => Math.max(prev - 1, 0));
             break;
 
-          case 'Enter':
+          case "Enter":
             e.preventDefault();
-            if (isOpen && highlightedIndex >= 0 && filteredOptions[highlightedIndex]) {
+            if (
+              isOpen &&
+              highlightedIndex >= 0 &&
+              filteredOptions[highlightedIndex]
+            ) {
               selectOption(filteredOptions[highlightedIndex]);
             }
             break;
 
-          case 'Escape':
+          case "Escape":
             e.preventDefault();
             setIsOpen(false);
             if (selectedOption) {
               setInputValue(selectedOption.label);
             } else {
-              setInputValue('');
+              setInputValue("");
             }
             break;
 
-          case 'Tab':
+          case "Tab":
             setIsOpen(false);
             break;
         }
 
         onKeyDown?.(e);
       },
-      [isOpen, highlightedIndex, filteredOptions, selectOption, selectedOption, onKeyDown],
+      [
+        isOpen,
+        highlightedIndex,
+        filteredOptions,
+        selectOption,
+        selectedOption,
+        onKeyDown,
+      ],
     );
 
     // Scroll highlighted option into view
     useEffect(() => {
       if (highlightedIndex >= 0 && dropdownRef.current) {
         const options = dropdownRef.current.querySelectorAll('[role="option"]');
-        options[highlightedIndex]?.scrollIntoView({ block: 'nearest' });
+        options[highlightedIndex]?.scrollIntoView({ block: "nearest" });
       }
     }, [highlightedIndex]);
 
@@ -283,9 +320,9 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
-    const iconSize = size === 'sm' ? 14 : size === 'lg' ? 20 : 16;
+    const iconSize = size === "sm" ? 14 : size === "lg" ? 20 : 16;
 
     const renderOptionContent = (option: ComboboxOption, index: number) => {
       const isSelected = option.value === value;
@@ -305,10 +342,18 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           <div className={styles.optionContent}>
             <span className={styles.optionLabel}>{option.label}</span>
             {option.description && (
-              <span className={styles.optionDescription}>{option.description}</span>
+              <span className={styles.optionDescription}>
+                {option.description}
+              </span>
             )}
           </div>
-          {isSelected && <Check size={iconSize} className={styles.checkIcon} aria-hidden="true" />}
+          {isSelected && (
+            <Check
+              size={iconSize}
+              className={styles.checkIcon}
+              aria-hidden="true"
+            />
+          )}
         </>
       );
     };
@@ -349,7 +394,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                   option.disabled && styles.disabled,
                 ]
                   .filter(Boolean)
-                  .join(' ')}
+                  .join(" ")}
                 role="option"
                 aria-selected={isSelected}
                 aria-disabled={option.disabled}
@@ -381,12 +426,14 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
             {...rest}
             ref={(node) => {
               // Handle both refs
-              if (typeof ref === 'function') {
+              if (typeof ref === "function") {
                 ref(node);
               } else if (ref) {
                 ref.current = node;
               }
-              (inputRef as React.MutableRefObject<HTMLInputElement | null>).current = node;
+              (
+                inputRef as React.MutableRefObject<HTMLInputElement | null>
+              ).current = node;
             }}
             id={inputId}
             type="text"
@@ -404,7 +451,9 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
             aria-controls={listboxId}
             aria-autocomplete="list"
             aria-activedescendant={
-              highlightedIndex >= 0 ? `${listboxId}-option-${highlightedIndex}` : undefined
+              highlightedIndex >= 0
+                ? `${listboxId}-option-${highlightedIndex}`
+                : undefined
             }
           />
 
@@ -420,7 +469,10 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                 <X size={iconSize} />
               </button>
             )}
-            <span className={`${styles.chevron} ${isOpen ? styles.open : ''}`} aria-hidden="true">
+            <span
+              className={`${styles.chevron} ${isOpen ? styles.open : ""}`}
+              aria-hidden="true"
+            >
               <ChevronDown size={iconSize} />
             </span>
           </div>
@@ -438,4 +490,4 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
   },
 );
 
-Combobox.displayName = 'Combobox';
+Combobox.displayName = "Combobox";

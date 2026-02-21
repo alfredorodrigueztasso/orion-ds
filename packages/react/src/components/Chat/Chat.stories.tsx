@@ -1,21 +1,31 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import React, { useState, useCallback, useEffect } from 'react';
-import { Chat } from './Chat';
-import { useStreamingText } from './hooks/useStreamingText';
-import { Button } from '../Button';
-import { MoreVertical, Copy, RefreshCw, ThumbsUp, ThumbsDown } from 'lucide-react';
-import type { ChatMessage, ChatConversation, ChatAttachment } from './Chat.types';
+import type { Meta, StoryObj } from "@storybook/react";
+import React, { useState, useCallback, useEffect } from "react";
+import { Chat } from "./Chat";
+import { useStreamingText } from "./hooks/useStreamingText";
+import { Button } from "../Button";
+import {
+  MoreVertical,
+  Copy,
+  RefreshCw,
+  ThumbsUp,
+  ThumbsDown,
+} from "lucide-react";
+import type {
+  ChatMessage,
+  ChatConversation,
+  ChatAttachment,
+} from "./Chat.types";
 
 const meta: Meta<typeof Chat> = {
-  title: 'Components/Chat/Chat',
+  title: "Components/Chat/Chat",
   component: Chat,
   parameters: {
-    layout: 'padded',
+    layout: "padded",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   decorators: [
     (Story) => (
-      <div style={{ height: '600px', maxWidth: '900px', margin: '0 auto' }}>
+      <div style={{ height: "600px", maxWidth: "900px", margin: "0 auto" }}>
         <Story />
       </div>
     ),
@@ -28,15 +38,15 @@ type Story = StoryObj<typeof meta>;
 // Sample messages for stories
 const sampleMessages: ChatMessage[] = [
   {
-    id: '1',
-    role: 'user',
-    content: 'Hello! Can you help me understand how React hooks work?',
+    id: "1",
+    role: "user",
+    content: "Hello! Can you help me understand how React hooks work?",
     timestamp: new Date(Date.now() - 1000 * 60 * 5),
-    status: 'sent',
+    status: "sent",
   },
   {
-    id: '2',
-    role: 'assistant',
+    id: "2",
+    role: "assistant",
     content: `Of course! React hooks are functions that let you "hook into" React state and lifecycle features from function components. Here are the most commonly used hooks:
 
 1. **useState** - Adds state to functional components
@@ -48,18 +58,18 @@ const sampleMessages: ChatMessage[] = [
 
 Would you like me to explain any of these in more detail?`,
     timestamp: new Date(Date.now() - 1000 * 60 * 4),
-    status: 'sent',
+    status: "sent",
   },
   {
-    id: '3',
-    role: 'user',
-    content: 'Yes, can you show me an example of useState?',
+    id: "3",
+    role: "user",
+    content: "Yes, can you show me an example of useState?",
     timestamp: new Date(Date.now() - 1000 * 60 * 3),
-    status: 'sent',
+    status: "sent",
   },
   {
-    id: '4',
-    role: 'assistant',
+    id: "4",
+    role: "assistant",
     content: `Here's a simple example of \`useState\`:
 
 \`\`\`tsx
@@ -86,37 +96,37 @@ Key points:
 
 The state persists between re-renders, unlike regular variables.`,
     timestamp: new Date(Date.now() - 1000 * 60 * 2),
-    status: 'sent',
+    status: "sent",
   },
 ];
 
 // Sample conversations for sidebar stories
 const sampleConversations: ChatConversation[] = [
   {
-    id: '1',
-    title: 'React Hooks Discussion',
+    id: "1",
+    title: "React Hooks Discussion",
     preview: "Here's a simple example of useState...",
     updatedAt: new Date(Date.now() - 1000 * 60 * 2),
     messageCount: 4,
   },
   {
-    id: '2',
-    title: 'TypeScript Generics',
-    preview: 'Generics allow you to write flexible...',
+    id: "2",
+    title: "TypeScript Generics",
+    preview: "Generics allow you to write flexible...",
     updatedAt: new Date(Date.now() - 1000 * 60 * 60),
     messageCount: 8,
   },
   {
-    id: '3',
-    title: 'CSS Grid Layout',
-    preview: 'Grid is perfect for 2D layouts...',
+    id: "3",
+    title: "CSS Grid Layout",
+    preview: "Grid is perfect for 2D layouts...",
     updatedAt: new Date(Date.now() - 1000 * 60 * 60 * 24),
     messageCount: 3,
   },
   {
-    id: '4',
-    title: 'Node.js Best Practices',
-    preview: 'Always use async/await for cleaner...',
+    id: "4",
+    title: "Node.js Best Practices",
+    preview: "Always use async/await for cleaner...",
     updatedAt: new Date(Date.now() - 1000 * 60 * 60 * 48),
     messageCount: 12,
   },
@@ -133,26 +143,26 @@ export const Default: Story = {
       <Chat.Messages>
         <div
           style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '100%',
-            gap: 'var(--spacing-4)',
-            color: 'var(--text-tertiary)',
-            textAlign: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100%",
+            gap: "var(--spacing-4)",
+            color: "var(--text-tertiary)",
+            textAlign: "center",
           }}
         >
           <div
             style={{
               width: 64,
               height: 64,
-              borderRadius: 'var(--radius-full)',
-              background: 'var(--surface-subtle)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: 'var(--font-size-24)',
+              borderRadius: "var(--radius-full)",
+              background: "var(--surface-subtle)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "var(--font-size-24)",
             }}
           >
             ✨
@@ -160,15 +170,15 @@ export const Default: Story = {
           <div>
             <h3
               style={{
-                fontSize: 'var(--font-size-20)',
-                fontWeight: 'var(--font-weight-medium)',
-                color: 'var(--text-primary)',
-                marginBottom: 'var(--spacing-2)',
+                fontSize: "var(--font-size-20)",
+                fontWeight: "var(--font-weight-medium)",
+                color: "var(--text-primary)",
+                marginBottom: "var(--spacing-2)",
               }}
             >
               How can I help you today?
             </h3>
-            <p style={{ fontSize: 'var(--font-size-14)' }}>
+            <p style={{ fontSize: "var(--font-size-14)" }}>
               Start a conversation by typing a message below.
             </p>
           </div>
@@ -212,29 +222,38 @@ export const WithTypingIndicator: Story = {
 };
 
 // Helper: a message that streams in progressively
-const StreamingAssistantMessage: React.FC<{ text: string; onComplete?: () => void }> = ({
-  text,
-  onComplete,
-}) => {
+const StreamingAssistantMessage: React.FC<{
+  text: string;
+  onComplete?: () => void;
+}> = ({ text, onComplete }) => {
   const { displayText, isComplete } = useStreamingText(text);
 
   useEffect(() => {
     if (isComplete && onComplete) onComplete();
   }, [isComplete, onComplete]);
 
-  return <Chat.Message role="assistant" content={displayText} isStreaming={!isComplete} />;
+  return (
+    <Chat.Message
+      role="assistant"
+      content={displayText}
+      isStreaming={!isComplete}
+    />
+  );
 };
 
 export const StreamingMessage: Story = {
   render: function StreamingDemo() {
     const fullText =
-      'Quantum computing uses quantum mechanics principles to process information. Unlike classical computers that use bits (0 or 1), quantum computers use qubits which can be in multiple states simultaneously through a property called superposition. This allows quantum computers to explore many solutions at once, making them incredibly powerful for certain types of problems like cryptography, drug discovery, and optimization.';
+      "Quantum computing uses quantum mechanics principles to process information. Unlike classical computers that use bits (0 or 1), quantum computers use qubits which can be in multiple states simultaneously through a property called superposition. This allows quantum computers to explore many solutions at once, making them incredibly powerful for certain types of problems like cryptography, drug discovery, and optimization.";
 
     return (
       <Chat>
         <Chat.Header title="AI Assistant" />
         <Chat.Messages>
-          <Chat.Message role="user" content="Explain quantum computing in simple terms." />
+          <Chat.Message
+            role="user"
+            content="Explain quantum computing in simple terms."
+          />
           <StreamingAssistantMessage text={fullText} />
         </Chat.Messages>
         <Chat.Input placeholder="Type a message..." disabled />
@@ -258,9 +277,20 @@ export const MessageStates: Story = {
           status="sent"
           timestamp={new Date()}
         />
-        <Chat.Message role="user" content="This message is being sent..." status="sending" />
-        <Chat.Message role="user" content="This message failed to send." status="error" />
-        <Chat.Message role="system" content="System notification: Connection restored." />
+        <Chat.Message
+          role="user"
+          content="This message is being sent..."
+          status="sending"
+        />
+        <Chat.Message
+          role="user"
+          content="This message failed to send."
+          status="error"
+        />
+        <Chat.Message
+          role="system"
+          content="System notification: Connection restored."
+        />
         <Chat.Message
           role="assistant"
           content="Assistant response with actions."
@@ -308,7 +338,10 @@ export const CodeBlocks: Story = {
     <Chat>
       <Chat.Header title="Code Examples" />
       <Chat.Messages>
-        <Chat.Message role="user" content="Show me a Python function to calculate factorial." />
+        <Chat.Message
+          role="user"
+          content="Show me a Python function to calculate factorial."
+        />
         <Chat.Message
           role="assistant"
           content={`Here's a Python function to calculate factorial:
@@ -399,43 +432,44 @@ That's all the formatting!`}
 // ============================================================================
 
 const messageWithImageAttachment: ChatMessage = {
-  id: '1',
-  role: 'user',
-  content: 'Can you analyze this image for me?',
+  id: "1",
+  role: "user",
+  content: "Can you analyze this image for me?",
   attachments: [
     {
-      id: 'img1',
-      type: 'image',
-      name: 'screenshot.png',
-      url: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400',
-      thumbnail: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=200',
+      id: "img1",
+      type: "image",
+      name: "screenshot.png",
+      url: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400",
+      thumbnail:
+        "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=200",
     },
   ],
 };
 
 const messageWithMultipleAttachments: ChatMessage = {
-  id: '2',
-  role: 'user',
-  content: 'Here are the files you requested:',
+  id: "2",
+  role: "user",
+  content: "Here are the files you requested:",
   attachments: [
     {
-      id: 'img1',
-      type: 'image',
-      name: 'chart.png',
-      url: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400',
+      id: "img1",
+      type: "image",
+      name: "chart.png",
+      url: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400",
     },
     {
-      id: 'file1',
-      type: 'file',
-      name: 'report.pdf',
+      id: "file1",
+      type: "file",
+      name: "report.pdf",
       size: 2400000,
-      mimeType: 'application/pdf',
+      mimeType: "application/pdf",
     },
     {
-      id: 'audio1',
-      type: 'audio',
-      name: 'recording.mp3',
-      url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+      id: "audio1",
+      type: "audio",
+      name: "recording.mp3",
+      url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
       duration: 180,
     },
   ],
@@ -469,9 +503,9 @@ export const WithAttachments: Story = {
 export const CodeAttachment: Story = {
   render: () => {
     const codeAttachment: ChatAttachment = {
-      id: 'code1',
-      type: 'code',
-      name: 'example.ts',
+      id: "code1",
+      type: "code",
+      name: "example.ts",
       content: `interface User {
   id: string;
   name: string;
@@ -486,7 +520,7 @@ async function fetchUser(id: string): Promise<User> {
   }
   return response.json();
 }`,
-      language: 'typescript',
+      language: "typescript",
     };
 
     return (
@@ -513,8 +547,8 @@ export const Interactive: Story = {
   render: function InteractiveChat() {
     const [messages, setMessages] = useState<ChatMessage[]>([
       {
-        id: '1',
-        role: 'assistant',
+        id: "1",
+        role: "assistant",
         content: "Hello! I'm your AI assistant. How can I help you today?",
         timestamp: new Date(),
       },
@@ -530,7 +564,7 @@ export const Interactive: Story = {
           ...prev,
           {
             id: streamingId,
-            role: 'assistant' as const,
+            role: "assistant" as const,
             content: streamingText,
             timestamp: new Date(),
           },
@@ -543,10 +577,10 @@ export const Interactive: Story = {
     const handleSend = useCallback((content: string) => {
       const userMessage: ChatMessage = {
         id: Date.now().toString(),
-        role: 'user',
+        role: "user",
         content,
         timestamp: new Date(),
-        status: 'sent',
+        status: "sent",
       };
       setMessages((prev) => [...prev, userMessage]);
 
@@ -624,30 +658,60 @@ export const Interactive: Story = {
 
 export const InputVariations: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-6)' }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-6)",
+      }}
+    >
       <div>
-        <h4 style={{ marginBottom: 'var(--spacing-2)', color: 'var(--text-secondary)' }}>
+        <h4
+          style={{
+            marginBottom: "var(--spacing-2)",
+            color: "var(--text-secondary)",
+          }}
+        >
           Default Input
         </h4>
         <Chat.Input placeholder="Type a message..." />
       </div>
 
       <div>
-        <h4 style={{ marginBottom: 'var(--spacing-2)', color: 'var(--text-secondary)' }}>
+        <h4
+          style={{
+            marginBottom: "var(--spacing-2)",
+            color: "var(--text-secondary)",
+          }}
+        >
           With All Features
         </h4>
-        <Chat.Input placeholder="Type a message..." allowAttachments allowVoiceRecording />
+        <Chat.Input
+          placeholder="Type a message..."
+          allowAttachments
+          allowVoiceRecording
+        />
       </div>
 
       <div>
-        <h4 style={{ marginBottom: 'var(--spacing-2)', color: 'var(--text-secondary)' }}>
+        <h4
+          style={{
+            marginBottom: "var(--spacing-2)",
+            color: "var(--text-secondary)",
+          }}
+        >
           Disabled
         </h4>
         <Chat.Input placeholder="Input is disabled..." disabled />
       </div>
 
       <div>
-        <h4 style={{ marginBottom: 'var(--spacing-2)', color: 'var(--text-secondary)' }}>
+        <h4
+          style={{
+            marginBottom: "var(--spacing-2)",
+            color: "var(--text-secondary)",
+          }}
+        >
           Loading State
         </h4>
         <Chat.Input placeholder="Sending..." isLoading />
@@ -656,7 +720,7 @@ export const InputVariations: Story = {
   ),
   decorators: [
     (Story) => (
-      <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+      <div style={{ maxWidth: "600px", margin: "0 auto" }}>
         <Story />
       </div>
     ),
@@ -669,29 +733,32 @@ export const InputVariations: Story = {
 
 export const WithSidebar: Story = {
   render: function ChatWithSidebar() {
-    const [activeId, setActiveId] = useState('1');
+    const [activeId, setActiveId] = useState("1");
 
     return (
       <div
         style={{
-          display: 'flex',
-          height: '600px',
-          border: '1px solid var(--border-subtle)',
-          borderRadius: 'var(--radius-container)',
-          overflow: 'hidden',
+          display: "flex",
+          height: "600px",
+          border: "1px solid var(--border-subtle)",
+          borderRadius: "var(--radius-container)",
+          overflow: "hidden",
         }}
       >
         <Chat.Sidebar
           conversations={sampleConversations}
           activeConversationId={activeId}
           onSelectConversation={setActiveId}
-          onNewConversation={() => alert('New conversation')}
+          onNewConversation={() => alert("New conversation")}
           onDeleteConversation={(id) => alert(`Delete conversation ${id}`)}
         />
         <div style={{ flex: 1 }}>
           <Chat>
             <Chat.Header
-              title={sampleConversations.find((c) => c.id === activeId)?.title || 'Chat'}
+              title={
+                sampleConversations.find((c) => c.id === activeId)?.title ||
+                "Chat"
+              }
             />
             <Chat.Messages>
               {sampleMessages.map((msg) => (
@@ -711,7 +778,7 @@ export const WithSidebar: Story = {
   },
   decorators: [
     (Story) => (
-      <div style={{ height: '600px' }}>
+      <div style={{ height: "600px" }}>
         <Story />
       </div>
     ),
@@ -726,10 +793,10 @@ export const TypingIndicator: Story = {
   render: () => (
     <div
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 'var(--spacing-4)',
-        padding: 'var(--spacing-4)',
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-4)",
+        padding: "var(--spacing-4)",
       }}
     >
       <Chat.TypingIndicator />
@@ -741,9 +808,9 @@ export const TypingIndicator: Story = {
     (Story) => (
       <div
         style={{
-          background: 'var(--surface-subtle)',
-          padding: 'var(--spacing-4)',
-          borderRadius: 'var(--radius-container)',
+          background: "var(--surface-subtle)",
+          padding: "var(--spacing-4)",
+          borderRadius: "var(--radius-container)",
         }}
       >
         <Story />
@@ -754,7 +821,13 @@ export const TypingIndicator: Story = {
 
 export const CodeBlockStandalone: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-4)' }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-4)",
+      }}
+    >
       <Chat.CodeBlock
         code={`function greet(name: string): string {
   return \`Hello, \${name}!\`;
@@ -788,7 +861,7 @@ LIMIT 10;`}
   ),
   decorators: [
     (Story) => (
-      <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+      <div style={{ maxWidth: "600px", margin: "0 auto" }}>
         <Story />
       </div>
     ),
@@ -799,10 +872,10 @@ export const AudioPlayer: Story = {
   render: () => (
     <div
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 'var(--spacing-4)',
-        maxWidth: '400px',
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-4)",
+        maxWidth: "400px",
       }}
     >
       <Chat.AudioPlayer
@@ -822,15 +895,17 @@ export const FileUploadZone: Story = {
   render: () => (
     <Chat.FileUpload
       onFilesSelected={(files) => {
-        alert(`Selected ${files.length} file(s): ${files.map((f) => f.name).join(', ')}`);
+        alert(
+          `Selected ${files.length} file(s): ${files.map((f) => f.name).join(", ")}`,
+        );
       }}
-      accept={['image/*', 'audio/*', '.pdf']}
+      accept={["image/*", "audio/*", ".pdf"]}
       multiple
     />
   ),
   decorators: [
     (Story) => (
-      <div style={{ maxWidth: '400px', margin: '0 auto' }}>
+      <div style={{ maxWidth: "400px", margin: "0 auto" }}>
         <Story />
       </div>
     ),
@@ -859,16 +934,16 @@ export const DarkMode: Story = {
     </Chat>
   ),
   parameters: {
-    backgrounds: { default: 'dark' },
+    backgrounds: { default: "dark" },
   },
   decorators: [
     (Story) => (
       <div
         data-theme="dark"
         style={{
-          height: '500px',
-          background: 'var(--surface-base)',
-          borderRadius: 'var(--radius-container)',
+          height: "500px",
+          background: "var(--surface-base)",
+          borderRadius: "var(--radius-container)",
         }}
       >
         <Story />

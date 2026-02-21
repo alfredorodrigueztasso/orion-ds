@@ -5,7 +5,7 @@
 ## Quick Start
 
 ```tsx
-import { Pricing, Button, Badge } from '@orion/react';
+import { Pricing, Button, Badge } from "@orion/react";
 
 <Pricing
   eyebrow={<Badge>Pricing</Badge>}
@@ -13,11 +13,11 @@ import { Pricing, Button, Badge } from '@orion/react';
   description="Choose the plan that's right for you"
   plans={[
     {
-      name: 'Starter',
-      price: '$9',
-      period: 'per month',
-      description: 'Perfect for side projects',
-      features: ['5 projects', 'Basic analytics', 'Email support'],
+      name: "Starter",
+      price: "$9",
+      period: "per month",
+      description: "Perfect for side projects",
+      features: ["5 projects", "Basic analytics", "Email support"],
       action: (
         <Button variant="secondary" fullWidth>
           Get Started
@@ -25,19 +25,27 @@ import { Pricing, Button, Badge } from '@orion/react';
       ),
     },
     {
-      name: 'Pro',
-      price: '$29',
-      period: 'per month',
-      description: 'For growing teams',
-      features: ['Unlimited projects', 'Advanced analytics', 'Priority support'],
+      name: "Pro",
+      price: "$29",
+      period: "per month",
+      description: "For growing teams",
+      features: [
+        "Unlimited projects",
+        "Advanced analytics",
+        "Priority support",
+      ],
       action: <Button fullWidth>Start Free Trial</Button>,
       popular: true,
     },
     {
-      name: 'Enterprise',
-      price: 'Custom',
-      description: 'For large organizations',
-      features: ['Everything in Pro', 'Custom integrations', 'Dedicated support'],
+      name: "Enterprise",
+      price: "Custom",
+      description: "For large organizations",
+      features: [
+        "Everything in Pro",
+        "Custom integrations",
+        "Dedicated support",
+      ],
       action: (
         <Button variant="secondary" fullWidth>
           Contact Sales
@@ -78,7 +86,7 @@ interface PricingProps {
   centered?: boolean; // Center header text - default: true
 
   // Styling
-  background?: 'base' | 'subtle' | 'none'; // default: 'subtle'
+  background?: "base" | "subtle" | "none"; // default: 'subtle'
 }
 
 interface PricingPlan {
@@ -213,17 +221,17 @@ For products with many tier options.
 ### Simple String Features
 
 ```tsx
-features: ['5 projects', '10GB storage', 'Email support'];
+features: ["5 projects", "10GB storage", "Email support"];
 ```
 
 ### Included/Excluded Features
 
 ```tsx
 features: [
-  { text: '5 projects', included: true },
-  { text: '10GB storage', included: true },
-  { text: 'API access', included: false },
-  { text: 'Custom domain', included: false },
+  { text: "5 projects", included: true },
+  { text: "10GB storage", included: true },
+  { text: "API access", included: false },
+  { text: "Custom domain", included: false },
 ];
 ```
 
@@ -231,10 +239,10 @@ features: [
 
 ```tsx
 features: [
-  'Unlimited projects', // Simple string = included
-  { text: '100GB storage', included: true },
-  { text: 'Priority support', included: true },
-  { text: 'Custom integrations', included: false },
+  "Unlimited projects", // Simple string = included
+  { text: "100GB storage", included: true },
+  { text: "Priority support", included: true },
+  { text: "Custom integrations", included: false },
 ];
 ```
 
@@ -268,7 +276,7 @@ features: [
 ```tsx
 {
   price: <>
-    <span style={{ fontSize: '0.5em' }}>Starting at</span> $99
+    <span style={{ fontSize: "0.5em" }}>Starting at</span> $99
   </>;
 }
 // Custom ReactNode for complex pricing
@@ -289,7 +297,7 @@ features: [
 ### SaaS Pricing
 
 ```tsx
-import { Pricing, Button, Badge } from '@orion/react';
+import { Pricing, Button, Badge } from "@orion/react";
 
 <Pricing
   eyebrow={<Badge variant="brand">Pricing</Badge>}
@@ -297,16 +305,16 @@ import { Pricing, Button, Badge } from '@orion/react';
   description="Start free, upgrade when you're ready."
   plans={[
     {
-      name: 'Free',
-      price: '$0',
-      period: 'forever',
-      description: 'For individuals and small projects',
+      name: "Free",
+      price: "$0",
+      period: "forever",
+      description: "For individuals and small projects",
       features: [
-        '3 projects',
-        '1GB storage',
-        'Community support',
-        { text: 'API access', included: false },
-        { text: 'Custom domain', included: false },
+        "3 projects",
+        "1GB storage",
+        "Community support",
+        { text: "API access", included: false },
+        { text: "Custom domain", included: false },
       ],
       action: (
         <Button variant="secondary" fullWidth>
@@ -315,33 +323,33 @@ import { Pricing, Button, Badge } from '@orion/react';
       ),
     },
     {
-      name: 'Pro',
-      price: '$29',
-      period: 'per month',
-      description: 'For professional developers',
+      name: "Pro",
+      price: "$29",
+      period: "per month",
+      description: "For professional developers",
       features: [
-        'Unlimited projects',
-        '100GB storage',
-        'Priority support',
-        'API access',
-        { text: 'Custom domain', included: false },
+        "Unlimited projects",
+        "100GB storage",
+        "Priority support",
+        "API access",
+        { text: "Custom domain", included: false },
       ],
       action: <Button fullWidth>Start Free Trial</Button>,
       popular: true,
       badge: <Badge variant="brand">Most Popular</Badge>,
     },
     {
-      name: 'Enterprise',
-      price: 'Custom',
-      description: 'For large organizations',
+      name: "Enterprise",
+      price: "Custom",
+      description: "For large organizations",
       features: [
-        'Everything in Pro',
-        'Unlimited storage',
-        'Dedicated support',
-        'API access',
-        'Custom domain',
-        'SSO & SAML',
-        'SLA guarantee',
+        "Everything in Pro",
+        "Unlimited storage",
+        "Dedicated support",
+        "API access",
+        "Custom domain",
+        "SSO & SAML",
+        "SLA guarantee",
       ],
       action: (
         <Button variant="secondary" fullWidth>
@@ -362,10 +370,14 @@ import { Pricing, Button, Badge } from '@orion/react';
   columns={2}
   plans={[
     {
-      name: 'Monthly',
-      price: '$29',
-      period: 'per month',
-      features: ['All features included', 'Unlimited projects', 'Priority support'],
+      name: "Monthly",
+      price: "$29",
+      period: "per month",
+      features: [
+        "All features included",
+        "Unlimited projects",
+        "Priority support",
+      ],
       action: (
         <Button variant="secondary" fullWidth>
           Subscribe Monthly
@@ -373,11 +385,15 @@ import { Pricing, Button, Badge } from '@orion/react';
       ),
     },
     {
-      name: 'Annual',
-      price: '$290',
-      period: 'per year',
-      description: 'Save $58 (2 months free)',
-      features: ['All features included', 'Unlimited projects', 'Priority support'],
+      name: "Annual",
+      price: "$290",
+      period: "per year",
+      description: "Save $58 (2 months free)",
+      features: [
+        "All features included",
+        "Unlimited projects",
+        "Priority support",
+      ],
       action: <Button fullWidth>Subscribe Annually</Button>,
       popular: true,
       badge: <Badge variant="success">Save 17%</Badge>,
@@ -395,11 +411,11 @@ import { Pricing, Button, Badge } from '@orion/react';
   columns={3}
   plans={[
     {
-      name: 'Starter',
-      price: '$0',
-      period: 'per user/month',
-      description: 'Up to 3 users',
-      features: ['Basic features', '5 projects', 'Community support'],
+      name: "Starter",
+      price: "$0",
+      period: "per user/month",
+      description: "Up to 3 users",
+      features: ["Basic features", "5 projects", "Community support"],
       action: (
         <Button variant="secondary" fullWidth>
           Start Free
@@ -407,25 +423,30 @@ import { Pricing, Button, Badge } from '@orion/react';
       ),
     },
     {
-      name: 'Team',
-      price: '$12',
-      period: 'per user/month',
-      description: 'Unlimited users',
-      features: ['All features', 'Unlimited projects', 'Email support', 'Admin controls'],
+      name: "Team",
+      price: "$12",
+      period: "per user/month",
+      description: "Unlimited users",
+      features: [
+        "All features",
+        "Unlimited projects",
+        "Email support",
+        "Admin controls",
+      ],
       action: <Button fullWidth>Start Trial</Button>,
       popular: true,
     },
     {
-      name: 'Enterprise',
-      price: '$25',
-      period: 'per user/month',
-      description: 'Advanced security & support',
+      name: "Enterprise",
+      price: "$25",
+      period: "per user/month",
+      description: "Advanced security & support",
       features: [
-        'Everything in Team',
-        'SSO/SAML',
-        'Audit logs',
-        'Dedicated support',
-        'Custom contracts',
+        "Everything in Team",
+        "SSO/SAML",
+        "Audit logs",
+        "Dedicated support",
+        "Custom contracts",
       ],
       action: (
         <Button variant="secondary" fullWidth>

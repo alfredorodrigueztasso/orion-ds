@@ -5,7 +5,7 @@
 ## Quick Start
 
 ```tsx
-import { Testimonials, Badge } from '@orion/react';
+import { Testimonials, Badge } from "@orion/react";
 
 <Testimonials
   eyebrow={<Badge>Testimonials</Badge>}
@@ -13,11 +13,12 @@ import { Testimonials, Badge } from '@orion/react';
   description="See why thousands of teams love our product"
   testimonials={[
     {
-      quote: 'This product transformed our workflow completely. We shipped 3x faster.',
+      quote:
+        "This product transformed our workflow completely. We shipped 3x faster.",
       author: {
-        name: 'Jane Doe',
-        role: 'CTO',
-        company: 'TechCorp',
+        name: "Jane Doe",
+        role: "CTO",
+        company: "TechCorp",
         avatar: <img src="/avatars/jane.jpg" alt="" />,
       },
       rating: 5,
@@ -25,18 +26,18 @@ import { Testimonials, Badge } from '@orion/react';
     {
       quote: "The best investment we've made for our engineering team.",
       author: {
-        name: 'John Smith',
-        role: 'Engineering Lead',
-        company: 'StartupXYZ',
+        name: "John Smith",
+        role: "Engineering Lead",
+        company: "StartupXYZ",
       },
       rating: 5,
     },
     {
-      quote: 'Finally, a design system that actually works with our workflow.',
+      quote: "Finally, a design system that actually works with our workflow.",
       author: {
-        name: 'Sarah Johnson',
-        role: 'Product Designer',
-        company: 'DesignCo',
+        name: "Sarah Johnson",
+        role: "Product Designer",
+        company: "DesignCo",
         avatar: <img src="/avatars/sarah.jpg" alt="" />,
       },
     },
@@ -73,8 +74,8 @@ interface TestimonialsProps {
   centered?: boolean; // Center header text - default: true
 
   // Styling
-  variant?: 'default' | 'cards' | 'minimal'; // default: 'default'
-  background?: 'base' | 'subtle' | 'none'; // default: 'base'
+  variant?: "default" | "cards" | "minimal"; // default: 'default'
+  background?: "base" | "subtle" | "none"; // default: 'base'
 }
 
 interface Testimonial {
@@ -231,8 +232,8 @@ avatar: <img
   style={{
     width: 48,
     height: 48,
-    borderRadius: '50%',
-    objectFit: 'cover',
+    borderRadius: "50%",
+    objectFit: "cover",
   }}
 />;
 ```
@@ -244,12 +245,12 @@ avatar: <div
   style={{
     width: 48,
     height: 48,
-    borderRadius: '50%',
-    background: 'var(--interactive-primary)',
-    color: 'var(--interactive-primary-text)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    borderRadius: "50%",
+    background: "var(--interactive-primary)",
+    color: "var(--interactive-primary-text)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     fontWeight: 600,
   }}
 >
@@ -270,7 +271,7 @@ avatar: <img src="/logos/techcorp.svg" alt="" height={32} />;
 ### SaaS Testimonials
 
 ```tsx
-import { Testimonials, Badge } from '@orion/react';
+import { Testimonials, Badge } from "@orion/react";
 
 <Testimonials
   eyebrow={<Badge variant="brand">Customer Stories</Badge>}
@@ -278,31 +279,34 @@ import { Testimonials, Badge } from '@orion/react';
   description="Join thousands of companies shipping faster"
   testimonials={[
     {
-      quote: 'We reduced our deployment time from hours to minutes. The ROI was immediate.',
+      quote:
+        "We reduced our deployment time from hours to minutes. The ROI was immediate.",
       author: {
-        name: 'Sarah Chen',
-        role: 'VP of Engineering',
-        company: 'ScaleUp Inc',
+        name: "Sarah Chen",
+        role: "VP of Engineering",
+        company: "ScaleUp Inc",
         avatar: <img src="/avatars/sarah.jpg" alt="" />,
       },
       rating: 5,
     },
     {
-      quote: 'The developer experience is unmatched. Our team actually enjoys using it.',
+      quote:
+        "The developer experience is unmatched. Our team actually enjoys using it.",
       author: {
-        name: 'Marcus Johnson',
-        role: 'Staff Engineer',
-        company: 'DevTools Co',
+        name: "Marcus Johnson",
+        role: "Staff Engineer",
+        company: "DevTools Co",
         avatar: <img src="/avatars/marcus.jpg" alt="" />,
       },
       rating: 5,
     },
     {
-      quote: 'Best-in-class documentation and support. They really care about their customers.',
+      quote:
+        "Best-in-class documentation and support. They really care about their customers.",
       author: {
-        name: 'Emily Rodriguez',
-        role: 'Product Lead',
-        company: 'BuildFast',
+        name: "Emily Rodriguez",
+        role: "Product Lead",
+        company: "BuildFast",
         avatar: <img src="/avatars/emily.jpg" alt="" />,
       },
       rating: 5,
@@ -323,9 +327,9 @@ import { Testimonials, Badge } from '@orion/react';
       quote:
         "In my 20 years of building products, I've never seen a tool that combines such powerful features with such an intuitive interface. This is the future of development.",
       author: {
-        name: 'Alex Rivera',
-        role: 'Founder & CEO',
-        company: 'TechGiant',
+        name: "Alex Rivera",
+        role: "Founder & CEO",
+        company: "TechGiant",
         avatar: <img src="/avatars/alex.jpg" alt="" />,
       },
     },
@@ -344,12 +348,12 @@ import { Testimonials, Badge } from '@orion/react';
   columns={2}
   testimonials={[
     {
-      quote: 'Simple, elegant, powerful.',
-      author: { name: 'Designer', company: 'Studio' },
+      quote: "Simple, elegant, powerful.",
+      author: { name: "Designer", company: "Studio" },
     },
     {
-      quote: 'Exactly what we needed.',
-      author: { name: 'Developer', company: 'Agency' },
+      quote: "Exactly what we needed.",
+      author: { name: "Developer", company: "Agency" },
     },
   ]}
 />
@@ -363,18 +367,18 @@ import { Testimonials, Badge } from '@orion/react';
   title="5-star rated by our users"
   testimonials={[
     {
-      quote: 'Changed how we work.',
-      author: { name: 'User 1', role: 'Developer' },
+      quote: "Changed how we work.",
+      author: { name: "User 1", role: "Developer" },
       rating: 5,
     },
     {
-      quote: 'Incredible experience.',
-      author: { name: 'User 2', role: 'Designer' },
+      quote: "Incredible experience.",
+      author: { name: "User 2", role: "Designer" },
       rating: 5,
     },
     {
-      quote: 'Best tool out there.',
-      author: { name: 'User 3', role: 'Manager' },
+      quote: "Best tool out there.",
+      author: { name: "User 3", role: "Manager" },
       rating: 5,
     },
   ]}
@@ -454,12 +458,12 @@ testimonials={[
 ```tsx
 // WRONG - Wall of text
 {
-  quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit...';
+  quote: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit...";
 }
 
 // CORRECT - Concise and impactful
 {
-  quote: 'Reduced deployment time by 73%. The ROI was immediate.';
+  quote: "Reduced deployment time by 73%. The ROI was immediate.";
 }
 ```
 

@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { Folder, FileText, Settings } from 'lucide-react';
-import { Breadcrumbs } from './Breadcrumbs';
-import type { BreadcrumbItem } from './Breadcrumbs.types';
+import type { Meta, StoryObj } from "@storybook/react";
+import { Folder, FileText, Settings } from "lucide-react";
+import { Breadcrumbs } from "./Breadcrumbs";
+import type { BreadcrumbItem } from "./Breadcrumbs.types";
 
 const meta: Meta<typeof Breadcrumbs> = {
-  title: 'Sections/App/Breadcrumbs',
+  title: "Sections/App/Breadcrumbs",
   component: Breadcrumbs,
   parameters: {
-    layout: 'padded',
+    layout: "padded",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
@@ -17,10 +17,10 @@ type Story = StoryObj<typeof Breadcrumbs>;
 
 // Sample breadcrumb items
 const sampleItems: BreadcrumbItem[] = [
-  { id: 'home', label: 'Home', href: '/' },
-  { id: 'projects', label: 'Projects', href: '/projects' },
-  { id: 'alpha', label: 'Project Alpha', href: '/projects/alpha' },
-  { id: 'settings', label: 'Settings' },
+  { id: "home", label: "Home", href: "/" },
+  { id: "projects", label: "Projects", href: "/projects" },
+  { id: "alpha", label: "Project Alpha", href: "/projects/alpha" },
+  { id: "settings", label: "Settings" },
 ];
 
 /**
@@ -48,9 +48,14 @@ export const WithHomeIcon: Story = {
 export const WithIcons: Story = {
   args: {
     items: [
-      { id: 'home', label: 'Home', href: '/' },
-      { id: 'docs', label: 'Documents', href: '/docs', icon: <Folder size={14} /> },
-      { id: 'file', label: 'Report.pdf', icon: <FileText size={14} /> },
+      { id: "home", label: "Home", href: "/" },
+      {
+        id: "docs",
+        label: "Documents",
+        href: "/docs",
+        icon: <Folder size={14} />,
+      },
+      { id: "file", label: "Report.pdf", icon: <FileText size={14} /> },
     ],
     showHomeIcon: true,
   },
@@ -62,12 +67,20 @@ export const WithIcons: Story = {
 export const Collapsible: Story = {
   args: {
     items: [
-      { id: 'home', label: 'Home', href: '/' },
-      { id: 'workspace', label: 'Workspace', href: '/workspace' },
-      { id: 'projects', label: 'Projects', href: '/workspace/projects' },
-      { id: 'alpha', label: 'Project Alpha', href: '/workspace/projects/alpha' },
-      { id: 'docs', label: 'Documents', href: '/workspace/projects/alpha/docs' },
-      { id: 'settings', label: 'Settings' },
+      { id: "home", label: "Home", href: "/" },
+      { id: "workspace", label: "Workspace", href: "/workspace" },
+      { id: "projects", label: "Projects", href: "/workspace/projects" },
+      {
+        id: "alpha",
+        label: "Project Alpha",
+        href: "/workspace/projects/alpha",
+      },
+      {
+        id: "docs",
+        label: "Documents",
+        href: "/workspace/projects/alpha/docs",
+      },
+      { id: "settings", label: "Settings" },
     ],
     maxItems: 4,
     itemsBeforeCollapse: 1,
@@ -81,7 +94,7 @@ export const Collapsible: Story = {
 export const CustomSeparator: Story = {
   args: {
     items: sampleItems,
-    separator: '/',
+    separator: "/",
   },
 };
 
@@ -91,7 +104,7 @@ export const CustomSeparator: Story = {
 export const ArrowSeparator: Story = {
   args: {
     items: sampleItems,
-    separator: '→',
+    separator: "→",
   },
 };
 
@@ -101,7 +114,7 @@ export const ArrowSeparator: Story = {
 export const Small: Story = {
   args: {
     items: sampleItems,
-    size: 'sm',
+    size: "sm",
   },
 };
 
@@ -111,7 +124,7 @@ export const Small: Story = {
 export const Large: Story = {
   args: {
     items: sampleItems,
-    size: 'lg',
+    size: "lg",
   },
 };
 
@@ -120,13 +133,19 @@ export const Large: Story = {
  */
 export const AllSizes: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-6)' }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-6)",
+      }}
+    >
       <div>
         <p
           style={{
-            marginBottom: 'var(--spacing-2)',
-            fontSize: 'var(--font-size-12)',
-            color: 'var(--text-tertiary)',
+            marginBottom: "var(--spacing-2)",
+            fontSize: "var(--font-size-12)",
+            color: "var(--text-tertiary)",
           }}
         >
           Small
@@ -136,9 +155,9 @@ export const AllSizes: Story = {
       <div>
         <p
           style={{
-            marginBottom: 'var(--spacing-2)',
-            fontSize: 'var(--font-size-12)',
-            color: 'var(--text-tertiary)',
+            marginBottom: "var(--spacing-2)",
+            fontSize: "var(--font-size-12)",
+            color: "var(--text-tertiary)",
           }}
         >
           Medium (default)
@@ -148,9 +167,9 @@ export const AllSizes: Story = {
       <div>
         <p
           style={{
-            marginBottom: 'var(--spacing-2)',
-            fontSize: 'var(--font-size-12)',
-            color: 'var(--text-tertiary)',
+            marginBottom: "var(--spacing-2)",
+            fontSize: "var(--font-size-12)",
+            color: "var(--text-tertiary)",
           }}
         >
           Large
@@ -167,10 +186,18 @@ export const AllSizes: Story = {
 export const WithClickHandlers: Story = {
   args: {
     items: [
-      { id: 'home', label: 'Home', onClick: () => alert('Go to Home') },
-      { id: 'products', label: 'Products', onClick: () => alert('Go to Products') },
-      { id: 'electronics', label: 'Electronics', onClick: () => alert('Go to Electronics') },
-      { id: 'laptop', label: 'Laptop Pro 16' },
+      { id: "home", label: "Home", onClick: () => alert("Go to Home") },
+      {
+        id: "products",
+        label: "Products",
+        onClick: () => alert("Go to Products"),
+      },
+      {
+        id: "electronics",
+        label: "Electronics",
+        onClick: () => alert("Go to Electronics"),
+      },
+      { id: "laptop", label: "Laptop Pro 16" },
     ],
   },
 };
@@ -181,8 +208,8 @@ export const WithClickHandlers: Story = {
 export const TwoItems: Story = {
   args: {
     items: [
-      { id: 'home', label: 'Dashboard', href: '/' },
-      { id: 'settings', label: 'Settings' },
+      { id: "home", label: "Dashboard", href: "/" },
+      { id: "settings", label: "Settings" },
     ],
     showHomeIcon: true,
   },
@@ -193,7 +220,7 @@ export const TwoItems: Story = {
  */
 export const SingleItem: Story = {
   args: {
-    items: [{ id: 'home', label: 'Dashboard' }],
+    items: [{ id: "home", label: "Dashboard" }],
     showHomeIcon: true,
   },
 };
@@ -205,30 +232,40 @@ export const InPageContext: Story = {
   render: () => (
     <div
       style={{
-        padding: 'var(--spacing-4)',
-        background: 'var(--surface-subtle)',
-        borderRadius: 'var(--radius-sm)',
+        padding: "var(--spacing-4)",
+        background: "var(--surface-subtle)",
+        borderRadius: "var(--radius-sm)",
       }}
     >
       <Breadcrumbs
         items={[
-          { id: 'settings', label: 'Settings', href: '/settings', icon: <Settings size={14} /> },
-          { id: 'account', label: 'Account', href: '/settings/account' },
-          { id: 'security', label: 'Security' },
+          {
+            id: "settings",
+            label: "Settings",
+            href: "/settings",
+            icon: <Settings size={14} />,
+          },
+          { id: "account", label: "Account", href: "/settings/account" },
+          { id: "security", label: "Security" },
         ]}
         showHomeIcon
         size="sm"
       />
       <h1
         style={{
-          margin: 'var(--spacing-4) 0 var(--spacing-2)',
-          fontSize: 'var(--font-size-24)',
-          fontWeight: 'var(--font-weight-medium)',
+          margin: "var(--spacing-4) 0 var(--spacing-2)",
+          fontSize: "var(--font-size-24)",
+          fontWeight: "var(--font-weight-medium)",
         }}
       >
         Security Settings
       </h1>
-      <p style={{ color: 'var(--text-secondary)', fontSize: 'var(--font-size-14)' }}>
+      <p
+        style={{
+          color: "var(--text-secondary)",
+          fontSize: "var(--font-size-14)",
+        }}
+      >
         Manage your account security preferences
       </p>
     </div>

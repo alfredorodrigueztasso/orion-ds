@@ -14,9 +14,9 @@
  * ```
  */
 
-import { forwardRef, useCallback, useRef, useId } from 'react';
-import type { SliderProps } from './Slider.types';
-import styles from './Slider.module.css';
+import { forwardRef, useCallback, useRef, useId } from "react";
+import type { SliderProps } from "./Slider.types";
+import styles from "./Slider.module.css";
 
 export const Slider = forwardRef<HTMLDivElement, SliderProps>(
   (
@@ -26,7 +26,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
       min = 0,
       max = 100,
       step = 1,
-      size = 'md',
+      size = "md",
       disabled = false,
       showValue = false,
       formatValue,
@@ -91,7 +91,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
       <div ref={ref} className={containerClasses} {...rest}>
@@ -106,7 +106,11 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
         )}
 
         <div className={styles.track}>
-          <div className={styles.fill} style={{ width: `${percentage}%` }} aria-hidden="true" />
+          <div
+            className={styles.fill}
+            style={{ width: `${percentage}%` }}
+            aria-hidden="true"
+          />
 
           <input
             id={inputId}
@@ -144,8 +148,12 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
 
         {showLabels && (
           <div className={styles.labels} aria-hidden="true">
-            <span className={styles.labelMin}>{formatValue ? formatValue(min) : min}</span>
-            <span className={styles.labelMax}>{formatValue ? formatValue(max) : max}</span>
+            <span className={styles.labelMin}>
+              {formatValue ? formatValue(min) : min}
+            </span>
+            <span className={styles.labelMax}>
+              {formatValue ? formatValue(max) : max}
+            </span>
           </div>
         )}
       </div>
@@ -153,4 +161,4 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
   },
 );
 
-Slider.displayName = 'Slider';
+Slider.displayName = "Slider";

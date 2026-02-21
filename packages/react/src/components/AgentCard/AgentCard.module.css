@@ -7,7 +7,10 @@
 
 .agentCard {
   position: relative;
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  height: 100%; /* Fill grid cell so all cards in a row share the same height */
+  transition:
+    transform var(--transition-normal),
+    box-shadow var(--transition-normal);
   will-change: transform, box-shadow;
 }
 
@@ -17,7 +20,10 @@
 
 .agentCard.draggable {
   cursor: grab;
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal), opacity var(--transition-fast);
+  transition:
+    transform var(--transition-normal),
+    box-shadow var(--transition-normal),
+    opacity var(--transition-fast);
 }
 
 .agentCard.draggable:active {
@@ -57,8 +63,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--spacing-12);   /* 48px */
-  height: var(--spacing-12);  /* 48px */
+  width: var(--spacing-12); /* 48px */
+  height: var(--spacing-12); /* 48px */
   border-radius: var(--radius-full);
   background-color: var(--surface-subtle);
   color: var(--text-secondary);
@@ -72,12 +78,8 @@
   gap: var(--spacing-2);
 }
 
-.badge {
-  flex-shrink: 0;
-}
-
-/* Status Badge */
-.status {
+/* Multi Badge — shown only for multi-agent cards */
+.multiBadge {
   padding: var(--spacing-1) var(--spacing-2);
   border-radius: var(--radius-full);
   font-family: var(--font-secondary);
@@ -85,23 +87,11 @@
   font-weight: var(--font-weight-semibold);
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  color: var(--interactive-primary);
+  border: 1px solid var(--interactive-primary);
   background-color: var(--surface-base);
-  border: 1px solid var(--border-subtle);
-}
-
-.status.draft {
-  color: var(--text-secondary);
-  border-color: var(--border-subtle);
-}
-
-.status.published {
-  color: var(--status-success);
-  border-color: var(--status-success);
-}
-
-.status.archived {
-  color: var(--text-tertiary);
-  border-color: var(--border-subtle);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 /* Title in Body — DM Sans (font-secondary) */
@@ -122,6 +112,9 @@
   color: var(--text-secondary);
   line-height: 1.5;
   margin: 0;
+
+  /* Always reserve exactly 2 lines — keeps card height uniform in grids */
+  min-height: calc(1.5em * 2);
 
   /* Ellipsis after 2 lines */
   overflow: hidden;

@@ -31,12 +31,12 @@
  * ```
  */
 
-import { forwardRef } from 'react';
-import type { PricingProps } from './Pricing.types';
-import { Section } from '../Section';
-import { Container } from '../Container';
-import { PricingCard } from './PricingCard';
-import styles from './Pricing.module.css';
+import { forwardRef } from "react";
+import type { PricingProps } from "./Pricing.types";
+import { Section } from "../Section";
+import { Container } from "../Container";
+import { PricingCard } from "./PricingCard";
+import styles from "./Pricing.module.css";
 
 export const Pricing = forwardRef<HTMLElement, PricingProps>(
   (
@@ -46,7 +46,7 @@ export const Pricing = forwardRef<HTMLElement, PricingProps>(
       description,
       plans,
       columns = 3,
-      background = 'subtle',
+      background = "subtle",
       centered = true,
       className,
       ...rest
@@ -57,16 +57,24 @@ export const Pricing = forwardRef<HTMLElement, PricingProps>(
 
     const classNames = [styles.pricing, centered && styles.centered, className]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
-      <Section ref={ref} spacing="lg" background={background} className={classNames} {...rest}>
+      <Section
+        ref={ref}
+        spacing="lg"
+        background={background}
+        className={classNames}
+        {...rest}
+      >
         <Container size="xl">
           {hasHeader && (
             <header className={styles.header}>
               {eyebrow && <div className={styles.eyebrow}>{eyebrow}</div>}
               {title && <h2 className={styles.title}>{title}</h2>}
-              {description && <p className={styles.description}>{description}</p>}
+              {description && (
+                <p className={styles.description}>{description}</p>
+              )}
             </header>
           )}
 
@@ -81,4 +89,4 @@ export const Pricing = forwardRef<HTMLElement, PricingProps>(
   },
 );
 
-Pricing.displayName = 'Pricing';
+Pricing.displayName = "Pricing";

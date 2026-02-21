@@ -20,9 +20,10 @@
 /* Drop target visual */
 .folder.dropTarget,
 .folder[data-drop-active="true"] {
-  border: 2px dashed var(--interactive-primary);
-  background-color: var(--surface-subtle);
-  box-shadow: 0 0 0 3px var(--border-interactive);
+  border: 2px dashed var(--border-interactive);
+  background-color: var(--soft-brand);
+  box-shadow: 0 0 0 3px var(--soft-brand);
+  transition: all var(--transition-fast);
 }
 
 /* Micro-feedback: successful drop */
@@ -155,14 +156,35 @@
   margin: 0;
 }
 
-/* Drop placeholder: shows where the dragged card will be placed */
-.dropPlaceholder {
-  border: 2px dashed var(--interactive-primary);
-  border-radius: var(--radius-container);
-  background-color: var(--surface-layer);
-  min-height: 88px;
-  opacity: 0.5;
-  transition: opacity var(--transition-fast);
+/* Insertion indicator: shows where the dragged card will be placed */
+.insertionLine {
+  height: 2px;
+  background-color: var(--interactive-primary);
+  border-radius: 1px;
+  margin: var(--spacing-1) 0;
+  position: relative;
+  opacity: 1;
+
+  /* Punto circular en el extremo izquierdo */
+  &::before {
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: -3px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--interactive-primary);
+  }
+}
+
+/* Empty drop zone for empty folders */
+.emptyDropZone {
+  padding: var(--spacing-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80px;
 }
 
 /* Reduced motion support */

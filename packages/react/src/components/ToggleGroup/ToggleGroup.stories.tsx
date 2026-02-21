@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
+import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 import {
   AlignLeft,
   AlignCenter,
@@ -15,35 +15,35 @@ import {
   Sun,
   Moon,
   Monitor,
-} from 'lucide-react';
-import { ToggleGroup } from './ToggleGroup';
+} from "lucide-react";
+import { ToggleGroup } from "./ToggleGroup";
 
 const meta = {
-  title: 'Components/Forms/ToggleGroup',
+  title: "Components/Forms/ToggleGroup",
   component: ToggleGroup,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     type: {
-      control: 'select',
-      options: ['single', 'multiple'],
-      description: 'Selection mode',
+      control: "select",
+      options: ["single", "multiple"],
+      description: "Selection mode",
     },
     variant: {
-      control: 'select',
-      options: ['default', 'outline'],
-      description: 'Visual variant',
+      control: "select",
+      options: ["default", "outline"],
+      description: "Visual variant",
     },
     size: {
-      control: 'select',
-      options: ['sm', 'md', 'lg'],
-      description: 'Toggle size',
+      control: "select",
+      options: ["sm", "md", "lg"],
+      description: "Toggle size",
     },
     disabled: {
-      control: 'boolean',
-      description: 'Disable all items',
+      control: "boolean",
+      description: "Disable all items",
     },
   },
 } satisfies Meta<typeof ToggleGroup>;
@@ -53,8 +53,8 @@ type Story = StoryObj<typeof meta>;
 
 export const SingleSelection: Story = {
   args: {
-    type: 'single',
-    defaultValue: 'center',
+    type: "single",
+    defaultValue: "center",
   },
   render: (args) => (
     <ToggleGroup {...args}>
@@ -73,8 +73,8 @@ export const SingleSelection: Story = {
 
 export const MultipleSelection: Story = {
   args: {
-    type: 'multiple',
-    defaultValue: ['bold'],
+    type: "multiple",
+    defaultValue: ["bold"],
   },
   render: (args) => (
     <ToggleGroup {...args}>
@@ -96,9 +96,9 @@ export const MultipleSelection: Story = {
 
 export const OutlineVariant: Story = {
   args: {
-    type: 'single',
-    variant: 'outline',
-    defaultValue: 'grid',
+    type: "single",
+    variant: "outline",
+    defaultValue: "grid",
   },
   render: (args) => (
     <ToggleGroup {...args}>
@@ -117,9 +117,9 @@ export const OutlineVariant: Story = {
 
 export const WithTextLabels: Story = {
   args: {
-    type: 'single',
-    variant: 'outline',
-    defaultValue: 'monthly',
+    type: "single",
+    variant: "outline",
+    defaultValue: "monthly",
   },
   render: (args) => (
     <ToggleGroup {...args}>
@@ -131,9 +131,9 @@ export const WithTextLabels: Story = {
 
 export const Disabled: Story = {
   args: {
-    type: 'single',
+    type: "single",
     disabled: true,
-    defaultValue: 'center',
+    defaultValue: "center",
   },
   render: (args) => (
     <ToggleGroup {...args}>
@@ -151,7 +151,7 @@ export const Disabled: Story = {
 };
 
 export const DisabledItem: Story = {
-  args: { type: 'single' as const },
+  args: { type: "single" as const },
   render: () => (
     <ToggleGroup type="single" defaultValue="left">
       <ToggleGroup.Item value="left" aria-label="Left">
@@ -171,20 +171,25 @@ export const DisabledItem: Story = {
 };
 
 export const Controlled: Story = {
-  args: { type: 'single' as const },
+  args: { type: "single" as const },
   render: () => {
-    const [value, setValue] = useState<string | string[]>('system');
+    const [value, setValue] = useState<string | string[]>("system");
 
     return (
       <div
         style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: 'var(--spacing-4)',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "var(--spacing-4)",
         }}
       >
-        <ToggleGroup type="single" variant="outline" value={value} onValueChange={setValue}>
+        <ToggleGroup
+          type="single"
+          variant="outline"
+          value={value}
+          onValueChange={setValue}
+        >
           <ToggleGroup.Item value="light">
             <Sun size={18} /> Light
           </ToggleGroup.Item>
@@ -195,7 +200,12 @@ export const Controlled: Story = {
             <Monitor size={18} /> System
           </ToggleGroup.Item>
         </ToggleGroup>
-        <p style={{ fontSize: 'var(--font-size-14)', color: 'var(--text-secondary)' }}>
+        <p
+          style={{
+            fontSize: "var(--font-size-14)",
+            color: "var(--text-secondary)",
+          }}
+        >
           Theme: {String(value)}
         </p>
       </div>
@@ -204,22 +214,22 @@ export const Controlled: Story = {
 };
 
 export const AllSizes: Story = {
-  args: { type: 'single' as const },
+  args: { type: "single" as const },
   render: () => (
     <div
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 'var(--spacing-6)',
-        alignItems: 'flex-start',
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-6)",
+        alignItems: "flex-start",
       }}
     >
       <div>
         <p
           style={{
-            fontSize: 'var(--font-size-12)',
-            color: 'var(--text-tertiary)',
-            marginBottom: 'var(--spacing-2)',
+            fontSize: "var(--font-size-12)",
+            color: "var(--text-tertiary)",
+            marginBottom: "var(--spacing-2)",
           }}
         >
           Small
@@ -239,9 +249,9 @@ export const AllSizes: Story = {
       <div>
         <p
           style={{
-            fontSize: 'var(--font-size-12)',
-            color: 'var(--text-tertiary)',
-            marginBottom: 'var(--spacing-2)',
+            fontSize: "var(--font-size-12)",
+            color: "var(--text-tertiary)",
+            marginBottom: "var(--spacing-2)",
           }}
         >
           Medium
@@ -261,9 +271,9 @@ export const AllSizes: Story = {
       <div>
         <p
           style={{
-            fontSize: 'var(--font-size-12)',
-            color: 'var(--text-tertiary)',
-            marginBottom: 'var(--spacing-2)',
+            fontSize: "var(--font-size-12)",
+            color: "var(--text-tertiary)",
+            marginBottom: "var(--spacing-2)",
           }}
         >
           Large
@@ -285,23 +295,28 @@ export const AllSizes: Story = {
 };
 
 export const TextFormattingToolbar: Story = {
-  args: { type: 'single' as const },
+  args: { type: "single" as const },
   render: () => {
     const [formatting, setFormatting] = useState<string | string[]>([]);
-    const [alignment, setAlignment] = useState<string | string[]>('left');
+    const [alignment, setAlignment] = useState<string | string[]>("left");
 
     return (
       <div
         style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 'var(--spacing-4)',
-          padding: 'var(--spacing-3)',
-          borderRadius: 'var(--radius-control)',
-          border: '1px solid var(--border-subtle)',
+          display: "flex",
+          alignItems: "center",
+          gap: "var(--spacing-4)",
+          padding: "var(--spacing-3)",
+          borderRadius: "var(--radius-control)",
+          border: "1px solid var(--border-subtle)",
         }}
       >
-        <ToggleGroup type="multiple" size="sm" value={formatting} onValueChange={setFormatting}>
+        <ToggleGroup
+          type="multiple"
+          size="sm"
+          value={formatting}
+          onValueChange={setFormatting}
+        >
           <ToggleGroup.Item value="bold" aria-label="Bold">
             <Bold size={16} />
           </ToggleGroup.Item>
@@ -312,8 +327,19 @@ export const TextFormattingToolbar: Story = {
             <Underline size={16} />
           </ToggleGroup.Item>
         </ToggleGroup>
-        <div style={{ width: '1px', height: '24px', background: 'var(--border-subtle)' }} />
-        <ToggleGroup type="single" size="sm" value={alignment} onValueChange={setAlignment}>
+        <div
+          style={{
+            width: "1px",
+            height: "24px",
+            background: "var(--border-subtle)",
+          }}
+        />
+        <ToggleGroup
+          type="single"
+          size="sm"
+          value={alignment}
+          onValueChange={setAlignment}
+        >
           <ToggleGroup.Item value="left" aria-label="Align left">
             <AlignLeft size={16} />
           </ToggleGroup.Item>

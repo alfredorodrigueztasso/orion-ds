@@ -24,7 +24,7 @@ _Extends all native `<input>` attributes except `size` and `type`._
 ### Basic
 
 ```tsx
-import { SearchInput } from '@orion/react';
+import { SearchInput } from "@orion/react";
 
 <SearchInput placeholder="Search..." />;
 ```
@@ -32,16 +32,16 @@ import { SearchInput } from '@orion/react';
 ### Controlled with Clear
 
 ```tsx
-import { useState } from 'react';
+import { useState } from "react";
 
 function Example() {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
 
   return (
     <SearchInput
       value={query}
       onChange={(e) => setQuery(e.target.value)}
-      onClear={() => setQuery('')}
+      onClear={() => setQuery("")}
       placeholder="Search products..."
     />
   );
@@ -52,10 +52,10 @@ function Example() {
 
 ```tsx
 function SearchExample() {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
 
   const handleSearch = (value: string) => {
-    console.log('Searching for:', value);
+    console.log("Searching for:", value);
     // Perform search
   };
 
@@ -63,7 +63,7 @@ function SearchExample() {
     <SearchInput
       value={query}
       onChange={(e) => setQuery(e.target.value)}
-      onClear={() => setQuery('')}
+      onClear={() => setQuery("")}
       onSearch={handleSearch}
       placeholder="Press Enter to search"
     />
@@ -88,7 +88,12 @@ function SearchExample() {
 ### Loading State
 
 ```tsx
-<SearchInput value={query} onChange={handleChange} loading={isSearching} placeholder="Search..." />
+<SearchInput
+  value={query}
+  onChange={handleChange}
+  loading={isSearching}
+  placeholder="Search..."
+/>
 ```
 
 ### Full Width
@@ -100,11 +105,11 @@ function SearchExample() {
 ### Debounced Search
 
 ```tsx
-import { useState, useEffect } from 'react';
-import { useDebouncedValue } from '@/hooks/useDebouncedValue';
+import { useState, useEffect } from "react";
+import { useDebouncedValue } from "@/hooks/useDebouncedValue";
 
 function DebouncedSearch() {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const debouncedQuery = useDebouncedValue(query, 300);
 
   useEffect(() => {
@@ -117,7 +122,7 @@ function DebouncedSearch() {
     <SearchInput
       value={query}
       onChange={(e) => setQuery(e.target.value)}
-      onClear={() => setQuery('')}
+      onClear={() => setQuery("")}
       placeholder="Search (debounced)..."
     />
   );
@@ -137,9 +142,12 @@ function DebouncedSearch() {
 ### Custom Search Icon
 
 ```tsx
-import { Filter } from 'lucide-react';
+import { Filter } from "lucide-react";
 
-<SearchInput placeholder="Filter results..." searchIcon={<Filter size={18} />} />;
+<SearchInput
+  placeholder="Filter results..."
+  searchIcon={<Filter size={18} />}
+/>;
 ```
 
 ## Tokens Used

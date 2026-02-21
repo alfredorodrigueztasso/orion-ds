@@ -5,12 +5,12 @@
  * and accessibility features.
  */
 
-import React, { forwardRef } from 'react';
-import { ArrowDown } from 'lucide-react';
-import type { ChatMessagesProps } from '../Chat.types';
-import { useAutoScroll } from '../hooks/useAutoScroll';
-import { Button } from '../../Button';
-import styles from '../Chat.module.css';
+import React, { forwardRef } from "react";
+import { ArrowDown } from "lucide-react";
+import type { ChatMessagesProps } from "../Chat.types";
+import { useAutoScroll } from "../hooks/useAutoScroll";
+import { Button } from "../../Button";
+import styles from "../Chat.module.css";
 
 export const ChatMessages = forwardRef<HTMLDivElement, ChatMessagesProps>(
   ({ children, autoScroll = true, className, ...rest }, forwardedRef) => {
@@ -21,10 +21,11 @@ export const ChatMessages = forwardRef<HTMLDivElement, ChatMessagesProps>(
     // Combine refs
     const handleRef = (node: HTMLDivElement | null) => {
       // Set internal ref
-      (scrollRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+      (scrollRef as React.MutableRefObject<HTMLDivElement | null>).current =
+        node;
 
       // Forward ref
-      if (typeof forwardedRef === 'function') {
+      if (typeof forwardedRef === "function") {
         forwardedRef(node);
       } else if (forwardedRef) {
         forwardedRef.current = node;
@@ -34,7 +35,7 @@ export const ChatMessages = forwardRef<HTMLDivElement, ChatMessagesProps>(
     return (
       <div
         ref={handleRef}
-        className={[styles.messages, className].filter(Boolean).join(' ')}
+        className={[styles.messages, className].filter(Boolean).join(" ")}
         role="log"
         aria-live="polite"
         aria-label="Chat messages"
@@ -62,4 +63,4 @@ export const ChatMessages = forwardRef<HTMLDivElement, ChatMessagesProps>(
   },
 );
 
-ChatMessages.displayName = 'ChatMessages';
+ChatMessages.displayName = "ChatMessages";

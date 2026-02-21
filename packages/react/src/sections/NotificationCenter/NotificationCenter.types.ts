@@ -5,7 +5,7 @@
  * A notification panel/dropdown for SaaS applications.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Notification item
@@ -19,7 +19,7 @@ export interface NotificationItem {
   /**
    * Notification type
    */
-  type?: 'info' | 'success' | 'warning' | 'error' | 'default';
+  type?: "info" | "success" | "warning" | "error" | "default";
 
   /**
    * Notification title

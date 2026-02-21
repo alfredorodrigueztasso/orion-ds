@@ -10,5 +10,9 @@
  * <Skeleton variant="rectangle" width="100%" height={120} />
  * ```
  */
-export { Skeleton } from './Skeleton';
-export type { SkeletonProps, SkeletonVariant, SkeletonAnimation } from './Skeleton.types';
+export { Skeleton } from "./Skeleton";
+export type {
+  SkeletonProps,
+  SkeletonVariant,
+  SkeletonAnimation,
+} from "./Skeleton.types";

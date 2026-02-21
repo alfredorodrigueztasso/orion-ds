@@ -5,12 +5,12 @@
 ## Quick Start
 
 ```tsx
-import { SettingsLayout, FormSection, Field, Button } from '@orion/react';
-import { User, Bell, Shield, CreditCard } from 'lucide-react';
-import { useState } from 'react';
+import { SettingsLayout, FormSection, Field, Button } from "@orion/react";
+import { User, Bell, Shield, CreditCard } from "lucide-react";
+import { useState } from "react";
 
 function SettingsPage() {
-  const [activeSection, setActiveSection] = useState('profile');
+  const [activeSection, setActiveSection] = useState("profile");
 
   return (
     <SettingsLayout
@@ -18,27 +18,31 @@ function SettingsPage() {
       description="Manage your account settings and preferences."
       navigation={[
         {
-          title: 'Account',
+          title: "Account",
           items: [
-            { id: 'profile', label: 'Profile', icon: <User size={18} /> },
-            { id: 'notifications', label: 'Notifications', icon: <Bell size={18} /> },
+            { id: "profile", label: "Profile", icon: <User size={18} /> },
+            {
+              id: "notifications",
+              label: "Notifications",
+              icon: <Bell size={18} />,
+            },
           ],
         },
         {
-          title: 'Security',
+          title: "Security",
           items: [
-            { id: 'security', label: 'Security', icon: <Shield size={18} /> },
-            { id: 'billing', label: 'Billing', icon: <CreditCard size={18} /> },
+            { id: "security", label: "Security", icon: <Shield size={18} /> },
+            { id: "billing", label: "Billing", icon: <CreditCard size={18} /> },
           ],
         },
       ]}
       activeSection={activeSection}
       onNavigate={setActiveSection}
     >
-      {activeSection === 'profile' && <ProfileSettings />}
-      {activeSection === 'notifications' && <NotificationSettings />}
-      {activeSection === 'security' && <SecuritySettings />}
-      {activeSection === 'billing' && <BillingSettings />}
+      {activeSection === "profile" && <ProfileSettings />}
+      {activeSection === "notifications" && <NotificationSettings />}
+      {activeSection === "security" && <SecuritySettings />}
+      {activeSection === "billing" && <BillingSettings />}
     </SettingsLayout>
   );
 }
@@ -222,77 +226,111 @@ navigation={[
 ### Full Settings Page
 
 ```tsx
-import { SettingsLayout, FormSection, Field, Button, Badge } from '@orion/react';
-import { User, Bell, Shield, CreditCard, Palette, Key, Trash2 } from 'lucide-react';
+import {
+  SettingsLayout,
+  FormSection,
+  Field,
+  Button,
+  Badge,
+} from "@orion/react";
+import {
+  User,
+  Bell,
+  Shield,
+  CreditCard,
+  Palette,
+  Key,
+  Trash2,
+} from "lucide-react";
 
 function SettingsPage() {
-  const [activeSection, setActiveSection] = useState('profile');
+  const [activeSection, setActiveSection] = useState("profile");
 
   const navigation = [
     {
-      title: 'Account',
+      title: "Account",
       items: [
         {
-          id: 'profile',
-          label: 'Profile',
+          id: "profile",
+          label: "Profile",
           icon: <User size={18} />,
-          description: 'Your personal information',
+          description: "Your personal information",
         },
         {
-          id: 'appearance',
-          label: 'Appearance',
+          id: "appearance",
+          label: "Appearance",
           icon: <Palette size={18} />,
-          description: 'Theme and display',
+          description: "Theme and display",
         },
         {
-          id: 'notifications',
-          label: 'Notifications',
+          id: "notifications",
+          label: "Notifications",
           icon: <Bell size={18} />,
           badge: <Badge>5</Badge>,
         },
       ],
     },
     {
-      title: 'Security',
+      title: "Security",
       items: [
-        { id: 'password', label: 'Password', icon: <Key size={18} /> },
+        { id: "password", label: "Password", icon: <Key size={18} /> },
         {
-          id: 'two-factor',
-          label: 'Two-Factor Auth',
+          id: "two-factor",
+          label: "Two-Factor Auth",
           icon: <Shield size={18} />,
           badge: <Badge variant="warning">Setup</Badge>,
         },
       ],
     },
     {
-      title: 'Billing',
+      title: "Billing",
       items: [
-        { id: 'subscription', label: 'Subscription', icon: <CreditCard size={18} /> },
-        { id: 'payment', label: 'Payment Methods', icon: <CreditCard size={18} /> },
+        {
+          id: "subscription",
+          label: "Subscription",
+          icon: <CreditCard size={18} />,
+        },
+        {
+          id: "payment",
+          label: "Payment Methods",
+          icon: <CreditCard size={18} />,
+        },
       ],
     },
     {
-      title: 'Danger Zone',
-      items: [{ id: 'delete', label: 'Delete Account', icon: <Trash2 size={18} /> }],
+      title: "Danger Zone",
+      items: [
+        { id: "delete", label: "Delete Account", icon: <Trash2 size={18} /> },
+      ],
     },
   ];
 
   const renderContent = () => {
     switch (activeSection) {
-      case 'profile':
+      case "profile":
         return (
-          <FormSection title="Profile" description="Update your personal information.">
+          <FormSection
+            title="Profile"
+            description="Update your personal information."
+          >
             <Field label="Name" type="text" defaultValue="John Doe" />
             <Field label="Email" type="email" defaultValue="john@example.com" />
-            <Field label="Bio" type="textarea" placeholder="Tell us about yourself" />
+            <Field
+              label="Bio"
+              type="textarea"
+              placeholder="Tell us about yourself"
+            />
             <FormSection.Actions>
               <Button variant="primary">Save Changes</Button>
             </FormSection.Actions>
           </FormSection>
         );
-      case 'notifications':
+      case "notifications":
         return (
-          <FormSection title="Notifications" description="Choose what updates you receive.">
+          <FormSection
+            title="Notifications"
+            description="Choose what updates you receive."
+          >
             <Field label="Email notifications" type="checkbox" defaultChecked />
             <Field label="Push notifications" type="checkbox" />
             <Field label="Weekly digest" type="checkbox" defaultChecked />
@@ -332,26 +370,44 @@ function SettingsPage() {
   headerActions={<Button variant="primary">Upgrade Plan</Button>}
   navigation={[
     {
-      title: 'General',
+      title: "General",
       items: [
-        { id: 'details', label: 'Organization Details', icon: <Building size={18} /> },
-        { id: 'branding', label: 'Branding', icon: <Palette size={18} /> },
+        {
+          id: "details",
+          label: "Organization Details",
+          icon: <Building size={18} />,
+        },
+        { id: "branding", label: "Branding", icon: <Palette size={18} /> },
       ],
     },
     {
-      title: 'Team',
+      title: "Team",
       items: [
-        { id: 'members', label: 'Members', icon: <Users size={18} />, badge: '12' },
-        { id: 'roles', label: 'Roles & Permissions', icon: <Shield size={18} /> },
-        { id: 'invites', label: 'Invitations', icon: <Mail size={18} />, badge: '3 pending' },
+        {
+          id: "members",
+          label: "Members",
+          icon: <Users size={18} />,
+          badge: "12",
+        },
+        {
+          id: "roles",
+          label: "Roles & Permissions",
+          icon: <Shield size={18} />,
+        },
+        {
+          id: "invites",
+          label: "Invitations",
+          icon: <Mail size={18} />,
+          badge: "3 pending",
+        },
       ],
     },
     {
-      title: 'Integrations',
+      title: "Integrations",
       items: [
-        { id: 'apps', label: 'Connected Apps', icon: <Plug size={18} /> },
-        { id: 'api', label: 'API Keys', icon: <Key size={18} /> },
-        { id: 'webhooks', label: 'Webhooks', icon: <Webhook size={18} /> },
+        { id: "apps", label: "Connected Apps", icon: <Plug size={18} /> },
+        { id: "api", label: "API Keys", icon: <Key size={18} /> },
+        { id: "webhooks", label: "Webhooks", icon: <Webhook size={18} /> },
       ],
     },
   ]}
@@ -371,9 +427,9 @@ function SettingsPage() {
   navigation={[
     {
       items: [
-        { id: 'general', label: 'General' },
-        { id: 'appearance', label: 'Appearance' },
-        { id: 'shortcuts', label: 'Keyboard Shortcuts' },
+        { id: "general", label: "General" },
+        { id: "appearance", label: "Appearance" },
+        { id: "shortcuts", label: "Keyboard Shortcuts" },
       ],
     },
   ]}
@@ -399,12 +455,12 @@ function SettingsPage() {
 ```tsx
 // Good: Descriptive nav labels
 {
-  label: 'Password & Security';
+  label: "Password & Security";
 }
 
 // Avoid: Vague labels
 {
-  label: 'Settings 1';
+  label: "Settings 1";
 }
 ```
 
@@ -450,12 +506,12 @@ navigation={[
 
 ```tsx
 // WRONG - Content doesn't match nav
-activeSection === 'profile';
+activeSection === "profile";
 // But showing <BillingSettings />
 
 // CORRECT - Match content to active section
-activeSection === 'profile' && <ProfileSettings />;
-activeSection === 'billing' && <BillingSettings />;
+activeSection === "profile" && <ProfileSettings />;
+activeSection === "billing" && <BillingSettings />;
 ```
 
 ---

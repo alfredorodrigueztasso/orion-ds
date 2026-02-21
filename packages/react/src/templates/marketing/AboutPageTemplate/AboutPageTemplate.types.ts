@@ -4,15 +4,15 @@
  * Type definitions for the about/company page template.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
-import type { NavbarProps } from '../../../components/Navbar';
-import type { HeroProps } from '../../../sections/Hero';
-import type { CarouselSectionProps } from '../../../sections/CarouselSection';
-import type { StatsProps } from '../../../sections/Stats';
-import type { TimelineProps } from '../../../sections/Timeline';
-import type { TeamProps } from '../../../sections/Team';
-import type { CTAProps } from '../../../sections/CTA';
-import type { FooterProps } from '../../../sections/Footer';
+import type { HTMLAttributes, ReactNode } from "react";
+import type { NavbarProps } from "../../../components/Navbar";
+import type { HeroProps } from "../../../sections/Hero";
+import type { CarouselSectionProps } from "../../../sections/CarouselSection";
+import type { StatsProps } from "../../../sections/Stats";
+import type { TimelineProps } from "../../../sections/Timeline";
+import type { TeamProps } from "../../../sections/Team";
+import type { CTAProps } from "../../../sections/CTA";
+import type { FooterProps } from "../../../sections/Footer";
 
 /**
  * AboutPageTemplate props
@@ -26,7 +26,10 @@ import type { FooterProps } from '../../../sections/Footer';
  * />
  * ```
  */
-export interface AboutPageTemplateProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
+export interface AboutPageTemplateProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "title"
+> {
   /**
    * Navbar configuration
    */
@@ -40,7 +43,7 @@ export interface AboutPageTemplateProps extends Omit<HTMLAttributes<HTMLDivEleme
   /**
    * Editorial carousel for company story/milestones
    */
-  storyCarousel?: Omit<CarouselSectionProps, 'variant'>;
+  storyCarousel?: Omit<CarouselSectionProps, "variant">;
 
   /**
    * Company stats/metrics
@@ -55,7 +58,7 @@ export interface AboutPageTemplateProps extends Omit<HTMLAttributes<HTMLDivEleme
   /**
    * Gallery carousel for office/culture photos
    */
-  galleryCarousel?: Omit<CarouselSectionProps, 'variant'>;
+  galleryCarousel?: Omit<CarouselSectionProps, "variant">;
 
   /**
    * Team members section

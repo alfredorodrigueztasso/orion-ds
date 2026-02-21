@@ -19,8 +19,8 @@
  * />
  * ```
  */
-export { Carousel } from './Carousel';
-export { CarouselCard } from './CarouselCard';
+export { Carousel } from "./Carousel";
+export { CarouselCard } from "./CarouselCard";
 export type {
   CarouselProps,
   CarouselItem,
@@ -31,4 +31,4 @@ export type {
   CarouselOverlay,
   CarouselAlign,
   CarouselNavigationProps,
-} from './Carousel.types';
+} from "./Carousel.types";

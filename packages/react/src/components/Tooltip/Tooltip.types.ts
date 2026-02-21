@@ -4,12 +4,12 @@
  * Type definitions for the Orion Tooltip component.
  */
 
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
 /**
  * Tooltip placement
  */
-export type TooltipPlacement = 'top' | 'right' | 'bottom' | 'left';
+export type TooltipPlacement = "top" | "right" | "bottom" | "left";
 
 /**
  * Tooltip component props

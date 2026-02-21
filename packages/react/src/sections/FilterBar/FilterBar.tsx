@@ -17,10 +17,14 @@
  * ```
  */
 
-import { forwardRef, useState, useRef, useEffect } from 'react';
-import { Search, X, ChevronDown, Filter, Calendar } from 'lucide-react';
-import type { FilterBarProps, FilterDefinition, FilterOption } from './FilterBar.types';
-import styles from './FilterBar.module.css';
+import { forwardRef, useState, useRef, useEffect } from "react";
+import { Search, X, ChevronDown, Filter, Calendar } from "lucide-react";
+import type {
+  FilterBarProps,
+  FilterDefinition,
+  FilterOption,
+} from "./FilterBar.types";
+import styles from "./FilterBar.module.css";
 
 // Filter dropdown component
 const FilterDropdown = ({
@@ -35,7 +39,7 @@ const FilterDropdown = ({
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
 
   const handleOptionClick = (option: FilterOption) => {
-    if (filter.type === 'multi-select') {
+    if (filter.type === "multi-select") {
       const newValues = selectedValues.includes(option.value)
         ? selectedValues.filter((v) => v !== option.value)
         : [...selectedValues, option.value];
@@ -59,22 +63,34 @@ const FilterDropdown = ({
         <button
           key={option.value}
           type="button"
-          className={`${styles.dropdownItem} ${selectedValues.includes(option.value) ? styles.dropdownItemSelected : ''}`}
+          className={`${styles.dropdownItem} ${selectedValues.includes(option.value) ? styles.dropdownItemSelected : ""}`}
           onClick={() => handleOptionClick(option)}
         >
-          {filter.type === 'multi-select' && (
-            <span className={styles.checkbox}>{selectedValues.includes(option.value) && '✓'}</span>
+          {filter.type === "multi-select" && (
+            <span className={styles.checkbox}>
+              {selectedValues.includes(option.value) && "✓"}
+            </span>
           )}
           <span>{option.label}</span>
-          {option.count !== undefined && <span className={styles.optionCount}>{option.count}</span>}
+          {option.count !== undefined && (
+            <span className={styles.optionCount}>{option.count}</span>
+          )}
         </button>
       ))}
-      {filter.type === 'multi-select' && (
+      {filter.type === "multi-select" && (
         <div className={styles.dropdownFooter}>
-          <button type="button" className={styles.dropdownCancel} onClick={onClose}>
+          <button
+            type="button"
+            className={styles.dropdownCancel}
+            onClick={onClose}
+          >
             Cancel
           </button>
-          <button type="button" className={styles.dropdownApply} onClick={handleApply}>
+          <button
+            type="button"
+            className={styles.dropdownApply}
+            onClick={handleApply}
+          >
             Apply
           </button>
         </div>
@@ -92,9 +108,9 @@ export const FilterBar = forwardRef<HTMLDivElement, FilterBarProps>(
       onFilterRemove,
       onClearAll,
       searchable = false,
-      searchValue = '',
+      searchValue = "",
       onSearchChange,
-      searchPlaceholder = 'Search...',
+      searchPlaceholder = "Search...",
       showCount = true,
       compact = false,
       className,
@@ -108,13 +124,17 @@ export const FilterBar = forwardRef<HTMLDivElement, FilterBarProps>(
     // Close dropdown on outside click
     useEffect(() => {
       const handleClickOutside = (e: MouseEvent) => {
-        if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        if (
+          dropdownRef.current &&
+          !dropdownRef.current.contains(e.target as Node)
+        ) {
           setOpenFilter(null);
         }
       };
 
-      document.addEventListener('mousedown', handleClickOutside);
-      return () => document.removeEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
+      return () =>
+        document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
     const handleFilterSelect = (key: string, value: string | string[]) => {
@@ -123,7 +143,7 @@ export const FilterBar = forwardRef<HTMLDivElement, FilterBarProps>(
 
     const classNames = [styles.filterBar, compact && styles.compact, className]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
       <div ref={ref} className={classNames} {...rest}>
@@ -151,19 +171,23 @@ export const FilterBar = forwardRef<HTMLDivElement, FilterBarProps>(
               <div key={filter.key} className={styles.filterWrapper}>
                 <button
                   type="button"
-                  className={`${styles.filterTrigger} ${isActive ? styles.filterActive : ''}`}
+                  className={`${styles.filterTrigger} ${isActive ? styles.filterActive : ""}`}
                   onClick={() => setOpenFilter(isOpen ? null : filter.key)}
                 >
                   {filter.icon ||
-                    (filter.type.includes('date') ? <Calendar size={14} /> : <Filter size={14} />)}
+                    (filter.type.includes("date") ? (
+                      <Calendar size={14} />
+                    ) : (
+                      <Filter size={14} />
+                    ))}
                   <span>{filter.label}</span>
                   <ChevronDown
                     size={14}
-                    className={`${styles.chevron} ${isOpen ? styles.chevronOpen : ''}`}
+                    className={`${styles.chevron} ${isOpen ? styles.chevronOpen : ""}`}
                   />
                 </button>
 
-                {isOpen && filter.type !== 'text' && (
+                {isOpen && filter.type !== "text" && (
                   <FilterDropdown
                     filter={filter}
                     onSelect={(value) => handleFilterSelect(filter.key, value)}
@@ -192,7 +216,11 @@ export const FilterBar = forwardRef<HTMLDivElement, FilterBarProps>(
               </span>
             ))}
             {onClearAll && activeFilters.length > 1 && (
-              <button type="button" className={styles.clearAll} onClick={onClearAll}>
+              <button
+                type="button"
+                className={styles.clearAll}
+                onClick={onClearAll}
+              >
                 Clear all
               </button>
             )}
@@ -202,7 +230,8 @@ export const FilterBar = forwardRef<HTMLDivElement, FilterBarProps>(
         {/* Filter count */}
         {showCount && activeFilters.length > 0 && (
           <span className={styles.count}>
-            {activeFilters.length} filter{activeFilters.length !== 1 ? 's' : ''} active
+            {activeFilters.length} filter{activeFilters.length !== 1 ? "s" : ""}{" "}
+            active
           </span>
         )}
       </div>
@@ -210,4 +239,4 @@ export const FilterBar = forwardRef<HTMLDivElement, FilterBarProps>(
   },
 );
 
-FilterBar.displayName = 'FilterBar';
+FilterBar.displayName = "FilterBar";

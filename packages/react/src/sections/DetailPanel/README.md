@@ -5,7 +5,7 @@
 ## Quick Start
 
 ```tsx
-import { DetailPanel, Button } from '@orion/react';
+import { DetailPanel, Button } from "@orion/react";
 
 function UserList() {
   const [selectedUser, setSelectedUser] = useState(null);
@@ -70,8 +70,8 @@ interface DetailPanelProps {
   footer?: ReactNode; // Footer content (action buttons)
 
   // Layout
-  size?: 'sm' | 'md' | 'lg' | 'xl'; // Panel width - default: 'md'
-  position?: 'right' | 'left'; // Panel side - default: 'right'
+  size?: "sm" | "md" | "lg" | "xl"; // Panel width - default: 'md'
+  position?: "right" | "left"; // Panel side - default: 'right'
 
   // Behavior
   overlay?: boolean; // Show backdrop - default: true
@@ -154,8 +154,20 @@ Add action buttons to the header area.
   title="Document"
   headerActions={
     <>
-      <Button size="sm" variant="ghost" iconOnly icon={<Edit size={16} />} aria-label="Edit" />
-      <Button size="sm" variant="ghost" iconOnly icon={<Trash size={16} />} aria-label="Delete" />
+      <Button
+        size="sm"
+        variant="ghost"
+        iconOnly
+        icon={<Edit size={16} />}
+        aria-label="Edit"
+      />
+      <Button
+        size="sm"
+        variant="ghost"
+        iconOnly
+        icon={<Trash size={16} />}
+        aria-label="Delete"
+      />
     </>
   }
 >
@@ -196,7 +208,12 @@ Common pattern with cancel and save buttons.
 Show a loading indicator while content loads.
 
 ```tsx
-<DetailPanel open={isOpen} onClose={close} title="Loading Details..." loading={isLoading}>
+<DetailPanel
+  open={isOpen}
+  onClose={close}
+  title="Loading Details..."
+  loading={isLoading}
+>
   {data && <DetailsView data={data} />}
 </DetailPanel>
 ```
@@ -247,8 +264,8 @@ Overlay present but clicking it doesn't close panel.
 ### User Detail Panel
 
 ```tsx
-import { DetailPanel, Button, Field } from '@orion/react';
-import { Edit, Trash2, Mail } from 'lucide-react';
+import { DetailPanel, Button, Field } from "@orion/react";
+import { Edit, Trash2, Mail } from "lucide-react";
 
 function UserDetailPanel({ user, onClose, onSave }) {
   const [formData, setFormData] = useState(user);
@@ -265,7 +282,7 @@ function UserDetailPanel({ user, onClose, onSave }) {
     <DetailPanel
       open={!!user}
       onClose={onClose}
-      title={user?.name || 'User Details'}
+      title={user?.name || "User Details"}
       subtitle={user?.email}
       size="md"
       headerActions={
@@ -297,7 +314,13 @@ function UserDetailPanel({ user, onClose, onSave }) {
         </>
       }
     >
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-4)' }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "var(--spacing-4)",
+        }}
+      >
         <Field
           label="Name"
           value={formData.name}
@@ -314,9 +337,9 @@ function UserDetailPanel({ user, onClose, onSave }) {
           type="select"
           value={formData.role}
           options={[
-            { value: 'admin', label: 'Admin' },
-            { value: 'user', label: 'User' },
-            { value: 'viewer', label: 'Viewer' },
+            { value: "admin", label: "Admin" },
+            { value: "user", label: "User" },
+            { value: "viewer", label: "Viewer" },
           ]}
           onChange={(e) => setFormData({ ...formData, role: e.target.value })}
         />

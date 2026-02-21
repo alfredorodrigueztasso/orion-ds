@@ -1,27 +1,27 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
-import { Checkbox } from './Checkbox';
+import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
+import { Checkbox } from "./Checkbox";
 
 const meta = {
-  title: 'Components/Forms/Checkbox',
+  title: "Components/Forms/Checkbox",
   component: Checkbox,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     size: {
-      control: 'select',
-      options: ['sm', 'md', 'lg'],
-      description: 'Checkbox size',
+      control: "select",
+      options: ["sm", "md", "lg"],
+      description: "Checkbox size",
     },
     indeterminate: {
-      control: 'boolean',
-      description: 'Indeterminate state (partially checked)',
+      control: "boolean",
+      description: "Indeterminate state (partially checked)",
     },
     disabled: {
-      control: 'boolean',
-      description: 'Disable checkbox',
+      control: "boolean",
+      description: "Disable checkbox",
     },
   },
 } satisfies Meta<typeof Checkbox>;
@@ -31,41 +31,41 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    label: 'Accept terms and conditions',
+    label: "Accept terms and conditions",
   },
 };
 
 export const Checked: Story = {
   args: {
-    label: 'I agree',
+    label: "I agree",
     defaultChecked: true,
   },
 };
 
 export const WithHelperText: Story = {
   args: {
-    label: 'Subscribe to newsletter',
-    helperText: 'We will send you weekly updates',
+    label: "Subscribe to newsletter",
+    helperText: "We will send you weekly updates",
   },
 };
 
 export const WithError: Story = {
   args: {
-    label: 'Accept terms',
-    error: 'You must accept the terms to continue',
+    label: "Accept terms",
+    error: "You must accept the terms to continue",
   },
 };
 
 export const Disabled: Story = {
   args: {
-    label: 'Disabled option',
+    label: "Disabled option",
     disabled: true,
   },
 };
 
 export const DisabledChecked: Story = {
   args: {
-    label: 'Disabled and checked',
+    label: "Disabled and checked",
     disabled: true,
     defaultChecked: true,
   },
@@ -73,22 +73,22 @@ export const DisabledChecked: Story = {
 
 export const Indeterminate: Story = {
   args: {
-    label: 'Select all',
+    label: "Select all",
     indeterminate: true,
   },
 };
 
 export const SmallSize: Story = {
   args: {
-    label: 'Small checkbox',
-    size: 'sm',
+    label: "Small checkbox",
+    size: "sm",
   },
 };
 
 export const LargeSize: Story = {
   args: {
-    label: 'Large checkbox',
-    size: 'lg',
+    label: "Large checkbox",
+    size: "lg",
   },
 };
 
@@ -105,12 +105,12 @@ export const Interactive: Story = {
         />
         <p
           style={{
-            marginTop: 'var(--spacing-4)',
-            fontSize: 'var(--font-size-14)',
-            color: 'var(--text-secondary)',
+            marginTop: "var(--spacing-4)",
+            fontSize: "var(--font-size-14)",
+            color: "var(--text-secondary)",
           }}
         >
-          Status: {checked ? 'Checked ✓' : 'Unchecked'}
+          Status: {checked ? "Checked ✓" : "Unchecked"}
         </p>
       </div>
     );
@@ -122,18 +122,26 @@ export const CheckboxGroup: Story = {
     const [selected, setSelected] = useState<string[]>([]);
 
     const options = [
-      { id: 'option1', label: 'Option 1' },
-      { id: 'option2', label: 'Option 2' },
-      { id: 'option3', label: 'Option 3' },
-      { id: 'option4', label: 'Option 4' },
+      { id: "option1", label: "Option 1" },
+      { id: "option2", label: "Option 2" },
+      { id: "option3", label: "Option 3" },
+      { id: "option4", label: "Option 4" },
     ];
 
     const handleChange = (id: string, checked: boolean) => {
-      setSelected((prev) => (checked ? [...prev, id] : prev.filter((item) => item !== id)));
+      setSelected((prev) =>
+        checked ? [...prev, id] : prev.filter((item) => item !== id),
+      );
     };
 
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-4)' }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "var(--spacing-4)",
+        }}
+      >
         {options.map((option) => (
           <Checkbox
             key={option.id}
@@ -144,12 +152,12 @@ export const CheckboxGroup: Story = {
         ))}
         <p
           style={{
-            marginTop: 'var(--spacing-4)',
-            fontSize: 'var(--font-size-14)',
-            color: 'var(--text-secondary)',
+            marginTop: "var(--spacing-4)",
+            fontSize: "var(--font-size-14)",
+            color: "var(--text-secondary)",
           }}
         >
-          Selected: {selected.length > 0 ? selected.join(', ') : 'None'}
+          Selected: {selected.length > 0 ? selected.join(", ") : "None"}
         </p>
       </div>
     );
@@ -159,9 +167,9 @@ export const CheckboxGroup: Story = {
 export const SelectAllPattern: Story = {
   render: () => {
     const [items, setItems] = useState([
-      { id: 'item1', label: 'Item 1', checked: false },
-      { id: 'item2', label: 'Item 2', checked: false },
-      { id: 'item3', label: 'Item 3', checked: false },
+      { id: "item1", label: "Item 1", checked: false },
+      { id: "item2", label: "Item 2", checked: false },
+      { id: "item3", label: "Item 3", checked: false },
     ]);
 
     const allChecked = items.every((item) => item.checked);
@@ -172,11 +180,19 @@ export const SelectAllPattern: Story = {
     };
 
     const handleItemChange = (id: string, checked: boolean) => {
-      setItems((prev) => prev.map((item) => (item.id === id ? { ...item, checked } : item)));
+      setItems((prev) =>
+        prev.map((item) => (item.id === id ? { ...item, checked } : item)),
+      );
     };
 
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-4)' }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "var(--spacing-4)",
+        }}
+      >
         <Checkbox
           label="Select All"
           checked={allChecked}
@@ -185,10 +201,10 @@ export const SelectAllPattern: Story = {
         />
         <div
           style={{
-            paddingLeft: 'var(--spacing-8)',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 'var(--spacing-3)',
+            paddingLeft: "var(--spacing-8)",
+            display: "flex",
+            flexDirection: "column",
+            gap: "var(--spacing-3)",
           }}
         >
           {items.map((item) => (
@@ -207,7 +223,13 @@ export const SelectAllPattern: Story = {
 
 export const AllSizes: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-6)' }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-6)",
+      }}
+    >
       <Checkbox label="Small checkbox" size="sm" />
       <Checkbox label="Medium checkbox" size="md" />
       <Checkbox label="Large checkbox" size="lg" />
@@ -217,7 +239,13 @@ export const AllSizes: Story = {
 
 export const AllStates: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-4)' }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-4)",
+      }}
+    >
       <Checkbox label="Unchecked" />
       <Checkbox label="Checked" defaultChecked />
       <Checkbox label="Indeterminate" indeterminate />

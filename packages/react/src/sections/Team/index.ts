@@ -2,8 +2,8 @@
  * Team Component Exports
  */
 
-export { Team } from './Team';
-export { TeamMemberCard } from './TeamMemberCard';
+export { Team } from "./Team";
+export { TeamMemberCard } from "./TeamMemberCard";
 export type {
   TeamProps,
   TeamMember,
@@ -11,4 +11,4 @@ export type {
   TeamMemberCardProps,
   TeamColumns,
   TeamVariant,
-} from './Team.types';
+} from "./Team.types";

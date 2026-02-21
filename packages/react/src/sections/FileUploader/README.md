@@ -5,10 +5,10 @@
 ## Quick Start
 
 ```tsx
-import { FileUploader } from '@orion/react';
+import { FileUploader } from "@orion/react";
 
 <FileUploader
-  accept={['image/*', '.pdf', '.doc', '.docx']}
+  accept={["image/*", ".pdf", ".doc", ".docx"]}
   maxFiles={5}
   maxSize={10 * 1024 * 1024} // 10MB
   onFilesAdded={(files) => handleUpload(files)}
@@ -54,7 +54,7 @@ interface FileUploaderProps {
   helperText?: string; // Help text below dropzone
 
   // Styling
-  variant?: 'default' | 'minimal' | 'card'; // default: 'default'
+  variant?: "default" | "minimal" | "card"; // default: 'default'
   compact?: boolean; // Compact mode - default: false
 
   // State
@@ -68,7 +68,7 @@ interface UploadedFile {
   size: number; // Size in bytes
   type: string; // MIME type
   progress?: number; // Upload progress 0-100
-  status: 'pending' | 'uploading' | 'completed' | 'error';
+  status: "pending" | "uploading" | "completed" | "error";
   error?: string; // Error message
   preview?: string; // Preview URL (images)
   file?: File; // Original File object
@@ -166,10 +166,12 @@ Card-style with elevated appearance.
 ```tsx
 <FileUploader
   dropzoneContent={
-    <div style={{ textAlign: 'center' }}>
+    <div style={{ textAlign: "center" }}>
       <Upload size={32} />
       <p>Drop your files here</p>
-      <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>or click to browse</p>
+      <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)" }}>
+        or click to browse
+      </p>
     </div>
   }
   onFilesAdded={handleFiles}
@@ -191,7 +193,7 @@ function ControlledUploader() {
       name: file.name,
       size: file.size,
       type: file.type,
-      status: 'uploading' as const,
+      status: "uploading" as const,
       progress: 0,
       file,
     }));
@@ -202,16 +204,24 @@ function ControlledUploader() {
     for (const entry of fileEntries) {
       try {
         await uploadFile(entry.file, (progress) => {
-          setFiles((prev) => prev.map((f) => (f.id === entry.id ? { ...f, progress } : f)));
+          setFiles((prev) =>
+            prev.map((f) => (f.id === entry.id ? { ...f, progress } : f)),
+          );
         });
 
         setFiles((prev) =>
-          prev.map((f) => (f.id === entry.id ? { ...f, status: 'completed', progress: 100 } : f)),
+          prev.map((f) =>
+            f.id === entry.id
+              ? { ...f, status: "completed", progress: 100 }
+              : f,
+          ),
         );
       } catch (error) {
         setFiles((prev) =>
           prev.map((f) =>
-            f.id === entry.id ? { ...f, status: 'error', error: 'Upload failed' } : f,
+            f.id === entry.id
+              ? { ...f, status: "error", error: "Upload failed" }
+              : f,
           ),
         );
       }
@@ -227,7 +237,7 @@ function ControlledUploader() {
       files={files}
       onFilesAdded={handleFilesAdded}
       onFileRemove={handleFileRemove}
-      accept={['image/*', '.pdf']}
+      accept={["image/*", ".pdf"]}
       maxSize={10 * 1024 * 1024}
     />
   );
@@ -241,7 +251,10 @@ function ControlledUploader() {
 ### Global Error
 
 ```tsx
-<FileUploader error="Upload failed. Please try again." onFilesAdded={handleFiles} />
+<FileUploader
+  error="Upload failed. Please try again."
+  onFilesAdded={handleFiles}
+/>
 ```
 
 ### Per-File Errors
@@ -266,14 +279,14 @@ files={[
 ### Image Upload
 
 ```tsx
-import { FileUploader } from '@orion/react';
+import { FileUploader } from "@orion/react";
 
 function ImageUploader() {
   const [files, setFiles] = useState<UploadedFile[]>([]);
 
   return (
     <FileUploader
-      accept={['image/png', 'image/jpeg', 'image/gif']}
+      accept={["image/png", "image/jpeg", "image/gif"]}
       maxFiles={5}
       maxSize={5 * 1024 * 1024}
       files={files}
@@ -285,7 +298,7 @@ function ImageUploader() {
             name: file.name,
             size: file.size,
             type: file.type,
-            status: 'pending' as const,
+            status: "pending" as const,
             preview: URL.createObjectURL(file),
             file,
           })),
@@ -307,7 +320,7 @@ function ImageUploader() {
 ### Document Upload with Progress
 
 ```tsx
-import { FileUploader, Button } from '@orion/react';
+import { FileUploader, Button } from "@orion/react";
 
 function DocumentUploader() {
   const [files, setFiles] = useState<UploadedFile[]>([]);
@@ -319,7 +332,7 @@ function DocumentUploader() {
       name: file.name,
       size: file.size,
       type: file.type,
-      status: 'pending' as const,
+      status: "pending" as const,
       progress: 0,
       file,
     }));
@@ -328,19 +341,25 @@ function DocumentUploader() {
 
   const uploadAll = async () => {
     setUploading(true);
-    const pending = files.filter((f) => f.status === 'pending');
+    const pending = files.filter((f) => f.status === "pending");
 
     for (const file of pending) {
-      setFiles((prev) => prev.map((f) => (f.id === file.id ? { ...f, status: 'uploading' } : f)));
+      setFiles((prev) =>
+        prev.map((f) => (f.id === file.id ? { ...f, status: "uploading" } : f)),
+      );
 
       // Simulate upload
       for (let progress = 0; progress <= 100; progress += 10) {
         await new Promise((r) => setTimeout(r, 100));
-        setFiles((prev) => prev.map((f) => (f.id === file.id ? { ...f, progress } : f)));
+        setFiles((prev) =>
+          prev.map((f) => (f.id === file.id ? { ...f, progress } : f)),
+        );
       }
 
       setFiles((prev) =>
-        prev.map((f) => (f.id === file.id ? { ...f, status: 'completed', progress: 100 } : f)),
+        prev.map((f) =>
+          f.id === file.id ? { ...f, status: "completed", progress: 100 } : f,
+        ),
       );
     }
 
@@ -350,19 +369,25 @@ function DocumentUploader() {
   return (
     <div>
       <FileUploader
-        accept={['.pdf', '.doc', '.docx']}
+        accept={[".pdf", ".doc", ".docx"]}
         maxSize={25 * 1024 * 1024}
         files={files}
         onFilesAdded={handleFilesAdded}
-        onFileRemove={(id) => setFiles((prev) => prev.filter((f) => f.id !== id))}
+        onFileRemove={(id) =>
+          setFiles((prev) => prev.filter((f) => f.id !== id))
+        }
         placeholder="Drop documents here"
         helperText="PDF, DOC, or DOCX up to 25MB"
         disabled={uploading}
       />
 
-      {files.some((f) => f.status === 'pending') && (
-        <Button onClick={uploadAll} loading={uploading} style={{ marginTop: 'var(--spacing-4)' }}>
-          Upload {files.filter((f) => f.status === 'pending').length} Files
+      {files.some((f) => f.status === "pending") && (
+        <Button
+          onClick={uploadAll}
+          loading={uploading}
+          style={{ marginTop: "var(--spacing-4)" }}
+        >
+          Upload {files.filter((f) => f.status === "pending").length} Files
         </Button>
       )}
     </div>
@@ -377,7 +402,7 @@ function DocumentUploader() {
   variant="minimal"
   compact
   multiple={false}
-  accept={['image/*']}
+  accept={["image/*"]}
   maxSize={2 * 1024 * 1024}
   showFileList={false}
   placeholder="Click to upload avatar"
@@ -393,10 +418,10 @@ function DocumentUploader() {
   <Field label="Name" name="name" required />
   <Field label="Email" name="email" type="email" required />
 
-  <div style={{ marginTop: 'var(--spacing-4)' }}>
+  <div style={{ marginTop: "var(--spacing-4)" }}>
     <label>Attachments</label>
     <FileUploader
-      accept={['.pdf', '.doc', '.docx', 'image/*']}
+      accept={[".pdf", ".doc", ".docx", "image/*"]}
       maxFiles={3}
       maxSize={10 * 1024 * 1024}
       onFilesAdded={setAttachments}

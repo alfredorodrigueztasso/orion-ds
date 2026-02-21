@@ -5,12 +5,12 @@
  * Implements WCAG 2.1 AA accessibility guidelines.
  */
 
-import type { InputHTMLAttributes } from 'react';
+import type { InputHTMLAttributes } from "react";
 
 /**
  * Switch sizes
  */
-export type SwitchSize = 'sm' | 'md' | 'lg';
+export type SwitchSize = "sm" | "md" | "lg";
 
 /**
  * Switch component props
@@ -21,7 +21,10 @@ export type SwitchSize = 'sm' | 'md' | 'lg';
  * <Switch label="Enable notifications" size="sm" />
  * ```
  */
-export interface SwitchProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'type'> {
+export interface SwitchProps extends Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  "size" | "type"
+> {
   /**
    * Switch label text.
    * Required for accessibility unless aria-label is provided.
@@ -63,11 +66,11 @@ export interface SwitchProps extends Omit<InputHTMLAttributes<HTMLInputElement>,
    * />
    * ```
    */
-  'aria-label'?: string;
+  "aria-label"?: string;
 
   /**
    * Additional element IDs that describe this switch.
    * Automatically includes error and helper text IDs when provided.
    */
-  'aria-describedby'?: string;
+  "aria-describedby"?: string;
 }

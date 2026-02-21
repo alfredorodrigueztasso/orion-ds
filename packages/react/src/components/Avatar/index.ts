@@ -10,5 +10,5 @@
  * <Avatar src="/profile.jpg" size="lg" />
  * ```
  */
-export { Avatar } from './Avatar';
-export type { AvatarProps, AvatarSize } from './Avatar.types';
+export { Avatar } from "./Avatar";
+export type { AvatarProps, AvatarSize } from "./Avatar.types";

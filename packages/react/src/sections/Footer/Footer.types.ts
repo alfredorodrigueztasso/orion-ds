@@ -4,7 +4,7 @@
  * Type definitions for the Orion Footer section component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Footer link item
@@ -85,7 +85,7 @@ export interface FooterBrand {
 /**
  * Footer variant styles
  */
-export type FooterVariant = 'default' | 'minimal' | 'centered';
+export type FooterVariant = "default" | "minimal" | "centered";
 
 /**
  * Footer section props
@@ -149,5 +149,5 @@ export interface FooterProps extends HTMLAttributes<HTMLElement> {
    * Background style
    * @default 'subtle'
    */
-  background?: 'base' | 'subtle' | 'sunken';
+  background?: "base" | "subtle" | "sunken";
 }

@@ -15,7 +15,7 @@
  * ```
  */
 
-import { forwardRef, useRef, useState, useCallback } from 'react';
+import { forwardRef, useRef, useState, useCallback } from "react";
 import {
   Upload,
   File,
@@ -27,24 +27,24 @@ import {
   AlertCircle,
   CheckCircle,
   Loader2,
-} from 'lucide-react';
-import type { FileUploaderProps } from './FileUploader.types';
-import styles from './FileUploader.module.css';
+} from "lucide-react";
+import type { FileUploaderProps } from "./FileUploader.types";
+import styles from "./FileUploader.module.css";
 
 // Get icon based on file type
 const getFileIcon = (type: string) => {
-  if (type.startsWith('image/')) return FileImage;
-  if (type.startsWith('video/')) return FileVideo;
-  if (type.startsWith('audio/')) return FileAudio;
-  if (type.includes('pdf') || type.includes('document')) return FileText;
+  if (type.startsWith("image/")) return FileImage;
+  if (type.startsWith("video/")) return FileVideo;
+  if (type.startsWith("audio/")) return FileAudio;
+  if (type.includes("pdf") || type.includes("document")) return FileText;
   return File;
 };
 
 // Format file size
 const formatFileSize = (bytes: number): string => {
-  if (bytes === 0) return '0 B';
+  if (bytes === 0) return "0 B";
   const k = 1024;
-  const sizes = ['B', 'KB', 'MB', 'GB'];
+  const sizes = ["B", "KB", "MB", "GB"];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(1))} ${sizes[i]}`;
 };
@@ -61,10 +61,10 @@ export const FileUploader = forwardRef<HTMLDivElement, FileUploaderProps>(
       files = [],
       disabled = false,
       dropzoneContent,
-      placeholder = 'Drag and drop files here, or click to browse',
+      placeholder = "Drag and drop files here, or click to browse",
       showFileList = true,
       compact = false,
-      variant = 'default',
+      variant = "default",
       error,
       helperText,
       className,
@@ -91,18 +91,20 @@ export const FileUploader = forwardRef<HTMLDivElement, FileUploaderProps>(
         filesArray.forEach((file) => {
           // Check file size
           if (maxSize && file.size > maxSize) {
-            errors.push(`${file.name} exceeds maximum size of ${formatFileSize(maxSize)}`);
+            errors.push(
+              `${file.name} exceeds maximum size of ${formatFileSize(maxSize)}`,
+            );
             return;
           }
 
           // Check file type
           if (accept && accept.length > 0) {
             const isAccepted = accept.some((type) => {
-              if (type.startsWith('.')) {
+              if (type.startsWith(".")) {
                 return file.name.toLowerCase().endsWith(type.toLowerCase());
               }
-              if (type.endsWith('/*')) {
-                return file.type.startsWith(type.replace('/*', '/'));
+              if (type.endsWith("/*")) {
+                return file.type.startsWith(type.replace("/*", "/"));
               }
               return file.type === type;
             });
@@ -168,7 +170,7 @@ export const FileUploader = forwardRef<HTMLDivElement, FileUploaderProps>(
           handleFiles(e.target.files);
         }
         // Reset input value to allow selecting the same file again
-        e.target.value = '';
+        e.target.value = "";
       },
       [handleFiles],
     );
@@ -180,17 +182,22 @@ export const FileUploader = forwardRef<HTMLDivElement, FileUploaderProps>(
     };
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
-      if ((e.key === 'Enter' || e.key === ' ') && !disabled) {
+      if ((e.key === "Enter" || e.key === " ") && !disabled) {
         e.preventDefault();
         inputRef.current?.click();
       }
     };
 
-    const acceptString = accept?.join(',');
+    const acceptString = accept?.join(",");
 
-    const classNames = [styles.fileUploader, styles[variant], compact && styles.compact, className]
+    const classNames = [
+      styles.fileUploader,
+      styles[variant],
+      compact && styles.compact,
+      className,
+    ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     const dropzoneClasses = [
       styles.dropzone,
@@ -199,7 +206,7 @@ export const FileUploader = forwardRef<HTMLDivElement, FileUploaderProps>(
       (error || dragError) && styles.dropzoneError,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
       <div ref={ref} className={classNames} {...rest}>
@@ -235,12 +242,20 @@ export const FileUploader = forwardRef<HTMLDivElement, FileUploaderProps>(
               {!compact && (
                 <div className={styles.dropzoneHints}>
                   {accept && (
-                    <span className={styles.dropzoneHint}>Accepted: {accept.join(', ')}</span>
+                    <span className={styles.dropzoneHint}>
+                      Accepted: {accept.join(", ")}
+                    </span>
                   )}
                   {maxSize && (
-                    <span className={styles.dropzoneHint}>Max size: {formatFileSize(maxSize)}</span>
+                    <span className={styles.dropzoneHint}>
+                      Max size: {formatFileSize(maxSize)}
+                    </span>
                   )}
-                  {maxFiles && <span className={styles.dropzoneHint}>Max files: {maxFiles}</span>}
+                  {maxFiles && (
+                    <span className={styles.dropzoneHint}>
+                      Max files: {maxFiles}
+                    </span>
+                  )}
                 </div>
               )}
             </div>
@@ -250,7 +265,7 @@ export const FileUploader = forwardRef<HTMLDivElement, FileUploaderProps>(
         {/* Helper text or error */}
         {(error || dragError || helperText) && (
           <div
-            className={`${styles.helperText} ${error || dragError ? styles.helperTextError : ''}`}
+            className={`${styles.helperText} ${error || dragError ? styles.helperTextError : ""}`}
           >
             {error || dragError || helperText}
           </div>
@@ -265,17 +280,23 @@ export const FileUploader = forwardRef<HTMLDivElement, FileUploaderProps>(
                 <li key={file.id} className={styles.fileItem}>
                   <div className={styles.fileIcon}>
                     {file.preview ? (
-                      <img src={file.preview} alt="" className={styles.filePreview} />
+                      <img
+                        src={file.preview}
+                        alt=""
+                        className={styles.filePreview}
+                      />
                     ) : (
                       <FileIcon size={20} />
                     )}
                   </div>
                   <div className={styles.fileInfo}>
                     <span className={styles.fileName}>{file.name}</span>
-                    <span className={styles.fileSize}>{formatFileSize(file.size)}</span>
+                    <span className={styles.fileSize}>
+                      {formatFileSize(file.size)}
+                    </span>
                   </div>
                   <div className={styles.fileStatus}>
-                    {file.status === 'uploading' && (
+                    {file.status === "uploading" && (
                       <>
                         <div className={styles.progressBar}>
                           <div
@@ -286,11 +307,17 @@ export const FileUploader = forwardRef<HTMLDivElement, FileUploaderProps>(
                         <Loader2 size={16} className={styles.fileStatusIcon} />
                       </>
                     )}
-                    {file.status === 'completed' && (
-                      <CheckCircle size={16} className={styles.fileStatusSuccess} />
+                    {file.status === "completed" && (
+                      <CheckCircle
+                        size={16}
+                        className={styles.fileStatusSuccess}
+                      />
                     )}
-                    {file.status === 'error' && (
-                      <AlertCircle size={16} className={styles.fileStatusError} />
+                    {file.status === "error" && (
+                      <AlertCircle
+                        size={16}
+                        className={styles.fileStatusError}
+                      />
                     )}
                   </div>
                   {onFileRemove && (
@@ -316,4 +343,4 @@ export const FileUploader = forwardRef<HTMLDivElement, FileUploaderProps>(
   },
 );
 
-FileUploader.displayName = 'FileUploader';
+FileUploader.displayName = "FileUploader";

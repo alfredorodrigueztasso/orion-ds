@@ -32,7 +32,7 @@
       "primary": {
         "default": "{color.brand.500}",
         "hover": "{color.brand.400}",
-        "text": "{color.neutral.900}"
+        "text": "{color.neutral.0}"
       },
       "secondary": {
         "default": "{color.neutral.800}",

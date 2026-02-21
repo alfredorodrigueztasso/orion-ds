@@ -26,7 +26,10 @@
         "import { SectionName } from '@orion/react/sections';",
         "import { IconName } from 'lucide-react';"
       ],
-      "cssImports": ["import '@orion/core/theme.css';", "import '@orion/react/dist/react.css';"],
+      "cssImports": [
+        "import '@orion/core/theme.css';",
+        "import '@orion/react/dist/react.css';"
+      ],
       "themeSetup": "<ThemeProvider> must wrap the app root",
       "brandNote": "Brand and theme are GLOBAL - never pass as component props"
     },

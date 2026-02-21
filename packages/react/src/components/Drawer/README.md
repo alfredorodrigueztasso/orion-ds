@@ -28,8 +28,8 @@ Slide-out panel from screen edge with compound components.
 ### Basic
 
 ```tsx
-import { Drawer, Button } from '@orion/react';
-import { useState } from 'react';
+import { Drawer, Button } from "@orion/react";
+import { useState } from "react";
 
 function Example() {
   const [open, setOpen] = useState(false);
@@ -141,7 +141,12 @@ function Example() {
 ### Prevent Close on Backdrop
 
 ```tsx
-<Drawer open={open} onClose={onClose} closeOnBackdrop={false} closeOnEscape={false}>
+<Drawer
+  open={open}
+  onClose={onClose}
+  closeOnBackdrop={false}
+  closeOnEscape={false}
+>
   {/* User must use explicit close action */}
 </Drawer>
 ```

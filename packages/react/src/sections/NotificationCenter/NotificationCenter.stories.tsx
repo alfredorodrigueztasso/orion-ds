@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
-import { NotificationCenter } from './NotificationCenter';
-import type { NotificationItem } from './NotificationCenter.types';
+import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
+import { NotificationCenter } from "./NotificationCenter";
+import type { NotificationItem } from "./NotificationCenter.types";
 
 const meta: Meta<typeof NotificationCenter> = {
-  title: 'Sections/App/NotificationCenter',
+  title: "Sections/App/NotificationCenter",
   component: NotificationCenter,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
@@ -18,66 +18,67 @@ type Story = StoryObj<typeof NotificationCenter>;
 // Sample notifications
 const sampleNotifications: NotificationItem[] = [
   {
-    id: '1',
-    type: 'info',
-    title: 'New comment on your post',
+    id: "1",
+    type: "info",
+    title: "New comment on your post",
     message: 'John Doe commented on "Getting started with React"',
-    timestamp: '2024-02-10T10:30:00Z',
-    relativeTime: '2 min ago',
+    timestamp: "2024-02-10T10:30:00Z",
+    relativeTime: "2 min ago",
     read: false,
-    href: '/posts/1#comments',
+    href: "/posts/1#comments",
   },
   {
-    id: '2',
-    type: 'success',
-    title: 'Deployment successful',
-    message: 'Your latest changes have been deployed to production.',
-    timestamp: '2024-02-10T10:15:00Z',
-    relativeTime: '15 min ago',
+    id: "2",
+    type: "success",
+    title: "Deployment successful",
+    message: "Your latest changes have been deployed to production.",
+    timestamp: "2024-02-10T10:15:00Z",
+    relativeTime: "15 min ago",
     read: false,
-    category: 'System',
+    category: "System",
   },
   {
-    id: '3',
-    type: 'warning',
-    title: 'Storage almost full',
-    message: 'You have used 90% of your storage quota.',
-    timestamp: '2024-02-10T09:00:00Z',
-    relativeTime: '1 hour ago',
+    id: "3",
+    type: "warning",
+    title: "Storage almost full",
+    message: "You have used 90% of your storage quota.",
+    timestamp: "2024-02-10T09:00:00Z",
+    relativeTime: "1 hour ago",
     read: false,
-    category: 'System',
+    category: "System",
   },
   {
-    id: '4',
-    type: 'default',
-    title: 'Team invitation',
-    message: 'Sarah invited you to join the Design team.',
-    timestamp: '2024-02-10T08:30:00Z',
-    relativeTime: '2 hours ago',
+    id: "4",
+    type: "default",
+    title: "Team invitation",
+    message: "Sarah invited you to join the Design team.",
+    timestamp: "2024-02-10T08:30:00Z",
+    relativeTime: "2 hours ago",
     read: true,
-    avatar: 'https://i.pravatar.cc/150?img=5',
-    category: 'Social',
+    avatar: "https://i.pravatar.cc/150?img=5",
+    category: "Social",
   },
   {
-    id: '5',
-    type: 'error',
-    title: 'Payment failed',
-    message: 'We could not process your payment. Please update your billing info.',
-    timestamp: '2024-02-09T18:00:00Z',
-    relativeTime: 'Yesterday',
+    id: "5",
+    type: "error",
+    title: "Payment failed",
+    message:
+      "We could not process your payment. Please update your billing info.",
+    timestamp: "2024-02-09T18:00:00Z",
+    relativeTime: "Yesterday",
     read: true,
-    category: 'Billing',
+    category: "Billing",
   },
   {
-    id: '6',
-    type: 'default',
-    title: 'New follower',
-    message: 'Mike started following you.',
-    timestamp: '2024-02-09T15:00:00Z',
-    relativeTime: 'Yesterday',
+    id: "6",
+    type: "default",
+    title: "New follower",
+    message: "Mike started following you.",
+    timestamp: "2024-02-09T15:00:00Z",
+    relativeTime: "Yesterday",
     read: true,
-    avatar: 'https://i.pravatar.cc/150?img=8',
-    category: 'Social',
+    avatar: "https://i.pravatar.cc/150?img=8",
+    category: "Social",
   },
 ];
 
@@ -87,10 +88,10 @@ const sampleNotifications: NotificationItem[] = [
 export const Default: Story = {
   args: {
     notifications: sampleNotifications,
-    onMarkAsRead: (id: string) => console.log('Mark as read:', id),
-    onMarkAllAsRead: () => console.log('Mark all as read'),
-    onDismiss: (id: string) => console.log('Dismiss:', id),
-    onViewAll: () => console.log('View all'),
+    onMarkAsRead: (id: string) => console.log("Mark as read:", id),
+    onMarkAllAsRead: () => console.log("Mark all as read"),
+    onDismiss: (id: string) => console.log("Dismiss:", id),
+    onViewAll: () => console.log("View all"),
   },
 };
 
@@ -99,10 +100,13 @@ export const Default: Story = {
  */
 export const Interactive: Story = {
   render: () => {
-    const [notifications, setNotifications] = useState<NotificationItem[]>(sampleNotifications);
+    const [notifications, setNotifications] =
+      useState<NotificationItem[]>(sampleNotifications);
 
     const handleMarkAsRead = (id: string) => {
-      setNotifications((prev) => prev.map((n) => (n.id === id ? { ...n, read: true } : n)));
+      setNotifications((prev) =>
+        prev.map((n) => (n.id === id ? { ...n, read: true } : n)),
+      );
     };
 
     const handleMarkAllAsRead = () => {
@@ -124,7 +128,7 @@ export const Interactive: Story = {
         onMarkAllAsRead={handleMarkAllAsRead}
         onDismiss={handleDismiss}
         onClearAll={handleClearAll}
-        onViewAll={() => alert('View all notifications')}
+        onViewAll={() => alert("View all notifications")}
       />
     );
   },
@@ -137,8 +141,8 @@ export const GroupedByCategory: Story = {
   args: {
     notifications: sampleNotifications,
     groupByCategory: true,
-    onMarkAsRead: (id: string) => console.log('Mark as read:', id),
-    onMarkAllAsRead: () => console.log('Mark all as read'),
+    onMarkAsRead: (id: string) => console.log("Mark as read:", id),
+    onMarkAllAsRead: () => console.log("Mark all as read"),
   },
 };
 
@@ -169,7 +173,7 @@ export const WithoutBadge: Story = {
   args: {
     notifications: sampleNotifications,
     showUnreadCount: false,
-    onMarkAsRead: (id: string) => console.log('Mark as read:', id),
+    onMarkAsRead: (id: string) => console.log("Mark as read:", id),
   },
 };
 
@@ -179,9 +183,9 @@ export const WithoutBadge: Story = {
 export const CustomTitle: Story = {
   args: {
     notifications: sampleNotifications.slice(0, 3),
-    title: 'Activity',
-    onMarkAsRead: (id: string) => console.log('Mark as read:', id),
-    onViewAll: () => console.log('View all'),
+    title: "Activity",
+    onMarkAsRead: (id: string) => console.log("Mark as read:", id),
+    onViewAll: () => console.log("View all"),
   },
 };
 
@@ -191,8 +195,8 @@ export const CustomTitle: Story = {
 export const CustomMaxHeight: Story = {
   args: {
     notifications: sampleNotifications,
-    maxHeight: '250px',
-    onMarkAsRead: (id: string) => console.log('Mark as read:', id),
+    maxHeight: "250px",
+    onMarkAsRead: (id: string) => console.log("Mark as read:", id),
   },
 };
 
@@ -202,8 +206,8 @@ export const CustomMaxHeight: Story = {
 export const AllRead: Story = {
   args: {
     notifications: sampleNotifications.map((n) => ({ ...n, read: true })),
-    onDismiss: (id: string) => console.log('Dismiss:', id),
-    onClearAll: () => console.log('Clear all'),
-    onViewAll: () => console.log('View all'),
+    onDismiss: (id: string) => console.log("Dismiss:", id),
+    onClearAll: () => console.log("Clear all"),
+    onViewAll: () => console.log("View all"),
   },
 };

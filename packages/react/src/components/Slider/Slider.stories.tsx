@@ -2,26 +2,26 @@
  * Slider Component Stories
  */
 
-import { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { Slider } from './Slider';
+import { useState } from "react";
+import type { Meta, StoryObj } from "@storybook/react";
+import { Slider } from "./Slider";
 
 const meta: Meta<typeof Slider> = {
-  title: 'Components/Forms/Slider',
+  title: "Components/Forms/Slider",
   component: Slider,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     size: {
-      control: 'radio',
-      options: ['sm', 'md', 'lg'],
+      control: "radio",
+      options: ["sm", "md", "lg"],
     },
   },
   decorators: [
     (Story) => (
-      <div style={{ width: '300px', padding: 'var(--spacing-5)' }}>
+      <div style={{ width: "300px", padding: "var(--spacing-5)" }}>
         <Story />
       </div>
     ),
@@ -32,7 +32,9 @@ export default meta;
 type Story = StoryObj<typeof Slider>;
 
 // Interactive wrapper
-const InteractiveSlider = (props: Partial<React.ComponentProps<typeof Slider>>) => {
+const InteractiveSlider = (
+  props: Partial<React.ComponentProps<typeof Slider>>,
+) => {
   const [value, setValue] = useState(props.value ?? 50);
 
   return <Slider value={value} onChange={setValue} {...props} />;
@@ -59,7 +61,9 @@ export const WithTicks: Story = {
 };
 
 export const CustomRange: Story = {
-  render: () => <InteractiveSlider min={-100} max={100} value={0} showValue showLabels />,
+  render: () => (
+    <InteractiveSlider min={-100} max={100} value={0} showValue showLabels />
+  ),
 };
 
 export const SmallStep: Story = {
@@ -90,7 +94,9 @@ export const LargeStep: Story = {
 };
 
 export const PercentageFormat: Story = {
-  render: () => <InteractiveSlider showValue showLabels formatValue={(v) => `${v}%`} />,
+  render: () => (
+    <InteractiveSlider showValue showLabels formatValue={(v) => `${v}%`} />
+  ),
 };
 
 export const CurrencyFormat: Story = {
@@ -125,13 +131,19 @@ export const Disabled: Story = {
 
 export const AllSizes: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-8)' }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-8)",
+      }}
+    >
       <div>
         <p
           style={{
-            marginBottom: 'var(--spacing-2)',
-            fontWeight: 'var(--font-weight-medium)',
-            fontSize: 'var(--font-size-14)',
+            marginBottom: "var(--spacing-2)",
+            fontWeight: "var(--font-weight-medium)",
+            fontSize: "var(--font-size-14)",
           }}
         >
           Small
@@ -141,9 +153,9 @@ export const AllSizes: Story = {
       <div>
         <p
           style={{
-            marginBottom: 'var(--spacing-2)',
-            fontWeight: 'var(--font-weight-medium)',
-            fontSize: 'var(--font-size-14)',
+            marginBottom: "var(--spacing-2)",
+            fontWeight: "var(--font-weight-medium)",
+            fontSize: "var(--font-size-14)",
           }}
         >
           Medium (Default)
@@ -153,9 +165,9 @@ export const AllSizes: Story = {
       <div>
         <p
           style={{
-            marginBottom: 'var(--spacing-2)',
-            fontWeight: 'var(--font-weight-medium)',
-            fontSize: 'var(--font-size-14)',
+            marginBottom: "var(--spacing-2)",
+            fontWeight: "var(--font-weight-medium)",
+            fontSize: "var(--font-size-14)",
           }}
         >
           Large
@@ -174,14 +186,16 @@ export const VolumeControl: Story = {
       <div>
         <div
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 'var(--spacing-3)',
-            marginBottom: 'var(--spacing-4)',
+            display: "flex",
+            alignItems: "center",
+            gap: "var(--spacing-3)",
+            marginBottom: "var(--spacing-4)",
           }}
         >
-          <span style={{ fontSize: 'var(--font-size-24)' }}>🔊</span>
-          <span style={{ fontWeight: 'var(--font-weight-medium)' }}>{volume}%</span>
+          <span style={{ fontSize: "var(--font-size-24)" }}>🔊</span>
+          <span style={{ fontWeight: "var(--font-weight-medium)" }}>
+            {volume}%
+          </span>
         </div>
         <Slider
           value={volume}
@@ -203,7 +217,12 @@ export const PriceRange: Story = {
 
     return (
       <div>
-        <p style={{ marginBottom: 'var(--spacing-4)', fontWeight: 'var(--font-weight-medium)' }}>
+        <p
+          style={{
+            marginBottom: "var(--spacing-4)",
+            fontWeight: "var(--font-weight-medium)",
+          }}
+        >
           Max Price: ${price}
         </p>
         <Slider
@@ -228,12 +247,22 @@ export const TemperatureControl: Story = {
 
     return (
       <div>
-        <div style={{ textAlign: 'center', marginBottom: 'var(--spacing-4)' }}>
-          <span style={{ fontSize: 'var(--font-size-48)', fontWeight: 'var(--font-weight-bold)' }}>
+        <div style={{ textAlign: "center", marginBottom: "var(--spacing-4)" }}>
+          <span
+            style={{
+              fontSize: "var(--font-size-48)",
+              fontWeight: "var(--font-weight-bold)",
+            }}
+          >
             {temp}°
           </span>
-          <p style={{ color: 'var(--text-secondary)', marginTop: 'var(--spacing-1)' }}>
-            {temp < 18 ? '❄️ Cold' : temp > 24 ? '🔥 Warm' : '✨ Comfortable'}
+          <p
+            style={{
+              color: "var(--text-secondary)",
+              marginTop: "var(--spacing-1)",
+            }}
+          >
+            {temp < 18 ? "❄️ Cold" : temp > 24 ? "🔥 Warm" : "✨ Comfortable"}
           </p>
         </div>
         <Slider

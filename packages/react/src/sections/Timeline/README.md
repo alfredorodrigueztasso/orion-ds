@@ -5,33 +5,39 @@
 ## Quick Start
 
 ```tsx
-import { Timeline } from '@orion/react';
+import { Timeline } from "@orion/react";
 
 <Timeline
   title="Our Journey"
   events={[
     {
       id: 1,
-      date: '2020',
-      title: 'Founded',
-      description: 'Started our journey',
-      status: 'completed',
+      date: "2020",
+      title: "Founded",
+      description: "Started our journey",
+      status: "completed",
     },
     {
       id: 2,
-      date: '2022',
-      title: 'Series A',
-      description: '$10M funding round',
-      status: 'completed',
+      date: "2022",
+      title: "Series A",
+      description: "$10M funding round",
+      status: "completed",
     },
     {
       id: 3,
-      date: '2024',
-      title: 'Global Launch',
-      description: 'Expanded to 50 countries',
-      status: 'current',
+      date: "2024",
+      title: "Global Launch",
+      description: "Expanded to 50 countries",
+      status: "current",
     },
-    { id: 4, date: '2025', title: 'IPO', description: 'Going public', status: 'upcoming' },
+    {
+      id: 4,
+      date: "2025",
+      title: "IPO",
+      description: "Going public",
+      status: "upcoming",
+    },
   ]}
 />;
 ```
@@ -63,12 +69,12 @@ interface TimelineProps {
   events: TimelineEvent[]; // REQUIRED - Array of events
 
   // Layout
-  orientation?: 'vertical' | 'horizontal'; // default: 'vertical'
+  orientation?: "vertical" | "horizontal"; // default: 'vertical'
   alternating?: boolean; // Alternate left/right - default: false
   showConnector?: boolean; // Show timeline line - default: true
 
   // Styling
-  background?: 'base' | 'subtle' | 'none'; // default: 'base'
+  background?: "base" | "subtle" | "none"; // default: 'base'
   compact?: boolean; // Compact spacing - default: false
 }
 
@@ -78,7 +84,7 @@ interface TimelineEvent {
   title: string; // Event title
   description?: string; // Event description
   icon?: ReactNode; // Custom icon
-  status?: 'completed' | 'current' | 'upcoming' | 'default';
+  status?: "completed" | "current" | "upcoming" | "default";
   content?: ReactNode; // Additional content
   href?: string; // Link URL
 }
@@ -114,10 +120,10 @@ For vertical timelines, alternate events left and right.
 <Timeline
   alternating
   events={[
-    { id: 1, date: '2020', title: 'Q1 - Founded', status: 'completed' },
-    { id: 2, date: '2020', title: 'Q3 - First Product', status: 'completed' },
-    { id: 3, date: '2021', title: 'Q2 - 1000 Users', status: 'completed' },
-    { id: 4, date: '2022', title: 'Q1 - Series A', status: 'current' },
+    { id: 1, date: "2020", title: "Q1 - Founded", status: "completed" },
+    { id: 2, date: "2020", title: "Q3 - First Product", status: "completed" },
+    { id: 3, date: "2021", title: "Q2 - 1000 Users", status: "completed" },
+    { id: 4, date: "2022", title: "Q1 - Series A", status: "current" },
   ]}
 />
 ```
@@ -147,14 +153,38 @@ For vertical timelines, alternate events left and right.
 ## Custom Icons
 
 ```tsx
-import { Rocket, Award, Globe, TrendingUp } from 'lucide-react';
+import { Rocket, Award, Globe, TrendingUp } from "lucide-react";
 
 <Timeline
   events={[
-    { id: 1, date: '2020', title: 'Founded', icon: <Rocket size={20} />, status: 'completed' },
-    { id: 2, date: '2021', title: 'Award', icon: <Award size={20} />, status: 'completed' },
-    { id: 3, date: '2022', title: 'Global', icon: <Globe size={20} />, status: 'current' },
-    { id: 4, date: '2023', title: 'Growth', icon: <TrendingUp size={20} />, status: 'upcoming' },
+    {
+      id: 1,
+      date: "2020",
+      title: "Founded",
+      icon: <Rocket size={20} />,
+      status: "completed",
+    },
+    {
+      id: 2,
+      date: "2021",
+      title: "Award",
+      icon: <Award size={20} />,
+      status: "completed",
+    },
+    {
+      id: 3,
+      date: "2022",
+      title: "Global",
+      icon: <Globe size={20} />,
+      status: "current",
+    },
+    {
+      id: 4,
+      date: "2023",
+      title: "Growth",
+      icon: <TrendingUp size={20} />,
+      status: "upcoming",
+    },
   ]}
 />;
 ```
@@ -166,8 +196,8 @@ import { Rocket, Award, Globe, TrendingUp } from 'lucide-react';
 ### Company History
 
 ```tsx
-import { Timeline, Badge } from '@orion/react';
-import { Rocket, Users, Award, Globe, Zap } from 'lucide-react';
+import { Timeline, Badge } from "@orion/react";
+import { Rocket, Users, Award, Globe, Zap } from "lucide-react";
 
 <Timeline
   eyebrow={<Badge>Our Story</Badge>}
@@ -177,43 +207,44 @@ import { Rocket, Users, Award, Globe, Zap } from 'lucide-react';
   events={[
     {
       id: 1,
-      date: 'January 2020',
-      title: 'Company Founded',
-      description: 'Two engineers with a vision started the company in a small garage.',
+      date: "January 2020",
+      title: "Company Founded",
+      description:
+        "Two engineers with a vision started the company in a small garage.",
       icon: <Rocket size={20} />,
-      status: 'completed',
+      status: "completed",
     },
     {
       id: 2,
-      date: 'June 2021',
-      title: 'First 1,000 Users',
-      description: 'Reached our first major user milestone.',
+      date: "June 2021",
+      title: "First 1,000 Users",
+      description: "Reached our first major user milestone.",
       icon: <Users size={20} />,
-      status: 'completed',
+      status: "completed",
     },
     {
       id: 3,
-      date: 'March 2022',
-      title: 'Series A Funding',
-      description: 'Raised $15M to accelerate growth.',
+      date: "March 2022",
+      title: "Series A Funding",
+      description: "Raised $15M to accelerate growth.",
       icon: <Award size={20} />,
-      status: 'completed',
+      status: "completed",
     },
     {
       id: 4,
-      date: 'September 2023',
-      title: 'Global Expansion',
-      description: 'Launched in 25 new countries.',
+      date: "September 2023",
+      title: "Global Expansion",
+      description: "Launched in 25 new countries.",
       icon: <Globe size={20} />,
-      status: 'current',
+      status: "current",
     },
     {
       id: 5,
-      date: '2024',
-      title: 'AI Integration',
-      description: 'Revolutionary AI features coming soon.',
+      date: "2024",
+      title: "AI Integration",
+      description: "Revolutionary AI features coming soon.",
       icon: <Zap size={20} />,
-      status: 'upcoming',
+      status: "upcoming",
     },
   ]}
 />;
@@ -228,20 +259,32 @@ import { Rocket, Users, Award, Globe, Zap } from 'lucide-react';
   events={[
     {
       id: 1,
-      date: 'Q1',
-      title: 'Research',
-      description: 'User research & planning',
-      status: 'completed',
+      date: "Q1",
+      title: "Research",
+      description: "User research & planning",
+      status: "completed",
     },
-    { id: 2, date: 'Q2', title: 'Design', description: 'UI/UX design phase', status: 'completed' },
+    {
+      id: 2,
+      date: "Q2",
+      title: "Design",
+      description: "UI/UX design phase",
+      status: "completed",
+    },
     {
       id: 3,
-      date: 'Q3',
-      title: 'Development',
-      description: 'Building the product',
-      status: 'current',
+      date: "Q3",
+      title: "Development",
+      description: "Building the product",
+      status: "current",
     },
-    { id: 4, date: 'Q4', title: 'Launch', description: 'Public release', status: 'upcoming' },
+    {
+      id: 4,
+      date: "Q4",
+      title: "Launch",
+      description: "Public release",
+      status: "upcoming",
+    },
   ]}
 />
 ```
@@ -254,10 +297,30 @@ import { Rocket, Users, Award, Globe, Zap } from 'lucide-react';
   compact
   showConnector={false}
   events={[
-    { id: 1, date: 'Step 1', title: 'Sign Up', description: 'Create your account in seconds' },
-    { id: 2, date: 'Step 2', title: 'Connect', description: 'Link your existing tools' },
-    { id: 3, date: 'Step 3', title: 'Configure', description: 'Set up your preferences' },
-    { id: 4, date: 'Step 4', title: 'Launch', description: 'Start using the platform' },
+    {
+      id: 1,
+      date: "Step 1",
+      title: "Sign Up",
+      description: "Create your account in seconds",
+    },
+    {
+      id: 2,
+      date: "Step 2",
+      title: "Connect",
+      description: "Link your existing tools",
+    },
+    {
+      id: 3,
+      date: "Step 3",
+      title: "Configure",
+      description: "Set up your preferences",
+    },
+    {
+      id: 4,
+      date: "Step 4",
+      title: "Launch",
+      description: "Start using the platform",
+    },
   ]}
 />
 ```
@@ -269,18 +332,18 @@ import { Rocket, Users, Award, Globe, Zap } from 'lucide-react';
   events={[
     {
       id: 1,
-      date: 'March 2024',
-      title: 'Product Launch',
-      description: 'Major release with new features',
-      status: 'current',
+      date: "March 2024",
+      title: "Product Launch",
+      description: "Major release with new features",
+      status: "current",
       content: (
-        <div style={{ marginTop: 'var(--spacing-4)' }}>
+        <div style={{ marginTop: "var(--spacing-4)" }}>
           <img
             src="/launch-photo.jpg"
             alt="Launch event"
-            style={{ borderRadius: 'var(--radius-md)', maxWidth: '100%' }}
+            style={{ borderRadius: "var(--radius-md)", maxWidth: "100%" }}
           />
-          <Button size="sm" style={{ marginTop: 'var(--spacing-2)' }}>
+          <Button size="sm" style={{ marginTop: "var(--spacing-2)" }}>
             Read More
           </Button>
         </div>
@@ -303,12 +366,12 @@ import { Rocket, Users, Award, Globe, Zap } from 'lucide-react';
 ```tsx
 // Good: Clear, descriptive event titles
 {
-  title: 'Series A Funding - $15M raised';
+  title: "Series A Funding - $15M raised";
 }
 
 // Avoid: Vague titles
 {
-  title: 'Milestone';
+  title: "Milestone";
 }
 ```
 

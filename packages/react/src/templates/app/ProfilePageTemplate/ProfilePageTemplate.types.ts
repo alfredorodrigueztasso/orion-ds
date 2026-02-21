@@ -4,11 +4,11 @@
  * Type definitions for the profile page template.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
-import type { SidebarProps } from '../../../sections/Sidebar';
-import type { PageHeaderProps } from '../../../sections/PageHeader';
-import type { DetailPanelProps } from '../../../sections/DetailPanel';
-import type { ActivityFeedProps } from '../../../sections/ActivityFeed';
+import type { HTMLAttributes, ReactNode } from "react";
+import type { SidebarProps } from "../../../sections/Sidebar";
+import type { PageHeaderProps } from "../../../sections/PageHeader";
+import type { DetailPanelProps } from "../../../sections/DetailPanel";
+import type { ActivityFeedProps } from "../../../sections/ActivityFeed";
 
 /**
  * Profile header content

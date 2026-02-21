@@ -14,10 +14,21 @@
  * ```
  */
 
-import { forwardRef, useMemo } from 'react';
-import { Bell, Info, CheckCircle, AlertTriangle, XCircle, X, Check } from 'lucide-react';
-import type { NotificationCenterProps, NotificationItem } from './NotificationCenter.types';
-import styles from './NotificationCenter.module.css';
+import { forwardRef, useMemo } from "react";
+import {
+  Bell,
+  Info,
+  CheckCircle,
+  AlertTriangle,
+  XCircle,
+  X,
+  Check,
+} from "lucide-react";
+import type {
+  NotificationCenterProps,
+  NotificationItem,
+} from "./NotificationCenter.types";
+import styles from "./NotificationCenter.module.css";
 
 // Type to icon mapping
 const typeIcons: Record<string, React.ReactNode> = {
@@ -38,7 +49,7 @@ const NotificationItemComponent = ({
   onMarkAsRead?: (id: string) => void;
   onDismiss?: (id: string) => void;
 }) => {
-  const icon = notification.icon || typeIcons[notification.type || 'default'];
+  const icon = notification.icon || typeIcons[notification.type || "default"];
   const isClickable = notification.href || notification.onClick;
 
   const handleClick = () => {
@@ -56,7 +67,9 @@ const NotificationItemComponent = ({
         {notification.avatar ? (
           <img src={notification.avatar} alt="" className={styles.itemAvatar} />
         ) : (
-          <div className={`${styles.itemIcon} ${styles[`icon-${notification.type || 'default'}`]}`}>
+          <div
+            className={`${styles.itemIcon} ${styles[`icon-${notification.type || "default"}`]}`}
+          >
             {icon}
           </div>
         )}
@@ -67,7 +80,9 @@ const NotificationItemComponent = ({
           <span className={styles.itemTitle}>{notification.title}</span>
           {!notification.read && <span className={styles.unreadDot} />}
         </div>
-        {notification.message && <p className={styles.itemMessage}>{notification.message}</p>}
+        {notification.message && (
+          <p className={styles.itemMessage}>{notification.message}</p>
+        )}
         <span className={styles.itemTime}>
           {notification.relativeTime || notification.timestamp}
         </span>
@@ -108,7 +123,7 @@ const NotificationItemComponent = ({
     return (
       <a
         href={notification.href}
-        className={`${styles.item} ${notification.read ? styles.itemRead : ''}`}
+        className={`${styles.item} ${notification.read ? styles.itemRead : ""}`}
         onClick={handleClick}
       >
         {content}
@@ -118,9 +133,9 @@ const NotificationItemComponent = ({
 
   return (
     <div
-      className={`${styles.item} ${notification.read ? styles.itemRead : ''} ${isClickable ? styles.itemClickable : ''}`}
+      className={`${styles.item} ${notification.read ? styles.itemRead : ""} ${isClickable ? styles.itemClickable : ""}`}
       onClick={isClickable ? handleClick : undefined}
-      role={isClickable ? 'button' : undefined}
+      role={isClickable ? "button" : undefined}
       tabIndex={isClickable ? 0 : undefined}
     >
       {content}
@@ -128,7 +143,10 @@ const NotificationItemComponent = ({
   );
 };
 
-export const NotificationCenter = forwardRef<HTMLDivElement, NotificationCenterProps>(
+export const NotificationCenter = forwardRef<
+  HTMLDivElement,
+  NotificationCenterProps
+>(
   (
     {
       notifications,
@@ -137,10 +155,10 @@ export const NotificationCenter = forwardRef<HTMLDivElement, NotificationCenterP
       onDismiss,
       onClearAll,
       onViewAll,
-      title = 'Notifications',
-      emptyMessage = 'No notifications',
+      title = "Notifications",
+      emptyMessage = "No notifications",
       loading = false,
-      maxHeight = '400px',
+      maxHeight = "400px",
       groupByCategory = false,
       showUnreadCount = true,
       className,
@@ -148,14 +166,17 @@ export const NotificationCenter = forwardRef<HTMLDivElement, NotificationCenterP
     },
     ref,
   ) => {
-    const unreadCount = useMemo(() => notifications.filter((n) => !n.read).length, [notifications]);
+    const unreadCount = useMemo(
+      () => notifications.filter((n) => !n.read).length,
+      [notifications],
+    );
 
     const groupedNotifications = useMemo(() => {
       if (!groupByCategory) return null;
 
       const groups: Record<string, NotificationItem[]> = {};
       notifications.forEach((n) => {
-        const category = n.category || 'Other';
+        const category = n.category || "Other";
         if (!groups[category]) {
           groups[category] = [];
         }
@@ -164,7 +185,9 @@ export const NotificationCenter = forwardRef<HTMLDivElement, NotificationCenterP
       return groups;
     }, [notifications, groupByCategory]);
 
-    const classNames = [styles.notificationCenter, className].filter(Boolean).join(' ');
+    const classNames = [styles.notificationCenter, className]
+      .filter(Boolean)
+      .join(" ");
 
     return (
       <div ref={ref} className={classNames} {...rest}>
@@ -178,7 +201,11 @@ export const NotificationCenter = forwardRef<HTMLDivElement, NotificationCenterP
           </div>
           <div className={styles.headerActions}>
             {onMarkAllAsRead && unreadCount > 0 && (
-              <button type="button" className={styles.headerAction} onClick={onMarkAllAsRead}>
+              <button
+                type="button"
+                className={styles.headerAction}
+                onClick={onMarkAllAsRead}
+              >
                 Mark all as read
               </button>
             )}
@@ -226,12 +253,20 @@ export const NotificationCenter = forwardRef<HTMLDivElement, NotificationCenterP
         {(onViewAll || onClearAll) && notifications.length > 0 && (
           <div className={styles.footer}>
             {onClearAll && (
-              <button type="button" className={styles.footerAction} onClick={onClearAll}>
+              <button
+                type="button"
+                className={styles.footerAction}
+                onClick={onClearAll}
+              >
                 Clear all
               </button>
             )}
             {onViewAll && (
-              <button type="button" className={styles.footerActionPrimary} onClick={onViewAll}>
+              <button
+                type="button"
+                className={styles.footerActionPrimary}
+                onClick={onViewAll}
+              >
                 View all notifications
               </button>
             )}
@@ -242,4 +277,4 @@ export const NotificationCenter = forwardRef<HTMLDivElement, NotificationCenterP
   },
 );
 
-NotificationCenter.displayName = 'NotificationCenter';
+NotificationCenter.displayName = "NotificationCenter";

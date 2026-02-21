@@ -17,10 +17,10 @@
  * ```
  */
 
-import { forwardRef } from 'react';
-import { TrendingUp, TrendingDown } from 'lucide-react';
-import type { MetricCardsProps, MetricCardProps } from './MetricCards.types';
-import styles from './MetricCards.module.css';
+import { forwardRef } from "react";
+import { TrendingUp, TrendingDown } from "lucide-react";
+import type { MetricCardsProps, MetricCardProps } from "./MetricCards.types";
+import styles from "./MetricCards.module.css";
 
 // Sparkline mini component
 const Sparkline = ({ data }: { data: number[] }) => {
@@ -41,9 +41,12 @@ const Sparkline = ({ data }: { data: number[] }) => {
       const y = height - ((value - min) / range) * height;
       return `${x},${y}`;
     })
-    .join(' ');
+    .join(" ");
 
-  const isPositive = firstValue !== undefined && lastValue !== undefined && lastValue >= firstValue;
+  const isPositive =
+    firstValue !== undefined &&
+    lastValue !== undefined &&
+    lastValue >= firstValue;
 
   return (
     <svg
@@ -54,7 +57,7 @@ const Sparkline = ({ data }: { data: number[] }) => {
     >
       <polyline
         fill="none"
-        stroke={isPositive ? 'var(--text-success)' : 'var(--text-error)'}
+        stroke={isPositive ? "var(--text-success)" : "var(--text-error)"}
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -66,7 +69,10 @@ const Sparkline = ({ data }: { data: number[] }) => {
 
 // Individual MetricCard component
 const MetricCard = forwardRef<HTMLDivElement, MetricCardProps>(
-  ({ metric, variant = 'default', loading = false, className, ...rest }, ref) => {
+  (
+    { metric, variant = "default", loading = false, className, ...rest },
+    ref,
+  ) => {
     const {
       label,
       value,
@@ -90,7 +96,7 @@ const MetricCard = forwardRef<HTMLDivElement, MetricCardProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     const content = (
       <>
@@ -105,7 +111,9 @@ const MetricCard = forwardRef<HTMLDivElement, MetricCardProps>(
           ) : (
             <>
               <span className={styles.value}>{value}</span>
-              {sparkline && variant === 'detailed' && <Sparkline data={sparkline} />}
+              {sparkline && variant === "detailed" && (
+                <Sparkline data={sparkline} />
+              )}
             </>
           )}
         </div>
@@ -116,12 +124,18 @@ const MetricCard = forwardRef<HTMLDivElement, MetricCardProps>(
               <span
                 className={`${styles.change} ${change.positive ? styles.positive : styles.negative}`}
               >
-                {change.positive ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
+                {change.positive ? (
+                  <TrendingUp size={12} />
+                ) : (
+                  <TrendingDown size={12} />
+                )}
                 <span>{change.value}</span>
-                {change.label && <span className={styles.changeLabel}>{change.label}</span>}
+                {change.label && (
+                  <span className={styles.changeLabel}>{change.label}</span>
+                )}
               </span>
             )}
-            {description && variant === 'detailed' && (
+            {description && variant === "detailed" && (
               <span className={styles.description}>{description}</span>
             )}
           </div>
@@ -164,14 +178,28 @@ const MetricCard = forwardRef<HTMLDivElement, MetricCardProps>(
   },
 );
 
-MetricCard.displayName = 'MetricCard';
+MetricCard.displayName = "MetricCard";
 
 // Main MetricCards component
 export const MetricCards = forwardRef<HTMLDivElement, MetricCardsProps>(
-  ({ metrics, columns = 4, variant = 'default', loading = false, className, ...rest }, ref) => {
-    const classNames = [styles.metricCards, styles[`cols-${columns}`], className]
+  (
+    {
+      metrics,
+      columns = 4,
+      variant = "default",
+      loading = false,
+      className,
+      ...rest
+    },
+    ref,
+  ) => {
+    const classNames = [
+      styles.metricCards,
+      styles[`cols-${columns}`],
+      className,
+    ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
       <div ref={ref} className={classNames} {...rest}>
@@ -188,6 +216,6 @@ export const MetricCards = forwardRef<HTMLDivElement, MetricCardsProps>(
   },
 );
 
-MetricCards.displayName = 'MetricCards';
+MetricCards.displayName = "MetricCards";
 
 export { MetricCard };

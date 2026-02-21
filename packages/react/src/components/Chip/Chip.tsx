@@ -11,15 +11,15 @@
  * ```
  */
 
-import { forwardRef } from 'react';
-import type { ChipProps } from './Chip.types';
-import styles from './Chip.module.css';
+import { forwardRef } from "react";
+import type { ChipProps } from "./Chip.types";
+import styles from "./Chip.module.css";
 
 export const Chip = forwardRef<HTMLDivElement, ChipProps>(
   (
     {
-      variant = 'default',
-      size = 'md',
+      variant = "default",
+      size = "md",
       icon,
       clickable = false,
       onClick,
@@ -44,7 +44,7 @@ export const Chip = forwardRef<HTMLDivElement, ChipProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     const handleClick = () => {
       if (!disabled && onClick) {
@@ -62,12 +62,12 @@ export const Chip = forwardRef<HTMLDivElement, ChipProps>(
     const handleKeyDown = (e: React.KeyboardEvent) => {
       if (disabled) return;
 
-      if (e.key === 'Enter' || e.key === ' ') {
+      if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         onClick?.();
       }
 
-      if (e.key === 'Backspace' || e.key === 'Delete') {
+      if (e.key === "Backspace" || e.key === "Delete") {
         e.preventDefault();
         onRemove?.();
       }
@@ -77,7 +77,7 @@ export const Chip = forwardRef<HTMLDivElement, ChipProps>(
       <div
         ref={ref}
         className={classNames}
-        role={isInteractive ? 'button' : undefined}
+        role={isInteractive ? "button" : undefined}
         tabIndex={isInteractive && !disabled ? 0 : undefined}
         aria-disabled={disabled}
         aria-pressed={selected}
@@ -123,4 +123,4 @@ export const Chip = forwardRef<HTMLDivElement, ChipProps>(
   },
 );
 
-Chip.displayName = 'Chip';
+Chip.displayName = "Chip";

@@ -1,28 +1,28 @@
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { Tooltip } from './Tooltip';
+import { describe, it, expect } from "vitest";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { Tooltip } from "./Tooltip";
 
-describe('Tooltip', () => {
-  it('renders child element', () => {
+describe("Tooltip", () => {
+  it("renders child element", () => {
     render(
       <Tooltip content="Tooltip text">
         <button>Hover me</button>
       </Tooltip>,
     );
-    expect(screen.getByText('Hover me')).toBeInTheDocument();
+    expect(screen.getByText("Hover me")).toBeInTheDocument();
   });
 
-  it('does not show tooltip initially', () => {
+  it("does not show tooltip initially", () => {
     render(
       <Tooltip content="Tooltip text">
         <button>Hover me</button>
       </Tooltip>,
     );
-    expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
+    expect(screen.queryByRole("tooltip")).not.toBeInTheDocument();
   });
 
-  it('shows tooltip on mouse enter', async () => {
+  it("shows tooltip on mouse enter", async () => {
     const user = userEvent.setup();
     render(
       <Tooltip content="Tooltip text" delay={0}>
@@ -30,14 +30,14 @@ describe('Tooltip', () => {
       </Tooltip>,
     );
 
-    await user.hover(screen.getByText('Hover me'));
+    await user.hover(screen.getByText("Hover me"));
 
     // Tooltip should be visible
-    expect(screen.getByRole('tooltip')).toBeInTheDocument();
-    expect(screen.getByText('Tooltip text')).toBeInTheDocument();
+    expect(screen.getByRole("tooltip")).toBeInTheDocument();
+    expect(screen.getByText("Tooltip text")).toBeInTheDocument();
   });
 
-  it('hides tooltip on mouse leave', async () => {
+  it("hides tooltip on mouse leave", async () => {
     const user = userEvent.setup();
     render(
       <Tooltip content="Tooltip text" delay={0}>
@@ -45,16 +45,16 @@ describe('Tooltip', () => {
       </Tooltip>,
     );
 
-    const button = screen.getByText('Hover me');
+    const button = screen.getByText("Hover me");
     await user.hover(button);
-    expect(screen.getByRole('tooltip')).toBeInTheDocument();
+    expect(screen.getByRole("tooltip")).toBeInTheDocument();
 
     await user.unhover(button);
 
-    expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
+    expect(screen.queryByRole("tooltip")).not.toBeInTheDocument();
   });
 
-  it('shows tooltip on focus', async () => {
+  it("shows tooltip on focus", async () => {
     const user = userEvent.setup();
     render(
       <Tooltip content="Tooltip text">
@@ -64,10 +64,10 @@ describe('Tooltip', () => {
 
     await user.tab(); // Focus the button
 
-    expect(screen.getByRole('tooltip')).toBeInTheDocument();
+    expect(screen.getByRole("tooltip")).toBeInTheDocument();
   });
 
-  it('hides tooltip on blur', async () => {
+  it("hides tooltip on blur", async () => {
     const user = userEvent.setup();
     render(
       <Tooltip content="Tooltip text">
@@ -75,17 +75,17 @@ describe('Tooltip', () => {
       </Tooltip>,
     );
 
-    const button = screen.getByText('Focus me');
+    const button = screen.getByText("Focus me");
     await user.click(button);
 
-    expect(screen.getByRole('tooltip')).toBeInTheDocument();
+    expect(screen.getByRole("tooltip")).toBeInTheDocument();
 
     await user.tab(); // Blur the button
 
-    expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
+    expect(screen.queryByRole("tooltip")).not.toBeInTheDocument();
   });
 
-  it('does not show tooltip when disabled', async () => {
+  it("does not show tooltip when disabled", async () => {
     const user = userEvent.setup();
     render(
       <Tooltip content="Tooltip text" disabled>
@@ -93,11 +93,11 @@ describe('Tooltip', () => {
       </Tooltip>,
     );
 
-    await user.hover(screen.getByText('Hover me'));
-    expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
+    await user.hover(screen.getByText("Hover me"));
+    expect(screen.queryByRole("tooltip")).not.toBeInTheDocument();
   });
 
-  it('applies top placement by default', async () => {
+  it("applies top placement by default", async () => {
     const user = userEvent.setup();
     const { container } = render(
       <Tooltip content="Tooltip text" delay={0}>
@@ -105,13 +105,13 @@ describe('Tooltip', () => {
       </Tooltip>,
     );
 
-    await user.hover(screen.getByText('Hover me'));
-    await screen.findByRole('tooltip');
+    await user.hover(screen.getByText("Hover me"));
+    await screen.findByRole("tooltip");
     const tooltip = container.querySelector('[role="tooltip"]');
     expect(tooltip?.className).toMatch(/top/);
   });
 
-  it('applies right placement', async () => {
+  it("applies right placement", async () => {
     const user = userEvent.setup();
     const { container } = render(
       <Tooltip content="Tooltip text" placement="right" delay={0}>
@@ -119,13 +119,13 @@ describe('Tooltip', () => {
       </Tooltip>,
     );
 
-    await user.hover(screen.getByText('Hover me'));
-    await screen.findByRole('tooltip');
+    await user.hover(screen.getByText("Hover me"));
+    await screen.findByRole("tooltip");
     const tooltip = container.querySelector('[role="tooltip"]');
     expect(tooltip?.className).toMatch(/right/);
   });
 
-  it('applies bottom placement', async () => {
+  it("applies bottom placement", async () => {
     const user = userEvent.setup();
     const { container } = render(
       <Tooltip content="Tooltip text" placement="bottom" delay={0}>
@@ -133,13 +133,13 @@ describe('Tooltip', () => {
       </Tooltip>,
     );
 
-    await user.hover(screen.getByText('Hover me'));
-    await screen.findByRole('tooltip');
+    await user.hover(screen.getByText("Hover me"));
+    await screen.findByRole("tooltip");
     const tooltip = container.querySelector('[role="tooltip"]');
     expect(tooltip?.className).toMatch(/bottom/);
   });
 
-  it('applies left placement', async () => {
+  it("applies left placement", async () => {
     const user = userEvent.setup();
     const { container } = render(
       <Tooltip content="Tooltip text" placement="left" delay={0}>
@@ -147,13 +147,13 @@ describe('Tooltip', () => {
       </Tooltip>,
     );
 
-    await user.hover(screen.getByText('Hover me'));
-    await screen.findByRole('tooltip');
+    await user.hover(screen.getByText("Hover me"));
+    await screen.findByRole("tooltip");
     const tooltip = container.querySelector('[role="tooltip"]');
     expect(tooltip?.className).toMatch(/left/);
   });
 
-  it('applies custom className', async () => {
+  it("applies custom className", async () => {
     const user = userEvent.setup();
     const { container } = render(
       <Tooltip content="Tooltip text" className="custom-tooltip" delay={0}>
@@ -161,13 +161,13 @@ describe('Tooltip', () => {
       </Tooltip>,
     );
 
-    await user.hover(screen.getByText('Hover me'));
-    await screen.findByRole('tooltip');
+    await user.hover(screen.getByText("Hover me"));
+    await screen.findByRole("tooltip");
     const tooltip = container.querySelector('[role="tooltip"]');
-    expect(tooltip).toHaveClass('custom-tooltip');
+    expect(tooltip).toHaveClass("custom-tooltip");
   });
 
-  it('cancels timeout if mouse leaves before delay', async () => {
+  it("cancels timeout if mouse leaves before delay", async () => {
     const user = userEvent.setup();
     render(
       <Tooltip content="Tooltip text" delay={0}>
@@ -175,17 +175,17 @@ describe('Tooltip', () => {
       </Tooltip>,
     );
 
-    const button = screen.getByText('Hover me');
+    const button = screen.getByText("Hover me");
     await user.hover(button);
-    await screen.findByRole('tooltip');
+    await screen.findByRole("tooltip");
 
     await user.unhover(button);
 
     // Tooltip should disappear
-    expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
+    expect(screen.queryByRole("tooltip")).not.toBeInTheDocument();
   });
 
-  it('respects custom delay', async () => {
+  it("respects custom delay", async () => {
     const user = userEvent.setup();
     render(
       <Tooltip content="Tooltip text" delay={0}>
@@ -193,14 +193,14 @@ describe('Tooltip', () => {
       </Tooltip>,
     );
 
-    await user.hover(screen.getByText('Hover me'));
+    await user.hover(screen.getByText("Hover me"));
 
     // With delay=0, tooltip should appear immediately
-    await screen.findByRole('tooltip');
-    expect(screen.getByRole('tooltip')).toBeInTheDocument();
+    await screen.findByRole("tooltip");
+    expect(screen.getByRole("tooltip")).toBeInTheDocument();
   });
 
-  it('renders complex content', async () => {
+  it("renders complex content", async () => {
     const user = userEvent.setup();
     const complexContent = (
       <div>
@@ -215,14 +215,14 @@ describe('Tooltip', () => {
       </Tooltip>,
     );
 
-    await user.hover(screen.getByText('Hover me'));
+    await user.hover(screen.getByText("Hover me"));
 
-    await screen.findByRole('tooltip');
-    expect(screen.getByText('Title')).toBeInTheDocument();
-    expect(screen.getByText('Description')).toBeInTheDocument();
+    await screen.findByRole("tooltip");
+    expect(screen.getByText("Title")).toBeInTheDocument();
+    expect(screen.getByText("Description")).toBeInTheDocument();
   });
 
-  it('renders with icon button child', async () => {
+  it("renders with icon button child", async () => {
     const user = userEvent.setup();
     render(
       <Tooltip content="Info tooltip" delay={0}>
@@ -230,13 +230,13 @@ describe('Tooltip', () => {
       </Tooltip>,
     );
 
-    await user.hover(screen.getByLabelText('Info'));
+    await user.hover(screen.getByLabelText("Info"));
 
-    expect(screen.getByRole('tooltip')).toBeInTheDocument();
-    expect(screen.getByText('Info tooltip')).toBeInTheDocument();
+    expect(screen.getByRole("tooltip")).toBeInTheDocument();
+    expect(screen.getByText("Info tooltip")).toBeInTheDocument();
   });
 
-  it('renders arrow indicator', async () => {
+  it("renders arrow indicator", async () => {
     const user = userEvent.setup();
     const { container } = render(
       <Tooltip content="Tooltip text" delay={0}>
@@ -244,14 +244,14 @@ describe('Tooltip', () => {
       </Tooltip>,
     );
 
-    await user.hover(screen.getByText('Hover me'));
+    await user.hover(screen.getByText("Hover me"));
 
     const arrow = container.querySelector('[class*="arrow"]');
     expect(arrow).toBeInTheDocument();
   });
 
-  describe('All placements', () => {
-    it('renders top placement', async () => {
+  describe("All placements", () => {
+    it("renders top placement", async () => {
       const user = userEvent.setup();
       const { container } = render(
         <Tooltip content="Top" placement="top" delay={0}>
@@ -259,13 +259,13 @@ describe('Tooltip', () => {
         </Tooltip>,
       );
 
-      await user.hover(screen.getByText('Hover'));
+      await user.hover(screen.getByText("Hover"));
 
       const tooltip = container.querySelector('[role="tooltip"]');
       expect(tooltip?.className).toMatch(/top/);
     });
 
-    it('renders right placement', async () => {
+    it("renders right placement", async () => {
       const user = userEvent.setup();
       const { container } = render(
         <Tooltip content="Right" placement="right" delay={0}>
@@ -273,13 +273,13 @@ describe('Tooltip', () => {
         </Tooltip>,
       );
 
-      await user.hover(screen.getByText('Hover'));
+      await user.hover(screen.getByText("Hover"));
 
       const tooltip = container.querySelector('[role="tooltip"]');
       expect(tooltip?.className).toMatch(/right/);
     });
 
-    it('renders bottom placement', async () => {
+    it("renders bottom placement", async () => {
       const user = userEvent.setup();
       const { container } = render(
         <Tooltip content="Bottom" placement="bottom" delay={0}>
@@ -287,13 +287,13 @@ describe('Tooltip', () => {
         </Tooltip>,
       );
 
-      await user.hover(screen.getByText('Hover'));
+      await user.hover(screen.getByText("Hover"));
 
       const tooltip = container.querySelector('[role="tooltip"]');
       expect(tooltip?.className).toMatch(/bottom/);
     });
 
-    it('renders left placement', async () => {
+    it("renders left placement", async () => {
       const user = userEvent.setup();
       const { container } = render(
         <Tooltip content="Left" placement="left" delay={0}>
@@ -301,7 +301,7 @@ describe('Tooltip', () => {
         </Tooltip>,
       );
 
-      await user.hover(screen.getByText('Hover'));
+      await user.hover(screen.getByText("Hover"));
 
       const tooltip = container.querySelector('[role="tooltip"]');
       expect(tooltip?.className).toMatch(/left/);

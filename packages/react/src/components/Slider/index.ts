@@ -10,5 +10,5 @@
  * <Slider min={0} max={10} step={1} marks showValue />
  * ```
  */
-export { Slider } from './Slider';
-export type { SliderProps, SliderSize } from './Slider.types';
+export { Slider } from "./Slider";
+export type { SliderProps, SliderSize } from "./Slider.types";

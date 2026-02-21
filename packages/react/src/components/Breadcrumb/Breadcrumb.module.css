@@ -72,7 +72,7 @@
 }
 
 .chevron::after {
-  content: '';
+  content: "";
   display: block;
   width: 6px;
   height: 6px;
@@ -84,7 +84,7 @@
 
 /* Slash separator */
 .slash::after {
-  content: '/';
+  content: "/";
   font-weight: var(--font-weight-regular);
   font-size: 0.875em;
   opacity: 0.5;

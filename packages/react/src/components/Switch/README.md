@@ -32,7 +32,7 @@ _Extends all native `<input>` attributes except `size` and `type`._
 ### Basic
 
 ```tsx
-import { Switch } from '@orion/react';
+import { Switch } from "@orion/react";
 
 <Switch label="Enable notifications" />;
 ```
@@ -40,13 +40,17 @@ import { Switch } from '@orion/react';
 ### Controlled
 
 ```tsx
-import { useState } from 'react';
+import { useState } from "react";
 
 function Example() {
   const [enabled, setEnabled] = useState(false);
 
   return (
-    <Switch label="Dark mode" checked={enabled} onChange={(e) => setEnabled(e.target.checked)} />
+    <Switch
+      label="Dark mode"
+      checked={enabled}
+      onChange={(e) => setEnabled(e.target.checked)}
+    />
   );
 }
 ```
@@ -54,13 +58,20 @@ function Example() {
 ### With Helper Text
 
 ```tsx
-<Switch label="Email notifications" helperText="Receive updates about your account" />
+<Switch
+  label="Email notifications"
+  helperText="Receive updates about your account"
+/>
 ```
 
 ### With Error State
 
 ```tsx
-<Switch label="Accept terms" error="You must accept the terms to continue" required />
+<Switch
+  label="Accept terms"
+  error="You must accept the terms to continue"
+  required
+/>
 ```
 
 ### Sizes
@@ -115,29 +126,30 @@ function NotificationSettings() {
     sms: false,
   });
 
-  const handleChange = (key: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSettings((prev) => ({ ...prev, [key]: e.target.checked }));
-  };
+  const handleChange =
+    (key: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      setSettings((prev) => ({ ...prev, [key]: e.target.checked }));
+    };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       <Switch
         label="Email notifications"
         helperText="Receive order updates and promotions"
         checked={settings.email}
-        onChange={handleChange('email')}
+        onChange={handleChange("email")}
       />
       <Switch
         label="Push notifications"
         helperText="Get instant alerts on your device"
         checked={settings.push}
-        onChange={handleChange('push')}
+        onChange={handleChange("push")}
       />
       <Switch
         label="SMS notifications"
         helperText="Receive text messages for critical updates"
         checked={settings.sms}
-        onChange={handleChange('sms')}
+        onChange={handleChange("sms")}
       />
     </div>
   );

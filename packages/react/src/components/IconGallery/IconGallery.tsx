@@ -8,114 +8,114 @@
  * All display settings are hardcoded for optimal browsing experience.
  */
 
-import React, { useState, useMemo, useCallback } from 'react';
-import { icons, Search } from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
-import type { IconGalleryProps } from './IconGallery.types';
-import styles from './IconGallery.module.css';
+import React, { useState, useMemo, useCallback } from "react";
+import { icons, Search } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import type { IconGalleryProps } from "./IconGallery.types";
+import styles from "./IconGallery.module.css";
 
 const ICON_CATEGORIES: Record<string, string[]> = {
   Navigation: [
-    'Menu',
-    'X',
-    'ChevronDown',
-    'ChevronUp',
-    'ChevronLeft',
-    'ChevronRight',
-    'ArrowDown',
-    'ArrowUp',
-    'ArrowLeft',
-    'ArrowRight',
-    'Home',
-    'Settings',
-    'Bell',
-    'User',
-    'LogOut',
-    'LogIn',
-    'Search',
-    'MapPin',
-    'Navigation',
+    "Menu",
+    "X",
+    "ChevronDown",
+    "ChevronUp",
+    "ChevronLeft",
+    "ChevronRight",
+    "ArrowDown",
+    "ArrowUp",
+    "ArrowLeft",
+    "ArrowRight",
+    "Home",
+    "Settings",
+    "Bell",
+    "User",
+    "LogOut",
+    "LogIn",
+    "Search",
+    "MapPin",
+    "Navigation",
   ],
   Actions: [
-    'Plus',
-    'Minus',
-    'Check',
-    'Copy',
-    'Download',
-    'Upload',
-    'Share2',
-    'Trash2',
-    'Edit',
-    'Eye',
-    'EyeOff',
-    'Lock',
-    'Unlock',
-    'Zap',
-    'Refresh',
-    'RotateCw',
-    'Save',
-    'Send',
-    'Archive',
-    'Flag',
+    "Plus",
+    "Minus",
+    "Check",
+    "Copy",
+    "Download",
+    "Upload",
+    "Share2",
+    "Trash2",
+    "Edit",
+    "Eye",
+    "EyeOff",
+    "Lock",
+    "Unlock",
+    "Zap",
+    "Refresh",
+    "RotateCw",
+    "Save",
+    "Send",
+    "Archive",
+    "Flag",
   ],
   Status: [
-    'AlertCircle',
-    'CheckCircle',
-    'XCircle',
-    'Info',
-    'HelpCircle',
-    'AlertTriangle',
-    'CheckCircle2',
-    'Circle',
-    'Loader',
-    'Loader2',
-    'Clock',
-    'Calendar',
+    "AlertCircle",
+    "CheckCircle",
+    "XCircle",
+    "Info",
+    "HelpCircle",
+    "AlertTriangle",
+    "CheckCircle2",
+    "Circle",
+    "Loader",
+    "Loader2",
+    "Clock",
+    "Calendar",
   ],
   Media: [
-    'Image',
-    'Video',
-    'Music',
-    'FileText',
-    'File',
-    'Folder',
-    'FolderOpen',
-    'Camera',
-    'Paperclip',
-    'Play',
-    'Pause',
-    'Volume2',
-    'VolumeX',
+    "Image",
+    "Video",
+    "Music",
+    "FileText",
+    "File",
+    "Folder",
+    "FolderOpen",
+    "Camera",
+    "Paperclip",
+    "Play",
+    "Pause",
+    "Volume2",
+    "VolumeX",
   ],
   Communication: [
-    'Mail',
-    'MessageSquare',
-    'Heart',
-    'Star',
-    'Share',
-    'MessageCircle',
-    'Phone',
-    'Smartphone',
-    'Gift',
-    'ThumbsUp',
-    'ThumbsDown',
+    "Mail",
+    "MessageSquare",
+    "Heart",
+    "Star",
+    "Share",
+    "MessageCircle",
+    "Phone",
+    "Smartphone",
+    "Gift",
+    "ThumbsUp",
+    "ThumbsDown",
   ],
   Commerce: [
-    'ShoppingCart',
-    'DollarSign',
-    'CreditCard',
-    'Tag',
-    'Briefcase',
-    'TrendingUp',
-    'TrendingDown',
-    'BarChart',
-    'PieChart',
-    'Activity',
+    "ShoppingCart",
+    "DollarSign",
+    "CreditCard",
+    "Tag",
+    "Briefcase",
+    "TrendingUp",
+    "TrendingDown",
+    "BarChart",
+    "PieChart",
+    "Activity",
   ],
 };
 
 export const IconGallery: React.FC<IconGalleryProps> = ({ className }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [copiedIcon, setCopiedIcon] = useState<string | null>(null);
 
@@ -151,12 +151,14 @@ export const IconGallery: React.FC<IconGalleryProps> = ({ className }) => {
   }, []);
 
   const renderIcon = useCallback((iconName: string) => {
-    const Icon = icons[iconName as keyof typeof icons] as LucideIcon | undefined;
+    const Icon = icons[iconName as keyof typeof icons] as
+      | LucideIcon
+      | undefined;
     return Icon ? <Icon size={24} /> : null;
   }, []);
 
   return (
-    <div className={`${styles.gallery}${className ? ` ${className}` : ''}`}>
+    <div className={`${styles.gallery}${className ? ` ${className}` : ""}`}>
       {/* Header */}
       <div className={styles.header}>
         <h1>Icon Browser</h1>
@@ -173,13 +175,17 @@ export const IconGallery: React.FC<IconGalleryProps> = ({ className }) => {
           onChange={(e) => setSearchTerm(e.target.value)}
           className={styles.searchInput}
         />
-        {searchTerm && <span className={styles.resultCount}>{filteredIcons.length} results</span>}
+        {searchTerm && (
+          <span className={styles.resultCount}>
+            {filteredIcons.length} results
+          </span>
+        )}
       </div>
 
       {/* Categories */}
       <div className={styles.categories}>
         <button
-          className={`${styles.categoryBtn} ${!selectedCategory ? styles.active : ''}`}
+          className={`${styles.categoryBtn} ${!selectedCategory ? styles.active : ""}`}
           onClick={() => setSelectedCategory(null)}
           type="button"
         >
@@ -188,7 +194,7 @@ export const IconGallery: React.FC<IconGalleryProps> = ({ className }) => {
         {Object.keys(ICON_CATEGORIES).map((category) => (
           <button
             key={category}
-            className={`${styles.categoryBtn} ${selectedCategory === category ? styles.active : ''}`}
+            className={`${styles.categoryBtn} ${selectedCategory === category ? styles.active : ""}`}
             onClick={() => setSelectedCategory(category)}
             type="button"
           >
@@ -209,7 +215,9 @@ export const IconGallery: React.FC<IconGalleryProps> = ({ className }) => {
           >
             <span className={styles.iconDisplay}>{renderIcon(iconName)}</span>
             <span className={styles.iconName}>{iconName}</span>
-            {copiedIcon === iconName && <span className={styles.copiedBadge}>Copied!</span>}
+            {copiedIcon === iconName && (
+              <span className={styles.copiedBadge}>Copied!</span>
+            )}
           </button>
         ))}
       </div>
@@ -224,7 +232,9 @@ export const IconGallery: React.FC<IconGalleryProps> = ({ className }) => {
       {/* Usage */}
       <div className={styles.usageInfo}>
         <h3>Usage</h3>
-        <pre className={styles.codeBlock}>{`import { Search, Download } from 'lucide-react';
+        <pre
+          className={styles.codeBlock}
+        >{`import { Search, Download } from 'lucide-react';
 
 <Button icon={<Search size={20} />}>Search</Button>`}</pre>
       </div>
@@ -232,4 +242,4 @@ export const IconGallery: React.FC<IconGalleryProps> = ({ className }) => {
   );
 };
 
-IconGallery.displayName = 'IconGallery';
+IconGallery.displayName = "IconGallery";

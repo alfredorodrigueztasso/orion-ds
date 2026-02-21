@@ -5,7 +5,7 @@
  * A multi-step wizard/progress indicator for SaaS applications.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Step item
@@ -83,7 +83,7 @@ export interface StepperProps extends HTMLAttributes<HTMLDivElement> {
    * Orientation
    * @default "horizontal"
    */
-  orientation?: 'horizontal' | 'vertical';
+  orientation?: "horizontal" | "vertical";
 
   /**
    * Allow clicking on completed steps
@@ -107,13 +107,13 @@ export interface StepperProps extends HTMLAttributes<HTMLDivElement> {
    * Connector line style
    * @default "solid"
    */
-  connectorStyle?: 'solid' | 'dashed' | 'dotted';
+  connectorStyle?: "solid" | "dashed" | "dotted";
 
   /**
    * Size variant
    * @default "md"
    */
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
 
   /**
    * Alternative label placement (horizontal only)

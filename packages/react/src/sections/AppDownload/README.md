@@ -5,14 +5,14 @@
 ## Quick Start
 
 ```tsx
-import { AppDownload } from '@orion/react';
+import { AppDownload } from "@orion/react";
 
 <AppDownload
   title="Download Our App"
   description="Available on iOS and Android"
   badges={[
-    { store: 'apple', href: 'https://apps.apple.com/app/...' },
-    { store: 'google', href: 'https://play.google.com/store/apps/...' },
+    { store: "apple", href: "https://apps.apple.com/app/..." },
+    { store: "google", href: "https://play.google.com/store/apps/..." },
   ]}
   appImage="/app-preview.png"
 />;
@@ -58,15 +58,15 @@ interface AppDownloadProps {
   };
 
   // Layout
-  layout?: 'centered' | 'split-left' | 'split-right'; // default: 'centered'
+  layout?: "centered" | "split-left" | "split-right"; // default: 'centered'
 
   // Styling
-  background?: 'base' | 'subtle' | 'gradient' | 'dark'; // default: 'gradient'
+  background?: "base" | "subtle" | "gradient" | "dark"; // default: 'gradient'
   compact?: boolean; // Compact spacing - default: false
 }
 
 interface AppStoreBadge {
-  store: 'apple' | 'google' | 'huawei' | 'custom';
+  store: "apple" | "google" | "huawei" | "custom";
   href: string; // Download URL
   badgeImage?: string; // Custom badge image
   badgeAlt?: string; // Custom badge alt text
@@ -139,7 +139,12 @@ badges={[
 Content centered with optional app preview.
 
 ```tsx
-<AppDownload layout="centered" title="Get the App" badges={badges} appImage="/app-mockup.png" />
+<AppDownload
+  layout="centered"
+  title="Get the App"
+  badges={badges}
+  appImage="/app-mockup.png"
+/>
 ```
 
 ### `layout="split-left"`
@@ -175,7 +180,12 @@ Content on the left, app image on the right.
 Show a QR code for quick scanning.
 
 ```tsx
-<AppDownload title="Scan to Download" badges={badges} qrCode="/qr/app-download.png" showQrCode />
+<AppDownload
+  title="Scan to Download"
+  badges={badges}
+  qrCode="/qr/app-download.png"
+  showQrCode
+/>
 ```
 
 ---
@@ -185,7 +195,7 @@ Show a QR code for quick scanning.
 Highlight key app features.
 
 ```tsx
-import { Zap, Shield, Bell } from 'lucide-react';
+import { Zap, Shield, Bell } from "lucide-react";
 
 <AppDownload
   title="Why Use Our App?"
@@ -193,18 +203,18 @@ import { Zap, Shield, Bell } from 'lucide-react';
   features={[
     {
       icon: <Zap size={24} />,
-      title: 'Lightning Fast',
-      description: 'Instant sync across all devices',
+      title: "Lightning Fast",
+      description: "Instant sync across all devices",
     },
     {
       icon: <Shield size={24} />,
-      title: 'Secure',
-      description: 'Bank-level encryption',
+      title: "Secure",
+      description: "Bank-level encryption",
     },
     {
       icon: <Bell size={24} />,
-      title: 'Smart Notifications',
-      description: 'Never miss important updates',
+      title: "Smart Notifications",
+      description: "Never miss important updates",
     },
   ]}
 />;
@@ -222,7 +232,7 @@ Display store rating and review count.
   badges={badges}
   rating={{
     value: 4.8,
-    count: '50K+ reviews',
+    count: "50K+ reviews",
   }}
 />
 ```
@@ -262,8 +272,8 @@ Display store rating and review count.
 ### Full Featured App Download
 
 ```tsx
-import { AppDownload, Badge } from '@orion/react';
-import { Smartphone, Cloud, Lock, Zap } from 'lucide-react';
+import { AppDownload, Badge } from "@orion/react";
+import { Smartphone, Cloud, Lock, Zap } from "lucide-react";
 
 <AppDownload
   eyebrow={<Badge variant="brand">Mobile App</Badge>}
@@ -272,34 +282,37 @@ import { Smartphone, Cloud, Lock, Zap } from 'lucide-react';
   layout="split-right"
   appImage="/app/phone-mockup.png"
   badges={[
-    { store: 'apple', href: 'https://apps.apple.com/app/myapp' },
-    { store: 'google', href: 'https://play.google.com/store/apps/details?id=com.myapp' },
+    { store: "apple", href: "https://apps.apple.com/app/myapp" },
+    {
+      store: "google",
+      href: "https://play.google.com/store/apps/details?id=com.myapp",
+    },
   ]}
   features={[
     {
       icon: <Smartphone size={24} />,
-      title: 'Native Experience',
-      description: 'Optimized for iOS and Android',
+      title: "Native Experience",
+      description: "Optimized for iOS and Android",
     },
     {
       icon: <Cloud size={24} />,
-      title: 'Real-time Sync',
-      description: 'Always up to date across devices',
+      title: "Real-time Sync",
+      description: "Always up to date across devices",
     },
     {
       icon: <Lock size={24} />,
-      title: 'Biometric Login',
-      description: 'Face ID and fingerprint support',
+      title: "Biometric Login",
+      description: "Face ID and fingerprint support",
     },
     {
       icon: <Zap size={24} />,
-      title: 'Offline Mode',
-      description: 'Work without internet connection',
+      title: "Offline Mode",
+      description: "Work without internet connection",
     },
   ]}
   rating={{
     value: 4.9,
-    count: '25K+ ratings',
+    count: "25K+ ratings",
   }}
   showQrCode
   qrCode="/qr/app-download.png"
@@ -314,8 +327,8 @@ import { Smartphone, Cloud, Lock, Zap } from 'lucide-react';
   title="Get Started in Seconds"
   description="Download the app and sign up with your email."
   badges={[
-    { store: 'apple', href: 'https://apps.apple.com/...' },
-    { store: 'google', href: 'https://play.google.com/...' },
+    { store: "apple", href: "https://apps.apple.com/..." },
+    { store: "google", href: "https://play.google.com/..." },
   ]}
   background="subtle"
 />
@@ -329,8 +342,8 @@ import { Smartphone, Cloud, Lock, Zap } from 'lucide-react';
   title="Scan to Download"
   description="Point your phone's camera at the QR code to get the app instantly."
   badges={[
-    { store: 'apple', href: 'https://apps.apple.com/...' },
-    { store: 'google', href: 'https://play.google.com/...' },
+    { store: "apple", href: "https://apps.apple.com/..." },
+    { store: "google", href: "https://play.google.com/..." },
   ]}
   showQrCode
   qrCode="/qr/universal-download.png"
@@ -348,17 +361,17 @@ import { Smartphone, Cloud, Lock, Zap } from 'lucide-react';
   layout="split-left"
   appImage="/banking/app-screens.png"
   badges={[
-    { store: 'apple', href: 'https://apps.apple.com/...' },
-    { store: 'google', href: 'https://play.google.com/...' },
+    { store: "apple", href: "https://apps.apple.com/..." },
+    { store: "google", href: "https://play.google.com/..." },
   ]}
   rating={{
     value: 4.7,
-    count: '100K+ reviews',
+    count: "100K+ reviews",
   }}
   features={[
-    { icon: <Shield size={24} />, title: '256-bit Encryption' },
-    { icon: <Fingerprint size={24} />, title: 'Biometric Security' },
-    { icon: <Bell size={24} />, title: 'Instant Alerts' },
+    { icon: <Shield size={24} />, title: "256-bit Encryption" },
+    { icon: <Fingerprint size={24} />, title: "Biometric Security" },
+    { icon: <Bell size={24} />, title: "Instant Alerts" },
   ]}
   background="gradient"
 />
@@ -372,8 +385,8 @@ import { Smartphone, Cloud, Lock, Zap } from 'lucide-react';
   layout="centered"
   title="Get the App"
   badges={[
-    { store: 'apple', href: '...' },
-    { store: 'google', href: '...' },
+    { store: "apple", href: "..." },
+    { store: "google", href: "..." },
   ]}
   background="none"
 />
@@ -423,10 +436,10 @@ badges={[
 
 ```tsx
 // WRONG - Pixelated or wrong dimensions
-appImage = '/tiny-screenshot.jpg';
+appImage = "/tiny-screenshot.jpg";
 
 // CORRECT - High-res device mockup
-appImage = '/mockups/iphone-2x.png';
+appImage = "/mockups/iphone-2x.png";
 ```
 
 ### Fake Rating

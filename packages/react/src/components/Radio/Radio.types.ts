@@ -5,12 +5,12 @@
  * Implements WCAG 2.1 AA accessibility guidelines.
  */
 
-import type { InputHTMLAttributes } from 'react';
+import type { InputHTMLAttributes } from "react";
 
 /**
  * Radio sizes
  */
-export type RadioSize = 'sm' | 'md' | 'lg';
+export type RadioSize = "sm" | "md" | "lg";
 
 /**
  * Radio component props
@@ -21,7 +21,10 @@ export type RadioSize = 'sm' | 'md' | 'lg';
  * <Radio name="plan" value="pro" label="Pro Plan" checked />
  * ```
  */
-export interface RadioProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'type'> {
+export interface RadioProps extends Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  "size" | "type"
+> {
   /**
    * Radio label text.
    * Required for accessibility unless aria-label is provided.
@@ -64,11 +67,11 @@ export interface RadioProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
    * />
    * ```
    */
-  'aria-label'?: string;
+  "aria-label"?: string;
 
   /**
    * Additional element IDs that describe this radio.
    * Automatically includes error and helper text IDs when provided.
    */
-  'aria-describedby'?: string;
+  "aria-describedby"?: string;
 }

@@ -111,7 +111,7 @@
   background: var(--interactive-ghost-hover);
 }
 
-.item[data-active='true'] {
+.item[data-active="true"] {
   background: var(--interactive-ghost-hover);
 }
 

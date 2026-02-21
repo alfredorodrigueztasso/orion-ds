@@ -4,18 +4,18 @@
  * Type definitions for the Orion Dropdown/Menu component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Dropdown placement options
  */
 export type DropdownPlacement =
-  | 'bottom-start'
-  | 'bottom'
-  | 'bottom-end'
-  | 'top-start'
-  | 'top'
-  | 'top-end';
+  | "bottom-start"
+  | "bottom"
+  | "bottom-end"
+  | "top-start"
+  | "top"
+  | "top-end";
 
 /**
  * Dropdown menu item
@@ -88,7 +88,7 @@ export interface DropdownGroup {
  */
 export interface DropdownProps extends Omit<
   HTMLAttributes<HTMLDivElement>,
-  'onChange' | 'onSelect'
+  "onChange" | "onSelect"
 > {
   /**
    * The trigger element that opens the dropdown

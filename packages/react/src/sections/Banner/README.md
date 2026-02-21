@@ -5,7 +5,7 @@
 ## Quick Start
 
 ```tsx
-import { Banner } from '@orion/react';
+import { Banner } from "@orion/react";
 
 <Banner
   title="Summer Sale"
@@ -46,10 +46,10 @@ interface BannerProps {
   secondaryCtaHref?: string; // Secondary CTA href
 
   // Visual
-  variant?: 'default' | 'gradient' | 'image' | 'split'; // default: 'default'
+  variant?: "default" | "gradient" | "image" | "split"; // default: 'default'
   backgroundImage?: string; // Background image URL
   sideImage?: string; // Side image (split variant)
-  imagePosition?: 'left' | 'right'; // Image position - default: 'right'
+  imagePosition?: "left" | "right"; // Image position - default: 'right'
   backgroundColor?: string; // Custom background color
   gradient?: string; // Custom gradient
 
@@ -203,7 +203,7 @@ For split variant, control image placement.
 ### Sale Banner
 
 ```tsx
-import { Banner, Badge } from '@orion/react';
+import { Banner, Badge } from "@orion/react";
 
 <Banner
   variant="gradient"
@@ -296,7 +296,7 @@ function CookieBanner() {
   title="Site Maintenance"
   description="We'll be performing scheduled maintenance on Saturday, 2am-4am UTC."
   dismissible
-  onDismiss={() => localStorage.setItem('maintenanceDismissed', 'true')}
+  onDismiss={() => localStorage.setItem("maintenanceDismissed", "true")}
 />
 ```
 
@@ -312,10 +312,10 @@ function CookieBanner() {
 
 ```tsx
 // Good: Clear, actionable CTA
-ctaLabel = 'Start Free Trial';
+ctaLabel = "Start Free Trial";
 
 // Avoid: Vague CTA
-ctaLabel = 'Click Here';
+ctaLabel = "Click Here";
 ```
 
 ---

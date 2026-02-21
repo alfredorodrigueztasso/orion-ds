@@ -16,10 +16,10 @@
  * ```
  */
 
-import { forwardRef, useState, useMemo } from 'react';
-import { ChevronRight, Home, MoreHorizontal } from 'lucide-react';
-import type { BreadcrumbsProps, BreadcrumbItem } from './Breadcrumbs.types';
-import styles from './Breadcrumbs.module.css';
+import { forwardRef, useState, useMemo } from "react";
+import { ChevronRight, Home, MoreHorizontal } from "lucide-react";
+import type { BreadcrumbsProps, BreadcrumbItem } from "./Breadcrumbs.types";
+import styles from "./Breadcrumbs.module.css";
 
 export const Breadcrumbs = forwardRef<HTMLElement, BreadcrumbsProps>(
   (
@@ -30,7 +30,7 @@ export const Breadcrumbs = forwardRef<HTMLElement, BreadcrumbsProps>(
       itemsBeforeCollapse = 1,
       itemsAfterCollapse = 1,
       showHomeIcon = false,
-      size = 'md',
+      size = "md",
       className,
       ...rest
     },
@@ -38,14 +38,19 @@ export const Breadcrumbs = forwardRef<HTMLElement, BreadcrumbsProps>(
   ) => {
     const [expanded, setExpanded] = useState(false);
 
-    const shouldCollapse = maxItems !== undefined && items.length > maxItems && !expanded;
+    const shouldCollapse =
+      maxItems !== undefined && items.length > maxItems && !expanded;
 
     const visibleItems = useMemo(() => {
       if (!shouldCollapse) return items;
 
       const beforeItems = items.slice(0, itemsBeforeCollapse);
       const afterItems = items.slice(-itemsAfterCollapse);
-      return [...beforeItems, { id: '__collapsed__', label: '...' }, ...afterItems];
+      return [
+        ...beforeItems,
+        { id: "__collapsed__", label: "..." },
+        ...afterItems,
+      ];
     }, [items, shouldCollapse, itemsBeforeCollapse, itemsAfterCollapse]);
 
     const renderSeparator = () => {
@@ -54,15 +59,19 @@ export const Breadcrumbs = forwardRef<HTMLElement, BreadcrumbsProps>(
       }
       return (
         <ChevronRight
-          size={size === 'sm' ? 14 : size === 'lg' ? 18 : 16}
+          size={size === "sm" ? 14 : size === "lg" ? 18 : 16}
           className={styles.separator}
         />
       );
     };
 
-    const renderItem = (item: BreadcrumbItem, index: number, isLast: boolean) => {
+    const renderItem = (
+      item: BreadcrumbItem,
+      index: number,
+      isLast: boolean,
+    ) => {
       // Collapsed placeholder
-      if (item.id === '__collapsed__') {
+      if (item.id === "__collapsed__") {
         return (
           <button
             type="button"
@@ -70,7 +79,9 @@ export const Breadcrumbs = forwardRef<HTMLElement, BreadcrumbsProps>(
             onClick={() => setExpanded(true)}
             aria-label="Show all breadcrumbs"
           >
-            <MoreHorizontal size={size === 'sm' ? 14 : size === 'lg' ? 18 : 16} />
+            <MoreHorizontal
+              size={size === "sm" ? 14 : size === "lg" ? 18 : 16}
+            />
           </button>
         );
       }
@@ -79,7 +90,10 @@ export const Breadcrumbs = forwardRef<HTMLElement, BreadcrumbsProps>(
       const content = (
         <>
           {showIcon && (
-            <Home size={size === 'sm' ? 12 : size === 'lg' ? 16 : 14} className={styles.homeIcon} />
+            <Home
+              size={size === "sm" ? 12 : size === "lg" ? 16 : 14}
+              className={styles.homeIcon}
+            />
           )}
           {item.icon && <span className={styles.itemIcon}>{item.icon}</span>}
           <span>{item.label}</span>
@@ -88,7 +102,10 @@ export const Breadcrumbs = forwardRef<HTMLElement, BreadcrumbsProps>(
 
       if (isLast) {
         return (
-          <span className={`${styles.item} ${styles.itemCurrent}`} aria-current="page">
+          <span
+            className={`${styles.item} ${styles.itemCurrent}`}
+            aria-current="page"
+          >
             {content}
           </span>
         );
@@ -113,7 +130,9 @@ export const Breadcrumbs = forwardRef<HTMLElement, BreadcrumbsProps>(
       return <span className={styles.item}>{content}</span>;
     };
 
-    const classNames = [styles.breadcrumbs, styles[size], className].filter(Boolean).join(' ');
+    const classNames = [styles.breadcrumbs, styles[size], className]
+      .filter(Boolean)
+      .join(" ");
 
     return (
       <nav ref={ref} className={classNames} aria-label="Breadcrumb" {...rest}>
@@ -133,4 +152,4 @@ export const Breadcrumbs = forwardRef<HTMLElement, BreadcrumbsProps>(
   },
 );
 
-Breadcrumbs.displayName = 'Breadcrumbs';
+Breadcrumbs.displayName = "Breadcrumbs";

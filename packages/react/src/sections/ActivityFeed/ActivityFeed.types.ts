@@ -5,7 +5,7 @@
  * A timeline of events and activities for SaaS dashboards.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Activity item actor (who performed the action)
@@ -39,7 +39,15 @@ export interface ActivityItem {
   /**
    * Activity type for icon selection
    */
-  type?: 'comment' | 'update' | 'create' | 'delete' | 'assign' | 'complete' | 'upload' | 'default';
+  type?:
+    | "comment"
+    | "update"
+    | "create"
+    | "delete"
+    | "assign"
+    | "complete"
+    | "upload"
+    | "default";
 
   /**
    * Custom icon (overrides type-based icon)
@@ -49,7 +57,7 @@ export interface ActivityItem {
   /**
    * Icon background color variant
    */
-  iconVariant?: 'default' | 'success' | 'warning' | 'error' | 'info' | 'brand';
+  iconVariant?: "default" | "success" | "warning" | "error" | "info" | "brand";
 
   /**
    * Actor who performed the action

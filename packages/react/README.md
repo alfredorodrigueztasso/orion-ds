@@ -8,7 +8,7 @@ TypeScript-first React component library built on the Orion Design System. Featu
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-100%25-blue)](https://www.typescriptlang.org/)
 [![Tests](https://img.shields.io/badge/tests-passing-brightgreen)](#)
-[![Bundle Size](https://img.shields.io/badge/bundle-2.8MB--4.7MB%20(minified)-orange)](#)
+[![Bundle Size](<https://img.shields.io/badge/bundle-2.8MB--4.7MB%20(minified)-orange>)](#)
 [![Optional Deps](https://img.shields.io/badge/optional%20deps-1MB%20savings-success)](./BUNDLE_OPTIMIZATION.md)
 
 ## Features

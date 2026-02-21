@@ -5,7 +5,7 @@
  * Designed for Product Mode (SaaS dashboards) navigation.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Sidebar navigation item
@@ -70,7 +70,7 @@ export interface SidebarSection {
 /**
  * Sidebar visual variant
  */
-export type SidebarVariant = 'default' | 'floating';
+export type SidebarVariant = "default" | "floating";
 
 /**
  * Sidebar section props

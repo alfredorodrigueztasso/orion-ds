@@ -53,13 +53,17 @@
 
 /* Subtle gradient accent at top */
 .profileHeader::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--interactive-primary), var(--interactive-primary-hover));
+  background: linear-gradient(
+    90deg,
+    var(--interactive-primary),
+    var(--interactive-primary-hover)
+  );
 }
 
 /* Avatar - Larger and more prominent */
@@ -227,7 +231,11 @@
 
   .profileHeader::before {
     height: 80px;
-    background: linear-gradient(180deg, var(--interactive-primary), transparent);
+    background: linear-gradient(
+      180deg,
+      var(--interactive-primary),
+      transparent
+    );
     opacity: 0.1;
   }
 

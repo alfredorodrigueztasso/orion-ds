@@ -2,8 +2,8 @@
  * Command Component Stories
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
+import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 import {
   Calendar,
   Settings,
@@ -17,17 +17,17 @@ import {
   FileText,
   Calculator,
   Smile,
-} from 'lucide-react';
-import { Command } from './Command';
-import { Button } from '../Button/Button';
+} from "lucide-react";
+import { Command } from "./Command";
+import { Button } from "../Button/Button";
 
 const meta: Meta<typeof Command> = {
-  title: 'Components/Overlay/Command',
+  title: "Components/Overlays/Command",
   component: Command,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
@@ -41,27 +41,27 @@ export const Default: Story = {
         <Command.List>
           <Command.Empty>No results found.</Command.Empty>
           <Command.Group heading="Suggestions">
-            <Command.Item onSelect={() => console.log('Calendar')}>
+            <Command.Item onSelect={() => console.log("Calendar")}>
               <Calendar size={16} /> Calendar
             </Command.Item>
-            <Command.Item onSelect={() => console.log('Search')}>
+            <Command.Item onSelect={() => console.log("Search")}>
               <Search size={16} /> Search Emoji
             </Command.Item>
-            <Command.Item onSelect={() => console.log('Calculator')}>
+            <Command.Item onSelect={() => console.log("Calculator")}>
               <Calculator size={16} /> Calculator
             </Command.Item>
           </Command.Group>
           <Command.Separator />
           <Command.Group heading="Settings">
-            <Command.Item onSelect={() => console.log('Profile')}>
+            <Command.Item onSelect={() => console.log("Profile")}>
               <User size={16} /> Profile
               <Command.Shortcut>⌘P</Command.Shortcut>
             </Command.Item>
-            <Command.Item onSelect={() => console.log('Billing')}>
+            <Command.Item onSelect={() => console.log("Billing")}>
               <CreditCard size={16} /> Billing
               <Command.Shortcut>⌘B</Command.Shortcut>
             </Command.Item>
-            <Command.Item onSelect={() => console.log('Settings')}>
+            <Command.Item onSelect={() => console.log("Settings")}>
               <Settings size={16} /> Settings
               <Command.Shortcut>⌘S</Command.Shortcut>
             </Command.Item>
@@ -80,16 +80,21 @@ export const WithDialog: Story = {
       <>
         <div
           style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: 'var(--spacing-3)',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "var(--spacing-3)",
           }}
         >
           <Button variant="secondary" onClick={() => setOpen(true)}>
             <Search size={16} /> Open Command Palette
           </Button>
-          <span style={{ fontSize: 'var(--font-size-13)', color: 'var(--text-tertiary)' }}>
+          <span
+            style={{
+              fontSize: "var(--font-size-13)",
+              color: "var(--text-tertiary)",
+            }}
+          >
             Or press ⌘K
           </span>
         </div>
@@ -100,7 +105,7 @@ export const WithDialog: Story = {
             <Command.Group heading="Navigation">
               <Command.Item
                 onSelect={() => {
-                  console.log('Home');
+                  console.log("Home");
                   setOpen(false);
                 }}
               >
@@ -108,7 +113,7 @@ export const WithDialog: Story = {
               </Command.Item>
               <Command.Item
                 onSelect={() => {
-                  console.log('Mail');
+                  console.log("Mail");
                   setOpen(false);
                 }}
               >
@@ -117,7 +122,7 @@ export const WithDialog: Story = {
               </Command.Item>
               <Command.Item
                 onSelect={() => {
-                  console.log('Calendar');
+                  console.log("Calendar");
                   setOpen(false);
                 }}
               >
@@ -129,7 +134,7 @@ export const WithDialog: Story = {
             <Command.Group heading="Theme">
               <Command.Item
                 onSelect={() => {
-                  console.log('Light');
+                  console.log("Light");
                   setOpen(false);
                 }}
               >
@@ -137,7 +142,7 @@ export const WithDialog: Story = {
               </Command.Item>
               <Command.Item
                 onSelect={() => {
-                  console.log('Dark');
+                  console.log("Dark");
                   setOpen(false);
                 }}
               >
@@ -148,7 +153,7 @@ export const WithDialog: Story = {
             <Command.Group heading="Account">
               <Command.Item
                 onSelect={() => {
-                  console.log('Profile');
+                  console.log("Profile");
                   setOpen(false);
                 }}
               >
@@ -157,7 +162,7 @@ export const WithDialog: Story = {
               </Command.Item>
               <Command.Item
                 onSelect={() => {
-                  console.log('Logout');
+                  console.log("Logout");
                   setOpen(false);
                 }}
               >
@@ -179,13 +184,13 @@ export const WithDisabledItems: Story = {
         <Command.List>
           <Command.Empty>No results found.</Command.Empty>
           <Command.Group heading="Actions">
-            <Command.Item onSelect={() => console.log('Profile')}>
+            <Command.Item onSelect={() => console.log("Profile")}>
               <User size={16} /> Edit Profile
             </Command.Item>
             <Command.Item disabled>
               <CreditCard size={16} /> Billing (unavailable)
             </Command.Item>
-            <Command.Item onSelect={() => console.log('Settings')}>
+            <Command.Item onSelect={() => console.log("Settings")}>
               <Settings size={16} /> Settings
             </Command.Item>
             <Command.Item disabled>
@@ -235,12 +240,22 @@ export const SimpleList: Story = {
         <Command.Input placeholder="Search..." />
         <Command.List>
           <Command.Empty>No results found.</Command.Empty>
-          <Command.Item onSelect={() => console.log('1')}>Item One</Command.Item>
-          <Command.Item onSelect={() => console.log('2')}>Item Two</Command.Item>
-          <Command.Item onSelect={() => console.log('3')}>Item Three</Command.Item>
+          <Command.Item onSelect={() => console.log("1")}>
+            Item One
+          </Command.Item>
+          <Command.Item onSelect={() => console.log("2")}>
+            Item Two
+          </Command.Item>
+          <Command.Item onSelect={() => console.log("3")}>
+            Item Three
+          </Command.Item>
           <Command.Separator />
-          <Command.Item onSelect={() => console.log('4')}>Item Four</Command.Item>
-          <Command.Item onSelect={() => console.log('5')}>Item Five</Command.Item>
+          <Command.Item onSelect={() => console.log("4")}>
+            Item Four
+          </Command.Item>
+          <Command.Item onSelect={() => console.log("5")}>
+            Item Five
+          </Command.Item>
         </Command.List>
       </Command>
     </div>

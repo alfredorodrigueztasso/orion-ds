@@ -4,17 +4,17 @@
  * Type definitions for the Orion CTA (Call-to-Action) section component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * CTA visual variants
  */
-export type CTAVariant = 'default' | 'brand' | 'subtle' | 'outline';
+export type CTAVariant = "default" | "brand" | "subtle" | "outline";
 
 /**
  * CTA size variants
  */
-export type CTASize = 'sm' | 'md' | 'lg';
+export type CTASize = "sm" | "md" | "lg";
 
 /**
  * CTA section props
@@ -33,7 +33,7 @@ export type CTASize = 'sm' | 'md' | 'lg';
  * />
  * ```
  */
-export interface CTAProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
+export interface CTAProps extends Omit<HTMLAttributes<HTMLElement>, "title"> {
   /**
    * Main title text
    */
@@ -79,7 +79,7 @@ export interface CTAProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
    * Text alignment
    * @default 'center'
    */
-  align?: 'left' | 'center';
+  align?: "left" | "center";
 
   /**
    * Render as card (contained box) vs full-width section

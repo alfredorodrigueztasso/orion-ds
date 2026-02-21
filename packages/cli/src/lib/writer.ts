@@ -2,12 +2,12 @@
  * Writer — Write component files to the user's project
  */
 
-import * as fs from 'node:fs';
-import * as path from 'node:path';
-import type { OrionConfig, RegistryItem } from '../types.js';
-import { getTargetDir } from './config.js';
-import { transformImports, componentDirName, fileName } from './transforms.js';
-import * as logger from './logger.js';
+import * as fs from "node:fs";
+import * as path from "node:path";
+import type { OrionConfig, RegistryItem } from "../types.js";
+import { getTargetDir } from "./config.js";
+import { transformImports, componentDirName, fileName } from "./transforms.js";
+import * as logger from "./logger.js";
 
 export interface WriteResult {
   writtenFiles: string[];
@@ -46,19 +46,21 @@ export function writeComponents(
 
       // Check for existing files
       if (fs.existsSync(targetPath) && !opts.overwrite) {
-        logger.warn(`Skipping ${path.relative(cwd, targetPath)} (already exists, use --overwrite)`);
+        logger.warn(
+          `Skipping ${path.relative(cwd, targetPath)} (already exists, use --overwrite)`,
+        );
         continue;
       }
 
       // Apply import transforms
       let content = file.content;
-      if (fName.endsWith('.ts') || fName.endsWith('.tsx')) {
+      if (fName.endsWith(".ts") || fName.endsWith(".tsx")) {
         content = transformImports(content, installedNames);
       }
 
       // Ensure directory exists
       fs.mkdirSync(path.dirname(targetPath), { recursive: true });
-      fs.writeFileSync(targetPath, content, 'utf-8');
+      fs.writeFileSync(targetPath, content, "utf-8");
       writtenFiles.push(path.relative(cwd, targetPath));
     }
   }

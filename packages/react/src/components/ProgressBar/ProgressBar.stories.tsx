@@ -1,52 +1,52 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { useState, useEffect } from 'react';
-import { ProgressBar } from './ProgressBar';
-import { Card } from '../Card';
+import type { Meta, StoryObj } from "@storybook/react";
+import { useState, useEffect } from "react";
+import { ProgressBar } from "./ProgressBar";
+import { Card } from "../Card";
 
 const meta: Meta<typeof ProgressBar> = {
-  title: 'Components/Feedback/ProgressBar',
+  title: "Components/Feedback/ProgressBar",
   component: ProgressBar,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   decorators: [
     (Story) => (
-      <div style={{ width: '400px' }}>
+      <div style={{ width: "400px" }}>
         <Story />
       </div>
     ),
   ],
   argTypes: {
     value: {
-      control: { type: 'range', min: 0, max: 100, step: 1 },
-      description: 'Current progress value',
+      control: { type: "range", min: 0, max: 100, step: 1 },
+      description: "Current progress value",
     },
     max: {
-      control: 'number',
-      description: 'Maximum value (defaults to 100)',
+      control: "number",
+      description: "Maximum value (defaults to 100)",
     },
     size: {
-      control: 'select',
-      options: ['sm', 'md', 'lg'],
-      description: 'Progress bar size',
+      control: "select",
+      options: ["sm", "md", "lg"],
+      description: "Progress bar size",
     },
     variant: {
-      control: 'select',
-      options: ['primary', 'success', 'warning', 'error', 'info'],
-      description: 'Progress bar color variant',
+      control: "select",
+      options: ["primary", "success", "warning", "error", "info"],
+      description: "Progress bar color variant",
     },
     showLabel: {
-      control: 'boolean',
-      description: 'Show percentage label',
+      control: "boolean",
+      description: "Show percentage label",
     },
     label: {
-      control: 'text',
-      description: 'Custom label text',
+      control: "text",
+      description: "Custom label text",
     },
     indeterminate: {
-      control: 'boolean',
-      description: 'Show indeterminate loading state',
+      control: "boolean",
+      description: "Show indeterminate loading state",
     },
   },
 } satisfies Meta<typeof ProgressBar>;
@@ -70,7 +70,7 @@ export const WithLabel: Story = {
 export const CustomLabel: Story = {
   args: {
     value: 75,
-    label: 'Uploading files...',
+    label: "Uploading files...",
     showLabel: true,
   },
 };
@@ -78,7 +78,7 @@ export const CustomLabel: Story = {
 export const PrimaryVariant: Story = {
   args: {
     value: 60,
-    variant: 'primary',
+    variant: "primary",
     showLabel: true,
   },
 };
@@ -86,43 +86,43 @@ export const PrimaryVariant: Story = {
 export const SuccessVariant: Story = {
   args: {
     value: 100,
-    variant: 'success',
+    variant: "success",
     showLabel: true,
-    label: 'Upload complete',
+    label: "Upload complete",
   },
 };
 
 export const WarningVariant: Story = {
   args: {
     value: 45,
-    variant: 'warning',
+    variant: "warning",
     showLabel: true,
-    label: 'Limited storage',
+    label: "Limited storage",
   },
 };
 
 export const ErrorVariant: Story = {
   args: {
     value: 20,
-    variant: 'error',
+    variant: "error",
     showLabel: true,
-    label: 'Upload failed',
+    label: "Upload failed",
   },
 };
 
 export const InfoVariant: Story = {
   args: {
     value: 80,
-    variant: 'info',
+    variant: "info",
     showLabel: true,
-    label: 'Processing...',
+    label: "Processing...",
   },
 };
 
 export const SmallSize: Story = {
   args: {
     value: 70,
-    size: 'sm',
+    size: "sm",
     showLabel: true,
   },
 };
@@ -130,7 +130,7 @@ export const SmallSize: Story = {
 export const MediumSize: Story = {
   args: {
     value: 70,
-    size: 'md',
+    size: "md",
     showLabel: true,
   },
 };
@@ -138,7 +138,7 @@ export const MediumSize: Story = {
 export const LargeSize: Story = {
   args: {
     value: 70,
-    size: 'lg',
+    size: "lg",
     showLabel: true,
   },
 };
@@ -146,7 +146,7 @@ export const LargeSize: Story = {
 export const Indeterminate: Story = {
   args: {
     indeterminate: true,
-    label: 'Loading...',
+    label: "Loading...",
   },
 };
 
@@ -155,7 +155,7 @@ export const CustomMaxValue: Story = {
     value: 25,
     max: 50,
     showLabel: true,
-    label: 'Step 25 of 50',
+    label: "Step 25 of 50",
   },
 };
 
@@ -163,30 +163,35 @@ export const ZeroPercent: Story = {
   args: {
     value: 0,
     showLabel: true,
-    label: 'Starting...',
+    label: "Starting...",
   },
 };
 
 export const HundredPercent: Story = {
   args: {
     value: 100,
-    variant: 'success',
+    variant: "success",
     showLabel: true,
-    label: 'Complete!',
+    label: "Complete!",
   },
 };
 
 export const AllSizes: Story = {
   render: () => (
     <div
-      style={{ width: '400px', display: 'flex', flexDirection: 'column', gap: 'var(--spacing-8)' }}
+      style={{
+        width: "400px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-8)",
+      }}
     >
       <div>
         <p
           style={{
-            marginBottom: 'var(--spacing-2)',
-            fontSize: 'var(--font-size-14)',
-            fontWeight: 'var(--font-weight-medium)',
+            marginBottom: "var(--spacing-2)",
+            fontSize: "var(--font-size-14)",
+            fontWeight: "var(--font-weight-medium)",
           }}
         >
           Small
@@ -196,9 +201,9 @@ export const AllSizes: Story = {
       <div>
         <p
           style={{
-            marginBottom: 'var(--spacing-2)',
-            fontSize: 'var(--font-size-14)',
-            fontWeight: 'var(--font-weight-medium)',
+            marginBottom: "var(--spacing-2)",
+            fontSize: "var(--font-size-14)",
+            fontWeight: "var(--font-weight-medium)",
           }}
         >
           Medium (Default)
@@ -208,9 +213,9 @@ export const AllSizes: Story = {
       <div>
         <p
           style={{
-            marginBottom: 'var(--spacing-2)',
-            fontSize: 'var(--font-size-14)',
-            fontWeight: 'var(--font-weight-medium)',
+            marginBottom: "var(--spacing-2)",
+            fontSize: "var(--font-size-14)",
+            fontWeight: "var(--font-weight-medium)",
           }}
         >
           Large
@@ -238,21 +243,21 @@ export const UploadProgress: Story = {
     }, [progress]);
 
     return (
-      <div style={{ width: '400px' }}>
+      <div style={{ width: "400px" }}>
         <h3
           style={{
-            marginBottom: 'var(--spacing-4)',
-            fontSize: 'var(--font-size-16)',
-            fontWeight: 'var(--font-weight-medium)',
+            marginBottom: "var(--spacing-4)",
+            fontSize: "var(--font-size-16)",
+            fontWeight: "var(--font-weight-medium)",
           }}
         >
           File Upload
         </h3>
         <ProgressBar
           value={progress}
-          variant={isComplete ? 'success' : 'primary'}
+          variant={isComplete ? "success" : "primary"}
           showLabel
-          label={isComplete ? 'Upload complete!' : 'Uploading file...'}
+          label={isComplete ? "Upload complete!" : "Uploading file..."}
           size="lg"
         />
         <button
@@ -261,13 +266,13 @@ export const UploadProgress: Story = {
             setIsComplete(false);
           }}
           style={{
-            marginTop: 'var(--spacing-4)',
-            padding: 'var(--spacing-2) var(--spacing-4)',
-            borderRadius: 'var(--radius-sm)',
-            border: '1px solid var(--border-subtle)',
-            background: 'var(--surface-base)',
-            cursor: 'pointer',
-            fontSize: 'var(--font-size-14)',
+            marginTop: "var(--spacing-4)",
+            padding: "var(--spacing-2) var(--spacing-4)",
+            borderRadius: "var(--radius-sm)",
+            border: "1px solid var(--border-subtle)",
+            background: "var(--surface-base)",
+            cursor: "pointer",
+            fontSize: "var(--font-size-14)",
           }}
         >
           Reset
@@ -280,16 +285,36 @@ export const UploadProgress: Story = {
 export const MultipleProgress: Story = {
   render: () => (
     <div
-      style={{ width: '400px', display: 'flex', flexDirection: 'column', gap: 'var(--spacing-6)' }}
+      style={{
+        width: "400px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-6)",
+      }}
     >
       <div>
-        <ProgressBar value={100} variant="success" showLabel label="Step 1: Data validation" />
+        <ProgressBar
+          value={100}
+          variant="success"
+          showLabel
+          label="Step 1: Data validation"
+        />
       </div>
       <div>
-        <ProgressBar value={100} variant="success" showLabel label="Step 2: Processing files" />
+        <ProgressBar
+          value={100}
+          variant="success"
+          showLabel
+          label="Step 2: Processing files"
+        />
       </div>
       <div>
-        <ProgressBar value={65} variant="primary" showLabel label="Step 3: Uploading assets" />
+        <ProgressBar
+          value={65}
+          variant="primary"
+          showLabel
+          label="Step 3: Uploading assets"
+        />
       </div>
       <div>
         <ProgressBar value={0} showLabel label="Step 4: Final review" />
@@ -301,26 +326,36 @@ export const MultipleProgress: Story = {
 export const LoadingStates: Story = {
   render: () => (
     <div
-      style={{ width: '400px', display: 'flex', flexDirection: 'column', gap: 'var(--spacing-8)' }}
+      style={{
+        width: "400px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-8)",
+      }}
     >
       <div>
         <p
           style={{
-            marginBottom: 'var(--spacing-4)',
-            fontSize: 'var(--font-size-14)',
-            color: 'var(--text-secondary)',
+            marginBottom: "var(--spacing-4)",
+            fontSize: "var(--font-size-14)",
+            color: "var(--text-secondary)",
           }}
         >
           Determinate Loading
         </p>
-        <ProgressBar value={73} variant="info" showLabel label="Loading data..." />
+        <ProgressBar
+          value={73}
+          variant="info"
+          showLabel
+          label="Loading data..."
+        />
       </div>
       <div>
         <p
           style={{
-            marginBottom: 'var(--spacing-4)',
-            fontSize: 'var(--font-size-14)',
-            color: 'var(--text-secondary)',
+            marginBottom: "var(--spacing-4)",
+            fontSize: "var(--font-size-14)",
+            color: "var(--text-secondary)",
           }}
         >
           Indeterminate Loading
@@ -333,52 +368,58 @@ export const LoadingStates: Story = {
 
 export const InCard: Story = {
   render: () => (
-    <Card style={{ width: '400px' }}>
+    <Card style={{ width: "400px" }}>
       <Card.Body>
         <div
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 'var(--spacing-4)',
-            marginBottom: 'var(--spacing-4)',
+            display: "flex",
+            alignItems: "center",
+            gap: "var(--spacing-4)",
+            marginBottom: "var(--spacing-4)",
           }}
         >
           <div
             style={{
-              width: '48px',
-              height: '48px',
-              borderRadius: 'var(--radius-sm)',
+              width: "48px",
+              height: "48px",
+              borderRadius: "var(--radius-sm)",
               background:
-                'linear-gradient(135deg, var(--color-brand-400) 0%, var(--color-brand-600) 100%)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'white',
-              fontSize: 'var(--font-size-20)',
+                "linear-gradient(135deg, var(--color-brand-400) 0%, var(--color-brand-600) 100%)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "white",
+              fontSize: "var(--font-size-20)",
             }}
           />
           <div style={{ flex: 1 }}>
             <h4
               style={{
                 margin: 0,
-                fontSize: 'var(--font-size-16)',
-                fontWeight: 'var(--font-weight-medium)',
+                fontSize: "var(--font-size-16)",
+                fontWeight: "var(--font-weight-medium)",
               }}
             >
               document.pdf
             </h4>
             <p
               style={{
-                margin: 'var(--spacing-1) 0 0 0',
-                fontSize: 'var(--font-size-14)',
-                color: 'var(--text-secondary)',
+                margin: "var(--spacing-1) 0 0 0",
+                fontSize: "var(--font-size-14)",
+                color: "var(--text-secondary)",
               }}
             >
               2.5 MB
             </p>
           </div>
         </div>
-        <ProgressBar value={68} variant="primary" showLabel label="Uploading..." size="lg" />
+        <ProgressBar
+          value={68}
+          variant="primary"
+          showLabel
+          label="Uploading..."
+          size="lg"
+        />
       </Card.Body>
     </Card>
   ),
@@ -386,24 +427,38 @@ export const InCard: Story = {
 
 export const DownloadQueue: Story = {
   render: () => (
-    <Card style={{ width: '450px' }}>
+    <Card style={{ width: "450px" }}>
       <Card.Header>Download Queue</Card.Header>
       <Card.Body>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-6)' }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "var(--spacing-6)",
+          }}
+        >
           <div>
             <div
               style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                marginBottom: 'var(--spacing-2)',
+                display: "flex",
+                justifyContent: "space-between",
+                marginBottom: "var(--spacing-2)",
               }}
             >
               <span
-                style={{ fontSize: 'var(--font-size-14)', fontWeight: 'var(--font-weight-medium)' }}
+                style={{
+                  fontSize: "var(--font-size-14)",
+                  fontWeight: "var(--font-weight-medium)",
+                }}
               >
                 image-001.jpg
               </span>
-              <span style={{ fontSize: 'var(--font-size-14)', color: 'var(--text-secondary)' }}>
+              <span
+                style={{
+                  fontSize: "var(--font-size-14)",
+                  color: "var(--text-secondary)",
+                }}
+              >
                 1.2 MB
               </span>
             </div>
@@ -412,17 +467,25 @@ export const DownloadQueue: Story = {
           <div>
             <div
               style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                marginBottom: 'var(--spacing-2)',
+                display: "flex",
+                justifyContent: "space-between",
+                marginBottom: "var(--spacing-2)",
               }}
             >
               <span
-                style={{ fontSize: 'var(--font-size-14)', fontWeight: 'var(--font-weight-medium)' }}
+                style={{
+                  fontSize: "var(--font-size-14)",
+                  fontWeight: "var(--font-weight-medium)",
+                }}
               >
                 video-demo.mp4
               </span>
-              <span style={{ fontSize: 'var(--font-size-14)', color: 'var(--text-secondary)' }}>
+              <span
+                style={{
+                  fontSize: "var(--font-size-14)",
+                  color: "var(--text-secondary)",
+                }}
+              >
                 45.8 MB
               </span>
             </div>
@@ -431,17 +494,25 @@ export const DownloadQueue: Story = {
           <div>
             <div
               style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                marginBottom: 'var(--spacing-2)',
+                display: "flex",
+                justifyContent: "space-between",
+                marginBottom: "var(--spacing-2)",
               }}
             >
               <span
-                style={{ fontSize: 'var(--font-size-14)', fontWeight: 'var(--font-weight-medium)' }}
+                style={{
+                  fontSize: "var(--font-size-14)",
+                  fontWeight: "var(--font-weight-medium)",
+                }}
               >
                 presentation.pptx
               </span>
-              <span style={{ fontSize: 'var(--font-size-14)', color: 'var(--text-secondary)' }}>
+              <span
+                style={{
+                  fontSize: "var(--font-size-14)",
+                  color: "var(--text-secondary)",
+                }}
+              >
                 8.5 MB
               </span>
             </div>
@@ -456,12 +527,12 @@ export const DownloadQueue: Story = {
 export const WithCustomStyling: Story = {
   args: {
     value: 75,
-    variant: 'success',
+    variant: "success",
     showLabel: true,
-    label: 'Custom styled progress',
-    className: 'custom-progress',
+    label: "Custom styled progress",
+    className: "custom-progress",
     style: {
-      width: '400px',
+      width: "400px",
     },
   },
 };
@@ -469,14 +540,19 @@ export const WithCustomStyling: Story = {
 export const AllVariants: Story = {
   render: () => (
     <div
-      style={{ width: '400px', display: 'flex', flexDirection: 'column', gap: 'var(--spacing-6)' }}
+      style={{
+        width: "400px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-6)",
+      }}
     >
       <div>
         <p
           style={{
-            marginBottom: 'var(--spacing-2)',
-            fontSize: 'var(--font-size-14)',
-            fontWeight: 'var(--font-weight-medium)',
+            marginBottom: "var(--spacing-2)",
+            fontSize: "var(--font-size-14)",
+            fontWeight: "var(--font-weight-medium)",
           }}
         >
           Primary
@@ -486,9 +562,9 @@ export const AllVariants: Story = {
       <div>
         <p
           style={{
-            marginBottom: 'var(--spacing-2)',
-            fontSize: 'var(--font-size-14)',
-            fontWeight: 'var(--font-weight-medium)',
+            marginBottom: "var(--spacing-2)",
+            fontSize: "var(--font-size-14)",
+            fontWeight: "var(--font-weight-medium)",
           }}
         >
           Success
@@ -498,9 +574,9 @@ export const AllVariants: Story = {
       <div>
         <p
           style={{
-            marginBottom: 'var(--spacing-2)',
-            fontSize: 'var(--font-size-14)',
-            fontWeight: 'var(--font-weight-medium)',
+            marginBottom: "var(--spacing-2)",
+            fontSize: "var(--font-size-14)",
+            fontWeight: "var(--font-weight-medium)",
           }}
         >
           Warning
@@ -510,9 +586,9 @@ export const AllVariants: Story = {
       <div>
         <p
           style={{
-            marginBottom: 'var(--spacing-2)',
-            fontSize: 'var(--font-size-14)',
-            fontWeight: 'var(--font-weight-medium)',
+            marginBottom: "var(--spacing-2)",
+            fontSize: "var(--font-size-14)",
+            fontWeight: "var(--font-weight-medium)",
           }}
         >
           Error
@@ -522,9 +598,9 @@ export const AllVariants: Story = {
       <div>
         <p
           style={{
-            marginBottom: 'var(--spacing-2)',
-            fontSize: 'var(--font-size-14)',
-            fontWeight: 'var(--font-weight-medium)',
+            marginBottom: "var(--spacing-2)",
+            fontSize: "var(--font-size-14)",
+            fontWeight: "var(--font-weight-medium)",
           }}
         >
           Info

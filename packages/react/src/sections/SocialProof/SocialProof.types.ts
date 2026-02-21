@@ -4,7 +4,7 @@
  * Type definitions for the Orion SocialProof section component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Logo item
@@ -102,7 +102,10 @@ export interface SocialProofStat {
  * />
  * ```
  */
-export interface SocialProofProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
+export interface SocialProofProps extends Omit<
+  HTMLAttributes<HTMLElement>,
+  "title"
+> {
   /**
    * Optional eyebrow text
    */
@@ -137,13 +140,18 @@ export interface SocialProofProps extends Omit<HTMLAttributes<HTMLElement>, 'tit
    * Layout variant
    * @default 'stacked'
    */
-  layout?: 'stacked' | 'side-by-side' | 'testimonials-only' | 'logos-only' | 'stats-only';
+  layout?:
+    | "stacked"
+    | "side-by-side"
+    | "testimonials-only"
+    | "logos-only"
+    | "stats-only";
 
   /**
    * Logo display style
    * @default 'grid'
    */
-  logoStyle?: 'grid' | 'inline' | 'carousel';
+  logoStyle?: "grid" | "inline" | "carousel";
 
   /**
    * Grayscale logos
@@ -155,7 +163,7 @@ export interface SocialProofProps extends Omit<HTMLAttributes<HTMLElement>, 'tit
    * Background style
    * @default 'subtle'
    */
-  background?: 'base' | 'subtle' | 'none';
+  background?: "base" | "subtle" | "none";
 
   /**
    * Compact mode

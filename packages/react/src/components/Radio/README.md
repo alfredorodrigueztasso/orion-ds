@@ -22,7 +22,7 @@ _Extends all native `<input>` attributes except `size` and `type`._
 ### Basic Group
 
 ```tsx
-import { Radio } from '@orion/react';
+import { Radio } from "@orion/react";
 
 <fieldset>
   <legend>Select plan</legend>
@@ -35,10 +35,10 @@ import { Radio } from '@orion/react';
 ### Controlled
 
 ```tsx
-import { useState } from 'react';
+import { useState } from "react";
 
 function Example() {
-  const [plan, setPlan] = useState('free');
+  const [plan, setPlan] = useState("free");
 
   return (
     <fieldset>
@@ -47,22 +47,22 @@ function Example() {
         name="plan"
         value="free"
         label="Free"
-        checked={plan === 'free'}
-        onChange={() => setPlan('free')}
+        checked={plan === "free"}
+        onChange={() => setPlan("free")}
       />
       <Radio
         name="plan"
         value="pro"
         label="Pro"
-        checked={plan === 'pro'}
-        onChange={() => setPlan('pro')}
+        checked={plan === "pro"}
+        onChange={() => setPlan("pro")}
       />
       <Radio
         name="plan"
         value="enterprise"
         label="Enterprise"
-        checked={plan === 'enterprise'}
-        onChange={() => setPlan('enterprise')}
+        checked={plan === "enterprise"}
+        onChange={() => setPlan("enterprise")}
       />
     </fieldset>
   );
@@ -92,7 +92,12 @@ function Example() {
 <fieldset>
   <legend>Payment method</legend>
   <Radio name="payment" value="card" label="Credit card" error="" />
-  <Radio name="payment" value="paypal" label="PayPal" error="Please select a payment method" />
+  <Radio
+    name="payment"
+    value="paypal"
+    label="PayPal"
+    error="Please select a payment method"
+  />
 </fieldset>
 ```
 
@@ -115,7 +120,7 @@ function Example() {
 ### Horizontal Layout
 
 ```tsx
-<fieldset style={{ display: 'flex', gap: '16px' }}>
+<fieldset style={{ display: "flex", gap: "16px" }}>
   <legend>Size</legend>
   <Radio name="tshirt" value="s" label="S" />
   <Radio name="tshirt" value="m" label="M" />
@@ -131,15 +136,17 @@ function RadioCard({ value, label, description, ...props }) {
   return (
     <label
       style={{
-        display: 'block',
-        padding: 'var(--spacing-4)',
-        border: '1px solid var(--border-default)',
-        borderRadius: 'var(--radius-control)',
-        cursor: 'pointer',
+        display: "block",
+        padding: "var(--spacing-4)",
+        border: "1px solid var(--border-default)",
+        borderRadius: "var(--radius-control)",
+        cursor: "pointer",
       }}
     >
       <Radio value={value} label={label} {...props} />
-      <p style={{ marginLeft: '28px', color: 'var(--text-secondary)' }}>{description}</p>
+      <p style={{ marginLeft: "28px", color: "var(--text-secondary)" }}>
+        {description}
+      </p>
     </label>
   );
 }

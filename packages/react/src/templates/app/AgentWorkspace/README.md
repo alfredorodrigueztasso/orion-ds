@@ -83,10 +83,10 @@ import { Bot, Sparkles, FolderPlus, Plus } from "lucide-react";
 
 En todos los templates y módulos SaaS de Orion, se usa exclusivamente `--font-secondary` (DM Sans) como tipografía base de UI. `--font-primary` (Libre Baskerville) queda reservada solo para contextos display/marketing (hero, branding, etc.).
 
-| Contexto | Fuente | Token | Ubicación |
-|---|---|---|---|
-| Títulos, labels, navegación, cards | DM Sans | `var(--font-secondary)` | Todo UI de SaaS |
-| Hero marketing, branding, display | Libre Baskerville | `var(--font-primary)` | Solo marketing/display |
+| Contexto                           | Fuente            | Token                   | Ubicación              |
+| ---------------------------------- | ----------------- | ----------------------- | ---------------------- |
+| Títulos, labels, navegación, cards | DM Sans           | `var(--font-secondary)` | Todo UI de SaaS        |
+| Hero marketing, branding, display  | Libre Baskerville | `var(--font-primary)`   | Solo marketing/display |
 
 Esta regla garantiza consistencia visual, legibilidad en interfaces funcionales y optimización para densidad informativa en todos los productos SaaS.
 
@@ -281,7 +281,7 @@ Agents not belonging to any folder are displayed in a separate **"Sin carpeta"**
 
 ## Drag & Drop
 
-Enable agents to be moved between folders with visual feedback.
+Enable agents to be moved between folders with rich visual feedback and insertion indicators.
 
 ### How It Works
 
@@ -300,9 +300,10 @@ Enable agents to be moved between folders with visual feedback.
           // ...
         },
       ],
-      onDrop: (agentId, folderId) => {
-        console.log(`Agent ${agentId} dropped into folder ${folderId}`);
-        // Update your state here
+      onDrop: (agentId, folderId, insertionIndex) => {
+        // Handle drop with optional insertion position
+        // insertionIndex?: number - position where agent will be inserted
+        moveAgentToFolder(agentId, folderId, insertionIndex);
       },
     },
   ]}
@@ -319,9 +320,33 @@ Enable agents to be moved between folders with visual feedback.
 
 ### Visual Feedback
 
-- **Drag overlay** — Ghost card follows cursor while dragging
-- **Drop target highlight** — Folder highlights when dragging over it
+- **Drag overlay** — Ghost card with rotation follows cursor while dragging
+- **Drop target highlighting** — Folder background changes to soft brand color with dashed border
+- **Insertion indicator** — Dynamic blue line shows exact position where agent will be inserted
+  - Updates in real-time as cursor moves over agents
+  - Shows centered for empty folders
+- **Automatic cleanup** — All visual states reset after drop or when dragging leaves folder
 - **Pointer sensor** — 8px movement required to start drag (prevents accidental drags on clicks)
+
+### State Management
+
+The parent component must implement state management to move agents:
+
+```tsx
+const handleDrop = (
+  agentId: string,
+  targetFolderId: string,
+  insertionIndex?: number,
+) => {
+  setFolders((prev) => {
+    // 1. Find source folder containing agent
+    // 2. Remove agent from source
+    // 3. Insert agent in target at specified index (or end if not specified)
+    // 4. Update agentCount in both folders
+    return updatedFolders;
+  });
+};
+```
 
 ### Disable Drag & Drop
 
@@ -331,6 +356,13 @@ Enable agents to be moved between folders with visual feedback.
   // Folders and agents become static
 />
 ```
+
+### Edge Cases Handled
+
+- **Empty folders** — Drop target shows insertion line centered
+- **Collapsed folders** — Still accept drops and insert at beginning
+- **Cursor exit** — All visual states immediately reset when leaving folder
+- **Same folder** — Drops to same folder are ignored (no state change)
 
 ---
 
@@ -568,8 +600,15 @@ function MyAgentWorkspace() {
         { label: "Alphabetical", value: "alpha" },
       ],
       selectedSort: "recent",
-      onDrop: (agentId, folderId) =>
-        console.log("Agent dropped:", agentId, folderId),
+      onDrop: (agentId, folderId, insertionIndex) =>
+        console.log(
+          "Agent dropped:",
+          agentId,
+          "into folder:",
+          folderId,
+          "at index:",
+          insertionIndex,
+        ),
       onSortChange: (value) => console.log("Sort changed:", value),
       onFolderEdit: () => console.log("Edit folder"),
       onFolderDelete: () => console.log("Delete folder"),

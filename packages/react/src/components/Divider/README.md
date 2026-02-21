@@ -16,7 +16,7 @@ Visual separator between content sections.
 ### Basic
 
 ```tsx
-import { Divider } from '@orion/react';
+import { Divider } from "@orion/react";
 
 <div>
   <p>Content above</p>
@@ -45,7 +45,7 @@ import { Divider } from '@orion/react';
 ### Vertical
 
 ```tsx
-<div style={{ display: 'flex', alignItems: 'center', height: 40 }}>
+<div style={{ display: "flex", alignItems: "center", height: 40 }}>
   <span>Item 1</span>
   <Divider orientation="vertical" />
   <span>Item 2</span>
@@ -79,7 +79,7 @@ import { Divider } from '@orion/react';
 ### In Navigation
 
 ```tsx
-<nav style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+<nav style={{ display: "flex", alignItems: "center", gap: "16px" }}>
   <a href="/">Home</a>
   <Divider orientation="vertical" />
   <a href="/products">Products</a>

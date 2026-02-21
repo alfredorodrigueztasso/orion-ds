@@ -4,17 +4,17 @@
  * Type definitions for the Orion LogoCloud section component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * LogoCloud layout variant
  */
-export type LogoCloudLayout = 'grid' | 'inline' | 'marquee';
+export type LogoCloudLayout = "grid" | "inline" | "marquee";
 
 /**
  * Logo size variant
  */
-export type LogoCloudSize = 'sm' | 'md' | 'lg';
+export type LogoCloudSize = "sm" | "md" | "lg";
 
 /**
  * Logo item data structure
@@ -53,7 +53,10 @@ export interface LogoItem {
  * />
  * ```
  */
-export interface LogoCloudProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
+export interface LogoCloudProps extends Omit<
+  HTMLAttributes<HTMLElement>,
+  "title"
+> {
   /**
    * Optional eyebrow/badge above title
    */
@@ -105,7 +108,7 @@ export interface LogoCloudProps extends Omit<HTMLAttributes<HTMLElement>, 'title
    * Background style
    * @default 'none'
    */
-  background?: 'base' | 'subtle' | 'none';
+  background?: "base" | "subtle" | "none";
 
   /**
    * Center the content
@@ -117,5 +120,5 @@ export interface LogoCloudProps extends Omit<HTMLAttributes<HTMLElement>, 'title
    * Marquee animation speed (for marquee layout)
    * @default 'normal'
    */
-  marqueeSpeed?: 'slow' | 'normal' | 'fast';
+  marqueeSpeed?: "slow" | "normal" | "fast";
 }

@@ -5,20 +5,20 @@
  * Designed for company about pages, team pages, and culture showcases.
  */
 
-import { forwardRef } from 'react';
-import type { AboutPageTemplateProps } from './AboutPageTemplate.types';
+import { forwardRef } from "react";
+import type { AboutPageTemplateProps } from "./AboutPageTemplate.types";
 
 // Components
-import { Navbar } from '../../../components/Navbar';
+import { Navbar } from "../../../components/Navbar";
 
 // Sections
-import { Hero } from '../../../sections/Hero';
-import { CarouselSection } from '../../../sections/CarouselSection';
-import { Stats } from '../../../sections/Stats';
-import { Timeline } from '../../../sections/Timeline';
-import { Team } from '../../../sections/Team';
-import { CTA } from '../../../sections/CTA';
-import { Footer } from '../../../sections/Footer';
+import { Hero } from "../../../sections/Hero";
+import { CarouselSection } from "../../../sections/CarouselSection";
+import { Stats } from "../../../sections/Stats";
+import { Timeline } from "../../../sections/Timeline";
+import { Team } from "../../../sections/Team";
+import { CTA } from "../../../sections/CTA";
+import { Footer } from "../../../sections/Footer";
 
 /**
  * AboutPageTemplate - Full about page composition
@@ -35,7 +35,10 @@ import { Footer } from '../../../sections/Footer';
  * />
  * ```
  */
-export const AboutPageTemplate = forwardRef<HTMLDivElement, AboutPageTemplateProps>(
+export const AboutPageTemplate = forwardRef<
+  HTMLDivElement,
+  AboutPageTemplateProps
+>(
   (
     {
       navbar,
@@ -104,6 +107,6 @@ export const AboutPageTemplate = forwardRef<HTMLDivElement, AboutPageTemplatePro
   },
 );
 
-AboutPageTemplate.displayName = 'AboutPageTemplate';
+AboutPageTemplate.displayName = "AboutPageTemplate";
 
 export default AboutPageTemplate;

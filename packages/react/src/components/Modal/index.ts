@@ -15,11 +15,11 @@
  * </Modal>
  * ```
  */
-export { Modal } from './Modal';
+export { Modal } from "./Modal";
 export type {
   ModalProps,
   ModalHeaderProps,
   ModalBodyProps,
   ModalFooterProps,
   ModalSize,
-} from './Modal.types';
+} from "./Modal.types";

@@ -43,15 +43,15 @@ interface ComboboxOption {
 ### Basic
 
 ```tsx
-import { Combobox } from '@orion/react';
+import { Combobox } from "@orion/react";
 
 <Combobox
   label="Framework"
   options={[
-    { value: 'react', label: 'React' },
-    { value: 'vue', label: 'Vue' },
-    { value: 'angular', label: 'Angular' },
-    { value: 'svelte', label: 'Svelte' },
+    { value: "react", label: "React" },
+    { value: "vue", label: "Vue" },
+    { value: "angular", label: "Angular" },
+    { value: "svelte", label: "Svelte" },
   ]}
   placeholder="Select a framework..."
 />;
@@ -60,7 +60,7 @@ import { Combobox } from '@orion/react';
 ### Controlled
 
 ```tsx
-import { useState } from 'react';
+import { useState } from "react";
 
 function Example() {
   const [value, setValue] = useState<string | null>(null);
@@ -72,7 +72,7 @@ function Example() {
       value={value}
       onChange={(newValue, option) => {
         setValue(newValue);
-        console.log('Selected:', option);
+        console.log("Selected:", option);
       }}
       placeholder="Search countries..."
     />
@@ -86,9 +86,13 @@ function Example() {
 <Combobox
   label="Plan"
   options={[
-    { value: 'free', label: 'Free', description: 'Basic features' },
-    { value: 'pro', label: 'Pro', description: '$10/month, advanced features' },
-    { value: 'team', label: 'Team', description: '$25/month, collaboration tools' },
+    { value: "free", label: "Free", description: "Basic features" },
+    { value: "pro", label: "Pro", description: "$10/month, advanced features" },
+    {
+      value: "team",
+      label: "Team",
+      description: "$25/month, collaboration tools",
+    },
   ]}
 />
 ```
@@ -96,14 +100,14 @@ function Example() {
 ### With Icons
 
 ```tsx
-import { Globe, Flag, MapPin } from 'lucide-react';
+import { Globe, Flag, MapPin } from "lucide-react";
 
 <Combobox
   label="Location"
   options={[
-    { value: 'world', label: 'Worldwide', icon: <Globe size={16} /> },
-    { value: 'us', label: 'United States', icon: <Flag size={16} /> },
-    { value: 'local', label: 'Local only', icon: <MapPin size={16} /> },
+    { value: "world", label: "Worldwide", icon: <Globe size={16} /> },
+    { value: "us", label: "United States", icon: <Flag size={16} /> },
+    { value: "local", label: "Local only", icon: <MapPin size={16} /> },
   ]}
 />;
 ```
@@ -171,11 +175,13 @@ function AsyncCombobox() {
   label="Users"
   options={users}
   renderOption={(option, isSelected, isHighlighted) => (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
       <Avatar src={option.avatar} size="xs" />
       <div>
         <div>{option.label}</div>
-        <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>{option.email}</div>
+        <div style={{ fontSize: "12px", color: "var(--text-secondary)" }}>
+          {option.email}
+        </div>
       </div>
       {isSelected && <Check size={16} />}
     </div>
@@ -186,7 +192,11 @@ function AsyncCombobox() {
 ### With Error
 
 ```tsx
-<Combobox label="Category" options={categories} error="Please select a category" />
+<Combobox
+  label="Category"
+  options={categories}
+  error="Please select a category"
+/>
 ```
 
 ### Sizes

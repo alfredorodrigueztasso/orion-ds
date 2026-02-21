@@ -258,7 +258,8 @@
   transition:
     background-color var(--transition-fast),
     color var(--transition-fast);
-  margin: calc(var(--spacing-1) * -1) calc(var(--spacing-1) * -1) calc(var(--spacing-1) * -1) 0;
+  margin: calc(var(--spacing-1) * -1) calc(var(--spacing-1) * -1)
+    calc(var(--spacing-1) * -1) 0;
 
   &:hover {
     background: var(--surface-subtle);

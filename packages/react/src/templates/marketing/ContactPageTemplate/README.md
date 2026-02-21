@@ -76,7 +76,10 @@ import { Mail, Phone, MapPin } from 'lucide-react';
 ## Props Reference
 
 ```typescript
-interface ContactPageTemplateProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
+interface ContactPageTemplateProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "title"
+> {
   /**
    * Navbar configuration
    */
@@ -90,7 +93,7 @@ interface ContactPageTemplateProps extends Omit<HTMLAttributes<HTMLDivElement>, 
   /**
    * Gallery carousel for office locations/photos
    */
-  locationsCarousel?: Omit<CarouselSectionProps, 'variant'>;
+  locationsCarousel?: Omit<CarouselSectionProps, "variant">;
 
   /**
    * Contact section with form and info (required)
@@ -121,14 +124,14 @@ interface ContactPageTemplateProps extends Omit<HTMLAttributes<HTMLDivElement>, 
 ### Full Contact Page
 
 ```tsx
-import { ContactPageTemplate, Button, Badge, Navbar } from '@orion/react';
-import { Mail, Phone, MapPin, Clock, Twitter, Linkedin } from 'lucide-react';
+import { ContactPageTemplate, Button, Badge, Navbar } from "@orion/react";
+import { Mail, Phone, MapPin, Clock, Twitter, Linkedin } from "lucide-react";
 
 function ContactPage() {
   const handleSubmit = async (data) => {
     // Handle form submission
-    await fetch('/api/contact', {
-      method: 'POST',
+    await fetch("/api/contact", {
+      method: "POST",
       body: JSON.stringify(data),
     });
   };
@@ -136,7 +139,7 @@ function ContactPage() {
   return (
     <ContactPageTemplate
       navbar={{
-        variant: 'solid',
+        variant: "solid",
         sticky: true,
         children: (
           <>
@@ -159,156 +162,167 @@ function ContactPage() {
       }}
       hero={{
         badge: <Badge>Contact</Badge>,
-        headline: 'Get in touch',
-        description: "Have a question or want to work together? We'd love to hear from you.",
-        align: 'center',
-        size: 'md',
+        headline: "Get in touch",
+        description:
+          "Have a question or want to work together? We'd love to hear from you.",
+        align: "center",
+        size: "md",
       }}
       locationsCarousel={{
-        title: 'Our Offices',
-        description: 'Visit us at one of our global locations',
+        title: "Our Offices",
+        description: "Visit us at one of our global locations",
         items: [
           {
             image: <img src="/offices/sf.jpg" alt="San Francisco Office" />,
-            title: 'San Francisco',
-            description: 'Headquarters',
+            title: "San Francisco",
+            description: "Headquarters",
           },
           {
             image: <img src="/offices/nyc.jpg" alt="New York Office" />,
-            title: 'New York',
-            description: 'East Coast Hub',
+            title: "New York",
+            description: "East Coast Hub",
           },
           {
             image: <img src="/offices/london.jpg" alt="London Office" />,
-            title: 'London',
-            description: 'European Office',
+            title: "London",
+            description: "European Office",
           },
         ],
       }}
       contact={{
-        title: 'Send us a message',
-        description: "Fill out the form below and we'll respond within 24 hours.",
+        title: "Send us a message",
+        description:
+          "Fill out the form below and we'll respond within 24 hours.",
         contactInfo: [
           {
             icon: <Mail size={20} />,
-            label: 'Email',
-            value: 'hello@acme.com',
-            href: 'mailto:hello@acme.com',
+            label: "Email",
+            value: "hello@acme.com",
+            href: "mailto:hello@acme.com",
           },
           {
             icon: <Phone size={20} />,
-            label: 'Phone',
-            value: '+1 (555) 123-4567',
-            href: 'tel:+15551234567',
+            label: "Phone",
+            value: "+1 (555) 123-4567",
+            href: "tel:+15551234567",
           },
           {
             icon: <MapPin size={20} />,
-            label: 'Address',
-            value: '123 Main Street, San Francisco, CA 94105',
+            label: "Address",
+            value: "123 Main Street, San Francisco, CA 94105",
           },
           {
             icon: <Clock size={20} />,
-            label: 'Hours',
-            value: 'Mon-Fri 9am-6pm PST',
+            label: "Hours",
+            value: "Mon-Fri 9am-6pm PST",
           },
         ],
         formFields: [
           {
-            name: 'name',
-            label: 'Full Name',
-            type: 'text',
-            placeholder: 'John Doe',
+            name: "name",
+            label: "Full Name",
+            type: "text",
+            placeholder: "John Doe",
             required: true,
           },
           {
-            name: 'email',
-            label: 'Email Address',
-            type: 'email',
-            placeholder: 'john@example.com',
+            name: "email",
+            label: "Email Address",
+            type: "email",
+            placeholder: "john@example.com",
             required: true,
           },
           {
-            name: 'company',
-            label: 'Company',
-            type: 'text',
-            placeholder: 'Acme Inc',
+            name: "company",
+            label: "Company",
+            type: "text",
+            placeholder: "Acme Inc",
           },
           {
-            name: 'subject',
-            label: 'Subject',
-            type: 'select',
+            name: "subject",
+            label: "Subject",
+            type: "select",
             options: [
-              { value: 'general', label: 'General Inquiry' },
-              { value: 'sales', label: 'Sales' },
-              { value: 'support', label: 'Technical Support' },
-              { value: 'partnership', label: 'Partnership' },
+              { value: "general", label: "General Inquiry" },
+              { value: "sales", label: "Sales" },
+              { value: "support", label: "Technical Support" },
+              { value: "partnership", label: "Partnership" },
             ],
             required: true,
           },
           {
-            name: 'message',
-            label: 'Message',
-            type: 'textarea',
-            placeholder: 'How can we help you?',
+            name: "message",
+            label: "Message",
+            type: "textarea",
+            placeholder: "How can we help you?",
             rows: 5,
             required: true,
           },
         ],
-        submitLabel: 'Send Message',
+        submitLabel: "Send Message",
         onSubmit: handleSubmit,
         successMessage: "Thank you! We'll be in touch soon.",
       }}
       faq={{
-        eyebrow: 'FAQ',
-        title: 'Frequently asked questions',
+        eyebrow: "FAQ",
+        title: "Frequently asked questions",
         items: [
           {
-            question: 'What is your response time?',
-            answer: 'We typically respond to all inquiries within 24 business hours.',
-          },
-          {
-            question: 'Do you offer phone support?',
+            question: "What is your response time?",
             answer:
-              'Yes, phone support is available for Pro and Enterprise customers Monday through Friday, 9am-6pm PST.',
+              "We typically respond to all inquiries within 24 business hours.",
           },
           {
-            question: 'Can I schedule a demo?',
+            question: "Do you offer phone support?",
+            answer:
+              "Yes, phone support is available for Pro and Enterprise customers Monday through Friday, 9am-6pm PST.",
+          },
+          {
+            question: "Can I schedule a demo?",
             answer:
               'Absolutely! Contact our sales team using the form above and select "Sales" as the subject.',
           },
           {
-            question: 'Where are you located?',
+            question: "Where are you located?",
             answer:
-              'Our headquarters is in San Francisco, with additional offices in New York and London.',
+              "Our headquarters is in San Francisco, with additional offices in New York and London.",
           },
         ],
         columns: 2,
       }}
       footer={{
         brand: {
-          name: 'Acme Inc',
-          description: 'Building the future of development.',
+          name: "Acme Inc",
+          description: "Building the future of development.",
         },
         linkGroups: [
           {
-            title: 'Company',
+            title: "Company",
             links: [
-              { label: 'About', href: '/about' },
-              { label: 'Careers', href: '/careers' },
-              { label: 'Contact', href: '/contact' },
+              { label: "About", href: "/about" },
+              { label: "Careers", href: "/careers" },
+              { label: "Contact", href: "/contact" },
             ],
           },
           {
-            title: 'Product',
+            title: "Product",
             links: [
-              { label: 'Features', href: '/features' },
-              { label: 'Pricing', href: '/pricing' },
+              { label: "Features", href: "/features" },
+              { label: "Pricing", href: "/pricing" },
             ],
           },
         ],
         socialLinks: [
-          { label: 'Twitter', href: 'https://twitter.com', icon: <Twitter size={20} /> },
-          { label: 'LinkedIn', href: 'https://linkedin.com', icon: <Linkedin size={20} /> },
+          {
+            label: "Twitter",
+            href: "https://twitter.com",
+            icon: <Twitter size={20} />,
+          },
+          {
+            label: "LinkedIn",
+            href: "https://linkedin.com",
+            icon: <Linkedin size={20} />,
+          },
         ],
         copyright: `${new Date().getFullYear()} Acme Inc. All rights reserved.`,
       }}
@@ -322,23 +336,25 @@ function ContactPage() {
 ```tsx
 <ContactPageTemplate
   hero={{
-    headline: 'Contact Us',
+    headline: "Contact Us",
     description: "We'd love to hear from you.",
-    align: 'center',
-    size: 'md',
+    align: "center",
+    size: "md",
   }}
   contact={{
-    contactInfo: [{ icon: <Mail size={20} />, label: 'Email', value: 'hello@acme.com' }],
+    contactInfo: [
+      { icon: <Mail size={20} />, label: "Email", value: "hello@acme.com" },
+    ],
     formFields: [
-      { name: 'name', label: 'Name', type: 'text', required: true },
-      { name: 'email', label: 'Email', type: 'email', required: true },
-      { name: 'message', label: 'Message', type: 'textarea', required: true },
+      { name: "name", label: "Name", type: "text", required: true },
+      { name: "email", label: "Email", type: "email", required: true },
+      { name: "message", label: "Message", type: "textarea", required: true },
     ],
     onSubmit: handleSubmit,
   }}
   footer={{
-    brand: { name: 'Acme' },
-    copyright: '2024 Acme Inc.',
+    brand: { name: "Acme" },
+    copyright: "2024 Acme Inc.",
   }}
 />
 ```

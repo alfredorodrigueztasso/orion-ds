@@ -15,16 +15,16 @@
  * ```
  */
 
-import { forwardRef, createElement } from 'react';
-import type { SectionProps } from './Section.types';
-import styles from './Section.module.css';
+import { forwardRef, createElement } from "react";
+import type { SectionProps } from "./Section.types";
+import styles from "./Section.module.css";
 
 export const Section = forwardRef<HTMLElement, SectionProps>(
   (
     {
-      as = 'section',
-      spacing = 'lg',
-      background = 'none',
+      as = "section",
+      spacing = "lg",
+      background = "none",
       borderTop = false,
       borderBottom = false,
       className,
@@ -42,7 +42,7 @@ export const Section = forwardRef<HTMLElement, SectionProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return createElement(
       as,
@@ -56,4 +56,4 @@ export const Section = forwardRef<HTMLElement, SectionProps>(
   },
 );
 
-Section.displayName = 'Section';
+Section.displayName = "Section";

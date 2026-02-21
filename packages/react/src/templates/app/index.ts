@@ -4,34 +4,43 @@
  * Ready-to-use templates for application dashboards and admin interfaces.
  */
 
-export { DashboardTemplate } from './DashboardTemplate';
-export type { DashboardTemplateProps, DashboardLayout } from './DashboardTemplate';
+export { DashboardTemplate } from "./DashboardTemplate";
+export type {
+  DashboardTemplateProps,
+  DashboardLayout,
+} from "./DashboardTemplate";
 
-export { SettingsTemplate } from './SettingsTemplate';
-export type { SettingsTemplateProps, SettingsSection } from './SettingsTemplate';
+export { SettingsTemplate } from "./SettingsTemplate";
+export type {
+  SettingsTemplateProps,
+  SettingsSection,
+} from "./SettingsTemplate";
 
-export { ProfilePageTemplate } from './ProfilePageTemplate';
-export type { ProfilePageTemplateProps, ProfileHeader } from './ProfilePageTemplate';
+export { ProfilePageTemplate } from "./ProfilePageTemplate";
+export type {
+  ProfilePageTemplateProps,
+  ProfileHeader,
+} from "./ProfilePageTemplate";
 
-export { KanbanPageTemplate } from './KanbanPageTemplate';
-export type { KanbanPageTemplateProps } from './KanbanPageTemplate';
+export { KanbanPageTemplate } from "./KanbanPageTemplate";
+export type { KanbanPageTemplateProps } from "./KanbanPageTemplate";
 
-export { LoginTemplate } from './LoginTemplate';
+export { LoginTemplate } from "./LoginTemplate";
 export type {
   LoginTemplateProps,
   LoginFormConfig,
   LoginEditorial,
   SocialProvider,
-} from './LoginTemplate';
+} from "./LoginTemplate";
 
-export { ChatPageTemplate } from './ChatPageTemplate';
-export type { ChatPageTemplateProps } from './ChatPageTemplate';
+export { ChatPageTemplate } from "./ChatPageTemplate";
+export type { ChatPageTemplateProps } from "./ChatPageTemplate";
 
-export { AgentLibraryTemplate } from './AgentLibraryTemplate';
+export { AgentWorkspace } from "./AgentWorkspace";
 export type {
-  AgentLibraryTemplateProps,
+  AgentWorkspaceProps,
   NavbarConfig,
   PageHeaderConfig,
   Workspace,
   DragEndEvent,
-} from './AgentLibraryTemplate';
+} from "./AgentWorkspace";

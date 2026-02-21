@@ -75,7 +75,7 @@
     },
     {
       "name": "linkProps",
-      "type": "Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>",
+      "type": "Omit<AnchorHTMLAttributes<HTMLAnchorElement>, \"href\">",
       "description": "Link props (applied to all anchor elements)"
     }
   ],

@@ -47,7 +47,7 @@
     },
     {
       "name": "spacing",
-      "type": "'none' | 'sm' | 'md' | 'lg'",
+      "type": "\"none\" | \"sm\" | \"md\" | \"lg\"",
       "description": "Spacing around the divider",
       "default": "md",
       "values": [

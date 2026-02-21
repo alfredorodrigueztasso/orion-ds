@@ -29,8 +29,8 @@ Dialog/overlay component with backdrop, animations, and compound components for 
 ### Basic Structure
 
 ```tsx
-import { Modal, Button } from '@orion/react';
-import { useState } from 'react';
+import { Modal, Button } from "@orion/react";
+import { useState } from "react";
 
 function Example() {
   const [isOpen, setIsOpen] = useState(false);
@@ -75,7 +75,12 @@ function Example() {
 ### Prevent Close on Backdrop
 
 ```tsx
-<Modal open={isOpen} onClose={onClose} closeOnBackdrop={false} closeOnEscape={false}>
+<Modal
+  open={isOpen}
+  onClose={onClose}
+  closeOnBackdrop={false}
+  closeOnEscape={false}
+>
   {/* User must use explicit close actions */}
 </Modal>
 ```

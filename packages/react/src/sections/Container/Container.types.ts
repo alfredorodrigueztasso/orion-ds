@@ -4,12 +4,12 @@
  * Type definitions for the Orion Container section component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Container size variants
  */
-export type ContainerSize = 'sm' | 'md' | 'lg' | 'xl' | 'full';
+export type ContainerSize = "sm" | "md" | "lg" | "xl" | "full";
 
 /**
  * Container component props

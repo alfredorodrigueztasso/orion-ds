@@ -5,28 +5,28 @@
 ## Quick Start
 
 ```tsx
-import { LoginTemplate } from '@orion/react';
-import { Chrome } from 'lucide-react';
+import { LoginTemplate } from "@orion/react";
+import { Chrome } from "lucide-react";
 
 <LoginTemplate
   logo={<img src="/logo.svg" alt="Acme" height={32} />}
   title="Welcome back"
   subtitle="Sign in to your account"
   onSubmit={({ email, password, rememberMe }) => {
-    console.log('Login:', email, password, rememberMe);
+    console.log("Login:", email, password, rememberMe);
   }}
   socialProviders={[
     {
-      name: 'Google',
+      name: "Google",
       icon: <Chrome size={20} />,
       onClick: () => handleGoogleAuth(),
     },
   ]}
   editorial={{
-    headline: 'Build faster with Acme',
-    quote: 'This platform transformed our workflow completely.',
-    author: 'Sarah Chen',
-    authorRole: 'CTO at TechCorp',
+    headline: "Build faster with Acme",
+    quote: "This platform transformed our workflow completely.",
+    author: "Sarah Chen",
+    authorRole: "CTO at TechCorp",
   }}
 />;
 ```
@@ -51,7 +51,10 @@ import { Chrome } from 'lucide-react';
 ## Props Reference
 
 ```typescript
-interface LoginTemplateProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title' | 'onSubmit'> {
+interface LoginTemplateProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "title" | "onSubmit"
+> {
   /**
    * Logo element (displayed at top of form)
    */
@@ -118,7 +121,11 @@ interface LoginTemplateProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title
   /**
    * Form submit handler
    */
-  onSubmit?: (data: { email: string; password: string; rememberMe: boolean }) => void;
+  onSubmit?: (data: {
+    email: string;
+    password: string;
+    rememberMe: boolean;
+  }) => void;
 
   /**
    * Loading state (disables form)
@@ -176,8 +183,8 @@ interface LoginFormConfig {
 ### Full-Featured Login
 
 ```tsx
-import { LoginTemplate, Avatar, Link } from '@orion/react';
-import { Chrome, Github } from 'lucide-react';
+import { LoginTemplate, Avatar, Link } from "@orion/react";
+import { Chrome, Github } from "lucide-react";
 
 function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -189,9 +196,9 @@ function LoginPage() {
 
     try {
       await authService.login(email, password, rememberMe);
-      router.push('/dashboard');
+      router.push("/dashboard");
     } catch (err) {
-      setError('Invalid email or password');
+      setError("Invalid email or password");
     } finally {
       setIsLoading(false);
     }
@@ -207,26 +214,34 @@ function LoginPage() {
       error={error}
       socialProviders={[
         {
-          name: 'Google',
+          name: "Google",
           icon: <Chrome size={20} />,
           onClick: () => authService.loginWithGoogle(),
         },
         {
-          name: 'GitHub',
+          name: "GitHub",
           icon: <Github size={20} />,
           onClick: () => authService.loginWithGithub(),
         },
       ]}
       editorial={{
-        headline: 'Build products faster',
-        description: 'Join thousands of teams shipping features, not infrastructure.',
-        quote: 'Acme transformed how we build. We shipped our MVP in half the time.',
-        author: 'Sarah Chen',
-        authorRole: 'CTO at TechCorp',
+        headline: "Build products faster",
+        description:
+          "Join thousands of teams shipping features, not infrastructure.",
+        quote:
+          "Acme transformed how we build. We shipped our MVP in half the time.",
+        author: "Sarah Chen",
+        authorRole: "CTO at TechCorp",
         authorAvatar: <Avatar src="/sarah.jpg" fallback="SC" />,
       }}
       footer={
-        <div style={{ display: 'flex', gap: 'var(--spacing-4)', justifyContent: 'center' }}>
+        <div
+          style={{
+            display: "flex",
+            gap: "var(--spacing-4)",
+            justifyContent: "center",
+          }}
+        >
           <Link href="/terms" size="sm">
             Terms of Service
           </Link>
@@ -264,9 +279,13 @@ Without the `editorial` prop, the template renders as a centered single-column f
     showForgotPassword: false,
   }}
   socialProviders={[
-    { name: 'Google', icon: <Chrome size={20} />, onClick: handleGoogle },
-    { name: 'GitHub', icon: <Github size={20} />, onClick: handleGithub },
-    { name: 'Microsoft', icon: <Building size={20} />, onClick: handleMicrosoft },
+    { name: "Google", icon: <Chrome size={20} />, onClick: handleGoogle },
+    { name: "GitHub", icon: <Github size={20} />, onClick: handleGithub },
+    {
+      name: "Microsoft",
+      icon: <Building size={20} />,
+      onClick: handleMicrosoft,
+    },
   ]}
   signUpPrompt="New to Acme?"
   signUpLabel="Create an account"
@@ -281,7 +300,7 @@ Without the `editorial` prop, the template renders as a centered single-column f
   logo={<img src="/logo.svg" alt="Acme" height={32} />}
   onSubmit={handleSubmit}
   editorial={{
-    backgroundImage: '/login-bg.jpg',
+    backgroundImage: "/login-bg.jpg",
     children: (
       <div className="custom-editorial">
         <h2>Welcome to Acme</h2>
@@ -303,14 +322,14 @@ Without the `editorial` prop, the template renders as a centered single-column f
   title="Accedi"
   subtitle="Inserisci le tue credenziali"
   formConfig={{
-    emailLabel: 'Email',
-    emailPlaceholder: 'tu@esempio.com',
-    passwordLabel: 'Password',
-    passwordPlaceholder: 'Inserisci la password',
-    submitLabel: 'Accedi',
-    rememberMeLabel: 'Ricordami',
-    forgotPasswordLabel: 'Password dimenticata?',
-    forgotPasswordHref: '/recupera-password',
+    emailLabel: "Email",
+    emailPlaceholder: "tu@esempio.com",
+    passwordLabel: "Password",
+    passwordPlaceholder: "Inserisci la password",
+    submitLabel: "Accedi",
+    rememberMeLabel: "Ricordami",
+    forgotPasswordLabel: "Password dimenticata?",
+    forgotPasswordHref: "/recupera-password",
   }}
   signUpPrompt="Non hai un account?"
   signUpLabel="Registrati"
@@ -332,7 +351,10 @@ Without the `editorial` prop, the template renders as a centered single-column f
 ### Disable Forgot Password
 
 ```tsx
-<LoginTemplate formConfig={{ showForgotPassword: false }} onSubmit={handleSubmit} />
+<LoginTemplate
+  formConfig={{ showForgotPassword: false }}
+  onSubmit={handleSubmit}
+/>
 ```
 
 ### Hide Sign Up Link

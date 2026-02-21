@@ -1,2 +1,6 @@
-export { DetailPanel } from './DetailPanel';
-export type { DetailPanelProps, DetailPanelSize, DetailPanelPosition } from './DetailPanel.types';
+export { DetailPanel } from "./DetailPanel";
+export type {
+  DetailPanelProps,
+  DetailPanelSize,
+  DetailPanelPosition,
+} from "./DetailPanel.types";

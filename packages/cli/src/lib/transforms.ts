@@ -11,11 +11,23 @@
 /**
  * Set of installed component names (kebab-case) for resolving cross-component imports.
  */
-export function transformImports(content: string, installedComponents: Set<string>): string {
+export function transformImports(
+  content: string,
+  installedComponents: Set<string>,
+): string {
   // Rewrite hook/context imports to @orion-ds/react
-  content = content.replace(/from\s+['"]\.\.\/\.\.\/hooks['"]/g, "from '@orion-ds/react'");
-  content = content.replace(/from\s+['"]\.\.\/\.\.\/\.\.\/hooks['"]/g, "from '@orion-ds/react'");
-  content = content.replace(/from\s+['"]\.\.\/hooks['"]/g, "from '@orion-ds/react'");
+  content = content.replace(
+    /from\s+['"]\.\.\/\.\.\/hooks['"]/g,
+    "from '@orion-ds/react'",
+  );
+  content = content.replace(
+    /from\s+['"]\.\.\/\.\.\/\.\.\/hooks['"]/g,
+    "from '@orion-ds/react'",
+  );
+  content = content.replace(
+    /from\s+['"]\.\.\/hooks['"]/g,
+    "from '@orion-ds/react'",
+  );
   content = content.replace(
     /from\s+['"]\.\.\/\.\.\/contexts\/ThemeContext['"]/g,
     "from '@orion-ds/react'",
@@ -24,8 +36,14 @@ export function transformImports(content: string, installedComponents: Set<strin
     /from\s+['"]\.\.\/\.\.\/\.\.\/contexts\/ThemeContext['"]/g,
     "from '@orion-ds/react'",
   );
-  content = content.replace(/from\s+['"]\.\.\/\.\.\/contexts['"]/g, "from '@orion-ds/react'");
-  content = content.replace(/from\s+['"]\.\.\/\.\.\/\.\.\/contexts['"]/g, "from '@orion-ds/react'");
+  content = content.replace(
+    /from\s+['"]\.\.\/\.\.\/contexts['"]/g,
+    "from '@orion-ds/react'",
+  );
+  content = content.replace(
+    /from\s+['"]\.\.\/\.\.\/\.\.\/contexts['"]/g,
+    "from '@orion-ds/react'",
+  );
 
   // Rewrite cross-component imports to relative paths between installed components
   // Matches patterns like: from '../Button' or from '../../Button'
@@ -51,8 +69,8 @@ export function transformImports(content: string, installedComponents: Set<strin
 
 function toKebabCase(str: string): string {
   return str
-    .replace(/([a-z])([A-Z])/g, '$1-$2')
-    .replace(/([A-Z])([A-Z][a-z])/g, '$1-$2')
+    .replace(/([a-z])([A-Z])/g, "$1-$2")
+    .replace(/([A-Z])([A-Z][a-z])/g, "$1-$2")
     .toLowerCase();
 }
 
@@ -62,24 +80,24 @@ function toKebabCase(str: string): string {
  */
 export function componentDirName(filePath: string): string {
   // The component dir is the second-to-last segment for standard component files
-  const parts = filePath.split('/');
+  const parts = filePath.split("/");
   // Find the 'components' segment and take the next one
-  const compIdx = parts.indexOf('components');
+  const compIdx = parts.indexOf("components");
   if (compIdx >= 0 && compIdx + 1 < parts.length) {
     return toKebabCase(parts[compIdx + 1]!);
   }
   // For sections: look for 'sections' segment
-  const secIdx = parts.indexOf('sections');
+  const secIdx = parts.indexOf("sections");
   if (secIdx >= 0 && secIdx + 1 < parts.length) {
     return toKebabCase(parts[secIdx + 1]!);
   }
   // For templates
-  const tmplIdx = parts.indexOf('templates');
+  const tmplIdx = parts.indexOf("templates");
   if (tmplIdx >= 0 && tmplIdx + 1 < parts.length) {
     return toKebabCase(parts[tmplIdx + 1]!);
   }
   // Fallback: use the parent directory
-  return toKebabCase(parts[parts.length - 2] || 'unknown');
+  return toKebabCase(parts[parts.length - 2] || "unknown");
 }
 
 /**
@@ -87,5 +105,5 @@ export function componentDirName(filePath: string): string {
  * e.g., "packages/react/src/components/Button/Button.tsx" → "Button.tsx"
  */
 export function fileName(filePath: string): string {
-  return filePath.split('/').pop() || filePath;
+  return filePath.split("/").pop() || filePath;
 }

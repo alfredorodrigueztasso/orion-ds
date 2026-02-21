@@ -24,10 +24,10 @@
  * ```
  */
 
-import React, { useState, useMemo } from 'react';
-import { CheckCircle, XCircle, AlertTriangle, Info, X } from 'lucide-react';
-import type { AlertProps, AlertVariant } from './Alert.types';
-import styles from './Alert.module.css';
+import React, { useState, useMemo } from "react";
+import { CheckCircle, XCircle, AlertTriangle, Info, X } from "lucide-react";
+import type { AlertProps, AlertVariant } from "./Alert.types";
+import styles from "./Alert.module.css";
 
 /**
  * Default Lucide icons mapped to alert variants
@@ -41,7 +41,7 @@ const DEFAULT_ICONS: Record<AlertVariant, React.ReactNode> = {
 };
 
 export const Alert: React.FC<AlertProps> = ({
-  variant = 'info',
+  variant = "info",
   title,
   dismissible = false,
   onClose,
@@ -59,7 +59,7 @@ export const Alert: React.FC<AlertProps> = ({
 
   // Memoize class names for performance
   const classNames = useMemo(
-    () => [styles.alert, styles[variant], className].filter(Boolean).join(' '),
+    () => [styles.alert, styles[variant], className].filter(Boolean).join(" "),
     [variant, className],
   );
 
@@ -103,4 +103,4 @@ export const Alert: React.FC<AlertProps> = ({
   );
 };
 
-Alert.displayName = 'Alert';
+Alert.displayName = "Alert";

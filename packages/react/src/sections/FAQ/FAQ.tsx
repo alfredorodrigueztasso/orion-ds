@@ -25,12 +25,12 @@
  * ```
  */
 
-import { forwardRef, useState, useCallback } from 'react';
-import type { FAQProps } from './FAQ.types';
-import { Section } from '../Section';
-import { Container } from '../Container';
-import { FAQItemCard } from './FAQItemCard';
-import styles from './FAQ.module.css';
+import { forwardRef, useState, useCallback } from "react";
+import type { FAQProps } from "./FAQ.types";
+import { Section } from "../Section";
+import { Container } from "../Container";
+import { FAQItemCard } from "./FAQItemCard";
+import styles from "./FAQ.module.css";
 
 export const FAQ = forwardRef<HTMLElement, FAQProps>(
   (
@@ -40,9 +40,9 @@ export const FAQ = forwardRef<HTMLElement, FAQProps>(
       description,
       items,
       columns = 1,
-      variant = 'accordion',
+      variant = "accordion",
       allowMultiple = true,
-      background = 'base',
+      background = "base",
       centered = true,
       className,
       ...rest
@@ -64,7 +64,7 @@ export const FAQ = forwardRef<HTMLElement, FAQProps>(
 
     const handleToggle = useCallback(
       (index: number) => {
-        if (variant !== 'accordion') return;
+        if (variant !== "accordion") return;
 
         setOpenItems((prev) => {
           const next = new Set(prev);
@@ -84,27 +84,43 @@ export const FAQ = forwardRef<HTMLElement, FAQProps>(
 
     const classNames = [styles.faq, centered && styles.centered, className]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
-      <Section ref={ref} spacing="lg" background={background} className={classNames} {...rest}>
+      <Section
+        ref={ref}
+        spacing="lg"
+        background={background}
+        className={classNames}
+        {...rest}
+      >
         <Container size="lg">
           {hasHeader && (
             <header className={styles.header}>
               {eyebrow && <div className={styles.eyebrow}>{eyebrow}</div>}
               {title && <h2 className={styles.title}>{title}</h2>}
-              {description && <p className={styles.description}>{description}</p>}
+              {description && (
+                <p className={styles.description}>{description}</p>
+              )}
             </header>
           )}
 
-          <div className={`${styles.list} ${variant === 'grid' ? styles[`cols-${columns}`] : ''}`}>
+          <div
+            className={`${styles.list} ${variant === "grid" ? styles[`cols-${columns}`] : ""}`}
+          >
             {items.map((item, index) => (
               <FAQItemCard
                 key={item.question || index}
                 item={item}
                 variant={variant}
-                isOpen={variant === 'accordion' ? openItems.has(index) : undefined}
-                onToggle={variant === 'accordion' ? () => handleToggle(index) : undefined}
+                isOpen={
+                  variant === "accordion" ? openItems.has(index) : undefined
+                }
+                onToggle={
+                  variant === "accordion"
+                    ? () => handleToggle(index)
+                    : undefined
+                }
               />
             ))}
           </div>
@@ -114,4 +130,4 @@ export const FAQ = forwardRef<HTMLElement, FAQProps>(
   },
 );
 
-FAQ.displayName = 'FAQ';
+FAQ.displayName = "FAQ";

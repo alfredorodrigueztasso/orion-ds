@@ -4,7 +4,7 @@
  * Type definitions for the Orion AppDownload section component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * App store badge item
@@ -13,7 +13,7 @@ export interface AppStoreBadge {
   /**
    * Store type
    */
-  store: 'apple' | 'google' | 'huawei' | 'custom';
+  store: "apple" | "google" | "huawei" | "custom";
 
   /**
    * Download URL
@@ -67,7 +67,10 @@ export interface AppFeature {
  * />
  * ```
  */
-export interface AppDownloadProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
+export interface AppDownloadProps extends Omit<
+  HTMLAttributes<HTMLElement>,
+  "title"
+> {
   /**
    * Optional eyebrow text
    */
@@ -113,13 +116,13 @@ export interface AppDownloadProps extends Omit<HTMLAttributes<HTMLElement>, 'tit
    * Layout variant
    * @default 'centered'
    */
-  layout?: 'centered' | 'split-left' | 'split-right';
+  layout?: "centered" | "split-left" | "split-right";
 
   /**
    * Background style
    * @default 'gradient'
    */
-  background?: 'base' | 'subtle' | 'gradient' | 'dark';
+  background?: "base" | "subtle" | "gradient" | "dark";
 
   /**
    * App rating

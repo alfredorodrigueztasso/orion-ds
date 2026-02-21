@@ -31,24 +31,24 @@ interface AccordionItem {
 ### Basic
 
 ```tsx
-import { Accordion } from '@orion/react';
+import { Accordion } from "@orion/react";
 
 <Accordion
   items={[
     {
-      id: 'faq-1',
-      title: 'What is your return policy?',
-      content: 'You can return items within 30 days of purchase.',
+      id: "faq-1",
+      title: "What is your return policy?",
+      content: "You can return items within 30 days of purchase.",
     },
     {
-      id: 'faq-2',
-      title: 'How long does shipping take?',
-      content: 'Standard shipping takes 5-7 business days.',
+      id: "faq-2",
+      title: "How long does shipping take?",
+      content: "Standard shipping takes 5-7 business days.",
     },
     {
-      id: 'faq-3',
-      title: 'Do you ship internationally?',
-      content: 'Yes, we ship to over 100 countries.',
+      id: "faq-3",
+      title: "Do you ship internationally?",
+      content: "Yes, we ship to over 100 countries.",
     },
   ]}
 />;
@@ -63,18 +63,25 @@ import { Accordion } from '@orion/react';
 ### Default Expanded
 
 ```tsx
-<Accordion items={items} defaultExpanded={['faq-1', 'faq-2']} allowMultiple />
+<Accordion items={items} defaultExpanded={["faq-1", "faq-2"]} allowMultiple />
 ```
 
 ### Controlled
 
 ```tsx
-import { useState } from 'react';
+import { useState } from "react";
 
 function Example() {
-  const [expanded, setExpanded] = useState<string[]>(['faq-1']);
+  const [expanded, setExpanded] = useState<string[]>(["faq-1"]);
 
-  return <Accordion items={items} expanded={expanded} onChange={setExpanded} allowMultiple />;
+  return (
+    <Accordion
+      items={items}
+      expanded={expanded}
+      onChange={setExpanded}
+      allowMultiple
+    />
+  );
 }
 ```
 
@@ -94,27 +101,27 @@ function Example() {
 ### With Icons
 
 ```tsx
-import { CreditCard, Truck, RefreshCw } from 'lucide-react';
+import { CreditCard, Truck, RefreshCw } from "lucide-react";
 
 <Accordion
   items={[
     {
-      id: 'payment',
-      title: 'Payment options',
+      id: "payment",
+      title: "Payment options",
       icon: <CreditCard size={18} />,
-      content: 'We accept all major credit cards...',
+      content: "We accept all major credit cards...",
     },
     {
-      id: 'shipping',
-      title: 'Shipping information',
+      id: "shipping",
+      title: "Shipping information",
       icon: <Truck size={18} />,
-      content: 'Free shipping on orders over $50...',
+      content: "Free shipping on orders over $50...",
     },
     {
-      id: 'returns',
-      title: 'Returns & exchanges',
+      id: "returns",
+      title: "Returns & exchanges",
       icon: <RefreshCw size={18} />,
-      content: '30-day hassle-free returns...',
+      content: "30-day hassle-free returns...",
     },
   ]}
 />;
@@ -125,9 +132,14 @@ import { CreditCard, Truck, RefreshCw } from 'lucide-react';
 ```tsx
 <Accordion
   items={[
-    { id: '1', title: 'Enabled section', content: 'Content here' },
-    { id: '2', title: 'Disabled section', content: 'Cannot open', disabled: true },
-    { id: '3', title: 'Another enabled', content: 'More content' },
+    { id: "1", title: "Enabled section", content: "Content here" },
+    {
+      id: "2",
+      title: "Disabled section",
+      content: "Cannot open",
+      disabled: true,
+    },
+    { id: "3", title: "Another enabled", content: "More content" },
   ]}
 />
 ```
@@ -144,7 +156,7 @@ import { CreditCard, Truck, RefreshCw } from 'lucide-react';
 <Accordion
   items={[
     {
-      id: 'details',
+      id: "details",
       title: <strong>Product Details</strong>,
       content: (
         <div>

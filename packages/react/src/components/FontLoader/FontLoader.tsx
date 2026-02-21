@@ -29,8 +29,13 @@
  * ```
  */
 
-import { useEffect, useState } from 'react';
-import { GOOGLE_FONTS_URL, FONT_PRECONNECT_URLS, ALL_FONTS, waitForFonts } from '../../utils/fonts';
+import { useEffect, useState } from "react";
+import {
+  GOOGLE_FONTS_URL,
+  FONT_PRECONNECT_URLS,
+  ALL_FONTS,
+  waitForFonts,
+} from "../../utils/fonts";
 
 export interface FontLoaderProps {
   /**
@@ -78,12 +83,14 @@ export function FontLoader({
 
   // Inject font links into head
   useEffect(() => {
-    if (typeof document === 'undefined' || isInjected) return;
+    if (typeof document === "undefined" || isInjected) return;
 
     const head = document.head;
 
     // Check if fonts are already loaded
-    const existingLink = head.querySelector(`link[href*="fonts.googleapis.com"]`);
+    const existingLink = head.querySelector(
+      `link[href*="fonts.googleapis.com"]`,
+    );
     if (existingLink) {
       setIsInjected(true);
       setIsLoaded(true);
@@ -94,21 +101,21 @@ export function FontLoader({
     try {
       // Add preconnect links for faster loading
       FONT_PRECONNECT_URLS.forEach((url, index) => {
-        const preconnect = document.createElement('link');
-        preconnect.rel = 'preconnect';
+        const preconnect = document.createElement("link");
+        preconnect.rel = "preconnect";
         preconnect.href = url;
         if (index === 1) {
-          preconnect.crossOrigin = 'anonymous';
+          preconnect.crossOrigin = "anonymous";
         }
-        preconnect.setAttribute('data-orion-fonts', 'preconnect');
+        preconnect.setAttribute("data-orion-fonts", "preconnect");
         head.appendChild(preconnect);
       });
 
       // Add Google Fonts stylesheet
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
       link.href = GOOGLE_FONTS_URL;
-      link.setAttribute('data-orion-fonts', 'stylesheet');
+      link.setAttribute("data-orion-fonts", "stylesheet");
 
       link.onload = async () => {
         // Wait for fonts to actually be ready
@@ -124,8 +131,8 @@ export function FontLoader({
       };
 
       link.onerror = () => {
-        const error = new Error('Failed to load Google Fonts');
-        console.error('[Orion] Failed to load fonts from Google Fonts');
+        const error = new Error("Failed to load Google Fonts");
+        console.error("[Orion] Failed to load fonts from Google Fonts");
         onError?.(error);
         setIsLoaded(true); // Still allow rendering
       };
@@ -133,8 +140,10 @@ export function FontLoader({
       head.appendChild(link);
       setIsInjected(true);
     } catch (err) {
-      console.error('[Orion] Error injecting font links:', err);
-      onError?.(err instanceof Error ? err : new Error('Font injection failed'));
+      console.error("[Orion] Error injecting font links:", err);
+      onError?.(
+        err instanceof Error ? err : new Error("Font injection failed"),
+      );
       setIsLoaded(true);
     }
   }, [isInjected, onLoad, onError]);
@@ -147,4 +156,4 @@ export function FontLoader({
   return children ? <>{children}</> : null;
 }
 
-FontLoader.displayName = 'FontLoader';
+FontLoader.displayName = "FontLoader";

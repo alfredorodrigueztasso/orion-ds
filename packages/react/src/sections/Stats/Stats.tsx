@@ -21,12 +21,12 @@
  * ```
  */
 
-import { forwardRef } from 'react';
-import type { StatsProps } from './Stats.types';
-import { Section } from '../Section';
-import { Container } from '../Container';
-import { StatItemCard } from './StatItemCard';
-import styles from './Stats.module.css';
+import { forwardRef } from "react";
+import type { StatsProps } from "./Stats.types";
+import { Section } from "../Section";
+import { Container } from "../Container";
+import { StatItemCard } from "./StatItemCard";
+import styles from "./Stats.module.css";
 
 export const Stats = forwardRef<HTMLElement, StatsProps>(
   (
@@ -36,8 +36,8 @@ export const Stats = forwardRef<HTMLElement, StatsProps>(
       description,
       stats,
       columns = 4,
-      variant = 'default',
-      background = 'subtle',
+      variant = "default",
+      background = "subtle",
       centered = true,
       highlightValue = false,
       className,
@@ -49,16 +49,24 @@ export const Stats = forwardRef<HTMLElement, StatsProps>(
 
     const classNames = [styles.stats, centered && styles.centered, className]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
-      <Section ref={ref} spacing="lg" background={background} className={classNames} {...rest}>
+      <Section
+        ref={ref}
+        spacing="lg"
+        background={background}
+        className={classNames}
+        {...rest}
+      >
         <Container size="xl">
           {hasHeader && (
             <header className={styles.header}>
               {eyebrow && <div className={styles.eyebrow}>{eyebrow}</div>}
               {title && <h2 className={styles.title}>{title}</h2>}
-              {description && <p className={styles.description}>{description}</p>}
+              {description && (
+                <p className={styles.description}>{description}</p>
+              )}
             </header>
           )}
 
@@ -80,4 +88,4 @@ export const Stats = forwardRef<HTMLElement, StatsProps>(
   },
 );
 
-Stats.displayName = 'Stats';
+Stats.displayName = "Stats";

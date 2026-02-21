@@ -159,11 +159,11 @@
   outline-offset: 2px;
 }
 
-.card[draggable='true'] {
+.card[draggable="true"] {
   cursor: grab;
 }
 
-.card[draggable='true']:active {
+.card[draggable="true"]:active {
   cursor: grabbing;
 }
 

@@ -4,12 +4,12 @@
  * Voice recording UI with waveform visualization.
  */
 
-import React from 'react';
-import { Mic, Square, X, Send } from 'lucide-react';
-import type { ChatVoiceRecorderProps } from '../Chat.types';
-import { useVoiceRecorder } from '../hooks/useVoiceRecorder';
-import { formatTime } from '../utils';
-import styles from '../Chat.module.css';
+import React from "react";
+import { Mic, Square, X, Send } from "lucide-react";
+import type { ChatVoiceRecorderProps } from "../Chat.types";
+import { useVoiceRecorder } from "../hooks/useVoiceRecorder";
+import { formatTime } from "../utils";
+import styles from "../Chat.module.css";
 
 export const ChatVoiceRecorder: React.FC<ChatVoiceRecorderProps> = ({
   onRecordingComplete,
@@ -31,7 +31,7 @@ export const ChatVoiceRecorder: React.FC<ChatVoiceRecorderProps> = ({
   } = useVoiceRecorder({
     maxDuration,
     onRecordingComplete,
-    onError: (err) => console.error('Recording error:', err),
+    onError: (err) => console.error("Recording error:", err),
   });
 
   const handleMainButtonClick = () => {
@@ -53,7 +53,10 @@ export const ChatVoiceRecorder: React.FC<ChatVoiceRecorderProps> = ({
 
   if (!isSupported) {
     return (
-      <div className={[styles.voiceRecorder, className].filter(Boolean).join(' ')} {...rest}>
+      <div
+        className={[styles.voiceRecorder, className].filter(Boolean).join(" ")}
+        {...rest}
+      >
         <div className={styles.voiceRecorderInfo}>
           <span className={styles.voiceRecorderLabel}>
             Voice recording is not supported in this browser
@@ -65,13 +68,25 @@ export const ChatVoiceRecorder: React.FC<ChatVoiceRecorderProps> = ({
 
   if (error) {
     return (
-      <div className={[styles.voiceRecorder, className].filter(Boolean).join(' ')} {...rest}>
+      <div
+        className={[styles.voiceRecorder, className].filter(Boolean).join(" ")}
+        {...rest}
+      >
         <div className={styles.voiceRecorderInfo}>
-          <span className={[styles.voiceRecorderLabel, styles.voiceRecorderError].join(' ')}>
+          <span
+            className={[
+              styles.voiceRecorderLabel,
+              styles.voiceRecorderError,
+            ].join(" ")}
+          >
             {error}
           </span>
         </div>
-        <button className={styles.inputButton} onClick={reset} aria-label="Try again">
+        <button
+          className={styles.inputButton}
+          onClick={reset}
+          aria-label="Try again"
+        >
           <X size={20} />
         </button>
       </div>
@@ -79,7 +94,10 @@ export const ChatVoiceRecorder: React.FC<ChatVoiceRecorderProps> = ({
   }
 
   return (
-    <div className={[styles.voiceRecorder, className].filter(Boolean).join(' ')} {...rest}>
+    <div
+      className={[styles.voiceRecorder, className].filter(Boolean).join(" ")}
+      {...rest}
+    >
       {/* Main record/stop/send button */}
       <button
         className={[
@@ -87,20 +105,36 @@ export const ChatVoiceRecorder: React.FC<ChatVoiceRecorderProps> = ({
           !isRecording && !audioBlob && styles.voiceRecorderButtonIdle,
         ]
           .filter(Boolean)
-          .join(' ')}
+          .join(" ")}
         onClick={handleMainButtonClick}
         aria-label={
-          isRecording ? 'Stop recording' : audioBlob ? 'Send recording' : 'Start recording'
+          isRecording
+            ? "Stop recording"
+            : audioBlob
+              ? "Send recording"
+              : "Start recording"
         }
       >
-        {isRecording ? <Square size={20} /> : audioBlob ? <Send size={20} /> : <Mic size={20} />}
+        {isRecording ? (
+          <Square size={20} />
+        ) : audioBlob ? (
+          <Send size={20} />
+        ) : (
+          <Mic size={20} />
+        )}
       </button>
 
       {/* Info section */}
       <div className={styles.voiceRecorderInfo}>
-        <span className={styles.voiceRecorderDuration}>{formatTime(duration)}</span>
+        <span className={styles.voiceRecorderDuration}>
+          {formatTime(duration)}
+        </span>
         <span className={styles.voiceRecorderLabel}>
-          {isRecording ? 'Recording...' : audioBlob ? 'Recording ready' : 'Click to record'}
+          {isRecording
+            ? "Recording..."
+            : audioBlob
+              ? "Recording ready"
+              : "Click to record"}
         </span>
       </div>
 
@@ -131,4 +165,4 @@ export const ChatVoiceRecorder: React.FC<ChatVoiceRecorderProps> = ({
   );
 };
 
-ChatVoiceRecorder.displayName = 'ChatVoiceRecorder';
+ChatVoiceRecorder.displayName = "ChatVoiceRecorder";

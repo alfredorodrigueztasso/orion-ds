@@ -16,7 +16,7 @@ Loading indicator for async operations.
 ### Basic
 
 ```tsx
-import { Spinner } from '@orion/react';
+import { Spinner } from "@orion/react";
 
 <Spinner />;
 ```
@@ -62,10 +62,10 @@ function PageLoader() {
   return (
     <div
       style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        minHeight: '100vh',
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        minHeight: "100vh",
       }}
     >
       <Spinner size="xl" showLabel label="Loading application..." />

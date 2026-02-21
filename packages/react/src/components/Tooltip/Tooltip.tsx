@@ -15,13 +15,13 @@
  * ```
  */
 
-import React, { useState, useRef, cloneElement, isValidElement } from 'react';
-import type { TooltipProps } from './Tooltip.types';
-import styles from './Tooltip.module.css';
+import React, { useState, useRef, cloneElement, isValidElement } from "react";
+import type { TooltipProps } from "./Tooltip.types";
+import styles from "./Tooltip.module.css";
 
 export const Tooltip: React.FC<TooltipProps> = ({
   content,
-  placement = 'top',
+  placement = "top",
   delay = 200,
   disabled = false,
   children,
@@ -54,7 +54,9 @@ export const Tooltip: React.FC<TooltipProps> = ({
     setIsVisible(false);
   };
 
-  const tooltipClasses = [styles.tooltip, styles[placement], className].filter(Boolean).join(' ');
+  const tooltipClasses = [styles.tooltip, styles[placement], className]
+    .filter(Boolean)
+    .join(" ");
 
   // Clone child element and add event handlers
   const childElement = isValidElement(children)
@@ -80,4 +82,4 @@ export const Tooltip: React.FC<TooltipProps> = ({
   );
 };
 
-Tooltip.displayName = 'Tooltip';
+Tooltip.displayName = "Tooltip";

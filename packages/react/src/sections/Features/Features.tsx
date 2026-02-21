@@ -20,12 +20,12 @@
  * ```
  */
 
-import { forwardRef } from 'react';
-import type { FeaturesProps } from './Features.types';
-import { Section } from '../Section';
-import { Container } from '../Container';
-import { FeatureCard } from './FeatureCard';
-import styles from './Features.module.css';
+import { forwardRef } from "react";
+import type { FeaturesProps } from "./Features.types";
+import { Section } from "../Section";
+import { Container } from "../Container";
+import { FeatureCard } from "./FeatureCard";
+import styles from "./Features.module.css";
 
 export const Features = forwardRef<HTMLElement, FeaturesProps>(
   (
@@ -35,7 +35,7 @@ export const Features = forwardRef<HTMLElement, FeaturesProps>(
       description,
       items,
       columns = 3,
-      background = 'subtle',
+      background = "subtle",
       interactive = true,
       centered = true,
       className,
@@ -47,22 +47,34 @@ export const Features = forwardRef<HTMLElement, FeaturesProps>(
 
     const classNames = [styles.features, centered && styles.centered, className]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
-      <Section ref={ref} spacing="lg" background={background} className={classNames} {...rest}>
+      <Section
+        ref={ref}
+        spacing="lg"
+        background={background}
+        className={classNames}
+        {...rest}
+      >
         <Container size="xl">
           {hasHeader && (
             <header className={styles.header}>
               {eyebrow && <div className={styles.eyebrow}>{eyebrow}</div>}
               {title && <h2 className={styles.title}>{title}</h2>}
-              {description && <p className={styles.description}>{description}</p>}
+              {description && (
+                <p className={styles.description}>{description}</p>
+              )}
             </header>
           )}
 
           <div className={`${styles.grid} ${styles[`cols-${columns}`]}`}>
             {items.map((item, index) => (
-              <FeatureCard key={item.title || index} feature={item} interactive={interactive} />
+              <FeatureCard
+                key={item.title || index}
+                feature={item}
+                interactive={interactive}
+              />
             ))}
           </div>
         </Container>
@@ -71,4 +83,4 @@ export const Features = forwardRef<HTMLElement, FeaturesProps>(
   },
 );
 
-Features.displayName = 'Features';
+Features.displayName = "Features";

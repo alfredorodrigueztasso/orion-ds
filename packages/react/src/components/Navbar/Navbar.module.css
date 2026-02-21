@@ -32,7 +32,8 @@
   background: color-mix(in srgb, var(--surface-base) 70%, transparent);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid color-mix(in srgb, var(--border-subtle) 50%, transparent);
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--border-subtle) 50%, transparent);
 }
 
 /* Glass with light scheme - for dark/colored backgrounds */

@@ -17,7 +17,7 @@
  * ```
  */
 
-import React, { useId, useState, useMemo, useCallback } from 'react';
+import React, { useId, useState, useMemo, useCallback } from "react";
 import {
   startOfMonth,
   endOfMonth,
@@ -32,13 +32,13 @@ import {
   isBefore,
   isAfter,
   format,
-} from 'date-fns';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Button } from '../Button';
-import type { CalendarProps, DateRange } from './Calendar.types';
-import styles from './Calendar.module.css';
+} from "date-fns";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "../Button";
+import type { CalendarProps, DateRange } from "./Calendar.types";
+import styles from "./Calendar.module.css";
 
-const WEEKDAY_LABELS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+const WEEKDAY_LABELS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
 
 function rotateArray<T>(arr: T[], n: number): T[] {
   const len = arr.length;
@@ -48,7 +48,7 @@ function rotateArray<T>(arr: T[], n: number): T[] {
 
 export const Calendar: React.FC<CalendarProps> = (props) => {
   const {
-    mode = 'single',
+    mode = "single",
     min,
     max,
     disabled,
@@ -59,18 +59,22 @@ export const Calendar: React.FC<CalendarProps> = (props) => {
   } = props;
 
   // Remove non-DOM props before spreading
-  const { selected: _s, onSelect: _o, ...domProps } = rest as Record<string, unknown>;
+  const {
+    selected: _s,
+    onSelect: _o,
+    ...domProps
+  } = rest as Record<string, unknown>;
 
   const [currentMonth, setCurrentMonth] = useState(() => {
     if (
-      mode === 'single' &&
-      props.mode !== 'range' &&
-      props.mode !== 'multiple' &&
+      mode === "single" &&
+      props.mode !== "range" &&
+      props.mode !== "multiple" &&
       props.selected
     ) {
       return startOfMonth(props.selected);
     }
-    if (mode === 'range' && props.mode === 'range' && props.selected?.from) {
+    if (mode === "range" && props.mode === "range" && props.selected?.from) {
       return startOfMonth(props.selected.from);
     }
     return startOfMonth(new Date());
@@ -86,7 +90,10 @@ export const Calendar: React.FC<CalendarProps> = (props) => {
   }, [currentMonth, weekStartsOn]);
 
   // Weekday headers
-  const weekdays = useMemo(() => rotateArray(WEEKDAY_LABELS, weekStartsOn), [weekStartsOn]);
+  const weekdays = useMemo(
+    () => rotateArray(WEEKDAY_LABELS, weekStartsOn),
+    [weekStartsOn],
+  );
 
   // Check if a date is disabled
   const isDisabled = useCallback(
@@ -105,10 +112,14 @@ export const Calendar: React.FC<CalendarProps> = (props) => {
   // Selection state checks
   const isSelected = useCallback(
     (date: Date): boolean => {
-      if (mode === 'single' && props.mode !== 'range' && props.mode !== 'multiple') {
+      if (
+        mode === "single" &&
+        props.mode !== "range" &&
+        props.mode !== "multiple"
+      ) {
         return props.selected ? isSameDay(props.selected, date) : false;
       }
-      if (mode === 'multiple' && props.mode === 'multiple') {
+      if (mode === "multiple" && props.mode === "multiple") {
         return props.selected?.some((d) => isSameDay(d, date)) ?? false;
       }
       return false;
@@ -117,19 +128,20 @@ export const Calendar: React.FC<CalendarProps> = (props) => {
   );
 
   const getRangeState = useCallback(
-    (date: Date): 'start' | 'middle' | 'end' | null => {
-      if (mode !== 'range' || props.mode !== 'range' || !props.selected) return null;
+    (date: Date): "start" | "middle" | "end" | null => {
+      if (mode !== "range" || props.mode !== "range" || !props.selected)
+        return null;
       const { from, to } = props.selected;
       if (!from) return null;
 
       if (!to) {
-        return isSameDay(date, from) ? 'start' : null;
+        return isSameDay(date, from) ? "start" : null;
       }
 
-      if (isSameDay(date, from) && isSameDay(date, to)) return 'start';
-      if (isSameDay(date, from)) return 'start';
-      if (isSameDay(date, to)) return 'end';
-      if (isAfter(date, from) && isBefore(date, to)) return 'middle';
+      if (isSameDay(date, from) && isSameDay(date, to)) return "start";
+      if (isSameDay(date, from)) return "start";
+      if (isSameDay(date, to)) return "end";
+      if (isAfter(date, from) && isBefore(date, to)) return "middle";
       return null;
     },
     [mode, props],
@@ -140,11 +152,19 @@ export const Calendar: React.FC<CalendarProps> = (props) => {
     (date: Date) => {
       if (isDisabled(date)) return;
 
-      if (mode === 'single' && props.mode !== 'range' && props.mode !== 'multiple') {
-        const onSelect = props.onSelect as ((d: Date | undefined) => void) | undefined;
+      if (
+        mode === "single" &&
+        props.mode !== "range" &&
+        props.mode !== "multiple"
+      ) {
+        const onSelect = props.onSelect as
+          | ((d: Date | undefined) => void)
+          | undefined;
         onSelect?.(date);
-      } else if (mode === 'range' && props.mode === 'range') {
-        const onSelect = props.onSelect as ((r: DateRange | undefined) => void) | undefined;
+      } else if (mode === "range" && props.mode === "range") {
+        const onSelect = props.onSelect as
+          | ((r: DateRange | undefined) => void)
+          | undefined;
         const current = props.selected;
 
         if (!current?.from || (current.from && current.to)) {
@@ -158,7 +178,7 @@ export const Calendar: React.FC<CalendarProps> = (props) => {
             onSelect?.({ from: current.from, to: date });
           }
         }
-      } else if (mode === 'multiple' && props.mode === 'multiple') {
+      } else if (mode === "multiple" && props.mode === "multiple") {
         const onSelect = props.onSelect as ((d: Date[]) => void) | undefined;
         const current = props.selected ?? [];
         const exists = current.findIndex((d) => isSameDay(d, date));
@@ -185,13 +205,13 @@ export const Calendar: React.FC<CalendarProps> = (props) => {
     if (isToday(date)) classes.push(styles.today);
     if (isDisabled(date)) classes.push(styles.disabled);
 
-    if (mode === 'range') {
+    if (mode === "range") {
       const rangeState = getRangeState(date);
-      if (rangeState === 'start') {
+      if (rangeState === "start") {
         classes.push(styles.rangeStart);
         // Same-day range: also add rangeEnd so .rangeStart.rangeEnd matches
         if (
-          props.mode === 'range' &&
+          props.mode === "range" &&
           props.selected?.from &&
           props.selected?.to &&
           isSameDay(props.selected.from, props.selected.to)
@@ -199,16 +219,18 @@ export const Calendar: React.FC<CalendarProps> = (props) => {
           classes.push(styles.rangeEnd);
         }
       }
-      if (rangeState === 'middle') classes.push(styles.rangeMiddle);
-      if (rangeState === 'end') classes.push(styles.rangeEnd);
+      if (rangeState === "middle") classes.push(styles.rangeMiddle);
+      if (rangeState === "end") classes.push(styles.rangeEnd);
     } else if (isSelected(date)) {
       classes.push(styles.selected);
     }
 
-    return classes.join(' ');
+    return classes.join(" ");
   };
 
-  const calendarClasses = [styles.calendar, className].filter(Boolean).join(' ');
+  const calendarClasses = [styles.calendar, className]
+    .filter(Boolean)
+    .join(" ");
   const monthLabelId = useId();
 
   return (
@@ -224,7 +246,7 @@ export const Calendar: React.FC<CalendarProps> = (props) => {
           aria-label="Previous month"
         />
         <span id={monthLabelId} className={styles.monthLabel}>
-          {format(currentMonth, 'MMMM yyyy')}
+          {format(currentMonth, "MMMM yyyy")}
         </span>
         <Button
           variant="ghost"
@@ -240,7 +262,12 @@ export const Calendar: React.FC<CalendarProps> = (props) => {
       <div className={styles.grid} role="grid" aria-labelledby={monthLabelId}>
         {/* Weekday headers */}
         {weekdays.map((label) => (
-          <div key={label} className={styles.weekday} role="columnheader" aria-label={label}>
+          <div
+            key={label}
+            className={styles.weekday}
+            role="columnheader"
+            aria-label={label}
+          >
             {label}
           </div>
         ))}
@@ -261,10 +288,10 @@ export const Calendar: React.FC<CalendarProps> = (props) => {
               onClick={() => handleSelect(day)}
               disabled={isDisabled(day)}
               tabIndex={isToday(day) ? 0 : -1}
-              aria-label={format(day, 'EEEE, MMMM d, yyyy')}
+              aria-label={format(day, "EEEE, MMMM d, yyyy")}
               aria-selected={isSelected(day) || getRangeState(day) !== null}
             >
-              {format(day, 'd')}
+              {format(day, "d")}
             </button>
           );
         })}
@@ -273,7 +300,7 @@ export const Calendar: React.FC<CalendarProps> = (props) => {
   );
 };
 
-Calendar.displayName = 'Calendar';
+Calendar.displayName = "Calendar";
 
 // Helper functions (not exported from date-fns by default in some versions)
 function startOfDay(date: Date): Date {

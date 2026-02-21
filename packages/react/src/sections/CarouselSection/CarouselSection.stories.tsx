@@ -1,42 +1,42 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { CarouselSection } from './CarouselSection';
-import { Badge } from '../../components/Badge';
+import type { Meta, StoryObj } from "@storybook/react";
+import { CarouselSection } from "./CarouselSection";
+import { Badge } from "@orion-ds/react";
 
 const meta = {
-  title: 'Sections/Marketing/CarouselSection',
+  title: "Sections/Marketing/CarouselSection",
   component: CarouselSection,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     variant: {
-      control: 'select',
-      options: ['editorial', 'product', 'gallery'],
+      control: "select",
+      options: ["editorial", "product", "gallery"],
     },
     aspectRatio: {
-      control: 'select',
-      options: ['16/9', '4/3', '1/1', '3/4'],
+      control: "select",
+      options: ["16/9", "4/3", "1/1", "3/4"],
     },
     gap: {
-      control: 'select',
-      options: ['sm', 'md', 'lg'],
+      control: "select",
+      options: ["sm", "md", "lg"],
     },
     background: {
-      control: 'select',
-      options: ['base', 'subtle', 'sunken', 'none'],
+      control: "select",
+      options: ["base", "subtle", "sunken", "none"],
     },
     alignToTitle: {
-      control: 'boolean',
-      description: 'Align first card with the title (container alignment)',
+      control: "boolean",
+      description: "Align first card with the title (container alignment)",
     },
     highlightActive: {
-      control: 'boolean',
-      description: 'Make the active card 10% larger (spotlight effect)',
+      control: "boolean",
+      description: "Make the active card 10% larger (spotlight effect)",
     },
     loop: {
-      control: 'boolean',
-      description: 'Enable infinite loop scrolling',
+      control: "boolean",
+      description: "Enable infinite loop scrolling",
     },
   },
 } satisfies Meta<typeof CarouselSection>;
@@ -48,38 +48,38 @@ const createImage = (seed: number) => (
   <img
     src={`https://picsum.photos/seed/${seed}/800/450`}
     alt=""
-    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+    style={{ width: "100%", height: "100%", objectFit: "cover" }}
   />
 );
 
 const defaultItems = [
   {
     image: createImage(1),
-    eyebrow: 'Design',
-    title: 'The future of interfaces',
-    description: 'How AI is reshaping how we build digital products.',
-    overlay: 'gradient' as const,
+    eyebrow: "Design",
+    title: "The future of interfaces",
+    description: "How AI is reshaping how we build digital products.",
+    overlay: "gradient" as const,
   },
   {
     image: createImage(2),
-    eyebrow: 'Engineering',
-    title: 'Building at scale',
-    description: 'Lessons from shipping to millions of users.',
-    overlay: 'gradient' as const,
+    eyebrow: "Engineering",
+    title: "Building at scale",
+    description: "Lessons from shipping to millions of users.",
+    overlay: "gradient" as const,
   },
   {
     image: createImage(3),
-    eyebrow: 'Product',
-    title: 'User-centered design',
-    description: 'Putting users first in every decision.',
-    overlay: 'gradient' as const,
+    eyebrow: "Product",
+    title: "User-centered design",
+    description: "Putting users first in every decision.",
+    overlay: "gradient" as const,
   },
   {
     image: createImage(4),
-    eyebrow: 'Culture',
-    title: 'Remote-first teams',
-    description: 'How we collaborate across time zones.',
-    overlay: 'gradient' as const,
+    eyebrow: "Culture",
+    title: "Remote-first teams",
+    description: "How we collaborate across time zones.",
+    overlay: "gradient" as const,
   },
 ];
 
@@ -91,8 +91,8 @@ export const Default: Story = {
 
 export const WithTitle: Story = {
   args: {
-    title: 'Featured Stories',
-    description: 'Check out our latest articles and insights.',
+    title: "Featured Stories",
+    description: "Check out our latest articles and insights.",
     items: defaultItems,
   },
 };
@@ -100,7 +100,7 @@ export const WithTitle: Story = {
 export const WithEyebrow: Story = {
   args: {
     eyebrow: <Badge>Featured</Badge>,
-    title: 'Editor Picks',
+    title: "Editor Picks",
     items: defaultItems,
   },
 };
@@ -111,8 +111,8 @@ export const WithEyebrow: Story = {
  */
 export const AlignedToTitle: Story = {
   args: {
-    title: 'Featured Stories',
-    description: 'Cards are aligned with the title edge.',
+    title: "Featured Stories",
+    description: "Cards are aligned with the title edge.",
     items: defaultItems,
     alignToTitle: true,
   },
@@ -124,8 +124,8 @@ export const AlignedToTitle: Story = {
  */
 export const EdgeAligned: Story = {
   args: {
-    title: 'Featured Stories',
-    description: 'Cards start from the screen edge.',
+    title: "Featured Stories",
+    description: "Cards start from the screen edge.",
     items: defaultItems,
     alignToTitle: false,
   },
@@ -133,7 +133,7 @@ export const EdgeAligned: Story = {
 
 export const AutoScroll: Story = {
   args: {
-    title: 'Auto-scrolling Carousel',
+    title: "Auto-scrolling Carousel",
     items: defaultItems,
     autoScroll: true,
     autoScrollInterval: 3000,
@@ -142,7 +142,7 @@ export const AutoScroll: Story = {
 
 export const WithPagination: Story = {
   args: {
-    title: 'With Pagination Dots',
+    title: "With Pagination Dots",
     items: defaultItems,
     showPagination: true,
   },
@@ -150,7 +150,7 @@ export const WithPagination: Story = {
 
 export const WithoutNavigation: Story = {
   args: {
-    title: 'No Navigation Arrows',
+    title: "No Navigation Arrows",
     items: defaultItems,
     showNavigation: false,
   },
@@ -158,50 +158,50 @@ export const WithoutNavigation: Story = {
 
 export const ProductVariant: Story = {
   args: {
-    title: 'Featured Products',
+    title: "Featured Products",
     items: defaultItems.map((item, i) => ({
       ...item,
       eyebrow: `$${(i + 1) * 29}.99`,
-      description: 'Free shipping',
+      description: "Free shipping",
     })),
-    variant: 'product',
-    aspectRatio: '1/1',
+    variant: "product",
+    aspectRatio: "1/1",
   },
 };
 
 export const GalleryVariant: Story = {
   args: {
-    title: 'Photo Gallery',
+    title: "Photo Gallery",
     items: defaultItems.map((item) => ({
       ...item,
       eyebrow: undefined,
       description: undefined,
-      overlay: 'none' as const,
+      overlay: "none" as const,
     })),
-    variant: 'gallery',
-    aspectRatio: '4/3',
+    variant: "gallery",
+    aspectRatio: "4/3",
   },
 };
 
 export const SmallGap: Story = {
   args: {
-    title: 'Small Gap',
+    title: "Small Gap",
     items: defaultItems,
-    gap: 'sm',
+    gap: "sm",
   },
 };
 
 export const LargeGap: Story = {
   args: {
-    title: 'Large Gap',
+    title: "Large Gap",
     items: defaultItems,
-    gap: 'lg',
+    gap: "lg",
   },
 };
 
 export const NoPeek: Story = {
   args: {
-    title: 'No Peek Effect',
+    title: "No Peek Effect",
     items: defaultItems,
     peek: false,
   },
@@ -209,17 +209,17 @@ export const NoPeek: Story = {
 
 export const SquareAspectRatio: Story = {
   args: {
-    title: 'Square Cards',
+    title: "Square Cards",
     items: defaultItems,
-    aspectRatio: '1/1',
+    aspectRatio: "1/1",
   },
 };
 
 export const SubtleBackground: Story = {
   args: {
-    title: 'Subtle Background',
+    title: "Subtle Background",
     items: defaultItems,
-    background: 'subtle',
+    background: "subtle",
   },
 };
 
@@ -229,8 +229,8 @@ export const SubtleBackground: Story = {
  */
 export const SpotlightEffect: Story = {
   args: {
-    title: 'Featured Stories',
-    description: 'Active card grows, others shrink - scroll to see the effect',
+    title: "Featured Stories",
+    description: "Active card grows, others shrink - scroll to see the effect",
     items: defaultItems,
     highlightActive: true,
   },
@@ -242,8 +242,8 @@ export const SpotlightEffect: Story = {
  */
 export const SpotlightAligned: Story = {
   args: {
-    title: 'Spotlight + Aligned',
-    description: 'Spotlight effect with title alignment',
+    title: "Spotlight + Aligned",
+    description: "Spotlight effect with title alignment",
     items: defaultItems,
     highlightActive: true,
     alignToTitle: true,
@@ -256,8 +256,8 @@ export const SpotlightAligned: Story = {
  */
 export const InfiniteLoop: Story = {
   args: {
-    title: 'Infinite Loop',
-    description: 'Navigation loops back to the start when reaching the end',
+    title: "Infinite Loop",
+    description: "Navigation loops back to the start when reaching the end",
     items: defaultItems,
     loop: true,
   },
@@ -269,8 +269,8 @@ export const InfiniteLoop: Story = {
  */
 export const SpotlightLoop: Story = {
   args: {
-    title: 'Spotlight + Loop',
-    description: 'Active card grows with infinite navigation',
+    title: "Spotlight + Loop",
+    description: "Active card grows with infinite navigation",
     items: defaultItems,
     highlightActive: true,
     loop: true,

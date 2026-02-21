@@ -4,9 +4,9 @@
  * A section combining logos, testimonials, and stats for social proof.
  */
 
-import React from 'react';
-import type { SocialProofProps } from './SocialProof.types';
-import styles from './SocialProof.module.css';
+import React from "react";
+import type { SocialProofProps } from "./SocialProof.types";
+import styles from "./SocialProof.module.css";
 
 /**
  * Star icon for ratings
@@ -17,7 +17,7 @@ const StarIcon: React.FC<{ filled: boolean }> = ({ filled }) => (
     width="20"
     height="20"
     viewBox="0 0 24 24"
-    fill={filled ? 'currentColor' : 'none'}
+    fill={filled ? "currentColor" : "none"}
     stroke="currentColor"
     strokeWidth="2"
   >
@@ -35,26 +35,38 @@ export const SocialProof: React.FC<SocialProofProps> = ({
   logos = [],
   testimonials = [],
   stats = [],
-  layout = 'stacked',
-  logoStyle = 'grid',
+  layout = "stacked",
+  logoStyle = "grid",
   grayscaleLogos = true,
-  background = 'subtle',
+  background = "subtle",
   compact = false,
   className,
   ...rest
 }) => {
-  const showLogos = logos.length > 0 && layout !== 'testimonials-only' && layout !== 'stats-only';
-  const showStats = stats.length > 0 && layout !== 'testimonials-only' && layout !== 'logos-only';
+  const showLogos =
+    logos.length > 0 &&
+    layout !== "testimonials-only" &&
+    layout !== "stats-only";
+  const showStats =
+    stats.length > 0 &&
+    layout !== "testimonials-only" &&
+    layout !== "logos-only";
   const showTestimonials =
-    testimonials.length > 0 && layout !== 'logos-only' && layout !== 'stats-only';
+    testimonials.length > 0 &&
+    layout !== "logos-only" &&
+    layout !== "stats-only";
 
   const renderLogos = () => (
     <div className={styles.logosSection}>
-      <div className={logoStyle === 'inline' ? styles.logosInline : styles.logosGrid}>
+      <div
+        className={
+          logoStyle === "inline" ? styles.logosInline : styles.logosGrid
+        }
+      >
         {logos.map((logo, index) => {
-          const LogoWrapper = logo.href ? 'a' : 'div';
+          const LogoWrapper = logo.href ? "a" : "div";
           const logoProps = logo.href
-            ? { href: logo.href, target: '_blank', rel: 'noopener noreferrer' }
+            ? { href: logo.href, target: "_blank", rel: "noopener noreferrer" }
             : {};
 
           return (
@@ -64,7 +76,11 @@ export const SocialProof: React.FC<SocialProofProps> = ({
               data-grayscale={grayscaleLogos}
               {...logoProps}
             >
-              <img src={logo.logo} alt={logo.name} className={styles.logoImage} />
+              <img
+                src={logo.logo}
+                alt={logo.name}
+                className={styles.logoImage}
+              />
             </LogoWrapper>
           );
         })}
@@ -110,7 +126,9 @@ export const SocialProof: React.FC<SocialProofProps> = ({
                 <p className={styles.authorName}>{testimonial.author}</p>
                 {(testimonial.title || testimonial.company) && (
                   <p className={styles.authorTitle}>
-                    {[testimonial.title, testimonial.company].filter(Boolean).join(', ')}
+                    {[testimonial.title, testimonial.company]
+                      .filter(Boolean)
+                      .join(", ")}
                   </p>
                 )}
               </div>
@@ -122,7 +140,7 @@ export const SocialProof: React.FC<SocialProofProps> = ({
   );
 
   const renderContent = () => {
-    if (layout === 'side-by-side') {
+    if (layout === "side-by-side") {
       return (
         <div className={styles.sideBySide}>
           <div>
@@ -145,7 +163,7 @@ export const SocialProof: React.FC<SocialProofProps> = ({
 
   return (
     <section
-      className={`${styles.socialProof} ${className || ''}`}
+      className={`${styles.socialProof} ${className || ""}`}
       data-background={background}
       data-compact={compact}
       {...rest}
@@ -165,4 +183,4 @@ export const SocialProof: React.FC<SocialProofProps> = ({
   );
 };
 
-SocialProof.displayName = 'SocialProof';
+SocialProof.displayName = "SocialProof";

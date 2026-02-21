@@ -15,5 +15,5 @@
  * ```
  */
 
-export { ChatPageTemplate } from './ChatPageTemplate';
-export type { ChatPageTemplateProps } from '../../../components/Chat';
+export { ChatPageTemplate } from "./ChatPageTemplate";
+export type { ChatPageTemplateProps } from "../../../components/Chat";

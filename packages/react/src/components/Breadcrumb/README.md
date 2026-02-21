@@ -29,14 +29,14 @@ interface BreadcrumbItem {
 ### Basic
 
 ```tsx
-import { Breadcrumb } from '@orion/react';
+import { Breadcrumb } from "@orion/react";
 
 <Breadcrumb
   items={[
-    { label: 'Home', href: '/' },
-    { label: 'Products', href: '/products' },
-    { label: 'Laptops', href: '/products/laptops' },
-    { label: 'MacBook Pro' }, // Current page (no href)
+    { label: "Home", href: "/" },
+    { label: "Products", href: "/products" },
+    { label: "Laptops", href: "/products/laptops" },
+    { label: "MacBook Pro" }, // Current page (no href)
   ]}
 />;
 ```
@@ -46,9 +46,9 @@ import { Breadcrumb } from '@orion/react';
 ```tsx
 <Breadcrumb
   items={[
-    { label: 'Home', href: '/' },
-    { label: 'Settings', href: '/settings' },
-    { label: 'Profile' },
+    { label: "Home", href: "/" },
+    { label: "Settings", href: "/settings" },
+    { label: "Profile" },
   ]}
   showHomeIcon
 />
@@ -74,13 +74,13 @@ import { Breadcrumb } from '@orion/react';
 ### With Icons
 
 ```tsx
-import { Home, Folder, File } from 'lucide-react';
+import { Home, Folder, File } from "lucide-react";
 
 <Breadcrumb
   items={[
-    { label: 'Home', href: '/', icon: <Home size={14} /> },
-    { label: 'Documents', href: '/docs', icon: <Folder size={14} /> },
-    { label: 'Report.pdf', icon: <File size={14} /> },
+    { label: "Home", href: "/", icon: <Home size={14} /> },
+    { label: "Documents", href: "/docs", icon: <Folder size={14} /> },
+    { label: "Report.pdf", icon: <File size={14} /> },
   ]}
 />;
 ```
@@ -90,11 +90,11 @@ import { Home, Folder, File } from 'lucide-react';
 ```tsx
 <Breadcrumb
   items={[
-    { label: 'Home', href: '/' },
-    { label: 'Category', href: '/category' },
-    { label: 'Subcategory', href: '/category/sub' },
-    { label: 'Section', href: '/category/sub/section' },
-    { label: 'Current Page' },
+    { label: "Home", href: "/" },
+    { label: "Category", href: "/category" },
+    { label: "Subcategory", href: "/category/sub" },
+    { label: "Section", href: "/category/sub/section" },
+    { label: "Current Page" },
   ]}
   maxItems={3}
 />
@@ -113,7 +113,7 @@ import { Home, Folder, File } from 'lucide-react';
 
 ```tsx
 // Using React Router
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 <Breadcrumb
   items={items}
@@ -126,7 +126,11 @@ import { Link } from 'react-router-dom';
 // Or render custom links
 {
   items.map((item, i) =>
-    item.href ? <Link to={item.href}>{item.label}</Link> : <span>{item.label}</span>,
+    item.href ? (
+      <Link to={item.href}>{item.label}</Link>
+    ) : (
+      <span>{item.label}</span>
+    ),
   );
 }
 ```

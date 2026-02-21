@@ -4,11 +4,11 @@
  * Audio playback controls with progress tracking and keyboard navigation.
  */
 
-import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { Play, Pause } from 'lucide-react';
-import type { ChatAudioPlayerProps } from '../Chat.types';
-import { formatTime } from '../utils';
-import styles from '../Chat.module.css';
+import React, { useState, useRef, useEffect, useCallback } from "react";
+import { Play, Pause } from "lucide-react";
+import type { ChatAudioPlayerProps } from "../Chat.types";
+import { formatTime } from "../utils";
+import styles from "../Chat.module.css";
 
 export const ChatAudioPlayer: React.FC<ChatAudioPlayerProps> = ({
   src,
@@ -87,21 +87,21 @@ export const ChatAudioPlayer: React.FC<ChatAudioPlayerProps> = ({
       let newTime = currentTime;
 
       switch (e.key) {
-        case 'ArrowRight':
-        case 'ArrowUp':
+        case "ArrowRight":
+        case "ArrowUp":
           e.preventDefault();
           newTime = Math.min(currentTime + STEP, duration);
           break;
-        case 'ArrowLeft':
-        case 'ArrowDown':
+        case "ArrowLeft":
+        case "ArrowDown":
           e.preventDefault();
           newTime = Math.max(currentTime - STEP, 0);
           break;
-        case 'Home':
+        case "Home":
           e.preventDefault();
           newTime = 0;
           break;
-        case 'End':
+        case "End":
           e.preventDefault();
           newTime = duration;
           break;
@@ -129,7 +129,10 @@ export const ChatAudioPlayer: React.FC<ChatAudioPlayerProps> = ({
   }, []);
 
   return (
-    <div className={[styles.audioPlayer, className].filter(Boolean).join(' ')} {...rest}>
+    <div
+      className={[styles.audioPlayer, className].filter(Boolean).join(" ")}
+      {...rest}
+    >
       <audio
         ref={audioRef}
         src={src}
@@ -142,7 +145,7 @@ export const ChatAudioPlayer: React.FC<ChatAudioPlayerProps> = ({
       <button
         className={styles.audioPlayerButton}
         onClick={togglePlayback}
-        aria-label={isPlaying ? 'Pause' : 'Play'}
+        aria-label={isPlaying ? "Pause" : "Play"}
       >
         {isPlaying ? <Pause size={16} /> : <Play size={16} />}
       </button>
@@ -161,7 +164,10 @@ export const ChatAudioPlayer: React.FC<ChatAudioPlayerProps> = ({
           aria-valuetext={`${formatTime(currentTime)} of ${formatTime(duration)}`}
           tabIndex={0}
         >
-          <div className={styles.audioPlayerFill} style={{ width: `${progress}%` }} />
+          <div
+            className={styles.audioPlayerFill}
+            style={{ width: `${progress}%` }}
+          />
         </div>
         <div className={styles.audioPlayerTime}>
           <span>{formatTime(currentTime)}</span>
@@ -172,4 +178,4 @@ export const ChatAudioPlayer: React.FC<ChatAudioPlayerProps> = ({
   );
 };
 
-ChatAudioPlayer.displayName = 'ChatAudioPlayer';
+ChatAudioPlayer.displayName = "ChatAudioPlayer";

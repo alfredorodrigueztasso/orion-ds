@@ -15,5 +15,5 @@
  * <ThemeController compact />
  * ```
  */
-export { ThemeController } from './ThemeController';
-export type { ThemeControllerProps } from './ThemeController.types';
+export { ThemeController } from "./ThemeController";
+export type { ThemeControllerProps } from "./ThemeController.types";

@@ -1,38 +1,38 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
-import { Navbar } from './Navbar';
-import { Button } from '../Button/Button';
+import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
+import { Navbar } from "./Navbar";
+import { Button } from "../Button/Button";
 
 const meta: Meta<typeof Navbar> = {
-  title: 'Components/Navigation/Navbar',
+  title: "Components/Navigation/Navbar",
   component: Navbar,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     height: {
-      control: 'select',
-      options: ['sm', 'md', 'lg'],
-      description: 'Navbar height',
+      control: "select",
+      options: ["sm", "md", "lg"],
+      description: "Navbar height",
     },
     variant: {
-      control: 'select',
-      options: ['solid', 'transparent', 'glass'],
-      description: 'Navbar background style',
+      control: "select",
+      options: ["solid", "transparent", "glass"],
+      description: "Navbar background style",
     },
     sticky: {
-      control: 'boolean',
-      description: 'Make navbar sticky',
+      control: "boolean",
+      description: "Make navbar sticky",
     },
     bordered: {
-      control: 'boolean',
-      description: 'Add bottom border',
+      control: "boolean",
+      description: "Add bottom border",
     },
   },
   decorators: [
     (Story) => (
-      <div style={{ width: '100%', minHeight: '100vh' }}>
+      <div style={{ width: "100%", minHeight: "100vh" }}>
         <Story />
       </div>
     ),
@@ -68,17 +68,25 @@ export const WithLogo: Story = {
     children: (
       <>
         <Navbar.Brand href="/">
-          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)' }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "var(--spacing-2)",
+            }}
+          >
             <div
               style={{
-                width: '32px',
-                height: '32px',
-                borderRadius: 'var(--radius-sm)',
+                width: "32px",
+                height: "32px",
+                borderRadius: "var(--radius-sm)",
                 background:
-                  'linear-gradient(135deg, var(--color-brand-400) 0%, var(--color-brand-600) 100%)',
+                  "linear-gradient(135deg, var(--color-brand-400) 0%, var(--color-brand-600) 100%)",
               }}
             />
-            <span style={{ fontWeight: 'var(--font-weight-medium)' }}>MyApp</span>
+            <span style={{ fontWeight: "var(--font-weight-medium)" }}>
+              MyApp
+            </span>
           </div>
         </Navbar.Brand>
         <Navbar.Nav>
@@ -104,9 +112,9 @@ export const GlassVariant: Story = {
     <div
       style={{
         background:
-          'linear-gradient(135deg, var(--color-brand-400) 0%, var(--color-brand-600) 100%)',
-        minHeight: '300px',
-        borderRadius: 'var(--radius-control)',
+          "linear-gradient(135deg, var(--color-brand-400) 0%, var(--color-brand-600) 100%)",
+        minHeight: "300px",
+        borderRadius: "var(--radius-control)",
       }}
     >
       <Navbar variant="glass" colorScheme="light" bordered={false}>
@@ -124,8 +132,13 @@ export const GlassVariant: Story = {
           </Button>
         </Navbar.Actions>
       </Navbar>
-      <div style={{ padding: 'var(--spacing-8)', color: 'var(--interactive-primary-text)' }}>
-        <h2 style={{ marginBottom: 'var(--spacing-2)' }}>Glass Navbar</h2>
+      <div
+        style={{
+          padding: "var(--spacing-8)",
+          color: "var(--interactive-primary-text)",
+        }}
+      >
+        <h2 style={{ marginBottom: "var(--spacing-2)" }}>Glass Navbar</h2>
         <p style={{ opacity: 0.8 }}>
           The glass effect creates a frosted appearance with backdrop blur.
         </p>
@@ -140,9 +153,9 @@ export const TransparentVariant: Story = {
     <div
       style={{
         background:
-          'linear-gradient(135deg, var(--color-neutral-900) 0%, var(--color-neutral-800) 50%, var(--color-neutral-800) 100%)',
-        minHeight: '300px',
-        borderRadius: 'var(--radius-control)',
+          "linear-gradient(135deg, var(--color-neutral-900) 0%, var(--color-neutral-800) 50%, var(--color-neutral-800) 100%)",
+        minHeight: "300px",
+        borderRadius: "var(--radius-control)",
       }}
     >
       <Navbar variant="transparent" colorScheme="light" bordered={false}>
@@ -163,10 +176,16 @@ export const TransparentVariant: Story = {
           </Button>
         </Navbar.Actions>
       </Navbar>
-      <div style={{ padding: 'var(--spacing-8)', color: 'var(--interactive-primary-text)' }}>
-        <h2 style={{ marginBottom: 'var(--spacing-2)' }}>Transparent Navbar</h2>
+      <div
+        style={{
+          padding: "var(--spacing-8)",
+          color: "var(--interactive-primary-text)",
+        }}
+      >
+        <h2 style={{ marginBottom: "var(--spacing-2)" }}>Transparent Navbar</h2>
         <p style={{ opacity: 0.8 }}>
-          Use colorScheme="light" for dark backgrounds, colorScheme="dark" for light backgrounds.
+          Use colorScheme="light" for dark backgrounds, colorScheme="dark" for
+          light backgrounds.
         </p>
       </div>
     </div>
@@ -195,9 +214,20 @@ export const SmallHeight: Story = {
           </Button>
         </Navbar.Actions>
       </Navbar>
-      <div style={{ padding: 'var(--spacing-6)', background: 'var(--surface-subtle)' }}>
-        <p style={{ color: 'var(--text-secondary)', fontSize: 'var(--font-size-14)' }}>
-          Small navbar (56px height) - ideal for dense interfaces and admin panels.
+      <div
+        style={{
+          padding: "var(--spacing-6)",
+          background: "var(--surface-subtle)",
+        }}
+      >
+        <p
+          style={{
+            color: "var(--text-secondary)",
+            fontSize: "var(--font-size-14)",
+          }}
+        >
+          Small navbar (56px height) - ideal for dense interfaces and admin
+          panels.
         </p>
       </div>
     </div>
@@ -224,9 +254,20 @@ export const LargeHeight: Story = {
           <Button variant="primary">Get Started</Button>
         </Navbar.Actions>
       </Navbar>
-      <div style={{ padding: 'var(--spacing-6)', background: 'var(--surface-subtle)' }}>
-        <p style={{ color: 'var(--text-secondary)', fontSize: 'var(--font-size-14)' }}>
-          Large navbar (72px height) - ideal for marketing sites and landing pages.
+      <div
+        style={{
+          padding: "var(--spacing-6)",
+          background: "var(--surface-subtle)",
+        }}
+      >
+        <p
+          style={{
+            color: "var(--text-secondary)",
+            fontSize: "var(--font-size-14)",
+          }}
+        >
+          Large navbar (72px height) - ideal for marketing sites and landing
+          pages.
         </p>
       </div>
     </div>
@@ -236,7 +277,7 @@ export const LargeHeight: Story = {
 export const Sticky: Story = {
   args: { children: null },
   render: () => (
-    <div style={{ minHeight: '200vh' }}>
+    <div style={{ minHeight: "200vh" }}>
       <Navbar sticky>
         <Navbar.Brand href="/">Sticky Nav</Navbar.Brand>
         <Navbar.Nav>
@@ -252,23 +293,32 @@ export const Sticky: Story = {
           </Button>
         </Navbar.Actions>
       </Navbar>
-      <div style={{ padding: 'var(--spacing-8)' }}>
-        <h1 style={{ marginBottom: 'var(--spacing-4)' }}>Scroll down to see sticky behavior</h1>
-        <p style={{ color: 'var(--text-secondary)', marginBottom: 'var(--spacing-8)' }}>
+      <div style={{ padding: "var(--spacing-8)" }}>
+        <h1 style={{ marginBottom: "var(--spacing-4)" }}>
+          Scroll down to see sticky behavior
+        </h1>
+        <p
+          style={{
+            color: "var(--text-secondary)",
+            marginBottom: "var(--spacing-8)",
+          }}
+        >
           The navbar will stay fixed at the top as you scroll.
         </p>
         {Array.from({ length: 10 }).map((_, i) => (
           <div
             key={i}
             style={{
-              padding: 'var(--spacing-6)',
-              marginBottom: 'var(--spacing-4)',
-              background: 'var(--surface-subtle)',
-              borderRadius: 'var(--radius-control)',
+              padding: "var(--spacing-6)",
+              marginBottom: "var(--spacing-4)",
+              background: "var(--surface-subtle)",
+              borderRadius: "var(--radius-control)",
             }}
           >
-            <h3 style={{ marginBottom: 'var(--spacing-2)' }}>Section {i + 1}</h3>
-            <p style={{ color: 'var(--text-secondary)' }}>
+            <h3 style={{ marginBottom: "var(--spacing-2)" }}>
+              Section {i + 1}
+            </h3>
+            <p style={{ color: "var(--text-secondary)" }}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             </p>
           </div>
@@ -297,8 +347,13 @@ export const NoBorder: Story = {
           </Button>
         </Navbar.Actions>
       </Navbar>
-      <div style={{ padding: 'var(--spacing-6)', background: 'var(--surface-subtle)' }}>
-        <p style={{ color: 'var(--text-secondary)' }}>
+      <div
+        style={{
+          padding: "var(--spacing-6)",
+          background: "var(--surface-subtle)",
+        }}
+      >
+        <p style={{ color: "var(--text-secondary)" }}>
           Notice there is no border at the bottom of the navbar.
         </p>
       </div>
@@ -348,16 +403,21 @@ export const GlassShowcase: Story = {
   args: { children: null },
   render: () => (
     <div
-      style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 'var(--spacing-8)' }}
+      style={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-8)",
+      }}
     >
       {/* Glass on gradient background */}
       <div
         style={{
           background:
-            'linear-gradient(135deg, var(--color-neutral-900) 0%, var(--color-neutral-800) 100%)',
-          minHeight: '180px',
-          borderRadius: 'var(--radius-control)',
-          overflow: 'hidden',
+            "linear-gradient(135deg, var(--color-neutral-900) 0%, var(--color-neutral-800) 100%)",
+          minHeight: "180px",
+          borderRadius: "var(--radius-control)",
+          overflow: "hidden",
         }}
       >
         <Navbar variant="glass" colorScheme="light" bordered={false}>
@@ -375,8 +435,13 @@ export const GlassShowcase: Story = {
             </Button>
           </Navbar.Actions>
         </Navbar>
-        <div style={{ padding: 'var(--spacing-6)', color: 'var(--interactive-primary-text)' }}>
-          <p style={{ opacity: 0.7, fontSize: 'var(--font-size-14)' }}>
+        <div
+          style={{
+            padding: "var(--spacing-6)",
+            color: "var(--interactive-primary-text)",
+          }}
+        >
+          <p style={{ opacity: 0.7, fontSize: "var(--font-size-14)" }}>
             Glass + colorScheme="light" on dark gradient
           </p>
         </div>
@@ -387,14 +452,20 @@ export const GlassShowcase: Story = {
         style={{
           background:
             'url("https://images.unsplash.com/photo-1557683316-973673baf926?w=1200") center/cover',
-          minHeight: '180px',
-          borderRadius: 'var(--radius-control)',
-          overflow: 'hidden',
-          position: 'relative',
+          minHeight: "180px",
+          borderRadius: "var(--radius-control)",
+          overflow: "hidden",
+          position: "relative",
         }}
       >
-        <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.2)' }} />
-        <div style={{ position: 'relative', zIndex: 1 }}>
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "rgba(0,0,0,0.2)",
+          }}
+        />
+        <div style={{ position: "relative", zIndex: 1 }}>
           <Navbar variant="glass" colorScheme="light" bordered={false}>
             <Navbar.Brand>PhotoApp</Navbar.Brand>
             <Navbar.Nav>
@@ -410,8 +481,13 @@ export const GlassShowcase: Story = {
               </Button>
             </Navbar.Actions>
           </Navbar>
-          <div style={{ padding: 'var(--spacing-6)', color: 'var(--interactive-primary-text)' }}>
-            <p style={{ opacity: 0.9, fontSize: 'var(--font-size-14)' }}>
+          <div
+            style={{
+              padding: "var(--spacing-6)",
+              color: "var(--interactive-primary-text)",
+            }}
+          >
+            <p style={{ opacity: 0.9, fontSize: "var(--font-size-14)" }}>
               Glass over image with overlay
             </p>
           </div>
@@ -422,11 +498,11 @@ export const GlassShowcase: Story = {
       <div
         style={{
           background:
-            'linear-gradient(135deg, var(--surface-subtle) 0%, var(--surface-layer) 100%)',
-          minHeight: '180px',
-          borderRadius: 'var(--radius-control)',
-          overflow: 'hidden',
-          border: '1px solid var(--border-subtle)',
+            "linear-gradient(135deg, var(--surface-subtle) 0%, var(--surface-layer) 100%)",
+          minHeight: "180px",
+          borderRadius: "var(--radius-control)",
+          overflow: "hidden",
+          border: "1px solid var(--border-subtle)",
         }}
       >
         <Navbar variant="glass" colorScheme="dark" bordered={false}>
@@ -447,8 +523,13 @@ export const GlassShowcase: Story = {
             </Button>
           </Navbar.Actions>
         </Navbar>
-        <div style={{ padding: 'var(--spacing-6)' }}>
-          <p style={{ color: 'var(--text-secondary)', fontSize: 'var(--font-size-14)' }}>
+        <div style={{ padding: "var(--spacing-6)" }}>
+          <p
+            style={{
+              color: "var(--text-secondary)",
+              fontSize: "var(--font-size-14)",
+            }}
+          >
             Glass + colorScheme="dark" on light gradient
           </p>
         </div>
@@ -461,16 +542,21 @@ export const ColorSchemes: Story = {
   args: { children: null },
   render: () => (
     <div
-      style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 'var(--spacing-8)' }}
+      style={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-8)",
+      }}
     >
       {/* Light color scheme on dark background */}
       <div
         style={{
           background:
-            'linear-gradient(135deg, var(--color-brand-400) 0%, var(--color-brand-600) 100%)',
-          minHeight: '200px',
-          borderRadius: 'var(--radius-control)',
-          overflow: 'hidden',
+            "linear-gradient(135deg, var(--color-brand-400) 0%, var(--color-brand-600) 100%)",
+          minHeight: "200px",
+          borderRadius: "var(--radius-control)",
+          overflow: "hidden",
         }}
       >
         <Navbar variant="transparent" colorScheme="light" bordered={false}>
@@ -491,8 +577,13 @@ export const ColorSchemes: Story = {
             </Button>
           </Navbar.Actions>
         </Navbar>
-        <div style={{ padding: 'var(--spacing-6)', color: 'var(--interactive-primary-text)' }}>
-          <h2 style={{ marginBottom: 'var(--spacing-2)' }}>Hero Section</h2>
+        <div
+          style={{
+            padding: "var(--spacing-6)",
+            color: "var(--interactive-primary-text)",
+          }}
+        >
+          <h2 style={{ marginBottom: "var(--spacing-2)" }}>Hero Section</h2>
           <p style={{ opacity: 0.8 }}>
             Use colorScheme="light" for navbars on dark or colored backgrounds.
           </p>
@@ -502,11 +593,11 @@ export const ColorSchemes: Story = {
       {/* Dark color scheme on light background */}
       <div
         style={{
-          background: 'var(--surface-subtle)',
-          minHeight: '200px',
-          borderRadius: 'var(--radius-control)',
-          overflow: 'hidden',
-          border: '1px solid var(--border-subtle)',
+          background: "var(--surface-subtle)",
+          minHeight: "200px",
+          borderRadius: "var(--radius-control)",
+          overflow: "hidden",
+          border: "1px solid var(--border-subtle)",
         }}
       >
         <Navbar variant="transparent" colorScheme="dark" bordered={false}>
@@ -527,9 +618,9 @@ export const ColorSchemes: Story = {
             </Button>
           </Navbar.Actions>
         </Navbar>
-        <div style={{ padding: 'var(--spacing-6)' }}>
-          <h2 style={{ marginBottom: 'var(--spacing-2)' }}>Content Section</h2>
-          <p style={{ color: 'var(--text-secondary)' }}>
+        <div style={{ padding: "var(--spacing-6)" }}>
+          <h2 style={{ marginBottom: "var(--spacing-2)" }}>Content Section</h2>
+          <p style={{ color: "var(--text-secondary)" }}>
             Use colorScheme="dark" for navbars on light backgrounds.
           </p>
         </div>
@@ -540,14 +631,20 @@ export const ColorSchemes: Story = {
         style={{
           background:
             'url("https://images.unsplash.com/photo-1557683316-973673baf926?w=1200") center/cover',
-          minHeight: '200px',
-          borderRadius: 'var(--radius-control)',
-          overflow: 'hidden',
-          position: 'relative',
+          minHeight: "200px",
+          borderRadius: "var(--radius-control)",
+          overflow: "hidden",
+          position: "relative",
         }}
       >
-        <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.3)' }} />
-        <div style={{ position: 'relative', zIndex: 1 }}>
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "rgba(0,0,0,0.3)",
+          }}
+        />
+        <div style={{ position: "relative", zIndex: 1 }}>
           <Navbar variant="glass" colorScheme="light" bordered={false}>
             <Navbar.Brand>GlassNav</Navbar.Brand>
             <Navbar.Nav>
@@ -563,9 +660,16 @@ export const ColorSchemes: Story = {
               </Button>
             </Navbar.Actions>
           </Navbar>
-          <div style={{ padding: 'var(--spacing-6)', color: 'var(--interactive-primary-text)' }}>
-            <h2 style={{ marginBottom: 'var(--spacing-2)' }}>Glass Effect</h2>
-            <p style={{ opacity: 0.9 }}>Glass navbar with light color scheme over an image.</p>
+          <div
+            style={{
+              padding: "var(--spacing-6)",
+              color: "var(--interactive-primary-text)",
+            }}
+          >
+            <h2 style={{ marginBottom: "var(--spacing-2)" }}>Glass Effect</h2>
+            <p style={{ opacity: 0.9 }}>
+              Glass navbar with light color scheme over an image.
+            </p>
           </div>
         </div>
       </div>
@@ -578,15 +682,20 @@ export const AllHeights: Story = {
   render: () => (
     <div
       style={{
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 'var(--spacing-8)',
-        padding: 'var(--spacing-4)',
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-8)",
+        padding: "var(--spacing-4)",
       }}
     >
       <div>
-        <h3 style={{ marginBottom: 'var(--spacing-4)', paddingLeft: 'var(--spacing-4)' }}>
+        <h3
+          style={{
+            marginBottom: "var(--spacing-4)",
+            paddingLeft: "var(--spacing-4)",
+          }}
+        >
           Small (56px)
         </h3>
         <Navbar height="sm">
@@ -607,7 +716,12 @@ export const AllHeights: Story = {
       </div>
 
       <div>
-        <h3 style={{ marginBottom: 'var(--spacing-4)', paddingLeft: 'var(--spacing-4)' }}>
+        <h3
+          style={{
+            marginBottom: "var(--spacing-4)",
+            paddingLeft: "var(--spacing-4)",
+          }}
+        >
           Medium (64px) - Default
         </h3>
         <Navbar height="md">
@@ -628,7 +742,12 @@ export const AllHeights: Story = {
       </div>
 
       <div>
-        <h3 style={{ marginBottom: 'var(--spacing-4)', paddingLeft: 'var(--spacing-4)' }}>
+        <h3
+          style={{
+            marginBottom: "var(--spacing-4)",
+            paddingLeft: "var(--spacing-4)",
+          }}
+        >
           Large (72px)
         </h3>
         <Navbar height="lg">
@@ -660,19 +779,25 @@ const ResponsiveNavbarDemo = () => {
   return (
     <Navbar sticky>
       <Navbar.Brand href="/">
-        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)' }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "var(--spacing-2)",
+          }}
+        >
           <div
             style={{
-              width: '32px',
-              height: '32px',
-              borderRadius: 'var(--radius-sm)',
-              background: 'var(--interactive-primary)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'var(--interactive-primary-text)',
-              fontWeight: 'var(--font-weight-bold)',
-              fontSize: 'var(--font-size-14)',
+              width: "32px",
+              height: "32px",
+              borderRadius: "var(--radius-sm)",
+              background: "var(--interactive-primary)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "var(--interactive-primary-text)",
+              fontWeight: "var(--font-weight-bold)",
+              fontSize: "var(--font-size-14)",
             }}
           >
             O
@@ -743,7 +868,7 @@ export const Responsive: Story = {
     docs: {
       description: {
         story:
-          'Resize the viewport to see the responsive behavior. On mobile (< 768px), the nav and actions are hidden and a hamburger menu appears.',
+          "Resize the viewport to see the responsive behavior. On mobile (< 768px), the nav and actions are hidden and a hamburger menu appears.",
       },
     },
   },
@@ -758,22 +883,28 @@ export const MobileView: Story = {
     return (
       <div
         style={{
-          maxWidth: '375px',
-          margin: '0 auto',
-          border: '1px solid var(--border-subtle)',
-          borderRadius: 'var(--radius-control)',
-          overflow: 'hidden',
+          maxWidth: "375px",
+          margin: "0 auto",
+          border: "1px solid var(--border-subtle)",
+          borderRadius: "var(--radius-control)",
+          overflow: "hidden",
         }}
       >
         <Navbar>
           <Navbar.Brand href="/">
-            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)' }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "var(--spacing-2)",
+              }}
+            >
               <div
                 style={{
-                  width: '28px',
-                  height: '28px',
-                  borderRadius: 'var(--radius-sm)',
-                  background: 'var(--interactive-primary)',
+                  width: "28px",
+                  height: "28px",
+                  borderRadius: "var(--radius-sm)",
+                  background: "var(--interactive-primary)",
                 }}
               />
               <span>App</span>
@@ -783,46 +914,54 @@ export const MobileView: Story = {
           <button
             onClick={() => setIsOpen(!isOpen)}
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '40px',
-              height: '40px',
-              background: 'transparent',
-              border: 'none',
-              borderRadius: 'var(--radius-sm)',
-              cursor: 'pointer',
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "40px",
+              height: "40px",
+              background: "transparent",
+              border: "none",
+              borderRadius: "var(--radius-sm)",
+              cursor: "pointer",
             }}
           >
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-1)' }}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "var(--spacing-1)",
+              }}
+            >
               <span
                 style={{
-                  width: '20px',
-                  height: '2px',
-                  background: 'var(--text-primary)',
-                  borderRadius: '1px',
-                  transform: isOpen ? 'translateY(7px) rotate(45deg)' : 'none',
-                  transition: 'all 0.2s',
+                  width: "20px",
+                  height: "2px",
+                  background: "var(--text-primary)",
+                  borderRadius: "1px",
+                  transform: isOpen ? "translateY(7px) rotate(45deg)" : "none",
+                  transition: "all 0.2s",
                 }}
               />
               <span
                 style={{
-                  width: '20px',
-                  height: '2px',
-                  background: 'var(--text-primary)',
-                  borderRadius: '1px',
+                  width: "20px",
+                  height: "2px",
+                  background: "var(--text-primary)",
+                  borderRadius: "1px",
                   opacity: isOpen ? 0 : 1,
-                  transition: 'all 0.2s',
+                  transition: "all 0.2s",
                 }}
               />
               <span
                 style={{
-                  width: '20px',
-                  height: '2px',
-                  background: 'var(--text-primary)',
-                  borderRadius: '1px',
-                  transform: isOpen ? 'translateY(-7px) rotate(-45deg)' : 'none',
-                  transition: 'all 0.2s',
+                  width: "20px",
+                  height: "2px",
+                  background: "var(--text-primary)",
+                  borderRadius: "1px",
+                  transform: isOpen
+                    ? "translateY(-7px) rotate(-45deg)"
+                    : "none",
+                  transition: "all 0.2s",
                 }}
               />
             </div>
@@ -849,14 +988,19 @@ export const MobileView: Story = {
 
         <div
           style={{
-            padding: 'var(--spacing-6)',
-            minHeight: '200px',
-            background: 'var(--surface-subtle)',
+            padding: "var(--spacing-6)",
+            minHeight: "200px",
+            background: "var(--surface-subtle)",
           }}
         >
-          <p style={{ color: 'var(--text-secondary)', fontSize: 'var(--font-size-14)' }}>
-            This demonstrates the mobile menu. The toggle button shows a hamburger that animates to
-            an X when open.
+          <p
+            style={{
+              color: "var(--text-secondary)",
+              fontSize: "var(--font-size-14)",
+            }}
+          >
+            This demonstrates the mobile menu. The toggle button shows a
+            hamburger that animates to an X when open.
           </p>
         </div>
       </div>
@@ -869,15 +1013,20 @@ export const AllVariants: Story = {
   render: () => (
     <div
       style={{
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 'var(--spacing-8)',
-        padding: 'var(--spacing-4)',
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-8)",
+        padding: "var(--spacing-4)",
       }}
     >
       <div>
-        <h3 style={{ marginBottom: 'var(--spacing-4)', paddingLeft: 'var(--spacing-4)' }}>
+        <h3
+          style={{
+            marginBottom: "var(--spacing-4)",
+            paddingLeft: "var(--spacing-4)",
+          }}
+        >
           Solid (Default)
         </h3>
         <Navbar variant="solid">
@@ -899,16 +1048,17 @@ export const AllVariants: Story = {
 
       <div
         style={{
-          background: 'linear-gradient(135deg, var(--interactive-primary), var(--color-brand-600))',
-          borderRadius: 'var(--radius-control)',
-          padding: 'var(--spacing-4) 0',
+          background:
+            "linear-gradient(135deg, var(--interactive-primary), var(--color-brand-600))",
+          borderRadius: "var(--radius-control)",
+          padding: "var(--spacing-4) 0",
         }}
       >
         <h3
           style={{
-            marginBottom: 'var(--spacing-4)',
-            paddingLeft: 'var(--spacing-4)',
-            color: 'var(--interactive-primary-text)',
+            marginBottom: "var(--spacing-4)",
+            paddingLeft: "var(--spacing-4)",
+            color: "var(--interactive-primary-text)",
           }}
         >
           Transparent + colorScheme="light"
@@ -932,16 +1082,17 @@ export const AllVariants: Story = {
 
       <div
         style={{
-          background: 'linear-gradient(135deg, var(--color-neutral-900), var(--color-neutral-800))',
-          borderRadius: 'var(--radius-control)',
-          padding: 'var(--spacing-4) 0',
+          background:
+            "linear-gradient(135deg, var(--color-neutral-900), var(--color-neutral-800))",
+          borderRadius: "var(--radius-control)",
+          padding: "var(--spacing-4) 0",
         }}
       >
         <h3
           style={{
-            marginBottom: 'var(--spacing-4)',
-            paddingLeft: 'var(--spacing-4)',
-            color: 'var(--interactive-primary-text)',
+            marginBottom: "var(--spacing-4)",
+            paddingLeft: "var(--spacing-4)",
+            color: "var(--interactive-primary-text)",
           }}
         >
           Glass + colorScheme="light"

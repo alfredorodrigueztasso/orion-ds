@@ -4,7 +4,7 @@
  * Type definitions for the Orion Select component (dropdown).
  */
 
-import type { SelectHTMLAttributes, ReactNode } from 'react';
+import type { SelectHTMLAttributes, ReactNode } from "react";
 
 /**
  * Select option type
@@ -29,7 +29,10 @@ export interface SelectOption {
  * />
  * ```
  */
-export interface SelectProps extends Omit<SelectHTMLAttributes<HTMLSelectElement>, 'size'> {
+export interface SelectProps extends Omit<
+  SelectHTMLAttributes<HTMLSelectElement>,
+  "size"
+> {
   /**
    * Select label
    */
@@ -66,7 +69,7 @@ export interface SelectProps extends Omit<SelectHTMLAttributes<HTMLSelectElement
    * Select size
    * @default 'md'
    */
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
 
   /**
    * Optional indicator

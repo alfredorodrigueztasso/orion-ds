@@ -12,11 +12,11 @@
  * ```
  */
 
-import type { HeroHighlightProps } from './Hero.types';
-import styles from './Hero.module.css';
+import type { HeroHighlightProps } from "./Hero.types";
+import styles from "./Hero.module.css";
 
 export const HeroHighlight = ({ children }: HeroHighlightProps) => {
   return <span className={styles.highlight}>{children}</span>;
 };
 
-HeroHighlight.displayName = 'Hero.Highlight';
+HeroHighlight.displayName = "Hero.Highlight";

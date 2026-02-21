@@ -2,8 +2,8 @@
  * Hero Component Exports
  */
 
-export { Hero } from './Hero';
-export { HeroHighlight } from './HeroHighlight';
+export { Hero } from "./Hero";
+export { HeroHighlight } from "./HeroHighlight";
 export type {
   HeroProps,
   HeroAlign,
@@ -11,4 +11,4 @@ export type {
   HeroVariant,
   HeroLayout,
   HeroHighlightProps,
-} from './Hero.types';
+} from "./Hero.types";

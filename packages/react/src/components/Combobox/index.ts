@@ -17,5 +17,10 @@
  * />
  * ```
  */
-export { Combobox } from './Combobox';
-export type { ComboboxProps, ComboboxOption, ComboboxGroup, ComboboxSize } from './Combobox.types';
+export { Combobox } from "./Combobox";
+export type {
+  ComboboxProps,
+  ComboboxOption,
+  ComboboxGroup,
+  ComboboxSize,
+} from "./Combobox.types";

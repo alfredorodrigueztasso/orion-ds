@@ -29,12 +29,12 @@
  * ```
  */
 
-import { forwardRef, useEffect } from 'react';
-import type { HeroProps } from './Hero.types';
-import { HeroHighlight } from './HeroHighlight';
-import { Section } from '../Section';
-import { Container } from '../Container';
-import styles from './Hero.module.css';
+import { forwardRef, useEffect } from "react";
+import type { HeroProps } from "./Hero.types";
+import { HeroHighlight } from "./HeroHighlight";
+import { Section } from "../Section";
+import { Container } from "../Container";
+import styles from "./Hero.module.css";
 
 // SVG placeholder for default media
 const DefaultMediaPlaceholder = () => (
@@ -68,13 +68,13 @@ const HeroBase = forwardRef<HTMLElement, HeroProps>(
       primaryAction,
       secondaryAction,
       media,
-      mediaPosition = 'right',
+      mediaPosition = "right",
       showDefaultMedia = false,
       trustIndicators,
-      align = 'center',
-      size = 'lg',
-      layout = 'contained',
-      variant = 'default',
+      align = "center",
+      size = "lg",
+      layout = "contained",
+      variant = "default",
       backgroundImage,
       backgroundOverlay = 0.6,
       elevated = false,
@@ -89,16 +89,16 @@ const HeroBase = forwardRef<HTMLElement, HeroProps>(
 
     // Deprecation warnings
     useEffect(() => {
-      if (headline && process.env.NODE_ENV === 'development') {
+      if (headline && process.env.NODE_ENV === "development") {
         console.warn(
           '[Hero] The "headline" prop is deprecated. Use "title" instead. ' +
-            'headline will be removed in v3.0.',
+            "headline will be removed in v3.0.",
         );
       }
     }, [headline]);
 
     useEffect(() => {
-      if (fullHeight && process.env.NODE_ENV === 'development') {
+      if (fullHeight && process.env.NODE_ENV === "development") {
         console.warn(
           '[Hero] The "fullHeight" prop is deprecated. Use layout="fullscreen" instead.',
         );
@@ -106,27 +106,28 @@ const HeroBase = forwardRef<HTMLElement, HeroProps>(
     }, [fullHeight]);
 
     // Handle deprecated fullHeight prop
-    const effectiveLayout = fullHeight ? 'fullscreen' : layout;
+    const effectiveLayout = fullHeight ? "fullscreen" : layout;
 
     // Determine if we should show media
-    const effectiveMedia = media || (showDefaultMedia ? <DefaultMediaPlaceholder /> : null);
+    const effectiveMedia =
+      media || (showDefaultMedia ? <DefaultMediaPlaceholder /> : null);
     const hasMedia = !!effectiveMedia;
     const hasActions = primaryAction || secondaryAction;
-    const isBackgroundVariant = variant === 'background';
+    const isBackgroundVariant = variant === "background";
 
     const classNames = [
       styles.hero,
       styles[`align-${align}`],
       styles[`size-${size}`],
       styles[`layout-${effectiveLayout}`],
-      isBackgroundVariant && styles['variant-background'],
-      elevated && effectiveLayout === 'card' && styles.elevated,
+      isBackgroundVariant && styles["variant-background"],
+      elevated && effectiveLayout === "card" && styles.elevated,
       hasMedia && !isBackgroundVariant && styles.hasMedia,
       hasMedia && !isBackgroundVariant && styles[`media-${mediaPosition}`],
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
       <Section ref={ref} spacing="xl" className={classNames} {...rest}>
@@ -160,17 +161,21 @@ const HeroBase = forwardRef<HTMLElement, HeroProps>(
               </div>
             )}
 
-            {trustIndicators && <div className={styles.trustIndicators}>{trustIndicators}</div>}
+            {trustIndicators && (
+              <div className={styles.trustIndicators}>{trustIndicators}</div>
+            )}
           </div>
 
-          {hasMedia && !isBackgroundVariant && <div className={styles.media}>{effectiveMedia}</div>}
+          {hasMedia && !isBackgroundVariant && (
+            <div className={styles.media}>{effectiveMedia}</div>
+          )}
         </Container>
       </Section>
     );
   },
 );
 
-HeroBase.displayName = 'Hero';
+HeroBase.displayName = "Hero";
 
 // Create compound component
 type HeroComponent = typeof HeroBase & {

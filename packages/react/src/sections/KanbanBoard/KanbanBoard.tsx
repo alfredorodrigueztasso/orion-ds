@@ -16,14 +16,22 @@
  * ```
  */
 
-import { forwardRef } from 'react';
-import { Plus, MoreHorizontal, Clock, AlertCircle } from 'lucide-react';
-import type { KanbanBoardProps, KanbanCard, KanbanColumn } from './KanbanBoard.types';
-import styles from './KanbanBoard.module.css';
+import { forwardRef } from "react";
+import { Plus, MoreHorizontal, Clock, AlertCircle } from "lucide-react";
+import type {
+  KanbanBoardProps,
+  KanbanCard,
+  KanbanColumn,
+} from "./KanbanBoard.types";
+import styles from "./KanbanBoard.module.css";
 
 // Priority indicator
-const PriorityIndicator = ({ priority }: { priority?: KanbanCard['priority'] }) => {
-  if (!priority || priority === 'low') return null;
+const PriorityIndicator = ({
+  priority,
+}: {
+  priority?: KanbanCard["priority"];
+}) => {
+  if (!priority || priority === "low") return null;
 
   return (
     <span className={`${styles.priority} ${styles[`priority-${priority}`]}`}>
@@ -46,13 +54,13 @@ const KanbanCardComponent = ({
 }) => {
   return (
     <div
-      className={`${styles.card} ${compact ? styles.cardCompact : ''}`}
+      className={`${styles.card} ${compact ? styles.cardCompact : ""}`}
       onClick={onClick}
       draggable={draggable}
       role="button"
       tabIndex={0}
       onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
+        if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
           onClick?.();
         }
@@ -69,7 +77,10 @@ const KanbanCardComponent = ({
         {card.labels && card.labels.length > 0 && !compact && (
           <div className={styles.labels}>
             {card.labels.map((label) => (
-              <span key={label.id} className={`${styles.label} ${styles[`label-${label.color}`]}`}>
+              <span
+                key={label.id}
+                className={`${styles.label} ${styles[`label-${label.color}`]}`}
+              >
                 {label.text}
               </span>
             ))}
@@ -100,7 +111,11 @@ const KanbanCardComponent = ({
             {card.assignees && card.assignees.length > 0 && (
               <div className={styles.assignees}>
                 {card.assignees.slice(0, 3).map((assignee) => (
-                  <div key={assignee.id} className={styles.assignee} title={assignee.name}>
+                  <div
+                    key={assignee.id}
+                    className={styles.assignee}
+                    title={assignee.name}
+                  >
                     {assignee.avatar ? (
                       <img src={assignee.avatar} alt={assignee.name} />
                     ) : (
@@ -109,7 +124,9 @@ const KanbanCardComponent = ({
                   </div>
                 ))}
                 {card.assignees.length > 3 && (
-                  <div className={styles.assigneeMore}>+{card.assignees.length - 3}</div>
+                  <div className={styles.assigneeMore}>
+                    +{card.assignees.length - 3}
+                  </div>
                 )}
               </div>
             )}
@@ -144,12 +161,16 @@ const KanbanColumnComponent = ({
     <div className={styles.column}>
       <div className={styles.columnHeader}>
         <div className={styles.columnTitleWrapper}>
-          {column.color && column.color !== 'default' && (
-            <span className={`${styles.columnDot} ${styles[`dot-${column.color}`]}`} />
+          {column.color && column.color !== "default" && (
+            <span
+              className={`${styles.columnDot} ${styles[`dot-${column.color}`]}`}
+            />
           )}
           <h3 className={styles.columnTitle}>{column.title}</h3>
           {showCardCount && (
-            <span className={`${styles.columnCount} ${isOverLimit ? styles.columnCountOver : ''}`}>
+            <span
+              className={`${styles.columnCount} ${isOverLimit ? styles.columnCountOver : ""}`}
+            >
               {column.cards.length}
               {column.limit && `/${column.limit}`}
             </span>
@@ -190,11 +211,17 @@ const KanbanColumnComponent = ({
           />
         ))}
 
-        {column.cards.length === 0 && <div className={styles.emptyColumn}>No cards yet</div>}
+        {column.cards.length === 0 && (
+          <div className={styles.emptyColumn}>No cards yet</div>
+        )}
       </div>
 
       {onAddCard && (
-        <button type="button" className={styles.addCardButton} onClick={onAddCard}>
+        <button
+          type="button"
+          className={styles.addCardButton}
+          onClick={onAddCard}
+        >
           <Plus size={16} />
           <span>Add card</span>
         </button>
@@ -220,7 +247,9 @@ export const KanbanBoard = forwardRef<HTMLDivElement, KanbanBoardProps>(
     },
     ref,
   ) => {
-    const classNames = [styles.kanbanBoard, className].filter(Boolean).join(' ');
+    const classNames = [styles.kanbanBoard, className]
+      .filter(Boolean)
+      .join(" ");
 
     return (
       <div ref={ref} className={classNames} {...rest}>
@@ -234,12 +263,18 @@ export const KanbanBoard = forwardRef<HTMLDivElement, KanbanBoardProps>(
               draggable={draggable}
               onCardClick={(card) => onCardClick?.(card, column.id)}
               onAddCard={onAddCard ? () => onAddCard(column.id) : undefined}
-              onColumnMenu={onColumnMenu ? () => onColumnMenu(column.id) : undefined}
+              onColumnMenu={
+                onColumnMenu ? () => onColumnMenu(column.id) : undefined
+              }
             />
           ))}
 
           {onAddColumn && (
-            <button type="button" className={styles.addColumnButton} onClick={onAddColumn}>
+            <button
+              type="button"
+              className={styles.addColumnButton}
+              onClick={onAddColumn}
+            >
               <Plus size={20} />
               <span>Add column</span>
             </button>
@@ -250,4 +285,4 @@ export const KanbanBoard = forwardRef<HTMLDivElement, KanbanBoardProps>(
   },
 );
 
-KanbanBoard.displayName = 'KanbanBoard';
+KanbanBoard.displayName = "KanbanBoard";

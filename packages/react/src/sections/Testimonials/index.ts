@@ -2,8 +2,8 @@
  * Testimonials Component Exports
  */
 
-export { Testimonials } from './Testimonials';
-export { TestimonialCard } from './TestimonialCard';
+export { Testimonials } from "./Testimonials";
+export { TestimonialCard } from "./TestimonialCard";
 export type {
   TestimonialsProps,
   Testimonial,
@@ -11,4 +11,4 @@ export type {
   TestimonialCardProps,
   TestimonialsColumns,
   TestimonialsVariant,
-} from './Testimonials.types';
+} from "./Testimonials.types";

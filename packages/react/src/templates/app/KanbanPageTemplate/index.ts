@@ -1,2 +1,2 @@
-export { KanbanPageTemplate, default } from './KanbanPageTemplate';
-export type { KanbanPageTemplateProps } from './KanbanPageTemplate.types';
+export { KanbanPageTemplate, default } from "./KanbanPageTemplate";
+export type { KanbanPageTemplateProps } from "./KanbanPageTemplate.types";

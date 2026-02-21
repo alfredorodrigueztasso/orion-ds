@@ -4,15 +4,15 @@
  * Displays image attachments with thumbnail and lightbox support.
  */
 
-import React, { useState } from 'react';
-import { ImageOff } from 'lucide-react';
-import type { ChatImagePreviewProps } from '../Chat.types';
-import styles from '../Chat.module.css';
-import { ChatLightbox } from './ChatLightbox';
+import React, { useState } from "react";
+import { ImageOff } from "lucide-react";
+import type { ChatImagePreviewProps } from "../Chat.types";
+import styles from "../Chat.module.css";
+import { ChatLightbox } from "./ChatLightbox";
 
 export const ChatImagePreview: React.FC<ChatImagePreviewProps> = ({
   src,
-  alt = 'Image attachment',
+  alt = "Image attachment",
   thumbnail,
   onClick,
   enableLightbox = true,
@@ -31,7 +31,7 @@ export const ChatImagePreview: React.FC<ChatImagePreviewProps> = ({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === ' ') {
+    if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       handleClick();
     }
@@ -46,13 +46,15 @@ export const ChatImagePreview: React.FC<ChatImagePreviewProps> = ({
       <div
         className={[styles.imagePreview, styles.attachmentPreview, className]
           .filter(Boolean)
-          .join(' ')}
+          .join(" ")}
         {...rest}
       >
         <div className={styles.attachmentPreviewIcon}>
           <ImageOff size={20} />
         </div>
-        <span className={styles.attachmentPreviewName}>Image failed to load</span>
+        <span className={styles.attachmentPreviewName}>
+          Image failed to load
+        </span>
       </div>
     );
   }
@@ -60,7 +62,7 @@ export const ChatImagePreview: React.FC<ChatImagePreviewProps> = ({
   return (
     <>
       <div
-        className={[styles.imagePreview, className].filter(Boolean).join(' ')}
+        className={[styles.imagePreview, className].filter(Boolean).join(" ")}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
         role="button"
@@ -89,4 +91,4 @@ export const ChatImagePreview: React.FC<ChatImagePreviewProps> = ({
   );
 };
 
-ChatImagePreview.displayName = 'ChatImagePreview';
+ChatImagePreview.displayName = "ChatImagePreview";

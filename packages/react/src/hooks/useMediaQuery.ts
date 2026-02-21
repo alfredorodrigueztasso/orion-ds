@@ -11,7 +11,7 @@
  * ```
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 /**
  * Hook to detect if a media query matches
@@ -22,14 +22,14 @@ import { useState, useEffect } from 'react';
 export function useMediaQuery(query: string): boolean {
   const [matches, setMatches] = useState(() => {
     // Check if window is defined (SSR safety)
-    if (typeof window === 'undefined') {
+    if (typeof window === "undefined") {
       return false;
     }
     return window.matchMedia(query).matches;
   });
 
   useEffect(() => {
-    if (typeof window === 'undefined') {
+    if (typeof window === "undefined") {
       return;
     }
 
@@ -45,8 +45,8 @@ export function useMediaQuery(query: string): boolean {
 
     // Modern browsers
     if (mediaQueryList.addEventListener) {
-      mediaQueryList.addEventListener('change', handleChange);
-      return () => mediaQueryList.removeEventListener('change', handleChange);
+      mediaQueryList.addEventListener("change", handleChange);
+      return () => mediaQueryList.removeEventListener("change", handleChange);
     }
 
     // Fallback for older browsers
@@ -65,33 +65,33 @@ export function useMediaQuery(query: string): boolean {
  * Returns true if viewport is mobile (< 640px)
  */
 export function useIsMobile(): boolean {
-  return useMediaQuery('(max-width: 639px)');
+  return useMediaQuery("(max-width: 639px)");
 }
 
 /**
  * Returns true if viewport is tablet (640px - 1023px)
  */
 export function useIsTablet(): boolean {
-  return useMediaQuery('(min-width: 640px) and (max-width: 1023px)');
+  return useMediaQuery("(min-width: 640px) and (max-width: 1023px)");
 }
 
 /**
  * Returns true if viewport is desktop (>= 1024px)
  */
 export function useIsDesktop(): boolean {
-  return useMediaQuery('(min-width: 1024px)');
+  return useMediaQuery("(min-width: 1024px)");
 }
 
 /**
  * Returns true if user prefers dark color scheme
  */
 export function usePrefersDarkMode(): boolean {
-  return useMediaQuery('(prefers-color-scheme: dark)');
+  return useMediaQuery("(prefers-color-scheme: dark)");
 }
 
 /**
  * Returns true if user prefers reduced motion
  */
 export function usePrefersReducedMotion(): boolean {
-  return useMediaQuery('(prefers-reduced-motion: reduce)');
+  return useMediaQuery("(prefers-reduced-motion: reduce)");
 }

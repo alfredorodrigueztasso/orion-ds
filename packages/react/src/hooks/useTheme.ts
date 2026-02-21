@@ -22,19 +22,19 @@
  * ```
  */
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback } from "react";
 
 // Local type definitions
-export type Theme = 'light' | 'dark';
-export type Brand = 'orion' | 'red' | 'deepblue' | 'orange' | 'lemon';
+export type Theme = "light" | "dark";
+export type Brand = "orion" | "red" | "deepblue" | "orange" | "lemon";
 
 // Local validation functions
 const isValidTheme = (value: string): value is Theme => {
-  return value === 'light' || value === 'dark';
+  return value === "light" || value === "dark";
 };
 
 const isValidBrand = (value: string): value is Brand => {
-  return ['orion', 'red', 'deepblue', 'orange', 'lemon'].includes(value);
+  return ["orion", "red", "deepblue", "orange", "lemon"].includes(value);
 };
 
 export interface UseThemeOptions {
@@ -97,16 +97,16 @@ export interface UseThemeReturn {
  */
 export function useTheme(options: UseThemeOptions = {}): UseThemeReturn {
   const {
-    defaultTheme = 'light',
-    defaultBrand = 'orion',
+    defaultTheme = "light",
+    defaultBrand = "orion",
     storageEnabled = true,
-    storageKey = 'orion-theme',
-    brandStorageKey = 'orion-brand',
+    storageKey = "orion-theme",
+    brandStorageKey = "orion-brand",
   } = options;
 
   // Initialize theme from localStorage or default
   const [theme, setThemeState] = useState<Theme>(() => {
-    if (typeof window === 'undefined' || !storageEnabled) {
+    if (typeof window === "undefined" || !storageEnabled) {
       return defaultTheme;
     }
 
@@ -116,7 +116,7 @@ export function useTheme(options: UseThemeOptions = {}): UseThemeReturn {
 
   // Initialize brand from localStorage or default
   const [brand, setBrandState] = useState<Brand>(() => {
-    if (typeof window === 'undefined' || !storageEnabled) {
+    if (typeof window === "undefined" || !storageEnabled) {
       return defaultBrand;
     }
 
@@ -129,8 +129,8 @@ export function useTheme(options: UseThemeOptions = {}): UseThemeReturn {
     (newTheme: Theme) => {
       setThemeState(newTheme);
 
-      if (typeof window !== 'undefined') {
-        document.documentElement.setAttribute('data-theme', newTheme);
+      if (typeof window !== "undefined") {
+        document.documentElement.setAttribute("data-theme", newTheme);
 
         if (storageEnabled) {
           localStorage.setItem(storageKey, newTheme);
@@ -145,8 +145,8 @@ export function useTheme(options: UseThemeOptions = {}): UseThemeReturn {
     (newBrand: Brand) => {
       setBrandState(newBrand);
 
-      if (typeof window !== 'undefined') {
-        document.documentElement.setAttribute('data-brand', newBrand);
+      if (typeof window !== "undefined") {
+        document.documentElement.setAttribute("data-brand", newBrand);
 
         if (storageEnabled) {
           localStorage.setItem(brandStorageKey, newBrand);
@@ -158,37 +158,37 @@ export function useTheme(options: UseThemeOptions = {}): UseThemeReturn {
 
   // Toggle between light and dark themes
   const toggleTheme = useCallback(() => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
+    setTheme(theme === "light" ? "dark" : "light");
   }, [theme, setTheme]);
 
   // Update DOM on mount and when theme/brand changes
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      document.documentElement.setAttribute('data-theme', theme);
-      document.documentElement.setAttribute('data-brand', brand);
+    if (typeof window !== "undefined") {
+      document.documentElement.setAttribute("data-theme", theme);
+      document.documentElement.setAttribute("data-brand", brand);
     }
   }, [theme, brand]);
 
   // Listen to system theme preference changes
   useEffect(() => {
-    if (typeof window === 'undefined' || !storageEnabled) {
+    if (typeof window === "undefined" || !storageEnabled) {
       return;
     }
 
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
     const handleChange = (e: MediaQueryListEvent) => {
       const stored = localStorage.getItem(storageKey);
       if (!stored) {
         // Only auto-switch if user hasn't set a preference
-        setTheme(e.matches ? 'dark' : 'light');
+        setTheme(e.matches ? "dark" : "light");
       }
     };
 
     // Modern browsers
     if (mediaQuery.addEventListener) {
-      mediaQuery.addEventListener('change', handleChange);
-      return () => mediaQuery.removeEventListener('change', handleChange);
+      mediaQuery.addEventListener("change", handleChange);
+      return () => mediaQuery.removeEventListener("change", handleChange);
     }
     // Legacy browsers
     else if (mediaQuery.addListener) {
@@ -203,7 +203,7 @@ export function useTheme(options: UseThemeOptions = {}): UseThemeReturn {
     setTheme,
     setBrand,
     toggleTheme,
-    isDark: theme === 'dark',
-    isLight: theme === 'light',
+    isDark: theme === "dark",
+    isLight: theme === "light",
   };
 }

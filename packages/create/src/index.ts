@@ -14,9 +14,9 @@
  *   --help     Show help
  */
 
-import * as fs from 'node:fs';
-import * as path from 'node:path';
-import { execSync } from 'node:child_process';
+import * as fs from "node:fs";
+import * as path from "node:path";
+import { execSync } from "node:child_process";
 
 // ============================================================================
 // CLI argument parsing (zero dependencies)
@@ -32,7 +32,7 @@ interface Options {
 function parseArgs(): Options | null {
   const args = process.argv.slice(2);
 
-  if (args.includes('--help') || args.includes('-h') || args.length === 0) {
+  if (args.includes("--help") || args.includes("-h") || args.length === 0) {
     console.log(`
   @orion-ds/create — Scaffold a new Orion Design System project
 
@@ -53,17 +53,17 @@ function parseArgs(): Options | null {
     return null;
   }
 
-  const projectName = args.find((a) => !a.startsWith('--')) || 'my-orion-app';
+  const projectName = args.find((a) => !a.startsWith("--")) || "my-orion-app";
   const getFlag = (name: string, def: string): string => {
     const flag = args.find((a) => a.startsWith(`--${name}=`));
-    return flag ? flag.split('=')[1]! : def;
+    return flag ? flag.split("=")[1]! : def;
   };
 
   return {
     projectName,
-    brand: getFlag('brand', 'orion'),
-    mode: getFlag('mode', 'product'),
-    theme: getFlag('theme', 'light'),
+    brand: getFlag("brand", "orion"),
+    mode: getFlag("mode", "product"),
+    theme: getFlag("theme", "light"),
   };
 }
 
@@ -76,25 +76,25 @@ function generatePackageJson(name: string): string {
     {
       name,
       private: true,
-      version: '0.1.0',
-      type: 'module',
+      version: "0.1.0",
+      type: "module",
       scripts: {
-        dev: 'vite',
-        build: 'tsc -b && vite build',
-        preview: 'vite preview',
+        dev: "vite",
+        build: "tsc -b && vite build",
+        preview: "vite preview",
       },
       dependencies: {
-        '@orion-ds/react': '^3.0.0',
-        'lucide-react': '^0.563.0',
-        react: '^19.0.0',
-        'react-dom': '^19.0.0',
+        "@orion-ds/react": "^3.0.0",
+        "lucide-react": "^0.563.0",
+        react: "^19.0.0",
+        "react-dom": "^19.0.0",
       },
       devDependencies: {
-        '@types/react': '^19.0.0',
-        '@types/react-dom': '^19.0.0',
-        '@vitejs/plugin-react': '^4.0.0',
-        typescript: '^5.6.0',
-        vite: '^6.0.0',
+        "@types/react": "^19.0.0",
+        "@types/react-dom": "^19.0.0",
+        "@vitejs/plugin-react": "^4.0.0",
+        typescript: "^5.6.0",
+        vite: "^6.0.0",
       },
     },
     null,
@@ -116,24 +116,24 @@ function generateTsConfig(): string {
   return JSON.stringify(
     {
       compilerOptions: {
-        target: 'ES2020',
+        target: "ES2020",
         useDefineForClassFields: true,
-        lib: ['ES2020', 'DOM', 'DOM.Iterable'],
-        module: 'ESNext',
+        lib: ["ES2020", "DOM", "DOM.Iterable"],
+        module: "ESNext",
         skipLibCheck: true,
-        moduleResolution: 'bundler',
+        moduleResolution: "bundler",
         allowImportingTsExtensions: true,
         isolatedModules: true,
-        moduleDetection: 'force',
+        moduleDetection: "force",
         noEmit: true,
-        jsx: 'react-jsx',
+        jsx: "react-jsx",
         strict: true,
         noUnusedLocals: true,
         noUnusedParameters: true,
         noFallthroughCasesInSwitch: true,
         noUncheckedSideEffectImports: true,
       },
-      include: ['src'],
+      include: ["src"],
     },
     null,
     2,
@@ -174,9 +174,9 @@ createRoot(document.getElementById('root')!).render(
 }
 
 function generateApp(opts: Options): string {
-  if (opts.mode === 'display') {
+  if (opts.mode === "display") {
     return generateDisplayApp();
-  } else if (opts.mode === 'app') {
+  } else if (opts.mode === "app") {
     return generateMobileApp();
   }
   return generateProductApp();
@@ -363,26 +363,30 @@ function main() {
   const projectDir = path.resolve(process.cwd(), opts.projectName);
 
   if (fs.existsSync(projectDir)) {
-    console.error(`\n  Error: Directory "${opts.projectName}" already exists.\n`);
+    console.error(
+      `\n  Error: Directory "${opts.projectName}" already exists.\n`,
+    );
     process.exit(1);
   }
 
   console.log(`\n  Creating Orion project: ${opts.projectName}`);
-  console.log(`  Brand: ${opts.brand} | Mode: ${opts.mode} | Theme: ${opts.theme}\n`);
+  console.log(
+    `  Brand: ${opts.brand} | Mode: ${opts.mode} | Theme: ${opts.theme}\n`,
+  );
 
   // Create project structure
-  fs.mkdirSync(path.join(projectDir, 'src'), { recursive: true });
-  fs.mkdirSync(path.join(projectDir, 'public'), { recursive: true });
+  fs.mkdirSync(path.join(projectDir, "src"), { recursive: true });
+  fs.mkdirSync(path.join(projectDir, "public"), { recursive: true });
 
   // Write files
   const files: Record<string, string> = {
-    'package.json': generatePackageJson(opts.projectName),
-    'vite.config.ts': generateViteConfig(),
-    'tsconfig.json': generateTsConfig(),
-    'index.html': generateIndexHtml(opts.projectName),
-    'src/main.tsx': generateMain(opts),
-    'src/App.tsx': generateApp(opts),
-    'src/vite-env.d.ts': generateViteEnv(),
+    "package.json": generatePackageJson(opts.projectName),
+    "vite.config.ts": generateViteConfig(),
+    "tsconfig.json": generateTsConfig(),
+    "index.html": generateIndexHtml(opts.projectName),
+    "src/main.tsx": generateMain(opts),
+    "src/App.tsx": generateApp(opts),
+    "src/vite-env.d.ts": generateViteEnv(),
   };
 
   for (const [filePath, content] of Object.entries(files)) {
@@ -393,12 +397,12 @@ function main() {
   }
 
   // Install dependencies
-  console.log('\n  Installing dependencies...\n');
+  console.log("\n  Installing dependencies...\n");
   try {
-    execSync('npm install', { cwd: projectDir, stdio: 'inherit' });
+    execSync("npm install", { cwd: projectDir, stdio: "inherit" });
   } catch {
     console.log(
-      '\n  Warning: npm install failed. Run it manually after cd-ing into the project.\n',
+      "\n  Warning: npm install failed. Run it manually after cd-ing into the project.\n",
     );
   }
 

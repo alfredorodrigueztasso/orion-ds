@@ -50,10 +50,7 @@
 // CHATBUILDER TEMPLATES
 // ============================================================================
 
-export {
-  AgentWorkspace,
-  ChatPageTemplate,
-} from "./app";
+export { AgentWorkspace, ChatPageTemplate } from "./app";
 
 export type {
   AgentWorkspaceProps,

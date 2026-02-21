@@ -5,7 +5,7 @@
  * Horizontal filter controls with chips for SaaS dashboards.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Filter option for select/multi-select filters
@@ -44,7 +44,7 @@ export interface FilterDefinition {
   /**
    * Filter type
    */
-  type: 'select' | 'multi-select' | 'date' | 'date-range' | 'text';
+  type: "select" | "multi-select" | "date" | "date-range" | "text";
 
   /**
    * Options for select types

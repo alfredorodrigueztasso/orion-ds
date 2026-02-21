@@ -16,5 +16,5 @@
  * </ThemeProvider>
  * ```
  */
-export { FontLoader } from './FontLoader';
-export type { FontLoaderProps } from './FontLoader';
+export { FontLoader } from "./FontLoader";
+export type { FontLoaderProps } from "./FontLoader";

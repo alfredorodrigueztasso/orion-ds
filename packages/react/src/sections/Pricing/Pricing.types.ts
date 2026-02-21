@@ -4,7 +4,7 @@
  * Type definitions for the Orion Pricing section component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Grid column count for pricing cards
@@ -111,7 +111,10 @@ export interface PricingCardProps extends HTMLAttributes<HTMLDivElement> {
  * />
  * ```
  */
-export interface PricingProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
+export interface PricingProps extends Omit<
+  HTMLAttributes<HTMLElement>,
+  "title"
+> {
   /**
    * Optional eyebrow/badge above title
    */
@@ -142,7 +145,7 @@ export interface PricingProps extends Omit<HTMLAttributes<HTMLElement>, 'title'>
    * Background style
    * @default 'subtle'
    */
-  background?: 'base' | 'subtle' | 'none';
+  background?: "base" | "subtle" | "none";
 
   /**
    * Center the header text

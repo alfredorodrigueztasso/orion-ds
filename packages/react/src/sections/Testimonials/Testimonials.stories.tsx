@@ -1,26 +1,26 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { Testimonials } from './Testimonials';
-import { Avatar } from '../../components/Avatar';
+import type { Meta, StoryObj } from "@storybook/react";
+import { Testimonials } from "./Testimonials";
+import { Avatar } from "@orion-ds/react";
 
 const meta = {
-  title: 'Sections/Marketing/Testimonials',
+  title: "Sections/Marketing/Testimonials",
   component: Testimonials,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     columns: {
-      control: 'select',
+      control: "select",
       options: [1, 2, 3],
     },
     variant: {
-      control: 'select',
-      options: ['default', 'cards', 'minimal'],
+      control: "select",
+      options: ["default", "cards", "minimal"],
     },
     background: {
-      control: 'select',
-      options: ['base', 'subtle', 'none'],
+      control: "select",
+      options: ["base", "subtle", "none"],
     },
   },
 } satisfies Meta<typeof Testimonials>;
@@ -31,33 +31,33 @@ type Story = StoryObj<typeof meta>;
 const defaultTestimonials = [
   {
     quote:
-      'Orion has completely transformed how we build products. The component library is incredibly well thought out and saves us countless hours.',
+      "Orion has completely transformed how we build products. The component library is incredibly well thought out and saves us countless hours.",
     author: {
-      name: 'Sarah Chen',
-      role: 'VP of Engineering',
-      company: 'TechCorp',
+      name: "Sarah Chen",
+      role: "VP of Engineering",
+      company: "TechCorp",
       avatar: <Avatar initials="SC" size="md" />,
     },
     rating: 5,
   },
   {
     quote:
-      'The best design system I have ever used. The documentation is excellent and the components just work perfectly together.',
+      "The best design system I have ever used. The documentation is excellent and the components just work perfectly together.",
     author: {
-      name: 'Michael Johnson',
-      role: 'Lead Designer',
-      company: 'DesignStudio',
+      name: "Michael Johnson",
+      role: "Lead Designer",
+      company: "DesignStudio",
       avatar: <Avatar initials="MJ" size="md" />,
     },
     rating: 5,
   },
   {
     quote:
-      'We migrated our entire platform to Orion in just two weeks. The TypeScript support is fantastic.',
+      "We migrated our entire platform to Orion in just two weeks. The TypeScript support is fantastic.",
     author: {
-      name: 'Emily Davis',
-      role: 'CTO',
-      company: 'StartupXYZ',
+      name: "Emily Davis",
+      role: "CTO",
+      company: "StartupXYZ",
       avatar: <Avatar initials="ED" size="md" />,
     },
     rating: 5,
@@ -66,14 +66,14 @@ const defaultTestimonials = [
 
 export const Default: Story = {
   args: {
-    title: 'What our customers say',
+    title: "What our customers say",
     testimonials: defaultTestimonials,
   },
 };
 
 export const SingleColumn: Story = {
   args: {
-    title: 'Customer Stories',
+    title: "Customer Stories",
     testimonials: defaultTestimonials,
     columns: 1,
   },
@@ -81,7 +81,7 @@ export const SingleColumn: Story = {
 
 export const TwoColumns: Story = {
   args: {
-    title: 'Testimonials',
+    title: "Testimonials",
     testimonials: defaultTestimonials.slice(0, 2),
     columns: 2,
   },
@@ -89,40 +89,40 @@ export const TwoColumns: Story = {
 
 export const CardsVariant: Story = {
   args: {
-    title: 'Loved by developers',
+    title: "Loved by developers",
     testimonials: defaultTestimonials,
-    variant: 'cards',
+    variant: "cards",
   },
 };
 
 export const MinimalVariant: Story = {
   args: {
-    title: 'What people are saying',
+    title: "What people are saying",
     testimonials: defaultTestimonials,
-    variant: 'minimal',
+    variant: "minimal",
   },
 };
 
 export const WithEyebrow: Story = {
   args: {
-    eyebrow: 'Testimonials',
-    title: 'Trusted by industry leaders',
-    description: 'See what our customers have to say about their experience.',
+    eyebrow: "Testimonials",
+    title: "Trusted by industry leaders",
+    description: "See what our customers have to say about their experience.",
     testimonials: defaultTestimonials,
   },
 };
 
 export const SubtleBackground: Story = {
   args: {
-    title: 'Customer Reviews',
+    title: "Customer Reviews",
     testimonials: defaultTestimonials,
-    background: 'subtle',
+    background: "subtle",
   },
 };
 
 export const WithoutRatings: Story = {
   args: {
-    title: 'What they say',
+    title: "What they say",
     testimonials: defaultTestimonials.map(({ rating, ...rest }) => rest),
   },
 };

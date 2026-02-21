@@ -4,7 +4,7 @@
  * Type definitions for the Orion FAQ section component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Grid column count for FAQ items
@@ -14,7 +14,7 @@ export type FAQColumns = 1 | 2;
 /**
  * FAQ visual variant
  */
-export type FAQVariant = 'accordion' | 'grid';
+export type FAQVariant = "accordion" | "grid";
 
 /**
  * FAQ item data structure
@@ -84,7 +84,7 @@ export interface FAQItemCardProps extends HTMLAttributes<HTMLDivElement> {
  * />
  * ```
  */
-export interface FAQProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
+export interface FAQProps extends Omit<HTMLAttributes<HTMLElement>, "title"> {
   /**
    * Optional eyebrow/badge above title
    */
@@ -129,7 +129,7 @@ export interface FAQProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
    * Background style
    * @default 'base'
    */
-  background?: 'base' | 'subtle' | 'none';
+  background?: "base" | "subtle" | "none";
 
   /**
    * Center the header text

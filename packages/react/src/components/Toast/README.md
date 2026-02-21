@@ -7,7 +7,7 @@ Notification system for showing temporary messages. Uses Context API with a prov
 Wrap your app with `ToastProvider`:
 
 ```tsx
-import { ToastProvider } from '@orion/react';
+import { ToastProvider } from "@orion/react";
 
 function App() {
   return (
@@ -30,12 +30,12 @@ function App() {
 
 ```ts
 type ToastPosition =
-  | 'top-left'
-  | 'top-center'
-  | 'top-right'
-  | 'bottom-left'
-  | 'bottom-center'
-  | 'bottom-right';
+  | "top-left"
+  | "top-center"
+  | "top-right"
+  | "bottom-left"
+  | "bottom-center"
+  | "bottom-right";
 ```
 
 ## useToast Hook
@@ -58,7 +58,7 @@ const {
 interface ToastOptions {
   title?: string;
   message: ReactNode;
-  variant?: 'info' | 'success' | 'warning' | 'error';
+  variant?: "info" | "success" | "warning" | "error";
   duration?: number; // 0 = no auto-dismiss
   dismissible?: boolean;
   action?: {
@@ -74,17 +74,19 @@ interface ToastOptions {
 ### Basic Toasts
 
 ```tsx
-import { useToast, Button } from '@orion/react';
+import { useToast, Button } from "@orion/react";
 
 function Example() {
   const { success, error, warning, info } = useToast();
 
   return (
     <>
-      <Button onClick={() => info('Information message')}>Info</Button>
-      <Button onClick={() => success('Operation completed!')}>Success</Button>
-      <Button onClick={() => warning('Please review your input')}>Warning</Button>
-      <Button onClick={() => error('Something went wrong')}>Error</Button>
+      <Button onClick={() => info("Information message")}>Info</Button>
+      <Button onClick={() => success("Operation completed!")}>Success</Button>
+      <Button onClick={() => warning("Please review your input")}>
+        Warning
+      </Button>
+      <Button onClick={() => error("Something went wrong")}>Error</Button>
     </>
   );
 }
@@ -96,9 +98,9 @@ function Example() {
 const { toast } = useToast();
 
 toast({
-  title: 'File uploaded',
-  message: 'Your document has been saved successfully.',
-  variant: 'success',
+  title: "File uploaded",
+  message: "Your document has been saved successfully.",
+  variant: "success",
 });
 ```
 
@@ -108,10 +110,10 @@ toast({
 const { toast } = useToast();
 
 toast({
-  message: 'Item deleted',
-  variant: 'info',
+  message: "Item deleted",
+  variant: "info",
   action: {
-    label: 'Undo',
+    label: "Undo",
     onClick: () => restoreItem(),
   },
 });
@@ -123,10 +125,10 @@ toast({
 const { success, error } = useToast();
 
 // Quick toast (2 seconds)
-success('Saved!', { duration: 2000 });
+success("Saved!", { duration: 2000 });
 
 // Persistent toast (no auto-dismiss)
-error('Connection lost. Please check your network.', { duration: 0 });
+error("Connection lost. Please check your network.", { duration: 0 });
 ```
 
 ### Dismiss Programmatically
@@ -135,7 +137,7 @@ error('Connection lost. Please check your network.', { duration: 0 });
 const { toast, dismiss, dismissAll } = useToast();
 
 // Dismiss specific toast
-const id = toast({ message: 'Processing...' });
+const id = toast({ message: "Processing..." });
 // Later...
 dismiss(id);
 
@@ -147,9 +149,9 @@ dismissAll();
 
 ```tsx
 toast({
-  message: 'Session expiring soon',
-  variant: 'warning',
-  onDismiss: () => console.log('User acknowledged'),
+  message: "Session expiring soon",
+  variant: "warning",
+  onDismiss: () => console.log("User acknowledged"),
 });
 ```
 

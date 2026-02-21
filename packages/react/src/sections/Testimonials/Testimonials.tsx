@@ -27,12 +27,12 @@
  * ```
  */
 
-import { forwardRef } from 'react';
-import type { TestimonialsProps } from './Testimonials.types';
-import { Section } from '../Section';
-import { Container } from '../Container';
-import { TestimonialCard } from './TestimonialCard';
-import styles from './Testimonials.module.css';
+import { forwardRef } from "react";
+import type { TestimonialsProps } from "./Testimonials.types";
+import { Section } from "../Section";
+import { Container } from "../Container";
+import { TestimonialCard } from "./TestimonialCard";
+import styles from "./Testimonials.module.css";
 
 export const Testimonials = forwardRef<HTMLElement, TestimonialsProps>(
   (
@@ -42,8 +42,8 @@ export const Testimonials = forwardRef<HTMLElement, TestimonialsProps>(
       description,
       testimonials,
       columns = 3,
-      variant = 'default',
-      background = 'base',
+      variant = "default",
+      background = "base",
       centered = true,
       className,
       ...rest
@@ -52,18 +52,30 @@ export const Testimonials = forwardRef<HTMLElement, TestimonialsProps>(
   ) => {
     const hasHeader = eyebrow || title || description;
 
-    const classNames = [styles.testimonials, centered && styles.centered, className]
+    const classNames = [
+      styles.testimonials,
+      centered && styles.centered,
+      className,
+    ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
-      <Section ref={ref} spacing="lg" background={background} className={classNames} {...rest}>
+      <Section
+        ref={ref}
+        spacing="lg"
+        background={background}
+        className={classNames}
+        {...rest}
+      >
         <Container size="xl">
           {hasHeader && (
             <header className={styles.header}>
               {eyebrow && <div className={styles.eyebrow}>{eyebrow}</div>}
               {title && <h2 className={styles.title}>{title}</h2>}
-              {description && <p className={styles.description}>{description}</p>}
+              {description && (
+                <p className={styles.description}>{description}</p>
+              )}
             </header>
           )}
 
@@ -82,4 +94,4 @@ export const Testimonials = forwardRef<HTMLElement, TestimonialsProps>(
   },
 );
 
-Testimonials.displayName = 'Testimonials';
+Testimonials.displayName = "Testimonials";

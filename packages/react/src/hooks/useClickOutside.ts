@@ -12,7 +12,7 @@
  * ```
  */
 
-import { useEffect, type RefObject } from 'react';
+import { useEffect, type RefObject } from "react";
 
 /**
  * Hook to detect clicks outside of a referenced element
@@ -43,12 +43,12 @@ export function useClickOutside<T extends HTMLElement = HTMLElement>(
     };
 
     // Use mousedown instead of click for faster response
-    document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('touchstart', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('touchstart', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
     };
   }, [ref, handler, enabled]);
 }
@@ -74,19 +74,21 @@ export function useClickOutsideMultiple<T extends HTMLElement = HTMLElement>(
       const target = event.target as Node;
 
       // Check if click is inside any of the refs
-      const isInside = refs.some((ref) => ref.current && ref.current.contains(target));
+      const isInside = refs.some(
+        (ref) => ref.current && ref.current.contains(target),
+      );
 
       if (!isInside) {
         handler(event);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('touchstart', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('touchstart', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
     };
   }, [refs, handler, enabled]);
 }

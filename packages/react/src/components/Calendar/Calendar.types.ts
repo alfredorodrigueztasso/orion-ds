@@ -5,7 +5,7 @@
  * Supports single, range, and multiple date selection.
  */
 
-import type { HTMLAttributes } from 'react';
+import type { HTMLAttributes } from "react";
 
 /**
  * Date range value
@@ -18,12 +18,15 @@ export interface DateRange {
 /**
  * Calendar selection mode
  */
-export type CalendarMode = 'single' | 'range' | 'multiple';
+export type CalendarMode = "single" | "range" | "multiple";
 
 /**
  * Base calendar props shared across all modes
  */
-interface CalendarBaseProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onSelect'> {
+interface CalendarBaseProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "onSelect"
+> {
   /**
    * Minimum selectable date
    */
@@ -61,7 +64,7 @@ interface CalendarBaseProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onSele
  * Single date selection
  */
 export interface CalendarSingleProps extends CalendarBaseProps {
-  mode?: 'single';
+  mode?: "single";
   selected?: Date;
   onSelect?: (date: Date | undefined) => void;
 }
@@ -70,7 +73,7 @@ export interface CalendarSingleProps extends CalendarBaseProps {
  * Range date selection
  */
 export interface CalendarRangeProps extends CalendarBaseProps {
-  mode: 'range';
+  mode: "range";
   selected?: DateRange;
   onSelect?: (range: DateRange | undefined) => void;
 }
@@ -79,7 +82,7 @@ export interface CalendarRangeProps extends CalendarBaseProps {
  * Multiple date selection
  */
 export interface CalendarMultipleProps extends CalendarBaseProps {
-  mode: 'multiple';
+  mode: "multiple";
   selected?: Date[];
   onSelect?: (dates: Date[]) => void;
 }
@@ -87,4 +90,7 @@ export interface CalendarMultipleProps extends CalendarBaseProps {
 /**
  * Union type for all calendar modes
  */
-export type CalendarProps = CalendarSingleProps | CalendarRangeProps | CalendarMultipleProps;
+export type CalendarProps =
+  | CalendarSingleProps
+  | CalendarRangeProps
+  | CalendarMultipleProps;

@@ -1,9 +1,12 @@
-import type { ButtonHTMLAttributes, ReactNode } from 'react';
+import type { ButtonHTMLAttributes, ReactNode } from "react";
 
-export type ToggleVariant = 'default' | 'outline';
-export type ToggleSize = 'sm' | 'md' | 'lg';
+export type ToggleVariant = "default" | "outline";
+export type ToggleSize = "sm" | "md" | "lg";
 
-export interface ToggleProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onChange'> {
+export interface ToggleProps extends Omit<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  "onChange"
+> {
   /** Controlled pressed state. */
   pressed?: boolean;
   /** Default pressed state for uncontrolled usage. */

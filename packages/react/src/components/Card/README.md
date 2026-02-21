@@ -69,10 +69,10 @@ Card uses dot notation for its subcomponents:
 
 ```typescript
 interface CardProps {
-  variant?: 'base' | 'glass' | 'elevated' | 'outlined' | 'image'; // default: 'base'
+  variant?: "base" | "glass" | "elevated" | "outlined" | "image"; // default: 'base'
   interactive?: boolean; // Adds hover effect - default: false
   imageUrl?: string; // Background image (only for 'image' variant)
-  imagePosition?: 'top' | 'center' | 'bottom'; // Content position - default: 'bottom'
+  imagePosition?: "top" | "center" | "bottom"; // Content position - default: 'bottom'
   aspectRatio?: string; // e.g., '16/9', '4/3', '1/1' - default: '16/9'
   className?: string;
   children?: ReactNode;
@@ -110,7 +110,7 @@ interface SubcomponentProps {
 ### Basic Card
 
 ```tsx
-import { Card } from '@orion/react';
+import { Card } from "@orion/react";
 
 <Card>
   <Card.Header>Card Title</Card.Header>
@@ -127,7 +127,7 @@ import { Card } from '@orion/react';
 ### Body Only
 
 ```tsx
-import { Card } from '@orion/react';
+import { Card } from "@orion/react";
 
 <Card>
   <Card.Body>
@@ -139,7 +139,7 @@ import { Card } from '@orion/react';
 ### Glass Variant (Display Mode Only)
 
 ```tsx
-import { Card } from '@orion/react';
+import { Card } from "@orion/react";
 
 // Only use in marketing pages with data-mode="display"
 <Card variant="glass">
@@ -153,7 +153,7 @@ import { Card } from '@orion/react';
 ### Elevated Variant
 
 ```tsx
-import { Card } from '@orion/react';
+import { Card } from "@orion/react";
 
 <Card variant="elevated">
   <Card.Header>Featured</Card.Header>
@@ -166,7 +166,7 @@ import { Card } from '@orion/react';
 ### Outlined Variant
 
 ```tsx
-import { Card } from '@orion/react';
+import { Card } from "@orion/react";
 
 <Card variant="outlined">
   <Card.Body>
@@ -178,7 +178,7 @@ import { Card } from '@orion/react';
 ### Interactive Card
 
 ```tsx
-import { Card } from '@orion/react';
+import { Card } from "@orion/react";
 
 // Adds hover effect
 <Card interactive onClick={handleClick}>
@@ -192,13 +192,20 @@ import { Card } from '@orion/react';
 ### Image Card
 
 ```tsx
-import { Card } from '@orion/react';
+import { Card } from "@orion/react";
 
-<Card variant="image" imageUrl="/path/to/image.jpg" imagePosition="bottom" aspectRatio="16/9">
+<Card
+  variant="image"
+  imageUrl="/path/to/image.jpg"
+  imagePosition="bottom"
+  aspectRatio="16/9"
+>
   <Card.ImageContent>
     <Card.ImageMeta>Category</Card.ImageMeta>
     <Card.ImageTitle>Article Title</Card.ImageTitle>
-    <Card.ImageDescription>Brief description of the article content.</Card.ImageDescription>
+    <Card.ImageDescription>
+      Brief description of the article content.
+    </Card.ImageDescription>
   </Card.ImageContent>
 </Card>;
 ```
@@ -237,15 +244,17 @@ import { Card } from '@orion/react';
 ### User Profile Card
 
 ```tsx
-import { Card, Avatar, Button } from '@orion/react';
+import { Card, Avatar, Button } from "@orion/react";
 
 <Card>
   <Card.Body>
-    <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-4)' }}>
+    <div
+      style={{ display: "flex", alignItems: "center", gap: "var(--spacing-4)" }}
+    >
       <Avatar src="/user.jpg" name="Jane Doe" size="lg" />
       <div>
         <h3>Jane Doe</h3>
-        <p style={{ color: 'var(--text-secondary)' }}>Product Designer</p>
+        <p style={{ color: "var(--text-secondary)" }}>Product Designer</p>
       </div>
     </div>
   </Card.Body>
@@ -260,14 +269,16 @@ import { Card, Avatar, Button } from '@orion/react';
 ### Product Card
 
 ```tsx
-import { Card, Badge, Button } from '@orion/react';
+import { Card, Badge, Button } from "@orion/react";
 
 <Card interactive>
   <Card.Body>
     <Badge variant="brand">New</Badge>
     <h3>Product Name</h3>
-    <p style={{ color: 'var(--text-secondary)' }}>Product description goes here.</p>
-    <p style={{ fontSize: 'var(--text-lg)', fontWeight: 600 }}>$99.00</p>
+    <p style={{ color: "var(--text-secondary)" }}>
+      Product description goes here.
+    </p>
+    <p style={{ fontSize: "var(--text-lg)", fontWeight: 600 }}>$99.00</p>
   </Card.Body>
   <Card.Footer>
     <Button fullWidth>Add to Cart</Button>
@@ -278,8 +289,8 @@ import { Card, Badge, Button } from '@orion/react';
 ### Feature Card (for Features section)
 
 ```tsx
-import { Card } from '@orion/react';
-import { Zap } from 'lucide-react';
+import { Card } from "@orion/react";
+import { Zap } from "lucide-react";
 
 <Card>
   <Card.Body>
@@ -287,18 +298,20 @@ import { Zap } from 'lucide-react';
       style={{
         width: 48,
         height: 48,
-        borderRadius: 'var(--radius-sm)',
-        background: 'var(--surface-layer)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: 'var(--spacing-4)',
+        borderRadius: "var(--radius-sm)",
+        background: "var(--surface-layer)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        marginBottom: "var(--spacing-4)",
       }}
     >
       <Zap size={24} color="var(--text-brand)" />
     </div>
     <h3>Lightning Fast</h3>
-    <p style={{ color: 'var(--text-secondary)' }}>Optimized for performance at every level.</p>
+    <p style={{ color: "var(--text-secondary)" }}>
+      Optimized for performance at every level.
+    </p>
   </Card.Body>
 </Card>;
 ```
@@ -306,29 +319,35 @@ import { Zap } from 'lucide-react';
 ### Pricing Card
 
 ```tsx
-import { Card, Badge, Button } from '@orion/react';
-import { Check } from 'lucide-react';
+import { Card, Badge, Button } from "@orion/react";
+import { Check } from "lucide-react";
 
 <Card variant="elevated">
   <Card.Header>
     <Badge variant="brand">Popular</Badge>
     <h3>Pro Plan</h3>
     <p>
-      <span style={{ fontSize: 'var(--text-3xl)', fontWeight: 700 }}>$29</span>
-      <span style={{ color: 'var(--text-secondary)' }}>/month</span>
+      <span style={{ fontSize: "var(--text-3xl)", fontWeight: 700 }}>$29</span>
+      <span style={{ color: "var(--text-secondary)" }}>/month</span>
     </p>
   </Card.Header>
   <Card.Body>
-    <ul style={{ listStyle: 'none', padding: 0 }}>
-      {['Unlimited projects', 'Priority support', 'API access'].map((feature) => (
-        <li
-          key={feature}
-          style={{ display: 'flex', gap: 'var(--spacing-2)', marginBottom: 'var(--spacing-2)' }}
-        >
-          <Check size={20} color="var(--text-brand)" />
-          <span>{feature}</span>
-        </li>
-      ))}
+    <ul style={{ listStyle: "none", padding: 0 }}>
+      {["Unlimited projects", "Priority support", "API access"].map(
+        (feature) => (
+          <li
+            key={feature}
+            style={{
+              display: "flex",
+              gap: "var(--spacing-2)",
+              marginBottom: "var(--spacing-2)",
+            }}
+          >
+            <Check size={20} color="var(--text-brand)" />
+            <span>{feature}</span>
+          </li>
+        ),
+      )}
     </ul>
   </Card.Body>
   <Card.Footer>
@@ -340,7 +359,7 @@ import { Check } from 'lucide-react';
 ### Settings Card
 
 ```tsx
-import { Card, Field, Switch, Button } from '@orion/react';
+import { Card, Field, Switch, Button } from "@orion/react";
 
 <Card>
   <Card.Header>
@@ -367,9 +386,9 @@ import { Card, Field, Switch, Button } from '@orion/react';
 ```tsx
 <div
   style={{
-    display: 'grid',
-    gridTemplateColumns: 'repeat(2, 1fr)',
-    gap: 'var(--spacing-6)',
+    display: "grid",
+    gridTemplateColumns: "repeat(2, 1fr)",
+    gap: "var(--spacing-6)",
   }}
 >
   <Card>...</Card>
@@ -382,9 +401,9 @@ import { Card, Field, Switch, Button } from '@orion/react';
 ```tsx
 <div
   style={{
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-    gap: 'var(--spacing-6)',
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+    gap: "var(--spacing-6)",
   }}
 >
   <Card>...</Card>

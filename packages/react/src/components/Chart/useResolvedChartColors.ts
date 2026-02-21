@@ -11,8 +11,8 @@
  * on <html> to re-resolve colors when the user switches theme or brand.
  */
 
-import { useState, useEffect } from 'react';
-import type { ChartConfig } from './Chart.types';
+import { useState, useEffect } from "react";
+import type { ChartConfig } from "./Chart.types";
 
 /** Strip `var(...)` wrapper and return the custom property name, or null */
 function extractCSSVarName(value: string): string | null {
@@ -22,12 +22,14 @@ function extractCSSVarName(value: string): string | null {
 
 /** Resolve a single color string — if it's a CSS variable, compute it */
 function resolveColor(value: string): string {
-  if (typeof window === 'undefined') return value;
+  if (typeof window === "undefined") return value;
 
   const varName = extractCSSVarName(value);
   if (!varName) return value; // already a literal color
 
-  const resolved = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+  const resolved = getComputedStyle(document.documentElement)
+    .getPropertyValue(varName)
+    .trim();
 
   return resolved || value; // fallback to original if empty
 }
@@ -57,15 +59,16 @@ export function useResolvedChartColors(config: ChartConfig) {
 
   // Re-resolve when theme or brand changes on <html>
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === "undefined") return;
 
     const htmlEl = document.documentElement;
 
     const observer = new MutationObserver((mutations) => {
       for (const mutation of mutations) {
         if (
-          mutation.type === 'attributes' &&
-          (mutation.attributeName === 'data-theme' || mutation.attributeName === 'data-brand')
+          mutation.type === "attributes" &&
+          (mutation.attributeName === "data-theme" ||
+            mutation.attributeName === "data-brand")
         ) {
           setState(resolveConfig(config));
           break;
@@ -75,7 +78,7 @@ export function useResolvedChartColors(config: ChartConfig) {
 
     observer.observe(htmlEl, {
       attributes: true,
-      attributeFilter: ['data-theme', 'data-brand'],
+      attributeFilter: ["data-theme", "data-brand"],
     });
 
     return () => observer.disconnect();

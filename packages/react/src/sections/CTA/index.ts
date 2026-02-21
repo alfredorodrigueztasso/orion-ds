@@ -2,5 +2,5 @@
  * CTA Component Exports
  */
 
-export { CTA } from './CTA';
-export type { CTAProps, CTAVariant, CTASize } from './CTA.types';
+export { CTA } from "./CTA";
+export type { CTAProps, CTAVariant, CTASize } from "./CTA.types";

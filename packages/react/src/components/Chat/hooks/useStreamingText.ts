@@ -5,7 +5,7 @@
  * content generation. Content is final — text only grows, never rewrites.
  */
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from "react";
 
 export interface UseStreamingTextOptions {
   /** Words revealed per tick (default: 2) */
@@ -59,7 +59,7 @@ export function useStreamingText(
     return () => clearInterval(timer);
   }, [enabled, wordIndex, wordsPerTick, intervalMs]);
 
-  const displayText = words.current.slice(0, wordIndex).join('');
+  const displayText = words.current.slice(0, wordIndex).join("");
   const isComplete = wordIndex >= words.current.length;
 
   return { displayText, isComplete };

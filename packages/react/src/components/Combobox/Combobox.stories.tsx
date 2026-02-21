@@ -2,28 +2,28 @@
  * Combobox Component Stories
  */
 
-import { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { User, Code, Briefcase, Globe } from 'lucide-react';
-import { Combobox } from './Combobox';
-import { Avatar } from '../Avatar';
+import { useState } from "react";
+import type { Meta, StoryObj } from "@storybook/react";
+import { User, Code, Briefcase, Globe } from "lucide-react";
+import { Combobox } from "./Combobox";
+import { Avatar } from "../Avatar";
 
 const meta: Meta<typeof Combobox> = {
-  title: 'Components/Forms/Combobox',
+  title: "Components/Forms/Combobox",
   component: Combobox,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     size: {
-      control: 'radio',
-      options: ['sm', 'md', 'lg'],
+      control: "radio",
+      options: ["sm", "md", "lg"],
     },
   },
   decorators: [
     (Story) => (
-      <div style={{ width: '300px', padding: '20px' }}>
+      <div style={{ width: "300px", padding: "var(--spacing-5)" }}>
         <Story />
       </div>
     ),
@@ -34,25 +34,27 @@ export default meta;
 type Story = StoryObj<typeof Combobox>;
 
 const frameworkOptions = [
-  { value: 'react', label: 'React' },
-  { value: 'vue', label: 'Vue' },
-  { value: 'angular', label: 'Angular' },
-  { value: 'svelte', label: 'Svelte' },
-  { value: 'solid', label: 'SolidJS' },
-  { value: 'qwik', label: 'Qwik' },
+  { value: "react", label: "React" },
+  { value: "vue", label: "Vue" },
+  { value: "angular", label: "Angular" },
+  { value: "svelte", label: "Svelte" },
+  { value: "solid", label: "SolidJS" },
+  { value: "qwik", label: "Qwik" },
 ];
 
 const countryOptions = [
-  { value: 'us', label: 'United States', description: 'North America' },
-  { value: 'uk', label: 'United Kingdom', description: 'Europe' },
-  { value: 'de', label: 'Germany', description: 'Europe' },
-  { value: 'fr', label: 'France', description: 'Europe' },
-  { value: 'jp', label: 'Japan', description: 'Asia' },
-  { value: 'au', label: 'Australia', description: 'Oceania' },
+  { value: "us", label: "United States", description: "North America" },
+  { value: "uk", label: "United Kingdom", description: "Europe" },
+  { value: "de", label: "Germany", description: "Europe" },
+  { value: "fr", label: "France", description: "Europe" },
+  { value: "jp", label: "Japan", description: "Asia" },
+  { value: "au", label: "Australia", description: "Oceania" },
 ];
 
 // Interactive wrapper
-const InteractiveCombobox = (props: Partial<React.ComponentProps<typeof Combobox>>) => {
+const InteractiveCombobox = (
+  props: Partial<React.ComponentProps<typeof Combobox>>,
+) => {
   const [value, setValue] = useState<string | null>(props.value ?? null);
 
   return (
@@ -84,7 +86,9 @@ export const WithHelperText: Story = {
 };
 
 export const WithError: Story = {
-  render: () => <InteractiveCombobox label="Framework" error="Please select a framework" />,
+  render: () => (
+    <InteractiveCombobox label="Framework" error="Please select a framework" />
+  ),
 };
 
 export const WithDescriptions: Story = {
@@ -108,10 +112,10 @@ export const WithIcons: Story = {
     const [value, setValue] = useState<string | null>(null);
 
     const options = [
-      { value: 'dev', label: 'Developer', icon: <Code size={18} /> },
-      { value: 'design', label: 'Designer', icon: <User size={18} /> },
-      { value: 'pm', label: 'Product Manager', icon: <Briefcase size={18} /> },
-      { value: 'marketing', label: 'Marketing', icon: <Globe size={18} /> },
+      { value: "dev", label: "Developer", icon: <Code size={18} /> },
+      { value: "design", label: "Designer", icon: <User size={18} /> },
+      { value: "pm", label: "Product Manager", icon: <Briefcase size={18} /> },
+      { value: "marketing", label: "Marketing", icon: <Globe size={18} /> },
     ];
 
     return (
@@ -132,21 +136,21 @@ export const WithAvatars: Story = {
 
     const options = [
       {
-        value: 'alice',
-        label: 'Alice Cooper',
-        description: 'alice@example.com',
+        value: "alice",
+        label: "Alice Cooper",
+        description: "alice@example.com",
         icon: <Avatar initials="AC" size="xs" />,
       },
       {
-        value: 'bob',
-        label: 'Bob Martin',
-        description: 'bob@example.com',
+        value: "bob",
+        label: "Bob Martin",
+        description: "bob@example.com",
         icon: <Avatar initials="BM" size="xs" />,
       },
       {
-        value: 'carol',
-        label: 'Carol White',
-        description: 'carol@example.com',
+        value: "carol",
+        label: "Carol White",
+        description: "carol@example.com",
         icon: <Avatar initials="CW" size="xs" />,
       },
     ];
@@ -173,7 +177,10 @@ export const NotClearable: Story = {
 
 export const MinimumCharacters: Story = {
   render: () => (
-    <InteractiveCombobox minChars={2} helperText="Type at least 2 characters to see options" />
+    <InteractiveCombobox
+      minChars={2}
+      helperText="Type at least 2 characters to see options"
+    />
   ),
 };
 
@@ -195,7 +202,7 @@ export const FullWidth: Story = {
   render: () => <InteractiveCombobox fullWidth label="Framework" />,
   decorators: [
     (Story) => (
-      <div style={{ width: '400px' }}>
+      <div style={{ width: "400px" }}>
         <Story />
       </div>
     ),
@@ -205,9 +212,9 @@ export const FullWidth: Story = {
 export const Disabled: Story = {
   args: {
     options: frameworkOptions,
-    value: 'react',
+    value: "react",
     disabled: true,
-    label: 'Framework',
+    label: "Framework",
   },
 };
 
@@ -216,10 +223,10 @@ export const WithDisabledOptions: Story = {
     const [value, setValue] = useState<string | null>(null);
 
     const options = [
-      { value: 'react', label: 'React' },
-      { value: 'vue', label: 'Vue' },
-      { value: 'angular', label: 'Angular (Coming soon)', disabled: true },
-      { value: 'svelte', label: 'Svelte (Coming soon)', disabled: true },
+      { value: "react", label: "React" },
+      { value: "vue", label: "Vue" },
+      { value: "angular", label: "Angular (Coming soon)", disabled: true },
+      { value: "svelte", label: "Svelte (Coming soon)", disabled: true },
     ];
 
     return (
@@ -245,7 +252,13 @@ export const AllSizes: Story = {
     const [value3, setValue3] = useState<string | null>(null);
 
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-6)' }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "var(--spacing-6)",
+        }}
+      >
         <Combobox
           options={frameworkOptions}
           value={value1}

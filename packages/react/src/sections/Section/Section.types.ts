@@ -4,17 +4,17 @@
  * Type definitions for the Orion Section wrapper component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Section spacing variants (vertical padding)
  */
-export type SectionSpacing = 'sm' | 'md' | 'lg' | 'xl' | 'none';
+export type SectionSpacing = "sm" | "md" | "lg" | "xl" | "none";
 
 /**
  * Section background variants
  */
-export type SectionBackground = 'base' | 'subtle' | 'sunken' | 'brand' | 'none';
+export type SectionBackground = "base" | "subtle" | "sunken" | "brand" | "none";
 
 /**
  * Section component props
@@ -33,7 +33,7 @@ export interface SectionProps extends HTMLAttributes<HTMLElement> {
    * HTML element to render
    * @default 'section'
    */
-  as?: 'section' | 'div' | 'article' | 'aside' | 'header' | 'footer';
+  as?: "section" | "div" | "article" | "aside" | "header" | "footer";
 
   /**
    * Vertical spacing (padding)

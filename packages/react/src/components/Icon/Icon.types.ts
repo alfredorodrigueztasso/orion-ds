@@ -7,8 +7,8 @@
  * @see https://lucide.dev for available icons
  */
 
-import type { LucideIcon, LucideProps } from 'lucide-react';
-import type { SVGProps } from 'react';
+import type { LucideIcon, LucideProps } from "lucide-react";
+import type { SVGProps } from "react";
 
 /**
  * Icon size tokens (mapped to CSS variables)
@@ -18,22 +18,22 @@ import type { SVGProps } from 'react';
  * - lg: 24px (--icon-size-lg) - Section headers
  * - xl: 32px (--icon-size-xl) - Large callouts
  */
-export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type IconSize = "xs" | "sm" | "md" | "lg" | "xl";
 
 /**
  * Icon color variants (mapped to semantic tokens)
  */
 export type IconColor =
-  | 'current' // currentColor (inherits from parent)
-  | 'primary' // --text-primary
-  | 'secondary' // --text-secondary
-  | 'tertiary' // --text-tertiary
-  | 'brand' // --text-brand
-  | 'success' // --status-success
-  | 'warning' // --status-warning
-  | 'error' // --status-error
-  | 'info' // --status-info
-  | 'inverse'; // --text-inverse
+  | "current" // currentColor (inherits from parent)
+  | "primary" // --text-primary
+  | "secondary" // --text-secondary
+  | "tertiary" // --text-tertiary
+  | "brand" // --text-brand
+  | "success" // --status-success
+  | "warning" // --status-warning
+  | "error" // --status-error
+  | "info" // --status-info
+  | "inverse"; // --text-inverse
 
 /**
  * Icon component props
@@ -56,7 +56,7 @@ export type IconColor =
  * <Icon icon={Star} size={18} />
  * ```
  */
-export interface IconProps extends Omit<SVGProps<SVGSVGElement>, 'ref'> {
+export interface IconProps extends Omit<SVGProps<SVGSVGElement>, "ref"> {
   /**
    * Lucide icon component to render
    * Import directly from lucide-react for tree-shaking

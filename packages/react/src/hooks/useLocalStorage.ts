@@ -13,7 +13,7 @@
  * ```
  */
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from "react";
 
 /**
  * Options for useLocalStorage hook
@@ -51,11 +51,15 @@ export function useLocalStorage<T>(
   initialValue: T,
   options: UseLocalStorageOptions<T> = {},
 ): [T, (value: T | ((prev: T) => T)) => void, () => void] {
-  const { serializer = JSON.stringify, deserializer = JSON.parse, syncAcrossTabs = true } = options;
+  const {
+    serializer = JSON.stringify,
+    deserializer = JSON.parse,
+    syncAcrossTabs = true,
+  } = options;
 
   // Get initial value from localStorage or use initialValue
   const readValue = useCallback((): T => {
-    if (typeof window === 'undefined') {
+    if (typeof window === "undefined") {
       return initialValue;
     }
 
@@ -73,14 +77,15 @@ export function useLocalStorage<T>(
   // Save to localStorage
   const setValue = useCallback(
     (value: T | ((prev: T) => T)) => {
-      if (typeof window === 'undefined') {
-        console.warn('localStorage is not available');
+      if (typeof window === "undefined") {
+        console.warn("localStorage is not available");
         return;
       }
 
       try {
         // Allow value to be a function (like setState)
-        const valueToStore = value instanceof Function ? value(storedValue) : value;
+        const valueToStore =
+          value instanceof Function ? value(storedValue) : value;
 
         // Save to state
         setStoredValue(valueToStore);
@@ -90,7 +95,7 @@ export function useLocalStorage<T>(
 
         // Dispatch custom event for cross-tab sync
         window.dispatchEvent(
-          new StorageEvent('storage', {
+          new StorageEvent("storage", {
             key,
             newValue: serializer(valueToStore),
           }),
@@ -104,7 +109,7 @@ export function useLocalStorage<T>(
 
   // Remove from localStorage
   const removeValue = useCallback(() => {
-    if (typeof window === 'undefined') {
+    if (typeof window === "undefined") {
       return;
     }
 
@@ -114,7 +119,7 @@ export function useLocalStorage<T>(
 
       // Dispatch custom event for cross-tab sync
       window.dispatchEvent(
-        new StorageEvent('storage', {
+        new StorageEvent("storage", {
           key,
           newValue: null,
         }),
@@ -126,7 +131,7 @@ export function useLocalStorage<T>(
 
   // Sync across tabs
   useEffect(() => {
-    if (!syncAcrossTabs || typeof window === 'undefined') {
+    if (!syncAcrossTabs || typeof window === "undefined") {
       return;
     }
 
@@ -136,17 +141,19 @@ export function useLocalStorage<T>(
       }
 
       try {
-        const newValue = event.newValue ? deserializer(event.newValue) : initialValue;
+        const newValue = event.newValue
+          ? deserializer(event.newValue)
+          : initialValue;
         setStoredValue(newValue);
       } catch (error) {
         console.warn(`Error syncing localStorage key "${key}":`, error);
       }
     };
 
-    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener("storage", handleStorageChange);
 
     return () => {
-      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener("storage", handleStorageChange);
     };
   }, [key, initialValue, deserializer, syncAcrossTabs]);
 
@@ -164,12 +171,12 @@ export function useLocalStorage<T>(
 export function useSessionStorage<T>(
   key: string,
   initialValue: T,
-  options: Omit<UseLocalStorageOptions<T>, 'syncAcrossTabs'> = {},
+  options: Omit<UseLocalStorageOptions<T>, "syncAcrossTabs"> = {},
 ): [T, (value: T | ((prev: T) => T)) => void, () => void] {
   const { serializer = JSON.stringify, deserializer = JSON.parse } = options;
 
   const readValue = useCallback((): T => {
-    if (typeof window === 'undefined') {
+    if (typeof window === "undefined") {
       return initialValue;
     }
 
@@ -186,12 +193,13 @@ export function useSessionStorage<T>(
 
   const setValue = useCallback(
     (value: T | ((prev: T) => T)) => {
-      if (typeof window === 'undefined') {
+      if (typeof window === "undefined") {
         return;
       }
 
       try {
-        const valueToStore = value instanceof Function ? value(storedValue) : value;
+        const valueToStore =
+          value instanceof Function ? value(storedValue) : value;
         setStoredValue(valueToStore);
         window.sessionStorage.setItem(key, serializer(valueToStore));
       } catch (error) {
@@ -202,7 +210,7 @@ export function useSessionStorage<T>(
   );
 
   const removeValue = useCallback(() => {
-    if (typeof window === 'undefined') {
+    if (typeof window === "undefined") {
       return;
     }
 

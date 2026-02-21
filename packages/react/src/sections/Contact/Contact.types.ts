@@ -4,12 +4,12 @@
  * Type definitions for the Orion Contact section component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Contact layout variant
  */
-export type ContactLayout = 'split' | 'stacked' | 'form-only';
+export type ContactLayout = "split" | "stacked" | "form-only";
 
 /**
  * Contact info item (phone, email, address, etc.)
@@ -54,7 +54,7 @@ export interface ContactFormField {
    * Field type
    * @default 'text'
    */
-  type?: 'text' | 'email' | 'tel' | 'textarea';
+  type?: "text" | "email" | "tel" | "textarea";
 
   /**
    * Placeholder text
@@ -95,7 +95,10 @@ export interface ContactFormField {
  * />
  * ```
  */
-export interface ContactProps extends Omit<HTMLAttributes<HTMLElement>, 'title' | 'onSubmit'> {
+export interface ContactProps extends Omit<
+  HTMLAttributes<HTMLElement>,
+  "title" | "onSubmit"
+> {
   /**
    * Optional eyebrow/badge above title
    */
@@ -150,7 +153,7 @@ export interface ContactProps extends Omit<HTMLAttributes<HTMLElement>, 'title' 
    * Background style
    * @default 'subtle'
    */
-  background?: 'base' | 'subtle' | 'none';
+  background?: "base" | "subtle" | "none";
 
   /**
    * Additional content below contact info (e.g., social links, map)

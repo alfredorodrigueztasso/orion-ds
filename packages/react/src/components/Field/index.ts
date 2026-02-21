@@ -11,5 +11,5 @@
  * <Field label="Search" icon={<Search size={18} />} />
  * ```
  */
-export { Field } from './Field';
-export type { FieldProps } from './Field.types';
+export { Field } from "./Field";
+export type { FieldProps } from "./Field.types";

@@ -4,13 +4,13 @@
  * Header bar with title, avatar, and action buttons.
  */
 
-import React from 'react';
-import { Bot } from 'lucide-react';
-import type { ChatHeaderProps } from '../Chat.types';
-import styles from '../Chat.module.css';
+import React from "react";
+import { Bot } from "lucide-react";
+import type { ChatHeaderProps } from "../Chat.types";
+import styles from "../Chat.module.css";
 
 export const ChatHeader: React.FC<ChatHeaderProps> = ({
-  title = 'AI Assistant',
+  title = "AI Assistant",
   subtitle,
   avatar,
   actions,
@@ -19,12 +19,17 @@ export const ChatHeader: React.FC<ChatHeaderProps> = ({
   ...rest
 }) => {
   return (
-    <div className={[styles.header, className].filter(Boolean).join(' ')} {...rest}>
+    <div
+      className={[styles.header, className].filter(Boolean).join(" ")}
+      {...rest}
+    >
       {/* Avatar */}
       <div className={styles.headerAvatar}>
         {avatar || (
           <div
-            className={[styles.messageAvatar, styles.headerAvatarDefault].filter(Boolean).join(' ')}
+            className={[styles.messageAvatar, styles.headerAvatarDefault]
+              .filter(Boolean)
+              .join(" ")}
           >
             <Bot size={20} />
           </div>
@@ -47,4 +52,4 @@ export const ChatHeader: React.FC<ChatHeaderProps> = ({
   );
 };
 
-ChatHeader.displayName = 'ChatHeader';
+ChatHeader.displayName = "ChatHeader";

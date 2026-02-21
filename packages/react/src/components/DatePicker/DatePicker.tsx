@@ -12,25 +12,25 @@
  * ```
  */
 
-import React, { useState, useCallback, useMemo } from 'react';
-import { format as formatDate } from 'date-fns';
-import { Calendar as CalendarIcon } from 'lucide-react';
-import { Popover } from '../Popover';
-import { Calendar } from '../Calendar';
-import { Button } from '../Button';
-import type { DateRange } from '../Calendar/Calendar.types';
-import type { DatePickerProps, DatePickerPreset } from './DatePicker.types';
-import styles from './DatePicker.module.css';
+import React, { useState, useCallback, useMemo } from "react";
+import { format as formatDate } from "date-fns";
+import { Calendar as CalendarIcon } from "lucide-react";
+import { Popover } from "../Popover";
+import { Calendar } from "../Calendar";
+import { Button } from "../Button";
+import type { DateRange } from "../Calendar/Calendar.types";
+import type { DatePickerProps, DatePickerPreset } from "./DatePicker.types";
+import styles from "./DatePicker.module.css";
 
 export const DatePicker: React.FC<DatePickerProps> = (props) => {
   const {
-    mode = 'single',
+    mode = "single",
     min,
     max,
     disabledDates,
-    placeholder = 'Pick a date',
+    placeholder = "Pick a date",
     presets,
-    format: dateFormat = 'PPP',
+    format: dateFormat = "PPP",
     disabled = false,
     triggerClassName,
     className,
@@ -40,11 +40,11 @@ export const DatePicker: React.FC<DatePickerProps> = (props) => {
 
   // Format the display text
   const displayText = useMemo(() => {
-    if (mode === 'single' && props.mode !== 'range') {
+    if (mode === "single" && props.mode !== "range") {
       if (!props.selected) return null;
       return formatDate(props.selected, dateFormat);
     }
-    if (mode === 'range' && props.mode === 'range') {
+    if (mode === "range" && props.mode === "range") {
       if (!props.selected?.from) return null;
       if (!props.selected.to) {
         return formatDate(props.selected.from, dateFormat);
@@ -57,12 +57,16 @@ export const DatePicker: React.FC<DatePickerProps> = (props) => {
   // Handle calendar selection
   const handleSelect = useCallback(
     (value: Date | undefined | DateRange | Date[]) => {
-      if (mode === 'single' && props.mode !== 'range') {
-        const onSelect = props.onSelect as ((d: Date | undefined) => void) | undefined;
+      if (mode === "single" && props.mode !== "range") {
+        const onSelect = props.onSelect as
+          | ((d: Date | undefined) => void)
+          | undefined;
         onSelect?.(value as Date | undefined);
         setOpen(false);
-      } else if (mode === 'range' && props.mode === 'range') {
-        const onSelect = props.onSelect as ((r: DateRange | undefined) => void) | undefined;
+      } else if (mode === "range" && props.mode === "range") {
+        const onSelect = props.onSelect as
+          | ((r: DateRange | undefined) => void)
+          | undefined;
         const range = value as DateRange | undefined;
         onSelect?.(range);
         // Close popover when range is complete
@@ -77,11 +81,15 @@ export const DatePicker: React.FC<DatePickerProps> = (props) => {
   // Handle preset selection
   const handlePreset = useCallback(
     (preset: DatePickerPreset) => {
-      if (mode === 'single' && props.mode !== 'range') {
-        const onSelect = props.onSelect as ((d: Date | undefined) => void) | undefined;
+      if (mode === "single" && props.mode !== "range") {
+        const onSelect = props.onSelect as
+          | ((d: Date | undefined) => void)
+          | undefined;
         onSelect?.(preset.value as Date);
-      } else if (mode === 'range' && props.mode === 'range') {
-        const onSelect = props.onSelect as ((r: DateRange | undefined) => void) | undefined;
+      } else if (mode === "range" && props.mode === "range") {
+        const onSelect = props.onSelect as
+          | ((r: DateRange | undefined) => void)
+          | undefined;
         onSelect?.(preset.value as DateRange);
       }
       setOpen(false);
@@ -89,9 +97,11 @@ export const DatePicker: React.FC<DatePickerProps> = (props) => {
     [mode, props],
   );
 
-  const triggerClasses = [styles.trigger, triggerClassName].filter(Boolean).join(' ');
+  const triggerClasses = [styles.trigger, triggerClassName]
+    .filter(Boolean)
+    .join(" ");
 
-  const wrapperClasses = [styles.wrapper, className].filter(Boolean).join(' ');
+  const wrapperClasses = [styles.wrapper, className].filter(Boolean).join(" ");
 
   // Build calendar props
   const calendarProps = {
@@ -116,17 +126,17 @@ export const DatePicker: React.FC<DatePickerProps> = (props) => {
           ))}
         </div>
       )}
-      {mode === 'single' ? (
+      {mode === "single" ? (
         <Calendar
           mode="single"
-          selected={props.mode !== 'range' ? props.selected : undefined}
+          selected={props.mode !== "range" ? props.selected : undefined}
           onSelect={handleSelect as (d: Date | undefined) => void}
           {...calendarProps}
         />
       ) : (
         <Calendar
           mode="range"
-          selected={props.mode === 'range' ? props.selected : undefined}
+          selected={props.mode === "range" ? props.selected : undefined}
           onSelect={handleSelect as (r: DateRange | undefined) => void}
           {...calendarProps}
         />
@@ -166,4 +176,4 @@ export const DatePicker: React.FC<DatePickerProps> = (props) => {
   );
 };
 
-DatePicker.displayName = 'DatePicker';
+DatePicker.displayName = "DatePicker";

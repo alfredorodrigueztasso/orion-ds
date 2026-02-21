@@ -1,6 +1,6 @@
-import { forwardRef, useState, useCallback } from 'react';
-import type { ToggleProps } from './Toggle.types';
-import styles from './Toggle.module.css';
+import { forwardRef, useState, useCallback } from "react";
+import type { ToggleProps } from "./Toggle.types";
+import styles from "./Toggle.module.css";
 
 export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
   (
@@ -8,8 +8,8 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
       pressed,
       defaultPressed = false,
       onPressedChange,
-      variant = 'default',
-      size = 'md',
+      variant = "default",
+      size = "md",
       disabled,
       className,
       children,
@@ -42,7 +42,7 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
       <button
@@ -60,4 +60,4 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
   },
 );
 
-Toggle.displayName = 'Toggle';
+Toggle.displayName = "Toggle";

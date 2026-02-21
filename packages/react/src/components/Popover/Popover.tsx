@@ -22,10 +22,10 @@ import {
   cloneElement,
   isValidElement,
   useImperativeHandle,
-} from 'react';
-import { createPortal } from 'react-dom';
-import type { PopoverProps, PopoverPlacement } from './Popover.types';
-import styles from './Popover.module.css';
+} from "react";
+import { createPortal } from "react-dom";
+import type { PopoverProps, PopoverPlacement } from "./Popover.types";
+import styles from "./Popover.module.css";
 
 /**
  * Calculate popover position
@@ -48,8 +48,10 @@ const calculatePosition = (
     bottom: triggerRect.bottom + scrollY + offset,
     left: triggerRect.left + scrollX - popoverRect.width - offset,
     right: triggerRect.right + scrollX + offset,
-    centerX: triggerRect.left + scrollX + (triggerRect.width - popoverRect.width) / 2,
-    centerY: triggerRect.top + scrollY + (triggerRect.height - popoverRect.height) / 2,
+    centerX:
+      triggerRect.left + scrollX + (triggerRect.width - popoverRect.width) / 2,
+    centerY:
+      triggerRect.top + scrollY + (triggerRect.height - popoverRect.height) / 2,
     startX: triggerRect.left + scrollX,
     endX: triggerRect.right + scrollX - popoverRect.width,
     startY: triggerRect.top + scrollY,
@@ -57,51 +59,51 @@ const calculatePosition = (
   };
 
   switch (placement) {
-    case 'top':
+    case "top":
       top = positions.top;
       left = positions.centerX;
       break;
-    case 'top-start':
+    case "top-start":
       top = positions.top;
       left = positions.startX;
       break;
-    case 'top-end':
+    case "top-end":
       top = positions.top;
       left = positions.endX;
       break;
-    case 'bottom':
+    case "bottom":
       top = positions.bottom;
       left = positions.centerX;
       break;
-    case 'bottom-start':
+    case "bottom-start":
       top = positions.bottom;
       left = positions.startX;
       break;
-    case 'bottom-end':
+    case "bottom-end":
       top = positions.bottom;
       left = positions.endX;
       break;
-    case 'left':
+    case "left":
       top = positions.centerY;
       left = positions.left;
       break;
-    case 'left-start':
+    case "left-start":
       top = positions.startY;
       left = positions.left;
       break;
-    case 'left-end':
+    case "left-end":
       top = positions.endY;
       left = positions.left;
       break;
-    case 'right':
+    case "right":
       top = positions.centerY;
       left = positions.right;
       break;
-    case 'right-start':
+    case "right-start":
       top = positions.startY;
       left = positions.right;
       break;
-    case 'right-end':
+    case "right-end":
       top = positions.endY;
       left = positions.right;
       break;
@@ -115,8 +117,8 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
     {
       trigger,
       content,
-      placement = 'bottom',
-      triggerType = 'click',
+      placement = "bottom",
+      triggerType = "click",
       open: controlledOpen,
       defaultOpen = false,
       onOpenChange,
@@ -161,7 +163,12 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
 
       const triggerRect = triggerRef.current.getBoundingClientRect();
       const popoverRect = popoverRef.current.getBoundingClientRect();
-      const newPosition = calculatePosition(triggerRect, popoverRect, placement, offset);
+      const newPosition = calculatePosition(
+        triggerRect,
+        popoverRect,
+        placement,
+        offset,
+      );
       setPosition(newPosition);
     }, [placement, offset]);
 
@@ -169,12 +176,12 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
       if (isOpen) {
         // Use requestAnimationFrame to ensure DOM is ready
         requestAnimationFrame(updatePosition);
-        window.addEventListener('resize', updatePosition);
-        window.addEventListener('scroll', updatePosition, true);
+        window.addEventListener("resize", updatePosition);
+        window.addEventListener("scroll", updatePosition, true);
 
         return () => {
-          window.removeEventListener('resize', updatePosition);
-          window.removeEventListener('scroll', updatePosition, true);
+          window.removeEventListener("resize", updatePosition);
+          window.removeEventListener("scroll", updatePosition, true);
         };
       }
     }, [isOpen, updatePosition]);
@@ -195,8 +202,9 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
         }
       };
 
-      document.addEventListener('mousedown', handleClickOutside);
-      return () => document.removeEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
+      return () =>
+        document.removeEventListener("mousedown", handleClickOutside);
     }, [isOpen, closeOnClickOutside, setIsOpen]);
 
     // Handle escape key
@@ -204,13 +212,13 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
       if (!isOpen || !closeOnEscape) return;
 
       const handleEscape = (event: KeyboardEvent) => {
-        if (event.key === 'Escape') {
+        if (event.key === "Escape") {
           setIsOpen(false);
         }
       };
 
-      document.addEventListener('keydown', handleEscape);
-      return () => document.removeEventListener('keydown', handleEscape);
+      document.addEventListener("keydown", handleEscape);
+      return () => document.removeEventListener("keydown", handleEscape);
     }, [isOpen, closeOnEscape, setIsOpen]);
 
     // Cleanup timeouts
@@ -234,7 +242,10 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
     const handleClose = useCallback(() => {
       if (openTimeoutRef.current) clearTimeout(openTimeoutRef.current);
       if (closeDelay > 0) {
-        closeTimeoutRef.current = setTimeout(() => setIsOpen(false), closeDelay);
+        closeTimeoutRef.current = setTimeout(
+          () => setIsOpen(false),
+          closeDelay,
+        );
       } else {
         setIsOpen(false);
       }
@@ -251,26 +262,26 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
     // Build trigger props based on trigger type
     const getTriggerProps = () => {
       const baseProps: Record<string, unknown> = {
-        'aria-expanded': isOpen,
-        'aria-haspopup': true,
+        "aria-expanded": isOpen,
+        "aria-haspopup": true,
       };
 
       switch (triggerType) {
-        case 'click':
+        case "click":
           return { ...baseProps, onClick: handleToggle };
-        case 'hover':
+        case "hover":
           return {
             ...baseProps,
             onMouseEnter: handleOpen,
             onMouseLeave: handleClose,
           };
-        case 'focus':
+        case "focus":
           return {
             ...baseProps,
             onFocus: handleOpen,
             onBlur: handleClose,
           };
-        case 'manual':
+        case "manual":
           return baseProps;
         default:
           return baseProps;
@@ -279,21 +290,24 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
 
     // Clone trigger with props
     const triggerElement = isValidElement(trigger)
-      ? cloneElement(trigger as React.ReactElement<Record<string, unknown>>, getTriggerProps())
+      ? cloneElement(
+          trigger as React.ReactElement<Record<string, unknown>>,
+          getTriggerProps(),
+        )
       : trigger;
 
     // Get arrow direction based on placement
     const getArrowPlacement = () => {
-      if (placement.startsWith('top')) return 'bottom';
-      if (placement.startsWith('bottom')) return 'top';
-      if (placement.startsWith('left')) return 'right';
-      if (placement.startsWith('right')) return 'left';
-      return 'top';
+      if (placement.startsWith("top")) return "bottom";
+      if (placement.startsWith("bottom")) return "top";
+      if (placement.startsWith("left")) return "right";
+      if (placement.startsWith("right")) return "left";
+      return "top";
     };
 
     const popoverClasses = [styles.popover, isOpen && styles.visible, className]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     const popoverElement = (
       <div
@@ -305,8 +319,8 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
         }}
         role="dialog"
         aria-modal="false"
-        onMouseEnter={triggerType === 'hover' ? handleOpen : undefined}
-        onMouseLeave={triggerType === 'hover' ? handleClose : undefined}
+        onMouseEnter={triggerType === "hover" ? handleOpen : undefined}
+        onMouseLeave={triggerType === "hover" ? handleClose : undefined}
         {...rest}
       >
         {showArrow && (
@@ -330,4 +344,4 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
   },
 );
 
-Popover.displayName = 'Popover';
+Popover.displayName = "Popover";

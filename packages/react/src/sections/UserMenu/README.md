@@ -5,33 +5,50 @@
 ## Quick Start
 
 ```tsx
-import { UserMenu } from '@orion/react';
-import { User, Settings, HelpCircle, LogOut } from 'lucide-react';
+import { UserMenu } from "@orion/react";
+import { User, Settings, HelpCircle, LogOut } from "lucide-react";
 
 <UserMenu
   user={{
-    name: 'John Doe',
-    email: 'john@example.com',
-    avatar: '/avatars/john.jpg',
+    name: "John Doe",
+    email: "john@example.com",
+    avatar: "/avatars/john.jpg",
   }}
   sections={[
     {
-      id: 'account',
+      id: "account",
       items: [
-        { id: 'profile', label: 'Profile', icon: <User size={16} />, href: '/profile' },
-        { id: 'settings', label: 'Settings', icon: <Settings size={16} />, href: '/settings' },
+        {
+          id: "profile",
+          label: "Profile",
+          icon: <User size={16} />,
+          href: "/profile",
+        },
+        {
+          id: "settings",
+          label: "Settings",
+          icon: <Settings size={16} />,
+          href: "/settings",
+        },
       ],
     },
     {
-      id: 'support',
-      items: [{ id: 'help', label: 'Help Center', icon: <HelpCircle size={16} />, href: '/help' }],
-    },
-    {
-      id: 'actions',
+      id: "support",
       items: [
         {
-          id: 'logout',
-          label: 'Sign out',
+          id: "help",
+          label: "Help Center",
+          icon: <HelpCircle size={16} />,
+          href: "/help",
+        },
+      ],
+    },
+    {
+      id: "actions",
+      items: [
+        {
+          id: "logout",
+          label: "Sign out",
           icon: <LogOut size={16} />,
           onClick: handleLogout,
           danger: true,
@@ -73,7 +90,7 @@ interface UserMenuProps {
 
   // Display
   trigger?: ReactNode; // Custom trigger element
-  align?: 'start' | 'end'; // Menu alignment - default: 'end'
+  align?: "start" | "end"; // Menu alignment - default: 'end'
   showHeader?: boolean; // Show user info - default: true
   compact?: boolean; // Compact trigger - default: false
 }
@@ -83,7 +100,7 @@ interface UserInfo {
   email?: string; // Email address
   avatar?: string; // Avatar URL
   initials?: string; // Fallback initials
-  status?: 'online' | 'away' | 'busy' | 'offline';
+  status?: "online" | "away" | "busy" | "offline";
   role?: string; // Role or subscription tier
 }
 
@@ -260,7 +277,12 @@ sections={[
 ```tsx
 const [isOpen, setIsOpen] = useState(false);
 
-<UserMenu user={user} sections={sections} open={isOpen} onOpenChange={setIsOpen} />;
+<UserMenu
+  user={user}
+  sections={sections}
+  open={isOpen}
+  onOpenChange={setIsOpen}
+/>;
 ```
 
 ---
@@ -270,8 +292,16 @@ const [isOpen, setIsOpen] = useState(false);
 ### Full Featured User Menu
 
 ```tsx
-import { UserMenu, Badge } from '@orion/react';
-import { User, Settings, CreditCard, HelpCircle, MessageSquare, Moon, LogOut } from 'lucide-react';
+import { UserMenu, Badge } from "@orion/react";
+import {
+  User,
+  Settings,
+  CreditCard,
+  HelpCircle,
+  MessageSquare,
+  Moon,
+  LogOut,
+} from "lucide-react";
 
 function AppHeader() {
   const { user, logout, toggleTheme } = useAuth();
@@ -282,42 +312,67 @@ function AppHeader() {
         name: user.name,
         email: user.email,
         avatar: user.avatar,
-        status: 'online',
-        role: user.isPro ? 'Pro' : 'Free',
+        status: "online",
+        role: user.isPro ? "Pro" : "Free",
       }}
       sections={[
         {
-          id: 'account',
+          id: "account",
           items: [
-            { id: 'profile', label: 'Your Profile', icon: <User size={16} />, href: '/profile' },
-            { id: 'settings', label: 'Settings', icon: <Settings size={16} />, href: '/settings' },
-            { id: 'billing', label: 'Billing', icon: <CreditCard size={16} />, href: '/billing' },
-          ],
-        },
-        {
-          id: 'preferences',
-          items: [
-            { id: 'theme', label: 'Dark Mode', icon: <Moon size={16} />, onClick: toggleTheme },
-          ],
-        },
-        {
-          id: 'support',
-          items: [
-            { id: 'help', label: 'Help & Support', icon: <HelpCircle size={16} />, href: '/help' },
             {
-              id: 'feedback',
-              label: 'Send Feedback',
+              id: "profile",
+              label: "Your Profile",
+              icon: <User size={16} />,
+              href: "/profile",
+            },
+            {
+              id: "settings",
+              label: "Settings",
+              icon: <Settings size={16} />,
+              href: "/settings",
+            },
+            {
+              id: "billing",
+              label: "Billing",
+              icon: <CreditCard size={16} />,
+              href: "/billing",
+            },
+          ],
+        },
+        {
+          id: "preferences",
+          items: [
+            {
+              id: "theme",
+              label: "Dark Mode",
+              icon: <Moon size={16} />,
+              onClick: toggleTheme,
+            },
+          ],
+        },
+        {
+          id: "support",
+          items: [
+            {
+              id: "help",
+              label: "Help & Support",
+              icon: <HelpCircle size={16} />,
+              href: "/help",
+            },
+            {
+              id: "feedback",
+              label: "Send Feedback",
               icon: <MessageSquare size={16} />,
               onClick: openFeedback,
             },
           ],
         },
         {
-          id: 'actions',
+          id: "actions",
           items: [
             {
-              id: 'logout',
-              label: 'Sign out',
+              id: "logout",
+              label: "Sign out",
               icon: <LogOut size={16} />,
               onClick: logout,
               danger: true,
@@ -345,10 +400,10 @@ function AppHeader() {
   showHeader={false}
   sections={[
     {
-      id: 'main',
+      id: "main",
       items: [
-        { id: 'profile', label: 'Profile', href: '/profile' },
-        { id: 'logout', label: 'Sign out', onClick: logout },
+        { id: "profile", label: "Profile", href: "/profile" },
+        { id: "logout", label: "Sign out", onClick: logout },
       ],
     },
   ]}
@@ -360,41 +415,51 @@ function AppHeader() {
 ```tsx
 <UserMenu
   user={{
-    name: 'Admin User',
-    email: 'admin@company.com',
-    avatar: '/avatars/admin.jpg',
-    role: 'Administrator',
-    status: 'online',
+    name: "Admin User",
+    email: "admin@company.com",
+    avatar: "/avatars/admin.jpg",
+    role: "Administrator",
+    status: "online",
   }}
   sections={[
     {
-      id: 'account',
-      label: 'Account',
+      id: "account",
+      label: "Account",
       items: [
-        { id: 'profile', label: 'My Profile', icon: <User size={16} /> },
-        { id: 'settings', label: 'Preferences', icon: <Settings size={16} /> },
+        { id: "profile", label: "My Profile", icon: <User size={16} /> },
+        { id: "settings", label: "Preferences", icon: <Settings size={16} /> },
       ],
     },
     {
-      id: 'admin',
-      label: 'Admin',
+      id: "admin",
+      label: "Admin",
       items: [
         {
-          id: 'dashboard',
-          label: 'Admin Dashboard',
+          id: "dashboard",
+          label: "Admin Dashboard",
           icon: <LayoutDashboard size={16} />,
-          href: '/admin',
+          href: "/admin",
         },
-        { id: 'users', label: 'Manage Users', icon: <Users size={16} />, href: '/admin/users' },
-        { id: 'logs', label: 'Audit Logs', icon: <FileText size={16} />, href: '/admin/logs' },
+        {
+          id: "users",
+          label: "Manage Users",
+          icon: <Users size={16} />,
+          href: "/admin/users",
+        },
+        {
+          id: "logs",
+          label: "Audit Logs",
+          icon: <FileText size={16} />,
+          href: "/admin/logs",
+        },
       ],
     },
     {
-      id: 'actions',
+      id: "actions",
       items: [
         {
-          id: 'logout',
-          label: 'Sign out',
+          id: "logout",
+          label: "Sign out",
           icon: <LogOut size={16} />,
           onClick: logout,
           danger: true,
@@ -423,8 +488,8 @@ function AppHeader() {
   }
   sections={[
     {
-      id: 'teams',
-      label: 'Switch Team',
+      id: "teams",
+      label: "Switch Team",
       items: teams.map((team) => ({
         id: team.id,
         label: team.name,
@@ -433,9 +498,14 @@ function AppHeader() {
       })),
     },
     {
-      id: 'actions',
+      id: "actions",
       items: [
-        { id: 'create', label: 'Create Team', icon: <Plus size={16} />, onClick: createTeam },
+        {
+          id: "create",
+          label: "Create Team",
+          icon: <Plus size={16} />,
+          onClick: createTeam,
+        },
       ],
     },
   ]}
@@ -455,12 +525,12 @@ function AppHeader() {
 ```tsx
 // Good: Descriptive menu labels
 {
-  label: 'Account Settings';
+  label: "Account Settings";
 }
 
 // Avoid: Vague labels
 {
-  label: 'Settings';
+  label: "Settings";
 } // Settings for what?
 ```
 

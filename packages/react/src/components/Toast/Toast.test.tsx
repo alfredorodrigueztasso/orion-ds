@@ -2,26 +2,31 @@
  * Toast Component Tests
  */
 
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen, waitFor, act } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { ToastProvider, useToast } from './Toast';
+import { describe, it, expect, vi } from "vitest";
+import { render, screen, waitFor, act } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { ToastProvider, useToast } from "./Toast";
 
 // Test component that uses the toast hook
 const ToastTester = () => {
-  const { toast, success, error, warning, info, dismiss, dismissAll } = useToast();
+  const { toast, success, error, warning, info, dismiss, dismissAll } =
+    useToast();
 
   return (
     <div>
-      <button onClick={() => toast({ message: 'Test toast' })}>Show Toast</button>
-      <button onClick={() => success('Success message')}>Show Success</button>
-      <button onClick={() => error('Error message')}>Show Error</button>
-      <button onClick={() => warning('Warning message')}>Show Warning</button>
-      <button onClick={() => info('Info message')}>Show Info</button>
-      <button onClick={() => toast({ title: 'Title', message: 'With title' })}>With Title</button>
+      <button onClick={() => toast({ message: "Test toast" })}>
+        Show Toast
+      </button>
+      <button onClick={() => success("Success message")}>Show Success</button>
+      <button onClick={() => error("Error message")}>Show Error</button>
+      <button onClick={() => warning("Warning message")}>Show Warning</button>
+      <button onClick={() => info("Info message")}>Show Info</button>
+      <button onClick={() => toast({ title: "Title", message: "With title" })}>
+        With Title
+      </button>
       <button
         onClick={() => {
-          const id = toast({ message: 'To dismiss' });
+          const id = toast({ message: "To dismiss" });
           setTimeout(() => dismiss(id), 100);
         }}
       >
@@ -31,8 +36,8 @@ const ToastTester = () => {
       <button
         onClick={() =>
           toast({
-            message: 'With action',
-            action: { label: 'Undo', onClick: vi.fn() },
+            message: "With action",
+            action: { label: "Undo", onClick: vi.fn() },
           })
         }
       >
@@ -42,10 +47,10 @@ const ToastTester = () => {
   );
 };
 
-describe('Toast', () => {
-  it('throws error when useToast is used outside provider', () => {
+describe("Toast", () => {
+  it("throws error when useToast is used outside provider", () => {
     // Suppress console.error for this test
-    const spy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const spy = vi.spyOn(console, "error").mockImplementation(() => {});
 
     expect(() => {
       const Component = () => {
@@ -53,12 +58,12 @@ describe('Toast', () => {
         return null;
       };
       render(<Component />);
-    }).toThrow('useToast must be used within a ToastProvider');
+    }).toThrow("useToast must be used within a ToastProvider");
 
     spy.mockRestore();
   });
 
-  it('renders toasts when triggered', async () => {
+  it("renders toasts when triggered", async () => {
     const user = userEvent.setup();
 
     render(
@@ -67,14 +72,14 @@ describe('Toast', () => {
       </ToastProvider>,
     );
 
-    await user.click(screen.getByText('Show Toast'));
+    await user.click(screen.getByText("Show Toast"));
 
     await waitFor(() => {
-      expect(screen.getByText('Test toast')).toBeInTheDocument();
+      expect(screen.getByText("Test toast")).toBeInTheDocument();
     });
   });
 
-  it('renders success toast', async () => {
+  it("renders success toast", async () => {
     const user = userEvent.setup();
 
     render(
@@ -83,14 +88,14 @@ describe('Toast', () => {
       </ToastProvider>,
     );
 
-    await user.click(screen.getByText('Show Success'));
+    await user.click(screen.getByText("Show Success"));
 
     await waitFor(() => {
-      expect(screen.getByText('Success message')).toBeInTheDocument();
+      expect(screen.getByText("Success message")).toBeInTheDocument();
     });
   });
 
-  it('renders error toast', async () => {
+  it("renders error toast", async () => {
     const user = userEvent.setup();
 
     render(
@@ -99,14 +104,14 @@ describe('Toast', () => {
       </ToastProvider>,
     );
 
-    await user.click(screen.getByText('Show Error'));
+    await user.click(screen.getByText("Show Error"));
 
     await waitFor(() => {
-      expect(screen.getByText('Error message')).toBeInTheDocument();
+      expect(screen.getByText("Error message")).toBeInTheDocument();
     });
   });
 
-  it('renders toast with title', async () => {
+  it("renders toast with title", async () => {
     const user = userEvent.setup();
 
     render(
@@ -115,15 +120,15 @@ describe('Toast', () => {
       </ToastProvider>,
     );
 
-    await user.click(screen.getByText('With Title'));
+    await user.click(screen.getByText("With Title"));
 
     await waitFor(() => {
-      expect(screen.getByText('Title')).toBeInTheDocument();
-      expect(screen.getByText('With title')).toBeInTheDocument();
+      expect(screen.getByText("Title")).toBeInTheDocument();
+      expect(screen.getByText("With title")).toBeInTheDocument();
     });
   });
 
-  it('renders toast with action button', async () => {
+  it("renders toast with action button", async () => {
     const user = userEvent.setup();
 
     render(
@@ -132,15 +137,15 @@ describe('Toast', () => {
       </ToastProvider>,
     );
 
-    await user.click(screen.getByText('With Action'));
+    await user.click(screen.getByText("With Action"));
 
     await waitFor(() => {
-      expect(screen.getByText('With action')).toBeInTheDocument();
-      expect(screen.getByText('Undo')).toBeInTheDocument();
+      expect(screen.getByText("With action")).toBeInTheDocument();
+      expect(screen.getByText("Undo")).toBeInTheDocument();
     });
   });
 
-  it('dismisses toast when close button is clicked', async () => {
+  it("dismisses toast when close button is clicked", async () => {
     const user = userEvent.setup();
 
     render(
@@ -149,21 +154,21 @@ describe('Toast', () => {
       </ToastProvider>,
     );
 
-    await user.click(screen.getByText('Show Toast'));
+    await user.click(screen.getByText("Show Toast"));
 
     await waitFor(() => {
-      expect(screen.getByText('Test toast')).toBeInTheDocument();
+      expect(screen.getByText("Test toast")).toBeInTheDocument();
     });
 
-    const dismissButton = screen.getByLabelText('Dismiss');
+    const dismissButton = screen.getByLabelText("Dismiss");
     await user.click(dismissButton);
 
     await waitFor(() => {
-      expect(screen.queryByText('Test toast')).not.toBeInTheDocument();
+      expect(screen.queryByText("Test toast")).not.toBeInTheDocument();
     });
   });
 
-  it('dismisses all toasts', async () => {
+  it("dismisses all toasts", async () => {
     const user = userEvent.setup();
 
     render(
@@ -172,23 +177,23 @@ describe('Toast', () => {
       </ToastProvider>,
     );
 
-    await user.click(screen.getByText('Show Success'));
-    await user.click(screen.getByText('Show Error'));
+    await user.click(screen.getByText("Show Success"));
+    await user.click(screen.getByText("Show Error"));
 
     await waitFor(() => {
-      expect(screen.getByText('Success message')).toBeInTheDocument();
-      expect(screen.getByText('Error message')).toBeInTheDocument();
+      expect(screen.getByText("Success message")).toBeInTheDocument();
+      expect(screen.getByText("Error message")).toBeInTheDocument();
     });
 
-    await user.click(screen.getByText('Dismiss All'));
+    await user.click(screen.getByText("Dismiss All"));
 
     await waitFor(() => {
-      expect(screen.queryByText('Success message')).not.toBeInTheDocument();
-      expect(screen.queryByText('Error message')).not.toBeInTheDocument();
+      expect(screen.queryByText("Success message")).not.toBeInTheDocument();
+      expect(screen.queryByText("Error message")).not.toBeInTheDocument();
     });
   });
 
-  it('auto-dismisses after duration', async () => {
+  it("auto-dismisses after duration", async () => {
     vi.useFakeTimers();
 
     render(
@@ -198,23 +203,23 @@ describe('Toast', () => {
     );
 
     await act(async () => {
-      screen.getByText('Show Toast').click();
+      screen.getByText("Show Toast").click();
     });
 
-    expect(screen.getByText('Test toast')).toBeInTheDocument();
+    expect(screen.getByText("Test toast")).toBeInTheDocument();
 
     await act(async () => {
       vi.advanceTimersByTime(1500);
     });
 
     await waitFor(() => {
-      expect(screen.queryByText('Test toast')).not.toBeInTheDocument();
+      expect(screen.queryByText("Test toast")).not.toBeInTheDocument();
     });
 
     vi.useRealTimers();
   });
 
-  it('limits number of toasts based on maxToasts', async () => {
+  it("limits number of toasts based on maxToasts", async () => {
     const user = userEvent.setup();
 
     render(
@@ -223,20 +228,20 @@ describe('Toast', () => {
       </ToastProvider>,
     );
 
-    await user.click(screen.getByText('Show Success'));
-    await user.click(screen.getByText('Show Error'));
-    await user.click(screen.getByText('Show Warning'));
+    await user.click(screen.getByText("Show Success"));
+    await user.click(screen.getByText("Show Error"));
+    await user.click(screen.getByText("Show Warning"));
 
     await waitFor(() => {
       // First toast should be removed
-      expect(screen.queryByText('Success message')).not.toBeInTheDocument();
+      expect(screen.queryByText("Success message")).not.toBeInTheDocument();
       // Last two should remain
-      expect(screen.getByText('Error message')).toBeInTheDocument();
-      expect(screen.getByText('Warning message')).toBeInTheDocument();
+      expect(screen.getByText("Error message")).toBeInTheDocument();
+      expect(screen.getByText("Warning message")).toBeInTheDocument();
     });
   });
 
-  it('supports different positions', () => {
+  it("supports different positions", () => {
     render(
       <ToastProvider position="top-center">
         <ToastTester />
@@ -244,10 +249,10 @@ describe('Toast', () => {
     );
 
     // Just verify it renders without error
-    expect(screen.getByText('Show Toast')).toBeInTheDocument();
+    expect(screen.getByText("Show Toast")).toBeInTheDocument();
   });
 
-  it('has proper accessibility attributes', async () => {
+  it("has proper accessibility attributes", async () => {
     const user = userEvent.setup();
 
     render(
@@ -256,11 +261,11 @@ describe('Toast', () => {
       </ToastProvider>,
     );
 
-    await user.click(screen.getByText('Show Toast'));
+    await user.click(screen.getByText("Show Toast"));
 
     await waitFor(() => {
-      const toast = screen.getByRole('alert');
-      expect(toast).toHaveAttribute('aria-live', 'polite');
+      const toast = screen.getByRole("alert");
+      expect(toast).toHaveAttribute("aria-live", "polite");
     });
   });
 });

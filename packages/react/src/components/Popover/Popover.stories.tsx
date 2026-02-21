@@ -2,39 +2,39 @@
  * Popover Component Stories
  */
 
-import { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { Popover } from './Popover';
-import { Button } from '../Button';
+import { useState } from "react";
+import type { Meta, StoryObj } from "@storybook/react";
+import { Popover } from "./Popover";
+import { Button } from "../Button";
 
 const meta: Meta<typeof Popover> = {
-  title: 'Components/Overlay/Popover',
+  title: "Components/Overlays/Popover",
   component: Popover,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     placement: {
-      control: 'select',
+      control: "select",
       options: [
-        'top',
-        'top-start',
-        'top-end',
-        'bottom',
-        'bottom-start',
-        'bottom-end',
-        'left',
-        'left-start',
-        'left-end',
-        'right',
-        'right-start',
-        'right-end',
+        "top",
+        "top-start",
+        "top-end",
+        "bottom",
+        "bottom-start",
+        "bottom-end",
+        "left",
+        "left-start",
+        "left-end",
+        "right",
+        "right-start",
+        "right-end",
       ],
     },
     triggerType: {
-      control: 'radio',
-      options: ['click', 'hover', 'focus', 'manual'],
+      control: "radio",
+      options: ["click", "hover", "focus", "manual"],
     },
   },
 };
@@ -57,7 +57,7 @@ export const TopPlacement: Story = {
   args: {
     trigger: <Button>Top Popover</Button>,
     content: <p style={{ margin: 0 }}>Popover appears above</p>,
-    placement: 'top',
+    placement: "top",
   },
 };
 
@@ -65,7 +65,7 @@ export const LeftPlacement: Story = {
   args: {
     trigger: <Button>Left Popover</Button>,
     content: <p style={{ margin: 0 }}>Popover appears to the left</p>,
-    placement: 'left',
+    placement: "left",
   },
 };
 
@@ -73,7 +73,7 @@ export const RightPlacement: Story = {
   args: {
     trigger: <Button>Right Popover</Button>,
     content: <p style={{ margin: 0 }}>Popover appears to the right</p>,
-    placement: 'right',
+    placement: "right",
   },
 };
 
@@ -81,7 +81,7 @@ export const HoverTrigger: Story = {
   args: {
     trigger: <Button>Hover me</Button>,
     content: <p style={{ margin: 0 }}>This appears on hover</p>,
-    triggerType: 'hover',
+    triggerType: "hover",
   },
 };
 
@@ -89,7 +89,7 @@ export const FocusTrigger: Story = {
   args: {
     trigger: <Button>Focus me</Button>,
     content: <p style={{ margin: 0 }}>This appears on focus</p>,
-    triggerType: 'focus',
+    triggerType: "focus",
   },
 };
 
@@ -106,23 +106,28 @@ export const RichContent: Story = {
     trigger: <Button>View Details</Button>,
     content: (
       <div>
-        <h4 style={{ margin: '0 0 var(--spacing-2) 0', fontWeight: 'var(--font-weight-medium)' }}>
+        <h4
+          style={{
+            margin: "0 0 var(--spacing-2) 0",
+            fontWeight: "var(--font-weight-medium)",
+          }}
+        >
           User Profile
         </h4>
         <p
           style={{
-            margin: '0 0 var(--spacing-2) 0',
-            fontSize: 'var(--font-size-14)',
-            color: 'var(--text-secondary)',
+            margin: "0 0 var(--spacing-2) 0",
+            fontSize: "var(--font-size-14)",
+            color: "var(--text-secondary)",
           }}
         >
           John Doe
         </p>
         <p
           style={{
-            margin: '0 0 var(--spacing-3) 0',
-            fontSize: 'var(--font-size-12)',
-            color: 'var(--text-tertiary)',
+            margin: "0 0 var(--spacing-3) 0",
+            fontSize: "var(--font-size-12)",
+            color: "var(--text-tertiary)",
           }}
         >
           john.doe@example.com
@@ -140,9 +145,15 @@ export const ControlledPopover: Story = {
     const [open, setOpen] = useState(false);
 
     return (
-      <div style={{ display: 'flex', gap: 'var(--spacing-3)', alignItems: 'center' }}>
+      <div
+        style={{
+          display: "flex",
+          gap: "var(--spacing-3)",
+          alignItems: "center",
+        }}
+      >
         <Button variant="secondary" onClick={() => setOpen(!open)}>
-          Toggle: {open ? 'Open' : 'Closed'}
+          Toggle: {open ? "Open" : "Closed"}
         </Button>
         <Popover
           trigger={<Button>Controlled</Button>}
@@ -159,34 +170,38 @@ export const ControlledPopover: Story = {
 export const AllPlacements: Story = {
   render: () => {
     const placements = [
-      'top-start',
-      'top',
-      'top-end',
-      'left-start',
-      'left',
-      'left-end',
-      'right-start',
-      'right',
-      'right-end',
-      'bottom-start',
-      'bottom',
-      'bottom-end',
+      "top-start",
+      "top",
+      "top-end",
+      "left-start",
+      "left",
+      "left-end",
+      "right-start",
+      "right",
+      "right-end",
+      "bottom-start",
+      "bottom",
+      "bottom-end",
     ] as const;
 
     return (
       <div
         style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: 'var(--spacing-12)',
-          padding: '100px',
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: "var(--spacing-12)",
+          padding: "var(--spacing-24)",
         }}
       >
         {placements.map((placement) => (
           <Popover
             key={placement}
             trigger={<Button size="sm">{placement}</Button>}
-            content={<p style={{ margin: 0, fontSize: 'var(--font-size-12)' }}>{placement}</p>}
+            content={
+              <p style={{ margin: 0, fontSize: "var(--font-size-12)" }}>
+                {placement}
+              </p>
+            }
             placement={placement}
           />
         ))}
@@ -202,30 +217,33 @@ export const MenuExample: Story = {
       content={
         <div
           style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 'var(--spacing-1)',
-            margin: 'calc(var(--spacing-2) * -1)',
+            display: "flex",
+            flexDirection: "column",
+            gap: "var(--spacing-1)",
+            margin: "calc(var(--spacing-2) * -1)",
           }}
         >
-          {['Edit', 'Duplicate', 'Archive', 'Delete'].map((action) => (
+          {["Edit", "Duplicate", "Archive", "Delete"].map((action) => (
             <button
               key={action}
               style={{
-                padding: 'var(--spacing-2) var(--spacing-3)',
-                textAlign: 'left',
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                borderRadius: 'var(--radius-sm)',
-                fontSize: 'var(--font-size-14)',
-                color: action === 'Delete' ? 'var(--status-error)' : 'var(--text-primary)',
+                padding: "var(--spacing-2) var(--spacing-3)",
+                textAlign: "left",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                borderRadius: "var(--radius-sm)",
+                fontSize: "var(--font-size-14)",
+                color:
+                  action === "Delete"
+                    ? "var(--status-error)"
+                    : "var(--text-primary)",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'var(--surface-subtle)';
+                e.currentTarget.style.background = "var(--surface-subtle)";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'none';
+                e.currentTarget.style.background = "none";
               }}
             >
               {action}
@@ -245,23 +263,24 @@ export const TooltipLike: Story = {
       trigger={
         <span
           style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '20px',
-            height: '20px',
-            borderRadius: '50%',
-            background: 'var(--surface-subtle)',
-            fontSize: 'var(--font-size-12)',
-            cursor: 'help',
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "20px",
+            height: "20px",
+            borderRadius: "50%",
+            background: "var(--surface-subtle)",
+            fontSize: "var(--font-size-12)",
+            cursor: "help",
           }}
         >
           ?
         </span>
       }
       content={
-        <p style={{ margin: 0, fontSize: 'var(--font-size-12)' }}>
-          This is a helpful explanation that provides more context about the feature.
+        <p style={{ margin: 0, fontSize: "var(--font-size-12)" }}>
+          This is a helpful explanation that provides more context about the
+          feature.
         </p>
       }
       triggerType="hover"

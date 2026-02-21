@@ -12,15 +12,15 @@
  * ```
  */
 
-import React from 'react';
-import type { ProgressBarProps } from './ProgressBar.types';
-import styles from './ProgressBar.module.css';
+import React from "react";
+import type { ProgressBarProps } from "./ProgressBar.types";
+import styles from "./ProgressBar.module.css";
 
 export const ProgressBar: React.FC<ProgressBarProps> = ({
   value,
   max = 100,
-  variant = 'primary',
-  size = 'md',
+  variant = "primary",
+  size = "md",
   showLabel = false,
   label,
   indeterminate = false,
@@ -28,7 +28,8 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   ...rest
 }) => {
   // Calculate percentage
-  const percentage = value !== undefined ? Math.min(Math.max((value / max) * 100, 0), 100) : 0;
+  const percentage =
+    value !== undefined ? Math.min(Math.max((value / max) * 100, 0), 100) : 0;
 
   const containerClasses = [
     styles.container,
@@ -38,7 +39,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
     className,
   ]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
 
   return (
     <div className={containerClasses} {...rest}>
@@ -73,4 +74,4 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   );
 };
 
-ProgressBar.displayName = 'ProgressBar';
+ProgressBar.displayName = "ProgressBar";

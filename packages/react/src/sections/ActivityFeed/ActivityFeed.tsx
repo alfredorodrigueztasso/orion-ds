@@ -20,7 +20,7 @@
  * ```
  */
 
-import { forwardRef } from 'react';
+import { forwardRef } from "react";
 import {
   MessageSquare,
   Edit,
@@ -30,11 +30,11 @@ import {
   CheckCircle,
   Upload,
   Circle,
-} from 'lucide-react';
-import { Chip } from '../../components/Chip';
-import { Button } from '../../components/Button';
-import type { ActivityFeedProps, ActivityItem } from './ActivityFeed.types';
-import styles from './ActivityFeed.module.css';
+} from "lucide-react";
+import { Chip } from "../../components/Chip";
+import { Button } from "../../components/Button";
+import type { ActivityFeedProps, ActivityItem } from "./ActivityFeed.types";
+import styles from "./ActivityFeed.module.css";
 
 // Icon size constant (matches --size-icon-sm: 16px)
 const ICON_SIZE = 16;
@@ -61,13 +61,15 @@ const ActivityItemComponent = ({
   showConnector: boolean;
   compact: boolean;
 }) => {
-  const icon = item.icon || typeIcons[item.type || 'default'];
-  const iconVariant = item.iconVariant || 'default';
+  const icon = item.icon || typeIcons[item.type || "default"];
+  const iconVariant = item.iconVariant || "default";
 
   return (
-    <div className={`${styles.item} ${compact ? styles.itemCompact : ''}`}>
+    <div className={`${styles.item} ${compact ? styles.itemCompact : ""}`}>
       <div className={styles.iconColumn}>
-        <div className={`${styles.iconWrapper} ${styles[`iconVariant-${iconVariant}`]}`}>
+        <div
+          className={`${styles.iconWrapper} ${styles[`iconVariant-${iconVariant}`]}`}
+        >
           {icon}
         </div>
         {showConnector && <div className={styles.connector} />}
@@ -78,7 +80,11 @@ const ActivityItemComponent = ({
           {item.actor && (
             <span className={styles.actor}>
               {item.actor.avatar && (
-                <img src={item.actor.avatar} alt={item.actor.name} className={styles.avatar} />
+                <img
+                  src={item.actor.avatar}
+                  alt={item.actor.name}
+                  className={styles.avatar}
+                />
               )}
               {item.actor.href ? (
                 <a href={item.actor.href} className={styles.actorName}>
@@ -90,10 +96,14 @@ const ActivityItemComponent = ({
             </span>
           )}
           <span className={styles.title}>{item.title}</span>
-          <span className={styles.time}>{item.relativeTime || item.timestamp}</span>
+          <span className={styles.time}>
+            {item.relativeTime || item.timestamp}
+          </span>
         </div>
 
-        {item.description && <div className={styles.description}>{item.description}</div>}
+        {item.description && (
+          <div className={styles.description}>{item.description}</div>
+        )}
 
         {item.metadata && Object.keys(item.metadata).length > 0 && (
           <div className={styles.metadata}>
@@ -123,7 +133,7 @@ export const ActivityFeed = forwardRef<HTMLDivElement, ActivityFeedProps>(
       onLoadMore,
       hasMore = false,
       loading = false,
-      emptyMessage = 'No activity yet.',
+      emptyMessage = "No activity yet.",
       showConnectors = true,
       compact = false,
       className,
@@ -131,9 +141,13 @@ export const ActivityFeed = forwardRef<HTMLDivElement, ActivityFeedProps>(
     },
     ref,
   ) => {
-    const classNames = [styles.activityFeed, compact && styles.compact, className]
+    const classNames = [
+      styles.activityFeed,
+      compact && styles.compact,
+      className,
+    ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
       <div ref={ref} className={classNames} {...rest}>
@@ -187,7 +201,11 @@ export const ActivityFeed = forwardRef<HTMLDivElement, ActivityFeedProps>(
 
         {/* Load more */}
         {hasMore && !loading && (
-          <Button variant="secondary" onClick={onLoadMore} style={{ width: '100%', marginTop: 'var(--spacing-2)' }}>
+          <Button
+            variant="secondary"
+            onClick={onLoadMore}
+            style={{ width: "100%", marginTop: "var(--spacing-2)" }}
+          >
             Load more
           </Button>
         )}
@@ -196,4 +214,4 @@ export const ActivityFeed = forwardRef<HTMLDivElement, ActivityFeedProps>(
   },
 );
 
-ActivityFeed.displayName = 'ActivityFeed';
+ActivityFeed.displayName = "ActivityFeed";

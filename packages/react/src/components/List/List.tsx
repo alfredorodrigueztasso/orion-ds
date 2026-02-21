@@ -15,15 +15,21 @@
  * ```
  */
 
-import { forwardRef, useCallback } from 'react';
-import { Check } from 'lucide-react';
-import type { ListProps, ListItem, ListItemProps } from './List.types';
-import styles from './List.module.css';
+import { forwardRef, useCallback } from "react";
+import { Check } from "lucide-react";
+import type { ListProps, ListItem, ListItemProps } from "./List.types";
+import styles from "./List.module.css";
 
 /**
  * Single List Item
  */
-const ListItemComponent = ({ item, size, interactive, selectable, onClick }: ListItemProps) => {
+const ListItemComponent = ({
+  item,
+  size,
+  interactive,
+  selectable,
+  onClick,
+}: ListItemProps) => {
   const handleClick = useCallback(() => {
     if (!item.disabled && (interactive || selectable) && item.onClick) {
       item.onClick();
@@ -33,7 +39,7 @@ const ListItemComponent = ({ item, size, interactive, selectable, onClick }: Lis
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
-      if ((e.key === 'Enter' || e.key === ' ') && (interactive || selectable)) {
+      if ((e.key === "Enter" || e.key === " ") && (interactive || selectable)) {
         e.preventDefault();
         handleClick();
       }
@@ -51,14 +57,15 @@ const ListItemComponent = ({ item, size, interactive, selectable, onClick }: Lis
     item.className,
   ]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
 
-  const isClickable = !item.disabled && (interactive || selectable || item.onClick);
+  const isClickable =
+    !item.disabled && (interactive || selectable || item.onClick);
 
   return (
     <li
       className={itemClasses}
-      role={selectable ? 'option' : interactive ? 'button' : undefined}
+      role={selectable ? "option" : interactive ? "button" : undefined}
       tabIndex={isClickable ? 0 : undefined}
       aria-selected={selectable ? item.selected : undefined}
       aria-disabled={item.disabled}
@@ -73,14 +80,18 @@ const ListItemComponent = ({ item, size, interactive, selectable, onClick }: Lis
 
       <div className={styles.content}>
         <span className={styles.primary}>{item.primary}</span>
-        {item.secondary && <span className={styles.secondary}>{item.secondary}</span>}
+        {item.secondary && (
+          <span className={styles.secondary}>{item.secondary}</span>
+        )}
       </div>
 
-      {item.trailing && <span className={styles.trailing}>{item.trailing}</span>}
+      {item.trailing && (
+        <span className={styles.trailing}>{item.trailing}</span>
+      )}
 
       {selectable && item.selected && (
         <span className={styles.checkmark} aria-hidden="true">
-          <Check size={size === 'sm' ? 14 : size === 'lg' ? 20 : 16} />
+          <Check size={size === "sm" ? 14 : size === "lg" ? 20 : 16} />
         </span>
       )}
     </li>
@@ -91,8 +102,8 @@ export const List = forwardRef<HTMLUListElement, ListProps>(
   (
     {
       items,
-      size = 'md',
-      variant = 'default',
+      size = "md",
+      variant = "default",
       interactive = false,
       selectable = false,
       onSelect,
@@ -112,14 +123,21 @@ export const List = forwardRef<HTMLUListElement, ListProps>(
       [onSelect],
     );
 
-    const listClasses = [styles.list, styles[variant], className].filter(Boolean).join(' ');
+    const listClasses = [styles.list, styles[variant], className]
+      .filter(Boolean)
+      .join(" ");
 
     if (items.length === 0 && emptyContent) {
       return <div className={styles.empty}>{emptyContent}</div>;
     }
 
     return (
-      <ul ref={ref} className={listClasses} role={selectable ? 'listbox' : 'list'} {...rest}>
+      <ul
+        ref={ref}
+        className={listClasses}
+        role={selectable ? "listbox" : "list"}
+        {...rest}
+      >
         {items.map((item, index) =>
           renderItem ? (
             <li key={item.id} className={styles.customItem}>
@@ -141,4 +159,4 @@ export const List = forwardRef<HTMLUListElement, ListProps>(
   },
 );
 
-List.displayName = 'List';
+List.displayName = "List";

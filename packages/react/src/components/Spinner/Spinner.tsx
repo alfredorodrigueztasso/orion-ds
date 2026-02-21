@@ -11,28 +11,37 @@
  * ```
  */
 
-import React from 'react';
-import type { SpinnerProps } from './Spinner.types';
-import styles from './Spinner.module.css';
+import React from "react";
+import type { SpinnerProps } from "./Spinner.types";
+import styles from "./Spinner.module.css";
 
 export const Spinner: React.FC<SpinnerProps> = ({
-  size = 'md',
-  variant = 'primary',
-  label = 'Loading...',
+  size = "md",
+  variant = "primary",
+  label = "Loading...",
   showLabel = false,
   className,
   ...rest
 }) => {
-  const containerClasses = [styles.container, className].filter(Boolean).join(' ');
+  const containerClasses = [styles.container, className]
+    .filter(Boolean)
+    .join(" ");
 
-  const spinnerClasses = [styles.spinner, styles[size], styles[variant]].filter(Boolean).join(' ');
+  const spinnerClasses = [styles.spinner, styles[size], styles[variant]]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <div className={containerClasses} {...rest}>
-      <div className={spinnerClasses} role="status" aria-label={label} aria-live="polite" />
+      <div
+        className={spinnerClasses}
+        role="status"
+        aria-label={label}
+        aria-live="polite"
+      />
       {showLabel && <span className={styles.label}>{label}</span>}
     </div>
   );
 };
 
-Spinner.displayName = 'Spinner';
+Spinner.displayName = "Spinner";

@@ -146,6 +146,7 @@ export interface TypographyWeight {
 
 export interface TypographySize {
   10: string;
+  11: string;
   12: string;
   13: string;
   14: string;
@@ -200,12 +201,14 @@ export interface SpacingPrimitives {
 
 export interface RadiusPrimitives {
   0: string;
+  xs: string;
   sm: string;
   md: string;
   lg: string;
   'lg-2': string;
   xl: string;
   '2xl': string;
+  '3xl': string;
   full: string;
 }
 
@@ -228,6 +231,18 @@ export interface IconPrimitives {
   stroke: string;
 }
 
+export interface ZIndexPrimitives {
+  [key: string]: string;
+}
+
+export interface RadiusScalePrimitives {
+  [key: string]: string;
+}
+
+export interface TransitionPrimitives {
+  [key: string]: string;
+}
+
 export interface Primitives {
   project?: {
     name: string;
@@ -237,8 +252,11 @@ export interface Primitives {
   typography: TypographyPrimitives;
   spacing: SpacingPrimitives;
   radius: RadiusPrimitives;
+  radiusScale: RadiusScalePrimitives;
   blur: BlurPrimitives;
   icon: IconPrimitives;
+  zIndex: ZIndexPrimitives;
+  transition: TransitionPrimitives;
 }
 
 // ============================================================================
@@ -256,12 +274,19 @@ export interface SurfaceSemantics {
   overlay: string;
 }
 
+export interface OnBrandSemantics {
+  primary: string;
+  secondary: string;
+  tertiary: string;
+}
+
 export interface TextSemantics {
   primary: string;
   secondary: string;
   tertiary: string;
   inverse: string;
   brand: string;
+  'on-brand': OnBrandSemantics;
 }
 
 export interface BorderSemantics {
@@ -312,6 +337,10 @@ export interface SoftSemantics {
   'info-hover'?: string;
 }
 
+export interface ChartSemantics {
+  [key: string]: string;
+}
+
 export interface SemanticTokens {
   surface: SurfaceSemantics;
   text: TextSemantics;
@@ -319,6 +348,7 @@ export interface SemanticTokens {
   interactive: InteractiveSemantics;
   status: StatusSemantics;
   soft: SoftSemantics;
+  chart: ChartSemantics;
   focus?: {
     ring: string;
   };
@@ -355,7 +385,7 @@ export interface BrandConfig {
   };
   geometry: {
     radiusControl: string;
-    radiusContainer: string;
+    radiusContainer?: string;
     buttonStyle: string;
   };
   semantic: {

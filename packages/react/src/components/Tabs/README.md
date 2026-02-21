@@ -31,13 +31,13 @@ interface TabItem {
 ### Basic
 
 ```tsx
-import { Tabs } from '@orion/react';
+import { Tabs } from "@orion/react";
 
 <Tabs
   tabs={[
-    { id: 'profile', label: 'Profile', content: <ProfileContent /> },
-    { id: 'settings', label: 'Settings', content: <SettingsContent /> },
-    { id: 'billing', label: 'Billing', content: <BillingContent /> },
+    { id: "profile", label: "Profile", content: <ProfileContent /> },
+    { id: "settings", label: "Settings", content: <SettingsContent /> },
+    { id: "billing", label: "Billing", content: <BillingContent /> },
   ]}
 />;
 ```
@@ -51,10 +51,10 @@ import { Tabs } from '@orion/react';
 ### Controlled
 
 ```tsx
-import { useState } from 'react';
+import { useState } from "react";
 
 function Example() {
-  const [activeTab, setActiveTab] = useState('profile');
+  const [activeTab, setActiveTab] = useState("profile");
 
   return <Tabs tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />;
 }
@@ -63,25 +63,25 @@ function Example() {
 ### With Icons
 
 ```tsx
-import { User, Settings, CreditCard } from 'lucide-react';
+import { User, Settings, CreditCard } from "lucide-react";
 
 <Tabs
   tabs={[
     {
-      id: 'profile',
-      label: 'Profile',
+      id: "profile",
+      label: "Profile",
       icon: <User size={16} />,
       content: <ProfileContent />,
     },
     {
-      id: 'settings',
-      label: 'Settings',
+      id: "settings",
+      label: "Settings",
       icon: <Settings size={16} />,
       content: <SettingsContent />,
     },
     {
-      id: 'billing',
-      label: 'Billing',
+      id: "billing",
+      label: "Billing",
       icon: <CreditCard size={16} />,
       content: <BillingContent />,
     },
@@ -94,9 +94,9 @@ import { User, Settings, CreditCard } from 'lucide-react';
 ```tsx
 <Tabs
   tabs={[
-    { id: 'inbox', label: 'Inbox', badge: 5, content: <Inbox /> },
-    { id: 'sent', label: 'Sent', content: <Sent /> },
-    { id: 'drafts', label: 'Drafts', badge: 2, content: <Drafts /> },
+    { id: "inbox", label: "Inbox", badge: 5, content: <Inbox /> },
+    { id: "sent", label: "Sent", content: <Sent /> },
+    { id: "drafts", label: "Drafts", badge: 2, content: <Drafts /> },
   ]}
 />
 ```
@@ -106,9 +106,9 @@ import { User, Settings, CreditCard } from 'lucide-react';
 ```tsx
 <Tabs
   tabs={[
-    { id: 'overview', label: 'Overview', content: <Overview /> },
-    { id: 'analytics', label: 'Analytics', disabled: true, content: null },
-    { id: 'reports', label: 'Reports', content: <Reports /> },
+    { id: "overview", label: "Overview", content: <Overview /> },
+    { id: "analytics", label: "Analytics", disabled: true, content: null },
+    { id: "reports", label: "Reports", content: <Reports /> },
   ]}
 />
 ```

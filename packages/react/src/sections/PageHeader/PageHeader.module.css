@@ -329,6 +329,17 @@
     justify-content: flex-start;
   }
 
+  /* Transparent variant keeps actions inline on mobile (product/compact UI) */
+  .variant-transparent .main {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .variant-transparent .actions {
+    width: auto;
+    flex-shrink: 0;
+  }
+
   .tabs {
     margin-left: -var(--spacing-4);
     margin-right: -var(--spacing-4);

@@ -28,12 +28,12 @@
  * ```
  */
 
-import { forwardRef, useRef, useState, useEffect, useCallback } from 'react';
-import type { CarouselProps } from './Carousel.types';
-import { CarouselCard } from './CarouselCard';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { spacing } from '../../tokens/primitives';
-import styles from './Carousel.module.css';
+import { forwardRef, useRef, useState, useEffect, useCallback } from "react";
+import type { CarouselProps } from "./Carousel.types";
+import { CarouselCard } from "./CarouselCard";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { spacing } from "../../tokens/primitives";
+import styles from "./Carousel.module.css";
 
 // Parse spacing token values (e.g., "24px" -> 24)
 const TRACK_PADDING = parseInt(spacing[6], 10);
@@ -45,13 +45,13 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
   (
     {
       items,
-      variant = 'editorial',
-      aspectRatio = '16/9',
+      variant = "editorial",
+      aspectRatio = "16/9",
       peek = true,
       autoScroll = false,
       autoScrollInterval = 5000,
-      gap = 'md',
-      align = 'edge',
+      gap = "md",
+      align = "edge",
       alignOffset,
       showNavigation = true,
       showPagination = false,
@@ -72,7 +72,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
 
     // Get gap width based on gap prop
     const getGapWidth = useCallback(() => {
-      return gap === 'sm' ? GAP_SM : gap === 'lg' ? GAP_LG : GAP_MD;
+      return gap === "sm" ? GAP_SM : gap === "lg" ? GAP_LG : GAP_MD;
     }, [gap]);
 
     // Get the card's layout width (without transforms that affect getBoundingClientRect)
@@ -118,7 +118,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
     }, [gap, items.length, onSlideChange, getGapWidth, getCardLayoutWidth]);
 
     const scroll = useCallback(
-      (direction: 'left' | 'right') => {
+      (direction: "left" | "right") => {
         if (!trackRef.current) return;
 
         const { scrollLeft, scrollWidth, clientWidth } = trackRef.current;
@@ -132,24 +132,24 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
 
         // Handle loop behavior (simple jump to start/end)
         if (loop) {
-          if (direction === 'right' && isAtEnd) {
+          if (direction === "right" && isAtEnd) {
             // At end, loop to beginning
-            trackRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+            trackRef.current.scrollTo({ left: 0, behavior: "smooth" });
             return;
           }
-          if (direction === 'left' && isAtStart) {
+          if (direction === "left" && isAtStart) {
             // At beginning, loop to end
             trackRef.current.scrollTo({
               left: scrollWidth - clientWidth,
-              behavior: 'smooth',
+              behavior: "smooth",
             });
             return;
           }
         }
 
         trackRef.current.scrollBy({
-          left: direction === 'left' ? -scrollAmount : scrollAmount,
-          behavior: 'smooth',
+          left: direction === "left" ? -scrollAmount : scrollAmount,
+          behavior: "smooth",
         });
       },
       [gap, loop, getGapWidth, getCardLayoutWidth],
@@ -164,7 +164,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
 
         trackRef.current.scrollTo({
           left: index * (cardWidth + gapWidth),
-          behavior: 'smooth',
+          behavior: "smooth",
         });
       },
       [getGapWidth, getCardLayoutWidth],
@@ -175,10 +175,10 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
       if (!track) return;
 
       updateScrollState();
-      track.addEventListener('scroll', updateScrollState);
+      track.addEventListener("scroll", updateScrollState);
 
       return () => {
-        track.removeEventListener('scroll', updateScrollState);
+        track.removeEventListener("scroll", updateScrollState);
       };
     }, [updateScrollState]);
 
@@ -192,16 +192,26 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
       }, autoScrollInterval);
 
       return () => clearInterval(interval);
-    }, [autoScroll, autoScrollInterval, activeIndex, items.length, scrollToIndex]);
+    }, [
+      autoScroll,
+      autoScrollInterval,
+      activeIndex,
+      items.length,
+      scrollToIndex,
+    ]);
 
     // For container alignment, calculate extra margin for first card
-    const hasCustomAlign = align === 'container' && alignOffset !== undefined;
+    const hasCustomAlign = align === "container" && alignOffset !== undefined;
     // Extra margin = alignOffset - default track padding (from spacing token)
-    const firstCardMargin = hasCustomAlign ? Math.max(0, alignOffset - TRACK_PADDING) : 0;
+    const firstCardMargin = hasCustomAlign
+      ? Math.max(0, alignOffset - TRACK_PADDING)
+      : 0;
 
     // Map props to camelCase class names
-    const gapClass = gap === 'sm' ? styles.gapSm : gap === 'lg' ? styles.gapLg : styles.gapMd;
-    const trackAlignClass = align === 'container' ? styles.trackContainer : styles.trackEdge;
+    const gapClass =
+      gap === "sm" ? styles.gapSm : gap === "lg" ? styles.gapLg : styles.gapMd;
+    const trackAlignClass =
+      align === "container" ? styles.trackContainer : styles.trackEdge;
 
     const classNames = [
       styles.carousel,
@@ -211,9 +221,11 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
-    const trackClassNames = [styles.track, trackAlignClass].filter(Boolean).join(' ');
+    const trackClassNames = [styles.track, trackAlignClass]
+      .filter(Boolean)
+      .join(" ");
 
     // When loop is enabled, navigation is always available (if more than 1 item)
     const canLoopScroll = loop && items.length > 1;
@@ -221,8 +233,8 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
     const navigationProps = {
       canScrollLeft: canLoopScroll || canScrollLeft,
       canScrollRight: canLoopScroll || canScrollRight,
-      scrollLeft: () => scroll('left'),
-      scrollRight: () => scroll('right'),
+      scrollLeft: () => scroll("left"),
+      scrollRight: () => scroll("right"),
       activeIndex,
       totalItems: items.length,
     };
@@ -232,7 +244,11 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
         <div
           ref={trackRef}
           className={trackClassNames}
-          style={hasCustomAlign ? { scrollPaddingInlineStart: alignOffset } : undefined}
+          style={
+            hasCustomAlign
+              ? { scrollPaddingInlineStart: alignOffset }
+              : undefined
+          }
           role="region"
           aria-label="Carousel"
         >
@@ -250,7 +266,9 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
                 className={isHighlighted ? styles.cardHighlighted : undefined}
                 style={
                   // First card gets extra margin for container alignment
-                  isFirst && firstCardMargin > 0 ? { marginLeft: firstCardMargin } : undefined
+                  isFirst && firstCardMargin > 0
+                    ? { marginLeft: firstCardMargin }
+                    : undefined
                 }
               />
             );
@@ -266,7 +284,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
               <button
                 type="button"
                 className={styles.navButton}
-                onClick={() => scroll('left')}
+                onClick={() => scroll("left")}
                 disabled={!navigationProps.canScrollLeft}
                 aria-label="Previous"
               >
@@ -275,7 +293,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
               <button
                 type="button"
                 className={styles.navButton}
-                onClick={() => scroll('right')}
+                onClick={() => scroll("right")}
                 disabled={!navigationProps.canScrollRight}
                 aria-label="Next"
               >
@@ -290,7 +308,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
               <button
                 key={index}
                 type="button"
-                className={`${styles.dot} ${index === activeIndex ? styles.dotActive : ''}`}
+                className={`${styles.dot} ${index === activeIndex ? styles.dotActive : ""}`}
                 onClick={() => scrollToIndex(index)}
                 aria-label={`Go to slide ${index + 1}`}
               />
@@ -302,4 +320,4 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
   },
 );
 
-Carousel.displayName = 'Carousel';
+Carousel.displayName = "Carousel";

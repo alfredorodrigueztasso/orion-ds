@@ -4,17 +4,17 @@
  * Type definitions for the Orion Breadcrumb component.
  */
 
-import type { ReactNode, AnchorHTMLAttributes } from 'react';
+import type { ReactNode, AnchorHTMLAttributes } from "react";
 
 /**
  * Breadcrumb sizes
  */
-export type BreadcrumbSize = 'sm' | 'md' | 'lg';
+export type BreadcrumbSize = "sm" | "md" | "lg";
 
 /**
  * Breadcrumb separator type
  */
-export type BreadcrumbSeparator = 'chevron' | 'slash' | 'custom';
+export type BreadcrumbSeparator = "chevron" | "slash" | "custom";
 
 /**
  * Individual breadcrumb item
@@ -101,5 +101,5 @@ export interface BreadcrumbProps {
   /**
    * Link props (applied to all anchor elements)
    */
-  linkProps?: Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>;
+  linkProps?: Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href">;
 }

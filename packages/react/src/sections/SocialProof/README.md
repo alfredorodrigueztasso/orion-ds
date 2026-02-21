@@ -5,20 +5,20 @@
 ## Quick Start
 
 ```tsx
-import { SocialProof } from '@orion/react';
+import { SocialProof } from "@orion/react";
 
 <SocialProof
   title="Trusted by Industry Leaders"
   logos={[
-    { name: 'Google', logo: '/logos/google.svg' },
-    { name: 'Meta', logo: '/logos/meta.svg' },
-    { name: 'Amazon', logo: '/logos/amazon.svg' },
-    { name: 'Microsoft', logo: '/logos/microsoft.svg' },
+    { name: "Google", logo: "/logos/google.svg" },
+    { name: "Meta", logo: "/logos/meta.svg" },
+    { name: "Amazon", logo: "/logos/amazon.svg" },
+    { name: "Microsoft", logo: "/logos/microsoft.svg" },
   ]}
   stats={[
-    { value: '10K+', label: 'Customers' },
-    { value: '99%', label: 'Satisfaction' },
-    { value: '$2B+', label: 'Processed' },
+    { value: "10K+", label: "Customers" },
+    { value: "99%", label: "Satisfaction" },
+    { value: "$2B+", label: "Processed" },
   ]}
 />;
 ```
@@ -52,12 +52,17 @@ interface SocialProofProps {
   stats?: SocialProofStat[]; // Stats/metrics
 
   // Layout
-  layout?: 'stacked' | 'side-by-side' | 'testimonials-only' | 'logos-only' | 'stats-only'; // default: 'stacked'
-  logoStyle?: 'grid' | 'inline' | 'carousel'; // default: 'grid'
+  layout?:
+    | "stacked"
+    | "side-by-side"
+    | "testimonials-only"
+    | "logos-only"
+    | "stats-only"; // default: 'stacked'
+  logoStyle?: "grid" | "inline" | "carousel"; // default: 'grid'
   grayscaleLogos?: boolean; // Grayscale logos - default: true
 
   // Styling
-  background?: 'base' | 'subtle' | 'none'; // default: 'subtle'
+  background?: "base" | "subtle" | "none"; // default: 'subtle'
   compact?: boolean; // Compact spacing - default: false
 }
 
@@ -92,7 +97,12 @@ interface SocialProofStat {
 All elements stacked vertically.
 
 ```tsx
-<SocialProof layout="stacked" logos={logos} stats={stats} testimonials={testimonials} />
+<SocialProof
+  layout="stacked"
+  logos={logos}
+  stats={stats}
+  testimonials={testimonials}
+/>
 ```
 
 ### `layout="side-by-side"`
@@ -170,7 +180,7 @@ Uniform appearance with grayscale filter.
 ### Full Social Proof Section
 
 ```tsx
-import { SocialProof, Badge } from '@orion/react';
+import { SocialProof, Badge } from "@orion/react";
 
 <SocialProof
   eyebrow={<Badge>Trusted Worldwide</Badge>}
@@ -178,38 +188,42 @@ import { SocialProof, Badge } from '@orion/react';
   description="From startups to Fortune 500, teams rely on us to power their business."
   layout="stacked"
   logos={[
-    { name: 'Google', logo: '/logos/google.svg', href: 'https://google.com' },
-    { name: 'Stripe', logo: '/logos/stripe.svg', href: 'https://stripe.com' },
-    { name: 'Shopify', logo: '/logos/shopify.svg', href: 'https://shopify.com' },
-    { name: 'Notion', logo: '/logos/notion.svg', href: 'https://notion.so' },
-    { name: 'Figma', logo: '/logos/figma.svg', href: 'https://figma.com' },
-    { name: 'Linear', logo: '/logos/linear.svg', href: 'https://linear.app' },
+    { name: "Google", logo: "/logos/google.svg", href: "https://google.com" },
+    { name: "Stripe", logo: "/logos/stripe.svg", href: "https://stripe.com" },
+    {
+      name: "Shopify",
+      logo: "/logos/shopify.svg",
+      href: "https://shopify.com",
+    },
+    { name: "Notion", logo: "/logos/notion.svg", href: "https://notion.so" },
+    { name: "Figma", logo: "/logos/figma.svg", href: "https://figma.com" },
+    { name: "Linear", logo: "/logos/linear.svg", href: "https://linear.app" },
   ]}
   stats={[
-    { value: '10K+', label: 'Active Companies' },
-    { value: '99.9%', label: 'Uptime SLA' },
-    { value: '$2B+', label: 'Transactions Processed' },
-    { value: '4.9/5', label: 'Customer Rating' },
+    { value: "10K+", label: "Active Companies" },
+    { value: "99.9%", label: "Uptime SLA" },
+    { value: "$2B+", label: "Transactions Processed" },
+    { value: "4.9/5", label: "Customer Rating" },
   ]}
   testimonials={[
     {
       id: 1,
       quote:
-        'This platform transformed how we work. Our team productivity increased by 40% in just 3 months.',
-      author: 'Sarah Chen',
-      title: 'VP of Engineering',
-      company: 'TechCorp',
-      avatar: '/avatars/sarah.jpg',
+        "This platform transformed how we work. Our team productivity increased by 40% in just 3 months.",
+      author: "Sarah Chen",
+      title: "VP of Engineering",
+      company: "TechCorp",
+      avatar: "/avatars/sarah.jpg",
       rating: 5,
     },
     {
       id: 2,
       quote:
         "The best investment we've made. Support is incredible and the features keep getting better.",
-      author: 'Marcus Johnson',
-      title: 'CEO',
-      company: 'StartupXYZ',
-      avatar: '/avatars/marcus.jpg',
+      author: "Marcus Johnson",
+      title: "CEO",
+      company: "StartupXYZ",
+      avatar: "/avatars/marcus.jpg",
       rating: 5,
     },
   ]}
@@ -226,12 +240,12 @@ import { SocialProof, Badge } from '@orion/react';
   layout="logos-only"
   logoStyle="inline"
   logos={[
-    { name: 'Nike', logo: '/logos/nike.svg' },
-    { name: 'Apple', logo: '/logos/apple.svg' },
-    { name: 'Spotify', logo: '/logos/spotify.svg' },
-    { name: 'Netflix', logo: '/logos/netflix.svg' },
-    { name: 'Airbnb', logo: '/logos/airbnb.svg' },
-    { name: 'Uber', logo: '/logos/uber.svg' },
+    { name: "Nike", logo: "/logos/nike.svg" },
+    { name: "Apple", logo: "/logos/apple.svg" },
+    { name: "Spotify", logo: "/logos/spotify.svg" },
+    { name: "Netflix", logo: "/logos/netflix.svg" },
+    { name: "Airbnb", logo: "/logos/airbnb.svg" },
+    { name: "Uber", logo: "/logos/uber.svg" },
   ]}
   grayscaleLogos
 />
@@ -244,10 +258,10 @@ import { SocialProof, Badge } from '@orion/react';
   title="Our Impact"
   layout="stats-only"
   stats={[
-    { value: '500M+', label: 'Users Worldwide' },
-    { value: '150+', label: 'Countries Served' },
-    { value: '24/7', label: 'Support Available' },
-    { value: 'ISO 27001', label: 'Certified' },
+    { value: "500M+", label: "Users Worldwide" },
+    { value: "150+", label: "Countries Served" },
+    { value: "24/7", label: "Support Available" },
+    { value: "ISO 27001", label: "Certified" },
   ]}
   background="base"
 />
@@ -262,29 +276,30 @@ import { SocialProof, Badge } from '@orion/react';
   testimonials={[
     {
       id: 1,
-      quote: "Absolutely game-changing for our workflow. Can't imagine going back.",
-      author: 'Emily Rodriguez',
-      title: 'Product Manager',
-      company: 'InnovateCo',
-      avatar: '/avatars/emily.jpg',
+      quote:
+        "Absolutely game-changing for our workflow. Can't imagine going back.",
+      author: "Emily Rodriguez",
+      title: "Product Manager",
+      company: "InnovateCo",
+      avatar: "/avatars/emily.jpg",
       rating: 5,
     },
     {
       id: 2,
-      quote: 'The ROI was visible within the first month. Highly recommend!',
-      author: 'David Kim',
-      title: 'CTO',
-      company: 'GrowthLabs',
-      avatar: '/avatars/david.jpg',
+      quote: "The ROI was visible within the first month. Highly recommend!",
+      author: "David Kim",
+      title: "CTO",
+      company: "GrowthLabs",
+      avatar: "/avatars/david.jpg",
       rating: 5,
     },
     {
       id: 3,
-      quote: 'Best-in-class product with exceptional customer support.',
-      author: 'Lisa Patel',
-      title: 'Operations Director',
-      company: 'ScaleUp Inc',
-      avatar: '/avatars/lisa.jpg',
+      quote: "Best-in-class product with exceptional customer support.",
+      author: "Lisa Patel",
+      title: "Operations Director",
+      company: "ScaleUp Inc",
+      avatar: "/avatars/lisa.jpg",
       rating: 4,
     },
   ]}
@@ -311,14 +326,14 @@ import { SocialProof, Badge } from '@orion/react';
   layout="side-by-side"
   title="The Numbers Speak"
   logos={[
-    { name: 'Google', logo: '/logos/google.svg' },
-    { name: 'Meta', logo: '/logos/meta.svg' },
-    { name: 'AWS', logo: '/logos/aws.svg' },
+    { name: "Google", logo: "/logos/google.svg" },
+    { name: "Meta", logo: "/logos/meta.svg" },
+    { name: "AWS", logo: "/logos/aws.svg" },
   ]}
   stats={[
-    { value: '99.99%', label: 'Uptime' },
-    { value: '< 50ms', label: 'Latency' },
-    { value: '24/7', label: 'Support' },
+    { value: "99.99%", label: "Uptime" },
+    { value: "< 50ms", label: "Latency" },
+    { value: "24/7", label: "Support" },
   ]}
 />
 ```

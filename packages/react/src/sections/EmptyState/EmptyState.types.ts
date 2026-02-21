@@ -5,17 +5,17 @@
  * Designed for Product Mode (SaaS dashboards) with minimal visual noise.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * EmptyState size variant
  */
-export type EmptyStateSize = 'sm' | 'md' | 'lg';
+export type EmptyStateSize = "sm" | "md" | "lg";
 
 /**
  * EmptyState visual variant
  */
-export type EmptyStateVariant = 'default' | 'compact' | 'full-page';
+export type EmptyStateVariant = "default" | "compact" | "full-page";
 
 /**
  * EmptyState section props

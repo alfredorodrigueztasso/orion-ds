@@ -5,8 +5,8 @@
  * Includes duration tracking and error handling.
  */
 
-import { useState, useRef, useCallback, useEffect } from 'react';
-import type { VoiceRecorderState } from '../Chat.types';
+import { useState, useRef, useCallback, useEffect } from "react";
+import type { VoiceRecorderState } from "../Chat.types";
 
 export interface UseVoiceRecorderOptions {
   /** Maximum recording duration in seconds */
@@ -32,10 +32,12 @@ export interface UseVoiceRecorderReturn extends VoiceRecorderState {
   isSupported: boolean;
 }
 
-export function useVoiceRecorder(options: UseVoiceRecorderOptions = {}): UseVoiceRecorderReturn {
+export function useVoiceRecorder(
+  options: UseVoiceRecorderOptions = {},
+): UseVoiceRecorderReturn {
   const {
     maxDuration = 300, // 5 minutes default
-    mimeType = 'audio/webm',
+    mimeType = "audio/webm",
     onRecordingComplete,
     onError,
   } = options;
@@ -52,7 +54,8 @@ export function useVoiceRecorder(options: UseVoiceRecorderOptions = {}): UseVoic
   const startTimeRef = useRef<number>(0);
 
   // Check if MediaRecorder is supported
-  const isSupported = typeof window !== 'undefined' && 'MediaRecorder' in window;
+  const isSupported =
+    typeof window !== "undefined" && "MediaRecorder" in window;
 
   // Clean up resources
   const cleanup = useCallback(() => {
@@ -73,7 +76,7 @@ export function useVoiceRecorder(options: UseVoiceRecorderOptions = {}): UseVoic
   // Start recording
   const startRecording = useCallback(async () => {
     if (!isSupported) {
-      const errMsg = 'Voice recording is not supported in this browser';
+      const errMsg = "Voice recording is not supported in this browser";
       setError(errMsg);
       onError?.(errMsg);
       return;
@@ -94,8 +97,9 @@ export function useVoiceRecorder(options: UseVoiceRecorderOptions = {}): UseVoic
       let recordMimeType = mimeType;
       if (!MediaRecorder.isTypeSupported(mimeType)) {
         // Fallback to commonly supported types
-        const fallbacks = ['audio/webm', 'audio/mp4', 'audio/ogg'];
-        recordMimeType = fallbacks.find((type) => MediaRecorder.isTypeSupported(type)) || '';
+        const fallbacks = ["audio/webm", "audio/mp4", "audio/ogg"];
+        recordMimeType =
+          fallbacks.find((type) => MediaRecorder.isTypeSupported(type)) || "";
       }
 
       // Create MediaRecorder
@@ -114,7 +118,7 @@ export function useVoiceRecorder(options: UseVoiceRecorderOptions = {}): UseVoic
       // Handle stop
       mediaRecorder.onstop = () => {
         const blob = new Blob(chunksRef.current, {
-          type: recordMimeType || 'audio/webm',
+          type: recordMimeType || "audio/webm",
         });
         setAudioBlob(blob);
         onRecordingComplete?.(blob);
@@ -123,7 +127,7 @@ export function useVoiceRecorder(options: UseVoiceRecorderOptions = {}): UseVoic
 
       // Handle error
       mediaRecorder.onerror = () => {
-        const errMsg = 'Recording failed';
+        const errMsg = "Recording failed";
         setError(errMsg);
         onError?.(errMsg);
         cleanup();
@@ -145,12 +149,20 @@ export function useVoiceRecorder(options: UseVoiceRecorderOptions = {}): UseVoic
         }
       }, 100);
     } catch (err) {
-      const errMsg = err instanceof Error ? err.message : 'Failed to access microphone';
+      const errMsg =
+        err instanceof Error ? err.message : "Failed to access microphone";
       setError(errMsg);
       onError?.(errMsg);
       cleanup();
     }
-  }, [isSupported, mimeType, maxDuration, onRecordingComplete, onError, cleanup]);
+  }, [
+    isSupported,
+    mimeType,
+    maxDuration,
+    onRecordingComplete,
+    onError,
+    cleanup,
+  ]);
 
   // Stop recording
   const stopRecording = useCallback(() => {

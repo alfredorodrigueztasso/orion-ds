@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { useState, useCallback } from 'react';
-import { ChatSection } from './ChatSection';
-import type { ChatMessage, ChatConversation } from '../../components/Chat';
+import type { Meta, StoryObj } from "@storybook/react";
+import { useState, useCallback } from "react";
+import { ChatSection } from "./ChatSection";
+import type { ChatMessage, ChatConversation } from "@orion-ds/react";
 
 const meta = {
-  title: 'Sections/Chat/ChatSection',
+  title: "Sections/Chat/ChatSection",
   component: ChatSection,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 } satisfies Meta<typeof ChatSection>;
 
 export default meta;
@@ -18,37 +18,37 @@ type Story = StoryObj<typeof meta>;
 // Sample data
 const sampleConversations: ChatConversation[] = [
   {
-    id: '1',
-    title: 'React Hooks Discussion',
+    id: "1",
+    title: "React Hooks Discussion",
     preview: "Here's a simple example of useState...",
     updatedAt: new Date(Date.now() - 1000 * 60 * 2),
     messageCount: 4,
   },
   {
-    id: '2',
-    title: 'TypeScript Generics',
-    preview: 'Generics allow you to write flexible...',
+    id: "2",
+    title: "TypeScript Generics",
+    preview: "Generics allow you to write flexible...",
     updatedAt: new Date(Date.now() - 1000 * 60 * 60),
     messageCount: 8,
   },
   {
-    id: '3',
-    title: 'CSS Grid Layout',
-    preview: 'Grid is perfect for 2D layouts...',
+    id: "3",
+    title: "CSS Grid Layout",
+    preview: "Grid is perfect for 2D layouts...",
     updatedAt: new Date(Date.now() - 1000 * 60 * 60 * 24),
     messageCount: 3,
   },
   {
-    id: '4',
-    title: 'Node.js Best Practices',
-    preview: 'Always use async/await for cleaner...',
+    id: "4",
+    title: "Node.js Best Practices",
+    preview: "Always use async/await for cleaner...",
     updatedAt: new Date(Date.now() - 1000 * 60 * 60 * 48),
     messageCount: 12,
   },
   {
-    id: '5',
-    title: 'Database Design',
-    preview: 'Normalization helps reduce redundancy...',
+    id: "5",
+    title: "Database Design",
+    preview: "Normalization helps reduce redundancy...",
     updatedAt: new Date(Date.now() - 1000 * 60 * 60 * 72),
     messageCount: 6,
   },
@@ -56,15 +56,15 @@ const sampleConversations: ChatConversation[] = [
 
 const sampleMessages: ChatMessage[] = [
   {
-    id: '1',
-    role: 'user',
-    content: 'Hello! Can you help me understand how React hooks work?',
+    id: "1",
+    role: "user",
+    content: "Hello! Can you help me understand how React hooks work?",
     timestamp: new Date(Date.now() - 1000 * 60 * 5),
-    status: 'sent',
+    status: "sent",
   },
   {
-    id: '2',
-    role: 'assistant',
+    id: "2",
+    role: "assistant",
     content: `Of course! React hooks are functions that let you "hook into" React state and lifecycle features from function components. Here are the most commonly used hooks:
 
 1. **useState** - Adds state to functional components
@@ -75,18 +75,18 @@ const sampleMessages: ChatMessage[] = [
 
 Would you like me to explain any of these in more detail?`,
     timestamp: new Date(Date.now() - 1000 * 60 * 4),
-    status: 'sent',
+    status: "sent",
   },
   {
-    id: '3',
-    role: 'user',
-    content: 'Yes, can you show me an example of useState?',
+    id: "3",
+    role: "user",
+    content: "Yes, can you show me an example of useState?",
     timestamp: new Date(Date.now() - 1000 * 60 * 3),
-    status: 'sent',
+    status: "sent",
   },
   {
-    id: '4',
-    role: 'assistant',
+    id: "4",
+    role: "assistant",
     content: `Here's a simple example:
 
 \`\`\`tsx
@@ -108,7 +108,7 @@ function Counter() {
 
 The \`useState(0)\` initializes state with value \`0\` and returns \`[currentValue, setterFunction]\`.`,
     timestamp: new Date(Date.now() - 1000 * 60 * 2),
-    status: 'sent',
+    status: "sent",
   },
 ];
 
@@ -119,25 +119,27 @@ The \`useState(0)\` initializes state with value \`0\` and returns \`[currentVal
 export const Default: Story = {
   args: {
     conversations: sampleConversations,
-    activeConversationId: '1',
+    activeConversationId: "1",
     messages: sampleMessages,
     header: {
-      title: 'AI Assistant',
-      subtitle: 'Online',
+      title: "AI Assistant",
+      subtitle: "Online",
     },
   },
   render: function DefaultStory(args) {
     const [activeId, setActiveId] = useState(args.activeConversationId);
-    const [messages, setMessages] = useState<ChatMessage[]>(args.messages ?? []);
+    const [messages, setMessages] = useState<ChatMessage[]>(
+      args.messages ?? [],
+    );
     const [isTyping, setIsTyping] = useState(false);
 
     const handleSend = useCallback((content: string) => {
       const userMessage: ChatMessage = {
         id: Date.now().toString(),
-        role: 'user',
+        role: "user",
         content,
         timestamp: new Date(),
-        status: 'sent',
+        status: "sent",
       };
       setMessages((prev) => [...prev, userMessage]);
 
@@ -150,7 +152,7 @@ export const Default: Story = {
 
         const assistantMessage: ChatMessage = {
           id: (Date.now() + 1).toString(),
-          role: 'assistant',
+          role: "assistant",
           content:
             "Thanks for your message! I'm here to help.\n\nThis is a simulated streaming response. In a real application, the message content would come from your AI backend. The **progressive text reveal** and **streaming cursor** are handled automatically by the template.",
           timestamp: new Date(),
@@ -161,14 +163,14 @@ export const Default: Story = {
     }, []);
 
     return (
-      <div style={{ height: '100vh' }}>
+      <div style={{ height: "100vh" }}>
         <ChatSection
           {...args}
           activeConversationId={activeId}
           messages={messages}
           onSendMessage={handleSend}
           onSelectConversation={setActiveId}
-          onNewConversation={() => alert('New conversation')}
+          onNewConversation={() => alert("New conversation")}
           onDeleteConversation={(id) => alert(`Delete ${id}`)}
           isTyping={isTyping}
         />
@@ -182,12 +184,12 @@ export const WithoutSidebar: Story = {
     messages: sampleMessages,
     hideSidebar: true,
     header: {
-      title: 'Quick Chat',
-      subtitle: 'No sidebar mode',
+      title: "Quick Chat",
+      subtitle: "No sidebar mode",
     },
   },
   render: (args) => (
-    <div style={{ height: '600px', maxWidth: '800px', margin: '0 auto' }}>
+    <div style={{ height: "600px", maxWidth: "800px", margin: "0 auto" }}>
       <ChatSection {...args} />
     </div>
   ),
@@ -198,12 +200,15 @@ export const EmptyState: Story = {
     conversations: [],
     messages: [],
     header: {
-      title: 'New Chat',
+      title: "New Chat",
     },
   },
   render: (args) => (
-    <div style={{ height: '100vh' }}>
-      <ChatSection {...args} onNewConversation={() => alert('Creating new conversation...')} />
+    <div style={{ height: "100vh" }}>
+      <ChatSection
+        {...args}
+        onNewConversation={() => alert("Creating new conversation...")}
+      />
     </div>
   ),
 };
@@ -211,20 +216,20 @@ export const EmptyState: Story = {
 export const WithCustomInputConfig: Story = {
   args: {
     conversations: sampleConversations.slice(0, 2),
-    activeConversationId: '1',
+    activeConversationId: "1",
     messages: sampleMessages.slice(0, 2),
     header: {
-      title: 'Custom Input',
+      title: "Custom Input",
     },
     inputConfig: {
-      placeholder: 'Ask me anything about coding...',
+      placeholder: "Ask me anything about coding...",
       allowAttachments: true,
       allowVoiceRecording: true,
       maxLength: 1000,
     },
   },
   render: (args) => (
-    <div style={{ height: '100vh' }}>
+    <div style={{ height: "100vh" }}>
       <ChatSection {...args} />
     </div>
   ),
@@ -233,19 +238,19 @@ export const WithCustomInputConfig: Story = {
 export const MobileView: Story = {
   args: {
     conversations: sampleConversations,
-    activeConversationId: '1',
+    activeConversationId: "1",
     messages: sampleMessages,
     header: {
-      title: 'Mobile Chat',
+      title: "Mobile Chat",
     },
   },
   parameters: {
     viewport: {
-      defaultViewport: 'mobile1',
+      defaultViewport: "mobile1",
     },
   },
   render: (args) => (
-    <div style={{ height: '100vh' }}>
+    <div style={{ height: "100vh" }}>
       <ChatSection {...args} />
     </div>
   ),
@@ -254,14 +259,17 @@ export const MobileView: Story = {
 export const DarkMode: Story = {
   args: {
     conversations: sampleConversations,
-    activeConversationId: '1',
+    activeConversationId: "1",
     messages: sampleMessages,
     header: {
-      title: 'Dark Mode Chat',
+      title: "Dark Mode Chat",
     },
   },
   render: (args) => (
-    <div data-theme="dark" style={{ height: '100vh', background: 'var(--surface-base)' }}>
+    <div
+      data-theme="dark"
+      style={{ height: "100vh", background: "var(--surface-base)" }}
+    >
       <ChatSection {...args} />
     </div>
   ),

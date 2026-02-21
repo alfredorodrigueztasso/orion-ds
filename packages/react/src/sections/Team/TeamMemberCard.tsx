@@ -4,27 +4,36 @@
  * Internal component for rendering individual team member cards.
  */
 
-import type { TeamMemberCardProps } from './Team.types';
-import { Card, Avatar } from '../../components';
-import styles from './Team.module.css';
+import type { TeamMemberCardProps } from "./Team.types";
+import { Card, Avatar } from "../../components";
+import styles from "./Team.module.css";
 
-export const TeamMemberCard = ({ member, variant = 'default', className }: TeamMemberCardProps) => {
-  const { name, role, bio, avatarSrc, avatarInitials, avatar, socialLinks } = member;
+export const TeamMemberCard = ({
+  member,
+  variant = "default",
+  className,
+}: TeamMemberCardProps) => {
+  const { name, role, bio, avatarSrc, avatarInitials, avatar, socialLinks } =
+    member;
 
   // Determine avatar size based on variant
-  const avatarSize = variant === 'compact' ? 'xl' : 'profile';
+  const avatarSize = variant === "compact" ? "xl" : "profile";
 
-  const classNames = [styles.memberCard, styles[`variant-${variant}`], className]
+  const classNames = [
+    styles.memberCard,
+    styles[`variant-${variant}`],
+    className,
+  ]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
 
   // Generate initials from name if not provided
   const initials =
     avatarInitials ||
     name
-      .split(' ')
+      .split(" ")
       .map((n) => n[0])
-      .join('')
+      .join("")
       .slice(0, 2)
       .toUpperCase();
 
@@ -33,7 +42,12 @@ export const TeamMemberCard = ({ member, variant = 'default', className }: TeamM
       <div className={styles.avatarWrapper}>
         {/* Use Avatar component if avatarSrc is provided, otherwise fall back to legacy avatar ReactNode */}
         {avatarSrc ? (
-          <Avatar src={avatarSrc} alt={name} initials={initials} size={avatarSize} />
+          <Avatar
+            src={avatarSrc}
+            alt={name}
+            initials={initials}
+            size={avatarSize}
+          />
         ) : avatar ? (
           <div className={styles.avatarLegacy}>{avatar}</div>
         ) : (
@@ -45,7 +59,7 @@ export const TeamMemberCard = ({ member, variant = 'default', className }: TeamM
         <h3 className={styles.name}>{name}</h3>
         <p className={styles.role}>{role}</p>
 
-        {bio && variant !== 'compact' && <p className={styles.bio}>{bio}</p>}
+        {bio && variant !== "compact" && <p className={styles.bio}>{bio}</p>}
 
         {socialLinks && socialLinks.length > 0 && (
           <div className={styles.socialLinks}>
@@ -67,7 +81,7 @@ export const TeamMemberCard = ({ member, variant = 'default', className }: TeamM
     </>
   );
 
-  if (variant === 'cards') {
+  if (variant === "cards") {
     return (
       <Card variant="base" className={classNames}>
         <Card.Body className={styles.cardBody}>{content}</Card.Body>
@@ -78,4 +92,4 @@ export const TeamMemberCard = ({ member, variant = 'default', className }: TeamM
   return <div className={classNames}>{content}</div>;
 };
 
-TeamMemberCard.displayName = 'TeamMemberCard';
+TeamMemberCard.displayName = "TeamMemberCard";

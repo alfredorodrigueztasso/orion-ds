@@ -5,8 +5,8 @@
 ## Quick Start
 
 ```tsx
-import { Contact, Badge } from '@orion/react';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Contact, Badge } from "@orion/react";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 <Contact
   eyebrow={<Badge>Contact Us</Badge>}
@@ -15,22 +15,26 @@ import { Mail, Phone, MapPin } from 'lucide-react';
   contactInfo={[
     {
       icon: <Mail size={20} />,
-      label: 'Email',
-      value: 'hello@example.com',
-      href: 'mailto:hello@example.com',
+      label: "Email",
+      value: "hello@example.com",
+      href: "mailto:hello@example.com",
     },
     {
       icon: <Phone size={20} />,
-      label: 'Phone',
-      value: '+1 (555) 000-0000',
-      href: 'tel:+15550000000',
+      label: "Phone",
+      value: "+1 (555) 000-0000",
+      href: "tel:+15550000000",
     },
-    { icon: <MapPin size={20} />, label: 'Address', value: '123 Main St, San Francisco, CA' },
+    {
+      icon: <MapPin size={20} />,
+      label: "Address",
+      value: "123 Main St, San Francisco, CA",
+    },
   ]}
   formFields={[
-    { name: 'name', label: 'Name', required: true },
-    { name: 'email', label: 'Email', type: 'email', required: true },
-    { name: 'message', label: 'Message', type: 'textarea', required: true },
+    { name: "name", label: "Name", required: true },
+    { name: "email", label: "Email", type: "email", required: true },
+    { name: "message", label: "Message", type: "textarea", required: true },
   ]}
   onSubmit={(data) => console.log(data)}
 />;
@@ -69,8 +73,8 @@ interface ContactProps {
   submitText?: string; // Button text - default: "Send Message"
 
   // Layout
-  layout?: 'split' | 'stacked' | 'form-only'; // default: 'split'
-  background?: 'base' | 'subtle' | 'none'; // default: 'subtle'
+  layout?: "split" | "stacked" | "form-only"; // default: 'split'
+  background?: "base" | "subtle" | "none"; // default: 'subtle'
 
   // Additional
   additionalContent?: ReactNode; // Content below contact info
@@ -86,7 +90,7 @@ interface ContactInfo {
 interface ContactFormField {
   name: string; // Field name
   label: string; // Field label
-  type?: 'text' | 'email' | 'tel' | 'textarea'; // default: 'text'
+  type?: "text" | "email" | "tel" | "textarea"; // default: 'text'
   placeholder?: string; // Placeholder text
   required?: boolean; // Required field - default: false
   rows?: number; // Textarea rows - default: 4
@@ -102,7 +106,12 @@ interface ContactFormField {
 Contact info on left, form on right.
 
 ```tsx
-<Contact layout="split" contactInfo={contactInfo} formFields={formFields} onSubmit={handleSubmit} />
+<Contact
+  layout="split"
+  contactInfo={contactInfo}
+  formFields={formFields}
+  onSubmit={handleSubmit}
+/>
 ```
 
 ### `layout="stacked"`
@@ -254,13 +263,13 @@ function ContactPage() {
   const handleSubmit = async (data: Record<string, string>) => {
     setIsSubmitting(true);
     try {
-      await fetch('/api/contact', {
-        method: 'POST',
+      await fetch("/api/contact", {
+        method: "POST",
         body: JSON.stringify(data),
       });
-      alert('Message sent!');
+      alert("Message sent!");
     } catch (error) {
-      alert('Error sending message');
+      alert("Error sending message");
     } finally {
       setIsSubmitting(false);
     }
@@ -270,7 +279,7 @@ function ContactPage() {
     <Contact
       formFields={formFields}
       onSubmit={handleSubmit}
-      submitText={isSubmitting ? 'Sending...' : 'Send Message'}
+      submitText={isSubmitting ? "Sending..." : "Send Message"}
     />
   );
 }
@@ -301,7 +310,7 @@ Add maps, social links, or other content below contact info.
 ### With Social Links
 
 ```tsx
-import { Twitter, Linkedin, Github } from 'lucide-react';
+import { Twitter, Linkedin, Github } from "lucide-react";
 
 <Contact
   contactInfo={contactInfo}
@@ -309,7 +318,7 @@ import { Twitter, Linkedin, Github } from 'lucide-react';
   additionalContent={
     <div>
       <h4>Follow Us</h4>
-      <div style={{ display: 'flex', gap: 'var(--spacing-3)' }}>
+      <div style={{ display: "flex", gap: "var(--spacing-3)" }}>
         <a href="#">
           <Twitter size={24} />
         </a>
@@ -336,7 +345,7 @@ import { Twitter, Linkedin, Github } from 'lucide-react';
       src="https://maps.google.com/..."
       width="100%"
       height="200"
-      style={{ borderRadius: 'var(--radius-container)' }}
+      style={{ borderRadius: "var(--radius-container)" }}
     />
   }
 />
@@ -349,8 +358,8 @@ import { Twitter, Linkedin, Github } from 'lucide-react';
 ### Full Contact Section
 
 ```tsx
-import { Contact, Badge, Button } from '@orion/react';
-import { Mail, Phone, MapPin, Clock, ArrowRight } from 'lucide-react';
+import { Contact, Badge, Button } from "@orion/react";
+import { Mail, Phone, MapPin, Clock, ArrowRight } from "lucide-react";
 
 <Contact
   eyebrow={<Badge variant="brand">Contact Us</Badge>}
@@ -359,43 +368,47 @@ import { Mail, Phone, MapPin, Clock, ArrowRight } from 'lucide-react';
   contactInfo={[
     {
       icon: <Mail size={20} />,
-      label: 'Email',
-      value: 'hello@orion.io',
-      href: 'mailto:hello@orion.io',
+      label: "Email",
+      value: "hello@orion.io",
+      href: "mailto:hello@orion.io",
     },
     {
       icon: <Phone size={20} />,
-      label: 'Phone',
-      value: '+1 (555) 123-4567',
-      href: 'tel:+15551234567',
+      label: "Phone",
+      value: "+1 (555) 123-4567",
+      href: "tel:+15551234567",
     },
     {
       icon: <MapPin size={20} />,
-      label: 'Office',
-      value: '123 Design St, San Francisco, CA 94105',
+      label: "Office",
+      value: "123 Design St, San Francisco, CA 94105",
     },
     {
       icon: <Clock size={20} />,
-      label: 'Hours',
-      value: 'Mon-Fri, 9am-6pm PST',
+      label: "Hours",
+      value: "Mon-Fri, 9am-6pm PST",
     },
   ]}
   formFields={[
-    { name: 'name', label: 'Name', required: true, placeholder: 'Your name' },
+    { name: "name", label: "Name", required: true, placeholder: "Your name" },
     {
-      name: 'email',
-      label: 'Email',
-      type: 'email',
+      name: "email",
+      label: "Email",
+      type: "email",
       required: true,
-      placeholder: 'you@example.com',
+      placeholder: "you@example.com",
     },
-    { name: 'company', label: 'Company', placeholder: 'Your company (optional)' },
     {
-      name: 'message',
-      label: 'Message',
-      type: 'textarea',
+      name: "company",
+      label: "Company",
+      placeholder: "Your company (optional)",
+    },
+    {
+      name: "message",
+      label: "Message",
+      type: "textarea",
       required: true,
-      placeholder: 'Tell us about your project...',
+      placeholder: "Tell us about your project...",
       rows: 6,
     },
   ]}
@@ -417,8 +430,8 @@ import { Mail, Phone, MapPin, Clock, ArrowRight } from 'lucide-react';
   layout="form-only"
   title="Send us a message"
   formFields={[
-    { name: 'email', label: 'Email', type: 'email', required: true },
-    { name: 'message', label: 'Message', type: 'textarea', required: true },
+    { name: "email", label: "Email", type: "email", required: true },
+    { name: "message", label: "Message", type: "textarea", required: true },
   ]}
   onSubmit={handleSubmit}
   submitText="Submit"
@@ -431,11 +444,18 @@ import { Mail, Phone, MapPin, Clock, ArrowRight } from 'lucide-react';
 <Contact
   layout="stacked"
   title="Contact Us"
-  contactInfo={[{ icon: <Mail size={20} />, label: 'Email', value: 'support@example.com' }]}
+  contactInfo={[
+    { icon: <Mail size={20} />, label: "Email", value: "support@example.com" },
+  ]}
   formFields={[
-    { name: 'name', label: 'Name', required: true },
-    { name: 'email', label: 'Email', type: 'email', required: true },
-    { name: 'message', label: 'How can we help?', type: 'textarea', required: true },
+    { name: "name", label: "Name", required: true },
+    { name: "email", label: "Email", type: "email", required: true },
+    {
+      name: "message",
+      label: "How can we help?",
+      type: "textarea",
+      required: true,
+    },
   ]}
   onSubmit={handleSubmit}
 />

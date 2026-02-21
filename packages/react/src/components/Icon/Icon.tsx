@@ -33,9 +33,9 @@
  * ```
  */
 
-import { forwardRef, useMemo } from 'react';
-import type { IconProps, IconSize } from './Icon.types';
-import styles from './Icon.module.css';
+import { forwardRef, useMemo } from "react";
+import type { IconProps, IconSize } from "./Icon.types";
+import styles from "./Icon.module.css";
 
 /**
  * Size token to pixel mapping
@@ -53,8 +53,8 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(
   (
     {
       icon: IconComponent,
-      size = 'md',
-      color = 'current',
+      size = "md",
+      color = "current",
       strokeWidth = 2,
       label,
       decorative = false,
@@ -67,7 +67,7 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(
   ) => {
     // Resolve size to pixels
     const resolvedSize = useMemo(() => {
-      if (typeof size === 'number') {
+      if (typeof size === "number") {
         return size;
       }
       return SIZE_MAP[size];
@@ -78,7 +78,7 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(
       const classes = [styles.icon];
 
       // Add size class only for token sizes (not custom pixels)
-      if (typeof size === 'string') {
+      if (typeof size === "string") {
         classes.push(styles[size]);
       }
 
@@ -95,7 +95,7 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(
         classes.push(className);
       }
 
-      return classes.filter(Boolean).join(' ');
+      return classes.filter(Boolean).join(" ");
     }, [size, color, disabled, className]);
 
     // Accessibility attributes
@@ -103,21 +103,21 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(
       if (decorative) {
         // Decorative icons are hidden from screen readers
         return {
-          'aria-hidden': true as const,
-          role: 'presentation' as const,
+          "aria-hidden": true as const,
+          role: "presentation" as const,
         };
       }
 
       // Semantic icons need accessible name
       return {
-        'aria-label': label,
-        role: 'img' as const,
+        "aria-label": label,
+        role: "img" as const,
       };
     }, [decorative, label]);
 
     // Merge custom styles with size override for pixel values
     const mergedStyle = useMemo(() => {
-      if (typeof size === 'number') {
+      if (typeof size === "number") {
         return {
           width: size,
           height: size,
@@ -141,4 +141,4 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(
   },
 );
 
-Icon.displayName = 'Icon';
+Icon.displayName = "Icon";

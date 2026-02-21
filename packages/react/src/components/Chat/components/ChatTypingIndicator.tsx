@@ -9,18 +9,20 @@
  * content feels seamless. Avatar hidden by default, matching ChatMessage.
  */
 
-import React from 'react';
-import type { ChatTypingIndicatorProps } from '../Chat.types';
-import styles from '../Chat.module.css';
+import React from "react";
+import type { ChatTypingIndicatorProps } from "../Chat.types";
+import styles from "../Chat.module.css";
 
 export const ChatTypingIndicator: React.FC<ChatTypingIndicatorProps> = ({
-  label = 'Generating response',
+  label = "Generating response",
   className,
   ...rest
 }) => {
   return (
     <div
-      className={[styles.message, styles.messageAssistant, className].filter(Boolean).join(' ')}
+      className={[styles.message, styles.messageAssistant, className]
+        .filter(Boolean)
+        .join(" ")}
       role="status"
       aria-live="polite"
       aria-label={label}
@@ -32,7 +34,7 @@ export const ChatTypingIndicator: React.FC<ChatTypingIndicatorProps> = ({
             styles.messageBubble,
             styles.messageBubbleAssistant,
             styles.thinkingBubble,
-          ].join(' ')}
+          ].join(" ")}
         >
           <span className={styles.thinkingSpinner} />
         </div>
@@ -41,4 +43,4 @@ export const ChatTypingIndicator: React.FC<ChatTypingIndicatorProps> = ({
   );
 };
 
-ChatTypingIndicator.displayName = 'ChatTypingIndicator';
+ChatTypingIndicator.displayName = "ChatTypingIndicator";

@@ -4,7 +4,7 @@
  * Type definitions for the Orion Tabs component.
  */
 
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
 /**
  * Tab item

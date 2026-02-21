@@ -25,7 +25,10 @@
         "properties": {
           "icon": { "description": "Feature icon (ReactNode)" },
           "title": { "type": "string", "description": "Feature title" },
-          "description": { "type": "string", "description": "Feature description" },
+          "description": {
+            "type": "string",
+            "description": "Feature description"
+          },
           "href": { "type": "string", "description": "Optional link URL" }
         },
         "required": ["title", "description"]

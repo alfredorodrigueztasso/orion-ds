@@ -20,21 +20,21 @@
  * ```
  */
 
-import { forwardRef, useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { forwardRef, useState } from "react";
+import { ChevronDown } from "lucide-react";
 import type {
   FormSectionProps,
   FormSectionGroupProps,
   FormSectionActionsProps,
-} from './FormSection.types';
-import styles from './FormSection.module.css';
+} from "./FormSection.types";
+import styles from "./FormSection.module.css";
 
 // Sub-component: Group
 const FormSectionGroup = forwardRef<HTMLDivElement, FormSectionGroupProps>(
   ({ label, helpText, children, columns = 1, className, ...rest }, ref) => {
     const classNames = [styles.group, styles[`columns-${columns}`], className]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
       <div ref={ref} className={classNames} {...rest}>
@@ -46,14 +46,14 @@ const FormSectionGroup = forwardRef<HTMLDivElement, FormSectionGroupProps>(
   },
 );
 
-FormSectionGroup.displayName = 'FormSection.Group';
+FormSectionGroup.displayName = "FormSection.Group";
 
 // Sub-component: Actions
 const FormSectionActions = forwardRef<HTMLDivElement, FormSectionActionsProps>(
-  ({ children, align = 'end', className, ...rest }, ref) => {
+  ({ children, align = "end", className, ...rest }, ref) => {
     const classNames = [styles.actions, styles[`align-${align}`], className]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
       <div ref={ref} className={classNames} {...rest}>
@@ -63,7 +63,7 @@ const FormSectionActions = forwardRef<HTMLDivElement, FormSectionActionsProps>(
   },
 );
 
-FormSectionActions.displayName = 'FormSection.Actions';
+FormSectionActions.displayName = "FormSection.Actions";
 
 // Main component
 const FormSectionBase = forwardRef<HTMLDivElement, FormSectionProps>(
@@ -76,7 +76,7 @@ const FormSectionBase = forwardRef<HTMLDivElement, FormSectionProps>(
       collapsible = false,
       defaultCollapsed = false,
       divider = false,
-      variant = 'default',
+      variant = "default",
       icon,
       disabled = false,
       className,
@@ -96,7 +96,7 @@ const FormSectionBase = forwardRef<HTMLDivElement, FormSectionProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     const handleToggle = () => {
       if (collapsible) {
@@ -104,12 +104,12 @@ const FormSectionBase = forwardRef<HTMLDivElement, FormSectionProps>(
       }
     };
 
-    const HeaderTag = collapsible ? 'button' : 'div';
+    const HeaderTag = collapsible ? "button" : "div";
     const headerProps = collapsible
       ? {
-          type: 'button' as const,
+          type: "button" as const,
           onClick: handleToggle,
-          'aria-expanded': !collapsed,
+          "aria-expanded": !collapsed,
         }
       : {};
 
@@ -120,13 +120,15 @@ const FormSectionBase = forwardRef<HTMLDivElement, FormSectionProps>(
             {icon && <span className={styles.icon}>{icon}</span>}
             <div className={styles.headerText}>
               <h3 className={styles.title}>{title}</h3>
-              {description && <p className={styles.description}>{description}</p>}
+              {description && (
+                <p className={styles.description}>{description}</p>
+              )}
             </div>
           </div>
           {collapsible && (
             <ChevronDown
               size={20}
-              className={`${styles.collapseIcon} ${collapsed ? styles.iconCollapsed : ''}`}
+              className={`${styles.collapseIcon} ${collapsed ? styles.iconCollapsed : ""}`}
             />
           )}
         </HeaderTag>
@@ -142,7 +144,7 @@ const FormSectionBase = forwardRef<HTMLDivElement, FormSectionProps>(
   },
 );
 
-FormSectionBase.displayName = 'FormSection';
+FormSectionBase.displayName = "FormSection";
 
 // Compose with sub-components
 export const FormSection = Object.assign(FormSectionBase, {

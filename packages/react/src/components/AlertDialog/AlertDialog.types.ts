@@ -5,12 +5,12 @@
  * Unlike Modal, AlertDialog forces a user response (no close on backdrop/escape by default).
  */
 
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
 /**
  * AlertDialog variant — controls accent color of icon
  */
-export type AlertDialogVariant = 'info' | 'warning' | 'danger';
+export type AlertDialogVariant = "info" | "warning" | "danger";
 
 /**
  * AlertDialog component props

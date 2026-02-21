@@ -17,18 +17,19 @@
  * ```
  */
 
-import { forwardRef } from 'react';
-import type { ButtonProps } from './Button.types';
-import styles from './Button.module.css';
+import { forwardRef } from "react";
+import type { ButtonProps } from "./Button.types";
+import styles from "./Button.module.css";
 
 // Convert kebab-case to camelCase for CSS Modules
-const toCamelCase = (str: string) => str.replace(/-([a-z])/g, (g) => g[1]?.toUpperCase() || '');
+const toCamelCase = (str: string) =>
+  str.replace(/-([a-z])/g, (g) => g[1]?.toUpperCase() || "");
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
-      variant = 'primary',
-      size = 'md',
+      variant = "primary",
+      size = "md",
       isLoading = false,
       fullWidth = false,
       icon,
@@ -37,13 +38,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       className,
       children,
       disabled,
-      type = 'button',
+      type = "button",
       ...rest
     },
     ref,
   ) => {
     // Convert variant to camelCase for CSS Modules access
-    const variantClass = styles[toCamelCase(variant) as keyof typeof styles] as string | undefined;
+    const variantClass = styles[toCamelCase(variant) as keyof typeof styles] as
+      | string
+      | undefined;
 
     // Combine class names
     const classNames = [
@@ -56,7 +59,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     // Determine if button should be disabled
     const isDisabled = disabled || isLoading;
@@ -64,17 +67,29 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const contentClass = isLoading ? styles.loadingContent : undefined;
 
     return (
-      <button ref={ref} type={type} className={classNames} disabled={isDisabled} {...rest}>
+      <button
+        ref={ref}
+        type={type}
+        className={classNames}
+        disabled={isDisabled}
+        {...rest}
+      >
         {isLoading && <span className={styles.spinner} aria-hidden="true" />}
 
         {icon && !iconOnly && (
-          <span className={`${styles.icon} ${contentClass || ''}`} aria-hidden="true">
+          <span
+            className={`${styles.icon} ${contentClass || ""}`}
+            aria-hidden="true"
+          >
             {icon}
           </span>
         )}
 
         {iconOnly && icon ? (
-          <span className={`${styles.icon} ${contentClass || ''}`} aria-hidden="true">
+          <span
+            className={`${styles.icon} ${contentClass || ""}`}
+            aria-hidden="true"
+          >
             {icon}
           </span>
         ) : (
@@ -83,7 +98,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
         {iconRight && !iconOnly && (
           <span
-            className={`${styles.icon} ${styles.iconRight} ${contentClass || ''}`}
+            className={`${styles.icon} ${styles.iconRight} ${contentClass || ""}`}
             aria-hidden="true"
           >
             {iconRight}
@@ -94,4 +109,4 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   },
 );
 
-Button.displayName = 'Button';
+Button.displayName = "Button";

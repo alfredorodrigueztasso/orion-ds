@@ -25,17 +25,17 @@
  * ```
  */
 
-import React, { createContext, useContext } from 'react';
-import { ResponsiveContainer, Tooltip, Legend } from 'recharts';
+import React, { createContext, useContext } from "react";
+import { ResponsiveContainer, Tooltip, Legend } from "recharts";
 import type {
   ChartConfig,
   ChartContainerProps,
   ChartTooltipContentProps,
   ChartLegendContentProps,
   ChartGradientProps,
-} from './Chart.types';
-import { useResolvedChartColors } from './useResolvedChartColors';
-import styles from './Chart.module.css';
+} from "./Chart.types";
+import { useResolvedChartColors } from "./useResolvedChartColors";
+import styles from "./Chart.module.css";
 
 // Context to share config across tooltip/legend
 const ChartContext = createContext<ChartConfig>({});
@@ -53,7 +53,9 @@ export const ChartContainer: React.FC<ChartContainerProps> = ({
   // Resolve CSS variable chains to concrete hex values for SVG compatibility
   const { resolvedConfig, resolvedColorVars } = useResolvedChartColors(config);
 
-  const containerClasses = [styles.container, className].filter(Boolean).join(' ');
+  const containerClasses = [styles.container, className]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <ChartContext.Provider value={resolvedConfig}>
@@ -71,7 +73,7 @@ export const ChartContainer: React.FC<ChartContainerProps> = ({
   );
 };
 
-ChartContainer.displayName = 'ChartContainer';
+ChartContainer.displayName = "ChartContainer";
 
 /**
  * ChartTooltipContent — Orion-styled tooltip for Recharts
@@ -80,7 +82,7 @@ export const ChartTooltipContent: React.FC<ChartTooltipContentProps> = ({
   active,
   payload,
   label,
-  indicator = 'dot',
+  indicator = "dot",
   hideLabel = false,
   hideIndicator = false,
   labelFormatter,
@@ -91,7 +93,7 @@ export const ChartTooltipContent: React.FC<ChartTooltipContentProps> = ({
 
   if (!active || !payload?.length) return null;
 
-  const tooltipClasses = [styles.tooltip, className].filter(Boolean).join(' ');
+  const tooltipClasses = [styles.tooltip, className].filter(Boolean).join(" ");
 
   const formattedLabel = labelFormatter ? labelFormatter(String(label)) : label;
 
@@ -103,13 +105,17 @@ export const ChartTooltipContent: React.FC<ChartTooltipContentProps> = ({
 
   return (
     <div className={tooltipClasses}>
-      {!hideLabel && formattedLabel && <div className={styles.tooltipLabel}>{formattedLabel}</div>}
+      {!hideLabel && formattedLabel && (
+        <div className={styles.tooltipLabel}>{formattedLabel}</div>
+      )}
       <div className={styles.tooltipItems}>
         {payload.map((entry) => {
           const dataKey = String(entry.dataKey || entry.name);
           const configItem = config[dataKey];
           const displayLabel = configItem?.label || dataKey;
-          const displayValue = formatter ? formatter(entry.value, dataKey) : String(entry.value);
+          const displayValue = formatter
+            ? formatter(entry.value, dataKey)
+            : String(entry.value);
           const color = entry.color || configItem?.color;
 
           return (
@@ -130,17 +136,20 @@ export const ChartTooltipContent: React.FC<ChartTooltipContentProps> = ({
   );
 };
 
-ChartTooltipContent.displayName = 'ChartTooltipContent';
+ChartTooltipContent.displayName = "ChartTooltipContent";
 
 /**
  * ChartLegendContent — Orion-styled legend for Recharts
  */
-export const ChartLegendContent: React.FC<ChartLegendContentProps> = ({ payload, className }) => {
+export const ChartLegendContent: React.FC<ChartLegendContentProps> = ({
+  payload,
+  className,
+}) => {
   const config = useContext(ChartContext);
 
   if (!payload?.length) return null;
 
-  const legendClasses = [styles.legend, className].filter(Boolean).join(' ');
+  const legendClasses = [styles.legend, className].filter(Boolean).join(" ");
 
   return (
     <div className={legendClasses}>
@@ -152,7 +161,10 @@ export const ChartLegendContent: React.FC<ChartLegendContentProps> = ({ payload,
 
         return (
           <div key={dataKey} className={styles.legendItem}>
-            <span className={styles.legendDot} style={{ backgroundColor: color }} />
+            <span
+              className={styles.legendDot}
+              style={{ backgroundColor: color }}
+            />
             <span>{displayLabel}</span>
           </div>
         );
@@ -161,7 +173,7 @@ export const ChartLegendContent: React.FC<ChartLegendContentProps> = ({ payload,
   );
 };
 
-ChartLegendContent.displayName = 'ChartLegendContent';
+ChartLegendContent.displayName = "ChartLegendContent";
 
 /**
  * ChartGradient — SVG linearGradient helper for elegant area chart fills.
@@ -190,7 +202,7 @@ export const ChartGradient: React.FC<ChartGradientProps> = ({
   </linearGradient>
 );
 
-ChartGradient.displayName = 'ChartGradient';
+ChartGradient.displayName = "ChartGradient";
 
 // Re-export Recharts Tooltip and Legend for convenience
 export const ChartTooltip = Tooltip;

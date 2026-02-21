@@ -16,30 +16,30 @@
  * ```
  */
 
-import type { Brand } from '../hooks/useTheme';
+import type { Brand } from "../hooks/useTheme";
 
 /**
  * Font families used by each brand
  */
 export const BRAND_FONTS: Record<Brand, string[]> = {
-  orion: ['Libre Baskerville', 'Inter', 'JetBrains Mono'],
-  deepblue: ['Work Sans', 'JetBrains Mono'],
-  red: ['Poppins', 'Inter', 'JetBrains Mono'],
-  orange: ['DM Sans', 'Inter', 'JetBrains Mono'],
-  lemon: ['Anton', 'Work Sans', 'JetBrains Mono'],
+  orion: ["Libre Baskerville", "Inter", "JetBrains Mono"],
+  deepblue: ["Work Sans", "JetBrains Mono"],
+  red: ["Poppins", "Inter", "JetBrains Mono"],
+  orange: ["DM Sans", "Inter", "JetBrains Mono"],
+  lemon: ["Anton", "Work Sans", "JetBrains Mono"],
 };
 
 /**
  * All unique font families used across all brands
  */
 export const ALL_FONTS = [
-  'Libre Baskerville',
-  'DM Sans',
-  'Inter',
-  'JetBrains Mono',
-  'Work Sans',
-  'Poppins',
-  'Anton',
+  "Libre Baskerville",
+  "DM Sans",
+  "Inter",
+  "JetBrains Mono",
+  "Work Sans",
+  "Poppins",
+  "Anton",
 ] as const;
 
 /**
@@ -53,29 +53,29 @@ export const ALL_FONTS = [
  * ```
  */
 export const GOOGLE_FONTS_URL =
-  'https://fonts.googleapis.com/css2?' +
-  'family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&' +
-  'family=DM+Sans:wght@400;500;700&' +
-  'family=Inter:wght@400;500;700&' +
-  'family=JetBrains+Mono:wght@400;500&' +
-  'family=Work+Sans:wght@400;500;700&' +
-  'family=Poppins:wght@400;500;700&' +
-  'family=Anton&' +
-  'display=swap';
+  "https://fonts.googleapis.com/css2?" +
+  "family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&" +
+  "family=DM+Sans:wght@400;500;700&" +
+  "family=Inter:wght@400;500;700&" +
+  "family=JetBrains+Mono:wght@400;500&" +
+  "family=Work+Sans:wght@400;500;700&" +
+  "family=Poppins:wght@400;500;700&" +
+  "family=Anton&" +
+  "display=swap";
 
 /**
  * Preconnect URLs for faster font loading
  */
 export const FONT_PRECONNECT_URLS = [
-  'https://fonts.googleapis.com',
-  'https://fonts.gstatic.com',
+  "https://fonts.googleapis.com",
+  "https://fonts.gstatic.com",
 ] as const;
 
 /**
  * Check if a font is loaded in the document
  */
 export function isFontLoaded(fontFamily: string): boolean {
-  if (typeof document === 'undefined') return true;
+  if (typeof document === "undefined") return true;
 
   try {
     return document.fonts.check(`16px "${fontFamily}"`);
@@ -105,10 +105,12 @@ export function getMissingFonts(brand: Brand): string[] {
  * Wait for fonts to be loaded
  */
 export async function waitForFonts(fonts: string[]): Promise<boolean> {
-  if (typeof document === 'undefined') return true;
+  if (typeof document === "undefined") return true;
 
   try {
-    await Promise.all(fonts.map((font) => document.fonts.load(`16px "${font}"`)));
+    await Promise.all(
+      fonts.map((font) => document.fonts.load(`16px "${font}"`)),
+    );
     return true;
   } catch {
     return false;

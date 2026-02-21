@@ -5,18 +5,18 @@
  * Designed for contact us and support pages.
  */
 
-import { forwardRef } from 'react';
-import type { ContactPageTemplateProps } from './ContactPageTemplate.types';
+import { forwardRef } from "react";
+import type { ContactPageTemplateProps } from "./ContactPageTemplate.types";
 
 // Components
-import { Navbar } from '../../../components/Navbar';
+import { Navbar } from "../../../components/Navbar";
 
 // Sections
-import { Hero } from '../../../sections/Hero';
-import { CarouselSection } from '../../../sections/CarouselSection';
-import { Contact } from '../../../sections/Contact';
-import { FAQ } from '../../../sections/FAQ';
-import { Footer } from '../../../sections/Footer';
+import { Hero } from "../../../sections/Hero";
+import { CarouselSection } from "../../../sections/CarouselSection";
+import { Contact } from "../../../sections/Contact";
+import { FAQ } from "../../../sections/FAQ";
+import { Footer } from "../../../sections/Footer";
 
 /**
  * ContactPageTemplate - Full contact page composition
@@ -32,8 +32,23 @@ import { Footer } from '../../../sections/Footer';
  * />
  * ```
  */
-export const ContactPageTemplate = forwardRef<HTMLDivElement, ContactPageTemplateProps>(
-  ({ navbar, hero, locationsCarousel, contact, faq, footer, children, ...rest }, ref) => {
+export const ContactPageTemplate = forwardRef<
+  HTMLDivElement,
+  ContactPageTemplateProps
+>(
+  (
+    {
+      navbar,
+      hero,
+      locationsCarousel,
+      contact,
+      faq,
+      footer,
+      children,
+      ...rest
+    },
+    ref,
+  ) => {
     return (
       <div ref={ref} {...rest}>
         {/* Navigation */}
@@ -69,6 +84,6 @@ export const ContactPageTemplate = forwardRef<HTMLDivElement, ContactPageTemplat
   },
 );
 
-ContactPageTemplate.displayName = 'ContactPageTemplate';
+ContactPageTemplate.displayName = "ContactPageTemplate";
 
 export default ContactPageTemplate;

@@ -4,17 +4,22 @@
  * Type definitions for the Orion ProgressBar component.
  */
 
-import type { HTMLAttributes } from 'react';
+import type { HTMLAttributes } from "react";
 
 /**
  * ProgressBar sizes
  */
-export type ProgressBarSize = 'sm' | 'md' | 'lg';
+export type ProgressBarSize = "sm" | "md" | "lg";
 
 /**
  * ProgressBar variants
  */
-export type ProgressBarVariant = 'primary' | 'success' | 'warning' | 'error' | 'info';
+export type ProgressBarVariant =
+  | "primary"
+  | "success"
+  | "warning"
+  | "error"
+  | "info";
 
 /**
  * ProgressBar component props

@@ -3,19 +3,19 @@
  */
 
 const isColorSupported =
-  process.env.FORCE_COLOR !== '0' &&
+  process.env.FORCE_COLOR !== "0" &&
   (process.env.FORCE_COLOR !== undefined || process.stdout.isTTY);
 
 function color(code: string, text: string): string {
   return isColorSupported ? `\x1b[${code}m${text}\x1b[0m` : text;
 }
 
-export const green = (t: string) => color('32', t);
-export const red = (t: string) => color('31', t);
-export const yellow = (t: string) => color('33', t);
-export const cyan = (t: string) => color('36', t);
-export const dim = (t: string) => color('2', t);
-export const bold = (t: string) => color('1', t);
+export const green = (t: string) => color("32", t);
+export const red = (t: string) => color("31", t);
+export const yellow = (t: string) => color("33", t);
+export const cyan = (t: string) => color("36", t);
+export const dim = (t: string) => color("2", t);
+export const bold = (t: string) => color("1", t);
 
 export function info(msg: string): void {
   console.log(msg);
@@ -34,7 +34,7 @@ export function error(msg: string): void {
 }
 
 export function spinner(msg: string): { stop: (final?: string) => void } {
-  const frames = ['|', '/', '-', '\\'];
+  const frames = ["|", "/", "-", "\\"];
   let i = 0;
   const id = setInterval(() => {
     process.stdout.write(`\r${cyan(frames[i++ % frames.length]!)} ${msg}`);
@@ -42,7 +42,7 @@ export function spinner(msg: string): { stop: (final?: string) => void } {
   return {
     stop(final?: string) {
       clearInterval(id);
-      process.stdout.write(`\r${' '.repeat(msg.length + 4)}\r`);
+      process.stdout.write(`\r${" ".repeat(msg.length + 4)}\r`);
       if (final) console.log(final);
     },
   };

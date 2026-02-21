@@ -16,10 +16,21 @@
  * ```
  */
 
-import { forwardRef, useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { Search, Command } from 'lucide-react';
-import type { CommandBarProps, CommandItem, CommandGroup } from './CommandBar.types';
-import styles from './CommandBar.module.css';
+import {
+  forwardRef,
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  useMemo,
+} from "react";
+import { Search, Command } from "lucide-react";
+import type {
+  CommandBarProps,
+  CommandItem,
+  CommandGroup,
+} from "./CommandBar.types";
+import styles from "./CommandBar.module.css";
 
 export const CommandBar = forwardRef<HTMLDivElement, CommandBarProps>(
   (
@@ -29,15 +40,15 @@ export const CommandBar = forwardRef<HTMLDivElement, CommandBarProps>(
       commands,
       recentCommands,
       onSelect,
-      placeholder = 'Type a command or search...',
-      emptyMessage = 'No results found.',
+      placeholder = "Type a command or search...",
+      emptyMessage = "No results found.",
       footer,
       className,
       ...rest
     },
     ref,
   ) => {
-    const [search, setSearch] = useState('');
+    const [search, setSearch] = useState("");
     const [selectedIndex, setSelectedIndex] = useState(0);
     const inputRef = useRef<HTMLInputElement>(null);
     const listRef = useRef<HTMLDivElement>(null);
@@ -49,8 +60,12 @@ export const CommandBar = forwardRef<HTMLDivElement, CommandBarProps>(
       const lowerSearch = search.toLowerCase();
       return commands.filter((cmd) => {
         const matchLabel = cmd.label.toLowerCase().includes(lowerSearch);
-        const matchDescription = cmd.description?.toLowerCase().includes(lowerSearch);
-        const matchKeywords = cmd.keywords?.some((k) => k.toLowerCase().includes(lowerSearch));
+        const matchDescription = cmd.description
+          ?.toLowerCase()
+          .includes(lowerSearch);
+        const matchKeywords = cmd.keywords?.some((k) =>
+          k.toLowerCase().includes(lowerSearch),
+        );
         return matchLabel || matchDescription || matchKeywords;
       });
     }, [commands, search]);
@@ -74,7 +89,7 @@ export const CommandBar = forwardRef<HTMLDivElement, CommandBarProps>(
       });
 
       if (uncategorized.length > 0) {
-        groups.unshift({ title: '', commands: uncategorized });
+        groups.unshift({ title: "", commands: uncategorized });
       }
 
       return groups;
@@ -95,7 +110,7 @@ export const CommandBar = forwardRef<HTMLDivElement, CommandBarProps>(
     // Reset state when opening
     useEffect(() => {
       if (open) {
-        setSearch('');
+        setSearch("");
         setSelectedIndex(0);
         setTimeout(() => inputRef.current?.focus(), 0);
       }
@@ -105,15 +120,15 @@ export const CommandBar = forwardRef<HTMLDivElement, CommandBarProps>(
     const handleKeyDown = useCallback(
       (e: React.KeyboardEvent) => {
         switch (e.key) {
-          case 'ArrowDown':
+          case "ArrowDown":
             e.preventDefault();
             setSelectedIndex((i) => Math.min(i + 1, flatList.length - 1));
             break;
-          case 'ArrowUp':
+          case "ArrowUp":
             e.preventDefault();
             setSelectedIndex((i) => Math.max(i - 1, 0));
             break;
-          case 'Enter': {
+          case "Enter": {
             e.preventDefault();
             const selected = flatList[selectedIndex];
             if (selected && !selected.disabled) {
@@ -121,7 +136,7 @@ export const CommandBar = forwardRef<HTMLDivElement, CommandBarProps>(
             }
             break;
           }
-          case 'Escape':
+          case "Escape":
             e.preventDefault();
             onOpenChange(false);
             break;
@@ -144,26 +159,26 @@ export const CommandBar = forwardRef<HTMLDivElement, CommandBarProps>(
 
       const selectedEl = list.querySelector(`[data-index="${selectedIndex}"]`);
       if (selectedEl) {
-        selectedEl.scrollIntoView({ block: 'nearest' });
+        selectedEl.scrollIntoView({ block: "nearest" });
       }
     }, [selectedIndex]);
 
     // Global keyboard shortcut
     useEffect(() => {
       const handleGlobalKeyDown = (e: KeyboardEvent) => {
-        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        if ((e.metaKey || e.ctrlKey) && e.key === "k") {
           e.preventDefault();
           onOpenChange(!open);
         }
       };
 
-      document.addEventListener('keydown', handleGlobalKeyDown);
-      return () => document.removeEventListener('keydown', handleGlobalKeyDown);
+      document.addEventListener("keydown", handleGlobalKeyDown);
+      return () => document.removeEventListener("keydown", handleGlobalKeyDown);
     }, [open, onOpenChange]);
 
     if (!open) return null;
 
-    const classNames = [styles.commandBar, className].filter(Boolean).join(' ');
+    const classNames = [styles.commandBar, className].filter(Boolean).join(" ");
 
     let itemIndex = 0;
 
@@ -213,19 +228,27 @@ export const CommandBar = forwardRef<HTMLDivElement, CommandBarProps>(
                           key={`recent-${cmd.id}`}
                           type="button"
                           data-index={index}
-                          className={`${styles.item} ${index === selectedIndex ? styles.itemSelected : ''} ${cmd.disabled ? styles.itemDisabled : ''}`}
+                          className={`${styles.item} ${index === selectedIndex ? styles.itemSelected : ""} ${cmd.disabled ? styles.itemDisabled : ""}`}
                           onClick={() => !cmd.disabled && handleSelect(cmd)}
                           onMouseEnter={() => setSelectedIndex(index)}
                         >
-                          {cmd.icon && <span className={styles.itemIcon}>{cmd.icon}</span>}
+                          {cmd.icon && (
+                            <span className={styles.itemIcon}>{cmd.icon}</span>
+                          )}
                           <span className={styles.itemContent}>
-                            <span className={styles.itemLabel}>{cmd.label}</span>
+                            <span className={styles.itemLabel}>
+                              {cmd.label}
+                            </span>
                             {cmd.description && (
-                              <span className={styles.itemDescription}>{cmd.description}</span>
+                              <span className={styles.itemDescription}>
+                                {cmd.description}
+                              </span>
                             )}
                           </span>
                           {cmd.shortcut && (
-                            <kbd className={styles.itemShortcut}>{cmd.shortcut}</kbd>
+                            <kbd className={styles.itemShortcut}>
+                              {cmd.shortcut}
+                            </kbd>
                           )}
                         </button>
                       );
@@ -235,8 +258,13 @@ export const CommandBar = forwardRef<HTMLDivElement, CommandBarProps>(
 
                 {/* Grouped commands */}
                 {groupedCommands.map((group) => (
-                  <div key={group.title || 'ungrouped'} className={styles.group}>
-                    {group.title && <div className={styles.groupTitle}>{group.title}</div>}
+                  <div
+                    key={group.title || "ungrouped"}
+                    className={styles.group}
+                  >
+                    {group.title && (
+                      <div className={styles.groupTitle}>{group.title}</div>
+                    )}
                     {group.commands.map((cmd) => {
                       const index = itemIndex++;
                       return (
@@ -244,19 +272,27 @@ export const CommandBar = forwardRef<HTMLDivElement, CommandBarProps>(
                           key={cmd.id}
                           type="button"
                           data-index={index}
-                          className={`${styles.item} ${index === selectedIndex ? styles.itemSelected : ''} ${cmd.disabled ? styles.itemDisabled : ''}`}
+                          className={`${styles.item} ${index === selectedIndex ? styles.itemSelected : ""} ${cmd.disabled ? styles.itemDisabled : ""}`}
                           onClick={() => !cmd.disabled && handleSelect(cmd)}
                           onMouseEnter={() => setSelectedIndex(index)}
                         >
-                          {cmd.icon && <span className={styles.itemIcon}>{cmd.icon}</span>}
+                          {cmd.icon && (
+                            <span className={styles.itemIcon}>{cmd.icon}</span>
+                          )}
                           <span className={styles.itemContent}>
-                            <span className={styles.itemLabel}>{cmd.label}</span>
+                            <span className={styles.itemLabel}>
+                              {cmd.label}
+                            </span>
                             {cmd.description && (
-                              <span className={styles.itemDescription}>{cmd.description}</span>
+                              <span className={styles.itemDescription}>
+                                {cmd.description}
+                              </span>
                             )}
                           </span>
                           {cmd.shortcut && (
-                            <kbd className={styles.itemShortcut}>{cmd.shortcut}</kbd>
+                            <kbd className={styles.itemShortcut}>
+                              {cmd.shortcut}
+                            </kbd>
                           )}
                         </button>
                       );
@@ -289,4 +325,4 @@ export const CommandBar = forwardRef<HTMLDivElement, CommandBarProps>(
   },
 );
 
-CommandBar.displayName = 'CommandBar';
+CommandBar.displayName = "CommandBar";

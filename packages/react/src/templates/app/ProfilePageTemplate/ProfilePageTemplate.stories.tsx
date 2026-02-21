@@ -1,11 +1,11 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { ProfilePageTemplate } from './ProfilePageTemplate';
-import { Button } from '../../../components/Button';
-import { Badge } from '../../../components/Badge';
-import { Card } from '../../../components/Card';
-import { FormSection } from '../../../sections/FormSection';
-import { Field } from '../../../components/Field';
-import { Textarea } from '../../../components/Textarea';
+import type { Meta, StoryObj } from "@storybook/react";
+import { ProfilePageTemplate } from "./ProfilePageTemplate";
+import { Button } from "../../../components/Button";
+import { Badge } from "../../../components/Badge";
+import { Card } from "../../../components/Card";
+import { FormSection } from "../../../sections/FormSection";
+import { Field } from "../../../components/Field";
+import { Textarea } from "../../../components/Textarea";
 import {
   Home,
   Users,
@@ -17,21 +17,21 @@ import {
   Globe,
   Edit,
   MessageSquare,
-} from 'lucide-react';
+} from "lucide-react";
 
 const meta: Meta<typeof ProfilePageTemplate> = {
-  title: 'Templates/App/Profile',
+  title: "Templates/App/Profile",
   component: ProfilePageTemplate,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
     docs: {
       description: {
         component:
-          'A complete profile page template with user info, activity feed, and editable sections.',
+          "A complete profile page template with user info, activity feed, and editable sections.",
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
@@ -41,21 +41,35 @@ type Story = StoryObj<typeof ProfilePageTemplate>;
 const SIDEBAR_SECTIONS = [
   {
     items: [
-      { id: 'dashboard', label: 'Dashboard', icon: <Home size={20} />, href: '/dashboard' },
-      { id: 'team', label: 'Team', icon: <Users size={20} />, href: '/team' },
-      { id: 'settings', label: 'Settings', icon: <Settings size={20} />, href: '/settings' },
+      {
+        id: "dashboard",
+        label: "Dashboard",
+        icon: <Home size={20} />,
+        href: "/dashboard",
+      },
+      { id: "team", label: "Team", icon: <Users size={20} />, href: "/team" },
+      {
+        id: "settings",
+        label: "Settings",
+        icon: <Settings size={20} />,
+        href: "/settings",
+      },
     ],
   },
 ];
 
 const USER_PROFILE = {
-  name: 'Sarah Chen',
-  role: 'Senior Software Engineer',
+  name: "Sarah Chen",
+  role: "Senior Software Engineer",
   avatar: <img src="https://i.pravatar.cc/200?u=sarah" alt="" />,
   metadata: [
-    { icon: <Mail size={16} />, label: 'Email', value: 'sarah@acme.com' },
-    { icon: <MapPin size={16} />, label: 'Location', value: 'San Francisco, CA' },
-    { icon: <Calendar size={16} />, label: 'Joined', value: 'March 2022' },
+    { icon: <Mail size={16} />, label: "Email", value: "sarah@acme.com" },
+    {
+      icon: <MapPin size={16} />,
+      label: "Location",
+      value: "San Francisco, CA",
+    },
+    { icon: <Calendar size={16} />, label: "Joined", value: "March 2022" },
   ],
   actions: (
     <>
@@ -71,34 +85,34 @@ const USER_PROFILE = {
 
 const ACTIVITY_ITEMS = [
   {
-    id: '1',
-    title: 'Updated profile picture',
-    timestamp: '2 hours ago',
-    actor: { name: 'Sarah Chen' },
+    id: "1",
+    title: "Updated profile picture",
+    timestamp: "2 hours ago",
+    actor: { name: "Sarah Chen" },
   },
   {
-    id: '2',
-    title: 'Completed task: API Integration',
-    timestamp: '5 hours ago',
-    actor: { name: 'Sarah Chen' },
+    id: "2",
+    title: "Completed task: API Integration",
+    timestamp: "5 hours ago",
+    actor: { name: "Sarah Chen" },
   },
   {
-    id: '3',
-    title: 'Joined project: Mobile App',
-    timestamp: '1 day ago',
-    actor: { name: 'Sarah Chen' },
+    id: "3",
+    title: "Joined project: Mobile App",
+    timestamp: "1 day ago",
+    actor: { name: "Sarah Chen" },
   },
   {
-    id: '4',
-    title: 'Commented on Design Review',
-    timestamp: '2 days ago',
-    actor: { name: 'Sarah Chen' },
+    id: "4",
+    title: "Commented on Design Review",
+    timestamp: "2 days ago",
+    actor: { name: "Sarah Chen" },
   },
   {
-    id: '5',
-    title: 'Received badge: Top Contributor',
-    timestamp: '1 week ago',
-    actor: { name: 'Sarah Chen' },
+    id: "5",
+    title: "Received badge: Top Contributor",
+    timestamp: "1 week ago",
+    actor: { name: "Sarah Chen" },
   },
 ];
 
@@ -110,17 +124,18 @@ const ProfileSections = () => (
         <h3 style={{ margin: 0 }}>About</h3>
       </Card.Header>
       <Card.Body>
-        <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-          Senior Software Engineer with 8+ years of experience building scalable web applications.
-          Passionate about clean code, system design, and mentoring junior developers. Currently
-          focused on building the next generation of developer tools at Acme.
+        <p style={{ color: "var(--text-secondary)", lineHeight: 1.6 }}>
+          Senior Software Engineer with 8+ years of experience building scalable
+          web applications. Passionate about clean code, system design, and
+          mentoring junior developers. Currently focused on building the next
+          generation of developer tools at Acme.
         </p>
         <div
           style={{
-            marginTop: 'var(--spacing-4)',
-            display: 'flex',
-            gap: 'var(--spacing-2)',
-            flexWrap: 'wrap',
+            marginTop: "var(--spacing-4)",
+            display: "flex",
+            gap: "var(--spacing-2)",
+            flexWrap: "wrap",
           }}
         >
           <Badge variant="secondary">TypeScript</Badge>
@@ -139,64 +154,88 @@ const ProfileSections = () => (
       <Card.Body>
         <div
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: 'var(--spacing-4)',
+            display: "grid",
+            gridTemplateColumns: "repeat(2, 1fr)",
+            gap: "var(--spacing-4)",
           }}
         >
           <div>
             <p
               style={{
-                color: 'var(--text-tertiary)',
-                fontSize: 'var(--text-sm)',
-                marginBottom: 'var(--spacing-1)',
+                color: "var(--text-tertiary)",
+                fontSize: "var(--text-sm)",
+                marginBottom: "var(--spacing-1)",
               }}
             >
               Email
             </p>
-            <p style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)' }}>
+            <p
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "var(--spacing-2)",
+              }}
+            >
               <Mail size={16} /> sarah@acme.com
             </p>
           </div>
           <div>
             <p
               style={{
-                color: 'var(--text-tertiary)',
-                fontSize: 'var(--text-sm)',
-                marginBottom: 'var(--spacing-1)',
+                color: "var(--text-tertiary)",
+                fontSize: "var(--text-sm)",
+                marginBottom: "var(--spacing-1)",
               }}
             >
               Phone
             </p>
-            <p style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)' }}>
+            <p
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "var(--spacing-2)",
+              }}
+            >
               <Phone size={16} /> +1 (555) 123-4567
             </p>
           </div>
           <div>
             <p
               style={{
-                color: 'var(--text-tertiary)',
-                fontSize: 'var(--text-sm)',
-                marginBottom: 'var(--spacing-1)',
+                color: "var(--text-tertiary)",
+                fontSize: "var(--text-sm)",
+                marginBottom: "var(--spacing-1)",
               }}
             >
               Location
             </p>
-            <p style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)' }}>
+            <p
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "var(--spacing-2)",
+              }}
+            >
               <MapPin size={16} /> San Francisco, CA
             </p>
           </div>
           <div>
             <p
               style={{
-                color: 'var(--text-tertiary)',
-                fontSize: 'var(--text-sm)',
-                marginBottom: 'var(--spacing-1)',
+                color: "var(--text-tertiary)",
+                fontSize: "var(--text-sm)",
+                marginBottom: "var(--spacing-1)",
               }}
             >
               Website
             </p>
-            <p style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)' }}>
+            <p
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "var(--spacing-2)",
+              }}
+            >
               <Globe size={16} /> sarahchen.dev
             </p>
           </div>
@@ -209,23 +248,35 @@ const ProfileSections = () => (
         <h3 style={{ margin: 0 }}>Recent Projects</h3>
       </Card.Header>
       <Card.Body>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-4)' }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "var(--spacing-4)",
+          }}
+        >
           <div
             style={{
-              padding: 'var(--spacing-3)',
-              backgroundColor: 'var(--surface-subtle)',
-              borderRadius: 'var(--radius-sm)',
+              padding: "var(--spacing-3)",
+              backgroundColor: "var(--surface-subtle)",
+              borderRadius: "var(--radius-sm)",
             }}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
               <h4 style={{ margin: 0 }}>Mobile App v2</h4>
               <Badge variant="success">Active</Badge>
             </div>
             <p
               style={{
-                color: 'var(--text-secondary)',
-                fontSize: 'var(--text-sm)',
-                margin: 'var(--spacing-2) 0 0 0',
+                color: "var(--text-secondary)",
+                fontSize: "var(--text-sm)",
+                margin: "var(--spacing-2) 0 0 0",
               }}
             >
               Lead developer for the mobile app redesign project.
@@ -233,20 +284,26 @@ const ProfileSections = () => (
           </div>
           <div
             style={{
-              padding: 'var(--spacing-3)',
-              backgroundColor: 'var(--surface-subtle)',
-              borderRadius: 'var(--radius-sm)',
+              padding: "var(--spacing-3)",
+              backgroundColor: "var(--surface-subtle)",
+              borderRadius: "var(--radius-sm)",
             }}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
               <h4 style={{ margin: 0 }}>API Gateway</h4>
               <Badge>Completed</Badge>
             </div>
             <p
               style={{
-                color: 'var(--text-secondary)',
-                fontSize: 'var(--text-sm)',
-                margin: 'var(--spacing-2) 0 0 0',
+                color: "var(--text-secondary)",
+                fontSize: "var(--text-sm)",
+                margin: "var(--spacing-2) 0 0 0",
               }}
             >
               Architected and implemented the new API gateway.
@@ -265,20 +322,26 @@ export const Default: Story = {
   args: {
     sidebar: {
       sections: SIDEBAR_SECTIONS,
-      activeItem: 'team',
+      activeItem: "team",
       header: (
-        <div style={{ padding: 'var(--spacing-4)', fontWeight: 700, fontSize: 'var(--text-xl)' }}>
+        <div
+          style={{
+            padding: "var(--spacing-4)",
+            fontWeight: 700,
+            fontSize: "var(--text-xl)",
+          }}
+        >
           Acme
         </div>
       ),
     },
     pageHeader: {
-      title: 'Profile',
-      breadcrumbs: [{ label: 'Team', href: '/team' }, { label: 'Sarah Chen' }],
+      title: "Profile",
+      breadcrumbs: [{ label: "Team", href: "/team" }, { label: "Sarah Chen" }],
     },
     profile: USER_PROFILE,
     activityFeed: {
-      title: 'Recent Activity',
+      title: "Recent Activity",
       activities: ACTIVITY_ITEMS,
     },
     children: <ProfileSections />,
@@ -291,7 +354,7 @@ export const Default: Story = {
 export const WithoutSidebar: Story = {
   args: {
     pageHeader: {
-      title: 'My Profile',
+      title: "My Profile",
       actions: (
         <Button variant="primary" icon={<Edit size={18} />}>
           Edit Profile
@@ -300,7 +363,7 @@ export const WithoutSidebar: Story = {
     },
     profile: USER_PROFILE,
     activityFeed: {
-      title: 'Your Activity',
+      title: "Your Activity",
       activities: ACTIVITY_ITEMS,
     },
     children: <ProfileSections />,
@@ -327,8 +390,8 @@ export const TeamMemberView: Story = {
   args: {
     sidebar: Default.args?.sidebar,
     pageHeader: {
-      title: 'Team Member',
-      breadcrumbs: [{ label: 'Team', href: '/team' }, { label: 'Sarah Chen' }],
+      title: "Team Member",
+      breadcrumbs: [{ label: "Team", href: "/team" }, { label: "Sarah Chen" }],
       actions: (
         <Button variant="ghost" icon={<MessageSquare size={18} />}>
           Send Message
@@ -344,7 +407,7 @@ export const TeamMemberView: Story = {
       ),
     },
     activityFeed: {
-      title: 'Recent Activity',
+      title: "Recent Activity",
       activities: ACTIVITY_ITEMS,
     },
     children: <ProfileSections />,
@@ -358,8 +421,11 @@ export const EditableProfile: Story = {
   args: {
     sidebar: Default.args?.sidebar,
     pageHeader: {
-      title: 'Edit Profile',
-      breadcrumbs: [{ label: 'Settings', href: '/settings' }, { label: 'Profile' }],
+      title: "Edit Profile",
+      breadcrumbs: [
+        { label: "Settings", href: "/settings" },
+        { label: "Profile" },
+      ],
     },
     profile: {
       ...USER_PROFILE,
@@ -373,7 +439,10 @@ export const EditableProfile: Story = {
     showActivity: false,
     children: (
       <>
-        <FormSection title="Personal Information" description="Update your personal details.">
+        <FormSection
+          title="Personal Information"
+          description="Update your personal details."
+        >
           <FormSection.Group>
             <Field label="Full name" defaultValue="Sarah Chen" />
             <Field label="Email" type="email" defaultValue="sarah@acme.com" />
@@ -401,10 +470,12 @@ export const EditableProfile: Story = {
 export const MinimalProfile: Story = {
   args: {
     profile: {
-      name: 'Sarah Chen',
-      role: 'Senior Software Engineer',
+      name: "Sarah Chen",
+      role: "Senior Software Engineer",
       avatar: <img src="https://i.pravatar.cc/200?u=sarah" alt="" />,
-      metadata: [{ icon: <Mail size={16} />, label: 'Email', value: 'sarah@acme.com' }],
+      metadata: [
+        { icon: <Mail size={16} />, label: "Email", value: "sarah@acme.com" },
+      ],
     },
     showActivity: false,
   },

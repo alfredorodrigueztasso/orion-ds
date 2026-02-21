@@ -5,7 +5,7 @@
 ## Quick Start
 
 ```tsx
-import { Blog } from '@orion/react';
+import { Blog } from "@orion/react";
 
 <Blog
   eyebrow="Blog"
@@ -14,25 +14,25 @@ import { Blog } from '@orion/react';
   articles={[
     {
       id: 1,
-      title: 'Getting Started with Orion',
-      excerpt: 'Learn the basics of building with Orion Design System.',
-      image: '/blog/getting-started.jpg',
-      category: 'Tutorial',
-      author: { name: 'Jane Doe', avatar: '/avatars/jane.jpg' },
-      date: '2024-01-15',
+      title: "Getting Started with Orion",
+      excerpt: "Learn the basics of building with Orion Design System.",
+      image: "/blog/getting-started.jpg",
+      category: "Tutorial",
+      author: { name: "Jane Doe", avatar: "/avatars/jane.jpg" },
+      date: "2024-01-15",
       readTime: 5,
-      href: '/blog/getting-started',
+      href: "/blog/getting-started",
     },
     {
       id: 2,
-      title: 'Design Tokens Deep Dive',
-      excerpt: 'Understanding the power of design tokens in modern systems.',
-      image: '/blog/tokens.jpg',
-      category: 'Engineering',
-      author: { name: 'John Smith' },
-      date: '2024-01-10',
+      title: "Design Tokens Deep Dive",
+      excerpt: "Understanding the power of design tokens in modern systems.",
+      image: "/blog/tokens.jpg",
+      category: "Engineering",
+      author: { name: "John Smith" },
+      date: "2024-01-10",
       readTime: 8,
-      href: '/blog/design-tokens',
+      href: "/blog/design-tokens",
     },
   ]}
   layout="grid"
@@ -66,7 +66,7 @@ interface BlogProps {
   articles: BlogArticle[]; // REQUIRED - Array of articles
 
   // Layout
-  layout?: 'grid' | 'list' | 'featured'; // default: 'grid'
+  layout?: "grid" | "list" | "featured"; // default: 'grid'
   columns?: 2 | 3 | 4; // Grid columns - default: 3
 
   // Display Options
@@ -80,7 +80,7 @@ interface BlogProps {
   viewAllText?: string; // Link text - default: "View all articles"
 
   // Styling
-  background?: 'base' | 'subtle' | 'none'; // default: 'base'
+  background?: "base" | "subtle" | "none"; // default: 'base'
 }
 
 interface BlogArticle {
@@ -227,7 +227,7 @@ First article large, rest in grid.
 ### Landing Page Blog Section
 
 ```tsx
-import { Blog, Badge } from '@orion/react';
+import { Blog, Badge } from "@orion/react";
 
 <Blog
   eyebrow={<Badge variant="brand">From the Blog</Badge>}
@@ -236,36 +236,38 @@ import { Blog, Badge } from '@orion/react';
   articles={[
     {
       id: 1,
-      title: 'Announcing Orion 2.0',
-      excerpt: 'The biggest update yet with new components, themes, and performance improvements.',
-      image: '/blog/orion-2.jpg',
-      category: 'Announcement',
-      author: { name: 'Sarah Chen', avatar: '/team/sarah.jpg' },
-      date: '2024-01-20',
+      title: "Announcing Orion 2.0",
+      excerpt:
+        "The biggest update yet with new components, themes, and performance improvements.",
+      image: "/blog/orion-2.jpg",
+      category: "Announcement",
+      author: { name: "Sarah Chen", avatar: "/team/sarah.jpg" },
+      date: "2024-01-20",
       readTime: 3,
-      href: '/blog/orion-2',
+      href: "/blog/orion-2",
     },
     {
       id: 2,
-      title: 'Building Accessible Components',
-      excerpt: 'A deep dive into making your design system accessible to everyone.',
-      image: '/blog/accessibility.jpg',
-      category: 'Tutorial',
-      author: { name: 'Marcus Johnson', avatar: '/team/marcus.jpg' },
-      date: '2024-01-15',
+      title: "Building Accessible Components",
+      excerpt:
+        "A deep dive into making your design system accessible to everyone.",
+      image: "/blog/accessibility.jpg",
+      category: "Tutorial",
+      author: { name: "Marcus Johnson", avatar: "/team/marcus.jpg" },
+      date: "2024-01-15",
       readTime: 8,
-      href: '/blog/accessible-components',
+      href: "/blog/accessible-components",
     },
     {
       id: 3,
-      title: 'Design Tokens Best Practices',
-      excerpt: 'How to structure your design tokens for maximum flexibility.',
-      image: '/blog/tokens.jpg',
-      category: 'Engineering',
-      author: { name: 'Emily Rodriguez' },
-      date: '2024-01-10',
+      title: "Design Tokens Best Practices",
+      excerpt: "How to structure your design tokens for maximum flexibility.",
+      image: "/blog/tokens.jpg",
+      category: "Engineering",
+      author: { name: "Emily Rodriguez" },
+      date: "2024-01-10",
       readTime: 6,
-      href: '/blog/design-tokens-practices',
+      href: "/blog/design-tokens-practices",
     },
   ]}
   layout="grid"
@@ -284,14 +286,14 @@ import { Blog, Badge } from '@orion/react';
   articles={[
     {
       id: 1,
-      title: 'The Future of Design Systems',
-      excerpt: 'An in-depth look at where design systems are headed...',
-      image: '/blog/featured.jpg',
-      category: 'Featured',
-      author: { name: 'CEO Name' },
-      date: '2024-01-20',
+      title: "The Future of Design Systems",
+      excerpt: "An in-depth look at where design systems are headed...",
+      image: "/blog/featured.jpg",
+      category: "Featured",
+      author: { name: "CEO Name" },
+      date: "2024-01-20",
       readTime: 10,
-      href: '/blog/future-of-design',
+      href: "/blog/future-of-design",
     },
     ...otherArticles,
   ]}
@@ -378,7 +380,7 @@ articles={[
 
 // CORRECT - Brief, enticing preview
 {
-  excerpt: 'A comprehensive guide to implementing design tokens in your system.';
+  excerpt: "A comprehensive guide to implementing design tokens in your system.";
 }
 ```
 

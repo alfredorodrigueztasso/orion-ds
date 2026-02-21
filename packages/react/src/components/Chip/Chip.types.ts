@@ -4,17 +4,23 @@
  * Type definitions for the Orion Chip/Tag component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Chip visual variants
  */
-export type ChipVariant = 'default' | 'primary' | 'success' | 'warning' | 'error' | 'info';
+export type ChipVariant =
+  | "default"
+  | "primary"
+  | "success"
+  | "warning"
+  | "error"
+  | "info";
 
 /**
  * Chip sizes
  */
-export type ChipSize = 'sm' | 'md' | 'lg';
+export type ChipSize = "sm" | "md" | "lg";
 
 /**
  * Chip component props
@@ -26,7 +32,10 @@ export type ChipSize = 'sm' | 'md' | 'lg';
  * <Chip onRemove={() => handleRemove()}>Removable</Chip>
  * ```
  */
-export interface ChipProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onClick'> {
+export interface ChipProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "onClick"
+> {
   /**
    * Visual variant of the chip
    * @default 'default'

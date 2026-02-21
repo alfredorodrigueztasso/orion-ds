@@ -28,7 +28,7 @@ interface TableColumn<T> {
   cell?: (row: T, index: number) => ReactNode; // Custom cell renderer
   width?: string; // Column width (CSS)
   sortable?: boolean; // Enable sorting
-  align?: 'left' | 'center' | 'right'; // Cell alignment
+  align?: "left" | "center" | "right"; // Cell alignment
   headerProps?: ThHTMLAttributes; // Header cell props
   cellProps?: TdHTMLAttributes; // Data cell props
 }
@@ -37,7 +37,7 @@ interface TableColumn<T> {
 ### SortDirection
 
 ```ts
-type SortDirection = 'asc' | 'desc' | null;
+type SortDirection = "asc" | "desc" | null;
 ```
 
 ## Usage
@@ -45,8 +45,8 @@ type SortDirection = 'asc' | 'desc' | null;
 ### Basic
 
 ```tsx
-import { Table } from '@orion/react';
-import type { TableColumn } from '@orion/react';
+import { Table } from "@orion/react";
+import type { TableColumn } from "@orion/react";
 
 interface User {
   id: number;
@@ -55,13 +55,13 @@ interface User {
 }
 
 const columns: TableColumn<User>[] = [
-  { key: 'name', header: 'Name' },
-  { key: 'email', header: 'Email' },
+  { key: "name", header: "Name" },
+  { key: "email", header: "Email" },
 ];
 
 const users: User[] = [
-  { id: 1, name: 'John Doe', email: 'john@example.com' },
-  { id: 2, name: 'Jane Smith', email: 'jane@example.com' },
+  { id: 1, name: "John Doe", email: "john@example.com" },
+  { id: 2, name: "Jane Smith", email: "jane@example.com" },
 ];
 
 <Table columns={columns} data={users} />;
@@ -70,17 +70,19 @@ const users: User[] = [
 ### With Custom Cell Renderer
 
 ```tsx
-import { Badge } from '@orion/react';
+import { Badge } from "@orion/react";
 
 const columns: TableColumn<User>[] = [
-  { key: 'name', header: 'Name', sortable: true },
-  { key: 'email', header: 'Email', sortable: true },
+  { key: "name", header: "Name", sortable: true },
+  { key: "email", header: "Email", sortable: true },
   {
-    key: 'status',
-    header: 'Status',
-    align: 'center',
+    key: "status",
+    header: "Status",
+    align: "center",
     cell: (user) => (
-      <Badge variant={user.status === 'active' ? 'success' : 'neutral'}>{user.status}</Badge>
+      <Badge variant={user.status === "active" ? "success" : "neutral"}>
+        {user.status}
+      </Badge>
     ),
   },
 ];
@@ -89,7 +91,7 @@ const columns: TableColumn<User>[] = [
 ### With Sorting
 
 ```tsx
-import { useState } from 'react';
+import { useState } from "react";
 
 function Example() {
   const [sortState, setSortState] = useState<{
@@ -103,7 +105,7 @@ function Example() {
     return [...data].sort((a, b) => {
       const aVal = a[sortState.columnKey];
       const bVal = b[sortState.columnKey];
-      const modifier = sortState.direction === 'asc' ? 1 : -1;
+      const modifier = sortState.direction === "asc" ? 1 : -1;
       return aVal > bVal ? modifier : -modifier;
     });
   }, [data, sortState]);
@@ -124,7 +126,11 @@ function Example() {
 ### With Row Click
 
 ```tsx
-<Table columns={columns} data={users} onRowClick={(user) => navigate(`/users/${user.id}`)} />
+<Table
+  columns={columns}
+  data={users}
+  onRowClick={(user) => navigate(`/users/${user.id}`)}
+/>
 ```
 
 ### Striped and Bordered
@@ -136,7 +142,11 @@ function Example() {
 ### With Caption
 
 ```tsx
-<Table columns={columns} data={users} caption="User directory - Last updated: Today" />
+<Table
+  columns={columns}
+  data={users}
+  caption="User directory - Last updated: Today"
+/>
 ```
 
 ### Custom Row Key

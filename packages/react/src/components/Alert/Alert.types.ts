@@ -4,12 +4,12 @@
  * Type definitions for the Orion Alert component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Alert variants (status types)
  */
-export type AlertVariant = 'success' | 'error' | 'warning' | 'info';
+export type AlertVariant = "success" | "error" | "warning" | "info";
 
 /**
  * Alert component props

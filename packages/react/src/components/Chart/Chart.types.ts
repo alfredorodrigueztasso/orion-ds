@@ -5,7 +5,7 @@
  * Provides themed containers, tooltips, and legends for Recharts.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Configuration for a single data series in a chart
@@ -68,7 +68,7 @@ export interface ChartTooltipContentProps {
    * Whether to show the color indicator dot
    * @default true
    */
-  indicator?: 'dot' | 'line' | 'dashed';
+  indicator?: "dot" | "line" | "dashed";
 
   /**
    * Hide the label text

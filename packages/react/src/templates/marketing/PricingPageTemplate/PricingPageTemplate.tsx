@@ -5,20 +5,20 @@
  * Designed for SaaS and product pricing pages.
  */
 
-import { forwardRef } from 'react';
-import type { PricingPageTemplateProps } from './PricingPageTemplate.types';
+import { forwardRef } from "react";
+import type { PricingPageTemplateProps } from "./PricingPageTemplate.types";
 
 // Components
-import { Navbar } from '../../../components/Navbar';
+import { Navbar } from "../../../components/Navbar";
 
 // Sections
-import { Hero } from '../../../sections/Hero';
-import { CarouselSection } from '../../../sections/CarouselSection';
-import { Pricing } from '../../../sections/Pricing';
-import { Comparison } from '../../../sections/Comparison';
-import { FAQ } from '../../../sections/FAQ';
-import { CTA } from '../../../sections/CTA';
-import { Footer } from '../../../sections/Footer';
+import { Hero } from "../../../sections/Hero";
+import { CarouselSection } from "../../../sections/CarouselSection";
+import { Pricing } from "../../../sections/Pricing";
+import { Comparison } from "../../../sections/Comparison";
+import { FAQ } from "../../../sections/FAQ";
+import { CTA } from "../../../sections/CTA";
+import { Footer } from "../../../sections/Footer";
 
 /**
  * PricingPageTemplate - Full pricing page composition
@@ -34,9 +34,23 @@ import { Footer } from '../../../sections/Footer';
  * />
  * ```
  */
-export const PricingPageTemplate = forwardRef<HTMLDivElement, PricingPageTemplateProps>(
+export const PricingPageTemplate = forwardRef<
+  HTMLDivElement,
+  PricingPageTemplateProps
+>(
   (
-    { navbar, hero, featuresCarousel, pricing, comparison, faq, cta, footer, children, ...rest },
+    {
+      navbar,
+      hero,
+      featuresCarousel,
+      pricing,
+      comparison,
+      faq,
+      cta,
+      footer,
+      children,
+      ...rest
+    },
     ref,
   ) => {
     return (
@@ -80,6 +94,6 @@ export const PricingPageTemplate = forwardRef<HTMLDivElement, PricingPageTemplat
   },
 );
 
-PricingPageTemplate.displayName = 'PricingPageTemplate';
+PricingPageTemplate.displayName = "PricingPageTemplate";
 
 export default PricingPageTemplate;

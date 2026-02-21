@@ -4,18 +4,18 @@
  * Type definitions for the full landing page template.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
-import type { NavbarProps } from '../../../components/Navbar';
-import type { HeroProps } from '../../../sections/Hero';
-import type { CarouselSectionProps } from '../../../sections/CarouselSection';
-import type { LogoCloudProps } from '../../../sections/LogoCloud';
-import type { FeaturesProps } from '../../../sections/Features';
-import type { StatsProps } from '../../../sections/Stats';
-import type { PricingProps } from '../../../sections/Pricing';
-import type { TestimonialsProps } from '../../../sections/Testimonials';
-import type { FAQProps } from '../../../sections/FAQ';
-import type { CTAProps } from '../../../sections/CTA';
-import type { FooterProps } from '../../../sections/Footer';
+import type { HTMLAttributes, ReactNode } from "react";
+import type { NavbarProps } from "../../../components/Navbar";
+import type { HeroProps } from "../../../sections/Hero";
+import type { CarouselSectionProps } from "../../../sections/CarouselSection";
+import type { LogoCloudProps } from "../../../sections/LogoCloud";
+import type { FeaturesProps } from "../../../sections/Features";
+import type { StatsProps } from "../../../sections/Stats";
+import type { PricingProps } from "../../../sections/Pricing";
+import type { TestimonialsProps } from "../../../sections/Testimonials";
+import type { FAQProps } from "../../../sections/FAQ";
+import type { CTAProps } from "../../../sections/CTA";
+import type { FooterProps } from "../../../sections/Footer";
 
 /**
  * LandingPageTemplate props
@@ -34,7 +34,10 @@ import type { FooterProps } from '../../../sections/Footer';
  * />
  * ```
  */
-export interface LandingPageTemplateProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
+export interface LandingPageTemplateProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "title"
+> {
   /**
    * Navbar configuration
    */
@@ -49,7 +52,7 @@ export interface LandingPageTemplateProps extends Omit<HTMLAttributes<HTMLDivEle
    * Editorial carousel for featured stories/content
    * Displays as magazine-style with large images and text overlays
    */
-  featuredCarousel?: Omit<CarouselSectionProps, 'variant'>;
+  featuredCarousel?: Omit<CarouselSectionProps, "variant">;
 
   /**
    * Logo cloud for social proof
@@ -70,7 +73,7 @@ export interface LandingPageTemplateProps extends Omit<HTMLAttributes<HTMLDivEle
    * Product carousel for showcasing features/products
    * Displays as product showcase cards
    */
-  productCarousel?: Omit<CarouselSectionProps, 'variant'>;
+  productCarousel?: Omit<CarouselSectionProps, "variant">;
 
   /**
    * Pricing section

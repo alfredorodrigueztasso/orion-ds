@@ -7,7 +7,15 @@
 Sections are complete, ready-to-use page blocks that compose atomic components. **Use these instead of building custom sections.**
 
 ```tsx
-import { Hero, Features, Pricing, Testimonials, FAQ, CTA, Footer } from '@orion/react';
+import {
+  Hero,
+  Features,
+  Pricing,
+  Testimonials,
+  FAQ,
+  CTA,
+  Footer,
+} from "@orion/react";
 ```
 
 ---
@@ -77,11 +85,11 @@ import {
   FAQ,
   CTA,
   Footer,
-} from '@orion/react';
+} from "@orion/react";
 
 // REQUIRED - Import CSS at app root
-import '@orion/core/theme.css';
-import '@orion/react/dist/react.css';
+import "@orion/core/theme.css";
+import "@orion/react/dist/react.css";
 
 function LandingPage() {
   return (
@@ -113,19 +121,21 @@ function LandingPage() {
       />
 
       {/* 3. LogoCloud - Trust (optional) */}
-      <LogoCloud logos={[{ name: 'Company', logo: '/logo.svg' }]} />
+      <LogoCloud logos={[{ name: "Company", logo: "/logo.svg" }]} />
 
       {/* 4. Features - What you offer */}
       <Features
         id="features"
         eyebrow="Features"
         title="Everything you need"
-        items={[{ icon: <Icon />, title: 'Feature', description: 'Description' }]}
+        items={[
+          { icon: <Icon />, title: "Feature", description: "Description" },
+        ]}
         columns={3}
       />
 
       {/* 5. Stats - Social proof numbers (optional) */}
-      <Stats stats={[{ value: '10K+', label: 'Users' }]} />
+      <Stats stats={[{ value: "10K+", label: "Users" }]} />
 
       {/* 6. Pricing - Plans */}
       <Pricing
@@ -134,10 +144,10 @@ function LandingPage() {
         title="Simple pricing"
         plans={[
           {
-            name: 'Starter',
-            price: '$9',
-            period: '/month',
-            features: [{ text: 'Feature', included: true }],
+            name: "Starter",
+            price: "$9",
+            period: "/month",
+            features: [{ text: "Feature", included: true }],
             action: <Button fullWidth>Get Started</Button>,
           },
         ]}
@@ -149,8 +159,8 @@ function LandingPage() {
         title="What customers say"
         testimonials={[
           {
-            quote: 'Quote here',
-            author: { name: 'Name', role: 'Title' },
+            quote: "Quote here",
+            author: { name: "Name", role: "Title" },
           },
         ]}
       />
@@ -160,19 +170,22 @@ function LandingPage() {
         id="faq"
         eyebrow="FAQ"
         title="Common questions"
-        items={[{ question: 'Question?', answer: 'Answer.' }]}
+        items={[{ question: "Question?", answer: "Answer." }]}
       />
 
       {/* 9. CTA - Final push */}
-      <CTA headline="Ready to start?" actions={<Button size="lg">Get Started</Button>} />
+      <CTA
+        headline="Ready to start?"
+        actions={<Button size="lg">Get Started</Button>}
+      />
 
       {/* 10. Footer - Navigation & legal */}
       <Footer
-        brand={{ name: 'Company', description: 'Tagline' }}
+        brand={{ name: "Company", description: "Tagline" }}
         linkGroups={[
           {
-            title: 'Product',
-            links: [{ label: 'Features', href: '#features' }],
+            title: "Product",
+            links: [{ label: "Features", href: "#features" }],
           },
         ]}
         copyright="2024 Company. All rights reserved."
@@ -248,8 +261,8 @@ Sections have consistent vertical spacing. Override with:
   items={[
     {
       icon: <Zap size={24} />,
-      title: 'Fast',
-      description: 'Lightning fast performance.',
+      title: "Fast",
+      description: "Lightning fast performance.",
     },
     // ... more items
   ]}
@@ -265,13 +278,13 @@ Sections have consistent vertical spacing. Override with:
   title="Simple pricing"
   plans={[
     {
-      name: 'Starter',
-      price: '$0',
-      period: '/month',
-      description: 'For individuals',
+      name: "Starter",
+      price: "$0",
+      period: "/month",
+      description: "For individuals",
       features: [
-        { text: '5 projects', included: true },
-        { text: 'API access', included: false },
+        { text: "5 projects", included: true },
+        { text: "API access", included: false },
       ],
       action: (
         <Button variant="secondary" fullWidth>
@@ -280,13 +293,13 @@ Sections have consistent vertical spacing. Override with:
       ),
     },
     {
-      name: 'Pro',
-      price: '$29',
-      period: '/month',
-      description: 'For teams',
+      name: "Pro",
+      price: "$29",
+      period: "/month",
+      description: "For teams",
       features: [
-        { text: 'Unlimited projects', included: true },
-        { text: 'API access', included: true },
+        { text: "Unlimited projects", included: true },
+        { text: "API access", included: true },
       ],
       action: <Button fullWidth>Start Trial</Button>,
       popular: true, // Emphasize this plan
@@ -303,11 +316,11 @@ Sections have consistent vertical spacing. Override with:
   title="What customers say"
   testimonials={[
     {
-      quote: 'This transformed our workflow completely.',
+      quote: "This transformed our workflow completely.",
       author: {
-        name: 'Jane Doe',
-        role: 'CTO',
-        company: 'TechCorp',
+        name: "Jane Doe",
+        role: "CTO",
+        company: "TechCorp",
         avatar: <img src="/jane.jpg" alt="" />,
       },
       rating: 5, // Optional, 1-5
@@ -325,12 +338,12 @@ Sections have consistent vertical spacing. Override with:
   title="Common questions"
   items={[
     {
-      question: 'How do I get started?',
-      answer: 'Sign up for a free account and follow our quick start guide.',
+      question: "How do I get started?",
+      answer: "Sign up for a free account and follow our quick start guide.",
     },
     {
-      question: 'Can I cancel anytime?',
-      answer: 'Yes, cancel anytime with no penalties.',
+      question: "Can I cancel anytime?",
+      answer: "Yes, cancel anytime with no penalties.",
     },
   ]}
   columns={1} // 1 or 2
@@ -344,9 +357,9 @@ Sections have consistent vertical spacing. Override with:
   eyebrow="By the Numbers"
   title="Trusted by thousands"
   stats={[
-    { value: '10K+', label: 'Users' },
-    { value: '99.9%', label: 'Uptime' },
-    { value: '$5M+', label: 'Processed' },
+    { value: "10K+", label: "Users" },
+    { value: "99.9%", label: "Uptime" },
+    { value: "$5M+", label: "Processed" },
   ]}
 />
 ```
@@ -371,33 +384,41 @@ Sections have consistent vertical spacing. Override with:
 ### Footer
 
 ```tsx
-import { Twitter, Github } from 'lucide-react';
+import { Twitter, Github } from "lucide-react";
 
 <Footer
   brand={{
-    name: 'Acme Inc',
-    logo: '/logo.svg', // Optional
-    description: 'Building the future.',
+    name: "Acme Inc",
+    logo: "/logo.svg", // Optional
+    description: "Building the future.",
   }}
   linkGroups={[
     {
-      title: 'Product',
+      title: "Product",
       links: [
-        { label: 'Features', href: '/features' },
-        { label: 'Pricing', href: '/pricing' },
+        { label: "Features", href: "/features" },
+        { label: "Pricing", href: "/pricing" },
       ],
     },
     {
-      title: 'Company',
+      title: "Company",
       links: [
-        { label: 'About', href: '/about' },
-        { label: 'Blog', href: '/blog' },
+        { label: "About", href: "/about" },
+        { label: "Blog", href: "/blog" },
       ],
     },
   ]}
   socialLinks={[
-    { label: 'Twitter', href: 'https://twitter.com/acme', icon: <Twitter size={20} /> },
-    { label: 'GitHub', href: 'https://github.com/acme', icon: <Github size={20} /> },
+    {
+      label: "Twitter",
+      href: "https://twitter.com/acme",
+      icon: <Twitter size={20} />,
+    },
+    {
+      label: "GitHub",
+      href: "https://github.com/acme",
+      icon: <Github size={20} />,
+    },
   ]}
   copyright="2024 Acme Inc. All rights reserved."
 />;

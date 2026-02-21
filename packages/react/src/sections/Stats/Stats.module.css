@@ -160,7 +160,11 @@
 }
 
 .valueHighlight {
-  background: linear-gradient(135deg, var(--color-brand-400), var(--color-brand-600));
+  background: linear-gradient(
+    135deg,
+    var(--color-brand-400),
+    var(--color-brand-600)
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

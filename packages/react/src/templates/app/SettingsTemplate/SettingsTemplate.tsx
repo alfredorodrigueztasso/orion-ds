@@ -5,13 +5,13 @@
  * Designed for application settings, preferences, and configuration pages.
  */
 
-import { forwardRef, useState, useMemo } from 'react';
-import type { SettingsTemplateProps } from './SettingsTemplate.types';
+import { forwardRef, useState, useMemo } from "react";
+import type { SettingsTemplateProps } from "./SettingsTemplate.types";
 
 // Sections
-import { SettingsLayout } from '../../../sections/SettingsLayout';
+import { SettingsLayout } from "../../../sections/SettingsLayout";
 
-import styles from './SettingsTemplate.module.css';
+import styles from "./SettingsTemplate.module.css";
 
 /**
  * SettingsTemplate - Full settings page composition
@@ -30,10 +30,13 @@ import styles from './SettingsTemplate.module.css';
  * />
  * ```
  */
-export const SettingsTemplate = forwardRef<HTMLDivElement, SettingsTemplateProps>(
+export const SettingsTemplate = forwardRef<
+  HTMLDivElement,
+  SettingsTemplateProps
+>(
   (
     {
-      title = 'Settings',
+      title = "Settings",
       description,
       navigation,
       sections,
@@ -47,7 +50,9 @@ export const SettingsTemplate = forwardRef<HTMLDivElement, SettingsTemplateProps
     ref,
   ) => {
     // Internal state for uncontrolled mode
-    const [internalSection, setInternalSection] = useState(defaultSection || sections[0]?.id || '');
+    const [internalSection, setInternalSection] = useState(
+      defaultSection || sections[0]?.id || "",
+    );
 
     // Use controlled or uncontrolled section
     const activeSection = controlledSection ?? internalSection;
@@ -66,7 +71,9 @@ export const SettingsTemplate = forwardRef<HTMLDivElement, SettingsTemplateProps
       return section?.content ?? null;
     }, [sections, activeSection]);
 
-    const settingsClasses = [styles.settings, className].filter(Boolean).join(' ');
+    const settingsClasses = [styles.settings, className]
+      .filter(Boolean)
+      .join(" ");
 
     return (
       <div ref={ref} className={settingsClasses} {...rest}>
@@ -85,6 +92,6 @@ export const SettingsTemplate = forwardRef<HTMLDivElement, SettingsTemplateProps
   },
 );
 
-SettingsTemplate.displayName = 'SettingsTemplate';
+SettingsTemplate.displayName = "SettingsTemplate";
 
 export default SettingsTemplate;

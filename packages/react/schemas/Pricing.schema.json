@@ -24,17 +24,35 @@
         "type": "object",
         "properties": {
           "id": { "type": "string" },
-          "name": { "type": "string", "description": "Plan name (e.g., 'Basic', 'Pro')" },
-          "price": { "type": "string", "description": "Price display (e.g., '$9', '$29/mo')" },
-          "period": { "type": "string", "description": "Billing period (e.g., 'per month')" },
-          "description": { "type": "string", "description": "Plan description" },
+          "name": {
+            "type": "string",
+            "description": "Plan name (e.g., 'Basic', 'Pro')"
+          },
+          "price": {
+            "type": "string",
+            "description": "Price display (e.g., '$9', '$29/mo')"
+          },
+          "period": {
+            "type": "string",
+            "description": "Billing period (e.g., 'per month')"
+          },
+          "description": {
+            "type": "string",
+            "description": "Plan description"
+          },
           "features": {
             "type": "array",
             "items": { "type": "object" },
             "description": "List of features"
           },
-          "highlighted": { "type": "boolean", "description": "Highlight as recommended" },
-          "badge": { "type": "string", "description": "Badge text (e.g., 'Most Popular')" },
+          "highlighted": {
+            "type": "boolean",
+            "description": "Highlight as recommended"
+          },
+          "badge": {
+            "type": "string",
+            "description": "Badge text (e.g., 'Most Popular')"
+          },
           "buttonText": { "type": "string" },
           "buttonHref": { "type": "string" }
         },

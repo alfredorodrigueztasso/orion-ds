@@ -5,7 +5,7 @@
  * Composes Calendar + Popover with formatted trigger display.
  */
 
-import type { DateRange } from '../Calendar/Calendar.types';
+import type { DateRange } from "../Calendar/Calendar.types";
 
 /**
  * Preset option for quick date selection
@@ -72,7 +72,7 @@ interface DatePickerBaseProps {
  * Single date picker
  */
 export interface DatePickerSingleProps extends DatePickerBaseProps {
-  mode?: 'single';
+  mode?: "single";
   selected?: Date;
   onSelect?: (date: Date | undefined) => void;
 }
@@ -81,7 +81,7 @@ export interface DatePickerSingleProps extends DatePickerBaseProps {
  * Range date picker
  */
 export interface DatePickerRangeProps extends DatePickerBaseProps {
-  mode: 'range';
+  mode: "range";
   selected?: DateRange;
   onSelect?: (range: DateRange | undefined) => void;
 }

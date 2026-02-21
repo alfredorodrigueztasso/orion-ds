@@ -4,7 +4,7 @@
  * Utility functions and helpers for using Orion components.
  */
 
-export * from './icons';
+export * from "./icons";
 
 // Font utilities
 export {
@@ -17,7 +17,7 @@ export {
   getMissingFonts,
   waitForFonts,
   getFontLinkTags,
-} from './fonts';
+} from "./fonts";
 
 // Validation utilities (dev-only warnings)
 export {
@@ -28,4 +28,4 @@ export {
   warnHardcodedColors,
   warnFieldChildren,
   warnUsePrebuiltSection,
-} from './validation';
+} from "./validation";

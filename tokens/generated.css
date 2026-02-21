@@ -187,7 +187,7 @@
     /* Interactive */
     --interactive-primary: var(--color-brand-500);
     --interactive-primary-hover: var(--color-brand-400);
-    --interactive-primary-text: var(--color-neutral-900);
+    --interactive-primary-text: var(--color-neutral-0);
     --interactive-secondary: var(--color-neutral-800);
     --interactive-secondary-hover: var(--color-neutral-700);
     --interactive-secondary-text: var(--color-neutral-50);

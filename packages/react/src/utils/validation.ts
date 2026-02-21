@@ -13,14 +13,15 @@
  * Check if we're in development mode.
  * Warnings are suppressed in production for performance.
  */
-const isDev = typeof process !== 'undefined' && process.env?.NODE_ENV !== 'production';
+const isDev =
+  typeof process !== "undefined" && process.env?.NODE_ENV !== "production";
 
 /**
  * Console styles for Orion warnings
  */
-const WARN_STYLE = 'color: #f59e0b; font-weight: bold;';
-const FIX_STYLE = 'color: #10b981;';
-const CODE_STYLE = 'background: #f3f4f6; padding: 2px 4px; border-radius: 3px;';
+const WARN_STYLE = "color: #f59e0b; font-weight: bold;";
+const FIX_STYLE = "color: #10b981;";
+const CODE_STYLE = "background: #f3f4f6; padding: 2px 4px; border-radius: 3px;";
 
 /**
  * Warn when an icon-only button is missing aria-label.
@@ -51,11 +52,11 @@ Screen readers cannot announce the purpose of this button.
 
 Learn more: https://orion.design/accessibility`,
       WARN_STYLE,
-      '',
+      "",
       FIX_STYLE,
-      '',
+      "",
       CODE_STYLE,
-      '',
+      "",
     );
   }
 }
@@ -92,13 +93,13 @@ setBrand('deepblue');%c
 
 Learn more: https://orion.design/theming`,
       WARN_STYLE,
-      '',
+      "",
       FIX_STYLE,
-      '',
+      "",
       CODE_STYLE,
-      '',
+      "",
       CODE_STYLE,
-      '',
+      "",
     );
   }
 }
@@ -136,13 +137,13 @@ toggleTheme();%c
 
 Learn more: https://orion.design/theming`,
       WARN_STYLE,
-      '',
+      "",
       FIX_STYLE,
-      '',
+      "",
       CODE_STYLE,
-      '',
+      "",
       CODE_STYLE,
-      '',
+      "",
     );
   }
 }
@@ -160,13 +161,18 @@ Learn more: https://orion.design/theming`,
  * warnGlassVariant('Card', variant);
  * ```
  */
-export function warnGlassVariant(component: string, variant: string | undefined): void {
-  if (isDev && variant === 'glass') {
+export function warnGlassVariant(
+  component: string,
+  variant: string | undefined,
+): void {
+  if (isDev && variant === "glass") {
     // Check current mode from document
     const currentMode =
-      typeof document !== 'undefined' ? document.documentElement.dataset.mode : undefined;
+      typeof document !== "undefined"
+        ? document.documentElement.dataset.mode
+        : undefined;
 
-    if (currentMode && currentMode !== 'display') {
+    if (currentMode && currentMode !== "display") {
       console.warn(
         `%c[Orion/${component}]%c Glass variant only works in Display mode.
 
@@ -182,17 +188,17 @@ The component will render but may not look as intended.
 
 Learn more: https://orion.design/modes`,
         WARN_STYLE,
-        '',
+        "",
         CODE_STYLE,
-        '',
+        "",
         CODE_STYLE,
-        '',
+        "",
         FIX_STYLE,
-        '',
+        "",
         CODE_STYLE,
-        '',
+        "",
         CODE_STYLE,
-        '',
+        "",
       );
     }
   }
@@ -215,13 +221,16 @@ export function warnHardcodedColors(
 ): void {
   if (!isDev || !style) return;
 
-  const colorProps = ['color', 'backgroundColor', 'borderColor', 'background'];
+  const colorProps = ["color", "backgroundColor", "borderColor", "background"];
   const hexPattern = /#[0-9A-Fa-f]{3,8}/;
   const rgbPattern = /rgba?\s*\(/;
 
   for (const prop of colorProps) {
     const value = style[prop as keyof React.CSSProperties];
-    if (typeof value === 'string' && (hexPattern.test(value) || rgbPattern.test(value))) {
+    if (
+      typeof value === "string" &&
+      (hexPattern.test(value) || rgbPattern.test(value))
+    ) {
       console.warn(
         `%c[Orion/${component}]%c Hardcoded color detected: ${prop}="${value}"
 
@@ -239,11 +248,11 @@ style={{ ${prop}: 'var(--interactive-primary)' }} // For interactive elements%c
 
 Learn more: https://orion.design/tokens`,
         WARN_STYLE,
-        '',
+        "",
         FIX_STYLE,
-        '',
+        "",
         CODE_STYLE,
-        '',
+        "",
       );
       break; // Only warn once per component render
     }
@@ -278,11 +287,11 @@ Children passed to Field will be ignored.
 
 Learn more: https://orion.design/components/field`,
       WARN_STYLE,
-      '',
+      "",
       FIX_STYLE,
-      '',
+      "",
       CODE_STYLE,
-      '',
+      "",
     );
   }
 }
@@ -319,13 +328,13 @@ Timeline, Comparison, Banner, SocialProof, AppDownload
 
 Learn more: https://orion.design/sections`,
       WARN_STYLE,
-      '',
+      "",
       FIX_STYLE,
-      '',
-      '',
-      '',
+      "",
+      "",
+      "",
       CODE_STYLE,
-      '',
+      "",
     );
   }
 }

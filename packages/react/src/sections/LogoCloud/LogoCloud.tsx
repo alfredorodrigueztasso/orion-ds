@@ -22,11 +22,11 @@
  * ```
  */
 
-import { forwardRef } from 'react';
-import type { LogoCloudProps } from './LogoCloud.types';
-import { Section } from '../Section';
-import { Container } from '../Container';
-import styles from './LogoCloud.module.css';
+import { forwardRef } from "react";
+import type { LogoCloudProps } from "./LogoCloud.types";
+import { Section } from "../Section";
+import { Container } from "../Container";
+import styles from "./LogoCloud.module.css";
 
 export const LogoCloud = forwardRef<HTMLElement, LogoCloudProps>(
   (
@@ -35,13 +35,13 @@ export const LogoCloud = forwardRef<HTMLElement, LogoCloudProps>(
       title,
       description,
       logos,
-      layout = 'inline',
+      layout = "inline",
       columns = 5,
-      size = 'md',
+      size = "md",
       grayscale = true,
-      background = 'none',
+      background = "none",
       centered = true,
-      marqueeSpeed = 'normal',
+      marqueeSpeed = "normal",
       className,
       ...rest
     },
@@ -58,7 +58,7 @@ export const LogoCloud = forwardRef<HTMLElement, LogoCloudProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     const renderLogo = (item: (typeof logos)[0], index: number) => {
       const logoElement = (
@@ -87,13 +87,17 @@ export const LogoCloud = forwardRef<HTMLElement, LogoCloudProps>(
     };
 
     const renderLogos = () => {
-      if (layout === 'marquee') {
+      if (layout === "marquee") {
         return (
-          <div className={`${styles.marquee} ${styles[`speed-${marqueeSpeed}`]}`}>
+          <div
+            className={`${styles.marquee} ${styles[`speed-${marqueeSpeed}`]}`}
+          >
             <div className={styles.marqueeTrack}>
               {logos.map(renderLogo)}
               {/* Duplicate for seamless loop */}
-              {logos.map((item, index) => renderLogo(item, index + logos.length))}
+              {logos.map((item, index) =>
+                renderLogo(item, index + logos.length),
+              )}
             </div>
           </div>
         );
@@ -101,7 +105,7 @@ export const LogoCloud = forwardRef<HTMLElement, LogoCloudProps>(
 
       return (
         <div
-          className={`${styles.logosContainer} ${layout === 'grid' ? styles[`cols-${columns}`] : ''}`}
+          className={`${styles.logosContainer} ${layout === "grid" ? styles[`cols-${columns}`] : ""}`}
         >
           {logos.map(renderLogo)}
         </div>
@@ -109,13 +113,21 @@ export const LogoCloud = forwardRef<HTMLElement, LogoCloudProps>(
     };
 
     return (
-      <Section ref={ref} spacing="md" background={background} className={classNames} {...rest}>
+      <Section
+        ref={ref}
+        spacing="md"
+        background={background}
+        className={classNames}
+        {...rest}
+      >
         <Container size="xl">
           {hasHeader && (
             <header className={styles.header}>
               {eyebrow && <div className={styles.eyebrow}>{eyebrow}</div>}
               {title && <h2 className={styles.title}>{title}</h2>}
-              {description && <p className={styles.description}>{description}</p>}
+              {description && (
+                <p className={styles.description}>{description}</p>
+              )}
             </header>
           )}
 
@@ -126,4 +138,4 @@ export const LogoCloud = forwardRef<HTMLElement, LogoCloudProps>(
   },
 );
 
-LogoCloud.displayName = 'LogoCloud';
+LogoCloud.displayName = "LogoCloud";

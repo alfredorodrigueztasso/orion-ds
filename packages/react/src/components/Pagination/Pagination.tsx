@@ -13,9 +13,9 @@
  * ```
  */
 
-import { forwardRef, useMemo } from 'react';
-import type { PaginationProps } from './Pagination.types';
-import styles from './Pagination.module.css';
+import { forwardRef, useMemo } from "react";
+import type { PaginationProps } from "./Pagination.types";
+import styles from "./Pagination.module.css";
 
 /**
  * Generate array of page numbers to display
@@ -24,7 +24,7 @@ const generatePages = (
   currentPage: number,
   totalPages: number,
   siblingCount: number,
-): (number | 'ellipsis')[] => {
+): (number | "ellipsis")[] => {
   const totalNumbers = siblingCount * 2 + 5; // siblings + first + last + current + 2 ellipses
 
   // If we can show all pages
@@ -38,14 +38,14 @@ const generatePages = (
   const showLeftEllipsis = leftSiblingIndex > 2;
   const showRightEllipsis = rightSiblingIndex < totalPages - 1;
 
-  const pages: (number | 'ellipsis')[] = [];
+  const pages: (number | "ellipsis")[] = [];
 
   // First page
   pages.push(1);
 
   // Left ellipsis
   if (showLeftEllipsis) {
-    pages.push('ellipsis');
+    pages.push("ellipsis");
   } else if (leftSiblingIndex === 2) {
     pages.push(2);
   }
@@ -59,7 +59,7 @@ const generatePages = (
 
   // Right ellipsis
   if (showRightEllipsis) {
-    pages.push('ellipsis');
+    pages.push("ellipsis");
   } else if (rightSiblingIndex === totalPages - 1) {
     pages.push(totalPages - 1);
   }
@@ -81,7 +81,7 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
       siblingCount = 1,
       showFirstLast = true,
       showPrevNext = true,
-      size = 'md',
+      size = "md",
       disabled = false,
       className,
       ...rest
@@ -97,14 +97,24 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
     const canGoNext = currentPage < totalPages;
 
     const handlePageChange = (page: number) => {
-      if (!disabled && page >= 1 && page <= totalPages && page !== currentPage) {
+      if (
+        !disabled &&
+        page >= 1 &&
+        page <= totalPages &&
+        page !== currentPage
+      ) {
         onPageChange(page);
       }
     };
 
-    const classNames = [styles.pagination, styles[size], disabled && styles.disabled, className]
+    const classNames = [
+      styles.pagination,
+      styles[size],
+      disabled && styles.disabled,
+      className,
+    ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     if (totalPages <= 0) {
       return null;
@@ -161,8 +171,8 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
 
           {/* Page numbers */}
           {pages.map((page, index) => (
-            <li key={page === 'ellipsis' ? `ellipsis-${index}` : page}>
-              {page === 'ellipsis' ? (
+            <li key={page === "ellipsis" ? `ellipsis-${index}` : page}>
+              {page === "ellipsis" ? (
                 <span className={styles.ellipsis} aria-hidden="true">
                   …
                 </span>
@@ -170,12 +180,12 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
                 <button
                   type="button"
                   className={`${styles.button} ${styles.pageButton} ${
-                    page === currentPage ? styles.active : ''
+                    page === currentPage ? styles.active : ""
                   }`}
                   onClick={() => handlePageChange(page)}
                   disabled={disabled}
                   aria-label={`Go to page ${page}`}
-                  aria-current={page === currentPage ? 'page' : undefined}
+                  aria-current={page === currentPage ? "page" : undefined}
                 >
                   {page}
                 </button>
@@ -234,4 +244,4 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
   },
 );
 
-Pagination.displayName = 'Pagination';
+Pagination.displayName = "Pagination";

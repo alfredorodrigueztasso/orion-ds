@@ -5,60 +5,76 @@
  * Conversations are grouped by date (Today, Yesterday, Previous 7 days, etc.)
  */
 
-import React, { useState, useCallback, useMemo, useRef, useEffect } from 'react';
-import { Plus, Search, Trash2, MessageSquare, X } from 'lucide-react';
-import type { ChatSidebarProps, ChatConversation } from '../Chat.types';
-import styles from '../Chat.module.css';
+import React, {
+  useState,
+  useCallback,
+  useMemo,
+  useRef,
+  useEffect,
+} from "react";
+import { Plus, Search, Trash2, MessageSquare, X } from "lucide-react";
+import type { ChatSidebarProps, ChatConversation } from "../Chat.types";
+import styles from "../Chat.module.css";
 
 // Date grouping types
-type DateGroup = 'today' | 'yesterday' | 'previous7' | 'previous30' | 'older';
+type DateGroup = "today" | "yesterday" | "previous7" | "previous30" | "older";
 
 const groupLabels: Record<DateGroup, string> = {
-  today: 'Today',
-  yesterday: 'Yesterday',
-  previous7: 'Previous 7 days',
-  previous30: 'Previous 30 days',
-  older: 'Older',
+  today: "Today",
+  yesterday: "Yesterday",
+  previous7: "Previous 7 days",
+  previous30: "Previous 30 days",
+  older: "Older",
 };
 
 // Order of date groups for rendering
-const groupOrder: DateGroup[] = ['today', 'yesterday', 'previous7', 'previous30', 'older'];
+const groupOrder: DateGroup[] = [
+  "today",
+  "yesterday",
+  "previous7",
+  "previous30",
+  "older",
+];
 
 // Get the date group for a given date
 const getDateGroup = (date: Date): DateGroup => {
   const now = new Date();
-  const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const startOfToday = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate(),
+  );
   const diff =
     startOfToday.getTime() -
     new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime();
   const days = diff / (1000 * 60 * 60 * 24);
 
-  if (days < 1) return 'today';
-  if (days < 2) return 'yesterday';
-  if (days < 7) return 'previous7';
-  if (days < 30) return 'previous30';
-  return 'older';
+  if (days < 1) return "today";
+  if (days < 2) return "yesterday";
+  if (days < 7) return "previous7";
+  if (days < 30) return "previous30";
+  return "older";
 };
 
 // Format date for display (shown on individual items)
 const formatDate = (date: Date): string => {
   const group = getDateGroup(date);
 
-  if (group === 'today') {
-    return new Intl.DateTimeFormat('en-US', {
-      hour: 'numeric',
-      minute: '2-digit',
+  if (group === "today") {
+    return new Intl.DateTimeFormat("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
     }).format(date);
-  } else if (group === 'yesterday') {
-    return 'Yesterday';
-  } else if (group === 'previous7') {
-    return new Intl.DateTimeFormat('en-US', {
-      weekday: 'short',
+  } else if (group === "yesterday") {
+    return "Yesterday";
+  } else if (group === "previous7") {
+    return new Intl.DateTimeFormat("en-US", {
+      weekday: "short",
     }).format(date);
   } else {
-    return new Intl.DateTimeFormat('en-US', {
-      month: 'short',
-      day: 'numeric',
+    return new Intl.DateTimeFormat("en-US", {
+      month: "short",
+      day: "numeric",
     }).format(date);
   }
 };
@@ -95,9 +111,11 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
   className,
   ...rest
 }) => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
-  const confirmTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const confirmTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined,
+  );
 
   // Clear confirm timer on unmount
   useEffect(() => {
@@ -115,7 +133,8 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
     const query = searchQuery.toLowerCase();
     return conversations.filter(
       (conv) =>
-        conv.title.toLowerCase().includes(query) || conv.preview?.toLowerCase().includes(query),
+        conv.title.toLowerCase().includes(query) ||
+        conv.preview?.toLowerCase().includes(query),
     );
   }, [conversations, searchQuery]);
 
@@ -197,7 +216,7 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
           className,
         ]
           .filter(Boolean)
-          .join(' ')}
+          .join(" ")}
         {...rest}
       >
         {/* Header */}
@@ -205,9 +224,13 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
           {header || (
             <>
               <button
-                className={[styles.inputButton, styles.inputButtonPrimary, styles.sidebarNewButton]
+                className={[
+                  styles.inputButton,
+                  styles.inputButtonPrimary,
+                  styles.sidebarNewButton,
+                ]
                   .filter(Boolean)
-                  .join(' ')}
+                  .join(" ")}
                 onClick={onNewConversation}
                 aria-label="New conversation"
               >
@@ -219,7 +242,9 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
 
               {/* Mobile close button */}
               <button
-                className={[styles.inputButton, styles.sidebarCloseButton].join(' ')}
+                className={[styles.inputButton, styles.sidebarCloseButton].join(
+                  " ",
+                )}
                 onClick={() => onCollapsedChange?.(true)}
                 aria-label="Close sidebar"
               >
@@ -235,7 +260,10 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
             <Search size={16} className={styles.sidebarSearchIcon} />
             <input
               type="search"
-              className={[styles.sidebarSearchInput, styles.sidebarSearchInputWithIcon].join(' ')}
+              className={[
+                styles.sidebarSearchInput,
+                styles.sidebarSearchInputWithIcon,
+              ].join(" ")}
               placeholder="Search conversations..."
               value={searchQuery}
               onChange={handleSearchChange}
@@ -245,11 +273,19 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
         </div>
 
         {/* Conversation list with date grouping */}
-        <div className={styles.sidebarList} role="list" aria-label="Conversations">
+        <div
+          className={styles.sidebarList}
+          role="list"
+          aria-label="Conversations"
+        >
           {!hasConversations ? (
             <div className={styles.sidebarEmpty}>
               <MessageSquare size={32} className={styles.sidebarEmptyIcon} />
-              <p>{searchQuery ? 'No conversations found' : 'No conversations yet'}</p>
+              <p>
+                {searchQuery
+                  ? "No conversations found"
+                  : "No conversations yet"}
+              </p>
             </div>
           ) : (
             groupOrder.map((group) => {
@@ -258,27 +294,37 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
 
               return (
                 <div key={group}>
-                  <div className={styles.sidebarGroupHeader}>{groupLabels[group]}</div>
+                  <div className={styles.sidebarGroupHeader}>
+                    {groupLabels[group]}
+                  </div>
                   {groupConvs.map((conversation) => (
                     <button
                       key={conversation.id}
                       className={[
                         styles.sidebarItem,
-                        conversation.id === activeConversationId && styles.sidebarItemActive,
+                        conversation.id === activeConversationId &&
+                          styles.sidebarItemActive,
                       ]
                         .filter(Boolean)
-                        .join(' ')}
+                        .join(" ")}
                       onClick={() => handleSelectConversation(conversation.id)}
                       role="listitem"
                       aria-selected={conversation.id === activeConversationId}
                       aria-label={`Conversation: ${conversation.title}`}
                     >
-                      <MessageSquare size={18} className={styles.sidebarItemIcon} />
+                      <MessageSquare
+                        size={18}
+                        className={styles.sidebarItemIcon}
+                      />
 
                       <div className={styles.sidebarItemContent}>
-                        <span className={styles.sidebarItemTitle}>{conversation.title}</span>
+                        <span className={styles.sidebarItemTitle}>
+                          {conversation.title}
+                        </span>
                         {conversation.preview && (
-                          <span className={styles.sidebarItemPreview}>{conversation.preview}</span>
+                          <span className={styles.sidebarItemPreview}>
+                            {conversation.preview}
+                          </span>
                         )}
                       </div>
 
@@ -297,7 +343,9 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
                           }
                         >
                           {confirmDeleteId === conversation.id ? (
-                            <span className={styles.sidebarItemDeleteConfirm}>Delete?</span>
+                            <span className={styles.sidebarItemDeleteConfirm}>
+                              Delete?
+                            </span>
                           ) : (
                             <Trash2 size={16} />
                           )}
@@ -318,4 +366,4 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
   );
 };
 
-ChatSidebar.displayName = 'ChatSidebar';
+ChatSidebar.displayName = "ChatSidebar";

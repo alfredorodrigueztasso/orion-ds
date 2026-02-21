@@ -5,17 +5,17 @@
  * and send functionality.
  */
 
-import React, { forwardRef, useCallback, useState, useRef } from 'react';
-import { Send, Paperclip, Mic, X, Image, File } from 'lucide-react';
-import type { ChatInputProps } from '../Chat.types';
-import { useChatInput } from '../hooks/useChatInput';
-import { ChatVoiceRecorder } from './ChatVoiceRecorder';
-import { formatFileSize } from '../utils';
-import styles from '../Chat.module.css';
+import React, { forwardRef, useCallback, useState, useRef } from "react";
+import { Send, Paperclip, Mic, X, Image, File } from "lucide-react";
+import type { ChatInputProps } from "../Chat.types";
+import { useChatInput } from "../hooks/useChatInput";
+import { ChatVoiceRecorder } from "./ChatVoiceRecorder";
+import { formatFileSize } from "../utils";
+import styles from "../Chat.module.css";
 
 // Get file icon
 const getFileIcon = (file: File) => {
-  if (file.type.startsWith('image/')) {
+  if (file.type.startsWith("image/")) {
     return <Image size={14} />;
   }
   return <File size={14} />;
@@ -25,13 +25,20 @@ export const ChatInput = forwardRef<HTMLTextAreaElement, ChatInputProps>(
   (
     {
       onSend,
-      placeholder = 'Type a message...',
+      placeholder = "Type a message...",
       allowAttachments = true,
       allowVoiceRecording = true,
       allowAudioUpload: _allowAudioUpload = true,
       disabled = false,
       maxLength,
-      acceptedFileTypes = ['image/*', 'audio/*', '.pdf', '.doc', '.docx', '.txt'],
+      acceptedFileTypes = [
+        "image/*",
+        "audio/*",
+        ".pdf",
+        ".doc",
+        ".docx",
+        ".txt",
+      ],
       isLoading = false,
       pendingAttachments: externalAttachments,
       onRemoveAttachment: externalOnRemove,
@@ -67,9 +74,11 @@ export const ChatInput = forwardRef<HTMLTextAreaElement, ChatInputProps>(
     const combinedRef = useCallback(
       (node: HTMLTextAreaElement | null) => {
         // Set internal ref
-        (textareaRef as React.MutableRefObject<HTMLTextAreaElement | null>).current = node;
+        (
+          textareaRef as React.MutableRefObject<HTMLTextAreaElement | null>
+        ).current = node;
         // Forward ref
-        if (typeof forwardedRef === 'function') {
+        if (typeof forwardedRef === "function") {
           forwardedRef(node);
         } else if (forwardedRef) {
           forwardedRef.current = node;
@@ -87,7 +96,7 @@ export const ChatInput = forwardRef<HTMLTextAreaElement, ChatInputProps>(
         }
         // Reset input
         if (fileInputRef.current) {
-          fileInputRef.current.value = '';
+          fileInputRef.current.value = "";
         }
       },
       [addAttachments],
@@ -100,7 +109,7 @@ export const ChatInput = forwardRef<HTMLTextAreaElement, ChatInputProps>(
         const imageFiles: File[] = [];
 
         for (const item of items) {
-          if (item.type.startsWith('image/')) {
+          if (item.type.startsWith("image/")) {
             const file = item.getAsFile();
             if (file) {
               imageFiles.push(file);
@@ -139,7 +148,9 @@ export const ChatInput = forwardRef<HTMLTextAreaElement, ChatInputProps>(
     const canSend = !isEmpty || displayAttachments.length > 0;
 
     return (
-      <div className={[styles.inputContainer, className].filter(Boolean).join(' ')}>
+      <div
+        className={[styles.inputContainer, className].filter(Boolean).join(" ")}
+      >
         <div className={styles.inputWrapper}>
           {/* Pending attachments */}
           {displayAttachments.length > 0 && (
@@ -180,10 +191,10 @@ export const ChatInput = forwardRef<HTMLTextAreaElement, ChatInputProps>(
                   <input
                     ref={fileInputRef}
                     type="file"
-                    accept={acceptedFileTypes.join(',')}
+                    accept={acceptedFileTypes.join(",")}
                     multiple
                     onChange={handleFileSelect}
-                    style={{ display: 'none' }}
+                    style={{ display: "none" }}
                     aria-hidden="true"
                   />
                   <button
@@ -217,29 +228,38 @@ export const ChatInput = forwardRef<HTMLTextAreaElement, ChatInputProps>(
               {/* Right actions (voice, send) */}
               <div className={styles.inputActions}>
                 {/* Voice recording button */}
-                {allowVoiceRecording && !value && displayAttachments.length === 0 && (
-                  <button
-                    className={styles.inputButton}
-                    onClick={() => setShowVoiceRecorder(true)}
-                    disabled={disabled || isLoading}
-                    aria-label="Record voice message"
-                    title="Record voice message"
-                  >
-                    <Mic size={20} />
-                  </button>
-                )}
+                {allowVoiceRecording &&
+                  !value &&
+                  displayAttachments.length === 0 && (
+                    <button
+                      className={styles.inputButton}
+                      onClick={() => setShowVoiceRecorder(true)}
+                      disabled={disabled || isLoading}
+                      aria-label="Record voice message"
+                      title="Record voice message"
+                    >
+                      <Mic size={20} />
+                    </button>
+                  )}
 
                 {/* Send button */}
                 <button
-                  className={[styles.inputButton, canSend && styles.inputButtonPrimary]
+                  className={[
+                    styles.inputButton,
+                    canSend && styles.inputButtonPrimary,
+                  ]
                     .filter(Boolean)
-                    .join(' ')}
+                    .join(" ")}
                   onClick={handleSubmit}
                   disabled={disabled || isLoading || !canSend}
                   aria-label="Send message"
                   title="Send message"
                 >
-                  {isLoading ? <span className={styles.inputSpinner} /> : <Send size={20} />}
+                  {isLoading ? (
+                    <span className={styles.inputSpinner} />
+                  ) : (
+                    <Send size={20} />
+                  )}
                 </button>
               </div>
             </div>
@@ -250,4 +270,4 @@ export const ChatInput = forwardRef<HTMLTextAreaElement, ChatInputProps>(
   },
 );
 
-ChatInput.displayName = 'ChatInput';
+ChatInput.displayName = "ChatInput";

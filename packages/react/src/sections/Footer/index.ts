@@ -2,7 +2,7 @@
  * Footer Component Exports
  */
 
-export { Footer } from './Footer';
+export { Footer } from "./Footer";
 export type {
   FooterProps,
   FooterBrand,
@@ -10,4 +10,4 @@ export type {
   FooterLinkGroup,
   FooterSocialLink,
   FooterVariant,
-} from './Footer.types';
+} from "./Footer.types";

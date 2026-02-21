@@ -18,10 +18,10 @@
  * ```
  */
 
-import { forwardRef } from 'react';
-import { ChevronRight, ChevronLeft } from 'lucide-react';
-import type { PageHeaderProps } from './PageHeader.types';
-import styles from './PageHeader.module.css';
+import { forwardRef } from "react";
+import { ChevronRight, ChevronLeft } from "lucide-react";
+import type { PageHeaderProps } from "./PageHeader.types";
+import styles from "./PageHeader.module.css";
 
 export const PageHeader = forwardRef<HTMLDivElement, PageHeaderProps>(
   (
@@ -35,8 +35,8 @@ export const PageHeader = forwardRef<HTMLDivElement, PageHeaderProps>(
       onTabChange,
       backLink,
       badge,
-      variant = 'default',
-      size = 'md',
+      variant = "default",
+      size = "md",
       bordered = true,
       sticky = false,
       className,
@@ -53,7 +53,7 @@ export const PageHeader = forwardRef<HTMLDivElement, PageHeaderProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     const handleTabClick = (tabId: string, href?: string) => {
       if (onTabChange) {
@@ -72,12 +72,16 @@ export const PageHeader = forwardRef<HTMLDivElement, PageHeaderProps>(
             {backLink.href ? (
               <a href={backLink.href} className={styles.backLinkAnchor}>
                 <ChevronLeft size={16} />
-                <span>{backLink.label || 'Back'}</span>
+                <span>{backLink.label || "Back"}</span>
               </a>
             ) : (
-              <button type="button" onClick={backLink.onClick} className={styles.backLinkButton}>
+              <button
+                type="button"
+                onClick={backLink.onClick}
+                className={styles.backLinkButton}
+              >
                 <ChevronLeft size={16} />
-                <span>{backLink.label || 'Back'}</span>
+                <span>{backLink.label || "Back"}</span>
               </button>
             )}
           </div>
@@ -89,7 +93,12 @@ export const PageHeader = forwardRef<HTMLDivElement, PageHeaderProps>(
             <ol className={styles.breadcrumbList}>
               {breadcrumbs.map((crumb, index) => (
                 <li key={crumb.label} className={styles.breadcrumbItem}>
-                  {index > 0 && <ChevronRight size={14} className={styles.breadcrumbSeparator} />}
+                  {index > 0 && (
+                    <ChevronRight
+                      size={14}
+                      className={styles.breadcrumbSeparator}
+                    />
+                  )}
                   {crumb.href ? (
                     <a href={crumb.href} className={styles.breadcrumbLink}>
                       {crumb.label}
@@ -103,7 +112,10 @@ export const PageHeader = forwardRef<HTMLDivElement, PageHeaderProps>(
                       {crumb.label}
                     </button>
                   ) : (
-                    <span className={styles.breadcrumbCurrent} aria-current="page">
+                    <span
+                      className={styles.breadcrumbCurrent}
+                      aria-current="page"
+                    >
                       {crumb.label}
                     </span>
                   )}
@@ -135,11 +147,13 @@ export const PageHeader = forwardRef<HTMLDivElement, PageHeaderProps>(
                 role="tab"
                 type="button"
                 aria-selected={activeTab === tab.id}
-                className={`${styles.tab} ${activeTab === tab.id ? styles.tabActive : ''}`}
+                className={`${styles.tab} ${activeTab === tab.id ? styles.tabActive : ""}`}
                 onClick={() => handleTabClick(tab.id, tab.href)}
               >
                 <span>{tab.label}</span>
-                {tab.badge && <span className={styles.tabBadge}>{tab.badge}</span>}
+                {tab.badge && (
+                  <span className={styles.tabBadge}>{tab.badge}</span>
+                )}
               </button>
             ))}
           </div>
@@ -149,4 +163,4 @@ export const PageHeader = forwardRef<HTMLDivElement, PageHeaderProps>(
   },
 );
 
-PageHeader.displayName = 'PageHeader';
+PageHeader.displayName = "PageHeader";

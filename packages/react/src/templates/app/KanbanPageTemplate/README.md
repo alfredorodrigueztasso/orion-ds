@@ -105,63 +105,63 @@ interface KanbanPageTemplateProps extends HTMLAttributes<HTMLDivElement> {
 ### Project Management Board
 
 ```tsx
-import { KanbanPageTemplate, Button, Badge, Avatar } from '@orion/react';
-import { Home, Folder, Users, Settings, Plus, Filter } from 'lucide-react';
+import { KanbanPageTemplate, Button, Badge, Avatar } from "@orion/react";
+import { Home, Folder, Users, Settings, Plus, Filter } from "lucide-react";
 
 function ProjectBoard() {
   const columns = [
     {
-      id: 'backlog',
-      title: 'Backlog',
+      id: "backlog",
+      title: "Backlog",
       cards: [
         {
-          id: '1',
-          title: 'Research competitors',
-          description: 'Analyze top 5 competitors',
-          labels: [{ text: 'Research', color: 'blue' }],
-          assignee: { name: 'John', avatar: '/john.jpg' },
+          id: "1",
+          title: "Research competitors",
+          description: "Analyze top 5 competitors",
+          labels: [{ text: "Research", color: "blue" }],
+          assignee: { name: "John", avatar: "/john.jpg" },
         },
       ],
     },
     {
-      id: 'todo',
-      title: 'To Do',
+      id: "todo",
+      title: "To Do",
       cards: [
         {
-          id: '2',
-          title: 'Design homepage',
-          description: 'Create wireframes and mockups',
-          labels: [{ text: 'Design', color: 'purple' }],
-          priority: 'high',
-          assignee: { name: 'Sarah', avatar: '/sarah.jpg' },
+          id: "2",
+          title: "Design homepage",
+          description: "Create wireframes and mockups",
+          labels: [{ text: "Design", color: "purple" }],
+          priority: "high",
+          assignee: { name: "Sarah", avatar: "/sarah.jpg" },
         },
       ],
     },
     {
-      id: 'in-progress',
-      title: 'In Progress',
+      id: "in-progress",
+      title: "In Progress",
       cards: [
         {
-          id: '3',
-          title: 'Build API endpoints',
-          labels: [{ text: 'Backend', color: 'green' }],
-          assignee: { name: 'Mike', avatar: '/mike.jpg' },
+          id: "3",
+          title: "Build API endpoints",
+          labels: [{ text: "Backend", color: "green" }],
+          assignee: { name: "Mike", avatar: "/mike.jpg" },
         },
       ],
     },
     {
-      id: 'review',
-      title: 'In Review',
+      id: "review",
+      title: "In Review",
       cards: [],
     },
     {
-      id: 'done',
-      title: 'Done',
+      id: "done",
+      title: "Done",
       cards: [
         {
-          id: '4',
-          title: 'Setup project',
-          labels: [{ text: 'Setup', color: 'gray' }],
+          id: "4",
+          title: "Setup project",
+          labels: [{ text: "Setup", color: "gray" }],
         },
       ],
     },
@@ -170,47 +170,66 @@ function ProjectBoard() {
   return (
     <KanbanPageTemplate
       sidebar={{
-        header: <div style={{ padding: 'var(--spacing-4)', fontWeight: 700 }}>Acme</div>,
+        header: (
+          <div style={{ padding: "var(--spacing-4)", fontWeight: 700 }}>
+            Acme
+          </div>
+        ),
         sections: [
           {
-            items: [{ id: 'home', label: 'Home', icon: <Home size={20} />, href: '/' }],
-          },
-          {
-            title: 'Projects',
             items: [
               {
-                id: 'website',
-                label: 'Website Redesign',
-                icon: <Folder size={20} />,
-                href: '/projects/website',
-              },
-              {
-                id: 'mobile',
-                label: 'Mobile App',
-                icon: <Folder size={20} />,
-                href: '/projects/mobile',
+                id: "home",
+                label: "Home",
+                icon: <Home size={20} />,
+                href: "/",
               },
             ],
           },
           {
-            title: 'Settings',
+            title: "Projects",
             items: [
-              { id: 'team', label: 'Team', icon: <Users size={20} />, href: '/team' },
               {
-                id: 'settings',
-                label: 'Settings',
+                id: "website",
+                label: "Website Redesign",
+                icon: <Folder size={20} />,
+                href: "/projects/website",
+              },
+              {
+                id: "mobile",
+                label: "Mobile App",
+                icon: <Folder size={20} />,
+                href: "/projects/mobile",
+              },
+            ],
+          },
+          {
+            title: "Settings",
+            items: [
+              {
+                id: "team",
+                label: "Team",
+                icon: <Users size={20} />,
+                href: "/team",
+              },
+              {
+                id: "settings",
+                label: "Settings",
                 icon: <Settings size={20} />,
-                href: '/settings',
+                href: "/settings",
               },
             ],
           },
         ],
-        activeItem: 'website',
+        activeItem: "website",
       }}
       pageHeader={{
-        title: 'Website Redesign',
-        description: 'Q1 2024 Initiative',
-        breadcrumbs: [{ label: 'Projects', href: '/projects' }, { label: 'Website Redesign' }],
+        title: "Website Redesign",
+        description: "Q1 2024 Initiative",
+        breadcrumbs: [
+          { label: "Projects", href: "/projects" },
+          { label: "Website Redesign" },
+        ],
         actions: (
           <>
             <Button variant="ghost" icon={<Filter size={18} />}>
@@ -225,50 +244,52 @@ function ProjectBoard() {
       filterBar={{
         filters: [
           {
-            id: 'assignee',
-            label: 'Assignee',
-            type: 'select',
+            id: "assignee",
+            label: "Assignee",
+            type: "select",
             options: [
-              { value: 'john', label: 'John' },
-              { value: 'sarah', label: 'Sarah' },
-              { value: 'mike', label: 'Mike' },
+              { value: "john", label: "John" },
+              { value: "sarah", label: "Sarah" },
+              { value: "mike", label: "Mike" },
             ],
           },
           {
-            id: 'priority',
-            label: 'Priority',
-            type: 'select',
+            id: "priority",
+            label: "Priority",
+            type: "select",
             options: [
-              { value: 'high', label: 'High' },
-              { value: 'medium', label: 'Medium' },
-              { value: 'low', label: 'Low' },
+              { value: "high", label: "High" },
+              { value: "medium", label: "Medium" },
+              { value: "low", label: "Low" },
             ],
           },
           {
-            id: 'label',
-            label: 'Label',
-            type: 'select',
+            id: "label",
+            label: "Label",
+            type: "select",
             options: [
-              { value: 'design', label: 'Design' },
-              { value: 'backend', label: 'Backend' },
-              { value: 'frontend', label: 'Frontend' },
+              { value: "design", label: "Design" },
+              { value: "backend", label: "Backend" },
+              { value: "frontend", label: "Frontend" },
             ],
           },
         ],
         onFilterChange: (filters) => {
-          console.log('Filters changed:', filters);
+          console.log("Filters changed:", filters);
         },
       }}
       kanban={{
         columns,
         onCardMove: (cardId, sourceColumnId, targetColumnId, newIndex) => {
-          console.log(`Card ${cardId} moved from ${sourceColumnId} to ${targetColumnId}`);
+          console.log(
+            `Card ${cardId} moved from ${sourceColumnId} to ${targetColumnId}`,
+          );
         },
         onCardClick: (card) => {
-          console.log('Card clicked:', card);
+          console.log("Card clicked:", card);
         },
         onAddCard: (columnId) => {
-          console.log('Add card to column:', columnId);
+          console.log("Add card to column:", columnId);
         },
       }}
     />

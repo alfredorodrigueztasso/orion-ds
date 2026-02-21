@@ -27,10 +27,10 @@
  * ```
  */
 
-import React, { forwardRef, useEffect, useRef, useId } from 'react';
-import { Check, Minus, AlertCircle } from 'lucide-react';
-import type { CheckboxProps } from './Checkbox.types';
-import styles from './Checkbox.module.css';
+import React, { forwardRef, useEffect, useRef, useId } from "react";
+import { Check, Minus, AlertCircle } from "lucide-react";
+import type { CheckboxProps } from "./Checkbox.types";
+import styles from "./Checkbox.module.css";
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   (
@@ -38,15 +38,15 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       label,
       helperText,
       error,
-      size = 'md',
+      size = "md",
       indeterminate = false,
       className,
       id,
       disabled,
       required,
       checked,
-      'aria-label': ariaLabel,
-      'aria-describedby': ariaDescribedBy,
+      "aria-label": ariaLabel,
+      "aria-describedby": ariaDescribedBy,
       ...rest
     },
     ref,
@@ -74,18 +74,19 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     if (error) describedByIds.push(errorId);
     if (helperText && !error) describedByIds.push(helperId);
     if (ariaDescribedBy) describedByIds.push(ariaDescribedBy);
-    const computedDescribedBy = describedByIds.length > 0 ? describedByIds.join(' ') : undefined;
+    const computedDescribedBy =
+      describedByIds.length > 0 ? describedByIds.join(" ") : undefined;
 
     // Ensure checkbox has an accessible name
     const hasAccessibleName = Boolean(label || ariaLabel);
-    if (!hasAccessibleName && process.env.NODE_ENV === 'development') {
+    if (!hasAccessibleName && process.env.NODE_ENV === "development") {
       console.warn(
-        'Checkbox: Missing accessible name. Provide either a `label` prop or `aria-label` for screen reader users.',
+        "Checkbox: Missing accessible name. Provide either a `label` prop or `aria-label` for screen reader users.",
       );
     }
 
     // Determine aria-checked value for indeterminate state
-    const ariaChecked = indeterminate ? 'mixed' : undefined;
+    const ariaChecked = indeterminate ? "mixed" : undefined;
 
     const containerClasses = [
       styles.container,
@@ -95,7 +96,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
       <div className={containerClasses}>
@@ -109,7 +110,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           required={required}
           checked={checked}
           aria-required={required || undefined}
-          aria-invalid={error ? 'true' : 'false'}
+          aria-invalid={error ? "true" : "false"}
           aria-checked={ariaChecked}
           aria-describedby={computedDescribedBy}
           aria-label={!label ? ariaLabel : undefined}
@@ -121,7 +122,11 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           {/* Custom checkbox indicator */}
           <span className={styles.checkbox} aria-hidden="true">
             <span className={styles.checkmark}>
-              {indeterminate ? <Minus strokeWidth={3} /> : <Check strokeWidth={3} />}
+              {indeterminate ? (
+                <Minus strokeWidth={3} />
+              ) : (
+                <Check strokeWidth={3} />
+              )}
             </span>
           </span>
 
@@ -147,7 +152,12 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
 
         {/* Error message */}
         {error && (
-          <p id={errorId} className={styles.errorMessage} role="alert" aria-live="assertive">
+          <p
+            id={errorId}
+            className={styles.errorMessage}
+            role="alert"
+            aria-live="assertive"
+          >
             <AlertCircle size={14} aria-hidden="true" />
             <span>{error}</span>
           </p>
@@ -157,4 +167,4 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   },
 );
 
-Checkbox.displayName = 'Checkbox';
+Checkbox.displayName = "Checkbox";

@@ -280,7 +280,7 @@
 }
 
 .variant-floating .header::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: var(--spacing-4);
@@ -295,7 +295,7 @@
 }
 
 .variant-floating .footer::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: var(--spacing-4);

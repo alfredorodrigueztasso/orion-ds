@@ -31,14 +31,14 @@ interface SelectOption {
 ### Basic with Options Array
 
 ```tsx
-import { Select } from '@orion/react';
+import { Select } from "@orion/react";
 
 <Select
   label="Country"
   options={[
-    { value: 'us', label: 'United States' },
-    { value: 'uk', label: 'United Kingdom' },
-    { value: 'ca', label: 'Canada' },
+    { value: "us", label: "United States" },
+    { value: "uk", label: "United Kingdom" },
+    { value: "ca", label: "Canada" },
   ]}
 />;
 ```
@@ -56,13 +56,21 @@ import { Select } from '@orion/react';
 ### With Error State
 
 ```tsx
-<Select label="Category" options={categories} error="Please select a category" />
+<Select
+  label="Category"
+  options={categories}
+  error="Please select a category"
+/>
 ```
 
 ### With Helper Text
 
 ```tsx
-<Select label="Priority" options={priorities} helperText="Select the task priority level" />
+<Select
+  label="Priority"
+  options={priorities}
+  helperText="Select the task priority level"
+/>
 ```
 
 ### Full Width
@@ -80,10 +88,10 @@ import { Select } from '@orion/react';
 ### Controlled
 
 ```tsx
-import { useState } from 'react';
+import { useState } from "react";
 
 function Example() {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
 
   return (
     <Select
@@ -91,9 +99,9 @@ function Example() {
       value={value}
       onChange={(e) => setValue(e.target.value)}
       options={[
-        { value: 'admin', label: 'Administrator' },
-        { value: 'user', label: 'User' },
-        { value: 'guest', label: 'Guest', disabled: true },
+        { value: "admin", label: "Administrator" },
+        { value: "user", label: "User" },
+        { value: "guest", label: "Guest", disabled: true },
       ]}
     />
   );

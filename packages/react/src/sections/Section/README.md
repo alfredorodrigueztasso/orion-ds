@@ -5,7 +5,7 @@
 ## Quick Start
 
 ```tsx
-import { Section, Container } from '@orion/react';
+import { Section, Container } from "@orion/react";
 
 <Section spacing="lg" background="subtle">
   <Container>
@@ -32,13 +32,13 @@ import { Section, Container } from '@orion/react';
 ```typescript
 interface SectionProps {
   // Element
-  as?: 'section' | 'div' | 'article' | 'aside' | 'header' | 'footer'; // default: 'section'
+  as?: "section" | "div" | "article" | "aside" | "header" | "footer"; // default: 'section'
 
   // Spacing
-  spacing?: 'none' | 'sm' | 'md' | 'lg' | 'xl'; // default: 'lg'
+  spacing?: "none" | "sm" | "md" | "lg" | "xl"; // default: 'lg'
 
   // Background
-  background?: 'base' | 'subtle' | 'sunken' | 'brand' | 'none'; // default: 'none'
+  background?: "base" | "subtle" | "sunken" | "brand" | "none"; // default: 'none'
 
   // Borders
   borderTop?: boolean; // default: false
@@ -272,7 +272,15 @@ Use appropriate element for content type.
 ### Landing Page Structure
 
 ```tsx
-import { Section, Container, Hero, Features, Pricing, CTA, Footer } from '@orion/react';
+import {
+  Section,
+  Container,
+  Hero,
+  Features,
+  Pricing,
+  CTA,
+  Footer,
+} from "@orion/react";
 
 function LandingPage() {
   return (

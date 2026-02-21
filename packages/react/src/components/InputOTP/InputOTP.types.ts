@@ -1,11 +1,11 @@
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
-export type InputOTPType = 'numeric' | 'alphanumeric';
-export type InputOTPSize = 'sm' | 'md' | 'lg';
+export type InputOTPType = "numeric" | "alphanumeric";
+export type InputOTPSize = "sm" | "md" | "lg";
 
 export interface InputOTPProps extends Omit<
   HTMLAttributes<HTMLDivElement>,
-  'onChange' | 'defaultValue'
+  "onChange" | "defaultValue"
 > {
   /** Number of OTP slots. */
   maxLength: number;

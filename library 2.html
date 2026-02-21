@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-brand="red">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orion — Component Library</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;700&family=Anton&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="theme.css">
+    <!-- Lucide Icons CDN (Default Icon Library) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .library {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .library-sidebar {
+            width: 280px;
+            /* Floating Card Geometry */
+            margin: var(--spacing-4);
+            height: calc(100vh - (var(--spacing-4) * 2));
+            position: sticky;
+            top: var(--spacing-4);
+
+            /* Atmospheric Aesthetics */
+            background: var(--surface-sunken);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-control);
+            box-shadow: var(--shadow-sm);
+            padding: var(--spacing-4);
+            overflow-y: auto;
+            flex-shrink: 0;
+            z-index: 50;
+        }
+
+        .library-logo {
+            font-size: var(--font-size-20);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--spacing-8);
+            color: var(--text-brand);
+            padding: 0 var(--spacing-2);
+        }
+
+        .library-nav {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-1);
+        }
+
+        .library-nav a {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+            padding: var(--spacing-3) var(--spacing-4);
+            font-size: var(--font-size-14);
+            font-weight: var(--font-weight-medium);
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: var(--radius-control);
+            transition: all var(--transition-fast);
+        }
+
+        .library-nav a:hover {
+            color: var(--text-primary);
+            background: var(--interactive-ghost-hover);
+        }
+
+        .library-nav a.active {
+            color: var(--interactive-primary);
+            background: rgba(246, 139, 31, 0.1);
+        }
+
+        .library-main {
+            flex: 1;
+            /* margin-left removed as we use flexbox sticky behavior */
+            padding: var(--spacing-10);
+            min-width: 0;
+            /* Prevents overflow issues */
+        }
+
+        .library-header {
+            margin-bottom: var(--spacing-12);
+        }
+
+        .library-section {
+            margin-bottom: var(--spacing-16);
+        }
+
+        .library-section-title {
+            margin-bottom: var(--spacing-6);
+            padding-bottom: var(--spacing-3);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .component-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-4);
+            align-items: flex-start;
+        }
+
+        .component-card {
+            background: var(--surface-subtle);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-container);
+            padding: var(--spacing-6);
+            min-width: 300px;
+        }
+
+        .component-label {
+            font-size: var(--font-size-12);
+            color: var(--text-tertiary);
+            margin-bottom: var(--spacing-3);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: var(--spacing-4);
+            right: var(--spacing-4);
+            z-index: 100;
+        }
+
+        .field-row {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-4);
+            min-width: 320px;
+        }
+
+        .switch-row {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-4);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Visual Controls Header -->
+    <div style="position: fixed; top: 0; right: 0; z-index: 1000; background: var(--surface-base); border: 1px solid var(--border-subtle); border-radius: var(--radius-control); margin: var(--spacing-3); padding: var(--spacing-4); box-shadow: var(--shadow-md); max-width: 500px;">
+        <div style="font-weight: var(--font-weight-bold); font-size: var(--font-size-14); margin-bottom: var(--spacing-3); color: var(--text-primary);">Visual Controls</div>
+
+        <!-- Mode Selector -->
+        <div style="margin-bottom: var(--spacing-4);">
+            <label style="display: block; font-size: var(--font-size-12); font-weight: var(--font-weight-bold); color: var(--text-secondary); margin-bottom: var(--spacing-2); text-transform: uppercase; letter-spacing: 0.05em;">Mode</label>
+            <div style="display: flex; gap: var(--spacing-2); flex-wrap: wrap;">
+                <button id="modeDisplay" style="padding: var(--spacing-2) var(--spacing-3); font-size: var(--font-size-12); border: 1px solid var(--border-subtle); border-radius: var(--radius-control); background: var(--interactive-primary); color: white; cursor: pointer; transition: all 150ms; font-weight: var(--font-weight-medium);">Display</button>
+                <button id="modeProduct" style="padding: var(--spacing-2) var(--spacing-3); font-size: var(--font-size-12); border: 1px solid var(--border-subtle); border-radius: var(--radius-control); background: var(--interactive-secondary); color: var(--text-primary); cursor: pointer; transition: all 150ms; font-weight: var(--font-weight-medium);">Product</button>
+                <button id="modeApp" style="padding: var(--spacing-2) var(--spacing-3); font-size: var(--font-size-12); border: 1px solid var(--border-subtle); border-radius: var(--radius-control); background: var(--interactive-secondary); color: var(--text-primary); cursor: pointer; transition: all 150ms; font-weight: var(--font-weight-medium);">App</button>
+            </div>
+        </div>
+
+        <!-- Brand Selector -->
+        <div style="margin-bottom: var(--spacing-4);">
+            <label style="display: block; font-size: var(--font-size-12); font-weight: var(--font-weight-bold); color: var(--text-secondary); margin-bottom: var(--spacing-2); text-transform: uppercase; letter-spacing: 0.05em;">Brand</label>
+            <div style="display: flex; gap: var(--spacing-2); flex-wrap: wrap;">
+                <button id="brandOrion" style="padding: var(--spacing-2) var(--spacing-3); font-size: var(--font-size-12); border: 1px solid var(--border-subtle); border-radius: var(--radius-control); background: #1B5BFF; color: white; cursor: pointer; transition: all 150ms; font-weight: var(--font-weight-medium);">Orion</button>
+                <button id="brandUVM" style="padding: var(--spacing-2) var(--spacing-3); font-size: var(--font-size-12); border: 1px solid var(--border-subtle); border-radius: var(--radius-control); background: #262626; color: white; cursor: pointer; transition: all 150ms; font-weight: var(--font-weight-medium);">UVM</button>
+                <button id="brandUnitec" style="padding: var(--spacing-2) var(--spacing-3); font-size: var(--font-size-12); border: 1px solid var(--border-subtle); border-radius: var(--radius-control); background: #f68b1f; color: white; cursor: pointer; transition: all 150ms; font-weight: var(--font-weight-medium);">Unitec</button>
+                <button id="brandLaureate" style="padding: var(--spacing-2) var(--spacing-3); font-size: var(--font-size-12); border: 1px solid var(--border-subtle); border-radius: var(--radius-control); background: #F15D22; color: white; cursor: pointer; transition: all 150ms; font-weight: var(--font-weight-medium);">Laureate</button>
+            </div>
+        </div>
+
+        <!-- Theme Selector -->
+        <div>
+            <label style="display: block; font-size: var(--font-size-12); font-weight: var(--font-weight-bold); color: var(--text-secondary); margin-bottom: var(--spacing-2); text-transform: uppercase; letter-spacing: 0.05em;">Theme</label>
+            <div style="display: flex; gap: var(--spacing-2);">
+                <button id="themeLight" style="padding: var(--spacing-2) var(--spacing-3); font-size: var(--font-size-12); border: 1px solid var(--border-subtle); border-radius: var(--radius-control); background: var(--interactive-primary); color: white; cursor: pointer; transition: all 150ms; font-weight: var(--font-weight-medium);">☀️ Light</button>
+                <button id="themeDark" style="padding: var(--spacing-2) var(--spacing-3); font-size: var(--font-size-12); border: 1px solid var(--border-subtle); border-radius: var(--radius-control); background: var(--interactive-secondary); color: var(--text-primary); cursor: pointer; transition: all 150ms; font-weight: var(--font-weight-medium);">🌙 Dark</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="library">
+        <aside class="library-sidebar">
+            <div class="library-logo">⚛ Orion</div>
+            <nav class="library-nav">
+                <a href="#layout" class="active"><i data-lucide="layout-grid" class="icon"></i> Layout</a>
+                <a href="#navbar"><i data-lucide="navigation" class="icon"></i> Navbar</a>
+                <a href="#tabs"><i data-lucide="folder" class="icon"></i> Tabs</a>
+                <a href="#breadcrumb"><i data-lucide="chevrons-right" class="icon"></i> Breadcrumb</a>
+                <a href="#buttons"><i data-lucide="square" class="icon"></i> Buttons</a>
+                <a href="#fields"><i data-lucide="text-cursor-input" class="icon"></i> Inputs</a>
+                <a href="#selects"><i data-lucide="chevron-down" class="icon"></i> Select</a>
+                <a href="#checkboxes"><i data-lucide="check-square" class="icon"></i> Checkbox/Radio</a>
+                <a href="#switches"><i data-lucide="toggle-right" class="icon"></i> Switches</a>
+                <a href="#badges"><i data-lucide="tag" class="icon"></i> Badges</a>
+                <a href="#avatars"><i data-lucide="user-circle" class="icon"></i> Avatars</a>
+                <a href="#tables"><i data-lucide="table" class="icon"></i> Table</a>
+                <a href="#stats"><i data-lucide="trending-up" class="icon"></i> Stats</a>
+                <a href="#progress"><i data-lucide="bar-chart" class="icon"></i> Progress</a>
+                <a href="#alerts"><i data-lucide="alert-circle" class="icon"></i> Alerts</a>
+                <a href="#modals"><i data-lucide="maximize-2" class="icon"></i> Modal</a>
+                <a href="#tooltips"><i data-lucide="message-square" class="icon"></i> Tooltip</a>
+                <a href="#dropdowns"><i data-lucide="more-vertical" class="icon"></i> Dropdown</a>
+                <a href="#pagination"><i data-lucide="hash" class="icon"></i> Pagination</a>
+                <a href="#loading"><i data-lucide="loader" class="icon"></i> Loading</a>
+                <a href="#empty"><i data-lucide="inbox" class="icon"></i> Empty State</a>
+                <a href="#cards"><i data-lucide="square-stack" class="icon"></i> Cards</a>
+                <a href="#navigation"><i data-lucide="panel-left" class="icon"></i> Sidebar</a>
+                <a href="#icons"><i data-lucide="smile" class="icon"></i> Icons</a>
+                <hr class="divider" style="margin: var(--spacing-3) 0;">
+                <span class="text-detail"
+                    style="color: var(--text-tertiary); padding: 0 var(--spacing-3);">Resources</span>
+                <a href="prompt-guide.html"><i data-lucide="sparkles" class="icon"></i> Prompt Guide</a>
+                <hr class="divider" style="margin: var(--spacing-3) 0;">
+                <span class="text-detail"
+                    style="color: var(--text-tertiary); padding: 0 var(--spacing-3);">Specialized</span>
+                <a href="#hero"><i data-lucide="zap" class="icon"></i> Hero</a>
+                <a href="#features"><i data-lucide="grid" class="icon"></i> Feature Cards</a>
+                <a href="#pricing"><i data-lucide="credit-card" class="icon"></i> Pricing</a>
+                <a href="#cta"><i data-lucide="megaphone" class="icon"></i> CTA Section</a>
+                <a href="#command"><i data-lucide="command" class="icon"></i> Command Palette</a>
+                <a href="#bottomnav"><i data-lucide="smartphone" class="icon"></i> Bottom Nav</a>
+                <!-- Phase 30: New Sections -->
+                <a href="#app-shell"><i data-lucide="layout-template" class="icon"></i> App Shell</a>
+                <a href="#dashboard"><i data-lucide="bar-chart-2" class="icon"></i> Dashboard</a>
+            </nav>
+
+        </aside>
+
+        <main class="library-main">
+            <header class="library-header">
+                <h1 class="text-title-lg">Component Blueprints</h1>
+                <p class="text-body" style="color: var(--text-secondary); margin-top: var(--spacing-2);">Reference
+                    implementations following the Chain of Truth. Zero hardcoded values.</p>
+            </header>
+
+            <!-- LAYOUT -->
+            <section id="layout" class="library-section">
+                <h2 class="library-section-title text-title-sm">Layout</h2>
+                <div class="component-grid">
+                    <div class="component-card" style="min-width: 100%;">
+                        <p class="component-label">Container</p>
+                        <div class="container"
+                            style="background: var(--surface-layer); padding: var(--spacing-4); border-radius: var(--radius-control);">
+                            <code>.container</code> — Max 1200px, auto margins
+                        </div>
+                    </div>
+                    <div class="component-card">
+                        <p class="component-label">Stack (Vertical)</p>
+                        <div class="stack stack-gap-2" style="margin-top: var(--spacing-3);">
+                            <div
+                                style="background: var(--surface-layer); padding: var(--spacing-3); border-radius: var(--radius-control);">
+                                Item 1</div>
+                            <div
+                                style="background: var(--surface-layer); padding: var(--spacing-3); border-radius: var(--radius-control);">
+                                Item 2</div>
+                            <div
+                                style="background: var(--surface-layer); padding: var(--spacing-3); border-radius: var(--radius-control);">
+                                Item 3</div>
+                        </div>
+                    </div>
+                    <div class="component-card">
+                        <p class="component-label">Stack (Row)</p>
+                        <div class="stack stack-row stack-gap-2" style="margin-top: var(--spacing-3);">
+                            <div
+                                style="background: var(--surface-layer); padding: var(--spacing-3); border-radius: var(--radius-control);">
+                                A</div>
+                            <div
+                                style="background: var(--surface-layer); padding: var(--spacing-3); border-radius: var(--radius-control);">
+                                B</div>
+                            <div
+                                style="background: var(--surface-layer); padding: var(--spacing-3); border-radius: var(--radius-control);">
+                                C</div>
+                        </div>
+                    </div>
+                    <div class="component-card" style="min-width: 100%;">
+                        <p class="component-label">Grid (3 Columns)</p>
+                        <div class="grid grid-cols-3" style="margin-top: var(--spacing-3);">
+                            <div
+                                style="background: var(--surface-layer); padding: var(--spacing-4); border-radius: var(--radius-control); text-align: center;">
+                                1</div>
+                            <div
+                                style="background: var(--surface-layer); padding: var(--spacing-4); border-radius: var(--radius-control); text-align: center;">
+                                2</div>
+                            <div
+                                style="background: var(--surface-layer); padding: var(--spacing-4); border-radius: var(--radius-control); text-align: center;">
+                                3</div>
+                        </div>
+                    </div>
+                    <div class="component-card">
+                        <p class="component-label">Divider</p>
+                        <div style="margin-top: var(--spacing-3);">
+                            <p class="text-detail">Content above</p>
+                            <hr class="divider">
+                            <p class="text-detail">Content below</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NAVBAR -->
+            <section id="navbar" class="library-section">
+                <h2 class="library-section-title text-title-sm">Navbar</h2>
+                <div class="component-card" style="min-width: 100%; padding: 0; overflow: hidden;">
+                    <nav class="navbar">
+                        <a href="#" class="navbar-brand"><i data-lucide="hexagon" class="icon"></i> Brand</a>
+                        <div class="navbar-nav">
+                            <a href="#" class="navbar-link is-active">Home</a>
+                            <a href="#" class="navbar-link">Products</a>
+                            <a href="#" class="navbar-link">Pricing</a>
+                            <a href="#" class="navbar-link">About</a>
+                        </div>
+                        <div class="navbar-actions">
+                            <button class="btn btn-ghost btn-sm"><i data-lucide="search" class="icon"></i></button>
+                            <button class="btn btn-primary btn-sm">Sign Up</button>
+                        </div>
+                    </nav>
+                </div>
+            </section>
+
+            <!-- TABS -->
+            <section id="tabs" class="library-section">
+                <h2 class="library-section-title text-title-sm">Tabs</h2>
+                <div class="component-grid">
+                    <div class="component-card" style="min-width: 100%;">
+                        <p class="component-label">Pill Primary (With Background)</p>
+                        <div class="tabs-pill">
+                            <button class="tab is-active">Home</button>
+                            <button class="tab">Products</button>
+                            <button class="tab">About</button>
+                            <button class="tab">Contact</button>
+                        </div>
+                        <p class="text-caption text-secondary" style="margin-top: var(--spacing-3);">
+                            Primary navigation with background container - modern segmented control
+                        </p>
+                    </div>
+
+                    <div class="component-card" style="min-width: 100%;">
+                        <p class="component-label">Pill Secondary (Subtle)</p>
+                        <div class="tabs-pill tabs-pill-secondary">
+                            <button class="tab is-active">Overview</button>
+                            <button class="tab">Details</button>
+                            <button class="tab">History</button>
+                        </div>
+                        <p class="text-caption text-secondary" style="margin-top: var(--spacing-3);">
+                            Subtle secondary navigation - lighter active state with border
+                        </p>
+                    </div>
+
+                    <div class="component-card" style="min-width: 100%;">
+                        <p class="component-label">Pill Ghost (No Background)</p>
+                        <div class="tabs-pill tabs-pill-ghost">
+                            <button class="tab is-active">Home</button>
+                            <button class="tab">Products</button>
+                            <button class="tab">About</button>
+                            <button class="tab">Contact</button>
+                        </div>
+                        <p class="text-caption text-secondary" style="margin-top: var(--spacing-3);">
+                            Clean minimal navigation - no container background or border
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BREADCRUMB -->
+            <section id="breadcrumb" class="library-section">
+                <h2 class="library-section-title text-title-sm">Breadcrumb</h2>
+                <div class="component-grid">
+                    <div class="component-card" style="min-width: 100%;">
+                        <p class="component-label">Default</p>
+                        <nav class="breadcrumb" style="margin-top: var(--spacing-3);">
+                            <a href="#" class="breadcrumb-item"><i data-lucide="home" class="icon icon-sm"></i></a>
+                            <i data-lucide="chevron-right" class="icon icon-sm breadcrumb-separator"></i>
+                            <a href="#" class="breadcrumb-item">Products</a>
+                            <i data-lucide="chevron-right" class="icon icon-sm breadcrumb-separator"></i>
+                            <a href="#" class="breadcrumb-item">Category</a>
+                            <i data-lucide="chevron-right" class="icon icon-sm breadcrumb-separator"></i>
+                            <span class="breadcrumb-item is-active">Current Page</span>
+                        </nav>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BUTTONS -->
+            <section id="buttons" class="library-section">
+                <h2 class="library-section-title text-title-sm">Buttons</h2>
+                <div class="component-grid">
+                    <div class="component-card">
+                        <p class="component-label">Primary</p>
+                        <div class="flex gap-3">
+                            <button class="btn btn-primary">Default</button>
+                            <button class="btn btn-primary" disabled>Disabled</button>
+                        </div>
+                    </div>
+                    <div class="component-card">
+                        <p class="component-label">Secondary</p>
+                        <div class="flex gap-3">
+                            <button class="btn btn-secondary">Default</button>
+                            <button class="btn btn-secondary" disabled>Disabled</button>
+                        </div>
+                    </div>
+                    <div class="component-card">
+                        <p class="component-label">Ghost</p>
+                        <div class="flex gap-3">
+                            <button class="btn btn-ghost">Default</button>
+                            <button class="btn btn-ghost" disabled>Disabled</button>
+                        </div>
+                    </div>
+                    <div class="component-card">
+                        <p class="component-label">Sizes</p>
+                        <div class="flex gap-3 items-center">
+                            <button class="btn btn-primary btn-sm">Small</button>
+                            <button class="btn btn-primary">Medium</button>
+                            <button class="btn btn-primary btn-lg">Large</button>
+                        </div>
+                    </div>
+                    <div class="component-card">
+                        <p class="component-label">With Icons</p>
+                        <div class="flex gap-3">
+                            <button class="btn btn-primary"><i data-lucide="plus" class="icon"></i> Create</button>
+                            <button class="btn btn-secondary"><i data-lucide="download" class="icon"></i>
+                                Export</button>
+                            <button class="btn btn-ghost"><i data-lucide="settings" class="icon"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FORM FIELDS -->
+            <section id="fields" class="library-section">
+                <h2 class="library-section-title text-title-sm">Form Fields</h2>
+                <div class="component-grid">
+                    <div class="component-card field-row">
+                        <p class="component-label">Text Input</p>
+                        <div class="field">
+                            <label class="field-label">Email</label>
+                            <input type="email" class="field-input" placeholder="you@example.com">
+                        </div>
+                    </div>
+                    <div class="component-card field-row">
+                        <p class="component-label">Password</p>
+                        <div class="field">
+                            <label class="field-label">Password</label>
+                            <div class="field-password-wrapper" style="position: relative;">
+                                <input type="password" class="field-input" id="passwordField"
+                                    placeholder="Enter password">
+                                <i data-lucide="eye"
+                                    style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--text-secondary); cursor: pointer; width: 20px; height: 20px;"
+                                    onclick="togglePassword()"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="component-card field-row">
+                        <p class="component-label">Numeric</p>
+                        <div class="field">
+                            <label class="field-label">Amount</label>
+                            <input type="number" class="field-input" placeholder="0.00" step="0.01">
+                        </div>
+                    </div>
+                    <div class="component-card field-row">
+                        <p class="component-label">Error State</p>
+                        <div class="field">
+                            <label class="field-label">Username</label>
+                            <input type="text" class="field-input is-error" value="admin">
+                            <span class="field-error">This username is already taken.</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SELECT -->
+            <section id="selects" class="library-section">
+                <h2 class="library-section-title text-title-sm">Select</h2>
+                <div class="component-grid">
+                    <div class="component-card">
+                        <p class="component-label">Default Select</p>
+                        <div class="field" style="margin-top: var(--spacing-3);">
+                            <label class="field-label">Country</label>
+                            <div class="select-wrapper">
+                                <select class="select">
+                                    <option value="">Choose an option</option>
+                                    <option value="us">United States</option>
+                                    <option value="uk">United Kingdom</option>
+                                    <option value="ca">Canada</option>
+                                    <option value="au">Australia</option>
+                                </select>
+                                <i data-lucide="chevron-down" class="icon select-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="component-card">
+                        <p class="component-label">Search Input</p>
+                        <div class="field" style="margin-top: var(--spacing-3);">
+                            <label class="field-label">Search</label>
+                            <div class="search-wrapper">
+                                <i data-lucide="search" class="icon search-icon"></i>
+                                <input type="text" class="search-input" placeholder="Search...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="component-card" style="min-width: 100%;">
+                        <p class="component-label">Textarea</p>
+                        <div class="field" style="margin-top: var(--spacing-3);">
+                            <label class="field-label">Message</label>
+                            <textarea class="textarea" placeholder="Write your message here..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CHECKBOX/RADIO -->
+            <section id="checkboxes" class="library-section">
+                <h2 class="library-section-title text-title-sm">Checkbox & Radio</h2>
+                <div class="component-grid">
+                    <div class="component-card">
+                        <p class="component-label">Checkboxes</p>
+                        <div class="stack stack-gap-3" style="margin-top: var(--spacing-3);">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox-input" checked>
+                                <span class="checkbox-label">Email notifications</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox-input">
+                                <span class="checkbox-label">SMS notifications</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox-input">
+                                <span class="checkbox-label">Push notifications</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="component-card">
+                        <p class="component-label">Radio Buttons</p>
+                        <div class="radio-group" style="margin-top: var(--spacing-3);">
+                            <label class="radio">
+                                <input type="radio" name="plan" class="radio-input" checked>
+                                <span class="radio-label">Starter Plan</span>
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="plan" class="radio-input">
+                                <span class="radio-label">Pro Plan</span>
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="plan" class="radio-input">
+                                <span class="radio-label">Enterprise Plan</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SWITCHES -->
+            <section id="switches" class="library-section">
+                <h2 class="library-section-title text-title-sm">Switches</h2>
+                <div class="component-grid">
+                    <div class="component-card">
+                        <p class="component-label">Toggle States</p>
+                        <div class="switch-row">
+                            <label class="switch">
+                                <input type="checkbox" class="switch-input">
+                                <span class="switch-track"><span class="switch-thumb"></span></span>
+                                <span class="switch-label">Notifications Off</span>
+                            </label>
+                            <label class="switch">
+                                <input type="checkbox" class="switch-input" checked>
+                                <span class="switch-track"><span class="switch-thumb"></span></span>
+                                <span class="switch-label">Dark Mode On</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BADGES -->
+            <section id="badges" class="library-section">
+                <h2 class="library-section-title text-title-sm">Badges</h2>
+                <div class="component-grid">
+                    <div class="component-card">
+                        <p class="component-label">Default Variants</p>
+                        <div class="flex gap-2" style="flex-wrap: wrap; margin-top: var(--spacing-3);">
+                            <span class="badge">Default</span>
+                            <span class="badge badge-primary">Primary</span>
+                            <span class="badge badge-success">Success</span>
+                            <span class="badge badge-warning">Warning</span>
+                            <span class="badge badge-error">Error</span>
+                            <span class="badge badge-outline">Outline</span>
+                        </div>
+                    </div>
+                    <div class="component-card">
+                        <p class="component-label">With Icons</p>
+                        <div class="flex gap-2" style="margin-top: var(--spacing-3);">
+                            <span class="badge badge-success"><i data-lucide="check" class="icon icon-sm"></i>
+                                Active</span>
+                            <span class="badge badge-warning"><i data-lucide="clock" class="icon icon-sm"></i>
+                                Pending</span>
+                            <span class="badge badge-error"><i data-lucide="x" class="icon icon-sm"></i> Rejected</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AVATARS -->
+            <section id="avatars" class="library-section">
+                <h2 class="library-section-title text-title-sm">Avatars</h2>
+                <div class="component-grid">
+                    <div class="component-card">
+                        <p class="component-label">Sizes</p>
+                        <div class="flex gap-3 items-center" style="margin-top: var(--spacing-3);">
+                            <span class="avatar avatar-sm">SM</span>
+                            <span class="avatar">MD</span>
+                            <span class="avatar avatar-lg">LG</span>
+                            <span class="avatar avatar-xl">XL</span>
+                        </div>
+                    </div>
+                    <div class="component-card">
+                        <p class="component-label">Avatar Group</p>
+                        <div class="avatar-group" style="margin-top: var(--spacing-3);">
+                            <span class="avatar" style="background: var(--color-brand-500); color: white;">A</span>
+                            <span class="avatar" style="background: var(--status-success); color: white;">B</span>
+                            <span class="avatar" style="background: var(--status-warning); color: white;">C</span>
+                            <span class="avatar" style="background: var(--status-error); color: white;">D</span>
+                            <span class="avatar">+3</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TABLE -->
+            <section id="tables" class="library-section">
+                <h2 class="library-section-title text-title-sm">Table</h2>
+                <div class="component-card" style="min-width: 100%; padding: 0; overflow: hidden;">
+                    <div class="table-wrapper">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>John Doe</td>
+                                    <td>john@example.com</td>
+                                    <td>Admin</td>
+                                    <td><span class="badge badge-success">Active</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Jane Smith</td>
+                                    <td>jane@example.com</td>
+                                    <td>Editor</td>
+                                    <td><span class="badge badge-success">Active</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Bob Wilson</td>
+                                    <td>bob@example.com</td>
+                                    <td>Viewer</td>
+                                    <td><span class="badge badge-warning">Pending</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- STATS -->
+            <section id="stats" class="library-section">
+                <h2 class="library-section-title text-title-sm">Stat Cards</h2>
+                <div class="grid grid-cols-3" style="gap: var(--spacing-4);">
+                    <div class="stat-card">
+                        <div class="stat-label">Total Revenue</div>
+                        <div class="stat-value">$45,231</div>
+                        <div class="stat-trend stat-trend-up">
+                            <i data-lucide="trending-up" class="icon icon-sm"></i> +12.5%
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Active Users</div>
+                        <div class="stat-value">2,340</div>
+                        <div class="stat-trend stat-trend-up">
+                            <i data-lucide="trending-up" class="icon icon-sm"></i> +8.2%
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Bounce Rate</div>
+                        <div class="stat-value">24.5%</div>
+                        <div class="stat-trend stat-trend-down">
+                            <i data-lucide="trending-down" class="icon icon-sm"></i> -3.1%
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROGRESS -->
+            <section id="progress" class="library-section">
+                <h2 class="library-section-title text-title-sm">Progress Bar</h2>
+                <div class="component-grid">
+                    <div class="component-card" style="min-width: 100%;">
+                        <p class="component-label">Variants</p>
+                        <div class="stack stack-gap-4" style="margin-top: var(--spacing-3);">
+                            <div>
+                                <div class="flex justify-between" style="margin-bottom: var(--spacing-1);"><span
+                                        class="text-detail">Default</span><span class="text-detail">65%</span></div>
+                                <div class="progress-bar">
+                                    <div class="progress-bar-fill" style="width: 65%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between" style="margin-bottom: var(--spacing-1);"><span
+                                        class="text-detail">Success</span><span class="text-detail">80%</span></div>
+                                <div class="progress-bar">
+                                    <div class="progress-bar-fill progress-bar-success" style="width: 80%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between" style="margin-bottom: var(--spacing-1);"><span
+                                        class="text-detail">Warning</span><span class="text-detail">45%</span></div>
+                                <div class="progress-bar">
+                                    <div class="progress-bar-fill progress-bar-warning" style="width: 45%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between" style="margin-bottom: var(--spacing-1);"><span
+                                        class="text-detail">Error</span><span class="text-detail">20%</span></div>
+                                <div class="progress-bar">
+                                    <div class="progress-bar-fill progress-bar-error" style="width: 20%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ALERTS -->
+            <section id="alerts" class="library-section">
+                <h2 class="library-section-title text-title-sm">Alerts</h2>
+                <div class="component-grid">
+                    <div class="component-card" style="min-width: 100%;">
+                        <p class="component-label">Alert Variants</p>
+                        <div class="stack stack-gap-3" style="margin-top: var(--spacing-3);">
+                            <div class="alert alert-info">
+                                <i data-lucide="info" class="icon alert-icon"></i>
+                                <div class="alert-content">
+                                    <div class="alert-title">Information</div>
+                                    <div class="alert-description">This is an informational alert message.</div>
+                                </div>
+                            </div>
+                            <div class="alert alert-success">
+                                <i data-lucide="check-circle" class="icon alert-icon"></i>
+                                <div class="alert-content">
+                                    <div class="alert-title">Success</div>
+                                    <div class="alert-description">Your changes have been saved successfully.</div>
+                                </div>
+                            </div>
+                            <div class="alert alert-warning">
+                                <i data-lucide="alert-triangle" class="icon alert-icon"></i>
+                                <div class="alert-content">
+                                    <div class="alert-title">Warning</div>
+                                    <div class="alert-description">Please review before proceeding.</div>
+                                </div>
+                            </div>
+                            <div class="alert alert-error">
+                                <i data-lucide="x-circle" class="icon alert-icon"></i>
+                                <div class="alert-content">
+                                    <div class="alert-title">Error</div>
+                                    <div class="alert-description">Something went wrong. Please try again.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MODAL -->
+            <section id="modals" class="library-section">
+                <h2 class="library-section-title text-title-sm">Modal</h2>
+                <div class="component-card" style="min-width: 100%;">
+                    <p class="component-label">Modal Preview (Static)</p>
+                    <div
+                        style="position: relative; background: var(--surface-overlay); padding: var(--spacing-8); border-radius: var(--radius-container); margin-top: var(--spacing-3);">
+                        <div class="modal" style="position: relative; margin: 0 auto; transform: none;">
+                            <div class="modal-header">
+                                <h3 class="modal-title">Confirm Action</h3>
+                                <button class="modal-close"><i data-lucide="x" class="icon"></i></button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-body">Are you sure you want to proceed? This action cannot be undone.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary">Cancel</button>
+                                <button class="btn btn-primary">Confirm</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TOOLTIP -->
+            <section id="tooltips" class="library-section">
+                <h2 class="library-section-title text-title-sm">Tooltip</h2>
+                <div class="component-grid">
+                    <div class="component-card">
+                        <p class="component-label">Tooltip (Hover)</p>
+                        <div class="flex gap-4" style="margin-top: var(--spacing-4);">
+                            <div class="tooltip">
+                                <button class="btn btn-secondary">Top Tooltip</button>
+                                <span class="tooltip-content">I appear on top!</span>
+                            </div>
+                            <div class="tooltip tooltip-bottom">
+                                <button class="btn btn-secondary">Bottom Tooltip</button>
+                                <span class="tooltip-content">I appear below!</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="component-card">
+                        <p class="component-label">Icon Tooltips</p>
+                        <div class="flex gap-4" style="margin-top: var(--spacing-4);">
+                            <div class="tooltip">
+                                <button class="btn btn-ghost"><i data-lucide="settings" class="icon"></i></button>
+                                <span class="tooltip-content">Settings</span>
+                            </div>
+                            <div class="tooltip">
+                                <button class="btn btn-ghost"><i data-lucide="user" class="icon"></i></button>
+                                <span class="tooltip-content">Profile</span>
+                            </div>
+                            <div class="tooltip">
+                                <button class="btn btn-ghost"><i data-lucide="bell" class="icon"></i></button>
+                                <span class="tooltip-content">Notifications</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DROPDOWN -->
+            <section id="dropdowns" class="library-section">
+                <h2 class="library-section-title text-title-sm">Dropdown Menu</h2>
+                <div class="component-grid">
+                    <div class="component-card">
+                        <p class="component-label">Dropdown (Static Preview)</p>
+                        <div style="position: relative; margin-top: var(--spacing-3);">
+                            <button class="btn btn-secondary"><i data-lucide="more-vertical" class="icon"></i>
+                                Actions</button>
+                            <div class="dropdown-menu"
+                                style="position: relative; opacity: 1; visibility: visible; transform: none; margin-top: var(--spacing-2);">
+                                <a href="#" class="dropdown-item"><i data-lucide="edit" class="icon"></i> Edit</a>
+                                <a href="#" class="dropdown-item"><i data-lucide="copy" class="icon"></i> Duplicate</a>
+                                <a href="#" class="dropdown-item"><i data-lucide="archive" class="icon"></i> Archive</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" class="dropdown-item is-danger"><i data-lucide="trash-2" class="icon"></i>
+                                    Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PAGINATION -->
+            <section id="pagination" class="library-section">
+                <h2 class="library-section-title text-title-sm">Pagination</h2>
+                <div class="component-grid">
+                    <div class="component-card" style="min-width: 100%;">
+                        <p class="component-label">Default</p>
+                        <nav class="pagination" style="margin-top: var(--spacing-3);">
+                            <button class="pagination-item" disabled><i data-lucide="chevron-left"
+                                    class="icon"></i></button>
+                            <button class="pagination-item is-active">1</button>
+                            <button class="pagination-item">2</button>
+                            <button class="pagination-item">3</button>
+                            <span class="pagination-ellipsis">...</span>
+                            <button class="pagination-item">10</button>
+                            <button class="pagination-item"><i data-lucide="chevron-right" class="icon"></i></button>
+                        </nav>
+                    </div>
+                </div>
+            </section>
+
+            <!-- LOADING -->
+            <section id="loading" class="library-section">
+                <h2 class="library-section-title text-title-sm">Loading States</h2>
+                <div class="component-grid">
+                    <div class="component-card">
+                        <p class="component-label">Spinner Sizes</p>
+                        <div class="flex gap-4 items-center" style="margin-top: var(--spacing-3);">
+                            <div class="spinner spinner-sm"></div>
+                            <div class="spinner"></div>
+                            <div class="spinner spinner-lg"></div>
+                            <div class="spinner spinner-xl"></div>
+                        </div>
+                    </div>
+                    <div class="component-card">
+                        <p class="component-label">Button with Spinner</p>
+                        <div class="flex gap-3" style="margin-top: var(--spacing-3);">
+                            <button class="btn btn-primary" disabled>
+                                <div class="spinner spinner-sm" style="border-top-color: white;"></div>
+                                Loading...
+                            </button>
+                            <button class="btn btn-secondary" disabled>
+                                <div class="spinner spinner-sm"></div>
+                                Processing
+                            </button>
+                        </div>
+                    </div>
+                    <div class="component-card" style="min-width: 100%;">
+                        <p class="component-label">Skeleton Loaders</p>
+                        <div class="stack stack-gap-3" style="margin-top: var(--spacing-3); max-width: 400px;">
+                            <div class="flex gap-3 items-center">
+                                <div class="skeleton skeleton-avatar"></div>
+                                <div style="flex: 1;">
+                                    <div class="skeleton skeleton-text" style="width: 60%;"></div>
+                                    <div class="skeleton skeleton-text" style="width: 40%;"></div>
+                                </div>
+                            </div>
+                            <div class="skeleton skeleton-title"></div>
+                            <div class="skeleton skeleton-text"></div>
+                            <div class="skeleton skeleton-text"></div>
+                            <div class="skeleton skeleton-text" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EMPTY STATE -->
+            <section id="empty" class="library-section">
+                <h2 class="library-section-title text-title-sm">Empty State</h2>
+                <div class="component-card" style="min-width: 100%;">
+                    <div class="empty-state">
+                        <i data-lucide="inbox" class="icon empty-state-icon"></i>
+                        <h3 class="empty-state-title">No results found</h3>
+                        <p class="empty-state-description">We couldn't find any items matching your criteria. Try
+                            adjusting your filters or create a new item.</p>
+                        <button class="btn btn-primary"><i data-lucide="plus" class="icon"></i> Create New</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CARDS -->
+            <section id="cards" class="library-section">
+                <h2 class="library-section-title text-title-sm">Cards</h2>
+                <div class="component-grid">
+                    <div class="component-card" style="min-width: 200px;">
+                        <p class="component-label">Standard Card</p>
+                        <div class="card" style="margin-top: var(--spacing-3);">
+                            <h3 class="text-title-sm">Card Title</h3>
+                            <p class="text-detail" style="margin-top: var(--spacing-2);">Card content goes here.</p>
+                        </div>
+                    </div>
+                    <div class="component-card" style="min-width: 200px;">
+                        <p class="component-label">Glass Card</p>
+                        <div class="card-glass" style="margin-top: var(--spacing-3);">
+                            <h3 class="text-title-sm">Glass Effect</h3>
+                            <p class="text-detail" style="margin-top: var(--spacing-2);">Atmospheric depth.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NAVIGATION -->
+            <section id="navigation" class="library-section">
+                <h2 class="library-section-title text-title-sm">Sidebar Navigation</h2>
+                <div class="component-card" style="max-width: 280px;">
+                    <p class="component-label">Nav Items & Footer</p>
+                    <div
+                        style="height: 300px; display: flex; flex-direction: column; border: 1px dashed var(--border-subtle); padding: var(--spacing-4); border-radius: var(--radius-md);">
+                        <nav class="sidebar-nav">
+                            <a href="#" class="sidebar-item is-active"><i data-lucide="layout-dashboard"
+                                    class="icon"></i>
+                                Dashboard</a>
+                            <a href="#" class="sidebar-item"><i data-lucide="bar-chart-3" class="icon"></i>
+                                Analytics</a>
+                        </nav>
+                        <div class="sidebar-footer">
+                            <div class="sidebar-item" style="cursor: pointer;">
+                                <div
+                                    style="width: 24px; height: 24px; background: var(--surface-secondary); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; font-size: 10px;">
+                                    A</div>
+                                <div class="truncate">Alfredo Orion</div>
+                                <i data-lucide="more-vertical" class="icon" style="margin-left: auto;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ICONS -->
+            <section id="icons" class="library-section">
+                <h2 class="library-section-title text-title-sm">Icons (Lucide)</h2>
+                <div class="component-grid">
+                    <div class="component-card">
+                        <p class="component-label">Size Variants</p>
+                        <div class="flex gap-4 items-center" style="margin-top: var(--spacing-3);">
+                            <i data-lucide="star" class="icon icon-sm"></i>
+                            <i data-lucide="star" class="icon icon-md"></i>
+                            <i data-lucide="star" class="icon icon-lg"></i>
+                            <i data-lucide="star" class="icon icon-xl"></i>
+                        </div>
+                    </div>
+                    <div class="component-card">
+                        <p class="component-label">Common Icons</p>
+                        <div class="flex gap-3" style="margin-top: var(--spacing-3); flex-wrap: wrap;">
+                            <i data-lucide="home" class="icon"></i>
+                            <i data-lucide="search" class="icon"></i>
+                            <i data-lucide="user" class="icon"></i>
+                            <i data-lucide="settings" class="icon"></i>
+                            <i data-lucide="bell" class="icon"></i>
+                            <i data-lucide="mail" class="icon"></i>
+                            <i data-lucide="heart" class="icon"></i>
+                            <i data-lucide="check" class="icon"></i>
+                            <i data-lucide="x" class="icon"></i>
+                            <i data-lucide="plus" class="icon"></i>
+                            <i data-lucide="minus" class="icon"></i>
+                            <i data-lucide="edit" class="icon"></i>
+                            <i data-lucide="trash-2" class="icon"></i>
+                            <i data-lucide="download" class="icon"></i>
+                            <i data-lucide="upload" class="icon"></i>
+                        </div>
+                    </div>
+                    <div class="component-card">
+                        <p class="component-label">Colored Icons</p>
+                        <div class="flex gap-3" style="margin-top: var(--spacing-3);">
+                            <i data-lucide="check-circle" class="icon" style="color: var(--status-success);"></i>
+                            <i data-lucide="alert-circle" class="icon" style="color: var(--status-warning);"></i>
+                            <i data-lucide="x-circle" class="icon" style="color: var(--status-error);"></i>
+                            <i data-lucide="info" class="icon" style="color: var(--text-brand);"></i>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════════════════════
+                 SPECIALIZED COMPONENTS (Phase 4)
+                 ═══════════════════════════════════════════════════════════════ -->
+
+            <!-- HERO SECTION -->
+            <section id="hero" class="library-section">
+                <h2 class="library-section-title text-title-sm">Hero Section (Marketing)</h2>
+                <div class="component-card" style="min-width: 100%; padding: 0; overflow: hidden;">
+                    <div class="hero" style="padding: var(--spacing-16) var(--spacing-8);">
+                        <div class="hero-glow"></div>
+                        <span class="hero-badge"><i data-lucide="sparkles" class="icon icon-sm"></i> New Release</span>
+                        <h1 class="hero-title" style="font-size: var(--font-size-48);">Build faster with Orion</h1>
+                        <p class="hero-subtitle">The AI-first design system that scales. Zero hardcoded values, infinite
+                            possibilities.</p>
+                        <div class="hero-actions">
+                            <button class="btn btn-primary btn-lg"><i data-lucide="rocket" class="icon"></i> Get
+                                Started</button>
+                            <button class="btn btn-secondary btn-lg">View Docs</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FEATURE CARDS -->
+            <section id="features" class="library-section">
+                <h2 class="library-section-title text-title-sm">Feature Cards (Marketing)</h2>
+                <div class="grid grid-cols-3" style="gap: var(--spacing-4);">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i data-lucide="palette" class="icon"></i></div>
+                        <h3 class="feature-title">Semantic Tokens</h3>
+                        <p class="feature-description">Design with intent. Colors, spacing, and typography all driven by
+                            semantic meaning.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i data-lucide="moon" class="icon"></i></div>
+                        <h3 class="feature-title">Dark Mode Ready</h3>
+                        <p class="feature-description">Automatic theme switching powered by CSS custom properties. No
+                            JavaScript required.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i data-lucide="cpu" class="icon"></i></div>
+                        <h3 class="feature-title">AI-First Governance</h3>
+                        <p class="feature-description">Built for generative AI. Strict token enforcement prevents
+                            hallucinated styles.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PRICING CARDS -->
+            <section id="pricing" class="library-section">
+                <h2 class="library-section-title text-title-sm">Pricing Cards (Marketing)</h2>
+                <div class="grid grid-cols-3" style="gap: var(--spacing-4);">
+                    <div class="pricing-card">
+                        <h3 class="pricing-name">Starter</h3>
+                        <div class="pricing-price">$0</div>
+                        <div class="pricing-period">/ month</div>
+                        <ul class="pricing-features">
+                            <li class="pricing-feature"><i data-lucide="check" class="icon icon-sm"></i> Up to 3
+                                projects</li>
+                            <li class="pricing-feature"><i data-lucide="check" class="icon icon-sm"></i> Basic
+                                components</li>
+                            <li class="pricing-feature"><i data-lucide="check" class="icon icon-sm"></i> Community
+                                support</li>
+                        </ul>
+                        <button class="btn btn-secondary" style="width: 100%;">Get Started</button>
+                    </div>
+                    <div class="pricing-card is-featured">
+                        <h3 class="pricing-name">Pro</h3>
+                        <div class="pricing-price">$29</div>
+                        <div class="pricing-period">/ month</div>
+                        <ul class="pricing-features">
+                            <li class="pricing-feature"><i data-lucide="check" class="icon icon-sm"></i> Unlimited
+                                projects</li>
+                            <li class="pricing-feature"><i data-lucide="check" class="icon icon-sm"></i> All components
+                            </li>
+                            <li class="pricing-feature"><i data-lucide="check" class="icon icon-sm"></i> Priority
+                                support</li>
+                            <li class="pricing-feature"><i data-lucide="check" class="icon icon-sm"></i> Custom themes
+                            </li>
+                        </ul>
+                        <button class="btn btn-primary" style="width: 100%;">Upgrade Now</button>
+                    </div>
+                    <div class="pricing-card">
+                        <h3 class="pricing-name">Enterprise</h3>
+                        <div class="pricing-price">$99</div>
+                        <div class="pricing-period">/ month</div>
+                        <ul class="pricing-features">
+                            <li class="pricing-feature"><i data-lucide="check" class="icon icon-sm"></i> Everything in
+                                Pro</li>
+                            <li class="pricing-feature"><i data-lucide="check" class="icon icon-sm"></i> SSO & SAML</li>
+                            <li class="pricing-feature"><i data-lucide="check" class="icon icon-sm"></i> Dedicated
+                                support</li>
+                            <li class="pricing-feature"><i data-lucide="check" class="icon icon-sm"></i> SLA guarantee
+                            </li>
+                        </ul>
+                        <button class="btn btn-secondary" style="width: 100%;">Contact Sales</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA SECTION -->
+            <section id="cta" class="library-section">
+                <h2 class="library-section-title text-title-sm">CTA Section (Marketing)</h2>
+                <div class="cta-section">
+                    <h2 class="cta-title">Ready to get started?</h2>
+                    <p class="cta-description">Join thousands of developers building with Orion. Start for free, scale
+                        when ready.</p>
+                    <div class="flex gap-4">
+                        <button class="btn btn-primary btn-lg"><i data-lucide="rocket" class="icon"></i> Start
+                            Building</button>
+                        <button class="btn btn-ghost btn-lg">Talk to Sales</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COMMAND PALETTE -->
+            <section id="command" class="library-section">
+                <h2 class="library-section-title text-title-sm">Command Palette (SaaS)</h2>
+                <div class="component-card" style="min-width: 100%; padding: 0; overflow: hidden;">
+                    <div style="background: var(--surface-overlay); padding: var(--spacing-8);">
+                        <div class="command-dialog" style="margin: 0 auto;">
+                            <div class="command-input-wrapper">
+                                <i data-lucide="search" class="icon" style="color: var(--text-tertiary);"></i>
+                                <input type="text" class="command-input" placeholder="Type a command or search...">
+                                <span class="command-shortcut">⌘K</span>
+                            </div>
+                            <div class="command-results">
+                                <div class="command-group-title">Actions</div>
+                                <div class="command-item is-selected">
+                                    <i data-lucide="plus" class="icon command-item-icon"></i>
+                                    <span class="command-item-label">New Project</span>
+                                    <span class="command-item-shortcut">⌘N</span>
+                                </div>
+                                <div class="command-item">
+                                    <i data-lucide="file" class="icon command-item-icon"></i>
+                                    <span class="command-item-label">New File</span>
+                                    <span class="command-item-shortcut">⌘⇧N</span>
+                                </div>
+                                <div class="command-item">
+                                    <i data-lucide="settings" class="icon command-item-icon"></i>
+                                    <span class="command-item-label">Settings</span>
+                                    <span class="command-item-shortcut">⌘,</span>
+                                </div>
+                                <div class="command-group-title">Navigation</div>
+                                <div class="command-item">
+                                    <i data-lucide="home" class="icon command-item-icon"></i>
+                                    <span class="command-item-label">Go to Dashboard</span>
+                                </div>
+                                <div class="command-item">
+                                    <i data-lucide="folder" class="icon command-item-icon"></i>
+                                    <span class="command-item-label">Go to Projects</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BOTTOM NAVIGATION -->
+            <section id="bottomnav" class="library-section">
+                <h2 class="library-section-title text-title-sm">Bottom Navigation (App)</h2>
+                <div class="component-card" style="min-width: 100%; padding: 0; overflow: hidden;">
+                    <div
+                        style="background: var(--surface-subtle); padding: var(--spacing-16) var(--spacing-4) var(--spacing-4);">
+                        <div class="bottom-nav" style="position: relative; border-radius: var(--radius-container);">
+                            <a href="#" class="bottom-nav-item">
+                                <i data-lucide="home" class="icon bottom-nav-icon"></i>
+                                <span class="bottom-nav-label">Home</span>
+                            </a>
+                            <a href="#" class="bottom-nav-item">
+                                <i data-lucide="search" class="icon bottom-nav-icon"></i>
+                                <span class="bottom-nav-label">Search</span>
+                            </a>
+                            <a href="#" class="bottom-nav-item is-active">
+                                <i data-lucide="plus-circle" class="icon bottom-nav-icon"></i>
+                                <span class="bottom-nav-label">Create</span>
+                            </a>
+                            <a href="#" class="bottom-nav-item" style="position: relative;">
+                                <i data-lucide="bell" class="icon bottom-nav-icon"></i>
+                                <span class="bottom-nav-label">Alerts</span>
+                            </a>
+                            <a href="#" class="bottom-nav-item">
+                                <i data-lucide="user" class="icon bottom-nav-icon"></i>
+                                <span class="bottom-nav-label">Profile</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- APP SHELL (Phase 30) -->
+            <section id="app-shell" class="library-section">
+                <h2 class="library-section-title text-title-sm">App Shell</h2>
+                <p class="text-body mb-6" style="color: var(--text-secondary);">Split layout pattern with floating
+                    sidebar. Implements Rule 11 Symmetry from the Usage Contract.</p>
+
+                <div class="component-grid">
+                    <div class="component-card" style="min-width: 100%;">
+                        <p class="component-label">Shell Structure</p>
+                        <div
+                            style="display: flex; gap: var(--spacing-4); padding: var(--spacing-4); background: var(--surface-base); border-radius: var(--radius-md); min-height: 200px;">
+                            <div
+                                style="width: 200px; background: var(--surface-primary); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: var(--spacing-4); display: flex; flex-direction: column; gap: var(--spacing-2);">
+                                <div class="text-caption" style="color: var(--text-tertiary);">Sidebar</div>
+                                <a href="#" class="nav-item is-active"><i data-lucide="layout-dashboard"
+                                        class="icon"></i> Dashboard</a>
+                                <a href="#" class="nav-item"><i data-lucide="book-open" class="icon"></i> Courses</a>
+                                <a href="#" class="nav-item"><i data-lucide="calendar" class="icon"></i> Schedule</a>
+                            </div>
+                            <div
+                                style="flex: 1; background: var(--surface-subtle); border-radius: var(--radius-md); padding: var(--spacing-6); display: flex; align-items: center; justify-content: center; color: var(--text-tertiary);">
+                                Main Content Area
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DASHBOARD COMPONENTS (Phase 30) -->
+            <section id="dashboard" class="library-section">
+                <h2 class="library-section-title text-title-sm">Dashboard Components</h2>
+                <p class="text-body mb-6" style="color: var(--text-secondary);">Stat cards, progress bars, and activity
+                    lists for data-rich interfaces.</p>
+
+                <div class="component-grid">
+                    <!-- Stat Card -->
+                    <div class="component-card">
+                        <p class="component-label">Stat Card</p>
+                        <div class="stat-card">
+                            <div class="stat-value">42</div>
+                            <div class="stat-label">Courses Completed</div>
+                        </div>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="component-card">
+                        <p class="component-label">Progress Bar</p>
+                        <div style="display: flex; flex-direction: column; gap: var(--spacing-4);">
+                            <div>
+                                <div class="text-caption mb-2">Standard (8px)</div>
+                                <div class="progress-bar">
+                                    <div class="progress-bar-fill" style="width: 75%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="text-caption mb-2">Mini (4px)</div>
+                                <div class="progress-bar progress-bar-mini">
+                                    <div class="progress-bar-fill" style="width: 45%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Activity List -->
+                    <div class="component-card" style="min-width: 400px;">
+                        <p class="component-label">Activity List</p>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-icon"><i data-lucide="check-circle"></i></div>
+                                <div class="activity-content">
+                                    <div class="activity-title">Completed Module 3</div>
+                                    <div class="activity-meta">2 hours ago</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon"><i data-lucide="book-open"></i></div>
+                                <div class="activity-content">
+                                    <div class="activity-title">Started new course</div>
+                                    <div class="activity-meta">Yesterday</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon"><i data-lucide="award"></i></div>
+                                <div class="activity-content">
+                                    <div class="activity-title">Earned certificate</div>
+                                    <div class="activity-meta">3 days ago</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event Card -->
+                    <div class="component-card">
+                        <p class="component-label">Event Card (Calendar)</p>
+                        <div style="display: flex; flex-direction: column; gap: var(--spacing-2);">
+                            <div class="event-card">
+                                <div class="event-title">Design Review</div>
+                                <div class="event-meta">10:00 - 11:00 AM</div>
+                            </div>
+                            <div class="event-card is-success">
+                                <div class="event-title">Workshop Complete</div>
+                                <div class="event-meta">Completed</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Carousel -->
+                    <div class="component-card" style="grid-column: span 2;">
+                        <p class="component-label">Carousel / Slider</p>
+                        <div class="carousel-container">
+                            <div class="carousel-track">
+                                <!-- Item 1 -->
+                                <div class="card"
+                                    style="min-width: 250px; height: 150px; display: flex; align-items: center; justify-content: center; background: var(--surface-subtle); border-radius: var(--radius-container); flex-direction: column; gap: 8px;">
+                                    <span class="text-secondary" style="font-weight: 500;">Physics 101</span>
+                                    <div class="progress-bar" style="width: 80%;">
+                                        <div class="progress-bar-fill" style="width: 45%;"></div>
+                                    </div>
+                                </div>
+                                <!-- Item 2 -->
+                                <div class="card"
+                                    style="min-width: 250px; height: 150px; display: flex; align-items: center; justify-content: center; background: var(--surface-subtle); border-radius: var(--radius-container); flex-direction: column; gap: 8px;">
+                                    <span class="text-secondary" style="font-weight: 500;">Chemistry</span>
+                                    <div class="progress-bar" style="width: 80%;">
+                                        <div class="progress-bar-fill" style="width: 75%;"></div>
+                                    </div>
+                                </div>
+                                <!-- Item 3 -->
+                                <div class="card"
+                                    style="min-width: 250px; height: 150px; display: flex; align-items: center; justify-content: center; background: var(--surface-subtle); border-radius: var(--radius-container); flex-direction: column; gap: 8px;">
+                                    <span class="text-secondary" style="font-weight: 500;">Biology</span>
+                                    <div class="progress-bar" style="width: 80%;">
+                                        <div class="progress-bar-fill" style="width: 15%;"></div>
+                                    </div>
+                                </div>
+                                <!-- Item 4 -->
+                                <div class="card"
+                                    style="min-width: 250px; height: 150px; display: flex; align-items: center; justify-content: center; background: var(--surface-subtle); border-radius: var(--radius-container);">
+                                    <span class="text-secondary">Explore More +</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Carousel Engine (Scalable) -->
+                    <div class="component-card" style="grid-column: 1 / -1; overflow: hidden;">
+                        <div class="flex justify-between items-center mb-4">
+                            <p class="component-label" style="margin-bottom: 0;">Carousel Engine (Visual Cards)</p>
+                            <div class="flex gap-2">
+                                <button id="carousel-prev" class="btn btn-ghost btn-sm btn-icon-only">
+                                    <i data-lucide="chevron-left" class="icon"></i>
+                                </button>
+                                <button id="carousel-next" class="btn btn-ghost btn-sm btn-icon-only">
+                                    <i data-lucide="chevron-right" class="icon"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Engine Container -->
+                        <div class="carousel-engine">
+                            <!-- Card 1 -->
+                            <article class="card-visual" style="flex-basis: 320px;">
+                                <img src="student-platform/assets/images/catalog/0_1 (1).jpeg" alt="Motion Identity"
+                                    class="card-visual-bg">
+                                <div class="card-visual-overlay"></div>
+                                <div class="card-visual-content">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="badge badge-subtle">Creative</span>
+                                    </div>
+                                    <h3 class="text-title-lg"
+                                        style="color: white; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">Motion Identity
+                                    </h3>
+                                    <p class="text-body-sm" style="color: var(--text-on-dark-secondary);">Animación
+                                        semántica y coreografía.</p>
+                                </div>
+                            </article>
+                            <!-- Card 2 -->
+                            <article class="card-visual" style="flex-basis: 320px;">
+                                <img src="student-platform/assets/images/catalog/18 Maestría en Administración de Negocios y Gestión del Talento.png"
+                                    alt="Inclusive Design" class="card-visual-bg">
+                                <div class="card-visual-overlay"></div>
+                                <div class="card-visual-content">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="badge badge-subtle">Essential</span>
+                                    </div>
+                                    <h3 class="text-title-lg"
+                                        style="color: white; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">Inclusive Design
+                                    </h3>
+                                    <p class="text-body-sm" style="color: var(--text-on-dark-secondary);">Construye para
+                                        todos (WCAG).</p>
+                                </div>
+                            </article>
+                            <!-- Card 3 -->
+                            <article class="card-visual" style="flex-basis: 320px;">
+                                <img src="student-platform/assets/images/catalog/19 Maestría en Administración de Negocios y Mercadotecnia.png"
+                                    alt="MBA Marketing" class="card-visual-bg">
+                                <div class="card-visual-overlay"></div>
+                                <div class="card-visual-content">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="badge badge-subtle">Advanced</span>
+                                    </div>
+                                    <h3 class="text-title-lg"
+                                        style="color: white; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">MBA: Marketing
+                                    </h3>
+                                    <p class="text-body-sm" style="color: var(--text-on-dark-secondary);">Estrategias de
+                                        crecimiento global.</p>
+                                </div>
+                            </article>
+                            <!-- Card 4 -->
+                            <article class="card-visual" style="flex-basis: 320px;">
+                                <img src="student-platform/assets/images/catalog/0_1 (1).jpeg" alt="Repetición"
+                                    class="card-visual-bg">
+                                <div class="card-visual-overlay"></div>
+                                <div class="card-visual-content">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="badge badge-subtle">Creative</span>
+                                    </div>
+                                    <h3 class="text-title-lg"
+                                        style="color: white; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">Brand Systems
+                                    </h3>
+                                    <p class="text-body-sm" style="color: var(--text-on-dark-secondary);">Escalabilidad
+                                        en diseño.</p>
+                                </div>
+                            </article>
+                            <!-- Card 5 -->
+                            <article class="card-visual" style="flex-basis: 320px;">
+                                <img src="student-platform/assets/images/catalog/18 Maestría en Administración de Negocios y Gestión del Talento.png"
+                                    alt="Leadership" class="card-visual-bg">
+                                <div class="card-visual-overlay"></div>
+                                <div class="card-visual-content">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="badge badge-subtle">Leadership</span>
+                                    </div>
+                                    <h3 class="text-title-lg"
+                                        style="color: white; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">Executive
+                                        Leadership
+                                    </h3>
+                                    <p class="text-body-sm" style="color: var(--text-on-dark-secondary);">Gestión de
+                                        equipos de alto rendimiento.</p>
+                                </div>
+                            </article>
+                            <!-- Card 6 -->
+                            <article class="card-visual" style="flex-basis: 320px;">
+                                <img src="student-platform/assets/images/catalog/19 Maestría en Administración de Negocios y Mercadotecnia.png"
+                                    alt="Global Markets" class="card-visual-bg">
+                                <div class="card-visual-overlay"></div>
+                                <div class="card-visual-content">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="badge badge-subtle">Business</span>
+                                    </div>
+                                    <h3 class="text-title-lg"
+                                        style="color: white; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">Global Markets
+                                    </h3>
+                                    <p class="text-body-sm" style="color: var(--text-on-dark-secondary);">Expansión
+                                        internacional y estrategia.</p>
+                                </div>
+                            </article>
+                            <!-- Card 7 -->
+                            <article class="card-visual" style="flex-basis: 320px;">
+                                <img src="student-platform/assets/images/catalog/0_1 (1).jpeg" alt="Future Tech"
+                                    class="card-visual-bg">
+                                <div class="card-visual-overlay"></div>
+                                <div class="card-visual-content">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="badge badge-subtle">Tech</span>
+                                    </div>
+                                    <h3 class="text-title-lg"
+                                        style="color: white; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">Future Tech
+                                    </h3>
+                                    <p class="text-body-sm" style="color: var(--text-on-dark-secondary);">Innovación y
+                                        nuevas tecnologías.</p>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <!-- Media Cards -->
+                    <div class="component-card">
+                        <p class="component-label">Media Cards</p>
+                        <div class="flex flex-col gap-4">
+                            <div class="card-media">
+                                <div class="card-media-cover">
+                                    <i data-lucide="image" class="icon icon-lg"></i>
+                                </div>
+                                <div class="card-media-body">
+                                    <div class="text-body-sm" style="font-weight: 600;">Course Title</div>
+                                    <div class="text-caption">2h 15m • Intermediate</div>
+                                </div>
+                            </div>
+                            <div class="card-media-horizontal">
+                                <div class="card-media-cover">
+                                    <i data-lucide="play-circle" class="icon icon-lg"></i>
+                                </div>
+                                <div>
+                                    <div class="text-body-sm" style="font-weight: 600;">Lesson 1: Intro</div>
+                                    <div class="text-caption">Completed</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // === Visual Controls: Mode, Brand, Theme ===
+        // Mode Controls
+        const modeButtons = {
+            display: document.getElementById('modeDisplay'),
+            product: document.getElementById('modeProduct'),
+            app: document.getElementById('modeApp')
+        };
+
+        const brandButtons = {
+            orion: document.getElementById('brandOrion'),
+            uvm: document.getElementById('brandUVM'),
+            unitec: document.getElementById('brandUnitec'),
+            laureate: document.getElementById('brandLaureate')
+        };
+
+        const themeButtons = {
+            light: document.getElementById('themeLight'),
+            dark: document.getElementById('themeDark')
+        };
+
+        // Helper: Update button styles
+        function updateButtonStyles(buttons, active) {
+            Object.entries(buttons).forEach(([key, btn]) => {
+                if (btn) {
+                    if (key === active) {
+                        btn.style.background = 'var(--interactive-primary)';
+                        btn.style.color = 'white';
+                        btn.style.borderColor = 'var(--interactive-primary)';
+                    } else {
+                        btn.style.background = 'var(--interactive-secondary)';
+                        btn.style.color = 'var(--text-primary)';
+                        btn.style.borderColor = 'var(--border-subtle)';
+                    }
+                }
+            });
+        }
+
+        // Mode Control Events
+        Object.entries(modeButtons).forEach(([mode, btn]) => {
+            if (btn) {
+                btn.addEventListener('click', () => {
+                    document.documentElement.dataset.mode = mode;
+                    updateButtonStyles(modeButtons, mode);
+                    localStorage.setItem('orion-mode', mode);
+                });
+            }
+        });
+
+        // Brand Control Events
+        Object.entries(brandButtons).forEach(([brand, btn]) => {
+            if (btn) {
+                btn.addEventListener('click', () => {
+                    document.documentElement.dataset.brand = brand;
+                    updateButtonStyles(brandButtons, brand);
+                    localStorage.setItem('orion-brand', brand);
+                });
+            }
+        });
+
+        // Theme Control Events
+        Object.entries(themeButtons).forEach(([theme, btn]) => {
+            if (btn) {
+                btn.addEventListener('click', () => {
+                    document.documentElement.dataset.theme = theme;
+                    updateButtonStyles(themeButtons, theme);
+                    localStorage.setItem('orion-theme', theme);
+                });
+            }
+        });
+
+        // Restore from localStorage on load
+        const savedMode = localStorage.getItem('orion-mode') || 'display';
+        const savedBrand = localStorage.getItem('orion-brand') || 'uvm';
+        const savedTheme = localStorage.getItem('orion-theme') || 'light';
+
+        document.documentElement.dataset.mode = savedMode;
+        document.documentElement.dataset.brand = savedBrand;
+        document.documentElement.dataset.theme = savedTheme;
+
+        updateButtonStyles(modeButtons, savedMode);
+        updateButtonStyles(brandButtons, savedBrand);
+        updateButtonStyles(themeButtons, savedTheme);
+        function togglePassword() {
+            const f = document.getElementById('passwordField');
+            f.type = f.type === 'password' ? 'text' : 'password';
+        }
+        document.querySelectorAll('.library-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelectorAll('.library-nav a').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+            });
+        });
+
+        // Carousel Engine Navigation
+        const carouselEngine = document.querySelector('.carousel-engine');
+        const prevBtn = document.getElementById('carousel-prev');
+        const nextBtn = document.getElementById('carousel-next');
+
+        if (carouselEngine && prevBtn && nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                carouselEngine.scrollBy({ left: 340, behavior: 'smooth' }); // 320 card + 20 gap
+            });
+            prevBtn.addEventListener('click', () => {
+                carouselEngine.scrollBy({ left: -340, behavior: 'smooth' });
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
-import { Modal } from './Modal';
-import { Button } from '../Button/Button';
-import { Field } from '../Field/Field';
-import { Textarea } from '../Textarea/Textarea';
+import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
+import { Modal } from "./Modal";
+import { Button } from "../Button/Button";
+import { Field } from "../Field/Field";
+import { Textarea } from "../Textarea/Textarea";
 
 const meta: Meta<typeof Modal> = {
-  title: 'Components/Overlay/Modal',
+  title: "Components/Overlays/Modal",
   component: Modal,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
     docs: {
       story: {
         inline: false,
@@ -19,29 +19,29 @@ const meta: Meta<typeof Modal> = {
   },
   decorators: [
     (Story) => (
-      <div style={{ padding: 'var(--spacing-8)' }}>
+      <div style={{ padding: "var(--spacing-8)" }}>
         <Story />
       </div>
     ),
   ],
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     size: {
-      control: 'select',
-      options: ['sm', 'md', 'lg', 'xl', 'full'],
-      description: 'Modal size',
+      control: "select",
+      options: ["sm", "md", "lg", "xl", "full"],
+      description: "Modal size",
     },
     closeOnBackdrop: {
-      control: 'boolean',
-      description: 'Close modal when clicking backdrop',
+      control: "boolean",
+      description: "Close modal when clicking backdrop",
     },
     closeOnEscape: {
-      control: 'boolean',
-      description: 'Close modal when pressing Escape key',
+      control: "boolean",
+      description: "Close modal when pressing Escape key",
     },
     showCloseButton: {
-      control: 'boolean',
-      description: 'Show close button in corner',
+      control: "boolean",
+      description: "Show close button in corner",
     },
   },
 };
@@ -88,7 +88,7 @@ export const SmallSize: Story = {
   args: {
     open: false,
     onClose: () => {},
-    size: 'sm',
+    size: "sm",
     children: (
       <>
         <Modal.Header>Small Modal</Modal.Header>
@@ -105,7 +105,7 @@ export const LargeSize: Story = {
   args: {
     open: false,
     onClose: () => {},
-    size: 'lg',
+    size: "lg",
     children: (
       <>
         <Modal.Header>Large Modal</Modal.Header>
@@ -126,7 +126,7 @@ export const FullScreen: Story = {
   args: {
     open: false,
     onClose: () => {},
-    size: 'full',
+    size: "full",
     children: (
       <>
         <Modal.Header>Full Screen Modal</Modal.Header>
@@ -153,7 +153,9 @@ export const WithoutCloseButton: Story = {
         <Modal.Header>No Close Button</Modal.Header>
         <Modal.Body>
           <p>This modal doesn't have a close button in the corner.</p>
-          <p>You can only close it using the buttons below or pressing Escape.</p>
+          <p>
+            You can only close it using the buttons below or pressing Escape.
+          </p>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary">Close</Button>
@@ -190,7 +192,7 @@ export const ConfirmationDialog: Story = {
   args: {
     open: false,
     onClose: () => {},
-    size: 'sm',
+    size: "sm",
     children: (
       <>
         <Modal.Header>Confirm Action</Modal.Header>
@@ -212,14 +214,29 @@ export const FormModal: Story = {
   args: {
     open: false,
     onClose: () => {},
-    size: 'md',
+    size: "md",
     children: (
       <>
         <Modal.Header>Create New Item</Modal.Header>
         <Modal.Body>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-4)' }}>
-            <Field label="Name" type="text" placeholder="Enter name" fullWidth />
-            <Textarea label="Description" placeholder="Enter description" rows={4} />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "var(--spacing-4)",
+            }}
+          >
+            <Field
+              label="Name"
+              type="text"
+              placeholder="Enter name"
+              fullWidth
+            />
+            <Textarea
+              label="Description"
+              placeholder="Enter description"
+              rows={4}
+            />
           </div>
         </Modal.Body>
         <Modal.Footer>
@@ -237,34 +254,56 @@ export const AllSizes: Story = {
     const [openModal, setOpenModal] = useState<string | null>(null);
 
     return (
-      <div style={{ display: 'flex', gap: 'var(--spacing-4)', flexWrap: 'wrap' }}>
-        <Button onClick={() => setOpenModal('sm')}>Small</Button>
-        <Button onClick={() => setOpenModal('md')}>Medium</Button>
-        <Button onClick={() => setOpenModal('lg')}>Large</Button>
-        <Button onClick={() => setOpenModal('xl')}>Extra Large</Button>
-        <Button onClick={() => setOpenModal('full')}>Full Screen</Button>
+      <div
+        style={{ display: "flex", gap: "var(--spacing-4)", flexWrap: "wrap" }}
+      >
+        <Button onClick={() => setOpenModal("sm")}>Small</Button>
+        <Button onClick={() => setOpenModal("md")}>Medium</Button>
+        <Button onClick={() => setOpenModal("lg")}>Large</Button>
+        <Button onClick={() => setOpenModal("xl")}>Extra Large</Button>
+        <Button onClick={() => setOpenModal("full")}>Full Screen</Button>
 
-        <Modal open={openModal === 'sm'} onClose={() => setOpenModal(null)} size="sm">
+        <Modal
+          open={openModal === "sm"}
+          onClose={() => setOpenModal(null)}
+          size="sm"
+        >
           <Modal.Header>Small Modal</Modal.Header>
           <Modal.Body>Small size modal content</Modal.Body>
         </Modal>
 
-        <Modal open={openModal === 'md'} onClose={() => setOpenModal(null)} size="md">
+        <Modal
+          open={openModal === "md"}
+          onClose={() => setOpenModal(null)}
+          size="md"
+        >
           <Modal.Header>Medium Modal</Modal.Header>
           <Modal.Body>Medium size modal content</Modal.Body>
         </Modal>
 
-        <Modal open={openModal === 'lg'} onClose={() => setOpenModal(null)} size="lg">
+        <Modal
+          open={openModal === "lg"}
+          onClose={() => setOpenModal(null)}
+          size="lg"
+        >
           <Modal.Header>Large Modal</Modal.Header>
           <Modal.Body>Large size modal content</Modal.Body>
         </Modal>
 
-        <Modal open={openModal === 'xl'} onClose={() => setOpenModal(null)} size="xl">
+        <Modal
+          open={openModal === "xl"}
+          onClose={() => setOpenModal(null)}
+          size="xl"
+        >
           <Modal.Header>Extra Large Modal</Modal.Header>
           <Modal.Body>Extra large size modal content</Modal.Body>
         </Modal>
 
-        <Modal open={openModal === 'full'} onClose={() => setOpenModal(null)} size="full">
+        <Modal
+          open={openModal === "full"}
+          onClose={() => setOpenModal(null)}
+          size="full"
+        >
           <Modal.Header>Full Screen Modal</Modal.Header>
           <Modal.Body>Full screen modal content</Modal.Body>
         </Modal>

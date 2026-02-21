@@ -16,7 +16,7 @@
   background-color: var(--surface-base);
 }
 
-.login[data-single-column='true'] {
+.login[data-single-column="true"] {
   grid-template-columns: 1fr;
 }
 
@@ -200,16 +200,20 @@
   overflow: hidden;
 }
 
-.editorialPanel[data-has-image='true'] {
+.editorialPanel[data-has-image="true"] {
   background-size: cover;
   background-position: center;
 }
 
-.editorialPanel[data-has-image='true']::before {
-  content: '';
+.editorialPanel[data-has-image="true"]::before {
+  content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, var(--interactive-primary), var(--interactive-primary-hover));
+  background: linear-gradient(
+    135deg,
+    var(--interactive-primary),
+    var(--interactive-primary-hover)
+  );
   opacity: 0.9;
 }
 
@@ -232,7 +236,7 @@
   letter-spacing: -0.02em;
 }
 
-.editorialPanel[data-has-image='true'] .editorialHeadline {
+.editorialPanel[data-has-image="true"] .editorialHeadline {
   color: var(--text-on-brand-primary);
 }
 
@@ -244,7 +248,7 @@
   line-height: var(--line-height-relaxed);
 }
 
-.editorialPanel[data-has-image='true'] .editorialDescription {
+.editorialPanel[data-has-image="true"] .editorialDescription {
   color: var(--text-on-brand-secondary);
 }
 
@@ -259,7 +263,7 @@
   border: 1px solid var(--border-subtle);
 }
 
-.editorialPanel[data-has-image='true'] .testimonial {
+.editorialPanel[data-has-image="true"] .testimonial {
   background-color: var(--text-on-brand-tertiary);
   border: none;
 }
@@ -273,7 +277,7 @@
   line-height: var(--line-height-relaxed);
 }
 
-.editorialPanel[data-has-image='true'] .quote {
+.editorialPanel[data-has-image="true"] .quote {
   color: var(--text-on-brand-primary);
 }
 
@@ -311,7 +315,7 @@
   margin: 0;
 }
 
-.editorialPanel[data-has-image='true'] .authorName {
+.editorialPanel[data-has-image="true"] .authorName {
   color: var(--text-on-brand-primary);
 }
 
@@ -322,7 +326,7 @@
   margin: 0;
 }
 
-.editorialPanel[data-has-image='true'] .authorRole {
+.editorialPanel[data-has-image="true"] .authorRole {
   color: var(--text-on-brand-secondary);
 }
 

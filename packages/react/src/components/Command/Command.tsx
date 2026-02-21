@@ -30,10 +30,10 @@ import React, {
   useEffect,
   useId,
   useMemo,
-} from 'react';
-import { createPortal } from 'react-dom';
-import { Search } from 'lucide-react';
-import { Divider } from '../Divider';
+} from "react";
+import { createPortal } from "react-dom";
+import { Search } from "lucide-react";
+import { Divider } from "../Divider";
 import type {
   CommandProps,
   CommandDialogProps,
@@ -44,8 +44,8 @@ import type {
   CommandItemProps,
   CommandSeparatorProps,
   CommandShortcutProps,
-} from './Command.types';
-import styles from './Command.module.css';
+} from "./Command.types";
+import styles from "./Command.module.css";
 
 // ============================================================================
 // CONTEXT
@@ -68,7 +68,10 @@ const CommandContext = createContext<CommandContextValue | null>(null);
 
 function useCommandContext(): CommandContextValue {
   const ctx = useContext(CommandContext);
-  if (!ctx) throw new Error('Command compound components must be used within <Command>');
+  if (!ctx)
+    throw new Error(
+      "Command compound components must be used within <Command>",
+    );
   return ctx;
 }
 
@@ -90,8 +93,15 @@ export const Command: React.FC<CommandProps> & {
   Separator: React.FC<CommandSeparatorProps>;
   Shortcut: React.FC<CommandShortcutProps>;
   Dialog: React.FC<CommandDialogProps>;
-} = ({ value, onValueChange, filter = defaultFilter, children, className, ...rest }) => {
-  const [internalSearch, setInternalSearch] = useState('');
+} = ({
+  value,
+  onValueChange,
+  filter = defaultFilter,
+  children,
+  className,
+  ...rest
+}) => {
+  const [internalSearch, setInternalSearch] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
   const itemsRef = useRef(new Map<string, string>());
   const [, forceUpdate] = useState(0);
@@ -164,13 +174,13 @@ export const Command: React.FC<CommandProps> & {
       const visible = getVisibleItems();
       if (!visible.length) return;
 
-      if (e.key === 'ArrowDown') {
+      if (e.key === "ArrowDown") {
         e.preventDefault();
         setActiveIndex((prev) => (prev + 1) % visible.length);
-      } else if (e.key === 'ArrowUp') {
+      } else if (e.key === "ArrowUp") {
         e.preventDefault();
         setActiveIndex((prev) => (prev - 1 + visible.length) % visible.length);
-      } else if (e.key === 'Enter') {
+      } else if (e.key === "Enter") {
         e.preventDefault();
         const activeId = visible[activeIndex];
         if (activeId) {
@@ -184,11 +194,16 @@ export const Command: React.FC<CommandProps> & {
     [getVisibleItems, activeIndex, setActiveIndex],
   );
 
-  const commandClasses = [styles.command, className].filter(Boolean).join(' ');
+  const commandClasses = [styles.command, className].filter(Boolean).join(" ");
 
   return (
     <CommandContext.Provider value={contextValue}>
-      <div ref={rootRef} className={commandClasses} onKeyDown={handleKeyDown} {...rest}>
+      <div
+        ref={rootRef}
+        className={commandClasses}
+        onKeyDown={handleKeyDown}
+        {...rest}
+      >
         {children}
       </div>
     </CommandContext.Provider>
@@ -208,7 +223,9 @@ const CommandInput: React.FC<CommandInputProps> = ({ className, ...rest }) => {
     inputRef.current?.focus();
   }, []);
 
-  const wrapperClasses = [styles.inputWrapper, className].filter(Boolean).join(' ');
+  const wrapperClasses = [styles.inputWrapper, className]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <div className={wrapperClasses}>
@@ -229,15 +246,19 @@ const CommandInput: React.FC<CommandInputProps> = ({ className, ...rest }) => {
   );
 };
 
-CommandInput.displayName = 'Command.Input';
+CommandInput.displayName = "Command.Input";
 
 // ============================================================================
 // COMMAND.LIST
 // ============================================================================
 
-const CommandList: React.FC<CommandListProps> = ({ children, className, ...rest }) => {
+const CommandList: React.FC<CommandListProps> = ({
+  children,
+  className,
+  ...rest
+}) => {
   const { listId } = useCommandContext();
-  const listClasses = [styles.list, className].filter(Boolean).join(' ');
+  const listClasses = [styles.list, className].filter(Boolean).join(" ");
 
   return (
     <div id={listId} className={listClasses} role="listbox" {...rest}>
@@ -246,7 +267,7 @@ const CommandList: React.FC<CommandListProps> = ({ children, className, ...rest 
   );
 };
 
-CommandList.displayName = 'Command.List';
+CommandList.displayName = "Command.List";
 
 // ============================================================================
 // COMMAND.EMPTY
@@ -258,7 +279,7 @@ const CommandEmpty: React.FC<CommandEmptyProps> = ({ children, className }) => {
 
   if (visible.length > 0) return null;
 
-  const emptyClasses = [styles.empty, className].filter(Boolean).join(' ');
+  const emptyClasses = [styles.empty, className].filter(Boolean).join(" ");
   return (
     <div className={emptyClasses} role="status" aria-live="polite">
       {children}
@@ -266,14 +287,18 @@ const CommandEmpty: React.FC<CommandEmptyProps> = ({ children, className }) => {
   );
 };
 
-CommandEmpty.displayName = 'Command.Empty';
+CommandEmpty.displayName = "Command.Empty";
 
 // ============================================================================
 // COMMAND.GROUP
 // ============================================================================
 
-const CommandGroup: React.FC<CommandGroupProps> = ({ heading, children, className }) => {
-  const groupClasses = [styles.group, className].filter(Boolean).join(' ');
+const CommandGroup: React.FC<CommandGroupProps> = ({
+  heading,
+  children,
+  className,
+}) => {
+  const groupClasses = [styles.group, className].filter(Boolean).join(" ");
 
   return (
     <div className={groupClasses} role="group" aria-label={heading}>
@@ -283,7 +308,7 @@ const CommandGroup: React.FC<CommandGroupProps> = ({ heading, children, classNam
   );
 };
 
-CommandGroup.displayName = 'Command.Group';
+CommandGroup.displayName = "Command.Group";
 
 // ============================================================================
 // COMMAND.ITEM
@@ -299,10 +324,16 @@ const CommandItem: React.FC<CommandItemProps> = ({
   className,
   ...rest
 }) => {
-  const { filter, search, activeIndex, getVisibleItems, registerItem, unregisterItem } =
-    useCommandContext();
+  const {
+    filter,
+    search,
+    activeIndex,
+    getVisibleItems,
+    registerItem,
+    unregisterItem,
+  } = useCommandContext();
 
-  const idRef = useRef<string>('');
+  const idRef = useRef<string>("");
   if (!idRef.current) {
     idRef.current = `cmd-item-${++itemIdCounter}`;
   }
@@ -333,7 +364,7 @@ const CommandItem: React.FC<CommandItemProps> = ({
     className,
   ]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
 
   return (
     <div
@@ -351,29 +382,36 @@ const CommandItem: React.FC<CommandItemProps> = ({
   );
 };
 
-CommandItem.displayName = 'Command.Item';
+CommandItem.displayName = "Command.Item";
 
 // ============================================================================
 // COMMAND.SEPARATOR
 // ============================================================================
 
 const CommandSeparator: React.FC<CommandSeparatorProps> = ({ className }) => {
-  const separatorClasses = [styles.separator, className].filter(Boolean).join(' ');
+  const separatorClasses = [styles.separator, className]
+    .filter(Boolean)
+    .join(" ");
   return <Divider spacing="none" className={separatorClasses} />;
 };
 
-CommandSeparator.displayName = 'Command.Separator';
+CommandSeparator.displayName = "Command.Separator";
 
 // ============================================================================
 // COMMAND.SHORTCUT
 // ============================================================================
 
-const CommandShortcut: React.FC<CommandShortcutProps> = ({ children, className }) => {
-  const shortcutClasses = [styles.shortcut, className].filter(Boolean).join(' ');
+const CommandShortcut: React.FC<CommandShortcutProps> = ({
+  children,
+  className,
+}) => {
+  const shortcutClasses = [styles.shortcut, className]
+    .filter(Boolean)
+    .join(" ");
   return <span className={shortcutClasses}>{children}</span>;
 };
 
-CommandShortcut.displayName = 'Command.Shortcut';
+CommandShortcut.displayName = "Command.Shortcut";
 
 // ============================================================================
 // COMMAND.DIALOG
@@ -390,24 +428,24 @@ const CommandDialog: React.FC<CommandDialogProps> = ({
     if (!open) return;
 
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         onOpenChange(false);
       }
     };
 
-    document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
   }, [open, onOpenChange]);
 
   // Body scroll lock
   useEffect(() => {
     if (open) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
   }, [open]);
 
@@ -421,7 +459,9 @@ const CommandDialog: React.FC<CommandDialogProps> = ({
 
   return createPortal(
     <div className={styles.dialogBackdrop} onClick={handleBackdropClick}>
-      <div className={[styles.dialogContent, className].filter(Boolean).join(' ')}>
+      <div
+        className={[styles.dialogContent, className].filter(Boolean).join(" ")}
+      >
         <Command>{children}</Command>
       </div>
     </div>,
@@ -429,7 +469,7 @@ const CommandDialog: React.FC<CommandDialogProps> = ({
   );
 };
 
-CommandDialog.displayName = 'Command.Dialog';
+CommandDialog.displayName = "Command.Dialog";
 
 // ============================================================================
 // ATTACH SUB-COMPONENTS
@@ -443,7 +483,7 @@ Command.Item = CommandItem;
 Command.Separator = CommandSeparator;
 Command.Shortcut = CommandShortcut;
 Command.Dialog = CommandDialog;
-Command.displayName = 'Command';
+Command.displayName = "Command";
 
 // ============================================================================
 // HELPERS
@@ -453,11 +493,13 @@ Command.displayName = 'Command';
  * Extract text content from React children for filtering.
  */
 function extractText(children: React.ReactNode): string {
-  if (typeof children === 'string') return children;
-  if (typeof children === 'number') return String(children);
-  if (Array.isArray(children)) return children.map(extractText).join(' ');
+  if (typeof children === "string") return children;
+  if (typeof children === "number") return String(children);
+  if (Array.isArray(children)) return children.map(extractText).join(" ");
   if (React.isValidElement(children) && children.props) {
-    return extractText((children.props as { children?: React.ReactNode }).children);
+    return extractText(
+      (children.props as { children?: React.ReactNode }).children,
+    );
   }
-  return '';
+  return "";
 }

@@ -21,7 +21,7 @@
  * ```
  */
 
-import { useEffect, useCallback, useRef } from 'react';
+import { useEffect, useCallback, useRef } from "react";
 
 /**
  * Key modifier options
@@ -66,7 +66,7 @@ export interface UseKeyboardOptions extends KeyModifiers {
    * Event type to listen for
    * @default 'keydown'
    */
-  event?: 'keydown' | 'keyup' | 'keypress';
+  event?: "keydown" | "keyup" | "keypress";
 
   /**
    * Whether to prevent default browser behavior
@@ -110,7 +110,7 @@ export function useKeyboard(
     shift = false,
     meta = false,
     enabled = true,
-    event = 'keydown',
+    event = "keydown",
     preventDefault = true,
     stopPropagation = false,
     target,
@@ -128,7 +128,8 @@ export function useKeyboard(
 
     const handleKeyEvent = (e: KeyboardEvent) => {
       // Check if key matches
-      const keyMatches = e.key.toLowerCase() === key.toLowerCase() || e.code === key;
+      const keyMatches =
+        e.key.toLowerCase() === key.toLowerCase() || e.code === key;
 
       if (!keyMatches) {
         return;
@@ -150,10 +151,10 @@ export function useKeyboard(
       const isTyping =
         activeElement instanceof HTMLInputElement ||
         activeElement instanceof HTMLTextAreaElement ||
-        activeElement?.getAttribute('contenteditable') === 'true';
+        activeElement?.getAttribute("contenteditable") === "true";
 
       // Allow Escape to work even when typing
-      if (isTyping && key.toLowerCase() !== 'escape') {
+      if (isTyping && key.toLowerCase() !== "escape") {
         return;
       }
 
@@ -198,8 +199,11 @@ export type KeyboardShortcuts = Record<string, () => void>;
  * Parse shortcut string into key and modifiers
  * Supports formats like: "Escape", "Meta+k", "Ctrl+Shift+s"
  */
-function parseShortcut(shortcut: string): { key: string; modifiers: KeyModifiers } {
-  const parts = shortcut.split('+');
+function parseShortcut(shortcut: string): {
+  key: string;
+  modifiers: KeyModifiers;
+} {
+  const parts = shortcut.split("+");
   const key = parts[parts.length - 1] || shortcut;
   const modifiers: KeyModifiers = {};
 
@@ -208,20 +212,20 @@ function parseShortcut(shortcut: string): { key: string; modifiers: KeyModifiers
     if (part) {
       const modifier = part.toLowerCase();
       switch (modifier) {
-        case 'ctrl':
-        case 'control':
+        case "ctrl":
+        case "control":
           modifiers.ctrl = true;
           break;
-        case 'alt':
-        case 'option':
+        case "alt":
+        case "option":
           modifiers.alt = true;
           break;
-        case 'shift':
+        case "shift":
           modifiers.shift = true;
           break;
-        case 'meta':
-        case 'cmd':
-        case 'command':
+        case "meta":
+        case "cmd":
+        case "command":
           modifiers.meta = true;
           break;
       }
@@ -243,7 +247,7 @@ export function useKeyboardShortcuts(
 ): void {
   const {
     enabled = true,
-    event = 'keydown',
+    event = "keydown",
     preventDefault = true,
     stopPropagation = false,
   } = options;
@@ -265,7 +269,8 @@ export function useKeyboardShortcuts(
       const parsed = parsedShortcuts();
 
       for (const { key, modifiers, handler } of parsed) {
-        const keyMatches = e.key.toLowerCase() === key.toLowerCase() || e.code === key;
+        const keyMatches =
+          e.key.toLowerCase() === key.toLowerCase() || e.code === key;
 
         if (!keyMatches) continue;
 
@@ -280,9 +285,9 @@ export function useKeyboardShortcuts(
         const isTyping =
           activeElement instanceof HTMLInputElement ||
           activeElement instanceof HTMLTextAreaElement ||
-          activeElement?.getAttribute('contenteditable') === 'true';
+          activeElement?.getAttribute("contenteditable") === "true";
 
-        if (isTyping && key.toLowerCase() !== 'escape') {
+        if (isTyping && key.toLowerCase() !== "escape") {
           continue;
         }
 

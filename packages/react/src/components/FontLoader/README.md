@@ -32,7 +32,7 @@ You don't need to add this component manually unless you've disabled auto font l
 Fonts load automatically with ThemeProvider:
 
 ```tsx
-import { ThemeProvider } from '@orion/react';
+import { ThemeProvider } from "@orion/react";
 
 function App() {
   return (
@@ -75,11 +75,11 @@ If fonts are loaded elsewhere and you want to suppress console warnings:
 Only needed for custom loading behavior:
 
 ```tsx
-import { FontLoader } from '@orion/react';
+import { FontLoader } from "@orion/react";
 
 <FontLoader
-  onLoad={() => console.log('Fonts ready!')}
-  onError={(error) => console.error('Font load failed:', error)}
+  onLoad={() => console.log("Fonts ready!")}
+  onError={(error) => console.error("Font load failed:", error)}
 />;
 ```
 
@@ -151,8 +151,17 @@ When Google Fonts are unavailable (slow network, blocked, loading), the system u
 
 ```html
 <!-- Injected into <head> -->
-<link rel="preconnect" href="https://fonts.googleapis.com" data-orion-fonts="preconnect" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin data-orion-fonts="preconnect" />
+<link
+  rel="preconnect"
+  href="https://fonts.googleapis.com"
+  data-orion-fonts="preconnect"
+/>
+<link
+  rel="preconnect"
+  href="https://fonts.gstatic.com"
+  crossorigin
+  data-orion-fonts="preconnect"
+/>
 <link
   rel="stylesheet"
   href="https://fonts.googleapis.com/css2?family=..."
@@ -191,28 +200,32 @@ For optimal performance with Next.js, use `next/font`:
 
 ```tsx
 // app/layout.tsx
-import { Libre_Baskerville, DM_Sans, JetBrains_Mono } from 'next/font/google';
-import { ThemeProvider } from '@orion/react';
+import { Libre_Baskerville, DM_Sans, JetBrains_Mono } from "next/font/google";
+import { ThemeProvider } from "@orion/react";
 
 const libreBaskerville = Libre_Baskerville({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  variable: '--font-primary',
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-primary",
 });
 
 const dmSans = DM_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '700'],
-  variable: '--font-secondary',
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-secondary",
 });
 
 const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500', '700'],
-  variable: '--font-mono',
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-mono",
 });
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html
       lang="en"
@@ -232,14 +245,18 @@ Load fonts in `_document.tsx`:
 
 ```tsx
 // pages/_document.tsx
-import { Html, Head, Main, NextScript } from 'next/document';
+import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
     <Html>
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
         <link
           href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
           rel="stylesheet"
@@ -258,7 +275,7 @@ Then in `_app.tsx`:
 
 ```tsx
 // pages/_app.tsx
-import { ThemeProvider } from '@orion/react';
+import { ThemeProvider } from "@orion/react";
 
 export default function App({ Component, pageProps }) {
   return (
@@ -273,16 +290,20 @@ export default function App({ Component, pageProps }) {
 
 ```tsx
 // app/root.tsx
-import { Links, Meta, Outlet, Scripts } from '@remix-run/react';
-import { ThemeProvider } from '@orion/react';
+import { Links, Meta, Outlet, Scripts } from "@remix-run/react";
+import { ThemeProvider } from "@orion/react";
 
 export function links() {
   return [
-    { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-    { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
+    { rel: "preconnect", href: "https://fonts.googleapis.com" },
     {
-      rel: 'stylesheet',
-      href: 'https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap',
+      rel: "preconnect",
+      href: "https://fonts.gstatic.com",
+      crossOrigin: "anonymous",
+    },
+    {
+      rel: "stylesheet",
+      href: "https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap",
     },
   ];
 }
@@ -311,9 +332,9 @@ Vite apps can use the automatic loading (default):
 
 ```tsx
 // main.tsx
-import { ThemeProvider } from '@orion/react';
+import { ThemeProvider } from "@orion/react";
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <ThemeProvider>
     <App />
   </ThemeProvider>,
@@ -331,19 +352,19 @@ For privacy or performance, self-host the fonts:
 ```css
 /* fonts.css */
 @font-face {
-  font-family: 'Libre Baskerville';
+  font-family: "Libre Baskerville";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/fonts/libre-baskerville-400.woff2') format('woff2');
+  src: url("/fonts/libre-baskerville-400.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Libre Baskerville';
+  font-family: "Libre Baskerville";
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('/fonts/libre-baskerville-700.woff2') format('woff2');
+  src: url("/fonts/libre-baskerville-700.woff2") format("woff2");
 }
 
 /* ... repeat for DM Sans and JetBrains Mono */
@@ -352,7 +373,7 @@ For privacy or performance, self-host the fonts:
 4. Import and disable auto-loading:
 
 ```tsx
-import './fonts.css';
+import "./fonts.css";
 
 <ThemeProvider disableAutoFontLoading>
   <App />

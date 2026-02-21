@@ -4,22 +4,22 @@
  * Type definitions for the Orion Avatar component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Avatar sizes
  */
 export type AvatarSize =
-  | 'xs'
-  | 'sm'
-  | 'md'
-  | 'lg'
-  | 'xl'
-  | '2xl'
-  | '3xl'
-  | '4xl'
-  | '5xl'
-  | 'profile';
+  | "xs"
+  | "sm"
+  | "md"
+  | "lg"
+  | "xl"
+  | "2xl"
+  | "3xl"
+  | "4xl"
+  | "5xl"
+  | "profile";
 
 /**
  * Avatar component props
@@ -62,7 +62,7 @@ export interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
    * Show online status indicator
    * @default false
    */
-  status?: 'online' | 'offline' | 'away' | 'busy';
+  status?: "online" | "offline" | "away" | "busy";
 
   /**
    * Make avatar clickable

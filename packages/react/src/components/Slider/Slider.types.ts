@@ -4,12 +4,12 @@
  * Type definitions for the Orion Slider/Range component.
  */
 
-import type { HTMLAttributes } from 'react';
+import type { HTMLAttributes } from "react";
 
 /**
  * Slider size variants
  */
-export type SliderSize = 'sm' | 'md' | 'lg';
+export type SliderSize = "sm" | "md" | "lg";
 
 /**
  * Slider component props
@@ -24,7 +24,10 @@ export type SliderSize = 'sm' | 'md' | 'lg';
  * />
  * ```
  */
-export interface SliderProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
+export interface SliderProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "onChange"
+> {
   /**
    * Current value
    */

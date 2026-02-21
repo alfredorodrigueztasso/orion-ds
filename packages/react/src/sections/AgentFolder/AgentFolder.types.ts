@@ -87,8 +87,11 @@ export interface AgentFolderProps extends Omit<
 
   /**
    * Drop handler for drag & drop
+   * @param agentId - ID of the agent being dropped
+   * @param folderId - ID of the target folder
+   * @param index - Position index where the agent will be inserted (optional, defaults to end)
    */
-  onDrop?: (agentId: string, folderId: string) => void;
+  onDrop?: (agentId: string, folderId: string, index?: number) => void;
 
   /**
    * Rename folder handler
@@ -116,4 +119,16 @@ export interface AgentFolderProps extends Omit<
    * @internal
    */
   isDropCompleted?: boolean;
+
+  /**
+   * Callback when drag enters folder (for syncing @dnd-kit state)
+   * @internal
+   */
+  onDragEnter?: () => void;
+
+  /**
+   * Callback when drag leaves folder (for syncing @dnd-kit state)
+   * @internal
+   */
+  onDragLeaveFolder?: () => void;
 }

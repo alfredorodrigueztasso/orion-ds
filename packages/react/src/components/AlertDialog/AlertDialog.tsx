@@ -18,17 +18,17 @@
  * ```
  */
 
-import React, { createContext, useContext, useEffect, useId } from 'react';
-import { createPortal } from 'react-dom';
-import { AlertCircle, AlertTriangle, Info } from 'lucide-react';
+import React, { createContext, useContext, useEffect, useId } from "react";
+import { createPortal } from "react-dom";
+import { AlertCircle, AlertTriangle, Info } from "lucide-react";
 import type {
   AlertDialogProps,
   AlertDialogIconProps,
   AlertDialogTitleProps,
   AlertDialogDescriptionProps,
   AlertDialogActionsProps,
-} from './AlertDialog.types';
-import styles from './AlertDialog.module.css';
+} from "./AlertDialog.types";
+import styles from "./AlertDialog.module.css";
 
 // Internal context for sharing generated IDs between compound components
 interface AlertDialogContextValue {
@@ -54,7 +54,14 @@ export const AlertDialog: React.FC<AlertDialogProps> & {
   Title: React.FC<AlertDialogTitleProps>;
   Description: React.FC<AlertDialogDescriptionProps>;
   Actions: React.FC<AlertDialogActionsProps>;
-} = ({ open, onClose, closeOnBackdrop = false, closeOnEscape = false, children, className }) => {
+} = ({
+  open,
+  onClose,
+  closeOnBackdrop = false,
+  closeOnEscape = false,
+  children,
+  className,
+}) => {
   const titleId = useId();
   const descriptionId = useId();
 
@@ -63,31 +70,31 @@ export const AlertDialog: React.FC<AlertDialogProps> & {
     if (!open || !closeOnEscape) return;
 
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         onClose();
       }
     };
 
-    document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
   }, [open, closeOnEscape, onClose]);
 
   // Prevent body scroll when dialog is open
   useEffect(() => {
     if (open) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
 
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
   }, [open]);
 
   if (!open) return null;
 
-  const dialogClasses = [styles.dialog, className].filter(Boolean).join(' ');
+  const dialogClasses = [styles.dialog, className].filter(Boolean).join(" ");
 
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (closeOnBackdrop && e.target === e.currentTarget) {
@@ -113,14 +120,20 @@ export const AlertDialog: React.FC<AlertDialogProps> & {
 };
 
 // AlertDialog.Icon subcomponent
-const AlertDialogIcon: React.FC<AlertDialogIconProps> = ({ variant = 'info', icon, className }) => {
+const AlertDialogIcon: React.FC<AlertDialogIconProps> = ({
+  variant = "info",
+  icon,
+  className,
+}) => {
   const variantClass = {
     info: styles.iconInfo,
     warning: styles.iconWarning,
     danger: styles.iconDanger,
   }[variant];
 
-  const classNames = [styles.icon, variantClass, className].filter(Boolean).join(' ');
+  const classNames = [styles.icon, variantClass, className]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <div className={classNames} aria-hidden="true">
@@ -130,9 +143,12 @@ const AlertDialogIcon: React.FC<AlertDialogIconProps> = ({ variant = 'info', ico
 };
 
 // AlertDialog.Title subcomponent
-const AlertDialogTitle: React.FC<AlertDialogTitleProps> = ({ className, children }) => {
+const AlertDialogTitle: React.FC<AlertDialogTitleProps> = ({
+  className,
+  children,
+}) => {
   const ctx = useAlertDialogContext();
-  const classNames = [styles.title, className].filter(Boolean).join(' ');
+  const classNames = [styles.title, className].filter(Boolean).join(" ");
   return (
     <h2 id={ctx?.titleId} className={classNames}>
       {children}
@@ -141,9 +157,12 @@ const AlertDialogTitle: React.FC<AlertDialogTitleProps> = ({ className, children
 };
 
 // AlertDialog.Description subcomponent
-const AlertDialogDescription: React.FC<AlertDialogDescriptionProps> = ({ className, children }) => {
+const AlertDialogDescription: React.FC<AlertDialogDescriptionProps> = ({
+  className,
+  children,
+}) => {
   const ctx = useAlertDialogContext();
-  const classNames = [styles.description, className].filter(Boolean).join(' ');
+  const classNames = [styles.description, className].filter(Boolean).join(" ");
   return (
     <p id={ctx?.descriptionId} className={classNames}>
       {children}
@@ -152,8 +171,11 @@ const AlertDialogDescription: React.FC<AlertDialogDescriptionProps> = ({ classNa
 };
 
 // AlertDialog.Actions subcomponent
-const AlertDialogActions: React.FC<AlertDialogActionsProps> = ({ className, children }) => {
-  const classNames = [styles.actions, className].filter(Boolean).join(' ');
+const AlertDialogActions: React.FC<AlertDialogActionsProps> = ({
+  className,
+  children,
+}) => {
+  const classNames = [styles.actions, className].filter(Boolean).join(" ");
   return <div className={classNames}>{children}</div>;
 };
 
@@ -164,8 +186,8 @@ AlertDialog.Description = AlertDialogDescription;
 AlertDialog.Actions = AlertDialogActions;
 
 // Display names
-AlertDialog.displayName = 'AlertDialog';
-AlertDialogIcon.displayName = 'AlertDialog.Icon';
-AlertDialogTitle.displayName = 'AlertDialog.Title';
-AlertDialogDescription.displayName = 'AlertDialog.Description';
-AlertDialogActions.displayName = 'AlertDialog.Actions';
+AlertDialog.displayName = "AlertDialog";
+AlertDialogIcon.displayName = "AlertDialog.Icon";
+AlertDialogTitle.displayName = "AlertDialog.Title";
+AlertDialogDescription.displayName = "AlertDialog.Description";
+AlertDialogActions.displayName = "AlertDialog.Actions";

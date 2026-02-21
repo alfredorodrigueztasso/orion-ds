@@ -5,13 +5,13 @@
  * This wraps the atomic Carousel with Section/Container for page layouts.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 import type {
   CarouselItem,
   CarouselVariant,
   CarouselAspectRatio,
   CarouselGap,
-} from '../../components/Carousel';
+} from "../../components/Carousel";
 
 // Re-export types from atomic component for convenience
 export type {
@@ -20,7 +20,7 @@ export type {
   CarouselAspectRatio,
   CarouselGap,
   CarouselOverlay,
-} from '../../components/Carousel';
+} from "../../components/Carousel";
 
 /**
  * CarouselSection props
@@ -46,7 +46,10 @@ export type {
  * />
  * ```
  */
-export interface CarouselSectionProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
+export interface CarouselSectionProps extends Omit<
+  HTMLAttributes<HTMLElement>,
+  "title"
+> {
   /**
    * Optional eyebrow/badge above title
    */
@@ -110,7 +113,7 @@ export interface CarouselSectionProps extends Omit<HTMLAttributes<HTMLElement>, 
    * Background style
    * @default 'base'
    */
-  background?: 'base' | 'subtle' | 'sunken' | 'none';
+  background?: "base" | "subtle" | "sunken" | "none";
 
   /**
    * Show navigation arrows in header

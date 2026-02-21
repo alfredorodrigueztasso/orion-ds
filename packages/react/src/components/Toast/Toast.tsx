@@ -19,16 +19,23 @@
  * ```
  */
 
-import { createContext, useContext, useState, useCallback, useEffect, useRef } from 'react';
-import { createPortal } from 'react-dom';
+import {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useEffect,
+  useRef,
+} from "react";
+import { createPortal } from "react-dom";
 import type {
   Toast,
   ToastOptions,
   ToastProviderProps,
   ToastContextValue,
   ToastItemProps,
-} from './Toast.types';
-import styles from './Toast.module.css';
+} from "./Toast.types";
+import styles from "./Toast.module.css";
 
 // Generate unique ID
 let toastCounter = 0;
@@ -43,7 +50,7 @@ const ToastContext = createContext<ToastContextValue | null>(null);
 export const useToast = (): ToastContextValue => {
   const context = useContext(ToastContext);
   if (!context) {
-    throw new Error('useToast must be used within a ToastProvider');
+    throw new Error("useToast must be used within a ToastProvider");
   }
   return context;
 };
@@ -88,13 +95,17 @@ const ToastItem = ({ toast, onDismiss }: ToastItemProps) => {
     }
   };
 
-  const toastClasses = [styles.toast, styles[toast.variant || 'info'], isExiting && styles.exiting]
+  const toastClasses = [
+    styles.toast,
+    styles[toast.variant || "info"],
+    isExiting && styles.exiting,
+  ]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
 
   const getIcon = () => {
     switch (toast.variant) {
-      case 'success':
+      case "success":
         return (
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <path
@@ -106,10 +117,16 @@ const ToastItem = ({ toast, onDismiss }: ToastItemProps) => {
             />
           </svg>
         );
-      case 'error':
+      case "error":
         return (
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <circle cx="10" cy="10" r="7.5" stroke="currentColor" strokeWidth="1.5" />
+            <circle
+              cx="10"
+              cy="10"
+              r="7.5"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            />
             <path
               d="M10 6v5M10 13.5v.5"
               stroke="currentColor"
@@ -118,7 +135,7 @@ const ToastItem = ({ toast, onDismiss }: ToastItemProps) => {
             />
           </svg>
         );
-      case 'warning':
+      case "warning":
         return (
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <path
@@ -140,7 +157,13 @@ const ToastItem = ({ toast, onDismiss }: ToastItemProps) => {
       default: // info
         return (
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <circle cx="10" cy="10" r="7.5" stroke="currentColor" strokeWidth="1.5" />
+            <circle
+              cx="10"
+              cy="10"
+              r="7.5"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            />
             <path
               d="M10 9v4.5M10 6.5v.5"
               stroke="currentColor"
@@ -209,7 +232,7 @@ const ToastItem = ({ toast, onDismiss }: ToastItemProps) => {
  */
 export const ToastProvider = ({
   children,
-  position = 'bottom-right',
+  position = "bottom-right",
   maxToasts = 5,
   defaultDuration = 5000,
 }: ToastProviderProps) => {
@@ -222,7 +245,7 @@ export const ToastProvider = ({
         id,
         duration: defaultDuration,
         dismissible: true,
-        variant: 'info',
+        variant: "info",
         ...options,
       };
 
@@ -251,25 +274,25 @@ export const ToastProvider = ({
   // Shorthand methods
   const info = useCallback(
     (message: string, options?: Partial<ToastOptions>) =>
-      addToast({ message, variant: 'info', ...options }),
+      addToast({ message, variant: "info", ...options }),
     [addToast],
   );
 
   const success = useCallback(
     (message: string, options?: Partial<ToastOptions>) =>
-      addToast({ message, variant: 'success', ...options }),
+      addToast({ message, variant: "success", ...options }),
     [addToast],
   );
 
   const warning = useCallback(
     (message: string, options?: Partial<ToastOptions>) =>
-      addToast({ message, variant: 'warning', ...options }),
+      addToast({ message, variant: "warning", ...options }),
     [addToast],
   );
 
   const error = useCallback(
     (message: string, options?: Partial<ToastOptions>) =>
-      addToast({ message, variant: 'error', ...options }),
+      addToast({ message, variant: "error", ...options }),
     [addToast],
   );
 
@@ -283,7 +306,9 @@ export const ToastProvider = ({
     dismissAll,
   };
 
-  const containerClasses = [styles.container, styles[position]].filter(Boolean).join(' ');
+  const containerClasses = [styles.container, styles[position]]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <ToastContext.Provider value={value}>
@@ -292,7 +317,11 @@ export const ToastProvider = ({
         createPortal(
           <div className={containerClasses} aria-label="Notifications">
             {toasts.map((toast) => (
-              <ToastItem key={toast.id} toast={toast} onDismiss={dismissToast} />
+              <ToastItem
+                key={toast.id}
+                toast={toast}
+                onDismiss={dismissToast}
+              />
             ))}
           </div>,
           document.body,
@@ -301,4 +330,4 @@ export const ToastProvider = ({
   );
 };
 
-ToastProvider.displayName = 'ToastProvider';
+ToastProvider.displayName = "ToastProvider";

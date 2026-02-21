@@ -1,4 +1,4 @@
-export { KanbanBoard } from './KanbanBoard';
+export { KanbanBoard } from "./KanbanBoard";
 export type {
   KanbanBoardProps,
   KanbanColumn,
@@ -6,4 +6,4 @@ export type {
   KanbanLabel,
   KanbanAssignee,
   KanbanDragResult,
-} from './KanbanBoard.types';
+} from "./KanbanBoard.types";

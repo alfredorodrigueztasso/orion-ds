@@ -32,8 +32,11 @@
       "values": [
         "primary",
         "secondary",
+        "secondaryInverse",
         "ghost",
-        "danger"
+        "ghostInverse",
+        "danger",
+        "inverse"
       ]
     },
     {

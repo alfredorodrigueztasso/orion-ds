@@ -5,20 +5,20 @@
 ## Quick Start
 
 ```tsx
-import { Comparison } from '@orion/react';
+import { Comparison } from "@orion/react";
 
 <Comparison
   title="Compare Plans"
   columns={[
-    { title: 'Basic', subtitle: '$9/mo' },
-    { title: 'Pro', subtitle: '$29/mo', highlighted: true, badge: 'Popular' },
-    { title: 'Enterprise', subtitle: 'Custom' },
+    { title: "Basic", subtitle: "$9/mo" },
+    { title: "Pro", subtitle: "$29/mo", highlighted: true, badge: "Popular" },
+    { title: "Enterprise", subtitle: "Custom" },
   ]}
   features={[
-    { name: 'Users', values: ['1', '5', 'Unlimited'] },
-    { name: 'Storage', values: ['10GB', '100GB', 'Unlimited'] },
-    { name: 'API Access', values: [false, true, true] },
-    { name: 'Support', values: ['Email', 'Priority', 'Dedicated'] },
+    { name: "Users", values: ["1", "5", "Unlimited"] },
+    { name: "Storage", values: ["10GB", "100GB", "Unlimited"] },
+    { name: "API Access", values: [false, true, true] },
+    { name: "Support", values: ["Email", "Priority", "Dedicated"] },
   ]}
 />;
 ```
@@ -56,7 +56,7 @@ interface ComparisonProps {
   stickyHeader?: boolean; // Sticky column headers - default: true
 
   // Styling
-  background?: 'base' | 'subtle' | 'none'; // default: 'base'
+  background?: "base" | "subtle" | "none"; // default: 'base'
   compact?: boolean; // Compact spacing - default: false
 }
 
@@ -181,19 +181,39 @@ Group features by category for better organization.
   showCategories
   features={[
     // Core Features
-    { name: 'Users', category: 'Core Features', values: ['1', '5', 'Unlimited'] },
-    { name: 'Projects', category: 'Core Features', values: ['3', '20', 'Unlimited'] },
-    { name: 'Storage', category: 'Core Features', values: ['5GB', '50GB', '500GB'] },
+    {
+      name: "Users",
+      category: "Core Features",
+      values: ["1", "5", "Unlimited"],
+    },
+    {
+      name: "Projects",
+      category: "Core Features",
+      values: ["3", "20", "Unlimited"],
+    },
+    {
+      name: "Storage",
+      category: "Core Features",
+      values: ["5GB", "50GB", "500GB"],
+    },
 
     // Security
-    { name: 'SSL Encryption', category: 'Security', values: [true, true, true] },
-    { name: 'Two-Factor Auth', category: 'Security', values: [false, true, true] },
-    { name: 'SSO', category: 'Security', values: [false, false, true] },
+    {
+      name: "SSL Encryption",
+      category: "Security",
+      values: [true, true, true],
+    },
+    {
+      name: "Two-Factor Auth",
+      category: "Security",
+      values: [false, true, true],
+    },
+    { name: "SSO", category: "Security", values: [false, false, true] },
 
     // Support
-    { name: 'Documentation', category: 'Support', values: [true, true, true] },
-    { name: 'Email Support', category: 'Support', values: [true, true, true] },
-    { name: 'Phone Support', category: 'Support', values: [false, true, true] },
+    { name: "Documentation", category: "Support", values: [true, true, true] },
+    { name: "Email Support", category: "Support", values: [true, true, true] },
+    { name: "Phone Support", category: "Support", values: [false, true, true] },
   ]}
 />
 ```
@@ -205,7 +225,7 @@ Group features by category for better organization.
 ### SaaS Pricing Comparison
 
 ```tsx
-import { Comparison, Badge } from '@orion/react';
+import { Comparison, Badge } from "@orion/react";
 
 <Comparison
   eyebrow={<Badge variant="brand">Pricing</Badge>}
@@ -213,50 +233,102 @@ import { Comparison, Badge } from '@orion/react';
   description="All plans include a 14-day free trial. No credit card required."
   columns={[
     {
-      title: 'Starter',
-      subtitle: 'Free',
-      ctaLabel: 'Get Started',
-      ctaHref: '/signup?plan=starter',
+      title: "Starter",
+      subtitle: "Free",
+      ctaLabel: "Get Started",
+      ctaHref: "/signup?plan=starter",
     },
     {
-      title: 'Professional',
-      subtitle: '$49/month',
+      title: "Professional",
+      subtitle: "$49/month",
       highlighted: true,
-      badge: 'Most Popular',
-      ctaLabel: 'Start Free Trial',
-      ctaHref: '/signup?plan=pro',
+      badge: "Most Popular",
+      ctaLabel: "Start Free Trial",
+      ctaHref: "/signup?plan=pro",
     },
     {
-      title: 'Enterprise',
-      subtitle: 'Custom pricing',
-      ctaLabel: 'Contact Sales',
-      ctaHref: '/contact',
+      title: "Enterprise",
+      subtitle: "Custom pricing",
+      ctaLabel: "Contact Sales",
+      ctaHref: "/contact",
     },
   ]}
   features={[
     // Usage
-    { name: 'Team members', category: 'Usage', values: ['1', 'Up to 10', 'Unlimited'] },
-    { name: 'Projects', category: 'Usage', values: ['3', 'Unlimited', 'Unlimited'] },
-    { name: 'Storage', category: 'Usage', values: ['1GB', '100GB', 'Unlimited'] },
-    { name: 'API requests', category: 'Usage', values: ['1,000/mo', '100,000/mo', 'Unlimited'] },
+    {
+      name: "Team members",
+      category: "Usage",
+      values: ["1", "Up to 10", "Unlimited"],
+    },
+    {
+      name: "Projects",
+      category: "Usage",
+      values: ["3", "Unlimited", "Unlimited"],
+    },
+    {
+      name: "Storage",
+      category: "Usage",
+      values: ["1GB", "100GB", "Unlimited"],
+    },
+    {
+      name: "API requests",
+      category: "Usage",
+      values: ["1,000/mo", "100,000/mo", "Unlimited"],
+    },
 
     // Features
-    { name: 'Custom domains', category: 'Features', values: [false, true, true] },
-    { name: 'Analytics', category: 'Features', values: ['Basic', 'Advanced', 'Custom'] },
-    { name: 'Integrations', category: 'Features', values: ['5', '20', 'Unlimited'] },
-    { name: 'White labeling', category: 'Features', values: [false, false, true] },
+    {
+      name: "Custom domains",
+      category: "Features",
+      values: [false, true, true],
+    },
+    {
+      name: "Analytics",
+      category: "Features",
+      values: ["Basic", "Advanced", "Custom"],
+    },
+    {
+      name: "Integrations",
+      category: "Features",
+      values: ["5", "20", "Unlimited"],
+    },
+    {
+      name: "White labeling",
+      category: "Features",
+      values: [false, false, true],
+    },
 
     // Security
-    { name: 'SSL encryption', category: 'Security', values: [true, true, true] },
-    { name: 'Two-factor auth', category: 'Security', values: [false, true, true] },
-    { name: 'SSO/SAML', category: 'Security', values: [false, false, true] },
-    { name: 'Audit logs', category: 'Security', values: [false, false, true] },
+    {
+      name: "SSL encryption",
+      category: "Security",
+      values: [true, true, true],
+    },
+    {
+      name: "Two-factor auth",
+      category: "Security",
+      values: [false, true, true],
+    },
+    { name: "SSO/SAML", category: "Security", values: [false, false, true] },
+    { name: "Audit logs", category: "Security", values: [false, false, true] },
 
     // Support
-    { name: 'Documentation', category: 'Support', values: [true, true, true] },
-    { name: 'Email support', category: 'Support', values: ['—', 'Priority', 'Priority'] },
-    { name: 'Phone support', category: 'Support', values: [false, false, true] },
-    { name: 'Dedicated manager', category: 'Support', values: [false, false, true] },
+    { name: "Documentation", category: "Support", values: [true, true, true] },
+    {
+      name: "Email support",
+      category: "Support",
+      values: ["—", "Priority", "Priority"],
+    },
+    {
+      name: "Phone support",
+      category: "Support",
+      values: [false, false, true],
+    },
+    {
+      name: "Dedicated manager",
+      category: "Support",
+      values: [false, false, true],
+    },
   ]}
   stickyHeader
   background="subtle"
@@ -269,17 +341,22 @@ import { Comparison, Badge } from '@orion/react';
 <Comparison
   title="Compare Models"
   columns={[
-    { title: 'Model A', subtitle: '$299' },
-    { title: 'Model B', subtitle: '$499', highlighted: true, badge: 'Best Value' },
-    { title: 'Model C', subtitle: '$799' },
+    { title: "Model A", subtitle: "$299" },
+    {
+      title: "Model B",
+      subtitle: "$499",
+      highlighted: true,
+      badge: "Best Value",
+    },
+    { title: "Model C", subtitle: "$799" },
   ]}
   features={[
-    { name: 'Display', values: ['6.1"', '6.7"', '6.7" ProMotion'] },
-    { name: 'Chip', values: ['A15', 'A16', 'A17 Pro'] },
-    { name: 'Camera', values: ['12MP', '48MP', '48MP Pro'] },
-    { name: 'Battery', values: ['All-day', 'All-day+', 'All-day++'] },
-    { name: '5G', values: [true, true, true] },
-    { name: 'ProRes Video', values: [false, false, true] },
+    { name: "Display", values: ['6.1"', '6.7"', '6.7" ProMotion'] },
+    { name: "Chip", values: ["A15", "A16", "A17 Pro"] },
+    { name: "Camera", values: ["12MP", "48MP", "48MP Pro"] },
+    { name: "Battery", values: ["All-day", "All-day+", "All-day++"] },
+    { name: "5G", values: [true, true, true] },
+    { name: "ProRes Video", values: [false, false, true] },
   ]}
   showCategories={false}
 />
@@ -290,11 +367,11 @@ import { Comparison, Badge } from '@orion/react';
 ```tsx
 <Comparison
   compact
-  columns={[{ title: 'Basic' }, { title: 'Standard' }, { title: 'Premium' }]}
+  columns={[{ title: "Basic" }, { title: "Standard" }, { title: "Premium" }]}
   features={[
-    { name: 'Feature A', values: [true, true, true] },
-    { name: 'Feature B', values: [false, true, true] },
-    { name: 'Feature C', values: [false, false, true] },
+    { name: "Feature A", values: [true, true, true] },
+    { name: "Feature B", values: [false, true, true] },
+    { name: "Feature C", values: [false, false, true] },
   ]}
   showCategories={false}
   stickyHeader={false}
@@ -314,12 +391,12 @@ import { Comparison, Badge } from '@orion/react';
 ```tsx
 // Good: Descriptive feature names
 {
-  name: 'Two-factor authentication (2FA)';
+  name: "Two-factor authentication (2FA)";
 }
 
 // Avoid: Abbreviations without context
 {
-  name: '2FA';
+  name: "2FA";
 }
 ```
 

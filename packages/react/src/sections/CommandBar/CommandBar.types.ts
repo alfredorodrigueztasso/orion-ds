@@ -5,7 +5,7 @@
  * A command palette (Cmd+K) for quick navigation and actions.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Command item for the palette
@@ -87,7 +87,10 @@ export interface CommandGroup {
  * />
  * ```
  */
-export interface CommandBarProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onSelect'> {
+export interface CommandBarProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "onSelect"
+> {
   /**
    * Whether the command bar is open
    */

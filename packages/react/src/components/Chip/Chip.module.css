@@ -54,7 +54,8 @@
 .primary {
   background: color-mix(in srgb, var(--interactive-primary) 15%, transparent);
   color: var(--text-brand);
-  border: 1px solid color-mix(in srgb, var(--interactive-primary) 30%, transparent);
+  border: 1px solid
+    color-mix(in srgb, var(--interactive-primary) 30%, transparent);
 }
 
 .success {

@@ -4,8 +4,8 @@
  * Type definitions for the Orion ThemeController component.
  */
 
-import type { CSSProperties } from 'react';
-import type { Theme, Brand } from '../../hooks/useTheme';
+import type { CSSProperties } from "react";
+import type { Theme, Brand } from "../../hooks/useTheme";
 
 /**
  * ThemeController component props

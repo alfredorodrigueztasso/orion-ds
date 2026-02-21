@@ -2,26 +2,26 @@
  * Chip Component Stories
  */
 
-import { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { Chip } from './Chip';
-import { Check, Star, AlertCircle, X } from 'lucide-react';
+import { useState } from "react";
+import type { Meta, StoryObj } from "@storybook/react";
+import { Chip } from "./Chip";
+import { Check, Star, AlertCircle, X } from "lucide-react";
 
 const meta: Meta<typeof Chip> = {
-  title: 'Components/Data Display/Chip',
+  title: "Components/Data Display/Chip",
   component: Chip,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     variant: {
-      control: 'select',
-      options: ['default', 'primary', 'success', 'warning', 'error', 'info'],
+      control: "select",
+      options: ["default", "primary", "success", "warning", "error", "info"],
     },
     size: {
-      control: 'radio',
-      options: ['sm', 'md', 'lg'],
+      control: "radio",
+      options: ["sm", "md", "lg"],
     },
   },
 };
@@ -31,13 +31,15 @@ type Story = StoryObj<typeof Chip>;
 
 export const Default: Story = {
   args: {
-    children: 'Default Chip',
+    children: "Default Chip",
   },
 };
 
 export const Sizes: Story = {
   render: () => (
-    <div style={{ display: 'flex', gap: 'var(--spacing-2)', alignItems: 'center' }}>
+    <div
+      style={{ display: "flex", gap: "var(--spacing-2)", alignItems: "center" }}
+    >
       <Chip size="sm">Small</Chip>
       <Chip size="md">Medium</Chip>
       <Chip size="lg">Large</Chip>
@@ -47,7 +49,7 @@ export const Sizes: Story = {
 
 export const WithIcon: Story = {
   render: () => (
-    <div style={{ display: 'flex', gap: 'var(--spacing-2)', flexWrap: 'wrap' }}>
+    <div style={{ display: "flex", gap: "var(--spacing-2)", flexWrap: "wrap" }}>
       <Chip icon={<Check size={14} />} variant="success">
         Completed
       </Chip>
@@ -63,21 +65,28 @@ export const WithIcon: Story = {
 
 export const Removable: Story = {
   render: () => {
-    const [chips, setChips] = useState(['React', 'TypeScript', 'Tailwind', 'Node.js']);
+    const [chips, setChips] = useState([
+      "React",
+      "TypeScript",
+      "Tailwind",
+      "Node.js",
+    ]);
 
     const removeChip = (chip: string) => {
       setChips(chips.filter((c) => c !== chip));
     };
 
     return (
-      <div style={{ display: 'flex', gap: 'var(--spacing-2)', flexWrap: 'wrap' }}>
+      <div
+        style={{ display: "flex", gap: "var(--spacing-2)", flexWrap: "wrap" }}
+      >
         {chips.map((chip) => (
           <Chip key={chip} onRemove={() => removeChip(chip)}>
             {chip}
           </Chip>
         ))}
         {chips.length === 0 && (
-          <span style={{ color: 'var(--text-tertiary)' }}>No chips left!</span>
+          <span style={{ color: "var(--text-tertiary)" }}>No chips left!</span>
         )}
       </div>
     );
@@ -88,10 +97,10 @@ export const Clickable: Story = {
   render: () => {
     const [selected, setSelected] = useState<string | null>(null);
 
-    const options = ['Option A', 'Option B', 'Option C'];
+    const options = ["Option A", "Option B", "Option C"];
 
     return (
-      <div style={{ display: 'flex', gap: 'var(--spacing-2)' }}>
+      <div style={{ display: "flex", gap: "var(--spacing-2)" }}>
         {options.map((option) => (
           <Chip
             key={option}
@@ -117,11 +126,19 @@ export const MultiSelect: Story = {
       );
     };
 
-    const tags = ['JavaScript', 'Python', 'Go', 'Rust', 'Java'];
+    const tags = ["JavaScript", "Python", "Go", "Rust", "Java"];
 
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-4)' }}>
-        <div style={{ display: 'flex', gap: 'var(--spacing-2)', flexWrap: 'wrap' }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "var(--spacing-4)",
+        }}
+      >
+        <div
+          style={{ display: "flex", gap: "var(--spacing-2)", flexWrap: "wrap" }}
+        >
           {tags.map((tag) => (
             <Chip
               key={tag}
@@ -134,8 +151,13 @@ export const MultiSelect: Story = {
             </Chip>
           ))}
         </div>
-        <p style={{ fontSize: 'var(--font-size-14)', color: 'var(--text-secondary)' }}>
-          Selected: {selected.length > 0 ? selected.join(', ') : 'None'}
+        <p
+          style={{
+            fontSize: "var(--font-size-14)",
+            color: "var(--text-secondary)",
+          }}
+        >
+          Selected: {selected.length > 0 ? selected.join(", ") : "None"}
         </p>
       </div>
     );
@@ -144,7 +166,7 @@ export const MultiSelect: Story = {
 
 export const Disabled: Story = {
   render: () => (
-    <div style={{ display: 'flex', gap: 'var(--spacing-2)' }}>
+    <div style={{ display: "flex", gap: "var(--spacing-2)" }}>
       <Chip disabled>Disabled</Chip>
       <Chip disabled onRemove={() => {}}>
         Disabled Removable
@@ -158,27 +180,65 @@ export const Disabled: Story = {
 
 export const StatusTags: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-3)' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)' }}>
-        <span style={{ width: '80px', fontSize: 'var(--font-size-14)' }}>Order 1:</span>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-3)",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "var(--spacing-2)",
+        }}
+      >
+        <span style={{ width: "80px", fontSize: "var(--font-size-14)" }}>
+          Order 1:
+        </span>
         <Chip variant="success" size="sm" icon={<Check size={12} />}>
           Delivered
         </Chip>
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)' }}>
-        <span style={{ width: '80px', fontSize: 'var(--font-size-14)' }}>Order 2:</span>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "var(--spacing-2)",
+        }}
+      >
+        <span style={{ width: "80px", fontSize: "var(--font-size-14)" }}>
+          Order 2:
+        </span>
         <Chip variant="warning" size="sm">
           In Transit
         </Chip>
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)' }}>
-        <span style={{ width: '80px', fontSize: 'var(--font-size-14)' }}>Order 3:</span>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "var(--spacing-2)",
+        }}
+      >
+        <span style={{ width: "80px", fontSize: "var(--font-size-14)" }}>
+          Order 3:
+        </span>
         <Chip variant="error" size="sm" icon={<X size={12} />}>
           Cancelled
         </Chip>
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)' }}>
-        <span style={{ width: '80px', fontSize: 'var(--font-size-14)' }}>Order 4:</span>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "var(--spacing-2)",
+        }}
+      >
+        <span style={{ width: "80px", fontSize: "var(--font-size-14)" }}>
+          Order 4:
+        </span>
         <Chip variant="info" size="sm">
           Processing
         </Chip>
@@ -189,25 +249,46 @@ export const StatusTags: Story = {
 
 export const FilterChips: Story = {
   render: () => {
-    const [filters, setFilters] = useState<string[]>(['Price: $0-$100', 'Brand: Nike']);
+    const [filters, setFilters] = useState<string[]>([
+      "Price: $0-$100",
+      "Brand: Nike",
+    ]);
 
     const removeFilter = (filter: string) => {
       setFilters(filters.filter((f) => f !== filter));
     };
 
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-3)' }}>
-        <p style={{ fontSize: 'var(--font-size-14)', fontWeight: 'var(--font-weight-medium)' }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "var(--spacing-3)",
+        }}
+      >
+        <p
+          style={{
+            fontSize: "var(--font-size-14)",
+            fontWeight: "var(--font-weight-medium)",
+          }}
+        >
           Active Filters:
         </p>
-        <div style={{ display: 'flex', gap: 'var(--spacing-2)', flexWrap: 'wrap' }}>
+        <div
+          style={{ display: "flex", gap: "var(--spacing-2)", flexWrap: "wrap" }}
+        >
           {filters.map((filter) => (
             <Chip key={filter} onRemove={() => removeFilter(filter)} size="sm">
               {filter}
             </Chip>
           ))}
           {filters.length > 0 && (
-            <Chip variant="error" size="sm" clickable onClick={() => setFilters([])}>
+            <Chip
+              variant="error"
+              size="sm"
+              clickable
+              onClick={() => setFilters([])}
+            >
               Clear All
             </Chip>
           )}
@@ -219,7 +300,7 @@ export const FilterChips: Story = {
 
 export const AllVariants: Story = {
   render: () => (
-    <div style={{ display: 'flex', gap: 'var(--spacing-2)', flexWrap: 'wrap' }}>
+    <div style={{ display: "flex", gap: "var(--spacing-2)", flexWrap: "wrap" }}>
       <Chip variant="default">Default</Chip>
       <Chip variant="primary">Primary</Chip>
       <Chip variant="success">Success</Chip>

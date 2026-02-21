@@ -17,16 +17,16 @@ An atomic carousel component with horizontal scrolling, snap behavior, and peek 
 ## Installation
 
 ```tsx
-import { Carousel } from '@orion/react';
+import { Carousel } from "@orion/react";
 // or
-import { Carousel } from '@orion/react/components';
+import { Carousel } from "@orion/react/components";
 ```
 
 ## Basic Usage
 
 ```tsx
-import { Carousel } from '@orion/react';
-import { Card } from '@orion/react';
+import { Carousel } from "@orion/react";
+import { Card } from "@orion/react";
 
 // Inside a Card
 function ProductShowcase() {
@@ -36,15 +36,15 @@ function ProductShowcase() {
         items={[
           {
             image: <img src="/product-1.jpg" alt="Product 1" />,
-            title: 'Product 1',
-            description: 'Amazing product',
-            overlay: 'gradient',
+            title: "Product 1",
+            description: "Amazing product",
+            overlay: "gradient",
           },
           {
             image: <img src="/product-2.jpg" alt="Product 2" />,
-            title: 'Product 2',
-            description: 'Another great product',
-            overlay: 'gradient',
+            title: "Product 2",
+            description: "Another great product",
+            overlay: "gradient",
           },
         ]}
         variant="product"
@@ -58,7 +58,7 @@ function ProductShowcase() {
 ## Inside a Modal
 
 ```tsx
-import { Modal, Carousel } from '@orion/react';
+import { Modal, Carousel } from "@orion/react";
 
 function ImageGalleryModal({ images, open, onClose }) {
   return (
@@ -67,8 +67,8 @@ function ImageGalleryModal({ images, open, onClose }) {
         <Carousel
           items={images.map((src) => ({
             image: <img src={src} alt="" />,
-            title: '',
-            overlay: 'none',
+            title: "",
+            overlay: "none",
           }))}
           variant="gallery"
           aspectRatio="16/9"
@@ -107,7 +107,7 @@ interface CarouselItem {
   eyebrow?: string; // Category/tag text
   description?: string; // Subtitle/description
   action?: ReactNode; // Optional button/link
-  overlay?: 'none' | 'gradient' | 'dark';
+  overlay?: "none" | "gradient" | "dark";
 }
 ```
 
@@ -154,7 +154,12 @@ The `align` prop controls where the carousel track starts:
 ```tsx
 <Carousel
   items={items}
-  renderNavigation={({ canScrollLeft, canScrollRight, scrollLeft, scrollRight }) => (
+  renderNavigation={({
+    canScrollLeft,
+    canScrollRight,
+    scrollLeft,
+    scrollRight,
+  }) => (
     <div className="custom-nav">
       <button onClick={scrollLeft} disabled={!canScrollLeft}>
         Prev

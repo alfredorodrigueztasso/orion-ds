@@ -4,14 +4,14 @@
  * Full-screen image viewer with keyboard navigation and focus trap.
  */
 
-import React, { useEffect, useCallback, useRef } from 'react';
-import { X } from 'lucide-react';
-import type { ChatLightboxProps } from '../Chat.types';
-import styles from '../Chat.module.css';
+import React, { useEffect, useCallback, useRef } from "react";
+import { X } from "lucide-react";
+import type { ChatLightboxProps } from "../Chat.types";
+import styles from "../Chat.module.css";
 
 export const ChatLightbox: React.FC<ChatLightboxProps> = ({
   src,
-  alt = 'Image',
+  alt = "Image",
   isOpen,
   onClose,
   className,
@@ -23,13 +23,13 @@ export const ChatLightbox: React.FC<ChatLightboxProps> = ({
   // Handle escape key
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         onClose();
         return;
       }
 
       // Focus trap: cycle between close button and image
-      if (e.key === 'Tab') {
+      if (e.key === "Tab") {
         e.preventDefault();
         closeButtonRef.current?.focus();
       }
@@ -50,9 +50,9 @@ export const ChatLightbox: React.FC<ChatLightboxProps> = ({
       // Save previously focused element
       previousFocusRef.current = document.activeElement as HTMLElement;
 
-      document.addEventListener('keydown', handleKeyDown);
+      document.addEventListener("keydown", handleKeyDown);
       // Prevent body scroll
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
 
       // Focus close button on open
       requestAnimationFrame(() => {
@@ -61,11 +61,14 @@ export const ChatLightbox: React.FC<ChatLightboxProps> = ({
     }
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = '';
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
 
       // Restore focus to previously active element
-      if (previousFocusRef.current && typeof previousFocusRef.current.focus === 'function') {
+      if (
+        previousFocusRef.current &&
+        typeof previousFocusRef.current.focus === "function"
+      ) {
         previousFocusRef.current.focus();
       }
     };
@@ -75,7 +78,7 @@ export const ChatLightbox: React.FC<ChatLightboxProps> = ({
 
   return (
     <div
-      className={[styles.lightbox, className].filter(Boolean).join(' ')}
+      className={[styles.lightbox, className].filter(Boolean).join(" ")}
       onClick={handleBackdropClick}
       role="dialog"
       aria-modal="true"
@@ -96,4 +99,4 @@ export const ChatLightbox: React.FC<ChatLightboxProps> = ({
   );
 };
 
-ChatLightbox.displayName = 'ChatLightbox';
+ChatLightbox.displayName = "ChatLightbox";

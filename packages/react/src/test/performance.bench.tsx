@@ -8,22 +8,22 @@
  *   npm run bench
  */
 
-import { bench, describe } from 'vitest';
-import { render } from '@testing-library/react';
-import { Button } from '../components/Button';
-import { Field } from '../components/Field';
-import { Card } from '../components/Card';
-import { Modal } from '../components/Modal';
-import { Dropdown } from '../components/Dropdown';
-import { Tabs } from '../components/Tabs';
+import { bench, describe } from "vitest";
+import { render } from "@testing-library/react";
+import { Button } from "../components/Button";
+import { Field } from "../components/Field";
+import { Card } from "../components/Card";
+import { Modal } from "../components/Modal";
+import { Dropdown } from "../components/Dropdown";
+import { Tabs } from "../components/Tabs";
 
-describe('Component Render Performance', () => {
-  describe('Button', () => {
-    bench('renders primary button', () => {
+describe("Component Render Performance", () => {
+  describe("Button", () => {
+    bench("renders primary button", () => {
       render(<Button variant="primary">Click me</Button>);
     });
 
-    bench('renders with icon', () => {
+    bench("renders with icon", () => {
       render(
         <Button variant="primary" icon={<span>🔍</span>}>
           Search
@@ -31,7 +31,7 @@ describe('Component Render Performance', () => {
       );
     });
 
-    bench('renders all variants', () => {
+    bench("renders all variants", () => {
       render(
         <>
           <Button variant="primary">Primary</Button>
@@ -42,22 +42,22 @@ describe('Component Render Performance', () => {
     });
   });
 
-  describe('Field', () => {
-    bench('renders text input', () => {
+  describe("Field", () => {
+    bench("renders text input", () => {
       render(<Field label="Email" type="email" placeholder="Enter email" />);
     });
 
-    bench('renders with error', () => {
+    bench("renders with error", () => {
       render(<Field label="Email" type="email" error="Invalid email" />);
     });
 
-    bench('renders with icon', () => {
+    bench("renders with icon", () => {
       render(<Field label="Search" leftIcon={<span>🔍</span>} />);
     });
   });
 
-  describe('Card', () => {
-    bench('renders simple card', () => {
+  describe("Card", () => {
+    bench("renders simple card", () => {
       render(
         <Card>
           <Card.Header>Title</Card.Header>
@@ -66,7 +66,7 @@ describe('Component Render Performance', () => {
       );
     });
 
-    bench('renders full card with footer', () => {
+    bench("renders full card with footer", () => {
       render(
         <Card>
           <Card.Header>Title</Card.Header>
@@ -80,8 +80,8 @@ describe('Component Render Performance', () => {
     });
   });
 
-  describe('Modal', () => {
-    bench('renders closed modal', () => {
+  describe("Modal", () => {
+    bench("renders closed modal", () => {
       render(
         <Modal open={false} onClose={() => {}}>
           <Modal.Header>Title</Modal.Header>
@@ -90,7 +90,7 @@ describe('Component Render Performance', () => {
       );
     });
 
-    bench('renders open modal', () => {
+    bench("renders open modal", () => {
       render(
         <Modal open={true} onClose={() => {}}>
           <Modal.Header>Title</Modal.Header>
@@ -104,35 +104,35 @@ describe('Component Render Performance', () => {
     });
   });
 
-  describe('Dropdown', () => {
-    bench('renders closed dropdown', () => {
+  describe("Dropdown", () => {
+    bench("renders closed dropdown", () => {
       render(
         <Dropdown
           trigger={<Button variant="secondary">Menu</Button>}
           items={[
-            { id: '1', label: 'Item 1', onClick: () => {} },
-            { id: '2', label: 'Item 2', onClick: () => {} },
+            { id: "1", label: "Item 1", onClick: () => {} },
+            { id: "2", label: "Item 2", onClick: () => {} },
           ]}
         />,
       );
     });
   });
 
-  describe('Tabs', () => {
-    bench('renders tabs with 3 items', () => {
+  describe("Tabs", () => {
+    bench("renders tabs with 3 items", () => {
       render(
         <Tabs
           tabs={[
-            { id: 'tab1', label: 'Tab 1', content: <div>Content 1</div> },
-            { id: 'tab2', label: 'Tab 2', content: <div>Content 2</div> },
-            { id: 'tab3', label: 'Tab 3', content: <div>Content 3</div> },
+            { id: "tab1", label: "Tab 1", content: <div>Content 1</div> },
+            { id: "tab2", label: "Tab 2", content: <div>Content 2</div> },
+            { id: "tab3", label: "Tab 3", content: <div>Content 3</div> },
           ]}
           defaultTab="tab1"
         />,
       );
     });
 
-    bench('renders tabs with 10 items', () => {
+    bench("renders tabs with 10 items", () => {
       render(
         <Tabs
           tabs={Array.from({ length: 10 }, (_, i) => ({
@@ -146,8 +146,8 @@ describe('Component Render Performance', () => {
     });
   });
 
-  describe('Multiple Components', () => {
-    bench('renders complex form', () => {
+  describe("Multiple Components", () => {
+    bench("renders complex form", () => {
       render(
         <Card>
           <Card.Header>Login Form</Card.Header>
@@ -160,7 +160,7 @@ describe('Component Render Performance', () => {
       );
     });
 
-    bench('renders list of 20 cards', () => {
+    bench("renders list of 20 cards", () => {
       render(
         <>
           {Array.from({ length: 20 }, (_, i) => (

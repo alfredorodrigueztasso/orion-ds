@@ -1,17 +1,18 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { IconGallery } from './IconGallery';
+import type { Meta, StoryObj } from "@storybook/react";
+import { IconGallery } from "./IconGallery";
 
 const meta: Meta<typeof IconGallery> = {
-  title: 'Documentation/Icon Browser',
+  title: "Documentation/Icon Browser",
   component: IconGallery,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
     // Hide controls panel - this is a utility page, not a configurable component
     controls: { disable: true },
     actions: { disable: true },
     docs: {
       description: {
-        component: 'Browse and search 5000+ Lucide icons. Click any icon to copy the import code.',
+        component:
+          "Browse and search 5000+ Lucide icons. Click any icon to copy the import code.",
       },
     },
   },

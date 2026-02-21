@@ -17,7 +17,7 @@ Wrapper component for Lucide icons with design token integration.
 ### IconSize
 
 ```ts
-type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+type IconSize = "xs" | "sm" | "md" | "lg" | "xl";
 // xs: 12px, sm: 16px, md: 20px, lg: 24px, xl: 32px
 ```
 
@@ -25,16 +25,16 @@ type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 ```ts
 type IconColor =
-  | 'current' // Inherits from parent
-  | 'primary' // --text-primary
-  | 'secondary' // --text-secondary
-  | 'tertiary' // --text-tertiary
-  | 'brand' // --text-brand
-  | 'success' // --status-success
-  | 'warning' // --status-warning
-  | 'error' // --status-error
-  | 'info' // --status-info
-  | 'inverse'; // --text-inverse
+  | "current" // Inherits from parent
+  | "primary" // --text-primary
+  | "secondary" // --text-secondary
+  | "tertiary" // --text-tertiary
+  | "brand" // --text-brand
+  | "success" // --status-success
+  | "warning" // --status-warning
+  | "error" // --status-error
+  | "info" // --status-info
+  | "inverse"; // --text-inverse
 ```
 
 ## Usage
@@ -139,10 +139,10 @@ Use when icon conveys meaning not available in surrounding text.
 ```tsx
 function StatusIcon({ status }) {
   const config = {
-    success: { icon: CheckCircle, color: 'success' },
-    warning: { icon: AlertTriangle, color: 'warning' },
-    error: { icon: XCircle, color: 'error' },
-    info: { icon: Info, color: 'info' },
+    success: { icon: CheckCircle, color: "success" },
+    warning: { icon: AlertTriangle, color: "warning" },
+    error: { icon: XCircle, color: "error" },
+    info: { icon: Info, color: "info" },
   };
 
   const { icon, color } = config[status];

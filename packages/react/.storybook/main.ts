@@ -24,10 +24,7 @@ const config: StorybookConfig = {
         alias: {
           // Force Vite to use the workspace-local theme.css (with inlined generated tokens)
           // instead of the stale pnpm store copy
-          "@orion-ds/react/theme.css": path.resolve(
-            __dirname,
-            "../theme.css",
-          ),
+          "@orion-ds/react/theme.css": path.resolve(__dirname, "../theme.css"),
         },
       },
     });

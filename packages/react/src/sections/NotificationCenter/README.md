@@ -5,26 +5,26 @@
 ## Quick Start
 
 ```tsx
-import { NotificationCenter } from '@orion/react';
+import { NotificationCenter } from "@orion/react";
 
 <NotificationCenter
   notifications={[
     {
-      id: '1',
-      type: 'info',
-      title: 'New message',
-      message: 'You have a new message from John',
-      timestamp: '2024-01-15T10:30:00Z',
-      relativeTime: '2 min ago',
+      id: "1",
+      type: "info",
+      title: "New message",
+      message: "You have a new message from John",
+      timestamp: "2024-01-15T10:30:00Z",
+      relativeTime: "2 min ago",
       read: false,
     },
     {
-      id: '2',
-      type: 'success',
-      title: 'Export complete',
-      message: 'Your data export is ready to download',
-      timestamp: '2024-01-15T10:00:00Z',
-      relativeTime: '32 min ago',
+      id: "2",
+      type: "success",
+      title: "Export complete",
+      message: "Your data export is ready to download",
+      timestamp: "2024-01-15T10:00:00Z",
+      relativeTime: "32 min ago",
       read: true,
     },
   ]}
@@ -75,7 +75,7 @@ interface NotificationCenterProps {
 
 interface NotificationItem {
   id: string; // Unique identifier
-  type?: 'info' | 'success' | 'warning' | 'error' | 'default';
+  type?: "info" | "success" | "warning" | "error" | "default";
   title: string; // Notification title
   message?: string; // Notification message
   icon?: ReactNode; // Custom icon
@@ -191,7 +191,9 @@ import { Download } from 'lucide-react';
 <NotificationCenter
   notifications={notifications}
   onMarkAsRead={(id) => {
-    setNotifications((prev) => prev.map((n) => (n.id === id ? { ...n, read: true } : n)));
+    setNotifications((prev) =>
+      prev.map((n) => (n.id === id ? { ...n, read: true } : n)),
+    );
   }}
 />
 ```
@@ -221,13 +223,19 @@ import { Download } from 'lucide-react';
 ### Clear All
 
 ```tsx
-<NotificationCenter notifications={notifications} onClearAll={() => setNotifications([])} />
+<NotificationCenter
+  notifications={notifications}
+  onClearAll={() => setNotifications([])}
+/>
 ```
 
 ### View All (Link to Full Page)
 
 ```tsx
-<NotificationCenter notifications={notifications} onViewAll={() => navigate('/notifications')} />
+<NotificationCenter
+  notifications={notifications}
+  onViewAll={() => navigate("/notifications")}
+/>
 ```
 
 ---
@@ -252,61 +260,63 @@ import { Download } from 'lucide-react';
 ### Full Notification Center
 
 ```tsx
-import { NotificationCenter, Button } from '@orion/react';
-import { useState } from 'react';
+import { NotificationCenter, Button } from "@orion/react";
+import { useState } from "react";
 
 function NotificationsDropdown() {
   const [notifications, setNotifications] = useState([
     {
-      id: '1',
-      type: 'info',
-      title: 'New team member',
-      message: 'Sarah has joined your team',
-      avatar: '/avatars/sarah.jpg',
-      timestamp: '2024-01-15T10:30:00Z',
-      relativeTime: '2 min ago',
+      id: "1",
+      type: "info",
+      title: "New team member",
+      message: "Sarah has joined your team",
+      avatar: "/avatars/sarah.jpg",
+      timestamp: "2024-01-15T10:30:00Z",
+      relativeTime: "2 min ago",
       read: false,
-      category: 'Team',
+      category: "Team",
     },
     {
-      id: '2',
-      type: 'success',
-      title: 'Deployment complete',
-      message: 'Production deployment successful',
-      timestamp: '2024-01-15T10:00:00Z',
-      relativeTime: '32 min ago',
+      id: "2",
+      type: "success",
+      title: "Deployment complete",
+      message: "Production deployment successful",
+      timestamp: "2024-01-15T10:00:00Z",
+      relativeTime: "32 min ago",
       read: false,
-      category: 'System',
-      href: '/deployments/latest',
+      category: "System",
+      href: "/deployments/latest",
     },
     {
-      id: '3',
-      type: 'warning',
-      title: 'Storage warning',
-      message: 'You have used 90% of your storage',
-      timestamp: '2024-01-15T09:00:00Z',
-      relativeTime: '1 hour ago',
+      id: "3",
+      type: "warning",
+      title: "Storage warning",
+      message: "You have used 90% of your storage",
+      timestamp: "2024-01-15T09:00:00Z",
+      relativeTime: "1 hour ago",
       read: true,
-      category: 'System',
-      href: '/settings/storage',
+      category: "System",
+      href: "/settings/storage",
     },
     {
-      id: '4',
-      type: 'error',
-      title: 'Build failed',
-      message: 'CI build failed for main branch',
-      timestamp: '2024-01-15T08:00:00Z',
-      relativeTime: '2 hours ago',
+      id: "4",
+      type: "error",
+      title: "Build failed",
+      message: "CI build failed for main branch",
+      timestamp: "2024-01-15T08:00:00Z",
+      relativeTime: "2 hours ago",
       read: true,
-      category: 'CI/CD',
-      href: '/builds/456',
+      category: "CI/CD",
+      href: "/builds/456",
     },
   ]);
 
   const unreadCount = notifications.filter((n) => !n.read).length;
 
   const handleMarkAsRead = (id: string) => {
-    setNotifications((prev) => prev.map((n) => (n.id === id ? { ...n, read: true } : n)));
+    setNotifications((prev) =>
+      prev.map((n) => (n.id === id ? { ...n, read: true } : n)),
+    );
   };
 
   const handleMarkAllAsRead = () => {
@@ -319,12 +329,12 @@ function NotificationsDropdown() {
 
   return (
     <NotificationCenter
-      title={`Notifications ${unreadCount > 0 ? `(${unreadCount})` : ''}`}
+      title={`Notifications ${unreadCount > 0 ? `(${unreadCount})` : ""}`}
       notifications={notifications}
       onMarkAsRead={handleMarkAsRead}
       onMarkAllAsRead={handleMarkAllAsRead}
       onDismiss={handleDismiss}
-      onViewAll={() => navigate('/notifications')}
+      onViewAll={() => navigate("/notifications")}
       groupByCategory
       maxHeight="400px"
       showUnreadCount
@@ -368,12 +378,12 @@ function NotificationsDropdown() {
 ```tsx
 // Good: Descriptive notification titles
 {
-  title: 'Your export is ready to download';
+  title: "Your export is ready to download";
 }
 
 // Avoid: Vague titles
 {
-  title: 'Action complete';
+  title: "Action complete";
 }
 ```
 

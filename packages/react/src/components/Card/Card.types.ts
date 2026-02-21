@@ -4,17 +4,17 @@
  * Type definitions for the Orion Card component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Card visual variants
  */
-export type CardVariant = 'base' | 'glass' | 'elevated' | 'outlined' | 'image';
+export type CardVariant = "base" | "glass" | "elevated" | "outlined" | "image";
 
 /**
  * Image card content position
  */
-export type ImageCardPosition = 'top' | 'center' | 'bottom';
+export type ImageCardPosition = "top" | "center" | "bottom";
 
 /**
  * Card component props

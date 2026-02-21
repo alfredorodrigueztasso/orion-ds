@@ -18,10 +18,10 @@
  * ```
  */
 
-import { forwardRef } from 'react';
-import { Check, AlertCircle } from 'lucide-react';
-import type { StepperProps, StepItem } from './Stepper.types';
-import styles from './Stepper.module.css';
+import { forwardRef } from "react";
+import { Check, AlertCircle } from "lucide-react";
+import type { StepperProps, StepItem } from "./Stepper.types";
+import styles from "./Stepper.module.css";
 
 export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
   (
@@ -29,12 +29,12 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
       steps,
       activeStep,
       onStepClick,
-      orientation = 'horizontal',
+      orientation = "horizontal",
       allowClickOnCompleted = true,
       allowClickOnFuture = false,
       showStepNumbers = true,
-      connectorStyle = 'solid',
-      size = 'md',
+      connectorStyle = "solid",
+      size = "md",
       alternativeLabel = false,
       className,
       ...rest
@@ -61,11 +61,13 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
 
     const renderStepIcon = (step: StepItem, index: number) => {
       if (step.error) {
-        return <AlertCircle size={size === 'sm' ? 14 : size === 'lg' ? 20 : 16} />;
+        return (
+          <AlertCircle size={size === "sm" ? 14 : size === "lg" ? 20 : 16} />
+        );
       }
 
       if (isStepCompleted(index)) {
-        return <Check size={size === 'sm' ? 14 : size === 'lg' ? 20 : 16} />;
+        return <Check size={size === "sm" ? 14 : size === "lg" ? 20 : 16} />;
       }
 
       if (step.icon) {
@@ -84,14 +86,22 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
       styles[orientation],
       styles[size],
       styles[`connector-${connectorStyle}`],
-      alternativeLabel && orientation === 'horizontal' && styles.alternativeLabel,
+      alternativeLabel &&
+        orientation === "horizontal" &&
+        styles.alternativeLabel,
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
-      <div ref={ref} className={classNames} role="navigation" aria-label="Progress" {...rest}>
+      <div
+        ref={ref}
+        className={classNames}
+        role="navigation"
+        aria-label="Progress"
+        {...rest}
+      >
         {steps.map((step, index) => {
           const completed = isStepCompleted(index);
           const active = isStepActive(index);
@@ -106,7 +116,7 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
             clickable && styles.stepClickable,
           ]
             .filter(Boolean)
-            .join(' ');
+            .join(" ");
 
           const iconClasses = [
             styles.stepIcon,
@@ -115,7 +125,7 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
             step.error && styles.stepIconError,
           ]
             .filter(Boolean)
-            .join(' ');
+            .join(" ");
 
           return (
             <div key={step.id} className={stepClasses}>
@@ -123,32 +133,38 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
                 className={styles.stepContent}
                 onClick={() => handleStepClick(index)}
                 onKeyDown={(e) => {
-                  if ((e.key === 'Enter' || e.key === ' ') && clickable) {
+                  if ((e.key === "Enter" || e.key === " ") && clickable) {
                     handleStepClick(index);
                   }
                 }}
-                role={clickable ? 'button' : undefined}
+                role={clickable ? "button" : undefined}
                 tabIndex={clickable ? 0 : undefined}
-                aria-current={active ? 'step' : undefined}
+                aria-current={active ? "step" : undefined}
               >
                 <div className={iconClasses}>{renderStepIcon(step, index)}</div>
                 <div className={styles.stepText}>
                   <span className={styles.stepLabel}>
                     {step.label}
-                    {step.optional && <span className={styles.stepOptional}> (Optional)</span>}
+                    {step.optional && (
+                      <span className={styles.stepOptional}> (Optional)</span>
+                    )}
                   </span>
                   {step.description && (
-                    <span className={styles.stepDescription}>{step.description}</span>
+                    <span className={styles.stepDescription}>
+                      {step.description}
+                    </span>
                   )}
                   {step.error && step.errorMessage && (
-                    <span className={styles.stepErrorMessage}>{step.errorMessage}</span>
+                    <span className={styles.stepErrorMessage}>
+                      {step.errorMessage}
+                    </span>
                   )}
                 </div>
               </div>
 
               {!isLast && (
                 <div
-                  className={`${styles.connector} ${completed ? styles.connectorCompleted : ''}`}
+                  className={`${styles.connector} ${completed ? styles.connectorCompleted : ""}`}
                 />
               )}
             </div>
@@ -159,4 +175,4 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
   },
 );
 
-Stepper.displayName = 'Stepper';
+Stepper.displayName = "Stepper";

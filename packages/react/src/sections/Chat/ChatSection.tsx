@@ -18,12 +18,15 @@
  * ```
  */
 
-import { forwardRef, useState, useCallback } from 'react';
-import { Menu, MessageSquare } from 'lucide-react';
-import { Chat } from '../../components/Chat';
-import type { ChatSectionProps, ChatMessage as ChatMessageType } from '../../components/Chat';
-import { useStreamingText } from '../../components/Chat/hooks/useStreamingText';
-import styles from '../../components/Chat/Chat.module.css';
+import { forwardRef, useState, useCallback } from "react";
+import { Menu, MessageSquare } from "lucide-react";
+import { Chat } from "../../components/Chat";
+import type {
+  ChatSectionProps,
+  ChatMessage as ChatMessageType,
+} from "../../components/Chat";
+import { useStreamingText } from "../../components/Chat/hooks/useStreamingText";
+import styles from "../../components/Chat/Chat.module.css";
 
 /**
  * Internal wrapper that progressively reveals message content word-by-word.
@@ -74,7 +77,11 @@ export const ChatSection = forwardRef<HTMLDivElement, ChatSectionProps>(
     );
 
     return (
-      <div ref={ref} className={[styles.section, className].filter(Boolean).join(' ')} {...rest}>
+      <div
+        ref={ref}
+        className={[styles.section, className].filter(Boolean).join(" ")}
+        {...rest}
+      >
         {/* Sidebar */}
         {!hideSidebar && (
           <Chat.Sidebar
@@ -93,7 +100,7 @@ export const ChatSection = forwardRef<HTMLDivElement, ChatSectionProps>(
           <Chat>
             {/* Header */}
             <Chat.Header
-              title={header?.title || 'AI Assistant'}
+              title={header?.title || "AI Assistant"}
               subtitle={header?.subtitle}
               avatar={header?.avatar}
               actions={
@@ -101,7 +108,10 @@ export const ChatSection = forwardRef<HTMLDivElement, ChatSectionProps>(
                   {/* Mobile menu button */}
                   {!hideSidebar && (
                     <button
-                      className={[styles.inputButton, styles.sectionMobileMenuButton].join(' ')}
+                      className={[
+                        styles.inputButton,
+                        styles.sectionMobileMenuButton,
+                      ].join(" ")}
                       onClick={() => setSidebarCollapsed(false)}
                       aria-label="Open sidebar"
                     >
@@ -121,7 +131,9 @@ export const ChatSection = forwardRef<HTMLDivElement, ChatSectionProps>(
                     <MessageSquare size={28} />
                   </div>
                   <div>
-                    <h3 className={styles.emptyStateTitle}>How can I help you today?</h3>
+                    <h3 className={styles.emptyStateTitle}>
+                      How can I help you today?
+                    </h3>
                     <p className={styles.emptyStateText}>
                       Start a conversation by typing a message below.
                     </p>
@@ -149,7 +161,7 @@ export const ChatSection = forwardRef<HTMLDivElement, ChatSectionProps>(
             {/* Input */}
             <Chat.Input
               onSend={handleSend}
-              placeholder={inputConfig?.placeholder || 'Type a message...'}
+              placeholder={inputConfig?.placeholder || "Type a message..."}
               allowAttachments={inputConfig?.allowAttachments ?? true}
               allowVoiceRecording={inputConfig?.allowVoiceRecording ?? true}
               maxLength={inputConfig?.maxLength}
@@ -162,4 +174,4 @@ export const ChatSection = forwardRef<HTMLDivElement, ChatSectionProps>(
   },
 );
 
-ChatSection.displayName = 'ChatSection';
+ChatSection.displayName = "ChatSection";

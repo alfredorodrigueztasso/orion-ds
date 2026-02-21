@@ -6,15 +6,15 @@
   padding: var(--spacing-16) var(--spacing-4);
 }
 
-.comparison[data-background='base'] {
+.comparison[data-background="base"] {
   background: var(--surface-base);
 }
 
-.comparison[data-background='subtle'] {
+.comparison[data-background="subtle"] {
   background: var(--surface-subtle);
 }
 
-.comparison[data-background='none'] {
+.comparison[data-background="none"] {
   background: transparent;
 }
 
@@ -73,7 +73,7 @@
   background: var(--surface-base);
 }
 
-.comparison[data-sticky='true'] .tableHead {
+.comparison[data-sticky="true"] .tableHead {
   position: sticky;
   top: 0;
   z-index: 10;
@@ -101,7 +101,7 @@
   gap: var(--spacing-2);
 }
 
-.columnHeader[data-highlighted='true'] {
+.columnHeader[data-highlighted="true"] {
   /* Minimal style - just a subtle accent */
 }
 
@@ -125,7 +125,7 @@
   line-height: 1.2;
 }
 
-.columnHeader[data-highlighted='true'] .columnTitle {
+.columnHeader[data-highlighted="true"] .columnTitle {
   color: var(--text-brand);
 }
 
@@ -159,21 +159,21 @@
     transform var(--transition-fast);
 }
 
-.columnHeader[data-highlighted='true'] .ctaButton {
+.columnHeader[data-highlighted="true"] .ctaButton {
   background: var(--interactive-primary);
   color: var(--interactive-primary-text);
 }
 
-.columnHeader[data-highlighted='true'] .ctaButton:hover {
+.columnHeader[data-highlighted="true"] .ctaButton:hover {
   background: var(--interactive-primary-hover);
 }
 
-.columnHeader:not([data-highlighted='true']) .ctaButton {
+.columnHeader:not([data-highlighted="true"]) .ctaButton {
   background: var(--interactive-secondary);
   color: var(--interactive-secondary-text);
 }
 
-.columnHeader:not([data-highlighted='true']) .ctaButton:hover {
+.columnHeader:not([data-highlighted="true"]) .ctaButton:hover {
   background: var(--interactive-secondary-hover);
 }
 
@@ -201,7 +201,7 @@
   vertical-align: middle;
 }
 
-.comparison[data-compact='true'] .tableBody td {
+.comparison[data-compact="true"] .tableBody td {
   padding: var(--spacing-3) var(--spacing-4);
 }
 
@@ -238,7 +238,7 @@
   color: var(--text-secondary);
 }
 
-.valueCell[data-highlighted='true'] {
+.valueCell[data-highlighted="true"] {
   background: var(--soft-brand);
   color: var(--text-primary);
   font-weight: var(--font-weight-medium);

@@ -15,10 +15,10 @@
  * />
  * ```
  */
-export { Breadcrumb } from './Breadcrumb';
+export { Breadcrumb } from "./Breadcrumb";
 export type {
   BreadcrumbProps,
   BreadcrumbItem,
   BreadcrumbSize,
   BreadcrumbSeparator,
-} from './Breadcrumb.types';
+} from "./Breadcrumb.types";

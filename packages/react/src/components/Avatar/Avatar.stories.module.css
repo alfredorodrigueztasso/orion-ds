@@ -288,7 +288,11 @@
 
 .profileHeaderBanner {
   height: var(--story-banner-height);
-  background: linear-gradient(135deg, var(--color-brand-400), var(--color-brand-600));
+  background: linear-gradient(
+    135deg,
+    var(--color-brand-400),
+    var(--color-brand-600)
+  );
 }
 
 .profileHeaderContent {

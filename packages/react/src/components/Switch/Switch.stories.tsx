@@ -1,23 +1,23 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
-import { Switch } from './Switch';
+import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
+import { Switch } from "./Switch";
 
 const meta = {
-  title: 'Components/Forms/Switch',
+  title: "Components/Forms/Switch",
   component: Switch,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     size: {
-      control: 'select',
-      options: ['sm', 'md', 'lg'],
-      description: 'Switch size',
+      control: "select",
+      options: ["sm", "md", "lg"],
+      description: "Switch size",
     },
     disabled: {
-      control: 'boolean',
-      description: 'Disable switch',
+      control: "boolean",
+      description: "Disable switch",
     },
   },
 } satisfies Meta<typeof Switch>;
@@ -27,34 +27,34 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    label: 'Enable notifications',
+    label: "Enable notifications",
   },
 };
 
 export const Checked: Story = {
   args: {
-    label: 'Enabled by default',
+    label: "Enabled by default",
     defaultChecked: true,
   },
 };
 
 export const WithHelperText: Story = {
   args: {
-    label: 'Dark mode',
-    helperText: 'Use dark theme across the app',
+    label: "Dark mode",
+    helperText: "Use dark theme across the app",
   },
 };
 
 export const Disabled: Story = {
   args: {
-    label: 'Disabled switch',
+    label: "Disabled switch",
     disabled: true,
   },
 };
 
 export const DisabledChecked: Story = {
   args: {
-    label: 'Disabled and on',
+    label: "Disabled and on",
     disabled: true,
     defaultChecked: true,
   },
@@ -62,15 +62,15 @@ export const DisabledChecked: Story = {
 
 export const SmallSize: Story = {
   args: {
-    label: 'Small switch',
-    size: 'sm',
+    label: "Small switch",
+    size: "sm",
   },
 };
 
 export const LargeSize: Story = {
   args: {
-    label: 'Large switch',
-    size: 'lg',
+    label: "Large switch",
+    size: "lg",
   },
 };
 
@@ -87,12 +87,12 @@ export const Interactive: Story = {
         />
         <p
           style={{
-            marginTop: 'var(--spacing-4)',
-            fontSize: 'var(--font-size-14)',
-            color: 'var(--text-secondary)',
+            marginTop: "var(--spacing-4)",
+            fontSize: "var(--font-size-14)",
+            color: "var(--text-secondary)",
           }}
         >
-          Status: {enabled ? 'ON ✓' : 'OFF'}
+          Status: {enabled ? "ON ✓" : "OFF"}
         </p>
       </div>
     );
@@ -115,45 +115,51 @@ export const SettingsPanel: Story = {
     return (
       <div
         style={{
-          width: '320px',
-          padding: 'var(--spacing-6)',
-          borderRadius: 'var(--radius-control)',
-          border: '1px solid var(--border-subtle)',
+          width: "320px",
+          padding: "var(--spacing-6)",
+          borderRadius: "var(--radius-control)",
+          border: "1px solid var(--border-subtle)",
         }}
       >
         <h3
           style={{
-            marginBottom: 'var(--spacing-6)',
-            fontSize: 'var(--font-size-16)',
-            fontWeight: 'var(--font-weight-medium)',
+            marginBottom: "var(--spacing-6)",
+            fontSize: "var(--font-size-16)",
+            fontWeight: "var(--font-weight-medium)",
           }}
         >
           Settings
         </h3>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-6)' }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "var(--spacing-6)",
+          }}
+        >
           <Switch
             label="Enable notifications"
             helperText="Receive email notifications"
             checked={settings.notifications}
-            onChange={(e) => updateSetting('notifications', e.target.checked)}
+            onChange={(e) => updateSetting("notifications", e.target.checked)}
           />
           <Switch
             label="Auto-save"
             helperText="Automatically save changes"
             checked={settings.autoSave}
-            onChange={(e) => updateSetting('autoSave', e.target.checked)}
+            onChange={(e) => updateSetting("autoSave", e.target.checked)}
           />
           <Switch
             label="Dark mode"
             helperText="Use dark theme"
             checked={settings.darkMode}
-            onChange={(e) => updateSetting('darkMode', e.target.checked)}
+            onChange={(e) => updateSetting("darkMode", e.target.checked)}
           />
           <Switch
             label="Analytics"
             helperText="Share usage data"
             checked={settings.analytics}
-            onChange={(e) => updateSetting('analytics', e.target.checked)}
+            onChange={(e) => updateSetting("analytics", e.target.checked)}
           />
         </div>
       </div>
@@ -172,48 +178,69 @@ export const FeatureToggles: Story = {
     return (
       <div
         style={{
-          width: '400px',
-          padding: 'var(--spacing-8)',
-          borderRadius: 'var(--radius-control)',
-          border: '1px solid var(--border-subtle)',
+          width: "400px",
+          padding: "var(--spacing-8)",
+          borderRadius: "var(--radius-control)",
+          border: "1px solid var(--border-subtle)",
         }}
       >
         <h3
           style={{
-            marginBottom: 'var(--spacing-4)',
-            fontSize: 'var(--font-size-18)',
-            fontWeight: 'var(--font-weight-medium)',
+            marginBottom: "var(--spacing-4)",
+            fontSize: "var(--font-size-18)",
+            fontWeight: "var(--font-weight-medium)",
           }}
         >
           Feature Flags
         </h3>
         <p
           style={{
-            marginBottom: 'var(--spacing-8)',
-            fontSize: 'var(--font-size-14)',
-            color: 'var(--text-secondary)',
+            marginBottom: "var(--spacing-8)",
+            fontSize: "var(--font-size-14)",
+            color: "var(--text-secondary)",
           }}
         >
           Enable experimental features
         </p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-6)' }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "var(--spacing-6)",
+          }}
+        >
           <Switch
             label="Experimental Features"
             helperText="Try new features before release"
             checked={features.experimental}
-            onChange={(e) => setFeatures((prev) => ({ ...prev, experimental: e.target.checked }))}
+            onChange={(e) =>
+              setFeatures((prev) => ({
+                ...prev,
+                experimental: e.target.checked,
+              }))
+            }
           />
           <Switch
             label="Beta Features"
             helperText="Access beta functionality"
             checked={features.betaFeatures}
-            onChange={(e) => setFeatures((prev) => ({ ...prev, betaFeatures: e.target.checked }))}
+            onChange={(e) =>
+              setFeatures((prev) => ({
+                ...prev,
+                betaFeatures: e.target.checked,
+              }))
+            }
           />
           <Switch
             label="Advanced Mode"
             helperText="Show advanced options"
             checked={features.advancedMode}
-            onChange={(e) => setFeatures((prev) => ({ ...prev, advancedMode: e.target.checked }))}
+            onChange={(e) =>
+              setFeatures((prev) => ({
+                ...prev,
+                advancedMode: e.target.checked,
+              }))
+            }
           />
         </div>
       </div>
@@ -223,7 +250,13 @@ export const FeatureToggles: Story = {
 
 export const AllSizes: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-8)' }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-8)",
+      }}
+    >
       <Switch label="Small switch" size="sm" />
       <Switch label="Medium switch (default)" size="md" />
       <Switch label="Large switch" size="lg" />
@@ -233,7 +266,13 @@ export const AllSizes: Story = {
 
 export const AllStates: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-6)' }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-6)",
+      }}
+    >
       <Switch label="Off (default)" />
       <Switch label="On" defaultChecked />
       <Switch label="With helper text" helperText="Additional information" />
@@ -245,7 +284,13 @@ export const AllStates: Story = {
 
 export const CompactLayout: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-4)' }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-4)",
+      }}
+    >
       <Switch label="Compact option 1" size="sm" />
       <Switch label="Compact option 2" size="sm" />
       <Switch label="Compact option 3" size="sm" />
@@ -258,20 +303,30 @@ export const InlineWithContent: Story = {
   render: () => (
     <div
       style={{
-        width: '400px',
-        padding: 'var(--spacing-6)',
-        borderRadius: 'var(--radius-control)',
-        border: '1px solid var(--border-subtle)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
+        width: "400px",
+        padding: "var(--spacing-6)",
+        borderRadius: "var(--radius-control)",
+        border: "1px solid var(--border-subtle)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
       }}
     >
       <div>
-        <div style={{ fontWeight: 'var(--font-weight-medium)', marginBottom: 'var(--spacing-1)' }}>
+        <div
+          style={{
+            fontWeight: "var(--font-weight-medium)",
+            marginBottom: "var(--spacing-1)",
+          }}
+        >
           Push Notifications
         </div>
-        <div style={{ fontSize: 'var(--font-size-14)', color: 'var(--text-secondary)' }}>
+        <div
+          style={{
+            fontSize: "var(--font-size-14)",
+            color: "var(--text-secondary)",
+          }}
+        >
           Receive notifications on your device
         </div>
       </div>
@@ -282,8 +337,8 @@ export const InlineWithContent: Story = {
 
 export const WithCustomStyling: Story = {
   args: {
-    label: 'Custom styled switch',
-    helperText: 'This switch has custom styling',
-    className: 'custom-switch',
+    label: "Custom styled switch",
+    helperText: "This switch has custom styling",
+    className: "custom-switch",
   },
 };

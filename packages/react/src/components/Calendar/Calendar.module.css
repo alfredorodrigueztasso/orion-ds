@@ -74,7 +74,9 @@
   position: relative;
 }
 
-.day:hover:not(.disabled):not(.selected):not(.rangeStart):not(.rangeMiddle):not(.rangeEnd) {
+.day:hover:not(.disabled):not(.selected):not(.rangeStart):not(.rangeMiddle):not(
+    .rangeEnd
+  ) {
   background: var(--interactive-ghost-hover);
 }
 
@@ -117,7 +119,7 @@
 .rangeStart::before,
 .rangeMiddle::before,
 .rangeEnd::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   bottom: 0;

@@ -5,14 +5,14 @@
  * Supports accordion (expandable) and grid (static) variants.
  */
 
-import { useState } from 'react';
-import type { FAQItemCardProps } from './FAQ.types';
-import { ChevronDown } from 'lucide-react';
-import styles from './FAQ.module.css';
+import { useState } from "react";
+import type { FAQItemCardProps } from "./FAQ.types";
+import { ChevronDown } from "lucide-react";
+import styles from "./FAQ.module.css";
 
 export const FAQItemCard = ({
   item,
-  variant = 'accordion',
+  variant = "accordion",
   isOpen: controlledIsOpen,
   onToggle,
   className,
@@ -39,9 +39,9 @@ export const FAQItemCard = ({
     className,
   ]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
 
-  if (variant === 'grid') {
+  if (variant === "grid") {
     return (
       <div className={classNames}>
         <h3 className={styles.question}>{question}</h3>
@@ -68,4 +68,4 @@ export const FAQItemCard = ({
   );
 };
 
-FAQItemCard.displayName = 'FAQItemCard';
+FAQItemCard.displayName = "FAQItemCard";

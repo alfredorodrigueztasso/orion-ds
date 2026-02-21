@@ -1,32 +1,32 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
-import { InputOTP } from './InputOTP';
+import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
+import { InputOTP } from "./InputOTP";
 
 const meta = {
-  title: 'Components/Forms/InputOTP',
+  title: "Components/Forms/InputOTP",
   component: InputOTP,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     maxLength: {
-      control: 'number',
-      description: 'Number of OTP slots',
+      control: "number",
+      description: "Number of OTP slots",
     },
     type: {
-      control: 'select',
-      options: ['numeric', 'alphanumeric'],
-      description: 'Input type',
+      control: "select",
+      options: ["numeric", "alphanumeric"],
+      description: "Input type",
     },
     size: {
-      control: 'select',
-      options: ['sm', 'md', 'lg'],
-      description: 'Slot size',
+      control: "select",
+      options: ["sm", "md", "lg"],
+      description: "Slot size",
     },
     disabled: {
-      control: 'boolean',
-      description: 'Disable the input',
+      control: "boolean",
+      description: "Disable the input",
     },
   },
 } satisfies Meta<typeof InputOTP>;
@@ -162,16 +162,16 @@ export const WithDefaultValue: Story = {
 export const Controlled: Story = {
   args: { maxLength: 6 },
   render: () => {
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState("");
     const [completed, setCompleted] = useState(false);
 
     return (
       <div
         style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: 'var(--spacing-4)',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "var(--spacing-4)",
         }}
       >
         <InputOTP
@@ -195,11 +195,21 @@ export const Controlled: Story = {
             <InputOTP.Slot index={5} />
           </InputOTP.Group>
         </InputOTP>
-        <p style={{ fontSize: 'var(--font-size-14)', color: 'var(--text-secondary)' }}>
-          Value: {value || '(empty)'}
+        <p
+          style={{
+            fontSize: "var(--font-size-14)",
+            color: "var(--text-secondary)",
+          }}
+        >
+          Value: {value || "(empty)"}
         </p>
         {completed && (
-          <p style={{ fontSize: 'var(--font-size-14)', color: 'var(--status-success)' }}>
+          <p
+            style={{
+              fontSize: "var(--font-size-14)",
+              color: "var(--status-success)",
+            }}
+          >
             Code complete!
           </p>
         )}
@@ -213,19 +223,19 @@ export const AllSizes: Story = {
   render: () => (
     <div
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 'var(--spacing-8)',
-        alignItems: 'center',
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-8)",
+        alignItems: "center",
       }}
     >
       <div>
         <p
           style={{
-            fontSize: 'var(--font-size-12)',
-            color: 'var(--text-tertiary)',
-            marginBottom: 'var(--spacing-2)',
-            textAlign: 'center',
+            fontSize: "var(--font-size-12)",
+            color: "var(--text-tertiary)",
+            marginBottom: "var(--spacing-2)",
+            textAlign: "center",
           }}
         >
           Small
@@ -242,10 +252,10 @@ export const AllSizes: Story = {
       <div>
         <p
           style={{
-            fontSize: 'var(--font-size-12)',
-            color: 'var(--text-tertiary)',
-            marginBottom: 'var(--spacing-2)',
-            textAlign: 'center',
+            fontSize: "var(--font-size-12)",
+            color: "var(--text-tertiary)",
+            marginBottom: "var(--spacing-2)",
+            textAlign: "center",
           }}
         >
           Medium
@@ -262,10 +272,10 @@ export const AllSizes: Story = {
       <div>
         <p
           style={{
-            fontSize: 'var(--font-size-12)',
-            color: 'var(--text-tertiary)',
-            marginBottom: 'var(--spacing-2)',
-            textAlign: 'center',
+            fontSize: "var(--font-size-12)",
+            color: "var(--text-tertiary)",
+            marginBottom: "var(--spacing-2)",
+            textAlign: "center",
           }}
         >
           Large
@@ -286,41 +296,48 @@ export const AllSizes: Story = {
 export const VerificationForm: Story = {
   args: { maxLength: 6 },
   render: () => {
-    const [value, setValue] = useState('');
-    const [status, setStatus] = useState<'idle' | 'verifying' | 'success' | 'error'>('idle');
+    const [value, setValue] = useState("");
+    const [status, setStatus] = useState<
+      "idle" | "verifying" | "success" | "error"
+    >("idle");
 
     const handleComplete = (code: string) => {
-      setStatus('verifying');
+      setStatus("verifying");
       // Simulate verification
       setTimeout(() => {
-        setStatus(code === '123456' ? 'success' : 'error');
+        setStatus(code === "123456" ? "success" : "error");
       }, 1500);
     };
 
     return (
       <div
         style={{
-          width: '400px',
-          padding: 'var(--spacing-8)',
-          borderRadius: 'var(--radius-container)',
-          border: '1px solid var(--border-subtle)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: 'var(--spacing-6)',
+          width: "400px",
+          padding: "var(--spacing-8)",
+          borderRadius: "var(--radius-container)",
+          border: "1px solid var(--border-subtle)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "var(--spacing-6)",
         }}
       >
-        <div style={{ textAlign: 'center' }}>
+        <div style={{ textAlign: "center" }}>
           <h3
             style={{
-              fontSize: 'var(--font-size-18)',
-              fontWeight: 'var(--font-weight-medium)',
-              marginBottom: 'var(--spacing-2)',
+              fontSize: "var(--font-size-18)",
+              fontWeight: "var(--font-weight-medium)",
+              marginBottom: "var(--spacing-2)",
             }}
           >
             Enter verification code
           </h3>
-          <p style={{ fontSize: 'var(--font-size-14)', color: 'var(--text-secondary)' }}>
+          <p
+            style={{
+              fontSize: "var(--font-size-14)",
+              color: "var(--text-secondary)",
+            }}
+          >
             We sent a 6-digit code to your email
           </p>
         </div>
@@ -330,10 +347,10 @@ export const VerificationForm: Story = {
           value={value}
           onChange={(v) => {
             setValue(v);
-            setStatus('idle');
+            setStatus("idle");
           }}
           onComplete={handleComplete}
-          disabled={status === 'verifying'}
+          disabled={status === "verifying"}
         >
           <InputOTP.Group>
             <InputOTP.Slot index={0} />
@@ -348,36 +365,56 @@ export const VerificationForm: Story = {
           </InputOTP.Group>
         </InputOTP>
 
-        {status === 'verifying' && (
-          <p style={{ fontSize: 'var(--font-size-14)', color: 'var(--text-secondary)' }}>
+        {status === "verifying" && (
+          <p
+            style={{
+              fontSize: "var(--font-size-14)",
+              color: "var(--text-secondary)",
+            }}
+          >
             Verifying...
           </p>
         )}
-        {status === 'success' && (
-          <p style={{ fontSize: 'var(--font-size-14)', color: 'var(--status-success)' }}>
+        {status === "success" && (
+          <p
+            style={{
+              fontSize: "var(--font-size-14)",
+              color: "var(--status-success)",
+            }}
+          >
             Verified successfully!
           </p>
         )}
-        {status === 'error' && (
-          <p style={{ fontSize: 'var(--font-size-14)', color: 'var(--status-error)' }}>
+        {status === "error" && (
+          <p
+            style={{
+              fontSize: "var(--font-size-14)",
+              color: "var(--status-error)",
+            }}
+          >
             Invalid code. Try 123456.
           </p>
         )}
 
-        <p style={{ fontSize: 'var(--font-size-12)', color: 'var(--text-tertiary)' }}>
-          Didn't receive the code?{' '}
+        <p
+          style={{
+            fontSize: "var(--font-size-12)",
+            color: "var(--text-tertiary)",
+          }}
+        >
+          Didn't receive the code?{" "}
           <button
             type="button"
             style={{
-              background: 'none',
-              border: 'none',
-              color: 'var(--text-brand)',
-              cursor: 'pointer',
-              font: 'inherit',
+              background: "none",
+              border: "none",
+              color: "var(--text-brand)",
+              cursor: "pointer",
+              font: "inherit",
             }}
             onClick={() => {
-              setValue('');
-              setStatus('idle');
+              setValue("");
+              setStatus("idle");
             }}
           >
             Resend
@@ -397,14 +434,28 @@ export const CustomSeparator: Story = {
         <InputOTP.Slot index={1} />
       </InputOTP.Group>
       <InputOTP.Separator>
-        <span style={{ fontSize: 'var(--font-size-18)', color: 'var(--text-tertiary)' }}>/</span>
+        <span
+          style={{
+            fontSize: "var(--font-size-18)",
+            color: "var(--text-tertiary)",
+          }}
+        >
+          /
+        </span>
       </InputOTP.Separator>
       <InputOTP.Group>
         <InputOTP.Slot index={2} />
         <InputOTP.Slot index={3} />
       </InputOTP.Group>
       <InputOTP.Separator>
-        <span style={{ fontSize: 'var(--font-size-18)', color: 'var(--text-tertiary)' }}>/</span>
+        <span
+          style={{
+            fontSize: "var(--font-size-18)",
+            color: "var(--text-tertiary)",
+          }}
+        >
+          /
+        </span>
       </InputOTP.Separator>
       <InputOTP.Group>
         <InputOTP.Slot index={4} />

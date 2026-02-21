@@ -5,17 +5,17 @@
  * Implements WCAG 2.1 AA accessibility guidelines.
  */
 
-import type { TextareaHTMLAttributes } from 'react';
+import type { TextareaHTMLAttributes } from "react";
 
 /**
  * Textarea sizes
  */
-export type TextareaSize = 'sm' | 'md' | 'lg';
+export type TextareaSize = "sm" | "md" | "lg";
 
 /**
  * Textarea resize behavior
  */
-export type TextareaResize = 'none' | 'vertical' | 'horizontal' | 'both';
+export type TextareaResize = "none" | "vertical" | "horizontal" | "both";
 
 /**
  * Textarea component props
@@ -31,7 +31,10 @@ export type TextareaResize = 'none' | 'vertical' | 'horizontal' | 'both';
  * />
  * ```
  */
-export interface TextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'> {
+export interface TextareaProps extends Omit<
+  TextareaHTMLAttributes<HTMLTextAreaElement>,
+  "size"
+> {
   /**
    * Textarea label text.
    * Required for accessibility unless aria-label is provided.
@@ -97,11 +100,11 @@ export interface TextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaE
    * />
    * ```
    */
-  'aria-label'?: string;
+  "aria-label"?: string;
 
   /**
    * Additional element IDs that describe this textarea.
    * Automatically includes error, helper text, and counter IDs when provided.
    */
-  'aria-describedby'?: string;
+  "aria-describedby"?: string;
 }

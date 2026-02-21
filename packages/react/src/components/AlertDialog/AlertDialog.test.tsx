@@ -1,29 +1,31 @@
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { AlertDialog } from './AlertDialog';
+import { describe, it, expect, vi } from "vitest";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { AlertDialog } from "./AlertDialog";
 
-describe('AlertDialog', () => {
-  it('renders nothing when open is false', () => {
+describe("AlertDialog", () => {
+  it("renders nothing when open is false", () => {
     render(
       <AlertDialog open={false} onClose={vi.fn()}>
         <AlertDialog.Title>Delete?</AlertDialog.Title>
       </AlertDialog>,
     );
 
-    expect(screen.queryByText('Delete?')).not.toBeInTheDocument();
+    expect(screen.queryByText("Delete?")).not.toBeInTheDocument();
   });
 
-  it('renders dialog when open is true', () => {
+  it("renders dialog when open is true", () => {
     render(
       <AlertDialog open={true} onClose={vi.fn()}>
         <AlertDialog.Title>Delete?</AlertDialog.Title>
-        <AlertDialog.Description>This cannot be undone.</AlertDialog.Description>
+        <AlertDialog.Description>
+          This cannot be undone.
+        </AlertDialog.Description>
       </AlertDialog>,
     );
 
-    expect(screen.getByText('Delete?')).toBeInTheDocument();
-    expect(screen.getByText('This cannot be undone.')).toBeInTheDocument();
+    expect(screen.getByText("Delete?")).toBeInTheDocument();
+    expect(screen.getByText("This cannot be undone.")).toBeInTheDocument();
   });
 
   it('has role="alertdialog" and aria-modal', () => {
@@ -33,43 +35,45 @@ describe('AlertDialog', () => {
       </AlertDialog>,
     );
 
-    const dialog = screen.getByRole('alertdialog');
+    const dialog = screen.getByRole("alertdialog");
     expect(dialog).toBeInTheDocument();
-    expect(dialog).toHaveAttribute('aria-modal', 'true');
+    expect(dialog).toHaveAttribute("aria-modal", "true");
   });
 
-  it('has aria-labelledby pointing to title', () => {
+  it("has aria-labelledby pointing to title", () => {
     render(
       <AlertDialog open={true} onClose={vi.fn()}>
         <AlertDialog.Title>Delete account?</AlertDialog.Title>
       </AlertDialog>,
     );
 
-    const dialog = screen.getByRole('alertdialog');
-    const labelId = dialog.getAttribute('aria-labelledby');
+    const dialog = screen.getByRole("alertdialog");
+    const labelId = dialog.getAttribute("aria-labelledby");
     expect(labelId).toBeTruthy();
 
-    const title = screen.getByText('Delete account?');
-    expect(title).toHaveAttribute('id', labelId);
+    const title = screen.getByText("Delete account?");
+    expect(title).toHaveAttribute("id", labelId);
   });
 
-  it('has aria-describedby pointing to description', () => {
+  it("has aria-describedby pointing to description", () => {
     render(
       <AlertDialog open={true} onClose={vi.fn()}>
         <AlertDialog.Title>Delete?</AlertDialog.Title>
-        <AlertDialog.Description>This cannot be undone.</AlertDialog.Description>
+        <AlertDialog.Description>
+          This cannot be undone.
+        </AlertDialog.Description>
       </AlertDialog>,
     );
 
-    const dialog = screen.getByRole('alertdialog');
-    const descId = dialog.getAttribute('aria-describedby');
+    const dialog = screen.getByRole("alertdialog");
+    const descId = dialog.getAttribute("aria-describedby");
     expect(descId).toBeTruthy();
 
-    const description = screen.getByText('This cannot be undone.');
-    expect(description).toHaveAttribute('id', descId);
+    const description = screen.getByText("This cannot be undone.");
+    expect(description).toHaveAttribute("id", descId);
   });
 
-  it('does NOT close on backdrop click by default', async () => {
+  it("does NOT close on backdrop click by default", async () => {
     const user = userEvent.setup();
     const onClose = vi.fn();
     render(
@@ -78,12 +82,12 @@ describe('AlertDialog', () => {
       </AlertDialog>,
     );
 
-    const backdrop = screen.getByRole('alertdialog');
+    const backdrop = screen.getByRole("alertdialog");
     await user.click(backdrop);
     expect(onClose).not.toHaveBeenCalled();
   });
 
-  it('closes on backdrop click when closeOnBackdrop is true', async () => {
+  it("closes on backdrop click when closeOnBackdrop is true", async () => {
     const user = userEvent.setup();
     const onClose = vi.fn();
     render(
@@ -93,12 +97,12 @@ describe('AlertDialog', () => {
     );
 
     // Click on the backdrop (the alertdialog container), not the dialog content
-    const backdrop = screen.getByRole('alertdialog');
+    const backdrop = screen.getByRole("alertdialog");
     await user.click(backdrop);
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
-  it('does NOT close on Escape by default', async () => {
+  it("does NOT close on Escape by default", async () => {
     const user = userEvent.setup();
     const onClose = vi.fn();
     render(
@@ -107,11 +111,11 @@ describe('AlertDialog', () => {
       </AlertDialog>,
     );
 
-    await user.keyboard('{Escape}');
+    await user.keyboard("{Escape}");
     expect(onClose).not.toHaveBeenCalled();
   });
 
-  it('closes on Escape when closeOnEscape is true', async () => {
+  it("closes on Escape when closeOnEscape is true", async () => {
     const user = userEvent.setup();
     const onClose = vi.fn();
     render(
@@ -120,11 +124,11 @@ describe('AlertDialog', () => {
       </AlertDialog>,
     );
 
-    await user.keyboard('{Escape}');
+    await user.keyboard("{Escape}");
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
-  it('renders Icon subcomponent with default icon', () => {
+  it("renders Icon subcomponent with default icon", () => {
     render(
       <AlertDialog open={true} onClose={vi.fn()}>
         <AlertDialog.Icon variant="danger" />
@@ -133,11 +137,13 @@ describe('AlertDialog', () => {
     );
 
     // Icon wrapper should be aria-hidden
-    const icon = screen.getByRole('alertdialog').querySelector('[aria-hidden="true"]');
+    const icon = screen
+      .getByRole("alertdialog")
+      .querySelector('[aria-hidden="true"]');
     expect(icon).toBeInTheDocument();
   });
 
-  it('renders Icon with custom icon', () => {
+  it("renders Icon with custom icon", () => {
     render(
       <AlertDialog open={true} onClose={vi.fn()}>
         <AlertDialog.Icon icon={<span data-testid="custom-icon">!</span>} />
@@ -145,10 +151,10 @@ describe('AlertDialog', () => {
       </AlertDialog>,
     );
 
-    expect(screen.getByTestId('custom-icon')).toBeInTheDocument();
+    expect(screen.getByTestId("custom-icon")).toBeInTheDocument();
   });
 
-  it('renders Actions subcomponent', () => {
+  it("renders Actions subcomponent", () => {
     render(
       <AlertDialog open={true} onClose={vi.fn()}>
         <AlertDialog.Title>Delete?</AlertDialog.Title>
@@ -159,31 +165,31 @@ describe('AlertDialog', () => {
       </AlertDialog>,
     );
 
-    expect(screen.getByText('Cancel')).toBeInTheDocument();
-    expect(screen.getByText('Delete')).toBeInTheDocument();
+    expect(screen.getByText("Cancel")).toBeInTheDocument();
+    expect(screen.getByText("Delete")).toBeInTheDocument();
   });
 
-  it('prevents body scroll when open', () => {
+  it("prevents body scroll when open", () => {
     const { unmount } = render(
       <AlertDialog open={true} onClose={vi.fn()}>
         <AlertDialog.Title>Delete?</AlertDialog.Title>
       </AlertDialog>,
     );
 
-    expect(document.body.style.overflow).toBe('hidden');
+    expect(document.body.style.overflow).toBe("hidden");
 
     unmount();
-    expect(document.body.style.overflow).toBe('');
+    expect(document.body.style.overflow).toBe("");
   });
 
-  it('restores body scroll when closed', () => {
+  it("restores body scroll when closed", () => {
     const { rerender } = render(
       <AlertDialog open={true} onClose={vi.fn()}>
         <AlertDialog.Title>Delete?</AlertDialog.Title>
       </AlertDialog>,
     );
 
-    expect(document.body.style.overflow).toBe('hidden');
+    expect(document.body.style.overflow).toBe("hidden");
 
     rerender(
       <AlertDialog open={false} onClose={vi.fn()}>
@@ -191,10 +197,10 @@ describe('AlertDialog', () => {
       </AlertDialog>,
     );
 
-    expect(document.body.style.overflow).toBe('');
+    expect(document.body.style.overflow).toBe("");
   });
 
-  it('applies custom className to dialog', () => {
+  it("applies custom className to dialog", () => {
     render(
       <AlertDialog open={true} onClose={vi.fn()} className="custom-dialog">
         <AlertDialog.Title>Delete?</AlertDialog.Title>
@@ -202,17 +208,19 @@ describe('AlertDialog', () => {
     );
 
     // The className is applied to the inner dialog div, not the backdrop
-    const dialog = screen.getByRole('alertdialog');
-    const innerDialog = dialog.querySelector('.custom-dialog');
+    const dialog = screen.getByRole("alertdialog");
+    const innerDialog = dialog.querySelector(".custom-dialog");
     expect(innerDialog).toBeInTheDocument();
   });
 
-  it('renders all compound components together', () => {
+  it("renders all compound components together", () => {
     render(
       <AlertDialog open={true} onClose={vi.fn()}>
         <AlertDialog.Icon variant="warning" />
         <AlertDialog.Title>Are you sure?</AlertDialog.Title>
-        <AlertDialog.Description>This action is irreversible.</AlertDialog.Description>
+        <AlertDialog.Description>
+          This action is irreversible.
+        </AlertDialog.Description>
         <AlertDialog.Actions>
           <button>Cancel</button>
           <button>Confirm</button>
@@ -220,9 +228,11 @@ describe('AlertDialog', () => {
       </AlertDialog>,
     );
 
-    expect(screen.getByText('Are you sure?')).toBeInTheDocument();
-    expect(screen.getByText('This action is irreversible.')).toBeInTheDocument();
-    expect(screen.getByText('Cancel')).toBeInTheDocument();
-    expect(screen.getByText('Confirm')).toBeInTheDocument();
+    expect(screen.getByText("Are you sure?")).toBeInTheDocument();
+    expect(
+      screen.getByText("This action is irreversible."),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Cancel")).toBeInTheDocument();
+    expect(screen.getByText("Confirm")).toBeInTheDocument();
   });
 });

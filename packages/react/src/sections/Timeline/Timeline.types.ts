@@ -4,7 +4,7 @@
  * Type definitions for the Orion Timeline section component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Timeline event item
@@ -38,7 +38,7 @@ export interface TimelineEvent {
   /**
    * Event status/type
    */
-  status?: 'completed' | 'current' | 'upcoming' | 'default';
+  status?: "completed" | "current" | "upcoming" | "default";
 
   /**
    * Additional content
@@ -66,7 +66,10 @@ export interface TimelineEvent {
  * />
  * ```
  */
-export interface TimelineProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
+export interface TimelineProps extends Omit<
+  HTMLAttributes<HTMLElement>,
+  "title"
+> {
   /**
    * Optional eyebrow text
    */
@@ -91,7 +94,7 @@ export interface TimelineProps extends Omit<HTMLAttributes<HTMLElement>, 'title'
    * Timeline orientation
    * @default 'vertical'
    */
-  orientation?: 'vertical' | 'horizontal';
+  orientation?: "vertical" | "horizontal";
 
   /**
    * Alternate items left/right (vertical only)
@@ -109,7 +112,7 @@ export interface TimelineProps extends Omit<HTMLAttributes<HTMLElement>, 'title'
    * Background style
    * @default 'base'
    */
-  background?: 'base' | 'subtle' | 'none';
+  background?: "base" | "subtle" | "none";
 
   /**
    * Compact mode (smaller spacing)

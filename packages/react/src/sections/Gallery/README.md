@@ -5,7 +5,7 @@
 ## Quick Start
 
 ```tsx
-import { Gallery, Badge } from '@orion/react';
+import { Gallery, Badge } from "@orion/react";
 
 <Gallery
   eyebrow={<Badge>Portfolio</Badge>}
@@ -14,18 +14,28 @@ import { Gallery, Badge } from '@orion/react';
   images={[
     {
       id: 1,
-      src: '/gallery/project-1.jpg',
-      alt: 'E-commerce redesign',
-      caption: 'E-commerce Platform',
+      src: "/gallery/project-1.jpg",
+      alt: "E-commerce redesign",
+      caption: "E-commerce Platform",
     },
-    { id: 2, src: '/gallery/project-2.jpg', alt: 'Mobile app design', caption: 'Fitness App' },
+    {
+      id: 2,
+      src: "/gallery/project-2.jpg",
+      alt: "Mobile app design",
+      caption: "Fitness App",
+    },
     {
       id: 3,
-      src: '/gallery/project-3.jpg',
-      alt: 'Dashboard interface',
-      caption: 'Analytics Dashboard',
+      src: "/gallery/project-3.jpg",
+      alt: "Dashboard interface",
+      caption: "Analytics Dashboard",
     },
-    { id: 4, src: '/gallery/project-4.jpg', alt: 'Brand identity', caption: 'Brand Identity' },
+    {
+      id: 4,
+      src: "/gallery/project-4.jpg",
+      alt: "Brand identity",
+      caption: "Brand Identity",
+    },
   ]}
   layout="grid"
   columns={4}
@@ -60,10 +70,10 @@ interface GalleryProps {
   images: GalleryImage[]; // REQUIRED - Array of images
 
   // Layout
-  layout?: 'grid' | 'masonry' | 'carousel'; // default: 'grid'
+  layout?: "grid" | "masonry" | "carousel"; // default: 'grid'
   columns?: 2 | 3 | 4 | 5; // default: 4
-  aspectRatio?: 'square' | 'landscape' | 'portrait' | 'auto'; // default: 'square'
-  gap?: 'sm' | 'md' | 'lg' | 'none'; // default: 'md'
+  aspectRatio?: "square" | "landscape" | "portrait" | "auto"; // default: 'square'
+  gap?: "sm" | "md" | "lg" | "none"; // default: 'md'
 
   // Features
   lightbox?: boolean; // Enable lightbox - default: true
@@ -71,7 +81,7 @@ interface GalleryProps {
   filterable?: boolean; // Enable category filter - default: false
 
   // Styling
-  background?: 'base' | 'subtle' | 'none'; // default: 'base'
+  background?: "base" | "subtle" | "none"; // default: 'base'
 }
 
 interface GalleryImage {
@@ -81,7 +91,7 @@ interface GalleryImage {
   thumbnail?: string; // Thumbnail URL (optional)
   caption?: string; // Image caption
   category?: string; // Category for filtering
-  aspectRatio?: 'square' | 'landscape' | 'portrait' | 'auto'; // Override
+  aspectRatio?: "square" | "landscape" | "portrait" | "auto"; // Override
 }
 ```
 
@@ -236,7 +246,10 @@ Enable clicking images to view full-screen.
 Show captions below images in the grid.
 
 ```tsx
-<Gallery showCaptions images={[{ id: 1, src: '/img.jpg', alt: '...', caption: 'Project Name' }]} />
+<Gallery
+  showCaptions
+  images={[{ id: 1, src: "/img.jpg", alt: "...", caption: "Project Name" }]}
+/>
 ```
 
 ---
@@ -249,10 +262,10 @@ Enable filtering by category.
 <Gallery
   filterable
   images={[
-    { id: 1, src: '/web1.jpg', alt: '...', category: 'Web Design' },
-    { id: 2, src: '/app1.jpg', alt: '...', category: 'App Design' },
-    { id: 3, src: '/web2.jpg', alt: '...', category: 'Web Design' },
-    { id: 4, src: '/brand1.jpg', alt: '...', category: 'Branding' },
+    { id: 1, src: "/web1.jpg", alt: "...", category: "Web Design" },
+    { id: 2, src: "/app1.jpg", alt: "...", category: "App Design" },
+    { id: 3, src: "/web2.jpg", alt: "...", category: "Web Design" },
+    { id: 4, src: "/brand1.jpg", alt: "...", category: "Branding" },
   ]}
 />
 ```
@@ -282,7 +295,7 @@ Enable filtering by category.
 ### Portfolio Gallery
 
 ```tsx
-import { Gallery, Badge } from '@orion/react';
+import { Gallery, Badge } from "@orion/react";
 
 <Gallery
   eyebrow={<Badge variant="brand">Portfolio</Badge>}
@@ -291,51 +304,51 @@ import { Gallery, Badge } from '@orion/react';
   images={[
     {
       id: 1,
-      src: '/portfolio/ecommerce-full.jpg',
-      thumbnail: '/portfolio/ecommerce-thumb.jpg',
-      alt: 'E-commerce platform with product grid and cart',
-      caption: 'E-commerce Platform Redesign',
-      category: 'Web Design',
+      src: "/portfolio/ecommerce-full.jpg",
+      thumbnail: "/portfolio/ecommerce-thumb.jpg",
+      alt: "E-commerce platform with product grid and cart",
+      caption: "E-commerce Platform Redesign",
+      category: "Web Design",
     },
     {
       id: 2,
-      src: '/portfolio/mobile-full.jpg',
-      thumbnail: '/portfolio/mobile-thumb.jpg',
-      alt: 'Fitness tracking mobile app screens',
-      caption: 'FitTrack Mobile App',
-      category: 'App Design',
+      src: "/portfolio/mobile-full.jpg",
+      thumbnail: "/portfolio/mobile-thumb.jpg",
+      alt: "Fitness tracking mobile app screens",
+      caption: "FitTrack Mobile App",
+      category: "App Design",
     },
     {
       id: 3,
-      src: '/portfolio/dashboard-full.jpg',
-      thumbnail: '/portfolio/dashboard-thumb.jpg',
-      alt: 'Analytics dashboard with charts and metrics',
-      caption: 'Analytics Dashboard',
-      category: 'Web Design',
+      src: "/portfolio/dashboard-full.jpg",
+      thumbnail: "/portfolio/dashboard-thumb.jpg",
+      alt: "Analytics dashboard with charts and metrics",
+      caption: "Analytics Dashboard",
+      category: "Web Design",
     },
     {
       id: 4,
-      src: '/portfolio/brand-full.jpg',
-      thumbnail: '/portfolio/brand-thumb.jpg',
-      alt: 'Brand identity design showing logo and colors',
-      caption: 'TechCorp Brand Identity',
-      category: 'Branding',
+      src: "/portfolio/brand-full.jpg",
+      thumbnail: "/portfolio/brand-thumb.jpg",
+      alt: "Brand identity design showing logo and colors",
+      caption: "TechCorp Brand Identity",
+      category: "Branding",
     },
     {
       id: 5,
-      src: '/portfolio/landing-full.jpg',
-      thumbnail: '/portfolio/landing-thumb.jpg',
-      alt: 'SaaS landing page design',
-      caption: 'SaaS Landing Page',
-      category: 'Web Design',
+      src: "/portfolio/landing-full.jpg",
+      thumbnail: "/portfolio/landing-thumb.jpg",
+      alt: "SaaS landing page design",
+      caption: "SaaS Landing Page",
+      category: "Web Design",
     },
     {
       id: 6,
-      src: '/portfolio/icon-full.jpg',
-      thumbnail: '/portfolio/icon-thumb.jpg',
-      alt: 'Custom icon set design',
-      caption: 'Icon System',
-      category: 'Branding',
+      src: "/portfolio/icon-full.jpg",
+      thumbnail: "/portfolio/icon-thumb.jpg",
+      alt: "Custom icon set design",
+      caption: "Icon System",
+      category: "Branding",
     },
   ]}
   layout="grid"
@@ -351,7 +364,14 @@ import { Gallery, Badge } from '@orion/react';
 ### Masonry Photo Gallery
 
 ```tsx
-<Gallery title="Photo Gallery" images={photos} layout="masonry" columns={4} lightbox gap="sm" />
+<Gallery
+  title="Photo Gallery"
+  images={photos}
+  layout="masonry"
+  columns={4}
+  lightbox
+  gap="sm"
+/>
 ```
 
 ### Product Images Carousel
@@ -360,10 +380,10 @@ import { Gallery, Badge } from '@orion/react';
 <Gallery
   title="Product Images"
   images={[
-    { id: 1, src: '/product/front.jpg', alt: 'Product front view' },
-    { id: 2, src: '/product/side.jpg', alt: 'Product side view' },
-    { id: 3, src: '/product/back.jpg', alt: 'Product back view' },
-    { id: 4, src: '/product/detail.jpg', alt: 'Product detail' },
+    { id: 1, src: "/product/front.jpg", alt: "Product front view" },
+    { id: 2, src: "/product/side.jpg", alt: "Product side view" },
+    { id: 3, src: "/product/back.jpg", alt: "Product back view" },
+    { id: 4, src: "/product/detail.jpg", alt: "Product detail" },
   ]}
   layout="carousel"
   lightbox
@@ -391,10 +411,30 @@ import { Gallery, Badge } from '@orion/react';
 <Gallery
   title="Conference 2024"
   images={[
-    { id: 1, src: '/event/keynote.jpg', alt: 'Keynote presentation', category: 'Keynotes' },
-    { id: 2, src: '/event/workshop.jpg', alt: 'Workshop session', category: 'Workshops' },
-    { id: 3, src: '/event/networking.jpg', alt: 'Networking event', category: 'Networking' },
-    { id: 4, src: '/event/panel.jpg', alt: 'Panel discussion', category: 'Keynotes' },
+    {
+      id: 1,
+      src: "/event/keynote.jpg",
+      alt: "Keynote presentation",
+      category: "Keynotes",
+    },
+    {
+      id: 2,
+      src: "/event/workshop.jpg",
+      alt: "Workshop session",
+      category: "Workshops",
+    },
+    {
+      id: 3,
+      src: "/event/networking.jpg",
+      alt: "Networking event",
+      category: "Networking",
+    },
+    {
+      id: 4,
+      src: "/event/panel.jpg",
+      alt: "Panel discussion",
+      category: "Keynotes",
+    },
     // ... more images
   ]}
   filterable

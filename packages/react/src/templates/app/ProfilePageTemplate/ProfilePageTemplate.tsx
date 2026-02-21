@@ -5,16 +5,16 @@
  * Designed for user profile pages, account pages, and team member views.
  */
 
-import { forwardRef } from 'react';
-import type { ProfilePageTemplateProps } from './ProfilePageTemplate.types';
+import { forwardRef } from "react";
+import type { ProfilePageTemplateProps } from "./ProfilePageTemplate.types";
 
 // Sections
-import { Sidebar } from '../../../sections/Sidebar';
-import { PageHeader } from '../../../sections/PageHeader';
-import { ActivityFeed } from '../../../sections/ActivityFeed';
-import { DetailPanel } from '../../../sections/DetailPanel';
+import { Sidebar } from "../../../sections/Sidebar";
+import { PageHeader } from "../../../sections/PageHeader";
+import { ActivityFeed } from "../../../sections/ActivityFeed";
+import { DetailPanel } from "../../../sections/DetailPanel";
 
-import styles from './ProfilePageTemplate.module.css';
+import styles from "./ProfilePageTemplate.module.css";
 
 /**
  * ProfilePageTemplate - Full profile page composition
@@ -36,7 +36,10 @@ import styles from './ProfilePageTemplate.module.css';
  * </ProfilePageTemplate>
  * ```
  */
-export const ProfilePageTemplate = forwardRef<HTMLDivElement, ProfilePageTemplateProps>(
+export const ProfilePageTemplate = forwardRef<
+  HTMLDivElement,
+  ProfilePageTemplateProps
+>(
   (
     {
       sidebar,
@@ -51,13 +54,15 @@ export const ProfilePageTemplate = forwardRef<HTMLDivElement, ProfilePageTemplat
     },
     ref,
   ) => {
-    const profileClasses = [styles.profilePage, className].filter(Boolean).join(' ');
+    const profileClasses = [styles.profilePage, className]
+      .filter(Boolean)
+      .join(" ");
     const contentClasses = [
       styles.content,
       !(showActivity && activityFeed) && styles.contentNoAside,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
       <div ref={ref} className={profileClasses} {...rest}>
@@ -74,10 +79,14 @@ export const ProfilePageTemplate = forwardRef<HTMLDivElement, ProfilePageTemplat
             <div className={styles.mainContent}>
               {/* Profile Header Card */}
               <div className={styles.profileHeader}>
-                {profile.avatar && <div className={styles.profileAvatar}>{profile.avatar}</div>}
+                {profile.avatar && (
+                  <div className={styles.profileAvatar}>{profile.avatar}</div>
+                )}
                 <div className={styles.profileInfo}>
                   <h1 className={styles.profileName}>{profile.name}</h1>
-                  {profile.role && <p className={styles.profileRole}>{profile.role}</p>}
+                  {profile.role && (
+                    <p className={styles.profileRole}>{profile.role}</p>
+                  )}
                   {profile.metadata && profile.metadata.length > 0 && (
                     <div className={styles.profileMeta}>
                       {profile.metadata.map((item, index) => (
@@ -89,7 +98,9 @@ export const ProfilePageTemplate = forwardRef<HTMLDivElement, ProfilePageTemplat
                     </div>
                   )}
                 </div>
-                {profile.actions && <div className={styles.profileActions}>{profile.actions}</div>}
+                {profile.actions && (
+                  <div className={styles.profileActions}>{profile.actions}</div>
+                )}
               </div>
 
               {/* Profile Content Sections */}
@@ -112,6 +123,6 @@ export const ProfilePageTemplate = forwardRef<HTMLDivElement, ProfilePageTemplat
   },
 );
 
-ProfilePageTemplate.displayName = 'ProfilePageTemplate';
+ProfilePageTemplate.displayName = "ProfilePageTemplate";
 
 export default ProfilePageTemplate;

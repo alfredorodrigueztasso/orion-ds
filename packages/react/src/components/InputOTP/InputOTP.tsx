@@ -6,29 +6,31 @@ import {
   useRef,
   useEffect,
   createContext,
-} from 'react';
+} from "react";
 import type {
   InputOTPProps,
   InputOTPGroupProps,
   InputOTPSlotProps,
   InputOTPSeparatorProps,
   InputOTPContextValue,
-} from './InputOTP.types';
-import styles from './InputOTP.module.css';
+} from "./InputOTP.types";
+import styles from "./InputOTP.module.css";
 
 const InputOTPContext = createContext<InputOTPContextValue | null>(null);
 
 function useInputOTPContext(): InputOTPContextValue {
   const ctx = useContext(InputOTPContext);
   if (!ctx) {
-    throw new Error('InputOTP.Slot/Group/Separator must be used within an InputOTP');
+    throw new Error(
+      "InputOTP.Slot/Group/Separator must be used within an InputOTP",
+    );
   }
   return ctx;
 }
 
 const InputOTPGroup = forwardRef<HTMLDivElement, InputOTPGroupProps>(
   ({ className, children, ...rest }, ref) => {
-    const classNames = [styles.group, className].filter(Boolean).join(' ');
+    const classNames = [styles.group, className].filter(Boolean).join(" ");
     return (
       <div ref={ref} className={classNames} {...rest}>
         {children}
@@ -37,7 +39,7 @@ const InputOTPGroup = forwardRef<HTMLDivElement, InputOTPGroupProps>(
   },
 );
 
-InputOTPGroup.displayName = 'InputOTP.Group';
+InputOTPGroup.displayName = "InputOTP.Group";
 
 const InputOTPSlot = forwardRef<HTMLDivElement, InputOTPSlotProps>(
   ({ index, className, ...rest }, ref) => {
@@ -51,7 +53,7 @@ const InputOTPSlot = forwardRef<HTMLDivElement, InputOTPSlotProps>(
     } = useInputOTPContext();
     const char = value[index];
     const isActive = isFocused && index === activeIndex;
-    const isFilled = char !== undefined && char !== '';
+    const isFilled = char !== undefined && char !== "";
 
     const classNames = [
       styles.slot,
@@ -61,7 +63,7 @@ const InputOTPSlot = forwardRef<HTMLDivElement, InputOTPSlotProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
       <div ref={ref} className={classNames} onClick={focusInput} {...rest}>
@@ -71,11 +73,11 @@ const InputOTPSlot = forwardRef<HTMLDivElement, InputOTPSlotProps>(
   },
 );
 
-InputOTPSlot.displayName = 'InputOTP.Slot';
+InputOTPSlot.displayName = "InputOTP.Slot";
 
 const InputOTPSeparator = forwardRef<HTMLDivElement, InputOTPSeparatorProps>(
   ({ className, children, ...rest }, ref) => {
-    const classNames = [styles.separator, className].filter(Boolean).join(' ');
+    const classNames = [styles.separator, className].filter(Boolean).join(" ");
     return (
       <div ref={ref} className={classNames} role="separator" {...rest}>
         {children ?? <span aria-hidden="true">&ndash;</span>}
@@ -84,18 +86,18 @@ const InputOTPSeparator = forwardRef<HTMLDivElement, InputOTPSeparatorProps>(
   },
 );
 
-InputOTPSeparator.displayName = 'InputOTP.Separator';
+InputOTPSeparator.displayName = "InputOTP.Separator";
 
 const InputOTPRoot = forwardRef<HTMLDivElement, InputOTPProps>(
   (
     {
       maxLength,
       value,
-      defaultValue = '',
+      defaultValue = "",
       onChange,
       onComplete,
-      type = 'numeric',
-      size = 'md',
+      type = "numeric",
+      size = "md",
       disabled = false,
       autoFocus = false,
       className,
@@ -111,8 +113,8 @@ const InputOTPRoot = forwardRef<HTMLDivElement, InputOTPProps>(
     const currentValue = isControlled ? value : internalValue;
     const activeIndex = Math.min(currentValue.length, maxLength - 1);
 
-    const pattern = type === 'numeric' ? '[0-9]' : '[a-zA-Z0-9]';
-    const regex = type === 'numeric' ? /[^0-9]/g : /[^a-zA-Z0-9]/g;
+    const pattern = type === "numeric" ? "[0-9]" : "[a-zA-Z0-9]";
+    const regex = type === "numeric" ? /[^0-9]/g : /[^a-zA-Z0-9]/g;
 
     useEffect(() => {
       if (autoFocus) {
@@ -122,7 +124,7 @@ const InputOTPRoot = forwardRef<HTMLDivElement, InputOTPProps>(
 
     const updateValue = useCallback(
       (newValue: string) => {
-        const filtered = newValue.replace(regex, '').slice(0, maxLength);
+        const filtered = newValue.replace(regex, "").slice(0, maxLength);
         if (!isControlled) {
           setInternalValue(filtered);
         }
@@ -143,7 +145,7 @@ const InputOTPRoot = forwardRef<HTMLDivElement, InputOTPProps>(
 
     const handleKeyDown = useCallback(
       (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Backspace' && currentValue.length === 0) {
+        if (e.key === "Backspace" && currentValue.length === 0) {
           e.preventDefault();
         }
       },
@@ -153,7 +155,7 @@ const InputOTPRoot = forwardRef<HTMLDivElement, InputOTPProps>(
     const handlePaste = useCallback(
       (e: React.ClipboardEvent<HTMLInputElement>) => {
         e.preventDefault();
-        const pasted = e.clipboardData.getData('text/plain');
+        const pasted = e.clipboardData.getData("text/plain");
         updateValue(pasted);
       },
       [updateValue],
@@ -165,7 +167,9 @@ const InputOTPRoot = forwardRef<HTMLDivElement, InputOTPProps>(
       }
     }, [disabled]);
 
-    const classNames = [styles.root, styles[size], className].filter(Boolean).join(' ');
+    const classNames = [styles.root, styles[size], className]
+      .filter(Boolean)
+      .join(" ");
 
     const ctx: InputOTPContextValue = {
       value: currentValue,
@@ -178,12 +182,18 @@ const InputOTPRoot = forwardRef<HTMLDivElement, InputOTPProps>(
 
     return (
       <InputOTPContext.Provider value={ctx}>
-        <div ref={ref} className={classNames} onClick={focusInput} data-otp-container {...rest}>
+        <div
+          ref={ref}
+          className={classNames}
+          onClick={focusInput}
+          data-otp-container
+          {...rest}
+        >
           <input
             ref={inputRef}
             className={styles.hiddenInput}
             type="text"
-            inputMode={type === 'numeric' ? 'numeric' : 'text'}
+            inputMode={type === "numeric" ? "numeric" : "text"}
             pattern={`${pattern}*`}
             maxLength={maxLength}
             value={currentValue}
@@ -204,7 +214,7 @@ const InputOTPRoot = forwardRef<HTMLDivElement, InputOTPProps>(
   },
 );
 
-InputOTPRoot.displayName = 'InputOTP';
+InputOTPRoot.displayName = "InputOTP";
 
 export const InputOTP = Object.assign(InputOTPRoot, {
   Group: InputOTPGroup,

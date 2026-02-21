@@ -11,5 +11,5 @@
  * <Link href="https://example.com" external>External Link</Link>
  * ```
  */
-export { Link } from './Link';
-export type { LinkProps, LinkVariant, LinkSize } from './Link.types';
+export { Link } from "./Link";
+export type { LinkProps, LinkVariant, LinkSize } from "./Link.types";

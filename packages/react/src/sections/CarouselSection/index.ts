@@ -5,10 +5,10 @@
  * For atomic carousel use, import Carousel from components.
  */
 
-export { CarouselSection } from './CarouselSection';
+export { CarouselSection } from "./CarouselSection";
 
 // Re-export CarouselCard from the atomic component for convenience
-export { CarouselCard } from '../../components/Carousel';
+export { CarouselCard } from "../../components/Carousel";
 
 export type {
   CarouselSectionProps,
@@ -17,7 +17,7 @@ export type {
   CarouselAspectRatio,
   CarouselGap,
   CarouselOverlay,
-} from './CarouselSection.types';
+} from "./CarouselSection.types";
 
 // Re-export CarouselCardProps from the atomic component
-export type { CarouselCardProps } from '../../components/Carousel';
+export type { CarouselCardProps } from "../../components/Carousel";

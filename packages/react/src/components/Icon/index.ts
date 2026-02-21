@@ -16,5 +16,10 @@
  * <Search size={20} />
  * ```
  */
-export { Icon } from './Icon';
-export type { IconProps, IconSize, IconColor, IconRenderProps } from './Icon.types';
+export { Icon } from "./Icon";
+export type {
+  IconProps,
+  IconSize,
+  IconColor,
+  IconRenderProps,
+} from "./Icon.types";

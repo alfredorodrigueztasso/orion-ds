@@ -11,5 +11,5 @@
  * <Chip selected onClick={() => toggle()}>Selectable</Chip>
  * ```
  */
-export { Chip } from './Chip';
-export type { ChipProps, ChipVariant, ChipSize } from './Chip.types';
+export { Chip } from "./Chip";
+export type { ChipProps, ChipVariant, ChipSize } from "./Chip.types";

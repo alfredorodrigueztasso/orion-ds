@@ -82,6 +82,16 @@ npm run dev:packages                    # Start all packages in watch mode
 node scripts/validate-components.js     # Check React components follow AI-first rules
 ```
 
+### Storybook
+```bash
+cd packages/react
+npm run storybook           # Start Storybook dev server on port 6006
+npm run build-storybook     # Build static Storybook
+```
+
+**Usage**: All components have `.stories.tsx` files for visual development and testing.
+**Location**: `packages/react/src/components/*/ComponentName.stories.tsx`
+
 ### CLI Commands (@orion-ds/cli)
 
 The CLI lets developers copy individual components into their project (shadcn-style):
@@ -100,11 +110,132 @@ npx @orion-ds/cli list --type=component   # Filter by type
 
 See `packages/cli/README.md` for full documentation.
 
+### Registry & HTTP API
+
+**Registry**: `registry/` contains 90+ items as JSON files
+- Components: `registry/components/*.json` (39 items)
+- Sections: `registry/sections/*.json` (41 items)
+- Templates: `registry/templates/*.json` (10 items)
+
+**HTTP API**: `public/r/` contains static JSON endpoints
+
+```bash
+npm run build:registry       # Generate registry JSON from React components
+npm run build:registry-api   # Build HTTP API endpoints in public/r/
+```
+
+**API Endpoints**:
+- `GET /r/index.json` - Full registry manifest
+- `GET /r/components/{name}.json` - Component details
+- `GET /r/sections/{name}.json` - Section details
+- `GET /r/templates/{name}.json` - Template details
+
+**Used by**:
+- `@orion-ds/cli` - Fetches components during `orion add`
+- `@orion-ds/mcp` - Powers MCP server tools (9 tools for AI agents)
+- Documentation sites - Renders component galleries
+
+**MCP Server**: See `packages/mcp/README.md` for AI integration setup (Claude Desktop, Claude Code, Cursor, Cline)
+
 ### Python Utilities
 ```bash
 python check_contrast.py   # Validate WCAG color contrast ratios
 python check_tokens.py     # Additional token validation
 ```
+
+## Testing
+
+### Unit Tests (Vitest)
+```bash
+cd packages/react
+npm test                    # Run unit tests
+npm run test:ui             # Interactive test UI
+npm run test:coverage       # Generate coverage report
+```
+
+**Coverage thresholds**: 80% statements, 75% branches, 80% functions, 80% lines
+
+**Test files**: `*.test.tsx` files co-located with components
+
+**Configuration**: `packages/react/vitest.config.ts`
+
+### E2E Tests (Playwright)
+```bash
+cd packages/react
+npm run test:e2e            # Run E2E tests
+npm run test:e2e:headed     # Run with browser visible
+npm run test:e2e:debug      # Debug mode
+npm run test:e2e:report     # View HTML report
+```
+
+**Configured browsers**: Chromium, Firefox, WebKit, Mobile Chrome, Mobile Safari, iPad
+
+**Base URL**: `http://localhost:6006` (Storybook)
+
+**Configuration**: `packages/react/playwright.config.ts`
+
+**Test directory**: `packages/react/e2e/`
+
+### Visual Regression (Percy)
+```bash
+cd packages/react
+npm run test:visual         # Build Storybook and run Percy
+npm run percy               # Run Percy only (requires pre-built Storybook)
+```
+
+**Percy configuration**: `packages/react/.percy.yml`
+
+**CI/CD**: Integrated with GitHub Actions (`.github/workflows/visual-regression.yml`)
+
+### Performance Benchmarks
+```bash
+cd packages/react
+npm run bench               # Run Vitest benchmarks
+npm run measure:bundle-size # Analyze bundle size
+```
+
+**Budget files**: `packages/react/performance.budgets.json`
+
+## Code Quality
+
+### Linting
+```bash
+npm run lint                # Lint all packages
+npm run lint:fix            # Auto-fix ESLint issues
+npm run lint:css            # Lint CSS files
+npm run lint:css:fix        # Auto-fix Stylelint issues
+```
+
+**ESLint config**: Uses `typescript-eslint`, `eslint-plugin-react`, `eslint-plugin-jsx-a11y`, `eslint-config-prettier`
+
+**Stylelint config**: `stylelint-config-standard`
+
+**Configuration files**:
+- `.eslintrc.json` (root)
+- `.stylelintrc.json` (root)
+
+### Formatting
+```bash
+npm run format              # Format all files with Prettier
+npm run format:check        # Check formatting without writing
+```
+
+**Prettier config**: Uses defaults with some overrides in `package.json`
+
+**Files formatted**: `*.ts`, `*.tsx`, `*.json`, `*.css`, `*.md`
+
+### Pre-commit Hooks (Husky + lint-staged)
+
+Automatically runs on `git commit`:
+- ESLint + Prettier on `*.ts`, `*.tsx` files
+- Stylelint + Prettier on `*.css` files
+- Prettier on `*.json`, `*.md` files
+
+**Configuration**: `package.json` → `lint-staged` field
+
+**Bypass** (not recommended): `git commit --no-verify`
+
+**Setup**: Husky hooks are in `.husky/` directory
 
 ## Anti-Hallucination Rules (MANDATORY)
 
@@ -552,6 +683,30 @@ function MyButton() {
 </Button>
 ```
 
+### Package Exports & Import Paths
+
+`@orion-ds/react@^3.0.0` supports multiple entry points:
+
+```typescript
+// Main export - All components + hooks + contexts
+import { Button, ThemeProvider, useThemeContext } from '@orion-ds/react';
+
+// Styles (CSS)
+import '@orion-ds/react/styles.css';     // Recommended - Full bundle (tokens + components)
+import '@orion-ds/react/theme.css';      // Tokens only
+import '@orion-ds/react/dist/react.css'; // Components only
+
+// Tokens (TypeScript)
+import { primitives, getToken, getSemanticToken } from '@orion-ds/react/tokens';
+
+// Individual components (tree-shaking - advanced)
+import { Button } from '@orion-ds/react/components/Button';
+```
+
+**⚠️ CRITICAL**: Always import from `@orion-ds/react`, NOT `@orion-ds/core` (deprecated in v3.0.0+).
+
+**Exports configuration**: See `packages/react/package.json` → `exports` field
+
 ### 4a. Using Lucide Icons in React Components
 
 Orion React includes **Lucide icons** - a comprehensive icon library with 5000+ icons.
@@ -732,12 +887,38 @@ When user provides external references (screenshots, website URLs, brand names l
 - `AGENTS.md` - Quick reference for AI agents
 - `TYPESCRIPT_SETUP.md` - TypeScript migration guide (NEW)
 
-### TypeScript Packages (NEW)
+### Monorepo Architecture
+
+**Package manager**: pnpm (v10.28.1) or npm
+
+**Build orchestration**: Turbo (caching, parallel builds)
+
 ```
 packages/
-├── core/           # @orion/core - Design tokens
-├── react/          # @orion/react - React components
-└── vue/            # @orion/vue - Vue composables
+├── cli/            # @orion-ds/cli - Component installer (shadcn-style)
+├── core/           # @orion-ds/core - Design tokens (DEPRECATED in v3.0.0+)
+├── create/         # @orion-ds/create - Project scaffolder
+├── mcp/            # @orion-ds/mcp - MCP server for AI agents
+├── react/          # @orion-ds/react - React components + tokens (v3.0.0+)
+└── validate/       # @orion-ds/validate - Code validator
+```
+
+**Build order** (enforced by Turbo):
+1. `@orion-ds/core` (DEPRECATED - now part of react v3.0.0+)
+2. `@orion-ds/react` (depends on core for backward compatibility)
+3. `@orion-ds/cli`, `@orion-ds/mcp`, `@orion-ds/validate` (independent)
+
+**Key files**:
+- `pnpm-workspace.yaml` - Workspace definition
+- `turbo.json` - Build pipeline configuration (task dependencies, caching)
+- Root `package.json` - Workspace scripts and shared devDependencies
+
+**Building**:
+```bash
+npm run build                # Builds all packages in correct order
+npm run build:packages       # Same as above (alias)
+npm run build:react          # Build core + react only
+turbo run build              # Direct Turbo invocation
 ```
 
 ### Testing Projects
@@ -846,6 +1027,84 @@ npm run type-check  # Ensures all TypeScript is valid
 npm run validate    # Ensures CSS uses tokens correctly
 npm run audit       # Runs both checks
 ```
+
+### Preview Validation (Storybook/Docs)
+
+The system validates Storybook stories and documentation for consistency:
+
+```bash
+npm run validate:previews
+```
+
+**What it checks**:
+1. ✅ **No duplicate components** - Use `@orion-ds/react`, not recreated components
+2. ✅ **No relative imports** - Use package imports (except templates)
+3. ✅ **No hardcoded styles** - Use semantic tokens (except demo decorators)
+4. ✅ **No style tags** - Use CSS Modules or Orion components
+
+**Acceptable patterns** (not violations):
+- **Templates** - Can use relative imports during development (before build)
+- **Demo wrappers** - `ToastDemo`, `ModalWrapper`, `InteractiveSearchInput` for Storybook state management
+- **Decorator sizing** - `height: '600px'`, `width: '900px'` for viewport simulation
+- **Placeholder dimensions** - `width: '32px'` for avatar/logo demos in story examples
+- **Icon sizes** - `size={20}` for Lucide icons
+
+**Real violations to fix**:
+- `padding: '20px'` → Use `var(--spacing-5)`
+- `import { X } from '../../components/X'` → Use `@orion-ds/react` (components/sections only, not templates)
+- `const Button = () => <button />` → Use Orion Button instead
+
+**Exit codes**:
+- 0 = All valid (or warnings only)
+- 1 = Critical violations found (blocks CI/CD)
+
+See [COMPONENT_COMPOSITION.md](./COMPONENT_COMPOSITION.md) for detailed exception patterns.
+
+## Publishing & Release
+
+### Pre-publish Checks
+```bash
+npm run prepublish:check    # Validates package.json, builds, tests
+npm run publish:dry-run     # Simulates npm publish (tests without publishing)
+```
+
+### Automated Release (Recommended)
+```bash
+npm run release:patch       # Bump patch version, build, publish (1.0.0 → 1.0.1)
+npm run release:minor       # Bump minor version (1.0.0 → 1.1.0)
+npm run release:major       # Bump major version (1.0.0 → 2.0.0)
+npm run release:dry         # Test release without publishing
+```
+
+**What happens**:
+1. Runs validation (`npm run audit`)
+2. Bumps version in all workspace package.json files
+3. Builds all packages (`npm run build`)
+4. Publishes to npm (all packages in `packages/`)
+5. Creates git tag and commits version changes
+
+**Release script**: `scripts/release.js`
+
+### Manual Publish (Advanced - packages/react)
+```bash
+cd packages/react
+npm run build
+npm publish --access public
+```
+
+**⚠️ Never run `npm publish` from root** - The root package is private. Use workspace-specific publish or automated release scripts.
+
+**Registry**: https://registry.npmjs.org/
+
+**Access**: Public packages (@orion-ds scope)
+
+**Published packages**:
+- `@orion-ds/react` - Main component library (v3.0.0+)
+- `@orion-ds/core` - Design tokens (deprecated, use @orion-ds/react)
+- `@orion-ds/cli` - Component installer
+- `@orion-ds/create` - Project scaffolder
+- `@orion-ds/mcp` - MCP server
+- `@orion-ds/validate` - Code validator
 
 ## Key Principles for AI Agents
 

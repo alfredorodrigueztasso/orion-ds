@@ -61,14 +61,14 @@ import { Tag, Check, AlertCircle } from 'lucide-react';
 
 ```tsx
 function TagList() {
-  const [tags, setTags] = useState(['React', 'TypeScript', 'CSS']);
+  const [tags, setTags] = useState(["React", "TypeScript", "CSS"]);
 
   const removeTag = (tag: string) => {
     setTags(tags.filter((t) => t !== tag));
   };
 
   return (
-    <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
       {tags.map((tag) => (
         <Chip key={tag} onRemove={() => removeTag(tag)}>
           {tag}
@@ -82,7 +82,7 @@ function TagList() {
 ### Clickable
 
 ```tsx
-<Chip clickable onClick={() => console.log('clicked')}>
+<Chip clickable onClick={() => console.log("clicked")}>
   Click me
 </Chip>
 ```
@@ -92,16 +92,18 @@ function TagList() {
 ```tsx
 function SelectableChips() {
   const [selected, setSelected] = useState<string[]>([]);
-  const options = ['Small', 'Medium', 'Large'];
+  const options = ["Small", "Medium", "Large"];
 
   const toggle = (option: string) => {
     setSelected((prev) =>
-      prev.includes(option) ? prev.filter((o) => o !== option) : [...prev, option],
+      prev.includes(option)
+        ? prev.filter((o) => o !== option)
+        : [...prev, option],
     );
   };
 
   return (
-    <div style={{ display: 'flex', gap: '8px' }}>
+    <div style={{ display: "flex", gap: "8px" }}>
       {options.map((option) => (
         <Chip
           key={option}
@@ -122,7 +124,7 @@ function SelectableChips() {
 ```tsx
 function FilterChips({ filters, onRemove, onClear }) {
   return (
-    <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
       {filters.map((filter) => (
         <Chip key={filter.id} onRemove={() => onRemove(filter.id)}>
           {filter.label}: {filter.value}

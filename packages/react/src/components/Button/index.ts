@@ -11,5 +11,5 @@
  * <Button variant="danger" size="sm">Delete</Button>
  * ```
  */
-export { Button } from './Button';
-export type { ButtonProps, ButtonVariant, ButtonSize } from './Button.types';
+export { Button } from "./Button";
+export type { ButtonProps, ButtonVariant, ButtonSize } from "./Button.types";

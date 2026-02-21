@@ -22,7 +22,7 @@
  * ```
  */
 
-export { Chat } from './Chat';
+export { Chat } from "./Chat";
 
 // Types
 export type {
@@ -57,10 +57,15 @@ export type {
   ChatPageTemplateProps,
   // Lightbox
   ChatLightboxProps,
-} from './Chat.types';
+} from "./Chat.types";
 
 // Hooks
-export { useAutoScroll, useVoiceRecorder, useChatInput, useStreamingText } from './hooks';
+export {
+  useAutoScroll,
+  useVoiceRecorder,
+  useChatInput,
+  useStreamingText,
+} from "./hooks";
 
 export type {
   UseAutoScrollOptions,
@@ -71,4 +76,4 @@ export type {
   UseChatInputReturn,
   UseStreamingTextOptions,
   UseStreamingTextReturn,
-} from './hooks';
+} from "./hooks";

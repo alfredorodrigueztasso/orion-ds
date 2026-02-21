@@ -5,8 +5,8 @@
 ## Quick Start
 
 ```tsx
-import { Team, Badge } from '@orion/react';
-import { Twitter, Linkedin, Github } from 'lucide-react';
+import { Team, Badge } from "@orion/react";
+import { Twitter, Linkedin, Github } from "lucide-react";
 
 <Team
   eyebrow={<Badge>Our Team</Badge>}
@@ -14,26 +14,34 @@ import { Twitter, Linkedin, Github } from 'lucide-react';
   description="A passionate team building the future of design systems"
   members={[
     {
-      name: 'Jane Doe',
-      role: 'CEO & Co-founder',
-      bio: '10+ years building design systems',
-      avatarSrc: '/team/jane.jpg',
+      name: "Jane Doe",
+      role: "CEO & Co-founder",
+      bio: "10+ years building design systems",
+      avatarSrc: "/team/jane.jpg",
       socialLinks: [
-        { platform: 'twitter', href: 'https://twitter.com/jane', icon: <Twitter size={18} /> },
         {
-          platform: 'linkedin',
-          href: 'https://linkedin.com/in/jane',
+          platform: "twitter",
+          href: "https://twitter.com/jane",
+          icon: <Twitter size={18} />,
+        },
+        {
+          platform: "linkedin",
+          href: "https://linkedin.com/in/jane",
           icon: <Linkedin size={18} />,
         },
       ],
     },
     {
-      name: 'John Smith',
-      role: 'CTO & Co-founder',
-      bio: 'Former engineer at Stripe',
-      avatarSrc: '/team/john.jpg',
+      name: "John Smith",
+      role: "CTO & Co-founder",
+      bio: "Former engineer at Stripe",
+      avatarSrc: "/team/john.jpg",
       socialLinks: [
-        { platform: 'github', href: 'https://github.com/john', icon: <Github size={18} /> },
+        {
+          platform: "github",
+          href: "https://github.com/john",
+          icon: <Github size={18} />,
+        },
       ],
     },
   ]}
@@ -71,8 +79,8 @@ interface TeamProps {
   centered?: boolean; // Center content - default: true
 
   // Styling
-  variant?: 'default' | 'cards' | 'compact'; // default: 'default'
-  background?: 'base' | 'subtle' | 'none'; // default: 'base'
+  variant?: "default" | "cards" | "compact"; // default: 'default'
+  background?: "base" | "subtle" | "none"; // default: 'base'
 }
 
 interface TeamMember {
@@ -215,8 +223,8 @@ import { Twitter, Linkedin, Github } from 'lucide-react';
 ### Company About Page
 
 ```tsx
-import { Team, Badge } from '@orion/react';
-import { Twitter, Linkedin, Github } from 'lucide-react';
+import { Team, Badge } from "@orion/react";
+import { Twitter, Linkedin, Github } from "lucide-react";
 
 <Team
   eyebrow={<Badge variant="brand">Our Team</Badge>}
@@ -224,38 +232,42 @@ import { Twitter, Linkedin, Github } from 'lucide-react';
   description="We're a small but passionate team building the future of design systems."
   members={[
     {
-      name: 'Sarah Chen',
-      role: 'CEO & Co-founder',
-      bio: 'Former design lead at Figma. 15 years in product design.',
-      avatarSrc: '/team/sarah.jpg',
+      name: "Sarah Chen",
+      role: "CEO & Co-founder",
+      bio: "Former design lead at Figma. 15 years in product design.",
+      avatarSrc: "/team/sarah.jpg",
       socialLinks: [
-        { platform: 'twitter', href: '#', icon: <Twitter size={18} /> },
-        { platform: 'linkedin', href: '#', icon: <Linkedin size={18} /> },
+        { platform: "twitter", href: "#", icon: <Twitter size={18} /> },
+        { platform: "linkedin", href: "#", icon: <Linkedin size={18} /> },
       ],
     },
     {
-      name: 'Marcus Johnson',
-      role: 'CTO & Co-founder',
-      bio: 'Ex-engineering lead at Stripe. Open source enthusiast.',
-      avatarSrc: '/team/marcus.jpg',
+      name: "Marcus Johnson",
+      role: "CTO & Co-founder",
+      bio: "Ex-engineering lead at Stripe. Open source enthusiast.",
+      avatarSrc: "/team/marcus.jpg",
       socialLinks: [
-        { platform: 'github', href: '#', icon: <Github size={18} /> },
-        { platform: 'twitter', href: '#', icon: <Twitter size={18} /> },
+        { platform: "github", href: "#", icon: <Github size={18} /> },
+        { platform: "twitter", href: "#", icon: <Twitter size={18} /> },
       ],
     },
     {
-      name: 'Emily Rodriguez',
-      role: 'Head of Design',
-      bio: 'Design systems expert with 10+ years of experience.',
-      avatarSrc: '/team/emily.jpg',
-      socialLinks: [{ platform: 'twitter', href: '#', icon: <Twitter size={18} /> }],
+      name: "Emily Rodriguez",
+      role: "Head of Design",
+      bio: "Design systems expert with 10+ years of experience.",
+      avatarSrc: "/team/emily.jpg",
+      socialLinks: [
+        { platform: "twitter", href: "#", icon: <Twitter size={18} /> },
+      ],
     },
     {
-      name: 'David Kim',
-      role: 'Lead Engineer',
-      bio: 'Full-stack developer. React and TypeScript specialist.',
-      avatarSrc: '/team/david.jpg',
-      socialLinks: [{ platform: 'github', href: '#', icon: <Github size={18} /> }],
+      name: "David Kim",
+      role: "Lead Engineer",
+      bio: "Full-stack developer. React and TypeScript specialist.",
+      avatarSrc: "/team/david.jpg",
+      socialLinks: [
+        { platform: "github", href: "#", icon: <Github size={18} /> },
+      ],
     },
   ]}
   variant="cards"
@@ -270,16 +282,16 @@ import { Twitter, Linkedin, Github } from 'lucide-react';
   title="Leadership"
   members={[
     {
-      name: 'CEO Name',
-      role: 'Chief Executive Officer',
-      bio: 'Visionary leader with 20 years of industry experience.',
-      avatarSrc: '/team/ceo.jpg',
+      name: "CEO Name",
+      role: "Chief Executive Officer",
+      bio: "Visionary leader with 20 years of industry experience.",
+      avatarSrc: "/team/ceo.jpg",
     },
     {
-      name: 'CTO Name',
-      role: 'Chief Technology Officer',
-      bio: 'Technical architect behind our platform.',
-      avatarSrc: '/team/cto.jpg',
+      name: "CTO Name",
+      role: "Chief Technology Officer",
+      bio: "Technical architect behind our platform.",
+      avatarSrc: "/team/cto.jpg",
     },
   ]}
   columns={2}
@@ -291,7 +303,12 @@ import { Twitter, Linkedin, Github } from 'lucide-react';
 ### Compact Team Grid
 
 ```tsx
-<Team title="Our Engineers" members={engineeringTeam} variant="compact" columns={4} />
+<Team
+  title="Our Engineers"
+  members={engineeringTeam}
+  variant="compact"
+  columns={4}
+/>
 ```
 
 ### Advisors Section
@@ -301,9 +318,21 @@ import { Twitter, Linkedin, Github } from 'lucide-react';
   eyebrow="Advisors"
   title="Backed by industry experts"
   members={[
-    { name: 'Advisor 1', role: 'Former CEO, TechCo', avatarSrc: '/advisors/1.jpg' },
-    { name: 'Advisor 2', role: 'Partner, VC Firm', avatarSrc: '/advisors/2.jpg' },
-    { name: 'Advisor 3', role: 'Product Leader, BigCo', avatarSrc: '/advisors/3.jpg' },
+    {
+      name: "Advisor 1",
+      role: "Former CEO, TechCo",
+      avatarSrc: "/advisors/1.jpg",
+    },
+    {
+      name: "Advisor 2",
+      role: "Partner, VC Firm",
+      avatarSrc: "/advisors/2.jpg",
+    },
+    {
+      name: "Advisor 3",
+      role: "Product Leader, BigCo",
+      avatarSrc: "/advisors/3.jpg",
+    },
   ]}
   columns={3}
   variant="compact"

@@ -24,7 +24,7 @@ export {
   ChartGradient,
   ChartTooltip,
   ChartLegend,
-} from './Chart';
+} from "./Chart";
 export type {
   ChartConfig,
   ChartConfigItem,
@@ -32,4 +32,4 @@ export type {
   ChartTooltipContentProps,
   ChartLegendContentProps,
   ChartGradientProps,
-} from './Chart.types';
+} from "./Chart.types";

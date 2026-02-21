@@ -10,5 +10,5 @@
  * <Checkbox label="Remember me" checked={remember} onChange={setRemember} />
  * ```
  */
-export { Checkbox } from './Checkbox';
-export type { CheckboxProps, CheckboxSize } from './Checkbox.types';
+export { Checkbox } from "./Checkbox";
+export type { CheckboxProps, CheckboxSize } from "./Checkbox.types";

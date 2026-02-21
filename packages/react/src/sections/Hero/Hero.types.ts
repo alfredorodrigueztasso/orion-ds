@@ -4,24 +4,24 @@
  * Type definitions for the Orion Hero section component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Hero text alignment
  */
-export type HeroAlign = 'left' | 'center';
+export type HeroAlign = "left" | "center";
 
 /**
  * Hero size variants
  */
-export type HeroSize = 'sm' | 'md' | 'lg';
+export type HeroSize = "sm" | "md" | "lg";
 
 /**
  * Hero visual variant
  * - 'default': Standard hero with optional side media
  * - 'background': Full-width background image with content overlay
  */
-export type HeroVariant = 'default' | 'background';
+export type HeroVariant = "default" | "background";
 
 /**
  * Hero layout mode
@@ -29,7 +29,7 @@ export type HeroVariant = 'default' | 'background';
  * - 'fullscreen': 100vh height, vertically centered, edge-to-edge width
  * - 'card': Inset with margins and border radius (floating card style)
  */
-export type HeroLayout = 'contained' | 'fullscreen' | 'card';
+export type HeroLayout = "contained" | "fullscreen" | "card";
 
 /**
  * Props for HeroHighlight compound component
@@ -66,7 +66,7 @@ export interface HeroHighlightProps {
  * />
  * ```
  */
-export interface HeroProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
+export interface HeroProps extends Omit<HTMLAttributes<HTMLElement>, "title"> {
   /**
    * Optional badge/eyebrow element above title
    */
@@ -107,7 +107,7 @@ export interface HeroProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
    * Media position when provided
    * @default 'right'
    */
-  mediaPosition?: 'left' | 'right' | 'bottom';
+  mediaPosition?: "left" | "right" | "bottom";
 
   /**
    * Show default placeholder image when media is not provided

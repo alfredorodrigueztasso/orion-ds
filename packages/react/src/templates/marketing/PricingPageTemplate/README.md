@@ -106,7 +106,10 @@ import { Check, X, Twitter, Github } from 'lucide-react';
 ## Props Reference
 
 ```typescript
-interface PricingPageTemplateProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
+interface PricingPageTemplateProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "title"
+> {
   /**
    * Navbar configuration
    */
@@ -120,7 +123,7 @@ interface PricingPageTemplateProps extends Omit<HTMLAttributes<HTMLDivElement>, 
   /**
    * Product carousel for showcasing key features
    */
-  featuresCarousel?: Omit<CarouselSectionProps, 'variant'>;
+  featuresCarousel?: Omit<CarouselSectionProps, "variant">;
 
   /**
    * Pricing cards section (required)
@@ -161,14 +164,14 @@ interface PricingPageTemplateProps extends Omit<HTMLAttributes<HTMLDivElement>, 
 ### Full Pricing Page
 
 ```tsx
-import { PricingPageTemplate, Button, Badge, Navbar } from '@orion/react';
-import { Check, X, Twitter, Linkedin } from 'lucide-react';
+import { PricingPageTemplate, Button, Badge, Navbar } from "@orion/react";
+import { Check, X, Twitter, Linkedin } from "lucide-react";
 
 function PricingPage() {
   return (
     <PricingPageTemplate
       navbar={{
-        variant: 'solid',
+        variant: "solid",
         sticky: true,
         children: (
           <>
@@ -192,49 +195,50 @@ function PricingPage() {
       }}
       hero={{
         badge: <Badge>Pricing</Badge>,
-        headline: 'Simple, transparent pricing',
-        description: 'Choose the plan that fits your needs. No hidden fees. Cancel anytime.',
-        align: 'center',
-        size: 'md',
+        headline: "Simple, transparent pricing",
+        description:
+          "Choose the plan that fits your needs. No hidden fees. Cancel anytime.",
+        align: "center",
+        size: "md",
       }}
       featuresCarousel={{
-        title: 'What you get',
-        description: 'Powerful features included in every plan',
+        title: "What you get",
+        description: "Powerful features included in every plan",
         items: [
           {
             image: <img src="/features/dashboard.jpg" alt="" />,
-            title: 'Analytics Dashboard',
-            description: 'Real-time insights and reporting',
+            title: "Analytics Dashboard",
+            description: "Real-time insights and reporting",
           },
           {
             image: <img src="/features/collab.jpg" alt="" />,
-            title: 'Team Collaboration',
-            description: 'Work together seamlessly',
+            title: "Team Collaboration",
+            description: "Work together seamlessly",
           },
           {
             image: <img src="/features/api.jpg" alt="" />,
-            title: 'API Access',
-            description: 'Build custom integrations',
+            title: "API Access",
+            description: "Build custom integrations",
           },
         ],
       }}
       pricing={{
-        eyebrow: 'Plans',
-        title: 'Choose your plan',
-        description: 'Start free and scale as you grow',
+        eyebrow: "Plans",
+        title: "Choose your plan",
+        description: "Start free and scale as you grow",
         plans: [
           {
-            name: 'Free',
-            price: '$0',
-            period: '/month',
-            description: 'For individuals getting started',
+            name: "Free",
+            price: "$0",
+            period: "/month",
+            description: "For individuals getting started",
             features: [
-              { text: '3 projects', included: true },
-              { text: '1GB storage', included: true },
-              { text: 'Basic analytics', included: true },
-              { text: 'Community support', included: true },
-              { text: 'API access', included: false },
-              { text: 'Custom domain', included: false },
+              { text: "3 projects", included: true },
+              { text: "1GB storage", included: true },
+              { text: "Basic analytics", included: true },
+              { text: "Community support", included: true },
+              { text: "API access", included: false },
+              { text: "Custom domain", included: false },
             ],
             action: (
               <Button variant="secondary" fullWidth>
@@ -243,17 +247,17 @@ function PricingPage() {
             ),
           },
           {
-            name: 'Pro',
-            price: '$29',
-            period: '/month',
-            description: 'For growing teams',
+            name: "Pro",
+            price: "$29",
+            period: "/month",
+            description: "For growing teams",
             features: [
-              { text: 'Unlimited projects', included: true },
-              { text: '100GB storage', included: true },
-              { text: 'Advanced analytics', included: true },
-              { text: 'Priority support', included: true },
-              { text: 'API access', included: true },
-              { text: 'Custom domain', included: true },
+              { text: "Unlimited projects", included: true },
+              { text: "100GB storage", included: true },
+              { text: "Advanced analytics", included: true },
+              { text: "Priority support", included: true },
+              { text: "API access", included: true },
+              { text: "Custom domain", included: true },
             ],
             action: (
               <Button variant="primary" fullWidth>
@@ -263,16 +267,16 @@ function PricingPage() {
             popular: true,
           },
           {
-            name: 'Enterprise',
-            price: 'Custom',
-            description: 'For large organizations',
+            name: "Enterprise",
+            price: "Custom",
+            description: "For large organizations",
             features: [
-              { text: 'Everything in Pro', included: true },
-              { text: 'Unlimited storage', included: true },
-              { text: 'Custom integrations', included: true },
-              { text: 'Dedicated support', included: true },
-              { text: 'SLA guarantee', included: true },
-              { text: 'Security review', included: true },
+              { text: "Everything in Pro", included: true },
+              { text: "Unlimited storage", included: true },
+              { text: "Custom integrations", included: true },
+              { text: "Dedicated support", included: true },
+              { text: "SLA guarantee", included: true },
+              { text: "Security review", included: true },
             ],
             action: (
               <Button variant="secondary" fullWidth>
@@ -283,80 +287,136 @@ function PricingPage() {
         ],
       }}
       comparison={{
-        eyebrow: 'Compare',
-        title: 'Feature comparison',
+        eyebrow: "Compare",
+        title: "Feature comparison",
         columns: [
-          { id: 'free', label: 'Free' },
-          { id: 'pro', label: 'Pro', highlighted: true },
-          { id: 'enterprise', label: 'Enterprise' },
+          { id: "free", label: "Free" },
+          { id: "pro", label: "Pro", highlighted: true },
+          { id: "enterprise", label: "Enterprise" },
         ],
         features: [
           {
-            category: 'Core Features',
+            category: "Core Features",
             items: [
-              { label: 'Projects', free: '3', pro: 'Unlimited', enterprise: 'Unlimited' },
-              { label: 'Storage', free: '1GB', pro: '100GB', enterprise: 'Unlimited' },
-              { label: 'Team members', free: '1', pro: '10', enterprise: 'Unlimited' },
+              {
+                label: "Projects",
+                free: "3",
+                pro: "Unlimited",
+                enterprise: "Unlimited",
+              },
+              {
+                label: "Storage",
+                free: "1GB",
+                pro: "100GB",
+                enterprise: "Unlimited",
+              },
+              {
+                label: "Team members",
+                free: "1",
+                pro: "10",
+                enterprise: "Unlimited",
+              },
             ],
           },
           {
-            category: 'Analytics',
+            category: "Analytics",
             items: [
-              { label: 'Basic analytics', free: true, pro: true, enterprise: true },
-              { label: 'Advanced analytics', free: false, pro: true, enterprise: true },
-              { label: 'Custom reports', free: false, pro: false, enterprise: true },
+              {
+                label: "Basic analytics",
+                free: true,
+                pro: true,
+                enterprise: true,
+              },
+              {
+                label: "Advanced analytics",
+                free: false,
+                pro: true,
+                enterprise: true,
+              },
+              {
+                label: "Custom reports",
+                free: false,
+                pro: false,
+                enterprise: true,
+              },
             ],
           },
           {
-            category: 'Support',
+            category: "Support",
             items: [
-              { label: 'Community support', free: true, pro: true, enterprise: true },
-              { label: 'Email support', free: false, pro: true, enterprise: true },
-              { label: 'Dedicated support', free: false, pro: false, enterprise: true },
-              { label: 'SLA', free: false, pro: false, enterprise: true },
+              {
+                label: "Community support",
+                free: true,
+                pro: true,
+                enterprise: true,
+              },
+              {
+                label: "Email support",
+                free: false,
+                pro: true,
+                enterprise: true,
+              },
+              {
+                label: "Dedicated support",
+                free: false,
+                pro: false,
+                enterprise: true,
+              },
+              { label: "SLA", free: false, pro: false, enterprise: true },
             ],
           },
           {
-            category: 'Advanced',
+            category: "Advanced",
             items: [
-              { label: 'API access', free: false, pro: true, enterprise: true },
-              { label: 'Custom domain', free: false, pro: true, enterprise: true },
-              { label: 'SSO', free: false, pro: false, enterprise: true },
-              { label: 'Audit logs', free: false, pro: false, enterprise: true },
+              { label: "API access", free: false, pro: true, enterprise: true },
+              {
+                label: "Custom domain",
+                free: false,
+                pro: true,
+                enterprise: true,
+              },
+              { label: "SSO", free: false, pro: false, enterprise: true },
+              {
+                label: "Audit logs",
+                free: false,
+                pro: false,
+                enterprise: true,
+              },
             ],
           },
         ],
       }}
       faq={{
-        eyebrow: 'FAQ',
-        title: 'Frequently asked questions',
+        eyebrow: "FAQ",
+        title: "Frequently asked questions",
         items: [
           {
-            question: 'Can I change plans anytime?',
+            question: "Can I change plans anytime?",
             answer:
               "Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately, and we'll prorate any payments.",
           },
           {
-            question: 'Is there a free trial?',
-            answer: 'Yes, Pro plan includes a 14-day free trial. No credit card required to start.',
-          },
-          {
-            question: 'What payment methods do you accept?',
+            question: "Is there a free trial?",
             answer:
-              'We accept all major credit cards (Visa, Mastercard, American Express) as well as PayPal and bank transfers for annual plans.',
+              "Yes, Pro plan includes a 14-day free trial. No credit card required to start.",
           },
           {
-            question: 'Can I cancel my subscription?',
+            question: "What payment methods do you accept?",
+            answer:
+              "We accept all major credit cards (Visa, Mastercard, American Express) as well as PayPal and bank transfers for annual plans.",
+          },
+          {
+            question: "Can I cancel my subscription?",
             answer:
               "Yes, you can cancel anytime. If you cancel, you'll retain access until the end of your billing period.",
           },
           {
-            question: 'Do you offer discounts for nonprofits?',
+            question: "Do you offer discounts for nonprofits?",
             answer:
-              'Yes, we offer 50% off for registered nonprofits and educational institutions. Contact us for details.',
+              "Yes, we offer 50% off for registered nonprofits and educational institutions. Contact us for details.",
           },
           {
-            question: 'What happens when I reach my storage limit?',
+            question: "What happens when I reach my storage limit?",
             answer:
               "We'll notify you when you're approaching your limit. You can upgrade your plan or delete unused files to free up space.",
           },
@@ -364,8 +424,8 @@ function PricingPage() {
         columns: 2,
       }}
       cta={{
-        headline: 'Ready to get started?',
-        description: 'Join thousands of teams already using Acme.',
+        headline: "Ready to get started?",
+        description: "Join thousands of teams already using Acme.",
         actions: (
           <>
             <Button size="lg">Start Free Trial</Button>
@@ -377,30 +437,38 @@ function PricingPage() {
       }}
       footer={{
         brand: {
-          name: 'Acme Inc',
-          description: 'Building the future of development.',
+          name: "Acme Inc",
+          description: "Building the future of development.",
         },
         linkGroups: [
           {
-            title: 'Product',
+            title: "Product",
             links: [
-              { label: 'Features', href: '/features' },
-              { label: 'Pricing', href: '/pricing' },
-              { label: 'Changelog', href: '/changelog' },
+              { label: "Features", href: "/features" },
+              { label: "Pricing", href: "/pricing" },
+              { label: "Changelog", href: "/changelog" },
             ],
           },
           {
-            title: 'Company',
+            title: "Company",
             links: [
-              { label: 'About', href: '/about' },
-              { label: 'Careers', href: '/careers' },
-              { label: 'Contact', href: '/contact' },
+              { label: "About", href: "/about" },
+              { label: "Careers", href: "/careers" },
+              { label: "Contact", href: "/contact" },
             ],
           },
         ],
         socialLinks: [
-          { label: 'Twitter', href: 'https://twitter.com', icon: <Twitter size={20} /> },
-          { label: 'LinkedIn', href: 'https://linkedin.com', icon: <Linkedin size={20} /> },
+          {
+            label: "Twitter",
+            href: "https://twitter.com",
+            icon: <Twitter size={20} />,
+          },
+          {
+            label: "LinkedIn",
+            href: "https://linkedin.com",
+            icon: <Linkedin size={20} />,
+          },
         ],
         copyright: `${new Date().getFullYear()} Acme Inc. All rights reserved.`,
       }}
@@ -414,18 +482,18 @@ function PricingPage() {
 ```tsx
 <PricingPageTemplate
   hero={{
-    headline: 'Pricing',
-    description: 'Simple plans for everyone.',
-    align: 'center',
-    size: 'md',
+    headline: "Pricing",
+    description: "Simple plans for everyone.",
+    align: "center",
+    size: "md",
   }}
   pricing={{
     plans: [
       {
-        name: 'Free',
-        price: '$0',
-        period: '/month',
-        features: [{ text: 'Basic features', included: true }],
+        name: "Free",
+        price: "$0",
+        period: "/month",
+        features: [{ text: "Basic features", included: true }],
         action: (
           <Button variant="secondary" fullWidth>
             Sign Up
@@ -433,18 +501,18 @@ function PricingPage() {
         ),
       },
       {
-        name: 'Pro',
-        price: '$29',
-        period: '/month',
-        features: [{ text: 'All features', included: true }],
+        name: "Pro",
+        price: "$29",
+        period: "/month",
+        features: [{ text: "All features", included: true }],
         action: <Button fullWidth>Start Trial</Button>,
         popular: true,
       },
     ],
   }}
   footer={{
-    brand: { name: 'Acme' },
-    copyright: '2024 Acme Inc.',
+    brand: { name: "Acme" },
+    copyright: "2024 Acme Inc.",
   }}
 />
 ```

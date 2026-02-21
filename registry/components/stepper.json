@@ -88,7 +88,7 @@
     },
     {
       "name": "labelPosition",
-      "type": "'bottom' | 'right'",
+      "type": "\"bottom\" | \"right\"",
       "description": "Alternative label position (only for horizontal orientation)",
       "default": "bottom",
       "values": [

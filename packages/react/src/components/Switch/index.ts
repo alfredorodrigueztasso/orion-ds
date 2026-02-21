@@ -10,5 +10,5 @@
  * <Switch label="Feature flag" size="sm" disabled />
  * ```
  */
-export { Switch } from './Switch';
-export type { SwitchProps, SwitchSize } from './Switch.types';
+export { Switch } from "./Switch";
+export type { SwitchProps, SwitchSize } from "./Switch.types";

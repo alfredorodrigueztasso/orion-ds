@@ -4,7 +4,7 @@
  * Manages chat input state including text, attachments, and submission.
  */
 
-import { useState, useCallback, useRef, useEffect } from 'react';
+import { useState, useCallback, useRef, useEffect } from "react";
 
 export interface UseChatInputOptions {
   /** Maximum character count */
@@ -44,10 +44,12 @@ export interface UseChatInputReturn {
   focus: () => void;
 }
 
-export function useChatInput(options: UseChatInputOptions = {}): UseChatInputReturn {
+export function useChatInput(
+  options: UseChatInputOptions = {},
+): UseChatInputReturn {
   const { maxLength, onSend, disabled = false } = options;
 
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
   const [attachments, setAttachments] = useState<File[]>([]);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -62,7 +64,7 @@ export function useChatInput(options: UseChatInputOptions = {}): UseChatInputRet
     if (!textarea) return;
 
     // Reset height to auto to get correct scrollHeight
-    textarea.style.height = 'auto';
+    textarea.style.height = "auto";
     // Set height to scrollHeight (with max constraint handled by CSS)
     textarea.style.height = `${textarea.scrollHeight}px`;
   }, [value]);
@@ -91,12 +93,12 @@ export function useChatInput(options: UseChatInputOptions = {}): UseChatInputRet
     onSend?.(trimmedValue, attachments.length > 0 ? attachments : undefined);
 
     // Reset state
-    setValue('');
+    setValue("");
     setAttachments([]);
 
     // Reset textarea height
     if (textareaRef.current) {
-      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = "auto";
     }
   }, [disabled, isEmpty, isOverLimit, value, attachments, onSend]);
 
@@ -104,7 +106,7 @@ export function useChatInput(options: UseChatInputOptions = {}): UseChatInputRet
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       // Send on Enter (without Shift)
-      if (e.key === 'Enter' && !e.shiftKey) {
+      if (e.key === "Enter" && !e.shiftKey) {
         e.preventDefault();
         handleSubmit();
       }

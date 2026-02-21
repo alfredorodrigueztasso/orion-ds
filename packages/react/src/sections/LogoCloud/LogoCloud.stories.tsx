@@ -1,21 +1,21 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { LogoCloud } from './LogoCloud';
+import type { Meta, StoryObj } from "@storybook/react";
+import { LogoCloud } from "./LogoCloud";
 
 const meta = {
-  title: 'Sections/Marketing/LogoCloud',
+  title: "Sections/Marketing/LogoCloud",
   component: LogoCloud,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     columns: {
-      control: 'select',
+      control: "select",
       options: [3, 4, 5, 6],
     },
     background: {
-      control: 'select',
-      options: ['base', 'subtle', 'none'],
+      control: "select",
+      options: ["base", "subtle", "none"],
     },
   },
 } satisfies Meta<typeof LogoCloud>;
@@ -25,49 +25,79 @@ type Story = StoryObj<typeof meta>;
 
 const defaultLogos = [
   {
-    name: 'Acme',
+    name: "Acme",
     logo: (
-      <span style={{ fontSize: 'var(--font-size-24)', fontWeight: 'var(--font-weight-bold)' }}>
+      <span
+        style={{
+          fontSize: "var(--font-size-24)",
+          fontWeight: "var(--font-weight-bold)",
+        }}
+      >
         Acme
       </span>
     ),
   },
   {
-    name: 'TechCorp',
+    name: "TechCorp",
     logo: (
-      <span style={{ fontSize: 'var(--font-size-24)', fontWeight: 'var(--font-weight-bold)' }}>
+      <span
+        style={{
+          fontSize: "var(--font-size-24)",
+          fontWeight: "var(--font-weight-bold)",
+        }}
+      >
         TechCorp
       </span>
     ),
   },
   {
-    name: 'StartupXYZ',
+    name: "StartupXYZ",
     logo: (
-      <span style={{ fontSize: 'var(--font-size-24)', fontWeight: 'var(--font-weight-bold)' }}>
+      <span
+        style={{
+          fontSize: "var(--font-size-24)",
+          fontWeight: "var(--font-weight-bold)",
+        }}
+      >
         StartupXYZ
       </span>
     ),
   },
   {
-    name: 'DesignCo',
+    name: "DesignCo",
     logo: (
-      <span style={{ fontSize: 'var(--font-size-24)', fontWeight: 'var(--font-weight-bold)' }}>
+      <span
+        style={{
+          fontSize: "var(--font-size-24)",
+          fontWeight: "var(--font-weight-bold)",
+        }}
+      >
         DesignCo
       </span>
     ),
   },
   {
-    name: 'CloudBase',
+    name: "CloudBase",
     logo: (
-      <span style={{ fontSize: 'var(--font-size-24)', fontWeight: 'var(--font-weight-bold)' }}>
+      <span
+        style={{
+          fontSize: "var(--font-size-24)",
+          fontWeight: "var(--font-weight-bold)",
+        }}
+      >
         CloudBase
       </span>
     ),
   },
   {
-    name: 'DataFlow',
+    name: "DataFlow",
     logo: (
-      <span style={{ fontSize: 'var(--font-size-24)', fontWeight: 'var(--font-weight-bold)' }}>
+      <span
+        style={{
+          fontSize: "var(--font-size-24)",
+          fontWeight: "var(--font-weight-bold)",
+        }}
+      >
         DataFlow
       </span>
     ),
@@ -82,22 +112,22 @@ export const Default: Story = {
 
 export const WithTitle: Story = {
   args: {
-    title: 'Trusted by leading companies',
+    title: "Trusted by leading companies",
     logos: defaultLogos,
   },
 };
 
 export const WithDescription: Story = {
   args: {
-    title: 'Our Partners',
-    description: 'We work with the best in the industry.',
+    title: "Our Partners",
+    description: "We work with the best in the industry.",
     logos: defaultLogos,
   },
 };
 
 export const FourColumns: Story = {
   args: {
-    title: 'Featured In',
+    title: "Featured In",
     logos: defaultLogos.slice(0, 4),
     columns: 4,
   },
@@ -112,22 +142,22 @@ export const ThreeColumns: Story = {
 
 export const SubtleBackground: Story = {
   args: {
-    title: 'Trusted by',
+    title: "Trusted by",
     logos: defaultLogos,
-    background: 'subtle',
+    background: "subtle",
   },
 };
 
 export const WithLinks: Story = {
   args: {
-    title: 'Our Customers',
-    logos: defaultLogos.map((logo) => ({ ...logo, href: '#' })),
+    title: "Our Customers",
+    logos: defaultLogos.map((logo) => ({ ...logo, href: "#" })),
   },
 };
 
 export const Grayscale: Story = {
   args: {
-    title: 'Featured In',
+    title: "Featured In",
     logos: defaultLogos,
     grayscale: true,
   },

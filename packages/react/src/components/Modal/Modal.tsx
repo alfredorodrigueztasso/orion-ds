@@ -22,9 +22,14 @@
  * ```
  */
 
-import React, { useEffect } from 'react';
-import type { ModalProps, ModalHeaderProps, ModalBodyProps, ModalFooterProps } from './Modal.types';
-import styles from './Modal.module.css';
+import React, { useEffect } from "react";
+import type {
+  ModalProps,
+  ModalHeaderProps,
+  ModalBodyProps,
+  ModalFooterProps,
+} from "./Modal.types";
+import styles from "./Modal.module.css";
 
 // Main Modal component
 export const Modal: React.FC<ModalProps> & {
@@ -34,7 +39,7 @@ export const Modal: React.FC<ModalProps> & {
 } = ({
   open,
   onClose,
-  size = 'md',
+  size = "md",
   closeOnBackdrop = true,
   closeOnEscape = true,
   showCloseButton = true,
@@ -46,31 +51,33 @@ export const Modal: React.FC<ModalProps> & {
     if (!open || !closeOnEscape) return;
 
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         onClose();
       }
     };
 
-    document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
   }, [open, closeOnEscape, onClose]);
 
   // Prevent body scroll when modal is open
   useEffect(() => {
     if (open) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
 
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
   }, [open]);
 
   if (!open) return null;
 
-  const modalClasses = [styles.modal, styles[size], className].filter(Boolean).join(' ');
+  const modalClasses = [styles.modal, styles[size], className]
+    .filter(Boolean)
+    .join(" ");
 
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (closeOnBackdrop && e.target === e.currentTarget) {
@@ -79,7 +86,12 @@ export const Modal: React.FC<ModalProps> & {
   };
 
   return (
-    <div className={styles.backdrop} onClick={handleBackdropClick} role="dialog" aria-modal="true">
+    <div
+      className={styles.backdrop}
+      onClick={handleBackdropClick}
+      role="dialog"
+      aria-modal="true"
+    >
       <div className={modalClasses}>
         {/* Close button in corner */}
         {showCloseButton && (
@@ -89,9 +101,9 @@ export const Modal: React.FC<ModalProps> & {
             onClick={onClose}
             aria-label="Close modal"
             style={{
-              position: 'absolute',
-              top: 'var(--spacing-4)',
-              right: 'var(--spacing-4)',
+              position: "absolute",
+              top: "var(--spacing-4)",
+              right: "var(--spacing-4)",
             }}
           >
             ×
@@ -106,21 +118,21 @@ export const Modal: React.FC<ModalProps> & {
 
 // Modal Header subcomponent
 const ModalHeader: React.FC<ModalHeaderProps> = ({ className, children }) => {
-  const classNames = [styles.header, className].filter(Boolean).join(' ');
+  const classNames = [styles.header, className].filter(Boolean).join(" ");
 
   return <div className={classNames}>{children}</div>;
 };
 
 // Modal Body subcomponent
 const ModalBody: React.FC<ModalBodyProps> = ({ className, children }) => {
-  const classNames = [styles.body, className].filter(Boolean).join(' ');
+  const classNames = [styles.body, className].filter(Boolean).join(" ");
 
   return <div className={classNames}>{children}</div>;
 };
 
 // Modal Footer subcomponent
 const ModalFooter: React.FC<ModalFooterProps> = ({ className, children }) => {
-  const classNames = [styles.footer, className].filter(Boolean).join(' ');
+  const classNames = [styles.footer, className].filter(Boolean).join(" ");
 
   return <div className={classNames}>{children}</div>;
 };
@@ -131,7 +143,7 @@ Modal.Body = ModalBody;
 Modal.Footer = ModalFooter;
 
 // Display names for debugging
-Modal.displayName = 'Modal';
-ModalHeader.displayName = 'Modal.Header';
-ModalBody.displayName = 'Modal.Body';
-ModalFooter.displayName = 'Modal.Footer';
+Modal.displayName = "Modal";
+ModalHeader.displayName = "Modal.Header";
+ModalBody.displayName = "Modal.Body";
+ModalFooter.displayName = "Modal.Footer";

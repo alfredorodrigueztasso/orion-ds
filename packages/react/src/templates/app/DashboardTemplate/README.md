@@ -5,25 +5,40 @@
 ## Quick Start
 
 ```tsx
-import { DashboardTemplate, Button } from '@orion/react';
-import { Home, Users, Settings, Plus, Download } from 'lucide-react';
+import { DashboardTemplate, Button } from "@orion/react";
+import { Home, Users, Settings, Plus, Download } from "lucide-react";
 
 <DashboardTemplate
   sidebar={{
     sections: [
       {
         items: [
-          { id: 'dashboard', label: 'Dashboard', icon: <Home size={20} />, href: '/' },
-          { id: 'users', label: 'Users', icon: <Users size={20} />, href: '/users' },
-          { id: 'settings', label: 'Settings', icon: <Settings size={20} />, href: '/settings' },
+          {
+            id: "dashboard",
+            label: "Dashboard",
+            icon: <Home size={20} />,
+            href: "/",
+          },
+          {
+            id: "users",
+            label: "Users",
+            icon: <Users size={20} />,
+            href: "/users",
+          },
+          {
+            id: "settings",
+            label: "Settings",
+            icon: <Settings size={20} />,
+            href: "/settings",
+          },
         ],
       },
     ],
-    activeItem: 'dashboard',
+    activeItem: "dashboard",
   }}
   pageHeader={{
-    title: 'Dashboard',
-    description: 'Overview of your business metrics',
+    title: "Dashboard",
+    description: "Overview of your business metrics",
     actions: (
       <>
         <Button variant="ghost" icon={<Download size={18} />}>
@@ -37,20 +52,28 @@ import { Home, Users, Settings, Plus, Download } from 'lucide-react';
   }}
   metrics={{
     metrics: [
-      { label: 'Revenue', value: '$45,231', trend: { value: '+20%', positive: true } },
-      { label: 'Users', value: '2,350', trend: { value: '+180', positive: true } },
+      {
+        label: "Revenue",
+        value: "$45,231",
+        trend: { value: "+20%", positive: true },
+      },
+      {
+        label: "Users",
+        value: "2,350",
+        trend: { value: "+180", positive: true },
+      },
     ],
     columns: 4,
   }}
   dataTable={{
     columns: [
-      { key: 'id', header: 'ID' },
-      { key: 'name', header: 'Name' },
-      { key: 'status', header: 'Status' },
+      { key: "id", header: "ID" },
+      { key: "name", header: "Name" },
+      { key: "status", header: "Status" },
     ],
     data: [
-      { id: '1', name: 'Item 1', status: 'Active' },
-      { id: '2', name: 'Item 2', status: 'Pending' },
+      { id: "1", name: "Item 1", status: "Active" },
+      { id: "2", name: "Item 2", status: "Pending" },
     ],
   }}
 />;
@@ -118,7 +141,7 @@ interface DashboardTemplateProps extends HTMLAttributes<HTMLDivElement> {
    * - compact: Compact spacing for dense data
    * @default 'default'
    */
-  layout?: 'default' | 'split' | 'compact';
+  layout?: "default" | "split" | "compact";
 
   /**
    * Additional children rendered in the main content area
@@ -183,7 +206,7 @@ Dense spacing for data-heavy interfaces.
 ### Analytics Dashboard
 
 ```tsx
-import { DashboardTemplate, Button, Badge, Avatar } from '@orion/react';
+import { DashboardTemplate, Button, Badge, Avatar } from "@orion/react";
 import {
   Home,
   BarChart3,
@@ -195,54 +218,63 @@ import {
   Download,
   TrendingUp,
   DollarSign,
-} from 'lucide-react';
+} from "lucide-react";
 
 function AnalyticsDashboard() {
   return (
     <DashboardTemplate
       sidebar={{
-        header: <div style={{ padding: 'var(--spacing-4)', fontWeight: 700 }}>Acme Inc</div>,
+        header: (
+          <div style={{ padding: "var(--spacing-4)", fontWeight: 700 }}>
+            Acme Inc
+          </div>
+        ),
         sections: [
           {
             items: [
-              { id: 'dashboard', label: 'Dashboard', icon: <Home size={20} />, href: '/' },
               {
-                id: 'analytics',
-                label: 'Analytics',
-                icon: <BarChart3 size={20} />,
-                href: '/analytics',
+                id: "dashboard",
+                label: "Dashboard",
+                icon: <Home size={20} />,
+                href: "/",
               },
               {
-                id: 'customers',
-                label: 'Customers',
+                id: "analytics",
+                label: "Analytics",
+                icon: <BarChart3 size={20} />,
+                href: "/analytics",
+              },
+              {
+                id: "customers",
+                label: "Customers",
                 icon: <Users size={20} />,
-                href: '/customers',
+                href: "/customers",
                 badge: <Badge size="sm">12</Badge>,
               },
             ],
           },
           {
-            title: 'Settings',
+            title: "Settings",
             items: [
               {
-                id: 'settings',
-                label: 'Settings',
+                id: "settings",
+                label: "Settings",
                 icon: <Settings size={20} />,
-                href: '/settings',
+                href: "/settings",
               },
               {
-                id: 'notifications',
-                label: 'Notifications',
+                id: "notifications",
+                label: "Notifications",
                 icon: <Bell size={20} />,
-                href: '/notifications',
+                href: "/notifications",
               },
             ],
           },
         ],
-        activeItem: 'dashboard',
+        activeItem: "dashboard",
       }}
       pageHeader={{
-        title: 'Dashboard',
+        title: "Dashboard",
         description: "Welcome back! Here's an overview of your business.",
         actions: (
           <>
@@ -258,27 +290,27 @@ function AnalyticsDashboard() {
       metrics={{
         metrics: [
           {
-            label: 'Total Revenue',
-            value: '$45,231.89',
-            trend: { value: '+20.1%', positive: true },
+            label: "Total Revenue",
+            value: "$45,231.89",
+            trend: { value: "+20.1%", positive: true },
             icon: <DollarSign size={20} />,
           },
           {
-            label: 'Active Users',
-            value: '2,350',
-            trend: { value: '+180', positive: true },
+            label: "Active Users",
+            value: "2,350",
+            trend: { value: "+180", positive: true },
             icon: <Users size={20} />,
           },
           {
-            label: 'Orders',
-            value: '1,234',
-            trend: { value: '-5.2%', positive: false },
+            label: "Orders",
+            value: "1,234",
+            trend: { value: "-5.2%", positive: false },
             icon: <ShoppingCart size={20} />,
           },
           {
-            label: 'Conversion Rate',
-            value: '3.24%',
-            trend: { value: '+0.5%', positive: true },
+            label: "Conversion Rate",
+            value: "3.24%",
+            trend: { value: "+0.5%", positive: true },
             icon: <TrendingUp size={20} />,
           },
         ],
@@ -286,17 +318,23 @@ function AnalyticsDashboard() {
       }}
       dataTable={{
         columns: [
-          { key: 'id', header: 'Order', sortable: true },
+          { key: "id", header: "Order", sortable: true },
           {
-            key: 'customer',
-            header: 'Customer',
+            key: "customer",
+            header: "Customer",
             render: (_, row) => (
-              <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-3)' }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "var(--spacing-3)",
+                }}
+              >
                 <Avatar
                   initials={row.customer
-                    .split(' ')
+                    .split(" ")
                     .map((n) => n[0])
-                    .join('')}
+                    .join("")}
                   size="sm"
                 />
                 <span>{row.customer}</span>
@@ -304,22 +342,34 @@ function AnalyticsDashboard() {
             ),
           },
           {
-            key: 'status',
-            header: 'Status',
+            key: "status",
+            header: "Status",
             render: (_, row) => (
-              <Badge variant={row.status === 'completed' ? 'success' : 'warning'}>
+              <Badge
+                variant={row.status === "completed" ? "success" : "warning"}
+              >
                 {row.status}
               </Badge>
             ),
           },
-          { key: 'amount', header: 'Amount', align: 'right' },
+          { key: "amount", header: "Amount", align: "right" },
         ],
         data: [
-          { id: '#3210', customer: 'Olivia Martin', status: 'completed', amount: '$316.00' },
-          { id: '#3209', customer: 'Jackson Lee', status: 'pending', amount: '$242.00' },
+          {
+            id: "#3210",
+            customer: "Olivia Martin",
+            status: "completed",
+            amount: "$316.00",
+          },
+          {
+            id: "#3209",
+            customer: "Jackson Lee",
+            status: "pending",
+            amount: "$242.00",
+          },
         ],
         searchable: true,
-        searchPlaceholder: 'Search orders...',
+        searchPlaceholder: "Search orders...",
       }}
     />
   );

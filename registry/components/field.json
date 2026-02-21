@@ -57,7 +57,7 @@
     },
     {
       "name": "size",
-      "type": "'sm' | 'md' | 'lg'",
+      "type": "\"sm\" | \"md\" | \"lg\"",
       "description": "Input size variant.",
       "default": "md",
       "values": [

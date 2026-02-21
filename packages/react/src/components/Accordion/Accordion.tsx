@@ -14,10 +14,10 @@
  * ```
  */
 
-import { forwardRef, useState, useCallback, useId } from 'react';
-import { ChevronDown } from 'lucide-react';
-import type { AccordionProps, AccordionItemProps } from './Accordion.types';
-import styles from './Accordion.module.css';
+import { forwardRef, useState, useCallback, useId } from "react";
+import { ChevronDown } from "lucide-react";
+import type { AccordionProps, AccordionItemProps } from "./Accordion.types";
+import styles from "./Accordion.module.css";
 
 /**
  * Individual accordion item component
@@ -39,7 +39,7 @@ const AccordionItemComponent = ({
     item.disabled && styles.disabled,
   ]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
 
   const contentClasses = [
     styles.content,
@@ -47,7 +47,7 @@ const AccordionItemComponent = ({
     isExpanded && styles.contentExpanded,
   ]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
 
   return (
     <div className={itemClasses}>
@@ -67,7 +67,7 @@ const AccordionItemComponent = ({
         )}
         <span className={styles.title}>{item.title}</span>
         <span
-          className={`${styles.chevron} ${isExpanded ? styles.chevronExpanded : ''}`}
+          className={`${styles.chevron} ${isExpanded ? styles.chevronExpanded : ""}`}
           aria-hidden="true"
         >
           <ChevronDown size={20} />
@@ -90,7 +90,7 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
   (
     {
       items,
-      variant = 'default',
+      variant = "default",
       allowMultiple = false,
       defaultExpanded = [],
       expanded: controlledExpanded,
@@ -102,7 +102,8 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
     ref,
   ) => {
     // Internal state for uncontrolled mode
-    const [internalExpanded, setInternalExpanded] = useState<string[]>(defaultExpanded);
+    const [internalExpanded, setInternalExpanded] =
+      useState<string[]>(defaultExpanded);
 
     // Determine if controlled or uncontrolled
     const isControlled = controlledExpanded !== undefined;
@@ -134,7 +135,7 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
 
     const containerClasses = [styles.accordion, styles[variant], className]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
       <div ref={ref} className={containerClasses} {...rest}>
@@ -153,4 +154,4 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
   },
 );
 
-Accordion.displayName = 'Accordion';
+Accordion.displayName = "Accordion";

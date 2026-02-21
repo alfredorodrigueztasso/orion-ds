@@ -4,11 +4,15 @@
  * Internal component for rendering individual feature cards.
  */
 
-import type { FeatureCardProps } from './Features.types';
-import { Card, Badge } from '../../components';
-import styles from './Features.module.css';
+import type { FeatureCardProps } from "./Features.types";
+import { Card, Badge } from "../../components";
+import styles from "./Features.module.css";
 
-export const FeatureCard = ({ feature, interactive = true, className }: FeatureCardProps) => {
+export const FeatureCard = ({
+  feature,
+  interactive = true,
+  className,
+}: FeatureCardProps) => {
   const { icon, title, description, badge, href } = feature;
 
   const cardContent = (
@@ -28,9 +32,13 @@ export const FeatureCard = ({ feature, interactive = true, className }: FeatureC
     </>
   );
 
-  const classNames = [styles.featureCard, interactive && styles.interactive, className]
+  const classNames = [
+    styles.featureCard,
+    interactive && styles.interactive,
+    className,
+  ]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
 
   if (href) {
     return (
@@ -49,4 +57,4 @@ export const FeatureCard = ({ feature, interactive = true, className }: FeatureC
   );
 };
 
-FeatureCard.displayName = 'FeatureCard';
+FeatureCard.displayName = "FeatureCard";

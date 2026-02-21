@@ -114,7 +114,7 @@
     },
     {
       "name": "renderOption",
-      "type": "(option: ComboboxOption, isSelected: boolean, isHighlighted: boolean) => ReactNode",
+      "type": "(\n    option: ComboboxOption,\n    isSelected: boolean,\n    isHighlighted: boolean,\n  ) => ReactNode",
       "description": "Custom render function for options"
     },
     {

@@ -10,5 +10,9 @@
  * <ProgressBar value={30} size="sm" variant="brand" />
  * ```
  */
-export { ProgressBar } from './ProgressBar';
-export type { ProgressBarProps, ProgressBarSize, ProgressBarVariant } from './ProgressBar.types';
+export { ProgressBar } from "./ProgressBar";
+export type {
+  ProgressBarProps,
+  ProgressBarSize,
+  ProgressBarVariant,
+} from "./ProgressBar.types";

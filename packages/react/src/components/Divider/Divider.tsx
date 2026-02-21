@@ -11,13 +11,20 @@
  * ```
  */
 
-import { forwardRef } from 'react';
-import type { DividerProps } from './Divider.types';
-import styles from './Divider.module.css';
+import { forwardRef } from "react";
+import type { DividerProps } from "./Divider.types";
+import styles from "./Divider.module.css";
 
 export const Divider = forwardRef<HTMLHRElement, DividerProps>(
   (
-    { orientation = 'horizontal', variant = 'solid', spacing = 'md', label, className, ...rest },
+    {
+      orientation = "horizontal",
+      variant = "solid",
+      spacing = "md",
+      label,
+      className,
+      ...rest
+    },
     ref,
   ) => {
     const classNames = [
@@ -29,11 +36,15 @@ export const Divider = forwardRef<HTMLHRElement, DividerProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
-    if (label && orientation === 'horizontal') {
+    if (label && orientation === "horizontal") {
       return (
-        <div className={classNames} role="separator" aria-orientation={orientation}>
+        <div
+          className={classNames}
+          role="separator"
+          aria-orientation={orientation}
+        >
           <span className={styles.line} />
           <span className={styles.label}>{label}</span>
           <span className={styles.line} />
@@ -53,4 +64,4 @@ export const Divider = forwardRef<HTMLHRElement, DividerProps>(
   },
 );
 
-Divider.displayName = 'Divider';
+Divider.displayName = "Divider";

@@ -17,10 +17,10 @@
  * />
  * ```
  */
-export { Dropdown } from './Dropdown';
+export { Dropdown } from "./Dropdown";
 export type {
   DropdownProps,
   DropdownItem,
   DropdownGroup,
   DropdownPlacement,
-} from './Dropdown.types';
+} from "./Dropdown.types";

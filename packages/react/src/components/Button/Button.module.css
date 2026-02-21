@@ -59,35 +59,34 @@
   }
 }
 
-/* Secondary variant - glassmorphism for LIGHT backgrounds */
+/* Secondary variant - light mode uses semantic tokens, dark mode uses glassmorphism */
 .secondary {
-  /* Dark neutral gray background with glassmorphism */
-  background: color-mix(in srgb, var(--color-neutral-pure-900) 15%, transparent);
-  color: var(--text-primary); /* Dark text in light, white in dark (via token) */
-  border: 1px solid color-mix(in srgb, var(--color-neutral-pure-900) 12%, transparent);
-
-  /* Mode-aware backdrop blur (Display mode only) */
-  backdrop-filter: blur(var(--mode-blur-amount, var(--blur-md)));
-  -webkit-backdrop-filter: blur(var(--mode-blur-amount, var(--blur-md)));
+  /* Light mode: fondo claro con tokens semánticos */
+  background: var(--interactive-secondary);
+  color: var(--interactive-secondary-text);
+  border: 1px solid var(--border-subtle);
 
   &:hover:not(:disabled) {
-    background: color-mix(in srgb, var(--color-neutral-pure-900) 25%, transparent);
-    border-color: color-mix(in srgb, var(--color-neutral-pure-900) 20%, transparent);
+    background: var(--interactive-secondary-hover);
+    border-color: var(--border-subtle);
   }
 
   &:active:not(:disabled) {
-    background: color-mix(in srgb, var(--color-neutral-pure-900) 35%, transparent);
+    background: var(--surface-layer);
     transform: translateY(1px);
   }
 
-  /* Dark mode: flip to white overlay so button is visible on dark backgrounds */
+  /* Dark mode: mantener glassmorphism existente */
   :global([data-theme="dark"]) & {
     background: color-mix(in srgb, var(--color-neutral-0) 15%, transparent);
     border-color: color-mix(in srgb, var(--color-neutral-0) 15%, transparent);
+    color: var(--text-primary);
+    backdrop-filter: blur(var(--mode-blur-amount, var(--blur-md)));
+    -webkit-backdrop-filter: blur(var(--mode-blur-amount, var(--blur-md)));
 
     &:hover:not(:disabled) {
       background: color-mix(in srgb, var(--color-neutral-0) 22%, transparent);
-      border-color: color-mix(in srgb, var(--color-neutral-0) 20%, transparent);
+      border-color: color-mix(in srgb, var(--color-neutral-0) 15%, transparent);
     }
 
     &:active:not(:disabled) {
@@ -311,6 +310,9 @@
 
 /* Icon styles */
 .icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 20px;
   height: 20px;
   flex-shrink: 0;

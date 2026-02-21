@@ -15,5 +15,5 @@
  * ```
  */
 
-export { ChatSection } from './ChatSection';
-export type { ChatSectionProps } from '../../components/Chat';
+export { ChatSection } from "./ChatSection";
+export type { ChatSectionProps } from "../../components/Chat";

@@ -1,19 +1,19 @@
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import { Navbar } from './Navbar';
+import { describe, it, expect } from "vitest";
+import { render, screen } from "@testing-library/react";
+import { Navbar } from "./Navbar";
 
-describe('Navbar', () => {
-  it('renders navbar with children', () => {
+describe("Navbar", () => {
+  it("renders navbar with children", () => {
     render(
       <Navbar>
         <Navbar.Brand>Brand</Navbar.Brand>
       </Navbar>,
     );
-    expect(screen.getByText('Brand')).toBeInTheDocument();
-    expect(screen.getByRole('banner')).toBeInTheDocument();
+    expect(screen.getByText("Brand")).toBeInTheDocument();
+    expect(screen.getByRole("banner")).toBeInTheDocument();
   });
 
-  it('applies height classes correctly', () => {
+  it("applies height classes correctly", () => {
     const { container, rerender } = render(
       <Navbar height="sm">
         <Navbar.Brand>Brand</Navbar.Brand>
@@ -36,7 +36,7 @@ describe('Navbar', () => {
     expect((container.firstChild as HTMLElement).className).toMatch(/lg/);
   });
 
-  it('uses default height when not specified', () => {
+  it("uses default height when not specified", () => {
     const { container } = render(
       <Navbar>
         <Navbar.Brand>Brand</Navbar.Brand>
@@ -45,7 +45,7 @@ describe('Navbar', () => {
     expect((container.firstChild as HTMLElement).className).toMatch(/md/);
   });
 
-  it('applies variant classes correctly', () => {
+  it("applies variant classes correctly", () => {
     const { container, rerender } = render(
       <Navbar variant="solid">
         <Navbar.Brand>Brand</Navbar.Brand>
@@ -58,7 +58,9 @@ describe('Navbar', () => {
         <Navbar.Brand>Brand</Navbar.Brand>
       </Navbar>,
     );
-    expect((container.firstChild as HTMLElement).className).toMatch(/transparent/);
+    expect((container.firstChild as HTMLElement).className).toMatch(
+      /transparent/,
+    );
 
     rerender(
       <Navbar variant="glass">
@@ -68,7 +70,7 @@ describe('Navbar', () => {
     expect((container.firstChild as HTMLElement).className).toMatch(/glass/);
   });
 
-  it('uses default variant when not specified', () => {
+  it("uses default variant when not specified", () => {
     const { container } = render(
       <Navbar>
         <Navbar.Brand>Brand</Navbar.Brand>
@@ -77,7 +79,7 @@ describe('Navbar', () => {
     expect((container.firstChild as HTMLElement).className).toMatch(/solid/);
   });
 
-  it('applies sticky class when sticky is true', () => {
+  it("applies sticky class when sticky is true", () => {
     const { container } = render(
       <Navbar sticky>
         <Navbar.Brand>Brand</Navbar.Brand>
@@ -86,16 +88,18 @@ describe('Navbar', () => {
     expect((container.firstChild as HTMLElement).className).toMatch(/sticky/);
   });
 
-  it('does not apply sticky class by default', () => {
+  it("does not apply sticky class by default", () => {
     const { container } = render(
       <Navbar>
         <Navbar.Brand>Brand</Navbar.Brand>
       </Navbar>,
     );
-    expect((container.firstChild as HTMLElement).className).not.toMatch(/sticky/);
+    expect((container.firstChild as HTMLElement).className).not.toMatch(
+      /sticky/,
+    );
   });
 
-  it('applies bordered class by default', () => {
+  it("applies bordered class by default", () => {
     const { container } = render(
       <Navbar>
         <Navbar.Brand>Brand</Navbar.Brand>
@@ -104,75 +108,77 @@ describe('Navbar', () => {
     expect((container.firstChild as HTMLElement).className).toMatch(/bordered/);
   });
 
-  it('does not apply bordered class when bordered is false', () => {
+  it("does not apply bordered class when bordered is false", () => {
     const { container } = render(
       <Navbar bordered={false}>
         <Navbar.Brand>Brand</Navbar.Brand>
       </Navbar>,
     );
-    expect((container.firstChild as HTMLElement).className).not.toMatch(/bordered/);
+    expect((container.firstChild as HTMLElement).className).not.toMatch(
+      /bordered/,
+    );
   });
 
-  it('applies custom className', () => {
+  it("applies custom className", () => {
     const { container } = render(
       <Navbar className="custom-navbar">
         <Navbar.Brand>Brand</Navbar.Brand>
       </Navbar>,
     );
-    expect(container.firstChild).toHaveClass('custom-navbar');
+    expect(container.firstChild).toHaveClass("custom-navbar");
   });
 
-  it('passes through HTML attributes', () => {
+  it("passes through HTML attributes", () => {
     render(
       <Navbar data-testid="test-navbar">
         <Navbar.Brand>Brand</Navbar.Brand>
       </Navbar>,
     );
-    expect(screen.getByTestId('test-navbar')).toBeInTheDocument();
+    expect(screen.getByTestId("test-navbar")).toBeInTheDocument();
   });
 
-  describe('Navbar.Brand', () => {
-    it('renders brand content', () => {
+  describe("Navbar.Brand", () => {
+    it("renders brand content", () => {
       render(
         <Navbar>
           <Navbar.Brand>MyApp</Navbar.Brand>
         </Navbar>,
       );
-      expect(screen.getByText('MyApp')).toBeInTheDocument();
+      expect(screen.getByText("MyApp")).toBeInTheDocument();
     });
 
-    it('renders as link when href is provided', () => {
+    it("renders as link when href is provided", () => {
       render(
         <Navbar>
           <Navbar.Brand href="/">MyApp</Navbar.Brand>
         </Navbar>,
       );
-      const brand = screen.getByText('MyApp');
-      expect(brand.tagName).toBe('A');
-      expect(brand).toHaveAttribute('href', '/');
+      const brand = screen.getByText("MyApp");
+      expect(brand.tagName).toBe("A");
+      expect(brand).toHaveAttribute("href", "/");
     });
 
-    it('renders as div when href is not provided', () => {
+    it("renders as div when href is not provided", () => {
       render(
         <Navbar>
           <Navbar.Brand>MyApp</Navbar.Brand>
         </Navbar>,
       );
-      const brand = screen.getByText('MyApp');
-      expect(brand.tagName).toBe('DIV');
+      const brand = screen.getByText("MyApp");
+      expect(brand.tagName).toBe("DIV");
     });
 
-    it('applies custom className to brand', () => {
+    it("applies custom className to brand", () => {
       render(
         <Navbar>
           <Navbar.Brand className="custom-brand">Brand</Navbar.Brand>
         </Navbar>,
       );
-      const brand = screen.getByText('Brand');
-      expect(brand).toHaveClass('custom-brand');
+      const brand = screen.getByText("Brand");
+      expect(brand).toHaveClass("custom-brand");
     });
 
-    it('renders complex brand content', () => {
+    it("renders complex brand content", () => {
       render(
         <Navbar>
           <Navbar.Brand>
@@ -181,13 +187,13 @@ describe('Navbar', () => {
           </Navbar.Brand>
         </Navbar>,
       );
-      expect(screen.getByAltText('Logo')).toBeInTheDocument();
-      expect(screen.getByText('MyApp')).toBeInTheDocument();
+      expect(screen.getByAltText("Logo")).toBeInTheDocument();
+      expect(screen.getByText("MyApp")).toBeInTheDocument();
     });
   });
 
-  describe('Navbar.Nav', () => {
-    it('renders navigation container', () => {
+  describe("Navbar.Nav", () => {
+    it("renders navigation container", () => {
       render(
         <Navbar>
           <Navbar.Nav>
@@ -195,10 +201,10 @@ describe('Navbar', () => {
           </Navbar.Nav>
         </Navbar>,
       );
-      expect(screen.getByRole('navigation')).toBeInTheDocument();
+      expect(screen.getByRole("navigation")).toBeInTheDocument();
     });
 
-    it('applies custom className to nav', () => {
+    it("applies custom className to nav", () => {
       const { container } = render(
         <Navbar>
           <Navbar.Nav className="custom-nav">
@@ -206,11 +212,11 @@ describe('Navbar', () => {
           </Navbar.Nav>
         </Navbar>,
       );
-      const nav = container.querySelector('nav');
-      expect(nav?.className).toContain('custom-nav');
+      const nav = container.querySelector("nav");
+      expect(nav?.className).toContain("custom-nav");
     });
 
-    it('passes through HTML attributes to nav', () => {
+    it("passes through HTML attributes to nav", () => {
       render(
         <Navbar>
           <Navbar.Nav data-testid="test-nav">
@@ -218,12 +224,12 @@ describe('Navbar', () => {
           </Navbar.Nav>
         </Navbar>,
       );
-      expect(screen.getByTestId('test-nav')).toBeInTheDocument();
+      expect(screen.getByTestId("test-nav")).toBeInTheDocument();
     });
   });
 
-  describe('Navbar.Link', () => {
-    it('renders link with href', () => {
+  describe("Navbar.Link", () => {
+    it("renders link with href", () => {
       render(
         <Navbar>
           <Navbar.Nav>
@@ -231,12 +237,12 @@ describe('Navbar', () => {
           </Navbar.Nav>
         </Navbar>,
       );
-      const link = screen.getByText('About');
-      expect(link.tagName).toBe('A');
-      expect(link).toHaveAttribute('href', '/about');
+      const link = screen.getByText("About");
+      expect(link.tagName).toBe("A");
+      expect(link).toHaveAttribute("href", "/about");
     });
 
-    it('applies active class when active is true', () => {
+    it("applies active class when active is true", () => {
       render(
         <Navbar>
           <Navbar.Nav>
@@ -246,11 +252,11 @@ describe('Navbar', () => {
           </Navbar.Nav>
         </Navbar>,
       );
-      const link = screen.getByText('Home');
+      const link = screen.getByText("Home");
       expect(link.className).toMatch(/active/);
     });
 
-    it('does not apply active class by default', () => {
+    it("does not apply active class by default", () => {
       render(
         <Navbar>
           <Navbar.Nav>
@@ -258,7 +264,7 @@ describe('Navbar', () => {
           </Navbar.Nav>
         </Navbar>,
       );
-      const link = screen.getByText('Home');
+      const link = screen.getByText("Home");
       expect(link.className).not.toMatch(/active/);
     });
 
@@ -272,10 +278,10 @@ describe('Navbar', () => {
           </Navbar.Nav>
         </Navbar>,
       );
-      expect(screen.getByText('Home')).toHaveAttribute('aria-current', 'page');
+      expect(screen.getByText("Home")).toHaveAttribute("aria-current", "page");
     });
 
-    it('does not have aria-current when not active', () => {
+    it("does not have aria-current when not active", () => {
       render(
         <Navbar>
           <Navbar.Nav>
@@ -283,10 +289,10 @@ describe('Navbar', () => {
           </Navbar.Nav>
         </Navbar>,
       );
-      expect(screen.getByText('About')).not.toHaveAttribute('aria-current');
+      expect(screen.getByText("About")).not.toHaveAttribute("aria-current");
     });
 
-    it('applies custom className to link', () => {
+    it("applies custom className to link", () => {
       render(
         <Navbar>
           <Navbar.Nav>
@@ -296,10 +302,10 @@ describe('Navbar', () => {
           </Navbar.Nav>
         </Navbar>,
       );
-      expect(screen.getByText('Home')).toHaveClass('custom-link');
+      expect(screen.getByText("Home")).toHaveClass("custom-link");
     });
 
-    it('passes through HTML attributes to link', () => {
+    it("passes through HTML attributes to link", () => {
       render(
         <Navbar>
           <Navbar.Nav>
@@ -309,12 +315,12 @@ describe('Navbar', () => {
           </Navbar.Nav>
         </Navbar>,
       );
-      expect(screen.getByTestId('test-link')).toBeInTheDocument();
+      expect(screen.getByTestId("test-link")).toBeInTheDocument();
     });
   });
 
-  describe('Navbar.Actions', () => {
-    it('renders actions container', () => {
+  describe("Navbar.Actions", () => {
+    it("renders actions container", () => {
       render(
         <Navbar>
           <Navbar.Actions>
@@ -322,10 +328,10 @@ describe('Navbar', () => {
           </Navbar.Actions>
         </Navbar>,
       );
-      expect(screen.getByText('Sign In')).toBeInTheDocument();
+      expect(screen.getByText("Sign In")).toBeInTheDocument();
     });
 
-    it('applies custom className to actions', () => {
+    it("applies custom className to actions", () => {
       render(
         <Navbar>
           <Navbar.Actions className="custom-actions">
@@ -333,11 +339,11 @@ describe('Navbar', () => {
           </Navbar.Actions>
         </Navbar>,
       );
-      const actions = screen.getByText('Sign In').parentElement;
-      expect(actions).toHaveClass('custom-actions');
+      const actions = screen.getByText("Sign In").parentElement;
+      expect(actions).toHaveClass("custom-actions");
     });
 
-    it('passes through HTML attributes to actions', () => {
+    it("passes through HTML attributes to actions", () => {
       render(
         <Navbar>
           <Navbar.Actions data-testid="test-actions">
@@ -345,10 +351,10 @@ describe('Navbar', () => {
           </Navbar.Actions>
         </Navbar>,
       );
-      expect(screen.getByTestId('test-actions')).toBeInTheDocument();
+      expect(screen.getByTestId("test-actions")).toBeInTheDocument();
     });
 
-    it('renders multiple action buttons', () => {
+    it("renders multiple action buttons", () => {
       render(
         <Navbar>
           <Navbar.Actions>
@@ -357,13 +363,13 @@ describe('Navbar', () => {
           </Navbar.Actions>
         </Navbar>,
       );
-      expect(screen.getByText('Sign In')).toBeInTheDocument();
-      expect(screen.getByText('Sign Up')).toBeInTheDocument();
+      expect(screen.getByText("Sign In")).toBeInTheDocument();
+      expect(screen.getByText("Sign Up")).toBeInTheDocument();
     });
   });
 
-  describe('Complete Navbar', () => {
-    it('renders all sections together', () => {
+  describe("Complete Navbar", () => {
+    it("renders all sections together", () => {
       render(
         <Navbar>
           <Navbar.Brand>Brand</Navbar.Brand>
@@ -377,13 +383,13 @@ describe('Navbar', () => {
         </Navbar>,
       );
 
-      expect(screen.getByText('Brand')).toBeInTheDocument();
-      expect(screen.getByText('Home')).toBeInTheDocument();
-      expect(screen.getByText('About')).toBeInTheDocument();
-      expect(screen.getByText('Sign In')).toBeInTheDocument();
+      expect(screen.getByText("Brand")).toBeInTheDocument();
+      expect(screen.getByText("Home")).toBeInTheDocument();
+      expect(screen.getByText("About")).toBeInTheDocument();
+      expect(screen.getByText("Sign In")).toBeInTheDocument();
     });
 
-    it('renders complex navbar with all features', () => {
+    it("renders complex navbar with all features", () => {
       render(
         <Navbar sticky bordered variant="glass" height="lg">
           <Navbar.Brand href="/">
@@ -406,20 +412,20 @@ describe('Navbar', () => {
       );
 
       // Check all sections exist
-      expect(screen.getByAltText('Logo')).toBeInTheDocument();
-      expect(screen.getByText('MyApp')).toBeInTheDocument();
-      expect(screen.getByText('Home')).toBeInTheDocument();
-      expect(screen.getByText('Products')).toBeInTheDocument();
-      expect(screen.getByText('Pricing')).toBeInTheDocument();
-      expect(screen.getByText('About')).toBeInTheDocument();
-      expect(screen.getByText('Sign In')).toBeInTheDocument();
-      expect(screen.getByText('Get Started')).toBeInTheDocument();
+      expect(screen.getByAltText("Logo")).toBeInTheDocument();
+      expect(screen.getByText("MyApp")).toBeInTheDocument();
+      expect(screen.getByText("Home")).toBeInTheDocument();
+      expect(screen.getByText("Products")).toBeInTheDocument();
+      expect(screen.getByText("Pricing")).toBeInTheDocument();
+      expect(screen.getByText("About")).toBeInTheDocument();
+      expect(screen.getByText("Sign In")).toBeInTheDocument();
+      expect(screen.getByText("Get Started")).toBeInTheDocument();
 
       // Check active link
-      expect(screen.getByText('Home')).toHaveAttribute('aria-current', 'page');
+      expect(screen.getByText("Home")).toHaveAttribute("aria-current", "page");
 
       // Check navbar classes
-      const navbar = screen.getByRole('banner');
+      const navbar = screen.getByRole("banner");
       expect(navbar.className).toMatch(/glass/);
       expect(navbar.className).toMatch(/lg/);
       expect(navbar.className).toMatch(/sticky/);

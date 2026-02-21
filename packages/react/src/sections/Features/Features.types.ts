@@ -4,7 +4,7 @@
  * Type definitions for the Orion Features section component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Grid column count
@@ -73,7 +73,10 @@ export interface FeatureCardProps extends HTMLAttributes<HTMLDivElement> {
  * />
  * ```
  */
-export interface FeaturesProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
+export interface FeaturesProps extends Omit<
+  HTMLAttributes<HTMLElement>,
+  "title"
+> {
   /**
    * Optional eyebrow/badge above title
    */
@@ -104,7 +107,7 @@ export interface FeaturesProps extends Omit<HTMLAttributes<HTMLElement>, 'title'
    * Background style
    * @default 'subtle'
    */
-  background?: 'base' | 'subtle' | 'none';
+  background?: "base" | "subtle" | "none";
 
   /**
    * Enable card hover effects

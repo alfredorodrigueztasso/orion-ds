@@ -1,0 +1,55 @@
+{
+  "name": "@orion-ds/core",
+  "version": "1.2.4",
+  "description": "Orion Design System - Core tokens and utilities",
+  "author": "Orion Design System Team",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    },
+    "./theme.css": "./dist/theme.css",
+    "./tokens": {
+      "types": "./dist/tokens/index.d.ts",
+      "import": "./dist/tokens/index.js",
+      "require": "./dist/tokens/index.js"
+    }
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "scripts": {
+    "build": "tsc && npm run build:css",
+    "build:css": "node -e \"const fs=require('fs'),p=require('path');fs.mkdirSync('dist/tokens',{recursive:true});let t=fs.readFileSync('../../theme.css','utf8');const g=fs.readFileSync('../../tokens/generated.css','utf8');t=t.replace(/@import\\s+url\\(['\\\"]?tokens\\/generated\\.css['\\\"]?\\);?/,'/* Inlined: tokens/generated.css */\\n'+g);fs.writeFileSync('dist/theme.css',t);fs.copyFileSync('../../tokens/generated.css','dist/tokens/generated.css');\"",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "design-tokens",
+    "orion",
+    "design-system",
+    "typescript",
+    "css-variables",
+    "theme",
+    "tokens",
+    "ai-first"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/orion-ds/orion",
+    "directory": "packages/core"
+  },
+  "homepage": "https://github.com/orion-ds/orion#readme",
+  "bugs": {
+    "url": "https://github.com/orion-ds/orion/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

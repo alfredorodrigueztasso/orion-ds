@@ -20,7 +20,7 @@ UI component for switching themes and brands. Used for testing, documentation, o
 ### Basic
 
 ```tsx
-import { ThemeController } from '@orion/react';
+import { ThemeController } from "@orion/react";
 
 <ThemeController />;
 ```
@@ -48,12 +48,12 @@ import { ThemeController } from '@orion/react';
 ```tsx
 <ThemeController
   onThemeChange={(theme) => {
-    console.log('Theme changed to:', theme);
-    analytics.track('theme_changed', { theme });
+    console.log("Theme changed to:", theme);
+    analytics.track("theme_changed", { theme });
   }}
   onBrandChange={(brand) => {
-    console.log('Brand changed to:', brand);
-    analytics.track('brand_changed', { brand });
+    console.log("Brand changed to:", brand);
+    analytics.track("brand_changed", { brand });
   }}
 />
 ```
@@ -78,7 +78,7 @@ function DevTools() {
   return (
     <div
       style={{
-        position: 'fixed',
+        position: "fixed",
         bottom: 16,
         right: 16,
         zIndex: 9999,
@@ -123,14 +123,16 @@ function ComponentPreview({ children }) {
 ThemeController uses `useThemeContext()` internally:
 
 ```tsx
-import { useThemeContext } from '@orion/react';
+import { useThemeContext } from "@orion/react";
 
 function CustomThemeUI() {
   const { theme, brand, setTheme, setBrand } = useThemeContext();
 
   return (
     <div>
-      <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>Toggle Theme</button>
+      <button onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
+        Toggle Theme
+      </button>
       <select value={brand} onChange={(e) => setBrand(e.target.value)}>
         <option value="orion">Orion</option>
         <option value="red">Red</option>
@@ -147,7 +149,7 @@ function CustomThemeUI() {
 This component requires `ThemeProvider` to be present in the component tree:
 
 ```tsx
-import { ThemeProvider, ThemeController } from '@orion/react';
+import { ThemeProvider, ThemeController } from "@orion/react";
 
 function App() {
   return (

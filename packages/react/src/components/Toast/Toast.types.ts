@@ -4,23 +4,23 @@
  * Type definitions for the Orion Toast notification system.
  */
 
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
 /**
  * Toast variants
  */
-export type ToastVariant = 'info' | 'success' | 'warning' | 'error';
+export type ToastVariant = "info" | "success" | "warning" | "error";
 
 /**
  * Toast position on screen
  */
 export type ToastPosition =
-  | 'top-left'
-  | 'top-center'
-  | 'top-right'
-  | 'bottom-left'
-  | 'bottom-center'
-  | 'bottom-right';
+  | "top-left"
+  | "top-center"
+  | "top-right"
+  | "bottom-left"
+  | "bottom-center"
+  | "bottom-right";
 
 /**
  * Individual toast data
@@ -76,7 +76,7 @@ export interface Toast {
 /**
  * Toast creation options (without id)
  */
-export type ToastOptions = Omit<Toast, 'id'>;
+export type ToastOptions = Omit<Toast, "id">;
 
 /**
  * Toast Provider props

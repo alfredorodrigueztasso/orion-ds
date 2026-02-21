@@ -4,9 +4,9 @@
  * An image gallery section with optional lightbox functionality.
  */
 
-import React, { useState, useMemo, useCallback, useEffect } from 'react';
-import type { GalleryProps, GalleryImage } from './Gallery.types';
-import styles from './Gallery.module.css';
+import React, { useState, useMemo, useCallback, useEffect } from "react";
+import type { GalleryProps, GalleryImage } from "./Gallery.types";
+import styles from "./Gallery.module.css";
 
 /**
  * Gallery section for displaying images with optional lightbox
@@ -16,14 +16,14 @@ export const Gallery: React.FC<GalleryProps> = ({
   title,
   description,
   images,
-  layout = 'grid',
+  layout = "grid",
   columns = 4,
   lightbox = true,
   showCaptions = false,
-  gap = 'md',
+  gap = "md",
   filterable = false,
-  background = 'base',
-  aspectRatio = 'square',
+  background = "base",
+  aspectRatio = "square",
   className,
   ...rest
 }) => {
@@ -74,25 +74,25 @@ export const Gallery: React.FC<GalleryProps> = ({
     if (!selectedImage) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft') goToPrevious();
-      if (e.key === 'ArrowRight') goToNext();
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") goToPrevious();
+      if (e.key === "ArrowRight") goToNext();
     };
 
-    document.addEventListener('keydown', handleKeyDown);
-    document.body.style.overflow = 'hidden';
+    document.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = '';
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
     };
   }, [selectedImage, closeLightbox, goToPrevious, goToNext]);
 
-  const layoutClass = layout === 'masonry' ? styles.masonry : styles.grid;
+  const layoutClass = layout === "masonry" ? styles.masonry : styles.grid;
 
   return (
     <section
-      className={`${styles.gallery} ${className || ''}`}
+      className={`${styles.gallery} ${className || ""}`}
       data-background={background}
       {...rest}
     >
@@ -135,10 +135,10 @@ export const Gallery: React.FC<GalleryProps> = ({
               data-lightbox={lightbox}
               data-aspect={image.aspectRatio || aspectRatio}
               onClick={() => lightbox && setSelectedImage(image)}
-              role={lightbox ? 'button' : undefined}
+              role={lightbox ? "button" : undefined}
               tabIndex={lightbox ? 0 : undefined}
               onKeyDown={(e) => {
-                if (lightbox && (e.key === 'Enter' || e.key === ' ')) {
+                if (lightbox && (e.key === "Enter" || e.key === " ")) {
                   e.preventDefault();
                   setSelectedImage(image);
                 }
@@ -183,10 +183,19 @@ export const Gallery: React.FC<GalleryProps> = ({
           aria-modal="true"
           aria-label="Image lightbox"
         >
-          <div className={styles.lightboxContent} onClick={(e) => e.stopPropagation()}>
-            <img src={selectedImage.src} alt={selectedImage.alt} className={styles.lightboxImage} />
+          <div
+            className={styles.lightboxContent}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={selectedImage.src}
+              alt={selectedImage.alt}
+              className={styles.lightboxImage}
+            />
             {selectedImage.caption && (
-              <div className={styles.lightboxCaption}>{selectedImage.caption}</div>
+              <div className={styles.lightboxCaption}>
+                {selectedImage.caption}
+              </div>
             )}
           </div>
 
@@ -229,4 +238,4 @@ export const Gallery: React.FC<GalleryProps> = ({
   );
 };
 
-Gallery.displayName = 'Gallery';
+Gallery.displayName = "Gallery";

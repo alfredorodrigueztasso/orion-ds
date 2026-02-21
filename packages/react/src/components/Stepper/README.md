@@ -38,13 +38,13 @@ interface StepItem {
 ### Basic
 
 ```tsx
-import { Stepper } from '@orion/react';
+import { Stepper } from "@orion/react";
 
 <Stepper
   steps={[
-    { id: '1', title: 'Account' },
-    { id: '2', title: 'Profile' },
-    { id: '3', title: 'Review' },
+    { id: "1", title: "Account" },
+    { id: "2", title: "Profile" },
+    { id: "3", title: "Review" },
   ]}
   currentStep={1}
 />;
@@ -55,9 +55,9 @@ import { Stepper } from '@orion/react';
 ```tsx
 <Stepper
   steps={[
-    { id: '1', title: 'Account', description: 'Create your account' },
-    { id: '2', title: 'Profile', description: 'Set up your profile' },
-    { id: '3', title: 'Complete', description: 'Review and finish' },
+    { id: "1", title: "Account", description: "Create your account" },
+    { id: "2", title: "Profile", description: "Set up your profile" },
+    { id: "3", title: "Complete", description: "Review and finish" },
   ]}
   currentStep={1}
 />
@@ -88,13 +88,13 @@ function WizardExample() {
 ### With Icons
 
 ```tsx
-import { User, FileText, Check } from 'lucide-react';
+import { User, FileText, Check } from "lucide-react";
 
 <Stepper
   steps={[
-    { id: '1', title: 'Account', icon: <User size={18} /> },
-    { id: '2', title: 'Documents', icon: <FileText size={18} /> },
-    { id: '3', title: 'Complete', icon: <Check size={18} /> },
+    { id: "1", title: "Account", icon: <User size={18} /> },
+    { id: "2", title: "Documents", icon: <FileText size={18} /> },
+    { id: "3", title: "Complete", icon: <Check size={18} /> },
   ]}
   currentStep={1}
 />;
@@ -105,9 +105,9 @@ import { User, FileText, Check } from 'lucide-react';
 ```tsx
 <Stepper
   steps={[
-    { id: '1', title: 'Account' },
-    { id: '2', title: 'Profile', optional: true },
-    { id: '3', title: 'Complete' },
+    { id: "1", title: "Account" },
+    { id: "2", title: "Profile", optional: true },
+    { id: "3", title: "Complete" },
   ]}
   currentStep={0}
 />
@@ -120,14 +120,14 @@ Show validation errors on specific steps:
 ```tsx
 <Stepper
   steps={[
-    { id: '1', title: 'Account' },
+    { id: "1", title: "Account" },
     {
-      id: '2',
-      title: 'Payment',
+      id: "2",
+      title: "Payment",
       error: true,
-      errorMessage: 'Payment failed',
+      errorMessage: "Payment failed",
     },
-    { id: '3', title: 'Complete' },
+    { id: "3", title: "Complete" },
   ]}
   currentStep={1}
 />
@@ -139,9 +139,9 @@ Show validation errors on specific steps:
 <Stepper
   orientation="vertical"
   steps={[
-    { id: '1', title: 'Step 1', description: 'First step description' },
-    { id: '2', title: 'Step 2', description: 'Second step description' },
-    { id: '3', title: 'Step 3', description: 'Third step description' },
+    { id: "1", title: "Step 1", description: "First step description" },
+    { id: "2", title: "Step 2", description: "Second step description" },
+    { id: "3", title: "Step 3", description: "Third step description" },
   ]}
   currentStep={1}
 />
@@ -168,12 +168,12 @@ For wizards with many steps on mobile, enable `scrollable` for horizontal scroll
 ```tsx
 <Stepper
   steps={[
-    { id: '1', title: 'Account' },
-    { id: '2', title: 'Profile' },
-    { id: '3', title: 'Address' },
-    { id: '4', title: 'Payment' },
-    { id: '5', title: 'Review' },
-    { id: '6', title: 'Complete' },
+    { id: "1", title: "Account" },
+    { id: "2", title: "Profile" },
+    { id: "3", title: "Address" },
+    { id: "4", title: "Payment" },
+    { id: "5", title: "Review" },
+    { id: "6", title: "Complete" },
   ]}
   currentStep={3}
   scrollable
@@ -193,8 +193,8 @@ For wizards with many steps on mobile, enable `scrollable` for horizontal scroll
 Complete example with step-by-step validation:
 
 ```tsx
-import { useState } from 'react';
-import { Stepper, Button, Field } from '@orion/react';
+import { useState } from "react";
+import { Stepper, Button, Field } from "@orion/react";
 
 interface FormData {
   email: string;
@@ -210,32 +210,32 @@ interface StepErrors {
 function SignupWizard() {
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState<FormData>({
-    email: '',
-    password: '',
-    name: '',
-    bio: '',
+    email: "",
+    password: "",
+    name: "",
+    bio: "",
   });
   const [errors, setErrors] = useState<StepErrors>({});
 
   const steps = [
     {
-      id: 'account',
-      title: 'Account',
-      description: 'Create your account',
+      id: "account",
+      title: "Account",
+      description: "Create your account",
       error: !!errors.account,
       errorMessage: errors.account,
     },
     {
-      id: 'profile',
-      title: 'Profile',
-      description: 'Set up your profile',
+      id: "profile",
+      title: "Profile",
+      description: "Set up your profile",
       error: !!errors.profile,
       errorMessage: errors.profile,
     },
     {
-      id: 'review',
-      title: 'Review',
-      description: 'Confirm details',
+      id: "review",
+      title: "Review",
+      description: "Confirm details",
     },
   ];
 
@@ -244,17 +244,17 @@ function SignupWizard() {
 
     if (stepIndex === 0) {
       if (!formData.email) {
-        newErrors.account = 'Email is required';
-      } else if (!formData.email.includes('@')) {
-        newErrors.account = 'Invalid email format';
+        newErrors.account = "Email is required";
+      } else if (!formData.email.includes("@")) {
+        newErrors.account = "Invalid email format";
       } else if (!formData.password || formData.password.length < 8) {
-        newErrors.account = 'Password must be at least 8 characters';
+        newErrors.account = "Password must be at least 8 characters";
       }
     }
 
     if (stepIndex === 1) {
       if (!formData.name) {
-        newErrors.profile = 'Name is required';
+        newErrors.profile = "Name is required";
       }
     }
 
@@ -277,7 +277,7 @@ function SignupWizard() {
   };
 
   const handleSubmit = () => {
-    console.log('Form submitted:', formData);
+    console.log("Form submitted:", formData);
   };
 
   return (
@@ -296,36 +296,50 @@ function SignupWizard() {
 
       <div style={{ marginTop: 32, minHeight: 200 }}>
         {step === 0 && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
             <Field
               type="email"
               label="Email"
               value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              error={errors.account?.includes('email') ? errors.account : undefined}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
+              error={
+                errors.account?.includes("email") ? errors.account : undefined
+              }
             />
             <Field
               type="password"
               label="Password"
               value={formData.password}
-              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-              error={errors.account?.includes('Password') ? errors.account : undefined}
+              onChange={(e) =>
+                setFormData({ ...formData, password: e.target.value })
+              }
+              error={
+                errors.account?.includes("Password")
+                  ? errors.account
+                  : undefined
+              }
             />
           </div>
         )}
 
         {step === 1 && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
             <Field
               label="Full Name"
               value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, name: e.target.value })
+              }
               error={errors.profile}
             />
             <Field
               label="Bio"
               value={formData.bio}
-              onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, bio: e.target.value })
+              }
             />
           </div>
         )}
@@ -348,11 +362,13 @@ function SignupWizard() {
         )}
       </div>
 
-      <div style={{ display: 'flex', gap: 16, marginTop: 32 }}>
+      <div style={{ display: "flex", gap: 16, marginTop: 32 }}>
         <Button variant="secondary" disabled={step === 0} onClick={handleBack}>
           Back
         </Button>
-        <Button onClick={handleNext}>{step === steps.length - 1 ? 'Submit' : 'Next'}</Button>
+        <Button onClick={handleNext}>
+          {step === steps.length - 1 ? "Submit" : "Next"}
+        </Button>
       </div>
     </div>
   );
@@ -367,16 +383,16 @@ function CheckoutStepper() {
   const [paymentError, setPaymentError] = useState<string | null>(null);
 
   const steps = [
-    { id: 'cart', title: 'Cart', description: 'Review items' },
-    { id: 'shipping', title: 'Shipping', description: 'Delivery address' },
+    { id: "cart", title: "Cart", description: "Review items" },
+    { id: "shipping", title: "Shipping", description: "Delivery address" },
     {
-      id: 'payment',
-      title: 'Payment',
-      description: 'Payment method',
+      id: "payment",
+      title: "Payment",
+      description: "Payment method",
       error: !!paymentError,
       errorMessage: paymentError || undefined,
     },
-    { id: 'confirm', title: 'Confirm', description: 'Place order' },
+    { id: "confirm", title: "Confirm", description: "Place order" },
   ];
 
   const handlePayment = async () => {
@@ -386,7 +402,7 @@ function CheckoutStepper() {
       setPaymentError(null);
       setStep(3);
     } catch {
-      setPaymentError('Card declined. Please try another card.');
+      setPaymentError("Card declined. Please try another card.");
     }
   };
 

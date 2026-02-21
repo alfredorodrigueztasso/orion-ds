@@ -4,7 +4,7 @@
  * Type definitions for the Orion Testimonials section component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Grid column count for testimonial cards
@@ -14,7 +14,7 @@ export type TestimonialsColumns = 1 | 2 | 3;
 /**
  * Testimonial variant styles
  */
-export type TestimonialsVariant = 'default' | 'cards' | 'minimal';
+export type TestimonialsVariant = "default" | "cards" | "minimal";
 
 /**
  * Author information for a testimonial
@@ -99,7 +99,10 @@ export interface TestimonialCardProps extends HTMLAttributes<HTMLDivElement> {
  * />
  * ```
  */
-export interface TestimonialsProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
+export interface TestimonialsProps extends Omit<
+  HTMLAttributes<HTMLElement>,
+  "title"
+> {
   /**
    * Optional eyebrow/badge above title
    */
@@ -139,7 +142,7 @@ export interface TestimonialsProps extends Omit<HTMLAttributes<HTMLElement>, 'ti
    * Background style
    * @default 'base'
    */
-  background?: 'base' | 'subtle' | 'none';
+  background?: "base" | "subtle" | "none";
 
   /**
    * Center the header text

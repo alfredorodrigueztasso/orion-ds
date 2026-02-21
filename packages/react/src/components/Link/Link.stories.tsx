@@ -2,29 +2,37 @@
  * Link Component Stories
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
-import { Link } from './Link';
-import { ArrowRight, ArrowLeft, Download, Mail, Phone, FileText, ChevronRight } from 'lucide-react';
+import type { Meta, StoryObj } from "@storybook/react";
+import { Link } from "./Link";
+import {
+  ArrowRight,
+  ArrowLeft,
+  Download,
+  Mail,
+  Phone,
+  FileText,
+  ChevronRight,
+} from "lucide-react";
 
 const meta: Meta<typeof Link> = {
-  title: 'Components/Navigation/Link',
+  title: "Components/Navigation/Link",
   component: Link,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     variant: {
-      control: 'radio',
-      options: ['default', 'subtle', 'brand'],
+      control: "radio",
+      options: ["default", "subtle", "brand"],
     },
     size: {
-      control: 'radio',
-      options: ['sm', 'md', 'lg'],
+      control: "radio",
+      options: ["sm", "md", "lg"],
     },
     iconAnimation: {
-      control: 'radio',
-      options: ['none', 'arrow', 'arrow-left', 'external'],
+      control: "radio",
+      options: ["none", "arrow", "arrow-left", "external"],
     },
   },
 };
@@ -34,67 +42,67 @@ type Story = StoryObj<typeof Link>;
 
 export const Default: Story = {
   args: {
-    href: '#',
-    children: 'Default Link',
+    href: "#",
+    children: "Default Link",
   },
 };
 
 export const Subtle: Story = {
   args: {
-    href: '#',
-    variant: 'subtle',
-    children: 'Subtle Link',
+    href: "#",
+    variant: "subtle",
+    children: "Subtle Link",
   },
 };
 
 export const Brand: Story = {
   args: {
-    href: '#',
-    variant: 'brand',
-    children: 'Brand Link',
+    href: "#",
+    variant: "brand",
+    children: "Brand Link",
   },
 };
 
 export const External: Story = {
   args: {
-    href: 'https://example.com',
+    href: "https://example.com",
     external: true,
-    children: 'Visit Documentation',
+    children: "Visit Documentation",
   },
 };
 
 export const ExternalWithoutIcon: Story = {
   args: {
-    href: 'https://example.com',
+    href: "https://example.com",
     external: true,
     showExternalIcon: false,
-    children: 'External (no icon)',
+    children: "External (no icon)",
   },
 };
 
 export const WithoutUnderline: Story = {
   args: {
-    href: '#',
+    href: "#",
     underline: false,
-    children: 'No Underline',
+    children: "No Underline",
   },
 };
 
 export const WithLeftIcon: Story = {
   args: {
-    href: '#',
+    href: "#",
     icon: <ArrowLeft size={14} />,
-    iconAnimation: 'arrow-left',
-    children: 'Go Back',
+    iconAnimation: "arrow-left",
+    children: "Go Back",
   },
 };
 
 export const WithRightIcon: Story = {
   args: {
-    href: '#',
+    href: "#",
     iconRight: <ArrowRight size={14} />,
-    iconAnimation: 'arrow',
-    children: 'Learn More',
+    iconAnimation: "arrow",
+    children: "Learn More",
   },
 };
 
@@ -102,10 +110,10 @@ export const Sizes: Story = {
   render: () => (
     <div
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 'var(--spacing-4)',
-        alignItems: 'flex-start',
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-4)",
+        alignItems: "flex-start",
       }}
     >
       <Link href="#" size="sm">
@@ -125,10 +133,10 @@ export const WithIcons: Story = {
   render: () => (
     <div
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 'var(--spacing-4)',
-        alignItems: 'flex-start',
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-4)",
+        alignItems: "flex-start",
       }}
     >
       <Link href="#" icon={<Mail size={14} />}>
@@ -151,22 +159,42 @@ export const NavigationLinks: Story = {
   render: () => (
     <div
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 'var(--spacing-3)',
-        alignItems: 'flex-start',
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-3)",
+        alignItems: "flex-start",
       }}
     >
-      <Link href="#" iconRight={<ChevronRight size={14} />} iconAnimation="arrow" underline={false}>
+      <Link
+        href="#"
+        iconRight={<ChevronRight size={14} />}
+        iconAnimation="arrow"
+        underline={false}
+      >
         Getting Started
       </Link>
-      <Link href="#" iconRight={<ChevronRight size={14} />} iconAnimation="arrow" underline={false}>
+      <Link
+        href="#"
+        iconRight={<ChevronRight size={14} />}
+        iconAnimation="arrow"
+        underline={false}
+      >
         Components
       </Link>
-      <Link href="#" iconRight={<ChevronRight size={14} />} iconAnimation="arrow" underline={false}>
+      <Link
+        href="#"
+        iconRight={<ChevronRight size={14} />}
+        iconAnimation="arrow"
+        underline={false}
+      >
         API Reference
       </Link>
-      <Link href="#" iconRight={<ChevronRight size={14} />} iconAnimation="arrow" underline={false}>
+      <Link
+        href="#"
+        iconRight={<ChevronRight size={14} />}
+        iconAnimation="arrow"
+        underline={false}
+      >
         Examples
       </Link>
     </div>
@@ -177,10 +205,10 @@ export const ExternalLinks: Story = {
   render: () => (
     <div
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 'var(--spacing-3)',
-        alignItems: 'flex-start',
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-3)",
+        alignItems: "flex-start",
       }}
     >
       <Link href="https://github.com" external variant="brand">
@@ -198,16 +226,22 @@ export const ExternalLinks: Story = {
 
 export const InParagraph: Story = {
   render: () => (
-    <p style={{ maxWidth: '500px', lineHeight: 1.7, color: 'var(--text-secondary)' }}>
-      This is a paragraph with an <Link href="#">inline link</Link> that demonstrates how links
-      appear within body text. You can also have{' '}
+    <p
+      style={{
+        maxWidth: "500px",
+        lineHeight: 1.7,
+        color: "var(--text-secondary)",
+      }}
+    >
+      This is a paragraph with an <Link href="#">inline link</Link> that
+      demonstrates how links appear within body text. You can also have{" "}
       <Link href="https://example.com" external>
         external links
-      </Link>{' '}
-      that automatically show an icon and open in a new tab. The{' '}
+      </Link>{" "}
+      that automatically show an icon and open in a new tab. The{" "}
       <Link href="#" variant="brand">
         brand variant
-      </Link>{' '}
+      </Link>{" "}
       uses the accent color for emphasis.
     </p>
   ),
@@ -217,26 +251,32 @@ export const FooterLinks: Story = {
   render: () => (
     <div
       style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
-        gap: 'var(--spacing-8)',
-        padding: 'var(--spacing-6)',
-        background: 'var(--surface-subtle)',
-        borderRadius: 'var(--radius-control)',
-        minWidth: '500px',
+        display: "grid",
+        gridTemplateColumns: "repeat(3, 1fr)",
+        gap: "var(--spacing-8)",
+        padding: "var(--spacing-6)",
+        background: "var(--surface-subtle)",
+        borderRadius: "var(--radius-control)",
+        minWidth: "500px",
       }}
     >
       <div>
         <h4
           style={{
-            fontSize: 'var(--font-size-14)',
-            fontWeight: 'var(--font-weight-medium)',
-            marginBottom: 'var(--spacing-3)',
+            fontSize: "var(--font-size-14)",
+            fontWeight: "var(--font-weight-medium)",
+            marginBottom: "var(--spacing-3)",
           }}
         >
           Product
         </h4>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-2)' }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "var(--spacing-2)",
+          }}
+        >
           <Link href="#" variant="subtle" size="sm" underline={false}>
             Features
           </Link>
@@ -251,14 +291,20 @@ export const FooterLinks: Story = {
       <div>
         <h4
           style={{
-            fontSize: 'var(--font-size-14)',
-            fontWeight: 'var(--font-weight-medium)',
-            marginBottom: 'var(--spacing-3)',
+            fontSize: "var(--font-size-14)",
+            fontWeight: "var(--font-weight-medium)",
+            marginBottom: "var(--spacing-3)",
           }}
         >
           Resources
         </h4>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-2)' }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "var(--spacing-2)",
+          }}
+        >
           <Link href="#" variant="subtle" size="sm" underline={false}>
             Documentation
           </Link>
@@ -273,21 +319,45 @@ export const FooterLinks: Story = {
       <div>
         <h4
           style={{
-            fontSize: 'var(--font-size-14)',
-            fontWeight: 'var(--font-weight-medium)',
-            marginBottom: 'var(--spacing-3)',
+            fontSize: "var(--font-size-14)",
+            fontWeight: "var(--font-weight-medium)",
+            marginBottom: "var(--spacing-3)",
           }}
         >
           Connect
         </h4>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-2)' }}>
-          <Link href="https://twitter.com" external variant="subtle" size="sm" underline={false}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "var(--spacing-2)",
+          }}
+        >
+          <Link
+            href="https://twitter.com"
+            external
+            variant="subtle"
+            size="sm"
+            underline={false}
+          >
             Twitter
           </Link>
-          <Link href="https://github.com" external variant="subtle" size="sm" underline={false}>
+          <Link
+            href="https://github.com"
+            external
+            variant="subtle"
+            size="sm"
+            underline={false}
+          >
             GitHub
           </Link>
-          <Link href="https://discord.com" external variant="subtle" size="sm" underline={false}>
+          <Link
+            href="https://discord.com"
+            external
+            variant="subtle"
+            size="sm"
+            underline={false}
+          >
             Discord
           </Link>
         </div>
@@ -300,10 +370,10 @@ export const AllVariants: Story = {
   render: () => (
     <div
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 'var(--spacing-4)',
-        alignItems: 'flex-start',
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-4)",
+        alignItems: "flex-start",
       }}
     >
       <Link href="#" variant="default">

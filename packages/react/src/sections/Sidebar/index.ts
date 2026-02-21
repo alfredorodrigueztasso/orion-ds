@@ -1,4 +1,4 @@
-export { Sidebar } from './Sidebar';
+export { Sidebar } from "./Sidebar";
 export type {
   SidebarProps,
   SidebarVariant,
@@ -7,4 +7,4 @@ export type {
   SidebarItemProps,
   SidebarSectionProps,
   SidebarDividerProps,
-} from './Sidebar.types';
+} from "./Sidebar.types";

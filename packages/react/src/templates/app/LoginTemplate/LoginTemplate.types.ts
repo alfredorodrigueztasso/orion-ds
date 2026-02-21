@@ -5,7 +5,7 @@
  * Inspired by Supabase's clean, split-layout login experience.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Social login provider configuration
@@ -160,7 +160,7 @@ export interface LoginFormConfig {
  */
 export interface LoginTemplateProps extends Omit<
   HTMLAttributes<HTMLDivElement>,
-  'title' | 'onSubmit'
+  "title" | "onSubmit"
 > {
   /**
    * Logo element (displayed at top of form)
@@ -228,7 +228,11 @@ export interface LoginTemplateProps extends Omit<
   /**
    * Form submit handler
    */
-  onSubmit?: (data: { email: string; password: string; rememberMe: boolean }) => void;
+  onSubmit?: (data: {
+    email: string;
+    password: string;
+    rememberMe: boolean;
+  }) => void;
 
   /**
    * Loading state (disables form)

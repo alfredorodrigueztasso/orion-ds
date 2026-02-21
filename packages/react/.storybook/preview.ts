@@ -1,73 +1,73 @@
-import type { Preview } from '@storybook/react';
-import React from 'react';
-import '../dist/styles.css';
+import type { Preview } from "@storybook/react";
+import React from "react";
+import "../assets/theme.css";
 // Fonts are loaded via preview-head.html for iframe support
 // CSS modules are imported directly with each component
 
 const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: '^on[A-Z].*' },
+    actions: {},
     controls: {
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
     },
-    layout: 'centered',
+    layout: "centered",
     backgrounds: {
-      default: 'light',
+      default: "light",
       values: [
         {
-          name: 'light',
-          value: 'var(--surface-base)',
+          name: "light",
+          value: "var(--surface-base)",
         },
         {
-          name: 'dark',
-          value: 'var(--surface-base)',
+          name: "dark",
+          value: "var(--surface-base)",
         },
       ],
     },
   },
   globalTypes: {
     theme: {
-      description: 'Global theme for components',
-      defaultValue: 'light',
+      description: "Global theme for components",
+      defaultValue: "light",
       toolbar: {
-        title: 'Theme',
-        icon: 'circlehollow',
+        title: "Theme",
+        icon: "circlehollow",
         items: [
-          { value: 'light', icon: 'sun', title: 'Light' },
-          { value: 'dark', icon: 'moon', title: 'Dark' },
+          { value: "light", icon: "sun", title: "Light" },
+          { value: "dark", icon: "moon", title: "Dark" },
         ],
         dynamicTitle: true,
       },
     },
     brand: {
-      description: 'Brand theme',
-      defaultValue: 'orion',
+      description: "Brand theme",
+      defaultValue: "orion",
       toolbar: {
-        title: 'Brand',
-        icon: 'paintbrush',
+        title: "Brand",
+        icon: "paintbrush",
         items: [
-          { value: 'orion', title: 'Orion' },
-          { value: 'deepblue', title: 'Deepblue' },
-          { value: 'red', title: 'Red' },
-          { value: 'orange', title: 'Orange' },
-          { value: 'lemon', title: 'Lemon' },
+          { value: "orion", title: "Orion" },
+          { value: "deepblue", title: "Deepblue" },
+          { value: "red", title: "Red" },
+          { value: "orange", title: "Orange" },
+          { value: "lemon", title: "Lemon" },
         ],
         dynamicTitle: true,
       },
     },
     mode: {
-      description: 'Visual mode (display, product, app)',
-      defaultValue: 'display',
+      description: "Visual mode (display, product, app)",
+      defaultValue: "display",
       toolbar: {
-        title: 'Mode',
-        icon: 'browser',
+        title: "Mode",
+        icon: "browser",
         items: [
-          { value: 'display', title: 'Display (Marketing)' },
-          { value: 'product', title: 'Product (SaaS)' },
-          { value: 'app', title: 'App (Mobile)' },
+          { value: "display", title: "Display (Marketing)" },
+          { value: "product", title: "Product (SaaS)" },
+          { value: "app", title: "App (Mobile)" },
         ],
         dynamicTitle: true,
       },
@@ -78,12 +78,12 @@ const preview: Preview = {
       const { theme, brand, mode } = context.globals;
 
       // Update theme, brand, and mode on document
-      if (typeof document !== 'undefined') {
-        document.documentElement.setAttribute('data-theme', theme);
-        document.documentElement.setAttribute('data-brand', brand);
-        document.documentElement.setAttribute('data-mode', mode);
+      if (typeof document !== "undefined") {
+        document.documentElement.setAttribute("data-theme", theme);
+        document.documentElement.setAttribute("data-brand", brand);
+        document.documentElement.setAttribute("data-mode", mode);
         // Set body background to surface-subtle so cards (surface-base) stand out
-        document.body.style.backgroundColor = 'var(--surface-subtle)';
+        document.body.style.backgroundColor = "var(--surface-subtle)";
       }
 
       return React.createElement(Story);

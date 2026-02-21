@@ -21,6 +21,26 @@ export interface Workspace {
    * Workspace display name
    */
   name: string;
+
+  /**
+   * Workspace avatar URL (displayed in workspace dropdown list)
+   */
+  avatar?: string;
+
+  /**
+   * Workspace avatar icon element (alternative to avatar URL)
+   */
+  icon?: ReactNode;
+
+  /**
+   * Workspace initials fallback (displayed when no avatar/icon)
+   */
+  initials?: string;
+
+  /**
+   * User's role in this workspace (e.g., "Propietario", "Editor")
+   */
+  role?: string;
 }
 
 /**
@@ -38,6 +58,21 @@ export interface NavbarConfig {
   workspaceName?: string;
 
   /**
+   * Workspace avatar URL or icon (displayed left of workspace name)
+   */
+  workspaceAvatar?: string;
+
+  /**
+   * Workspace avatar icon element (alternative to workspaceAvatar)
+   */
+  workspaceIcon?: ReactNode;
+
+  /**
+   * Workspace initials fallback (e.g., "WS", "AW")
+   */
+  workspaceInitials?: string;
+
+  /**
    * Available workspaces
    */
   workspaces?: Workspace[];
@@ -46,6 +81,36 @@ export interface NavbarConfig {
    * Workspace change handler
    */
   onWorkspaceChange?: (id: string) => void;
+
+  /**
+   * Active workspace ID (used to identify current workspace in the panel)
+   */
+  activeWorkspaceId?: string;
+
+  /**
+   * User's role in the active workspace (e.g., "Propietario")
+   */
+  workspaceRole?: string;
+
+  /**
+   * Number of participants in the active workspace
+   */
+  workspaceParticipantCount?: number;
+
+  /**
+   * Workspace settings handler
+   */
+  onWorkspaceSettings?: () => void;
+
+  /**
+   * Workspace invite participants handler
+   */
+  onWorkspaceInvite?: () => void;
+
+  /**
+   * Create new workspace handler
+   */
+  onCreateWorkspace?: () => void;
 
   /**
    * User avatar URL

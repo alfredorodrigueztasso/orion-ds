@@ -44,7 +44,14 @@
         "properties": {
           "platform": {
             "type": "string",
-            "enum": ["twitter", "facebook", "instagram", "linkedin", "github", "youtube"]
+            "enum": [
+              "twitter",
+              "facebook",
+              "instagram",
+              "linkedin",
+              "github",
+              "youtube"
+            ]
           },
           "href": { "type": "string" },
           "label": { "type": "string" }

@@ -37,20 +37,20 @@
  * ```
  */
 
-import { useState, useCallback } from 'react';
-import type { TableProps, TableColumn, SortDirection } from './Table.types';
-import styles from './Table.module.css';
+import { useState, useCallback } from "react";
+import type { TableProps, TableColumn, SortDirection } from "./Table.types";
+import styles from "./Table.module.css";
 
 export const Table = <T extends Record<string, any>>({
   columns,
   data,
-  size = 'md',
+  size = "md",
   striped = false,
   hoverable = true,
   bordered = false,
   borderless = false,
   caption,
-  emptyMessage = 'No data available',
+  emptyMessage = "No data available",
   onRowClick,
   onSortChange,
   sortState,
@@ -72,20 +72,22 @@ export const Table = <T extends Record<string, any>>({
       if (!column.sortable) return;
 
       const columnKey = column.key;
-      let newDirection: SortDirection = 'asc';
+      let newDirection: SortDirection = "asc";
 
       // Toggle sort direction
       if (currentSort?.columnKey === columnKey) {
-        if (currentSort.direction === 'asc') {
-          newDirection = 'desc';
-        } else if (currentSort.direction === 'desc') {
+        if (currentSort.direction === "asc") {
+          newDirection = "desc";
+        } else if (currentSort.direction === "desc") {
           newDirection = null; // Clear sort
         }
       }
 
       // Update internal state if not controlled
       if (!sortState) {
-        setInternalSortState(newDirection ? { columnKey, direction: newDirection } : null);
+        setInternalSortState(
+          newDirection ? { columnKey, direction: newDirection } : null,
+        );
       }
 
       // Notify parent
@@ -103,12 +105,12 @@ export const Table = <T extends Record<string, any>>({
 
     const indicatorClasses = [styles.sortIndicator, isActive && styles.active]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
-    if (direction === 'asc') {
+    if (direction === "asc") {
       return <span className={indicatorClasses}>▲</span>;
     }
-    if (direction === 'desc') {
+    if (direction === "desc") {
       return <span className={indicatorClasses}>▼</span>;
     }
 
@@ -123,13 +125,17 @@ export const Table = <T extends Record<string, any>>({
           const thClasses = [
             styles.th,
             column.align &&
-              styles[`align${column.align.charAt(0).toUpperCase()}${column.align.slice(1)}`],
+              styles[
+                `align${column.align.charAt(0).toUpperCase()}${column.align.slice(1)}`
+              ],
             column.sortable && styles.sortable,
           ]
             .filter(Boolean)
-            .join(' ');
+            .join(" ");
 
-          const handleClick = column.sortable ? () => handleSort(column) : undefined;
+          const handleClick = column.sortable
+            ? () => handleSort(column)
+            : undefined;
 
           return (
             <th
@@ -138,12 +144,12 @@ export const Table = <T extends Record<string, any>>({
               style={{ width: column.width }}
               onClick={handleClick}
               tabIndex={column.sortable ? 0 : undefined}
-              role={column.sortable ? 'button' : undefined}
+              role={column.sortable ? "button" : undefined}
               aria-sort={
                 currentSort?.columnKey === column.key
-                  ? currentSort.direction === 'asc'
-                    ? 'ascending'
-                    : 'descending'
+                  ? currentSort.direction === "asc"
+                    ? "ascending"
+                    : "descending"
                   : undefined
               }
               {...column.headerProps}
@@ -186,16 +192,24 @@ export const Table = <T extends Record<string, any>>({
                 const tdClasses = [
                   styles.td,
                   column.align &&
-                    styles[`align${column.align.charAt(0).toUpperCase()}${column.align.slice(1)}`],
+                    styles[
+                      `align${column.align.charAt(0).toUpperCase()}${column.align.slice(1)}`
+                    ],
                 ]
                   .filter(Boolean)
-                  .join(' ');
+                  .join(" ");
 
                 // Use custom cell renderer if provided, otherwise use key accessor
-                const cellContent = column.cell ? column.cell(row, rowIndex) : row[column.key];
+                const cellContent = column.cell
+                  ? column.cell(row, rowIndex)
+                  : row[column.key];
 
                 return (
-                  <td key={column.key} className={tdClasses} {...column.cellProps}>
+                  <td
+                    key={column.key}
+                    className={tdClasses}
+                    {...column.cellProps}
+                  >
                     {cellContent}
                   </td>
                 );
@@ -219,7 +233,7 @@ export const Table = <T extends Record<string, any>>({
     className,
   ]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
 
   return (
     <div className={containerClasses}>
@@ -232,4 +246,4 @@ export const Table = <T extends Record<string, any>>({
   );
 };
 
-Table.displayName = 'Table';
+Table.displayName = "Table";

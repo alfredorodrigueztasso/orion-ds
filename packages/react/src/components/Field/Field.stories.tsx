@@ -1,23 +1,23 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { Field } from './Field';
-import { useState } from 'react';
-import { Search, Eye, EyeOff, Mail, Lock, User } from 'lucide-react';
+import type { Meta, StoryObj } from "@storybook/react";
+import { Field } from "./Field";
+import { useState } from "react";
+import { Search, Eye, EyeOff, Mail, Lock, User } from "lucide-react";
 
 const meta = {
-  title: 'Components/Forms/Field',
+  title: "Components/Forms/Field",
   component: Field,
   parameters: {
-    layout: 'padded',
+    layout: "padded",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     type: {
-      control: 'select',
-      options: ['text', 'email', 'password', 'number', 'tel', 'url', 'search'],
+      control: "select",
+      options: ["text", "email", "password", "number", "tel", "url", "search"],
     },
     size: {
-      control: 'select',
-      options: ['sm', 'md', 'lg'],
+      control: "select",
+      options: ["sm", "md", "lg"],
     },
   },
 } satisfies Meta<typeof Field>;
@@ -27,49 +27,54 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    label: 'Username',
-    placeholder: 'Enter your username',
+    label: "Username",
+    placeholder: "Enter your username",
   },
 };
 
 export const WithValue: Story = {
   render: () => {
-    const [value, setValue] = useState('john.doe@example.com');
+    const [value, setValue] = useState("john.doe@example.com");
     return (
-      <Field type="email" label="Email" value={value} onChange={(e) => setValue(e.target.value)} />
+      <Field
+        type="email"
+        label="Email"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
     );
   },
 };
 
 export const Required: Story = {
   args: {
-    label: 'Full Name',
-    placeholder: 'Enter your full name',
+    label: "Full Name",
+    placeholder: "Enter your full name",
     required: true,
   },
 };
 
 export const WithHelper: Story = {
   args: {
-    label: 'Password',
-    type: 'password',
-    helperText: 'Must be at least 8 characters long',
+    label: "Password",
+    type: "password",
+    helperText: "Must be at least 8 characters long",
   },
 };
 
 export const WithError: Story = {
   args: {
-    label: 'Email',
-    type: 'email',
-    value: 'invalid-email',
-    error: 'Please enter a valid email address',
+    label: "Email",
+    type: "email",
+    value: "invalid-email",
+    error: "Please enter a valid email address",
   },
 };
 
 export const Disabled: Story = {
   args: {
-    label: 'Account ID',
-    value: 'ACC-12345',
+    label: "Account ID",
+    value: "ACC-12345",
     disabled: true,
   },
 };
@@ -77,58 +82,58 @@ export const Disabled: Story = {
 // Sizes
 export const Small: Story = {
   args: {
-    label: 'Small Input',
-    size: 'sm',
-    placeholder: 'Small size',
+    label: "Small Input",
+    size: "sm",
+    placeholder: "Small size",
   },
 };
 
 export const Medium: Story = {
   args: {
-    label: 'Medium Input',
-    size: 'md',
-    placeholder: 'Medium size (default)',
+    label: "Medium Input",
+    size: "md",
+    placeholder: "Medium size (default)",
   },
 };
 
 export const Large: Story = {
   args: {
-    label: 'Large Input',
-    size: 'lg',
-    placeholder: 'Large size',
+    label: "Large Input",
+    size: "lg",
+    placeholder: "Large size",
   },
 };
 
 // Types
 export const EmailType: Story = {
   args: {
-    label: 'Email Address',
-    type: 'email',
-    placeholder: 'your@email.com',
+    label: "Email Address",
+    type: "email",
+    placeholder: "your@email.com",
   },
 };
 
 export const PasswordType: Story = {
   args: {
-    label: 'Password',
-    type: 'password',
-    placeholder: 'Enter your password',
+    label: "Password",
+    type: "password",
+    placeholder: "Enter your password",
   },
 };
 
 export const NumberType: Story = {
   args: {
-    label: 'Age',
-    type: 'number',
-    placeholder: '25',
+    label: "Age",
+    type: "number",
+    placeholder: "25",
   },
 };
 
 export const SearchType: Story = {
   args: {
-    label: 'Search',
-    type: 'search',
-    placeholder: 'Search...',
+    label: "Search",
+    type: "search",
+    placeholder: "Search...",
   },
 };
 
@@ -136,10 +141,10 @@ export const CompleteForm: Story = {
   render: () => (
     <div
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 'var(--spacing-4)',
-        maxWidth: '400px',
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-4)",
+        maxWidth: "400px",
       }}
     >
       <Field label="Full Name" placeholder="John Doe" required />
@@ -150,7 +155,12 @@ export const CompleteForm: Story = {
         helperText="We'll never share your email"
         required
       />
-      <Field type="password" label="Password" helperText="Must be at least 8 characters" required />
+      <Field
+        type="password"
+        label="Password"
+        helperText="Must be at least 8 characters"
+        required
+      />
       <Field type="tel" label="Phone Number" placeholder="+1 (555) 000-0000" />
     </div>
   ),
@@ -167,10 +177,10 @@ export const WithIcons: Story = {
   render: () => (
     <div
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 'var(--spacing-4)',
-        maxWidth: '400px',
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--spacing-4)",
+        maxWidth: "400px",
       }}
     >
       <Field
@@ -179,7 +189,11 @@ export const WithIcons: Story = {
         leftIcon={<Mail size={18} />}
         placeholder="you@example.com"
       />
-      <Field label="Username" leftIcon={<User size={18} />} placeholder="johndoe" />
+      <Field
+        label="Username"
+        leftIcon={<User size={18} />}
+        placeholder="johndoe"
+      />
     </div>
   ),
 };
@@ -195,14 +209,14 @@ export const PasswordToggle: Story = {
     return (
       <Field
         label="Password"
-        type={showPassword ? 'text' : 'password'}
+        type={showPassword ? "text" : "password"}
         leftIcon={<Lock size={18} />}
         placeholder="Enter your password"
         rightIcon={
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            aria-label={showPassword ? 'Hide password' : 'Show password'}
+            aria-label={showPassword ? "Hide password" : "Show password"}
             aria-pressed={showPassword}
           >
             {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
@@ -234,20 +248,20 @@ export const SearchWithoutLabel: Story = {
  */
 export const ExternalDescription: Story = {
   render: () => (
-    <div style={{ maxWidth: '400px' }}>
+    <div style={{ maxWidth: "400px" }}>
       <p
         id="password-requirements"
         style={{
-          fontSize: 'var(--font-size-12)',
-          color: 'var(--text-secondary)',
-          marginBottom: 'var(--spacing-4)',
-          padding: 'var(--spacing-3)',
-          background: 'var(--surface-subtle)',
-          borderRadius: 'var(--radius-sm)',
+          fontSize: "var(--font-size-12)",
+          color: "var(--text-secondary)",
+          marginBottom: "var(--spacing-4)",
+          padding: "var(--spacing-3)",
+          background: "var(--surface-subtle)",
+          borderRadius: "var(--radius-sm)",
         }}
       >
-        Password requirements: at least 8 characters, one uppercase letter, one number, and one
-        special character.
+        Password requirements: at least 8 characters, one uppercase letter, one
+        number, and one special character.
       </p>
       <Field
         label="Create Password"
@@ -264,31 +278,39 @@ export const ExternalDescription: Story = {
  */
 export const AccessibilityOverview: Story = {
   render: () => {
-    const [password, setPassword] = useState('');
+    const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-    const [email, setEmail] = useState('');
-    const emailError = email && !email.includes('@') ? 'Please enter a valid email' : undefined;
+    const [email, setEmail] = useState("");
+    const emailError =
+      email && !email.includes("@") ? "Please enter a valid email" : undefined;
 
     return (
       <div
         style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 'var(--spacing-6)',
-          maxWidth: '450px',
+          display: "flex",
+          flexDirection: "column",
+          gap: "var(--spacing-6)",
+          maxWidth: "450px",
         }}
       >
         <div
           style={{
-            padding: 'var(--spacing-4)',
-            background: 'var(--surface-subtle)',
-            borderRadius: 'var(--radius-control)',
-            fontSize: 'var(--font-size-12)',
-            color: 'var(--text-secondary)',
+            padding: "var(--spacing-4)",
+            background: "var(--surface-subtle)",
+            borderRadius: "var(--radius-control)",
+            fontSize: "var(--font-size-12)",
+            color: "var(--text-secondary)",
           }}
         >
-          <strong style={{ color: 'var(--text-primary)' }}>Accessibility Features:</strong>
-          <ul style={{ margin: 'var(--spacing-2) 0 0', paddingLeft: 'var(--spacing-4)' }}>
+          <strong style={{ color: "var(--text-primary)" }}>
+            Accessibility Features:
+          </strong>
+          <ul
+            style={{
+              margin: "var(--spacing-2) 0 0",
+              paddingLeft: "var(--spacing-4)",
+            }}
+          >
             <li>Labels linked via htmlFor/id</li>
             <li>aria-invalid on error states</li>
             <li>aria-describedby for helper/error text</li>
@@ -322,7 +344,7 @@ export const AccessibilityOverview: Story = {
         {/* Password with toggle */}
         <Field
           label="Password"
-          type={showPassword ? 'text' : 'password'}
+          type={showPassword ? "text" : "password"}
           leftIcon={<Lock size={18} />}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -333,7 +355,7 @@ export const AccessibilityOverview: Story = {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              aria-label={showPassword ? 'Hide password' : 'Show password'}
+              aria-label={showPassword ? "Hide password" : "Show password"}
               aria-pressed={showPassword}
             >
               {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
@@ -345,11 +367,11 @@ export const AccessibilityOverview: Story = {
         <div>
           <p
             style={{
-              fontSize: 'var(--font-size-11)',
-              color: 'var(--text-tertiary)',
-              marginBottom: 'var(--spacing-2)',
-              textTransform: 'uppercase',
-              letterSpacing: '0.05em',
+              fontSize: "var(--font-size-11)",
+              color: "var(--text-tertiary)",
+              marginBottom: "var(--spacing-2)",
+              textTransform: "uppercase",
+              letterSpacing: "0.05em",
             }}
           >
             Icon-only input (uses aria-label)

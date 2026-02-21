@@ -9,12 +9,12 @@
     {
       "path": "packages/react/src/components/Divider/Divider.tsx",
       "type": "registry:component",
-      "content": "/**\n * Divider Component\n *\n * A visual separator for content sections.\n *\n * @example\n * ```tsx\n * <Divider />\n * <Divider orientation=\"vertical\" />\n * <Divider variant=\"dashed\" label=\"OR\" />\n * ```\n */\n\nimport { forwardRef } from 'react';\nimport type { DividerProps } from './Divider.types';\nimport styles from './Divider.module.css';\n\nexport const Divider = forwardRef<HTMLHRElement, DividerProps>(\n  (\n    { orientation = 'horizontal', variant = 'solid', spacing = 'md', label, className, ...rest },\n    ref,\n  ) => {\n    const classNames = [\n      styles.divider,\n      styles[orientation],\n      styles[variant],\n      styles[`spacing-${spacing}`],\n      label && styles.withLabel,\n      className,\n    ]\n      .filter(Boolean)\n      .join(' ');\n\n    if (label && orientation === 'horizontal') {\n      return (\n        <div className={classNames} role=\"separator\" aria-orientation={orientation}>\n          <span className={styles.line} />\n          <span className={styles.label}>{label}</span>\n          <span className={styles.line} />\n        </div>\n      );\n    }\n\n    return (\n      <hr\n        ref={ref}\n        className={classNames}\n        role=\"separator\"\n        aria-orientation={orientation}\n        {...rest}\n      />\n    );\n  },\n);\n\nDivider.displayName = 'Divider';\n"
+      "content": "/**\n * Divider Component\n *\n * A visual separator for content sections.\n *\n * @example\n * ```tsx\n * <Divider />\n * <Divider orientation=\"vertical\" />\n * <Divider variant=\"dashed\" label=\"OR\" />\n * ```\n */\n\nimport { forwardRef } from \"react\";\nimport type { DividerProps } from \"./Divider.types\";\nimport styles from \"./Divider.module.css\";\n\nexport const Divider = forwardRef<HTMLHRElement, DividerProps>(\n  (\n    {\n      orientation = \"horizontal\",\n      variant = \"solid\",\n      spacing = \"md\",\n      label,\n      className,\n      ...rest\n    },\n    ref,\n  ) => {\n    const classNames = [\n      styles.divider,\n      styles[orientation],\n      styles[variant],\n      styles[`spacing-${spacing}`],\n      label && styles.withLabel,\n      className,\n    ]\n      .filter(Boolean)\n      .join(\" \");\n\n    if (label && orientation === \"horizontal\") {\n      return (\n        <div\n          className={classNames}\n          role=\"separator\"\n          aria-orientation={orientation}\n        >\n          <span className={styles.line} />\n          <span className={styles.label}>{label}</span>\n          <span className={styles.line} />\n        </div>\n      );\n    }\n\n    return (\n      <hr\n        ref={ref}\n        className={classNames}\n        role=\"separator\"\n        aria-orientation={orientation}\n        {...rest}\n      />\n    );\n  },\n);\n\nDivider.displayName = \"Divider\";\n"
     },
     {
       "path": "packages/react/src/components/Divider/Divider.types.ts",
       "type": "registry:types",
-      "content": "/**\n * Divider Component Types\n *\n * Type definitions for the Orion Divider component.\n */\n\nimport type { HTMLAttributes } from 'react';\n\n/**\n * Divider orientation\n */\nexport type DividerOrientation = 'horizontal' | 'vertical';\n\n/**\n * Divider visual variants\n */\nexport type DividerVariant = 'solid' | 'dashed' | 'dotted';\n\n/**\n * Divider component props\n *\n * @example\n * ```tsx\n * <Divider />\n * <Divider orientation=\"vertical\" />\n * <Divider variant=\"dashed\" spacing=\"lg\" />\n * ```\n */\nexport interface DividerProps extends HTMLAttributes<HTMLHRElement> {\n  /**\n   * Orientation of the divider\n   * @default 'horizontal'\n   */\n  orientation?: DividerOrientation;\n\n  /**\n   * Visual variant of the divider\n   * @default 'solid'\n   */\n  variant?: DividerVariant;\n\n  /**\n   * Spacing around the divider\n   * @default 'md'\n   */\n  spacing?: 'none' | 'sm' | 'md' | 'lg';\n\n  /**\n   * Optional label to display in the center of the divider\n   */\n  label?: string;\n}\n"
+      "content": "/**\n * Divider Component Types\n *\n * Type definitions for the Orion Divider component.\n */\n\nimport type { HTMLAttributes } from \"react\";\n\n/**\n * Divider orientation\n */\nexport type DividerOrientation = \"horizontal\" | \"vertical\";\n\n/**\n * Divider visual variants\n */\nexport type DividerVariant = \"solid\" | \"dashed\" | \"dotted\";\n\n/**\n * Divider component props\n *\n * @example\n * ```tsx\n * <Divider />\n * <Divider orientation=\"vertical\" />\n * <Divider variant=\"dashed\" spacing=\"lg\" />\n * ```\n */\nexport interface DividerProps extends HTMLAttributes<HTMLHRElement> {\n  /**\n   * Orientation of the divider\n   * @default 'horizontal'\n   */\n  orientation?: DividerOrientation;\n\n  /**\n   * Visual variant of the divider\n   * @default 'solid'\n   */\n  variant?: DividerVariant;\n\n  /**\n   * Spacing around the divider\n   * @default 'md'\n   */\n  spacing?: \"none\" | \"sm\" | \"md\" | \"lg\";\n\n  /**\n   * Optional label to display in the center of the divider\n   */\n  label?: string;\n}\n"
     },
     {
       "path": "packages/react/src/components/Divider/Divider.module.css",
@@ -24,7 +24,7 @@
     {
       "path": "packages/react/src/components/Divider/index.ts",
       "type": "registry:index",
-      "content": "/**\n * Divider Component - Visual content separator.\n *\n * @example\n * ```tsx\n * import { Divider } from '@orion-ds/react';\n *\n * <Divider />\n * <Divider variant=\"dashed\" />\n * <Divider orientation=\"vertical\" />\n * <Divider>OR</Divider>\n * ```\n */\nexport { Divider } from './Divider';\nexport type { DividerProps, DividerOrientation, DividerVariant } from './Divider.types';\n"
+      "content": "/**\n * Divider Component - Visual content separator.\n *\n * @example\n * ```tsx\n * import { Divider } from '@orion-ds/react';\n *\n * <Divider />\n * <Divider variant=\"dashed\" />\n * <Divider orientation=\"vertical\" />\n * <Divider>OR</Divider>\n * ```\n */\nexport { Divider } from \"./Divider\";\nexport type {\n  DividerProps,\n  DividerOrientation,\n  DividerVariant,\n} from \"./Divider.types\";\n"
     }
   ],
   "props": [
@@ -51,7 +51,7 @@
     },
     {
       "name": "spacing",
-      "type": "'none' | 'sm' | 'md' | 'lg'",
+      "type": "\"none\" | \"sm\" | \"md\" | \"lg\"",
       "description": "Spacing around the divider",
       "default": "md",
       "values": [

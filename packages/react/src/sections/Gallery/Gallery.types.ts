@@ -4,7 +4,7 @@
  * Type definitions for the Orion Gallery section component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Gallery image item
@@ -43,13 +43,13 @@ export interface GalleryImage {
   /**
    * Aspect ratio override
    */
-  aspectRatio?: 'square' | 'landscape' | 'portrait' | 'auto';
+  aspectRatio?: "square" | "landscape" | "portrait" | "auto";
 }
 
 /**
  * Gallery layout variants
  */
-export type GalleryLayout = 'grid' | 'masonry' | 'carousel';
+export type GalleryLayout = "grid" | "masonry" | "carousel";
 
 /**
  * Gallery section props
@@ -67,7 +67,10 @@ export type GalleryLayout = 'grid' | 'masonry' | 'carousel';
  * />
  * ```
  */
-export interface GalleryProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
+export interface GalleryProps extends Omit<
+  HTMLAttributes<HTMLElement>,
+  "title"
+> {
   /**
    * Optional eyebrow text
    */
@@ -116,7 +119,7 @@ export interface GalleryProps extends Omit<HTMLAttributes<HTMLElement>, 'title'>
    * Gap between images
    * @default 'md'
    */
-  gap?: 'sm' | 'md' | 'lg' | 'none';
+  gap?: "sm" | "md" | "lg" | "none";
 
   /**
    * Enable category filtering
@@ -128,11 +131,11 @@ export interface GalleryProps extends Omit<HTMLAttributes<HTMLElement>, 'title'>
    * Background style
    * @default 'base'
    */
-  background?: 'base' | 'subtle' | 'none';
+  background?: "base" | "subtle" | "none";
 
   /**
    * Aspect ratio for grid items
    * @default 'square'
    */
-  aspectRatio?: 'square' | 'landscape' | 'portrait' | 'auto';
+  aspectRatio?: "square" | "landscape" | "portrait" | "auto";
 }

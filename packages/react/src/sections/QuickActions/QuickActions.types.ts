@@ -5,7 +5,7 @@
  * A FAB or floating action bar for quick access to common actions.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Quick action item
@@ -44,23 +44,23 @@ export interface QuickAction {
   /**
    * Variant for styling
    */
-  variant?: 'default' | 'primary' | 'danger';
+  variant?: "default" | "primary" | "danger";
 }
 
 /**
  * QuickActions position
  */
 export type QuickActionsPosition =
-  | 'bottom-right'
-  | 'bottom-left'
-  | 'bottom-center'
-  | 'top-right'
-  | 'top-left';
+  | "bottom-right"
+  | "bottom-left"
+  | "bottom-center"
+  | "top-right"
+  | "top-left";
 
 /**
  * QuickActions variant
  */
-export type QuickActionsVariant = 'fab' | 'bar' | 'menu';
+export type QuickActionsVariant = "fab" | "bar" | "menu";
 
 /**
  * QuickActions section props

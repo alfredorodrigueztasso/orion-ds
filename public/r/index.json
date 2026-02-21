@@ -44,12 +44,12 @@
       "registryUrl": "https://orion-ds.dev/r/agent-folder.json"
     },
     {
-      "name": "agent-library-template",
+      "name": "agent-workspace",
       "type": "registry:template",
-      "title": "Agent Library",
-      "description": "AgentLibrary page template",
+      "title": "Agent Workspace",
+      "description": "AgentWorkspace page template",
       "category": "app",
-      "registryUrl": "https://orion-ds.dev/r/agent-library-template.json"
+      "registryUrl": "https://orion-ds.dev/r/agent-workspace.json"
     },
     {
       "name": "alert",
@@ -218,6 +218,14 @@
       "description": "Collapsible component",
       "category": "utilities",
       "registryUrl": "https://orion-ds.dev/r/collapsible.json"
+    },
+    {
+      "name": "collapsible-folder",
+      "type": "registry:section",
+      "title": "CollapsibleFolder",
+      "description": "CollapsibleFolder section component",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/collapsible-folder.json"
     },
     {
       "name": "combobox",

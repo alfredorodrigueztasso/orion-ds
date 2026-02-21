@@ -5,7 +5,7 @@
  * Includes smart detection to pause auto-scroll when user scrolls up.
  */
 
-import { useRef, useEffect, useCallback, useState } from 'react';
+import { useRef, useEffect, useCallback, useState } from "react";
 
 export interface UseAutoScrollOptions {
   /** Whether auto-scroll is enabled */
@@ -25,7 +25,9 @@ export interface UseAutoScrollReturn {
   scrollToBottom: () => void;
 }
 
-export function useAutoScroll(options: UseAutoScrollOptions = {}): UseAutoScrollReturn {
+export function useAutoScroll(
+  options: UseAutoScrollOptions = {},
+): UseAutoScrollReturn {
   const { enabled = true, threshold = 100, smooth = true } = options;
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -51,7 +53,7 @@ export function useAutoScroll(options: UseAutoScrollOptions = {}): UseAutoScroll
 
     container.scrollTo({
       top: container.scrollHeight,
-      behavior: smooth ? 'smooth' : 'auto',
+      behavior: smooth ? "smooth" : "auto",
     });
 
     // Reset flag after scroll animation — re-check actual position
@@ -81,8 +83,8 @@ export function useAutoScroll(options: UseAutoScrollOptions = {}): UseAutoScroll
       setIsAtBottom(atBottom);
     };
 
-    container.addEventListener('scroll', handleScroll, { passive: true });
-    return () => container.removeEventListener('scroll', handleScroll);
+    container.addEventListener("scroll", handleScroll, { passive: true });
+    return () => container.removeEventListener("scroll", handleScroll);
   }, [checkIsAtBottom]);
 
   // Auto-scroll when content changes — observer always active

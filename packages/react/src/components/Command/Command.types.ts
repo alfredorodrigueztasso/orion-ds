@@ -5,12 +5,15 @@
  * A searchable command menu with keyboard navigation.
  */
 
-import type { HTMLAttributes, ReactNode, InputHTMLAttributes } from 'react';
+import type { HTMLAttributes, ReactNode, InputHTMLAttributes } from "react";
 
 /**
  * Command root props
  */
-export interface CommandProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onSelect'> {
+export interface CommandProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "onSelect"
+> {
   /**
    * Controlled search value
    */
@@ -68,7 +71,7 @@ export interface CommandDialogProps {
  */
 export interface CommandInputProps extends Omit<
   InputHTMLAttributes<HTMLInputElement>,
-  'onChange' | 'value'
+  "onChange" | "value"
 > {
   /**
    * Additional class name
@@ -129,7 +132,10 @@ export interface CommandGroupProps {
 /**
  * Command.Item props
  */
-export interface CommandItemProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onSelect'> {
+export interface CommandItemProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "onSelect"
+> {
   /**
    * Callback when item is selected (click or Enter)
    */

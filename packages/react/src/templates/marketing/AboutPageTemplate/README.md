@@ -100,7 +100,10 @@ import { Twitter, Linkedin } from 'lucide-react';
 ## Props Reference
 
 ```typescript
-interface AboutPageTemplateProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
+interface AboutPageTemplateProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "title"
+> {
   /**
    * Navbar configuration
    */
@@ -114,7 +117,7 @@ interface AboutPageTemplateProps extends Omit<HTMLAttributes<HTMLDivElement>, 't
   /**
    * Editorial carousel for company story/milestones
    */
-  storyCarousel?: Omit<CarouselSectionProps, 'variant'>;
+  storyCarousel?: Omit<CarouselSectionProps, "variant">;
 
   /**
    * Company stats/metrics
@@ -129,7 +132,7 @@ interface AboutPageTemplateProps extends Omit<HTMLAttributes<HTMLDivElement>, 't
   /**
    * Gallery carousel for office/culture photos
    */
-  galleryCarousel?: Omit<CarouselSectionProps, 'variant'>;
+  galleryCarousel?: Omit<CarouselSectionProps, "variant">;
 
   /**
    * Team members section
@@ -160,14 +163,14 @@ interface AboutPageTemplateProps extends Omit<HTMLAttributes<HTMLDivElement>, 't
 ### Full About Page
 
 ```tsx
-import { AboutPageTemplate, Button, Badge, Navbar } from '@orion/react';
-import { Twitter, Linkedin, Github } from 'lucide-react';
+import { AboutPageTemplate, Button, Badge, Navbar } from "@orion/react";
+import { Twitter, Linkedin, Github } from "lucide-react";
 
 function AboutPage() {
   return (
     <AboutPageTemplate
       navbar={{
-        variant: 'solid',
+        variant: "solid",
         sticky: true,
         children: (
           <>
@@ -191,91 +194,93 @@ function AboutPage() {
       }}
       hero={{
         badge: <Badge>Our Story</Badge>,
-        headline: 'Building the future of software development',
+        headline: "Building the future of software development",
         description:
-          'Founded in 2019, we set out to make development accessible to everyone. Today, we help thousands of teams ship better products faster.',
-        align: 'center',
-        size: 'lg',
+          "Founded in 2019, we set out to make development accessible to everyone. Today, we help thousands of teams ship better products faster.",
+        align: "center",
+        size: "lg",
       }}
       storyCarousel={{
         eyebrow: <Badge>Our Journey</Badge>,
-        title: 'How we got here',
+        title: "How we got here",
         items: [
           {
             image: <img src="/story/founding.jpg" alt="" />,
-            eyebrow: '2019',
-            title: 'The Beginning',
-            description: 'Started in a garage with a vision to change how teams build software.',
-            overlay: 'gradient',
+            eyebrow: "2019",
+            title: "The Beginning",
+            description:
+              "Started in a garage with a vision to change how teams build software.",
+            overlay: "gradient",
           },
           {
             image: <img src="/story/launch.jpg" alt="" />,
-            eyebrow: '2020',
-            title: 'Public Launch',
+            eyebrow: "2020",
+            title: "Public Launch",
             description:
-              'Launched our platform to the public, reaching 1,000 users in the first month.',
-            overlay: 'gradient',
+              "Launched our platform to the public, reaching 1,000 users in the first month.",
+            overlay: "gradient",
           },
           {
             image: <img src="/story/growth.jpg" alt="" />,
-            eyebrow: '2022',
-            title: 'Series A',
-            description: 'Raised $20M to expand our team and product capabilities.',
-            overlay: 'gradient',
+            eyebrow: "2022",
+            title: "Series A",
+            description:
+              "Raised $20M to expand our team and product capabilities.",
+            overlay: "gradient",
           },
           {
             image: <img src="/story/today.jpg" alt="" />,
-            eyebrow: '2024',
-            title: 'Today',
-            description: 'Serving 10,000+ customers across 50 countries.',
-            overlay: 'gradient',
+            eyebrow: "2024",
+            title: "Today",
+            description: "Serving 10,000+ customers across 50 countries.",
+            overlay: "gradient",
           },
         ],
       }}
       stats={{
-        eyebrow: 'By the Numbers',
-        title: 'Our impact in numbers',
+        eyebrow: "By the Numbers",
+        title: "Our impact in numbers",
         stats: [
-          { value: '2019', label: 'Founded' },
-          { value: '150+', label: 'Team Members' },
-          { value: '10K+', label: 'Customers' },
-          { value: '50+', label: 'Countries' },
+          { value: "2019", label: "Founded" },
+          { value: "150+", label: "Team Members" },
+          { value: "10K+", label: "Customers" },
+          { value: "50+", label: "Countries" },
         ],
       }}
       timeline={{
-        eyebrow: 'Our History',
-        title: 'Key milestones',
+        eyebrow: "Our History",
+        title: "Key milestones",
         events: [
           {
-            date: 'January 2019',
-            title: 'Company Founded',
-            description: 'Acme was founded by Sarah Chen and Mike Johnson.',
+            date: "January 2019",
+            title: "Company Founded",
+            description: "Acme was founded by Sarah Chen and Mike Johnson.",
           },
           {
-            date: 'March 2020',
-            title: 'Public Beta Launch',
-            description: 'Launched our platform to early adopters.',
+            date: "March 2020",
+            title: "Public Beta Launch",
+            description: "Launched our platform to early adopters.",
           },
           {
-            date: 'September 2021',
-            title: 'Series A Funding',
-            description: 'Raised $20M led by Venture Partners.',
+            date: "September 2021",
+            title: "Series A Funding",
+            description: "Raised $20M led by Venture Partners.",
           },
           {
-            date: 'June 2022',
-            title: '10,000 Customers',
-            description: 'Reached our first major customer milestone.',
+            date: "June 2022",
+            title: "10,000 Customers",
+            description: "Reached our first major customer milestone.",
           },
           {
-            date: 'January 2024',
-            title: 'Acme 2.0 Launch',
-            description: 'Released the next generation of our platform.',
+            date: "January 2024",
+            title: "Acme 2.0 Launch",
+            description: "Released the next generation of our platform.",
           },
         ],
       }}
       galleryCarousel={{
-        title: 'Life at Acme',
-        description: 'A glimpse into our culture and workspace',
+        title: "Life at Acme",
+        description: "A glimpse into our culture and workspace",
         items: [
           { image: <img src="/office/hq.jpg" alt="Headquarters" /> },
           { image: <img src="/office/team.jpg" alt="Team event" /> },
@@ -284,61 +289,69 @@ function AboutPage() {
         ],
       }}
       team={{
-        eyebrow: 'Our Team',
-        title: 'Meet the people behind Acme',
+        eyebrow: "Our Team",
+        title: "Meet the people behind Acme",
         description:
           "We're a diverse team of engineers, designers, and business minds united by a shared mission.",
         members: [
           {
-            name: 'Sarah Chen',
-            role: 'CEO & Co-founder',
+            name: "Sarah Chen",
+            role: "CEO & Co-founder",
             avatar: <img src="/team/sarah.jpg" alt="" />,
-            bio: 'Former Google engineer with a passion for developer tools.',
+            bio: "Former Google engineer with a passion for developer tools.",
             socialLinks: [
               {
-                label: 'Twitter',
-                href: 'https://twitter.com/sarahchen',
+                label: "Twitter",
+                href: "https://twitter.com/sarahchen",
                 icon: <Twitter size={16} />,
               },
               {
-                label: 'LinkedIn',
-                href: 'https://linkedin.com/in/sarahchen',
+                label: "LinkedIn",
+                href: "https://linkedin.com/in/sarahchen",
                 icon: <Linkedin size={16} />,
               },
             ],
           },
           {
-            name: 'Mike Johnson',
-            role: 'CTO & Co-founder',
+            name: "Mike Johnson",
+            role: "CTO & Co-founder",
             avatar: <img src="/team/mike.jpg" alt="" />,
-            bio: 'Built infrastructure at Amazon before founding Acme.',
+            bio: "Built infrastructure at Amazon before founding Acme.",
             socialLinks: [
-              { label: 'Twitter', href: 'https://twitter.com/mikej', icon: <Twitter size={16} /> },
-              { label: 'GitHub', href: 'https://github.com/mikej', icon: <Github size={16} /> },
+              {
+                label: "Twitter",
+                href: "https://twitter.com/mikej",
+                icon: <Twitter size={16} />,
+              },
+              {
+                label: "GitHub",
+                href: "https://github.com/mikej",
+                icon: <Github size={16} />,
+              },
             ],
           },
           {
-            name: 'Emily Rodriguez',
-            role: 'Head of Design',
+            name: "Emily Rodriguez",
+            role: "Head of Design",
             avatar: <img src="/team/emily.jpg" alt="" />,
-            bio: 'Design leader with 10+ years of product experience.',
+            bio: "Design leader with 10+ years of product experience.",
             socialLinks: [
               {
-                label: 'LinkedIn',
-                href: 'https://linkedin.com/in/emilyr',
+                label: "LinkedIn",
+                href: "https://linkedin.com/in/emilyr",
                 icon: <Linkedin size={16} />,
               },
             ],
           },
           {
-            name: 'David Kim',
-            role: 'VP of Engineering',
+            name: "David Kim",
+            role: "VP of Engineering",
             avatar: <img src="/team/david.jpg" alt="" />,
-            bio: 'Scaling engineering teams is his specialty.',
+            bio: "Scaling engineering teams is his specialty.",
             socialLinks: [
               {
-                label: 'LinkedIn',
-                href: 'https://linkedin.com/in/davidk',
+                label: "LinkedIn",
+                href: "https://linkedin.com/in/davidk",
                 icon: <Linkedin size={16} />,
               },
             ],
@@ -346,8 +359,9 @@ function AboutPage() {
         ],
       }}
       cta={{
-        headline: 'Want to join our team?',
-        description: "We're always looking for talented people to help us build the future.",
+        headline: "Want to join our team?",
+        description:
+          "We're always looking for talented people to help us build the future.",
         actions: (
           <>
             <Button size="lg">View Open Positions</Button>
@@ -359,29 +373,37 @@ function AboutPage() {
       }}
       footer={{
         brand: {
-          name: 'Acme Inc',
-          description: 'Building the future of development.',
+          name: "Acme Inc",
+          description: "Building the future of development.",
         },
         linkGroups: [
           {
-            title: 'Company',
+            title: "Company",
             links: [
-              { label: 'About', href: '/about' },
-              { label: 'Careers', href: '/careers' },
-              { label: 'Blog', href: '/blog' },
+              { label: "About", href: "/about" },
+              { label: "Careers", href: "/careers" },
+              { label: "Blog", href: "/blog" },
             ],
           },
           {
-            title: 'Product',
+            title: "Product",
             links: [
-              { label: 'Features', href: '/features' },
-              { label: 'Pricing', href: '/pricing' },
+              { label: "Features", href: "/features" },
+              { label: "Pricing", href: "/pricing" },
             ],
           },
         ],
         socialLinks: [
-          { label: 'Twitter', href: 'https://twitter.com', icon: <Twitter size={20} /> },
-          { label: 'LinkedIn', href: 'https://linkedin.com', icon: <Linkedin size={20} /> },
+          {
+            label: "Twitter",
+            href: "https://twitter.com",
+            icon: <Twitter size={20} />,
+          },
+          {
+            label: "LinkedIn",
+            href: "https://linkedin.com",
+            icon: <Linkedin size={20} />,
+          },
         ],
         copyright: `${new Date().getFullYear()} Acme Inc. All rights reserved.`,
       }}
@@ -395,26 +417,26 @@ function AboutPage() {
 ```tsx
 <AboutPageTemplate
   hero={{
-    headline: 'About Acme',
-    description: 'Building great software since 2019.',
-    align: 'center',
+    headline: "About Acme",
+    description: "Building great software since 2019.",
+    align: "center",
   }}
   stats={{
     stats: [
-      { value: '2019', label: 'Founded' },
-      { value: '50+', label: 'Employees' },
+      { value: "2019", label: "Founded" },
+      { value: "50+", label: "Employees" },
     ],
   }}
   team={{
-    title: 'Our Team',
+    title: "Our Team",
     members: [
-      { name: 'Sarah Chen', role: 'CEO' },
-      { name: 'Mike Johnson', role: 'CTO' },
+      { name: "Sarah Chen", role: "CEO" },
+      { name: "Mike Johnson", role: "CTO" },
     ],
   }}
   footer={{
-    brand: { name: 'Acme' },
-    copyright: '2024 Acme Inc.',
+    brand: { name: "Acme" },
+    copyright: "2024 Acme Inc.",
   }}
 />
 ```

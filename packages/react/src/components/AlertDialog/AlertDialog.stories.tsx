@@ -2,16 +2,16 @@
  * AlertDialog Component Stories
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
-import { AlertDialog } from './AlertDialog';
-import { Button } from '../Button/Button';
+import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
+import { AlertDialog } from "./AlertDialog";
+import { Button } from "../Button/Button";
 
 const meta: Meta<typeof AlertDialog> = {
-  title: 'Components/Overlay/AlertDialog',
+  title: "Components/Overlays/AlertDialog",
   component: AlertDialog,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
     docs: {
       story: {
         inline: false,
@@ -21,20 +21,20 @@ const meta: Meta<typeof AlertDialog> = {
   },
   decorators: [
     (Story) => (
-      <div style={{ padding: 'var(--spacing-8)' }}>
+      <div style={{ padding: "var(--spacing-8)" }}>
         <Story />
       </div>
     ),
   ],
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     closeOnBackdrop: {
-      control: 'boolean',
-      description: 'Close on backdrop click (default: false)',
+      control: "boolean",
+      description: "Close on backdrop click (default: false)",
     },
     closeOnEscape: {
-      control: 'boolean',
-      description: 'Close on Escape key (default: false)',
+      control: "boolean",
+      description: "Close on Escape key (default: false)",
     },
   },
 };
@@ -44,11 +44,11 @@ type Story = StoryObj<typeof meta>;
 
 // Interactive wrapper
 const AlertDialogWrapper = ({
-  variant = 'danger',
+  variant = "danger",
   closeOnBackdrop,
   closeOnEscape,
 }: {
-  variant?: 'info' | 'warning' | 'danger';
+  variant?: "info" | "warning" | "danger";
   closeOnBackdrop?: boolean;
   closeOnEscape?: boolean;
 }) => {
@@ -68,8 +68,8 @@ const AlertDialogWrapper = ({
         <AlertDialog.Icon variant={variant} />
         <AlertDialog.Title>Delete this item?</AlertDialog.Title>
         <AlertDialog.Description>
-          This action cannot be undone. This will permanently delete the item and remove all
-          associated data.
+          This action cannot be undone. This will permanently delete the item
+          and remove all associated data.
         </AlertDialog.Description>
         <AlertDialog.Actions>
           <Button variant="ghost" onClick={() => setOpen(false)}>
@@ -159,12 +159,12 @@ export const AllVariants: Story = {
     const [openVariant, setOpenVariant] = useState<string | null>(null);
 
     return (
-      <div style={{ display: 'flex', gap: 'var(--spacing-4)' }}>
-        <Button onClick={() => setOpenVariant('info')}>Info</Button>
-        <Button onClick={() => setOpenVariant('warning')}>Warning</Button>
-        <Button onClick={() => setOpenVariant('danger')}>Danger</Button>
+      <div style={{ display: "flex", gap: "var(--spacing-4)" }}>
+        <Button onClick={() => setOpenVariant("info")}>Info</Button>
+        <Button onClick={() => setOpenVariant("warning")}>Warning</Button>
+        <Button onClick={() => setOpenVariant("danger")}>Danger</Button>
 
-        {(['info', 'warning', 'danger'] as const).map((variant) => (
+        {(["info", "warning", "danger"] as const).map((variant) => (
           <AlertDialog
             key={variant}
             open={openVariant === variant}
@@ -172,9 +172,9 @@ export const AllVariants: Story = {
           >
             <AlertDialog.Icon variant={variant} />
             <AlertDialog.Title>
-              {variant === 'info' && 'Information'}
-              {variant === 'warning' && 'Warning'}
-              {variant === 'danger' && 'Danger'}
+              {variant === "info" && "Information"}
+              {variant === "warning" && "Warning"}
+              {variant === "danger" && "Danger"}
             </AlertDialog.Title>
             <AlertDialog.Description>
               This is a {variant} alert dialog example.

@@ -6,32 +6,32 @@
  * For full-page carousel sections, use CarouselSection from sections.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Carousel visual variant
  */
-export type CarouselVariant = 'editorial' | 'product' | 'gallery';
+export type CarouselVariant = "editorial" | "product" | "gallery";
 
 /**
  * Carousel aspect ratio
  */
-export type CarouselAspectRatio = '16/9' | '4/3' | '1/1' | '3/4';
+export type CarouselAspectRatio = "16/9" | "4/3" | "1/1" | "3/4";
 
 /**
  * Carousel gap size
  */
-export type CarouselGap = 'sm' | 'md' | 'lg';
+export type CarouselGap = "sm" | "md" | "lg";
 
 /**
  * Overlay style for carousel cards
  */
-export type CarouselOverlay = 'none' | 'gradient' | 'dark';
+export type CarouselOverlay = "none" | "gradient" | "dark";
 
 /**
  * Track alignment relative to container
  */
-export type CarouselAlign = 'container' | 'edge';
+export type CarouselAlign = "container" | "edge";
 
 /**
  * Navigation render props

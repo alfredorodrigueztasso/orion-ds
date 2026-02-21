@@ -5,7 +5,7 @@
 ## Quick Start
 
 ```tsx
-import { FilterBar } from '@orion/react';
+import { FilterBar } from "@orion/react";
 
 function ProductList() {
   const [filters, setFilters] = useState([]);
@@ -15,21 +15,21 @@ function ProductList() {
       <FilterBar
         filters={[
           {
-            key: 'status',
-            label: 'Status',
-            type: 'select',
+            key: "status",
+            label: "Status",
+            type: "select",
             options: [
-              { value: 'active', label: 'Active', count: 42 },
-              { value: 'inactive', label: 'Inactive', count: 8 },
+              { value: "active", label: "Active", count: 42 },
+              { value: "inactive", label: "Inactive", count: 8 },
             ],
           },
           {
-            key: 'category',
-            label: 'Category',
-            type: 'multi-select',
+            key: "category",
+            label: "Category",
+            type: "multi-select",
             options: [
-              { value: 'electronics', label: 'Electronics' },
-              { value: 'clothing', label: 'Clothing' },
+              { value: "electronics", label: "Electronics" },
+              { value: "clothing", label: "Clothing" },
             ],
           },
         ]}
@@ -86,7 +86,7 @@ interface FilterBarProps {
 interface FilterDefinition {
   key: string; // Unique filter key
   label: string; // Display label
-  type: 'select' | 'multi-select' | 'date' | 'date-range' | 'text';
+  type: "select" | "multi-select" | "date" | "date-range" | "text";
   options?: FilterOption[]; // Options for select types
   placeholder?: string; // Placeholder text
   icon?: ReactNode; // Filter icon
@@ -239,18 +239,20 @@ Provide a way to reset all filters at once.
 ### Dashboard Filter Bar
 
 ```tsx
-import { FilterBar } from '@orion/react';
-import { useState, useMemo } from 'react';
+import { FilterBar } from "@orion/react";
+import { useState, useMemo } from "react";
 
 function OrdersDashboard() {
   const [activeFilters, setActiveFilters] = useState<ActiveFilter[]>([]);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
 
   const handleFilterChange = (key: string, value: any) => {
     setActiveFilters((prev) => {
       const existing = prev.find((f) => f.key === key);
       if (existing) {
-        return prev.map((f) => (f.key === key ? { ...f, value, label: getLabel(key, value) } : f));
+        return prev.map((f) =>
+          f.key === key ? { ...f, value, label: getLabel(key, value) } : f,
+        );
       }
       return [...prev, { key, value, label: getLabel(key, value) }];
     });
@@ -269,30 +271,30 @@ function OrdersDashboard() {
         searchPlaceholder="Search orders..."
         filters={[
           {
-            key: 'status',
-            label: 'Status',
-            type: 'multi-select',
+            key: "status",
+            label: "Status",
+            type: "multi-select",
             options: [
-              { value: 'pending', label: 'Pending', count: 23 },
-              { value: 'processing', label: 'Processing', count: 12 },
-              { value: 'shipped', label: 'Shipped', count: 45 },
-              { value: 'delivered', label: 'Delivered', count: 156 },
+              { value: "pending", label: "Pending", count: 23 },
+              { value: "processing", label: "Processing", count: 12 },
+              { value: "shipped", label: "Shipped", count: 45 },
+              { value: "delivered", label: "Delivered", count: 156 },
             ],
           },
           {
-            key: 'dateRange',
-            label: 'Order Date',
-            type: 'date-range',
+            key: "dateRange",
+            label: "Order Date",
+            type: "date-range",
           },
           {
-            key: 'total',
-            label: 'Order Total',
-            type: 'select',
+            key: "total",
+            label: "Order Total",
+            type: "select",
             options: [
-              { value: 'under50', label: 'Under $50' },
-              { value: '50to100', label: '$50 - $100' },
-              { value: '100to500', label: '$100 - $500' },
-              { value: 'over500', label: 'Over $500' },
+              { value: "under50", label: "Under $50" },
+              { value: "50to100", label: "$50 - $100" },
+              { value: "100to500", label: "$100 - $500" },
+              { value: "over500", label: "Over $500" },
             ],
           },
         ]}
@@ -314,29 +316,29 @@ function OrdersDashboard() {
 <FilterBar
   filters={[
     {
-      key: 'role',
-      label: 'Role',
-      type: 'multi-select',
+      key: "role",
+      label: "Role",
+      type: "multi-select",
       options: [
-        { value: 'admin', label: 'Admin', count: 5 },
-        { value: 'editor', label: 'Editor', count: 12 },
-        { value: 'viewer', label: 'Viewer', count: 43 },
+        { value: "admin", label: "Admin", count: 5 },
+        { value: "editor", label: "Editor", count: 12 },
+        { value: "viewer", label: "Viewer", count: 43 },
       ],
     },
     {
-      key: 'status',
-      label: 'Status',
-      type: 'select',
+      key: "status",
+      label: "Status",
+      type: "select",
       options: [
-        { value: 'active', label: 'Active' },
-        { value: 'inactive', label: 'Inactive' },
-        { value: 'pending', label: 'Pending Invite' },
+        { value: "active", label: "Active" },
+        { value: "inactive", label: "Inactive" },
+        { value: "pending", label: "Pending Invite" },
       ],
     },
     {
-      key: 'joined',
-      label: 'Joined',
-      type: 'date-range',
+      key: "joined",
+      label: "Joined",
+      type: "date-range",
     },
   ]}
   searchable
@@ -357,9 +359,9 @@ For tight spaces or secondary filter locations.
   compact
   filters={[
     {
-      key: 'type',
-      label: 'Type',
-      type: 'select',
+      key: "type",
+      label: "Type",
+      type: "select",
       options: typeOptions,
     },
   ]}

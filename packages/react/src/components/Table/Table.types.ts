@@ -4,17 +4,17 @@
  * Type definitions for the Orion Table component.
  */
 
-import type { ReactNode, ThHTMLAttributes, TdHTMLAttributes } from 'react';
+import type { ReactNode, ThHTMLAttributes, TdHTMLAttributes } from "react";
 
 /**
  * Table sizes
  */
-export type TableSize = 'sm' | 'md' | 'lg';
+export type TableSize = "sm" | "md" | "lg";
 
 /**
  * Sort direction
  */
-export type SortDirection = 'asc' | 'desc' | null;
+export type SortDirection = "asc" | "desc" | null;
 
 /**
  * Column definition
@@ -53,7 +53,7 @@ export interface TableColumn<T = Record<string, unknown>> {
    * Align cell content
    * @default 'left'
    */
-  align?: 'left' | 'center' | 'right';
+  align?: "left" | "center" | "right";
 
   /**
    * Additional props for header cell

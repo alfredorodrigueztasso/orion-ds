@@ -7,68 +7,75 @@ import {
   createContext,
   cloneElement,
   isValidElement,
-} from 'react';
+} from "react";
 import type {
   CollapsibleProps,
   CollapsibleTriggerProps,
   CollapsibleContentProps,
   CollapsibleContextValue,
-} from './Collapsible.types';
-import styles from './Collapsible.module.css';
+} from "./Collapsible.types";
+import styles from "./Collapsible.module.css";
 
 const CollapsibleContext = createContext<CollapsibleContextValue | null>(null);
 
 function useCollapsibleContext(): CollapsibleContextValue {
   const ctx = useContext(CollapsibleContext);
   if (!ctx) {
-    throw new Error('Collapsible.Trigger/Content must be used within a Collapsible');
+    throw new Error(
+      "Collapsible.Trigger/Content must be used within a Collapsible",
+    );
   }
   return ctx;
 }
 
-const CollapsibleTrigger = forwardRef<HTMLButtonElement, CollapsibleTriggerProps>(
-  ({ asChild, className, children, onClick, ...rest }, ref) => {
-    const { open, disabled, toggle, contentId, triggerId } = useCollapsibleContext();
+const CollapsibleTrigger = forwardRef<
+  HTMLButtonElement,
+  CollapsibleTriggerProps
+>(({ asChild, className, children, onClick, ...rest }, ref) => {
+  const { open, disabled, toggle, contentId, triggerId } =
+    useCollapsibleContext();
 
-    const handleClick = useCallback(
-      (e: React.MouseEvent<HTMLButtonElement>) => {
-        toggle();
-        onClick?.(e);
-      },
-      [toggle, onClick],
-    );
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      toggle();
+      onClick?.(e);
+    },
+    [toggle, onClick],
+  );
 
-    if (asChild && isValidElement(children)) {
-      return cloneElement(children as React.ReactElement<Record<string, unknown>>, {
+  if (asChild && isValidElement(children)) {
+    return cloneElement(
+      children as React.ReactElement<Record<string, unknown>>,
+      {
         id: triggerId,
-        'aria-expanded': open,
-        'aria-controls': contentId,
+        "aria-expanded": open,
+        "aria-controls": contentId,
         disabled,
         onClick: handleClick,
-      });
-    }
-
-    const classNames = [styles.trigger, className].filter(Boolean).join(' ');
-
-    return (
-      <button
-        ref={ref}
-        id={triggerId}
-        type="button"
-        className={classNames}
-        aria-expanded={open}
-        aria-controls={contentId}
-        disabled={disabled}
-        onClick={handleClick}
-        {...rest}
-      >
-        {children}
-      </button>
+      },
     );
-  },
-);
+  }
 
-CollapsibleTrigger.displayName = 'Collapsible.Trigger';
+  const classNames = [styles.trigger, className].filter(Boolean).join(" ");
+
+  return (
+    <button
+      ref={ref}
+      id={triggerId}
+      type="button"
+      className={classNames}
+      aria-expanded={open}
+      aria-controls={contentId}
+      disabled={disabled}
+      onClick={handleClick}
+      {...rest}
+    >
+      {children}
+    </button>
+  );
+});
+
+CollapsibleTrigger.displayName = "Collapsible.Trigger";
 
 const CollapsibleContent = forwardRef<HTMLDivElement, CollapsibleContentProps>(
   ({ forceMount, className, children, ...rest }, ref) => {
@@ -78,9 +85,13 @@ const CollapsibleContent = forwardRef<HTMLDivElement, CollapsibleContentProps>(
       return null;
     }
 
-    const contentClasses = [styles.content, open && styles.contentOpen, className]
+    const contentClasses = [
+      styles.content,
+      open && styles.contentOpen,
+      className,
+    ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
       <div
@@ -97,11 +108,19 @@ const CollapsibleContent = forwardRef<HTMLDivElement, CollapsibleContentProps>(
   },
 );
 
-CollapsibleContent.displayName = 'Collapsible.Content';
+CollapsibleContent.displayName = "Collapsible.Content";
 
 const CollapsibleRoot = forwardRef<HTMLDivElement, CollapsibleProps>(
   (
-    { open, defaultOpen = false, onOpenChange, disabled = false, className, children, ...rest },
+    {
+      open,
+      defaultOpen = false,
+      onOpenChange,
+      disabled = false,
+      className,
+      children,
+      ...rest
+    },
     ref,
   ) => {
     const [internalOpen, setInternalOpen] = useState(defaultOpen);
@@ -120,7 +139,9 @@ const CollapsibleRoot = forwardRef<HTMLDivElement, CollapsibleProps>(
       onOpenChange?.(next);
     }, [isOpen, isControlled, disabled, onOpenChange]);
 
-    const classNames = [styles.collapsible, className].filter(Boolean).join(' ');
+    const classNames = [styles.collapsible, className]
+      .filter(Boolean)
+      .join(" ");
 
     const ctx: CollapsibleContextValue = {
       open: isOpen,
@@ -132,7 +153,12 @@ const CollapsibleRoot = forwardRef<HTMLDivElement, CollapsibleProps>(
 
     return (
       <CollapsibleContext.Provider value={ctx}>
-        <div ref={ref} className={classNames} data-state={isOpen ? 'open' : 'closed'} {...rest}>
+        <div
+          ref={ref}
+          className={classNames}
+          data-state={isOpen ? "open" : "closed"}
+          {...rest}
+        >
           {children}
         </div>
       </CollapsibleContext.Provider>
@@ -140,7 +166,7 @@ const CollapsibleRoot = forwardRef<HTMLDivElement, CollapsibleProps>(
   },
 );
 
-CollapsibleRoot.displayName = 'Collapsible';
+CollapsibleRoot.displayName = "Collapsible";
 
 export const Collapsible = Object.assign(CollapsibleRoot, {
   Trigger: CollapsibleTrigger,

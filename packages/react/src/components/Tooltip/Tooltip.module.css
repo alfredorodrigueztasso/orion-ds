@@ -60,7 +60,8 @@
 
 /* Top placement */
 .top {
-  --tooltip-transform-from: translateX(-50%) translateY(var(--tooltip-arrow-offset));
+  --tooltip-transform-from: translateX(-50%)
+    translateY(var(--tooltip-arrow-offset));
   --tooltip-transform-to: translateX(-50%) translateY(0);
   bottom: calc(100% + var(--tooltip-gap));
   left: 50%;
@@ -75,7 +76,8 @@
 
 /* Bottom placement */
 .bottom {
-  --tooltip-transform-from: translateX(-50%) translateY(calc(var(--tooltip-arrow-offset) * -1));
+  --tooltip-transform-from: translateX(-50%)
+    translateY(calc(var(--tooltip-arrow-offset) * -1));
   --tooltip-transform-to: translateX(-50%) translateY(0);
   top: calc(100% + var(--tooltip-gap));
   left: 50%;
@@ -90,7 +92,8 @@
 
 /* Left placement */
 .left {
-  --tooltip-transform-from: translateY(-50%) translateX(var(--tooltip-arrow-offset));
+  --tooltip-transform-from: translateY(-50%)
+    translateX(var(--tooltip-arrow-offset));
   --tooltip-transform-to: translateY(-50%) translateX(0);
   right: calc(100% + var(--tooltip-gap));
   top: 50%;
@@ -105,7 +108,8 @@
 
 /* Right placement */
 .right {
-  --tooltip-transform-from: translateY(-50%) translateX(calc(var(--tooltip-arrow-offset) * -1));
+  --tooltip-transform-from: translateY(-50%)
+    translateX(calc(var(--tooltip-arrow-offset) * -1));
   --tooltip-transform-to: translateY(-50%) translateX(0);
   left: calc(100% + var(--tooltip-gap));
   top: 50%;

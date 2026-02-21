@@ -23,9 +23,9 @@
  * ```
  */
 
-import { forwardRef } from 'react';
-import type { SelectProps } from './Select.types';
-import styles from './Select.module.css';
+import { forwardRef } from "react";
+import type { SelectProps } from "./Select.types";
+import styles from "./Select.module.css";
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   (
@@ -34,9 +34,9 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       error,
       helperText,
       options,
-      placeholder = 'Select an option...',
+      placeholder = "Select an option...",
       fullWidth = false,
-      size = 'md',
+      size = "md",
       optional = false,
       className,
       id,
@@ -58,9 +58,11 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
-    const selectClasses = [styles.select, styles[size]].filter(Boolean).join(' ');
+    const selectClasses = [styles.select, styles[size]]
+      .filter(Boolean)
+      .join(" ");
 
     return (
       <div className={containerClasses}>
@@ -81,9 +83,13 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             className={selectClasses}
             disabled={disabled}
             required={required}
-            aria-invalid={error ? 'true' : 'false'}
+            aria-invalid={error ? "true" : "false"}
             aria-describedby={
-              error ? `${selectId}-error` : helperText ? `${selectId}-helper` : undefined
+              error
+                ? `${selectId}-error`
+                : helperText
+                  ? `${selectId}-helper`
+                  : undefined
             }
             {...rest}
           >
@@ -96,7 +102,11 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
 
             {/* Options from prop */}
             {options?.map((option) => (
-              <option key={option.value} value={option.value} disabled={option.disabled}>
+              <option
+                key={option.value}
+                value={option.value}
+                disabled={option.disabled}
+              >
                 {option.label}
               </option>
             ))}
@@ -115,7 +125,11 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
 
         {/* Error message */}
         {error && (
-          <span id={`${selectId}-error`} className={styles.errorMessage} role="alert">
+          <span
+            id={`${selectId}-error`}
+            className={styles.errorMessage}
+            role="alert"
+          >
             <span className={styles.errorIcon} aria-hidden="true">
               ⚠
             </span>
@@ -127,4 +141,4 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   },
 );
 
-Select.displayName = 'Select';
+Select.displayName = "Select";

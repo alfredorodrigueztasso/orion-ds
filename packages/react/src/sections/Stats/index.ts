@@ -2,8 +2,8 @@
  * Stats Component Exports
  */
 
-export { Stats } from './Stats';
-export { StatItemCard } from './StatItemCard';
+export { Stats } from "./Stats";
+export { StatItemCard } from "./StatItemCard";
 export type {
   StatsProps,
   StatItem,
@@ -11,4 +11,4 @@ export type {
   StatItemCardProps,
   StatsColumns,
   StatsVariant,
-} from './Stats.types';
+} from "./Stats.types";

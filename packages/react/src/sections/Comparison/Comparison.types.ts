@@ -4,7 +4,7 @@
  * Type definitions for the Orion Comparison section component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Feature row for comparison
@@ -86,7 +86,10 @@ export interface ComparisonColumn {
  * />
  * ```
  */
-export interface ComparisonProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
+export interface ComparisonProps extends Omit<
+  HTMLAttributes<HTMLElement>,
+  "title"
+> {
   /**
    * Optional eyebrow text
    */
@@ -134,7 +137,7 @@ export interface ComparisonProps extends Omit<HTMLAttributes<HTMLElement>, 'titl
    * Background style
    * @default 'base'
    */
-  background?: 'base' | 'subtle' | 'none';
+  background?: "base" | "subtle" | "none";
 
   /**
    * Compact mode

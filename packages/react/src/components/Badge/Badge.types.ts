@@ -4,25 +4,25 @@
  * Type definitions for the Orion Badge component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Badge variants (status colors)
  */
 export type BadgeVariant =
-  | 'primary'
-  | 'secondary'
-  | 'neutral'
-  | 'success'
-  | 'error'
-  | 'warning'
-  | 'info'
-  | 'brand';
+  | "primary"
+  | "secondary"
+  | "neutral"
+  | "success"
+  | "error"
+  | "warning"
+  | "info"
+  | "brand";
 
 /**
  * Badge sizes
  */
-export type BadgeSize = 'sm' | 'md' | 'lg';
+export type BadgeSize = "sm" | "md" | "lg";
 
 /**
  * Badge component props

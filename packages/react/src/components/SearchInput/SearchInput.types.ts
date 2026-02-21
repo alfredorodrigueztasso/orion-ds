@@ -4,12 +4,12 @@
  * Type definitions for the Orion SearchInput component.
  */
 
-import type { InputHTMLAttributes, ReactNode } from 'react';
+import type { InputHTMLAttributes, ReactNode } from "react";
 
 /**
  * SearchInput size variants
  */
-export type SearchInputSize = 'sm' | 'md' | 'lg';
+export type SearchInputSize = "sm" | "md" | "lg";
 
 /**
  * SearchInput component props
@@ -26,7 +26,7 @@ export type SearchInputSize = 'sm' | 'md' | 'lg';
  */
 export interface SearchInputProps extends Omit<
   InputHTMLAttributes<HTMLInputElement>,
-  'size' | 'type'
+  "size" | "type"
 > {
   /**
    * Size variant

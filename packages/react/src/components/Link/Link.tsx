@@ -11,16 +11,16 @@
  * ```
  */
 
-import { forwardRef } from 'react';
-import { ExternalLink as ExternalLinkIcon } from 'lucide-react';
-import type { LinkProps } from './Link.types';
-import styles from './Link.module.css';
+import { forwardRef } from "react";
+import { ExternalLink as ExternalLinkIcon } from "lucide-react";
+import type { LinkProps } from "./Link.types";
+import styles from "./Link.module.css";
 
 export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
   (
     {
-      variant = 'default',
-      size = 'md',
+      variant = "default",
+      size = "md",
       external = false,
       underline = true,
       showExternalIcon = true,
@@ -41,22 +41,22 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     // Security attributes for external links
     const externalProps = external
       ? {
-          target: '_blank',
-          rel: 'noopener noreferrer',
+          target: "_blank",
+          rel: "noopener noreferrer",
         }
       : {};
 
     // Get icon size based on link size
     const getIconSize = () => {
       switch (size) {
-        case 'sm':
+        case "sm":
           return 12;
-        case 'lg':
+        case "lg":
           return 16;
         default:
           return 14;
@@ -64,21 +64,21 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
     };
 
     // Get icon animation class
-    const getIconAnimationClass = (position: 'left' | 'right') => {
+    const getIconAnimationClass = (position: "left" | "right") => {
       if (!iconAnimation) {
         // Default animations based on context
-        if (position === 'right' && external) return styles.iconExternal;
-        return '';
+        if (position === "right" && external) return styles.iconExternal;
+        return "";
       }
       switch (iconAnimation) {
-        case 'arrow':
+        case "arrow":
           return styles.iconArrow;
-        case 'arrow-left':
+        case "arrow-left":
           return styles.iconArrowLeft;
-        case 'external':
+        case "external":
           return styles.iconExternal;
         default:
-          return '';
+          return "";
       }
     };
 
@@ -87,7 +87,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
       if (iconRight) {
         return (
           <span
-            className={`${styles.icon} ${styles.iconRight} ${getIconAnimationClass('right')}`}
+            className={`${styles.icon} ${styles.iconRight} ${getIconAnimationClass("right")}`}
             aria-hidden="true"
           >
             {iconRight}
@@ -113,7 +113,10 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
     return (
       <a ref={ref} className={classNames} {...externalProps} {...rest}>
         {icon && (
-          <span className={`${styles.icon} ${getIconAnimationClass('left')}`} aria-hidden="true">
+          <span
+            className={`${styles.icon} ${getIconAnimationClass("left")}`}
+            aria-hidden="true"
+          >
             {icon}
           </span>
         )}
@@ -124,4 +127,4 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
   },
 );
 
-Link.displayName = 'Link';
+Link.displayName = "Link";

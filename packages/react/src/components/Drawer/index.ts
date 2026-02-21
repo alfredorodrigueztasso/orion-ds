@@ -16,7 +16,7 @@
  * </Drawer>
  * ```
  */
-export { Drawer } from './Drawer';
+export { Drawer } from "./Drawer";
 export type {
   DrawerProps,
   DrawerPlacement,
@@ -24,4 +24,4 @@ export type {
   DrawerHeaderProps,
   DrawerBodyProps,
   DrawerFooterProps,
-} from './Drawer.types';
+} from "./Drawer.types";

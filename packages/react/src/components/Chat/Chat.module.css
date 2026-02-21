@@ -178,7 +178,6 @@
   border-radius: var(--chat-bubble-radius);
   line-height: var(--line-height-relaxed);
   overflow-wrap: break-word;
-  overflow-wrap: break-word;
 }
 
 .messageBubbleUser {
@@ -299,13 +298,22 @@
   width: 20px;
   height: 20px;
   border-radius: var(--radius-full);
-  background: conic-gradient(from 0deg, transparent 0%, transparent 10%, var(--text-tertiary) 100%);
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    transparent 10%,
+    var(--text-tertiary) 100%
+  );
   -webkit-mask: radial-gradient(
     farthest-side,
     transparent calc(100% - 2.5px),
     var(--text-primary) calc(100% - 2px)
   );
-  mask: radial-gradient(farthest-side, transparent calc(100% - 2.5px), var(--text-primary) calc(100% - 2px));
+  mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 2.5px),
+    var(--text-primary) calc(100% - 2px)
+  );
   animation: thinkingSpin 1.2s linear infinite;
 }
 
@@ -336,7 +344,11 @@
   left: 0;
   right: 0;
   padding: var(--spacing-10) var(--spacing-4) var(--spacing-4);
-  background: linear-gradient(to bottom, transparent 0%, var(--surface-base) 50%);
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--surface-base) 50%
+  );
   pointer-events: none;
   z-index: var(--z-dropdown);
 }

@@ -18,5 +18,10 @@
  * />
  * ```
  */
-export { Table } from './Table';
-export type { TableProps, TableColumn, TableSize, SortDirection } from './Table.types';
+export { Table } from "./Table";
+export type {
+  TableProps,
+  TableColumn,
+  TableSize,
+  SortDirection,
+} from "./Table.types";

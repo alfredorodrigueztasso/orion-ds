@@ -4,15 +4,15 @@
  * Type definitions for the pricing page template.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
-import type { NavbarProps } from '../../../components/Navbar';
-import type { HeroProps } from '../../../sections/Hero';
-import type { CarouselSectionProps } from '../../../sections/CarouselSection';
-import type { PricingProps } from '../../../sections/Pricing';
-import type { ComparisonProps } from '../../../sections/Comparison';
-import type { FAQProps } from '../../../sections/FAQ';
-import type { CTAProps } from '../../../sections/CTA';
-import type { FooterProps } from '../../../sections/Footer';
+import type { HTMLAttributes, ReactNode } from "react";
+import type { NavbarProps } from "../../../components/Navbar";
+import type { HeroProps } from "../../../sections/Hero";
+import type { CarouselSectionProps } from "../../../sections/CarouselSection";
+import type { PricingProps } from "../../../sections/Pricing";
+import type { ComparisonProps } from "../../../sections/Comparison";
+import type { FAQProps } from "../../../sections/FAQ";
+import type { CTAProps } from "../../../sections/CTA";
+import type { FooterProps } from "../../../sections/Footer";
 
 /**
  * PricingPageTemplate props
@@ -26,7 +26,10 @@ import type { FooterProps } from '../../../sections/Footer';
  * />
  * ```
  */
-export interface PricingPageTemplateProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
+export interface PricingPageTemplateProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "title"
+> {
   /**
    * Navbar configuration
    */
@@ -40,7 +43,7 @@ export interface PricingPageTemplateProps extends Omit<HTMLAttributes<HTMLDivEle
   /**
    * Product carousel for showcasing key features
    */
-  featuresCarousel?: Omit<CarouselSectionProps, 'variant'>;
+  featuresCarousel?: Omit<CarouselSectionProps, "variant">;
 
   /**
    * Pricing cards section (required)

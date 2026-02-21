@@ -5,33 +5,40 @@
  * Supports editorial (Apple-style), product, and gallery variants.
  */
 
-import type { CarouselCardProps } from './Carousel.types';
-import styles from './Carousel.module.css';
+import type { CarouselCardProps } from "./Carousel.types";
+import styles from "./Carousel.module.css";
 
 export const CarouselCard = ({
   item,
-  aspectRatio = '16/9',
-  variant = 'editorial',
+  aspectRatio = "16/9",
+  variant = "editorial",
   className,
   style,
   ...rest
 }: CarouselCardProps) => {
-  const { image, eyebrow, title, description, action, overlay = 'gradient' } = item;
+  const {
+    image,
+    eyebrow,
+    title,
+    description,
+    action,
+    overlay = "gradient",
+  } = item;
 
   const classNames = [
     styles.card,
     styles[`variant-${variant}`],
-    styles[`aspect-${aspectRatio.replace('/', '-')}`],
+    styles[`aspect-${aspectRatio.replace("/", "-")}`],
     className,
   ]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
 
   return (
     <article className={classNames} style={style} {...rest}>
       <div className={styles.imageWrapper}>{image}</div>
 
-      {overlay !== 'none' && (
+      {overlay !== "none" && (
         <div className={`${styles.overlay} ${styles[`overlay-${overlay}`]}`} />
       )}
 
@@ -48,4 +55,4 @@ export const CarouselCard = ({
   );
 };
 
-CarouselCard.displayName = 'CarouselCard';
+CarouselCard.displayName = "CarouselCard";

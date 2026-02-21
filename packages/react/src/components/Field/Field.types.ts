@@ -10,7 +10,7 @@
  * @see {@link ./README.md} for full documentation
  */
 
-import type { InputHTMLAttributes, ReactNode } from 'react';
+import type { InputHTMLAttributes, ReactNode } from "react";
 
 /**
  * Field component props
@@ -60,7 +60,10 @@ import type { InputHTMLAttributes, ReactNode } from 'react';
  * <Field label="Email" type="email" />
  * ```
  */
-export interface FieldProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
+export interface FieldProps extends Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  "size"
+> {
   /**
    * Input label text displayed above the input.
    * Required for accessibility unless aria-label is provided.
@@ -161,7 +164,7 @@ export interface FieldProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
    *
    * @default 'md'
    */
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
 
   /**
    * Shows "(optional)" indicator next to label.
@@ -194,7 +197,7 @@ export interface FieldProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
    * />
    * ```
    */
-  'aria-label'?: string;
+  "aria-label"?: string;
 
   /**
    * Additional element IDs that describe this input.
@@ -210,5 +213,5 @@ export interface FieldProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
    * />
    * ```
    */
-  'aria-describedby'?: string;
+  "aria-describedby"?: string;
 }

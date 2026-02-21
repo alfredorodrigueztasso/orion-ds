@@ -18,10 +18,10 @@
  * ```
  */
 
-import { forwardRef, useEffect, useRef } from 'react';
-import { X } from 'lucide-react';
-import type { DetailPanelProps } from './DetailPanel.types';
-import styles from './DetailPanel.module.css';
+import { forwardRef, useEffect, useRef } from "react";
+import { X } from "lucide-react";
+import type { DetailPanelProps } from "./DetailPanel.types";
+import styles from "./DetailPanel.module.css";
 
 export const DetailPanel = forwardRef<HTMLDivElement, DetailPanelProps>(
   (
@@ -32,8 +32,8 @@ export const DetailPanel = forwardRef<HTMLDivElement, DetailPanelProps>(
       description,
       subtitle,
       children,
-      size = 'md',
-      position = 'right',
+      size = "md",
+      position = "right",
       headerActions,
       footer,
       overlay = true,
@@ -52,10 +52,10 @@ export const DetailPanel = forwardRef<HTMLDivElement, DetailPanelProps>(
 
     // Deprecation warning
     useEffect(() => {
-      if (subtitle && process.env.NODE_ENV === 'development') {
+      if (subtitle && process.env.NODE_ENV === "development") {
         console.warn(
           '[DetailPanel] The "subtitle" prop is deprecated. Use "description" instead. ' +
-            'subtitle will be removed in v3.0.',
+            "subtitle will be removed in v3.0.",
         );
       }
     }, [subtitle]);
@@ -65,20 +65,20 @@ export const DetailPanel = forwardRef<HTMLDivElement, DetailPanelProps>(
       if (!open || !closeOnEscape) return;
 
       const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
+        if (e.key === "Escape") {
           onClose();
         }
       };
 
-      document.addEventListener('keydown', handleKeyDown);
-      return () => document.removeEventListener('keydown', handleKeyDown);
+      document.addEventListener("keydown", handleKeyDown);
+      return () => document.removeEventListener("keydown", handleKeyDown);
     }, [open, closeOnEscape, onClose]);
 
     // Trap focus and prevent body scroll
     useEffect(() => {
       if (open) {
         const originalOverflow = document.body.style.overflow;
-        document.body.style.overflow = 'hidden';
+        document.body.style.overflow = "hidden";
 
         // Focus the panel
         setTimeout(() => {
@@ -106,13 +106,17 @@ export const DetailPanel = forwardRef<HTMLDivElement, DetailPanelProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
       <div className={styles.container}>
         {/* Overlay */}
         {overlay && (
-          <div className={styles.overlay} onClick={handleOverlayClick} aria-hidden="true" />
+          <div
+            className={styles.overlay}
+            onClick={handleOverlayClick}
+            aria-hidden="true"
+          />
         )}
 
         {/* Panel */}
@@ -131,7 +135,9 @@ export const DetailPanel = forwardRef<HTMLDivElement, DetailPanelProps>(
               <h2 id="detail-panel-title" className={styles.title}>
                 {title}
               </h2>
-              {effectiveDescription && <p className={styles.subtitle}>{effectiveDescription}</p>}
+              {effectiveDescription && (
+                <p className={styles.subtitle}>{effectiveDescription}</p>
+              )}
             </div>
             <div className={styles.headerActions}>
               {headerActions}
@@ -165,4 +171,4 @@ export const DetailPanel = forwardRef<HTMLDivElement, DetailPanelProps>(
   },
 );
 
-DetailPanel.displayName = 'DetailPanel';
+DetailPanel.displayName = "DetailPanel";

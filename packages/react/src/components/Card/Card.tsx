@@ -19,7 +19,7 @@
  * ```
  */
 
-import React from 'react';
+import React from "react";
 import type {
   CardProps,
   CardHeaderProps,
@@ -30,8 +30,8 @@ import type {
   ImageTitleProps,
   ImageDescriptionProps,
   ImageMetaProps,
-} from './Card.types';
-import styles from './Card.module.css';
+} from "./Card.types";
+import styles from "./Card.module.css";
 
 // Gradient class mapping
 const getGradientClass = (position: ImageCardPosition): string => {
@@ -40,7 +40,7 @@ const getGradientClass = (position: ImageCardPosition): string => {
     center: styles.gradientCenter,
     bottom: styles.gradientBottom,
   };
-  return map[position] || styles.gradientBottom || '';
+  return map[position] || styles.gradientBottom || "";
 };
 
 // Main Card component
@@ -53,21 +53,26 @@ export const Card: React.FC<CardProps> & {
   ImageDescription: React.FC<ImageDescriptionProps>;
   ImageMeta: React.FC<ImageMetaProps>;
 } = ({
-  variant = 'base',
+  variant = "base",
   interactive = false,
   imageUrl,
-  imagePosition = 'bottom',
-  aspectRatio = '16/9',
+  imagePosition = "bottom",
+  aspectRatio = "16/9",
   className,
   children,
   style,
   ...rest
 }) => {
-  const isImageVariant = variant === 'image';
+  const isImageVariant = variant === "image";
 
-  const classNames = [styles.card, styles[variant], interactive && styles.interactive, className]
+  const classNames = [
+    styles.card,
+    styles[variant],
+    interactive && styles.interactive,
+    className,
+  ]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
 
   const cardStyle = isImageVariant
     ? {
@@ -80,7 +85,9 @@ export const Card: React.FC<CardProps> & {
   if (isImageVariant) {
     return (
       <div className={classNames} style={cardStyle} {...rest}>
-        <div className={`${styles.imageOverlay} ${getGradientClass(imagePosition)}`}>
+        <div
+          className={`${styles.imageOverlay} ${getGradientClass(imagePosition)}`}
+        >
           {children}
         </div>
       </div>
@@ -95,8 +102,12 @@ export const Card: React.FC<CardProps> & {
 };
 
 // Card Header subcomponent
-const CardHeader: React.FC<CardHeaderProps> = ({ className, children, ...rest }) => {
-  const classNames = [styles.header, className].filter(Boolean).join(' ');
+const CardHeader: React.FC<CardHeaderProps> = ({
+  className,
+  children,
+  ...rest
+}) => {
+  const classNames = [styles.header, className].filter(Boolean).join(" ");
 
   return (
     <div className={classNames} {...rest}>
@@ -106,8 +117,12 @@ const CardHeader: React.FC<CardHeaderProps> = ({ className, children, ...rest })
 };
 
 // Card Body subcomponent
-const CardBody: React.FC<CardBodyProps> = ({ className, children, ...rest }) => {
-  const classNames = [styles.body, className].filter(Boolean).join(' ');
+const CardBody: React.FC<CardBodyProps> = ({
+  className,
+  children,
+  ...rest
+}) => {
+  const classNames = [styles.body, className].filter(Boolean).join(" ");
 
   return (
     <div className={classNames} {...rest}>
@@ -117,8 +132,12 @@ const CardBody: React.FC<CardBodyProps> = ({ className, children, ...rest }) => 
 };
 
 // Card Footer subcomponent
-const CardFooter: React.FC<CardFooterProps> = ({ className, children, ...rest }) => {
-  const classNames = [styles.footer, className].filter(Boolean).join(' ');
+const CardFooter: React.FC<CardFooterProps> = ({
+  className,
+  children,
+  ...rest
+}) => {
+  const classNames = [styles.footer, className].filter(Boolean).join(" ");
 
   return (
     <div className={classNames} {...rest}>
@@ -128,8 +147,12 @@ const CardFooter: React.FC<CardFooterProps> = ({ className, children, ...rest })
 };
 
 // Image Card subcomponents
-const ImageContent: React.FC<ImageContentProps> = ({ className, children, ...rest }) => {
-  const classNames = [styles.imageContent, className].filter(Boolean).join(' ');
+const ImageContent: React.FC<ImageContentProps> = ({
+  className,
+  children,
+  ...rest
+}) => {
+  const classNames = [styles.imageContent, className].filter(Boolean).join(" ");
   return (
     <div className={classNames} {...rest}>
       {children}
@@ -137,8 +160,12 @@ const ImageContent: React.FC<ImageContentProps> = ({ className, children, ...res
   );
 };
 
-const ImageTitle: React.FC<ImageTitleProps> = ({ className, children, ...rest }) => {
-  const classNames = [styles.imageTitle, className].filter(Boolean).join(' ');
+const ImageTitle: React.FC<ImageTitleProps> = ({
+  className,
+  children,
+  ...rest
+}) => {
+  const classNames = [styles.imageTitle, className].filter(Boolean).join(" ");
   return (
     <h3 className={classNames} {...rest}>
       {children}
@@ -146,8 +173,14 @@ const ImageTitle: React.FC<ImageTitleProps> = ({ className, children, ...rest })
   );
 };
 
-const ImageDescription: React.FC<ImageDescriptionProps> = ({ className, children, ...rest }) => {
-  const classNames = [styles.imageDescription, className].filter(Boolean).join(' ');
+const ImageDescription: React.FC<ImageDescriptionProps> = ({
+  className,
+  children,
+  ...rest
+}) => {
+  const classNames = [styles.imageDescription, className]
+    .filter(Boolean)
+    .join(" ");
   return (
     <p className={classNames} {...rest}>
       {children}
@@ -155,8 +188,12 @@ const ImageDescription: React.FC<ImageDescriptionProps> = ({ className, children
   );
 };
 
-const ImageMeta: React.FC<ImageMetaProps> = ({ className, children, ...rest }) => {
-  const classNames = [styles.imageMeta, className].filter(Boolean).join(' ');
+const ImageMeta: React.FC<ImageMetaProps> = ({
+  className,
+  children,
+  ...rest
+}) => {
+  const classNames = [styles.imageMeta, className].filter(Boolean).join(" ");
   return (
     <span className={classNames} {...rest}>
       {children}
@@ -174,11 +211,11 @@ Card.ImageDescription = ImageDescription;
 Card.ImageMeta = ImageMeta;
 
 // Display names for debugging
-Card.displayName = 'Card';
-CardHeader.displayName = 'Card.Header';
-CardBody.displayName = 'Card.Body';
-CardFooter.displayName = 'Card.Footer';
-ImageContent.displayName = 'Card.ImageContent';
-ImageTitle.displayName = 'Card.ImageTitle';
-ImageDescription.displayName = 'Card.ImageDescription';
-ImageMeta.displayName = 'Card.ImageMeta';
+Card.displayName = "Card";
+CardHeader.displayName = "Card.Header";
+CardBody.displayName = "Card.Body";
+CardFooter.displayName = "Card.Footer";
+ImageContent.displayName = "Card.ImageContent";
+ImageTitle.displayName = "Card.ImageTitle";
+ImageDescription.displayName = "Card.ImageDescription";
+ImageMeta.displayName = "Card.ImageMeta";

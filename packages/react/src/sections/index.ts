@@ -38,26 +38,35 @@
 // LAYOUT UTILITIES
 // ============================================================================
 
-export { Container } from './Container';
-export type { ContainerProps, ContainerSize } from './Container';
+export { Container } from "./Container";
+export type { ContainerProps, ContainerSize } from "./Container";
 
-export { Section } from './Section';
-export type { SectionProps, SectionSpacing, SectionBackground } from './Section';
+export { Section } from "./Section";
+export type {
+  SectionProps,
+  SectionSpacing,
+  SectionBackground,
+} from "./Section";
 
 // ============================================================================
 // PAGE SECTIONS
 // ============================================================================
 
-export { Hero } from './Hero';
-export type { HeroProps, HeroAlign, HeroSize } from './Hero';
+export { Hero } from "./Hero";
+export type { HeroProps, HeroAlign, HeroSize } from "./Hero";
 
-export { Features, FeatureCard } from './Features';
-export type { FeaturesProps, FeatureItem, FeatureCardProps, FeaturesColumns } from './Features';
+export { Features, FeatureCard } from "./Features";
+export type {
+  FeaturesProps,
+  FeatureItem,
+  FeatureCardProps,
+  FeaturesColumns,
+} from "./Features";
 
-export { CTA } from './CTA';
-export type { CTAProps, CTAVariant, CTASize } from './CTA';
+export { CTA } from "./CTA";
+export type { CTAProps, CTAVariant, CTASize } from "./CTA";
 
-export { Footer } from './Footer';
+export { Footer } from "./Footer";
 export type {
   FooterProps,
   FooterBrand,
@@ -65,22 +74,22 @@ export type {
   FooterLinkGroup,
   FooterSocialLink,
   FooterVariant,
-} from './Footer';
+} from "./Footer";
 
 // ============================================================================
 // PHASE 2 SECTIONS: ENGAGEMENT
 // ============================================================================
 
-export { Pricing, PricingCard } from './Pricing';
+export { Pricing, PricingCard } from "./Pricing";
 export type {
   PricingProps,
   PricingPlan,
   PricingFeature,
   PricingCardProps,
   PricingColumns,
-} from './Pricing';
+} from "./Pricing";
 
-export { Testimonials, TestimonialCard } from './Testimonials';
+export { Testimonials, TestimonialCard } from "./Testimonials";
 export type {
   TestimonialsProps,
   Testimonial,
@@ -88,9 +97,9 @@ export type {
   TestimonialCardProps,
   TestimonialsColumns,
   TestimonialsVariant,
-} from './Testimonials';
+} from "./Testimonials";
 
-export { Stats, StatItemCard } from './Stats';
+export { Stats, StatItemCard } from "./Stats";
 export type {
   StatsProps,
   StatItem,
@@ -98,12 +107,18 @@ export type {
   StatItemCardProps,
   StatsColumns,
   StatsVariant,
-} from './Stats';
+} from "./Stats";
 
-export { FAQ, FAQItemCard } from './FAQ';
-export type { FAQProps, FAQItem, FAQItemCardProps, FAQColumns, FAQVariant } from './FAQ';
+export { FAQ, FAQItemCard } from "./FAQ";
+export type {
+  FAQProps,
+  FAQItem,
+  FAQItemCardProps,
+  FAQColumns,
+  FAQVariant,
+} from "./FAQ";
 
-export { CarouselSection, CarouselCard } from './CarouselSection';
+export { CarouselSection, CarouselCard } from "./CarouselSection";
 export type {
   CarouselSectionProps,
   CarouselItem,
@@ -112,18 +127,18 @@ export type {
   CarouselAspectRatio,
   CarouselGap,
   CarouselOverlay,
-} from './CarouselSection';
+} from "./CarouselSection";
 
 // Backward compatibility alias (deprecated - use CarouselSection)
-export { CarouselSection as Carousel } from './CarouselSection';
+export { CarouselSection as Carousel } from "./CarouselSection";
 /** @deprecated Use CarouselSectionProps instead */
-export type { CarouselSectionProps as CarouselProps } from './CarouselSection';
+export type { CarouselSectionProps as CarouselProps } from "./CarouselSection";
 
 // ============================================================================
 // PHASE 3 SECTIONS: CONTENT
 // ============================================================================
 
-export { Team, TeamMemberCard } from './Team';
+export { Team, TeamMemberCard } from "./Team";
 export type {
   TeamProps,
   TeamMember,
@@ -131,72 +146,98 @@ export type {
   TeamMemberCardProps,
   TeamColumns,
   TeamVariant,
-} from './Team';
+} from "./Team";
 
-export { Contact } from './Contact';
-export type { ContactProps, ContactInfo, ContactFormField, ContactLayout } from './Contact';
+export { Contact } from "./Contact";
+export type {
+  ContactProps,
+  ContactInfo,
+  ContactFormField,
+  ContactLayout,
+} from "./Contact";
 
-export { Newsletter } from './Newsletter';
-export type { NewsletterProps, NewsletterLayout, NewsletterSize } from './Newsletter';
+export { Newsletter } from "./Newsletter";
+export type {
+  NewsletterProps,
+  NewsletterLayout,
+  NewsletterSize,
+} from "./Newsletter";
 
-export { LogoCloud } from './LogoCloud';
-export type { LogoCloudProps, LogoItem, LogoCloudLayout, LogoCloudSize } from './LogoCloud';
+export { LogoCloud } from "./LogoCloud";
+export type {
+  LogoCloudProps,
+  LogoItem,
+  LogoCloudLayout,
+  LogoCloudSize,
+} from "./LogoCloud";
 
 // ============================================================================
 // PHASE 4 SECTIONS: ADVANCED CONTENT
 // ============================================================================
 
-export { Blog } from './Blog';
-export type { BlogProps, BlogArticle, BlogLayout } from './Blog';
+export { Blog } from "./Blog";
+export type { BlogProps, BlogArticle, BlogLayout } from "./Blog";
 
-export { Gallery } from './Gallery';
-export type { GalleryProps, GalleryImage, GalleryLayout } from './Gallery';
+export { Gallery } from "./Gallery";
+export type { GalleryProps, GalleryImage, GalleryLayout } from "./Gallery";
 
-export { Timeline } from './Timeline';
-export type { TimelineProps, TimelineEvent } from './Timeline';
+export { Timeline } from "./Timeline";
+export type { TimelineProps, TimelineEvent } from "./Timeline";
 
-export { Comparison } from './Comparison';
-export type { ComparisonProps, ComparisonFeature, ComparisonColumn } from './Comparison';
+export { Comparison } from "./Comparison";
+export type {
+  ComparisonProps,
+  ComparisonFeature,
+  ComparisonColumn,
+} from "./Comparison";
 
-export { Banner } from './Banner';
-export type { BannerProps, BannerVariant } from './Banner';
+export { Banner } from "./Banner";
+export type { BannerProps, BannerVariant } from "./Banner";
 
-export { SocialProof } from './SocialProof';
+export { SocialProof } from "./SocialProof";
 export type {
   SocialProofProps,
   SocialProofLogo,
   SocialProofTestimonial,
   SocialProofStat,
-} from './SocialProof';
+} from "./SocialProof";
 
-export { AppDownload } from './AppDownload';
-export type { AppDownloadProps, AppStoreBadge, AppFeature } from './AppDownload';
+export { AppDownload } from "./AppDownload";
+export type {
+  AppDownloadProps,
+  AppStoreBadge,
+  AppFeature,
+} from "./AppDownload";
 
 // ============================================================================
 // APP/SAAS SECTIONS (Product Mode Optimized)
 // ============================================================================
 
-export { EmptyState } from './EmptyState';
-export type { EmptyStateProps, EmptyStateVariant, EmptyStateSize } from './EmptyState';
+export { EmptyState } from "./EmptyState";
+export type {
+  EmptyStateProps,
+  EmptyStateVariant,
+  EmptyStateSize,
+} from "./EmptyState";
 
-export { PageHeader } from './PageHeader';
+export { PageHeader } from "./PageHeader";
 export type {
   PageHeaderProps,
   PageHeaderVariant,
   PageHeaderSize,
   BreadcrumbItem,
   PageHeaderTab,
-} from './PageHeader';
+} from "./PageHeader";
 
-export { FormSection } from './FormSection';
+export { FormSection } from "./FormSection";
 export type {
   FormSectionProps,
   FormSectionVariant,
   FormSectionGroupProps,
   FormSectionActionsProps,
-} from './FormSection';
+} from "./FormSection";
 
-export { MetricCards, MetricCard } from './MetricCards';
+export { MetricCards, MetricCard } from "./MetricCards";
 export type {
   MetricCardsProps,
   MetricCardProps,
@@ -205,9 +246,9 @@ export type {
   SparklineData,
   MetricCardsColumns,
   MetricCardsVariant,
-} from './MetricCards';
+} from "./MetricCards";
 
-export { Sidebar } from './Sidebar';
+export { Sidebar } from "./Sidebar";
 export type {
   SidebarProps,
   SidebarVariant,
@@ -216,9 +257,9 @@ export type {
   SidebarItemProps,
   SidebarSectionProps,
   SidebarDividerProps,
-} from './Sidebar';
+} from "./Sidebar";
 
-export { DataTable } from './DataTable';
+export { DataTable } from "./DataTable";
 export type {
   DataTableProps,
   DataTableColumn,
@@ -231,48 +272,61 @@ export type {
   DataTableToolbarProps,
   DataTablePaginationProps,
   DataTableEmptyStateProps,
-} from './DataTable';
+} from "./DataTable";
 
 // ============================================================================
 // APP/SAAS SECTIONS - PHASE 2 (Advanced)
 // ============================================================================
 
-export { CommandBar } from './CommandBar';
-export type { CommandBarProps, CommandItem, CommandGroup } from './CommandBar';
+export { CommandBar } from "./CommandBar";
+export type { CommandBarProps, CommandItem, CommandGroup } from "./CommandBar";
 
-export { ActivityFeed } from './ActivityFeed';
+export { ActivityFeed } from "./ActivityFeed";
 export type {
   ActivityFeedProps,
   ActivityItem,
   ActivityActor,
   ActivityFilter,
-} from './ActivityFeed';
+} from "./ActivityFeed";
 
-export { AgentFolder } from './AgentFolder';
-export type { AgentFolderProps, SortOption } from './AgentFolder';
+export { AgentFolder } from "./AgentFolder";
+export type { AgentFolderProps, SortOption } from "./AgentFolder";
 
-export { DetailPanel } from './DetailPanel';
-export type { DetailPanelProps, DetailPanelSize, DetailPanelPosition } from './DetailPanel';
+export { DetailPanel } from "./DetailPanel";
+export type {
+  DetailPanelProps,
+  DetailPanelSize,
+  DetailPanelPosition,
+} from "./DetailPanel";
 
-export { FilterBar } from './FilterBar';
-export type { FilterBarProps, FilterDefinition, FilterOption, ActiveFilter } from './FilterBar';
+export { FilterBar } from "./FilterBar";
+export type {
+  FilterBarProps,
+  FilterDefinition,
+  FilterOption,
+  ActiveFilter,
+} from "./FilterBar";
 
-export { SettingsLayout } from './SettingsLayout';
-export type { SettingsLayoutProps, SettingsNavItem, SettingsNavGroup } from './SettingsLayout';
+export { SettingsLayout } from "./SettingsLayout";
+export type {
+  SettingsLayoutProps,
+  SettingsNavItem,
+  SettingsNavGroup,
+} from "./SettingsLayout";
 
-export { QuickActions } from './QuickActions';
+export { QuickActions } from "./QuickActions";
 export type {
   QuickActionsProps,
   QuickAction,
   QuickActionsVariant,
   QuickActionsPosition,
-} from './QuickActions';
+} from "./QuickActions";
 
 // ============================================================================
 // APP/SAAS SECTIONS - PHASE 3 (Extended)
 // ============================================================================
 
-export { KanbanBoard } from './KanbanBoard';
+export { KanbanBoard } from "./KanbanBoard";
 export type {
   KanbanBoardProps,
   KanbanColumn,
@@ -280,26 +334,37 @@ export type {
   KanbanLabel,
   KanbanAssignee,
   KanbanDragResult,
-} from './KanbanBoard';
+} from "./KanbanBoard";
 
-export { NotificationCenter } from './NotificationCenter';
-export type { NotificationCenterProps, NotificationItem } from './NotificationCenter';
+export { NotificationCenter } from "./NotificationCenter";
+export type {
+  NotificationCenterProps,
+  NotificationItem,
+} from "./NotificationCenter";
 
-export { UserMenu } from './UserMenu';
-export type { UserMenuProps, UserMenuItem, UserMenuSection, UserInfo } from './UserMenu';
+export { UserMenu } from "./UserMenu";
+export type {
+  UserMenuProps,
+  UserMenuItem,
+  UserMenuSection,
+  UserInfo,
+} from "./UserMenu";
 
-export { Breadcrumbs } from './Breadcrumbs';
-export type { BreadcrumbsProps, BreadcrumbItem as StandaloneBreadcrumbItem } from './Breadcrumbs';
+export { Breadcrumbs } from "./Breadcrumbs";
+export type {
+  BreadcrumbsProps,
+  BreadcrumbItem as StandaloneBreadcrumbItem,
+} from "./Breadcrumbs";
 
-export { Stepper } from './Stepper';
-export type { StepperProps, StepItem } from './Stepper';
+export { Stepper } from "./Stepper";
+export type { StepperProps, StepItem } from "./Stepper";
 
-export { FileUploader } from './FileUploader';
-export type { FileUploaderProps, UploadedFile } from './FileUploader';
+export { FileUploader } from "./FileUploader";
+export type { FileUploaderProps, UploadedFile } from "./FileUploader";
 
 // ============================================================================
 // AI CHAT SECTIONS
 // ============================================================================
 
-export { ChatSection } from './Chat';
-export type { ChatSectionProps } from './Chat';
+export { ChatSection } from "./Chat";
+export type { ChatSectionProps } from "./Chat";

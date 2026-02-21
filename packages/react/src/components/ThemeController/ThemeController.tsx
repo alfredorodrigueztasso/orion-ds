@@ -19,44 +19,47 @@
  * ```
  */
 
-import React from 'react';
-import type { ThemeControllerProps } from './ThemeController.types';
-import type { Brand } from '../../tokens/types';
-import { useTheme } from '../../hooks';
-import { useThemeContext } from '../../contexts/ThemeContext';
-import { Card } from '../Card';
-import { Switch } from '../Switch';
-import { Radio } from '../Radio';
-import { Button } from '../Button';
-import { Badge } from '../Badge';
-import { Alert } from '../Alert';
+import React from "react";
+import type { ThemeControllerProps } from "./ThemeController.types";
+import type { Brand } from "../../tokens/types";
+import { useTheme } from "../../hooks";
+import { useThemeContext } from "../../contexts/ThemeContext";
+import { Card } from "../Card";
+import { Switch } from "../Switch";
+import { Radio } from "../Radio";
+import { Button } from "../Button";
+import { Badge } from "../Badge";
+import { Alert } from "../Alert";
 
 // Brand configuration
-const BRAND_CONFIG: Record<Brand, { accent: string; radius: string; description: string }> = {
+const BRAND_CONFIG: Record<
+  Brand,
+  { accent: string; radius: string; description: string }
+> = {
   orion: {
-    accent: '#1B5BFF',
-    radius: '12px',
-    description: 'Blue accent • 12px radius',
+    accent: "#1B5BFF",
+    radius: "12px",
+    description: "Blue accent • 12px radius",
   },
   red: {
-    accent: '#D7282F',
-    radius: '9999px',
-    description: 'Red accent • Pill buttons',
+    accent: "#D7282F",
+    radius: "9999px",
+    description: "Red accent • Pill buttons",
   },
   deepblue: {
-    accent: '#006FBA',
-    radius: '12px',
-    description: 'Deep Blue accent • 12px radius',
+    accent: "#006FBA",
+    radius: "12px",
+    description: "Deep Blue accent • 12px radius",
   },
   orange: {
-    accent: '#F15D22',
-    radius: '9999px',
-    description: 'Red-Orange accent • Pill buttons',
+    accent: "#F15D22",
+    radius: "9999px",
+    description: "Red-Orange accent • Pill buttons",
   },
   lemon: {
-    accent: '#72FF43',
-    radius: '9999px',
-    description: 'Lime green accent • Highly rounded',
+    accent: "#72FF43",
+    radius: "9999px",
+    description: "Lime green accent • Highly rounded",
   },
 };
 
@@ -83,7 +86,7 @@ export const ThemeController: React.FC<ThemeControllerProps> = ({
   // Use context if available, otherwise fall back to standalone hook
   const { theme, brand, setTheme, setBrand } = contextTheme ?? standaloneTheme;
 
-  const handleThemeChange = (newTheme: 'light' | 'dark') => {
+  const handleThemeChange = (newTheme: "light" | "dark") => {
     setTheme(newTheme);
     onThemeChange?.(newTheme);
   };
@@ -97,25 +100,38 @@ export const ThemeController: React.FC<ThemeControllerProps> = ({
     return (
       <div
         className={className}
-        style={{ display: 'flex', gap: 'var(--spacing-3)', alignItems: 'center', flexWrap: 'wrap' }}
+        style={{
+          display: "flex",
+          gap: "var(--spacing-3)",
+          alignItems: "center",
+          flexWrap: "wrap",
+        }}
       >
         {showThemeToggle && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)' }}>
-            <span style={{ fontSize: '20px' }}>☀️</span>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "var(--spacing-2)",
+            }}
+          >
+            <span style={{ fontSize: "20px" }}>☀️</span>
             <Switch
-              checked={theme === 'dark'}
-              onChange={(e) => handleThemeChange(e.target.checked ? 'dark' : 'light')}
+              checked={theme === "dark"}
+              onChange={(e) =>
+                handleThemeChange(e.target.checked ? "dark" : "light")
+              }
             />
-            <span style={{ fontSize: '20px' }}>🌙</span>
+            <span style={{ fontSize: "20px" }}>🌙</span>
           </div>
         )}
 
         {showBrandSelector && (
-          <div style={{ display: 'flex', gap: 'var(--spacing-2)' }}>
+          <div style={{ display: "flex", gap: "var(--spacing-2)" }}>
             {(Object.keys(BRAND_CONFIG) as Brand[]).map((b) => (
               <Button
                 key={b}
-                variant={brand === b ? 'primary' : 'secondary'}
+                variant={brand === b ? "primary" : "secondary"}
                 size="sm"
                 onClick={() => handleBrandChange(b)}
               >
@@ -133,22 +149,30 @@ export const ThemeController: React.FC<ThemeControllerProps> = ({
       variant="elevated"
       className={className}
       style={{
-        background: 'var(--interactive-primary)',
-        color: 'white',
+        background: "var(--interactive-primary)",
+        color: "white",
         ...style,
       }}
     >
       <Card.Header>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)' }}>
-          <span style={{ fontSize: '24px' }}>🎨</span>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "var(--spacing-2)",
+          }}
+        >
+          <span style={{ fontSize: "24px" }}>🎨</span>
           <div>
-            <h3 style={{ margin: 0, color: 'white' }}>Theme & Brand Settings</h3>
+            <h3 style={{ margin: 0, color: "white" }}>
+              Theme & Brand Settings
+            </h3>
             <p
               style={{
                 margin: 0,
-                fontSize: 'var(--text-sm)',
+                fontSize: "var(--text-sm)",
                 opacity: 0.9,
-                color: 'white',
+                color: "white",
               }}
             >
               Customize the appearance in real-time
@@ -159,79 +183,90 @@ export const ThemeController: React.FC<ThemeControllerProps> = ({
 
       <Card.Body
         style={{
-          background: 'var(--surface-base)',
-          color: 'var(--text-primary)',
+          background: "var(--surface-base)",
+          color: "var(--text-primary)",
         }}
       >
-        <div style={{ display: 'grid', gap: 'var(--spacing-6)' }}>
+        <div style={{ display: "grid", gap: "var(--spacing-6)" }}>
           {/* Theme Toggle */}
           {showThemeToggle && (
             <div>
               <div
                 style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  marginBottom: 'var(--spacing-3)',
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  marginBottom: "var(--spacing-3)",
                 }}
               >
                 <div>
                   <label
                     style={{
-                      display: 'block',
-                      fontSize: 'var(--text-lg)',
-                      fontWeight: 'var(--font-weight-bold)',
-                      color: 'var(--text-primary)',
-                      marginBottom: 'var(--spacing-1)',
+                      display: "block",
+                      fontSize: "var(--text-lg)",
+                      fontWeight: "var(--font-weight-bold)",
+                      color: "var(--text-primary)",
+                      marginBottom: "var(--spacing-1)",
                     }}
                   >
                     Color Mode
                   </label>
                   <p
                     style={{
-                      fontSize: 'var(--text-sm)',
-                      color: 'var(--text-secondary)',
+                      fontSize: "var(--text-sm)",
+                      color: "var(--text-secondary)",
                       margin: 0,
                     }}
                   >
                     Switch between light and dark themes
                   </p>
                 </div>
-                <Badge variant={theme === 'light' ? 'warning' : 'primary'} size="lg">
-                  {theme === 'light' ? '☀️ Light' : '🌙 Dark'}
+                <Badge
+                  variant={theme === "light" ? "warning" : "primary"}
+                  size="lg"
+                >
+                  {theme === "light" ? "☀️ Light" : "🌙 Dark"}
                 </Badge>
               </div>
 
               <div
                 style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 'var(--spacing-3)',
-                  padding: 'var(--spacing-4)',
-                  background: 'var(--surface-subtle)',
-                  borderRadius: 'var(--radius-control)',
-                  border: '2px solid var(--border-subtle)',
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "var(--spacing-3)",
+                  padding: "var(--spacing-4)",
+                  background: "var(--surface-subtle)",
+                  borderRadius: "var(--radius-control)",
+                  border: "2px solid var(--border-subtle)",
                 }}
               >
-                <span style={{ fontSize: '32px' }}>☀️</span>
+                <span style={{ fontSize: "32px" }}>☀️</span>
                 <Switch
-                  checked={theme === 'dark'}
-                  onChange={(e) => handleThemeChange(e.target.checked ? 'dark' : 'light')}
+                  checked={theme === "dark"}
+                  onChange={(e) =>
+                    handleThemeChange(e.target.checked ? "dark" : "light")
+                  }
                   size="lg"
                 />
-                <span style={{ fontSize: '32px' }}>🌙</span>
-                <div style={{ marginLeft: 'auto', display: 'flex', gap: 'var(--spacing-2)' }}>
+                <span style={{ fontSize: "32px" }}>🌙</span>
+                <div
+                  style={{
+                    marginLeft: "auto",
+                    display: "flex",
+                    gap: "var(--spacing-2)",
+                  }}
+                >
                   <Button
-                    variant={theme === 'light' ? 'primary' : 'ghost'}
+                    variant={theme === "light" ? "primary" : "ghost"}
                     size="sm"
-                    onClick={() => handleThemeChange('light')}
+                    onClick={() => handleThemeChange("light")}
                   >
                     Light
                   </Button>
                   <Button
-                    variant={theme === 'dark' ? 'primary' : 'ghost'}
+                    variant={theme === "dark" ? "primary" : "ghost"}
                     size="sm"
-                    onClick={() => handleThemeChange('dark')}
+                    onClick={() => handleThemeChange("dark")}
                   >
                     Dark
                   </Button>
@@ -243,22 +278,22 @@ export const ThemeController: React.FC<ThemeControllerProps> = ({
           {/* Brand Selection */}
           {showBrandSelector && (
             <div>
-              <div style={{ marginBottom: 'var(--spacing-3)' }}>
+              <div style={{ marginBottom: "var(--spacing-3)" }}>
                 <label
                   style={{
-                    display: 'block',
-                    fontSize: 'var(--text-lg)',
-                    fontWeight: 'var(--font-weight-bold)',
-                    color: 'var(--text-primary)',
-                    marginBottom: 'var(--spacing-1)',
+                    display: "block",
+                    fontSize: "var(--text-lg)",
+                    fontWeight: "var(--font-weight-bold)",
+                    color: "var(--text-primary)",
+                    marginBottom: "var(--spacing-1)",
                   }}
                 >
                   Brand Identity
                 </label>
                 <p
                   style={{
-                    fontSize: 'var(--text-sm)',
-                    color: 'var(--text-secondary)',
+                    fontSize: "var(--text-sm)",
+                    color: "var(--text-secondary)",
                     margin: 0,
                   }}
                 >
@@ -268,9 +303,9 @@ export const ThemeController: React.FC<ThemeControllerProps> = ({
 
               <div
                 style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                  gap: 'var(--spacing-3)',
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+                  gap: "var(--spacing-3)",
                 }}
               >
                 {(Object.keys(BRAND_CONFIG) as Brand[]).map((b) => (
@@ -278,24 +313,28 @@ export const ThemeController: React.FC<ThemeControllerProps> = ({
                     key={b}
                     onClick={() => handleBrandChange(b)}
                     style={{
-                      padding: 'var(--spacing-4)',
+                      padding: "var(--spacing-4)",
                       background:
-                        brand === b ? 'var(--interactive-primary)' : 'var(--surface-subtle)',
-                      color: brand === b ? 'white' : 'var(--text-primary)',
-                      borderRadius: 'var(--radius-control)',
+                        brand === b
+                          ? "var(--interactive-primary)"
+                          : "var(--surface-subtle)",
+                      color: brand === b ? "white" : "var(--text-primary)",
+                      borderRadius: "var(--radius-control)",
                       border: `2px solid ${
-                        brand === b ? 'var(--interactive-primary)' : 'var(--border-subtle)'
+                        brand === b
+                          ? "var(--interactive-primary)"
+                          : "var(--border-subtle)"
                       }`,
-                      cursor: 'pointer',
-                      transition: 'all 150ms ease',
+                      cursor: "pointer",
+                      transition: "all 150ms ease",
                     }}
                   >
                     <div
                       style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        marginBottom: 'var(--spacing-2)',
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        marginBottom: "var(--spacing-2)",
                       }}
                     >
                       <Radio
@@ -308,7 +347,13 @@ export const ThemeController: React.FC<ThemeControllerProps> = ({
                       />
                       {brand === b && <Badge variant="success">Active</Badge>}
                     </div>
-                    <p style={{ fontSize: 'var(--text-sm)', margin: 0, opacity: 0.8 }}>
+                    <p
+                      style={{
+                        fontSize: "var(--text-sm)",
+                        margin: 0,
+                        opacity: 0.8,
+                      }}
+                    >
                       {BRAND_CONFIG[b].description}
                     </p>
                   </div>
@@ -320,14 +365,22 @@ export const ThemeController: React.FC<ThemeControllerProps> = ({
           {/* Current Settings Summary */}
           {showSummary && (
             <Alert variant="info" title="Current Settings">
-              <div style={{ display: 'flex', gap: 'var(--spacing-2)', flexWrap: 'wrap' }}>
+              <div
+                style={{
+                  display: "flex",
+                  gap: "var(--spacing-2)",
+                  flexWrap: "wrap",
+                }}
+              >
                 <Badge variant="primary">Theme: {theme}</Badge>
                 <Badge variant="secondary">Brand: {brand}</Badge>
-                <Badge variant="neutral">Accent: {BRAND_CONFIG[brand].accent}</Badge>
                 <Badge variant="neutral">
-                  Radius:{' '}
-                  {BRAND_CONFIG[brand].radius === '9999px'
-                    ? '9999px (pills)'
+                  Accent: {BRAND_CONFIG[brand].accent}
+                </Badge>
+                <Badge variant="neutral">
+                  Radius:{" "}
+                  {BRAND_CONFIG[brand].radius === "9999px"
+                    ? "9999px (pills)"
                     : BRAND_CONFIG[brand].radius}
                 </Badge>
               </div>
@@ -339,4 +392,4 @@ export const ThemeController: React.FC<ThemeControllerProps> = ({
   );
 };
 
-ThemeController.displayName = 'ThemeController';
+ThemeController.displayName = "ThemeController";

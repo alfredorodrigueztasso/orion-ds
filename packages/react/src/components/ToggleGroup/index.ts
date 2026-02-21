@@ -1,8 +1,8 @@
-export { ToggleGroup } from './ToggleGroup';
+export { ToggleGroup } from "./ToggleGroup";
 export type {
   ToggleGroupProps,
   ToggleGroupItemProps,
   ToggleGroupType,
   ToggleGroupVariant,
   ToggleGroupSize,
-} from './ToggleGroup.types';
+} from "./ToggleGroup.types";

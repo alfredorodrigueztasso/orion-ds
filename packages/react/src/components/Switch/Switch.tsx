@@ -22,16 +22,16 @@
  * ```
  */
 
-import { forwardRef, useId } from 'react';
-import { AlertCircle } from 'lucide-react';
-import type { SwitchProps } from './Switch.types';
-import styles from './Switch.module.css';
+import { forwardRef, useId } from "react";
+import { AlertCircle } from "lucide-react";
+import type { SwitchProps } from "./Switch.types";
+import styles from "./Switch.module.css";
 
 export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
   (
     {
       label,
-      size = 'sm',
+      size = "sm",
       helperText,
       error,
       className,
@@ -39,8 +39,8 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
       disabled,
       required,
       checked,
-      'aria-label': ariaLabel,
-      'aria-describedby': ariaDescribedBy,
+      "aria-label": ariaLabel,
+      "aria-describedby": ariaDescribedBy,
       ...rest
     },
     ref,
@@ -58,13 +58,14 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
     if (error) describedByIds.push(errorId);
     if (helperText && !error) describedByIds.push(helperId);
     if (ariaDescribedBy) describedByIds.push(ariaDescribedBy);
-    const computedDescribedBy = describedByIds.length > 0 ? describedByIds.join(' ') : undefined;
+    const computedDescribedBy =
+      describedByIds.length > 0 ? describedByIds.join(" ") : undefined;
 
     // Ensure switch has an accessible name
     const hasAccessibleName = Boolean(label || ariaLabel);
-    if (!hasAccessibleName && process.env.NODE_ENV === 'development') {
+    if (!hasAccessibleName && process.env.NODE_ENV === "development") {
       console.warn(
-        'Switch: Missing accessible name. Provide either a `label` prop or `aria-label` for screen reader users.',
+        "Switch: Missing accessible name. Provide either a `label` prop or `aria-label` for screen reader users.",
       );
     }
 
@@ -76,7 +77,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
       <div className={containerClasses}>
@@ -92,7 +93,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
           checked={checked}
           aria-checked={checked}
           aria-required={required || undefined}
-          aria-invalid={error ? 'true' : undefined}
+          aria-invalid={error ? "true" : undefined}
           aria-describedby={computedDescribedBy}
           aria-label={!label ? ariaLabel : undefined}
           {...rest}
@@ -127,7 +128,12 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
 
         {/* Error message */}
         {error && (
-          <p id={errorId} className={styles.errorMessage} role="alert" aria-live="assertive">
+          <p
+            id={errorId}
+            className={styles.errorMessage}
+            role="alert"
+            aria-live="assertive"
+          >
             <AlertCircle size={14} aria-hidden="true" />
             <span>{error}</span>
           </p>
@@ -137,4 +143,4 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
   },
 );
 
-Switch.displayName = 'Switch';
+Switch.displayName = "Switch";

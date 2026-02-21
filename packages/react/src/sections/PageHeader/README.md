@@ -5,14 +5,14 @@
 ## Quick Start
 
 ```tsx
-import { PageHeader, Button, Badge } from '@orion/react';
-import { Plus } from 'lucide-react';
+import { PageHeader, Button, Badge } from "@orion/react";
+import { Plus } from "lucide-react";
 
 <PageHeader
   breadcrumbs={[
-    { label: 'Dashboard', href: '/' },
-    { label: 'Users', href: '/users' },
-    { label: 'Settings' },
+    { label: "Dashboard", href: "/" },
+    { label: "Users", href: "/users" },
+    { label: "Settings" },
   ]}
   title="User Settings"
   description="Manage user preferences and permissions"
@@ -62,8 +62,8 @@ interface PageHeaderProps {
   onTabChange?: (tabId: string) => void;
 
   // Appearance
-  variant?: 'default' | 'compact' | 'with-tabs' | 'transparent'; // default: 'default'
-  size?: 'sm' | 'md' | 'lg'; // default: 'md'
+  variant?: "default" | "compact" | "with-tabs" | "transparent"; // default: 'default'
+  size?: "sm" | "md" | "lg"; // default: 'md'
   bordered?: boolean; // Show bottom border - default: true
   sticky?: boolean; // Sticky positioning - default: false
 }
@@ -91,9 +91,9 @@ interface PageHeaderTab {
 ```tsx
 <PageHeader
   breadcrumbs={[
-    { label: 'Home', href: '/' },
-    { label: 'Products', href: '/products' },
-    { label: 'Edit Product' }, // Current page (no href)
+    { label: "Home", href: "/" },
+    { label: "Products", href: "/products" },
+    { label: "Edit Product" }, // Current page (no href)
   ]}
   title="Edit Product"
 />
@@ -104,9 +104,9 @@ interface PageHeaderTab {
 ```tsx
 <PageHeader
   breadcrumbs={[
-    { label: 'Dashboard', onClick: () => navigate('/') },
-    { label: 'Reports', onClick: () => navigate('/reports') },
-    { label: 'Monthly Report' },
+    { label: "Dashboard", onClick: () => navigate("/") },
+    { label: "Reports", onClick: () => navigate("/reports") },
+    { label: "Monthly Report" },
   ]}
   title="Monthly Report"
 />
@@ -119,7 +119,7 @@ interface PageHeaderTab {
 ### Simple Back Link
 
 ```tsx
-<PageHeader backLink={{ href: '/users' }} title="User Details" />
+<PageHeader backLink={{ href: "/users" }} title="User Details" />
 ```
 
 ### With Custom Label
@@ -127,8 +127,8 @@ interface PageHeaderTab {
 ```tsx
 <PageHeader
   backLink={{
-    label: 'Back to Dashboard',
-    href: '/dashboard',
+    label: "Back to Dashboard",
+    href: "/dashboard",
   }}
   title="Settings"
 />
@@ -139,7 +139,7 @@ interface PageHeaderTab {
 ```tsx
 <PageHeader
   backLink={{
-    label: 'Go Back',
+    label: "Go Back",
     onClick: () => router.back(),
   }}
   title="Order Details"
@@ -159,7 +159,7 @@ interface PageHeaderTab {
 ### Multiple Actions
 
 ```tsx
-import { Plus, Download, Settings } from 'lucide-react';
+import { Plus, Download, Settings } from "lucide-react";
 
 <PageHeader
   title="Projects"
@@ -200,15 +200,15 @@ import { Plus, Download, Settings } from 'lucide-react';
 ### Basic Tabs
 
 ```tsx
-const [activeTab, setActiveTab] = useState('general');
+const [activeTab, setActiveTab] = useState("general");
 
 <PageHeader
   title="Settings"
   tabs={[
-    { id: 'general', label: 'General' },
-    { id: 'security', label: 'Security' },
-    { id: 'billing', label: 'Billing' },
-    { id: 'team', label: 'Team' },
+    { id: "general", label: "General" },
+    { id: "security", label: "Security" },
+    { id: "billing", label: "Billing" },
+    { id: "team", label: "Team" },
   ]}
   activeTab={activeTab}
   onTabChange={setActiveTab}
@@ -221,9 +221,13 @@ const [activeTab, setActiveTab] = useState('general');
 <PageHeader
   title="Support"
   tabs={[
-    { id: 'open', label: 'Open', badge: <Badge>5</Badge> },
-    { id: 'pending', label: 'Pending', badge: <Badge variant="warning">2</Badge> },
-    { id: 'closed', label: 'Closed' },
+    { id: "open", label: "Open", badge: <Badge>5</Badge> },
+    {
+      id: "pending",
+      label: "Pending",
+      badge: <Badge variant="warning">2</Badge>,
+    },
+    { id: "closed", label: "Closed" },
   ]}
   activeTab={activeTab}
   onTabChange={setActiveTab}
@@ -236,9 +240,13 @@ const [activeTab, setActiveTab] = useState('general');
 <PageHeader
   title="Account"
   tabs={[
-    { id: 'profile', label: 'Profile', href: '/account/profile' },
-    { id: 'security', label: 'Security', href: '/account/security' },
-    { id: 'notifications', label: 'Notifications', href: '/account/notifications' },
+    { id: "profile", label: "Profile", href: "/account/profile" },
+    { id: "security", label: "Security", href: "/account/security" },
+    {
+      id: "notifications",
+      label: "Notifications",
+      href: "/account/notifications",
+    },
   ]}
   activeTab={currentPath}
 />
@@ -333,11 +341,11 @@ No background, blends with page content.
 ### Dashboard Page Header
 
 ```tsx
-import { PageHeader, Button, Badge } from '@orion/react';
-import { Plus, Download } from 'lucide-react';
+import { PageHeader, Button, Badge } from "@orion/react";
+import { Plus, Download } from "lucide-react";
 
 <PageHeader
-  breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Analytics' }]}
+  breadcrumbs={[{ label: "Home", href: "/" }, { label: "Analytics" }]}
   title="Analytics Dashboard"
   description="Track your key metrics and performance"
   actions={
@@ -354,17 +362,17 @@ import { Plus, Download } from 'lucide-react';
 ### Settings Page with Tabs
 
 ```tsx
-const [tab, setTab] = useState('general');
+const [tab, setTab] = useState("general");
 
 <PageHeader
-  backLink={{ href: '/dashboard', label: 'Back to Dashboard' }}
+  backLink={{ href: "/dashboard", label: "Back to Dashboard" }}
   title="Settings"
   badge={<Badge variant="brand">Pro Plan</Badge>}
   tabs={[
-    { id: 'general', label: 'General' },
-    { id: 'security', label: 'Security' },
-    { id: 'billing', label: 'Billing' },
-    { id: 'team', label: 'Team', badge: <Badge>5</Badge> },
+    { id: "general", label: "General" },
+    { id: "security", label: "Security" },
+    { id: "billing", label: "Billing" },
+    { id: "team", label: "Team", badge: <Badge>5</Badge> },
   ]}
   activeTab={tab}
   onTabChange={setTab}
@@ -372,10 +380,10 @@ const [tab, setTab] = useState('general');
 />;
 
 {
-  tab === 'general' && <GeneralSettings />;
+  tab === "general" && <GeneralSettings />;
 }
 {
-  tab === 'security' && <SecuritySettings />;
+  tab === "security" && <SecuritySettings />;
 }
 {
   /* ... */
@@ -387,9 +395,9 @@ const [tab, setTab] = useState('general');
 ```tsx
 <PageHeader
   breadcrumbs={[
-    { label: 'Dashboard', href: '/' },
-    { label: 'Users', href: '/users' },
-    { label: 'Jane Doe' },
+    { label: "Dashboard", href: "/" },
+    { label: "Users", href: "/users" },
+    { label: "Jane Doe" },
   ]}
   title="Jane Doe"
   badge={<Badge variant="success">Active</Badge>}
@@ -407,7 +415,12 @@ const [tab, setTab] = useState('general');
 ### Minimal Page Header
 
 ```tsx
-<PageHeader variant="compact" size="sm" title="Notifications" badge={<Badge>3 new</Badge>} />
+<PageHeader
+  variant="compact"
+  size="sm"
+  title="Notifications"
+  badge={<Badge>3 new</Badge>}
+/>
 ```
 
 ---

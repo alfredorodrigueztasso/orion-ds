@@ -16,10 +16,10 @@
  * />
  * ```
  */
-export { Accordion } from './Accordion';
+export { Accordion } from "./Accordion";
 export type {
   AccordionProps,
   AccordionItem,
   AccordionVariant,
   AccordionItemProps,
-} from './Accordion.types';
+} from "./Accordion.types";

@@ -31,14 +31,21 @@
  * ```
  */
 
-import { forwardRef, useRef, useState, useEffect, useCallback, useLayoutEffect } from 'react';
-import type { CarouselSectionProps } from './CarouselSection.types';
-import { Section } from '../Section';
-import { Container } from '../Container';
-import { Carousel } from '../../components/Carousel';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { spacing } from '../../tokens/primitives';
-import styles from './CarouselSection.module.css';
+import {
+  forwardRef,
+  useRef,
+  useState,
+  useEffect,
+  useCallback,
+  useLayoutEffect,
+} from "react";
+import type { CarouselSectionProps } from "./CarouselSection.types";
+import { Section } from "../Section";
+import { Container } from "../Container";
+import { Carousel } from "../../components/Carousel";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { spacing } from "../../tokens/primitives";
+import styles from "./CarouselSection.module.css";
 
 // Parse spacing token values (e.g., "24px" -> 24)
 const GAP_SM = parseInt(spacing[4], 10);
@@ -52,13 +59,13 @@ export const CarouselSection = forwardRef<HTMLElement, CarouselSectionProps>(
       title,
       description,
       items,
-      variant = 'editorial',
-      aspectRatio = '16/9',
+      variant = "editorial",
+      aspectRatio = "16/9",
       peek = true,
       autoScroll = false,
       autoScrollInterval = 5000,
-      gap = 'md',
-      background = 'base',
+      gap = "md",
+      background = "base",
       showNavigation = true,
       showPagination = false,
       alignToTitle = true,
@@ -75,11 +82,15 @@ export const CarouselSection = forwardRef<HTMLElement, CarouselSectionProps>(
     const [canScrollLeft, setCanScrollLeft] = useState(false);
     const [canScrollRight, setCanScrollRight] = useState(true);
     const [activeIndex, setActiveIndex] = useState(0);
-    const [alignOffset, setAlignOffset] = useState<number | undefined>(undefined);
+    const [alignOffset, setAlignOffset] = useState<number | undefined>(
+      undefined,
+    );
 
     // Get the track element from the Carousel component
     const getTrackElement = useCallback(() => {
-      return carouselRef.current?.querySelector('[role="region"]') as HTMLDivElement | null;
+      return carouselRef.current?.querySelector(
+        '[role="region"]',
+      ) as HTMLDivElement | null;
     }, []);
 
     const updateScrollState = useCallback(() => {
@@ -92,17 +103,17 @@ export const CarouselSection = forwardRef<HTMLElement, CarouselSectionProps>(
     }, [getTrackElement]);
 
     const scroll = useCallback(
-      (direction: 'left' | 'right') => {
+      (direction: "left" | "right") => {
         const track = getTrackElement();
         if (!track) return;
 
         const cardWidth = track.children[0]?.getBoundingClientRect().width || 0;
-        const gapWidth = gap === 'sm' ? GAP_SM : gap === 'md' ? GAP_MD : GAP_LG;
+        const gapWidth = gap === "sm" ? GAP_SM : gap === "md" ? GAP_MD : GAP_LG;
         const scrollAmount = cardWidth + gapWidth;
 
         track.scrollBy({
-          left: direction === 'left' ? -scrollAmount : scrollAmount,
-          behavior: 'smooth',
+          left: direction === "left" ? -scrollAmount : scrollAmount,
+          behavior: "smooth",
         });
       },
       [gap, getTrackElement],
@@ -114,11 +125,11 @@ export const CarouselSection = forwardRef<HTMLElement, CarouselSectionProps>(
         if (!track) return;
 
         const cardWidth = track.children[0]?.getBoundingClientRect().width || 0;
-        const gapWidth = gap === 'sm' ? GAP_SM : gap === 'md' ? GAP_MD : GAP_LG;
+        const gapWidth = gap === "sm" ? GAP_SM : gap === "md" ? GAP_MD : GAP_LG;
 
         track.scrollTo({
           left: index * (cardWidth + gapWidth),
-          behavior: 'smooth',
+          behavior: "smooth",
         });
       },
       [gap, getTrackElement],
@@ -143,10 +154,10 @@ export const CarouselSection = forwardRef<HTMLElement, CarouselSectionProps>(
       measureOffset();
 
       // Handle window resize
-      window.addEventListener('resize', measureOffset);
+      window.addEventListener("resize", measureOffset);
 
       return () => {
-        window.removeEventListener('resize', measureOffset);
+        window.removeEventListener("resize", measureOffset);
       };
     }, [alignToTitle, hasHeader]);
 
@@ -159,30 +170,40 @@ export const CarouselSection = forwardRef<HTMLElement, CarouselSectionProps>(
 
         // Calculate active index
         const cardWidth = track.children[0]?.getBoundingClientRect().width || 0;
-        const gapWidth = gap === 'sm' ? GAP_SM : gap === 'md' ? GAP_MD : GAP_LG;
+        const gapWidth = gap === "sm" ? GAP_SM : gap === "md" ? GAP_MD : GAP_LG;
         const index = Math.round(track.scrollLeft / (cardWidth + gapWidth));
         setActiveIndex(Math.min(index, items.length - 1));
       };
 
       updateScrollState();
-      track.addEventListener('scroll', handleScroll);
+      track.addEventListener("scroll", handleScroll);
 
       return () => {
-        track.removeEventListener('scroll', handleScroll);
+        track.removeEventListener("scroll", handleScroll);
       };
     }, [gap, items.length, updateScrollState, getTrackElement]);
 
-    const classNames = [styles.section, className].filter(Boolean).join(' ');
+    const classNames = [styles.section, className].filter(Boolean).join(" ");
 
     return (
-      <Section ref={ref} spacing="lg" background={background} className={classNames} {...rest}>
+      <Section
+        ref={ref}
+        spacing="lg"
+        background={background}
+        className={classNames}
+        {...rest}
+      >
         {hasHeader && (
           <Container size="xl">
             <header ref={headerRef} className={styles.header}>
               <div className={styles.headerContent}>
-                {eyebrow && <div className={styles.headerEyebrow}>{eyebrow}</div>}
+                {eyebrow && (
+                  <div className={styles.headerEyebrow}>{eyebrow}</div>
+                )}
                 {title && <h2 className={styles.title}>{title}</h2>}
-                {description && <p className={styles.description}>{description}</p>}
+                {description && (
+                  <p className={styles.description}>{description}</p>
+                )}
               </div>
 
               {showNavigation && items.length > 1 && (
@@ -190,7 +211,7 @@ export const CarouselSection = forwardRef<HTMLElement, CarouselSectionProps>(
                   <button
                     type="button"
                     className={styles.navButton}
-                    onClick={() => scroll('left')}
+                    onClick={() => scroll("left")}
                     disabled={!canScrollLeft}
                     aria-label="Previous"
                   >
@@ -199,7 +220,7 @@ export const CarouselSection = forwardRef<HTMLElement, CarouselSectionProps>(
                   <button
                     type="button"
                     className={styles.navButton}
-                    onClick={() => scroll('right')}
+                    onClick={() => scroll("right")}
                     disabled={!canScrollRight}
                     aria-label="Next"
                   >
@@ -220,7 +241,7 @@ export const CarouselSection = forwardRef<HTMLElement, CarouselSectionProps>(
           autoScroll={autoScroll}
           autoScrollInterval={autoScrollInterval}
           gap={gap}
-          align={alignToTitle && hasHeader ? 'container' : 'edge'}
+          align={alignToTitle && hasHeader ? "container" : "edge"}
           alignOffset={alignOffset}
           showNavigation={!hasHeader && showNavigation}
           showPagination={false}
@@ -235,7 +256,7 @@ export const CarouselSection = forwardRef<HTMLElement, CarouselSectionProps>(
                 <button
                   key={index}
                   type="button"
-                  className={`${styles.dot} ${index === activeIndex ? styles.dotActive : ''}`}
+                  className={`${styles.dot} ${index === activeIndex ? styles.dotActive : ""}`}
                   onClick={() => scrollToIndex(index)}
                   aria-label={`Go to slide ${index + 1}`}
                 />
@@ -248,4 +269,4 @@ export const CarouselSection = forwardRef<HTMLElement, CarouselSectionProps>(
   },
 );
 
-CarouselSection.displayName = 'CarouselSection';
+CarouselSection.displayName = "CarouselSection";

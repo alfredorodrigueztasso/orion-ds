@@ -4,22 +4,22 @@
  * Type definitions for the Orion Stepper/Wizard component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Stepper orientation
  */
-export type StepperOrientation = 'horizontal' | 'vertical';
+export type StepperOrientation = "horizontal" | "vertical";
 
 /**
  * Stepper size variants
  */
-export type StepperSize = 'sm' | 'md' | 'lg';
+export type StepperSize = "sm" | "md" | "lg";
 
 /**
  * Step status
  */
-export type StepStatus = 'complete' | 'current' | 'upcoming' | 'error';
+export type StepStatus = "complete" | "current" | "upcoming" | "error";
 
 /**
  * Step item definition
@@ -81,7 +81,10 @@ export interface StepItem {
  * />
  * ```
  */
-export interface StepperProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
+export interface StepperProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "onChange"
+> {
   /**
    * Array of step items
    */
@@ -138,7 +141,7 @@ export interface StepperProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onCh
    * Alternative label position (only for horizontal orientation)
    * @default 'bottom'
    */
-  labelPosition?: 'bottom' | 'right';
+  labelPosition?: "bottom" | "right";
 
   /**
    * Enable horizontal scrolling on mobile for better UX with many steps
@@ -161,5 +164,5 @@ export interface StepProps {
   showCheckmark: boolean;
   clickable: boolean;
   onClick?: () => void;
-  labelPosition: 'bottom' | 'right';
+  labelPosition: "bottom" | "right";
 }

@@ -35,7 +35,12 @@
             },
             "required": ["name"]
           },
-          "rating": { "type": "number", "minimum": 1, "maximum": 5, "description": "Star rating" }
+          "rating": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 5,
+            "description": "Star rating"
+          }
         },
         "required": ["id", "quote", "author"]
       }

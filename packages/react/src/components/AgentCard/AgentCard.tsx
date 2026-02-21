@@ -34,8 +34,7 @@ export const AgentCard: React.FC<AgentCardProps> = ({
   title,
   description,
   timestamp,
-  status,
-  badge,
+  isMultiAgent = false,
   onClick,
   onEdit,
   onDelete,
@@ -141,16 +140,8 @@ export const AgentCard: React.FC<AgentCardProps> = ({
           )}
 
           <div className={styles.headerRight}>
-            {/* Show badge if available, otherwise show status */}
-            {badge ? (
-              <span className={styles.badge}>{badge}</span>
-            ) : (
-              status && (
-                <span className={`${styles.status} ${styles[status]}`}>
-                  {status}
-                </span>
-              )
-            )}
+            {/* Multi badge — only shown for multi-agents */}
+            {isMultiAgent && <span className={styles.multiBadge}>Multi</span>}
 
             {/* Actions Menu via Dropdown component */}
             {dropdownItems.length > 0 && (
@@ -177,7 +168,7 @@ export const AgentCard: React.FC<AgentCardProps> = ({
       {/* Body: Title + Description */}
       <Card.Body>
         <h3 className={styles.title}>{title}</h3>
-        <p className={styles.description}>{description}</p>
+        <p className={styles.description}>{description ?? ""}</p>
       </Card.Body>
 
       {/* Footer: Timestamp only */}

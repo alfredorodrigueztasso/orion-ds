@@ -5,7 +5,12 @@
  * with multimodal support (text, images, audio, files, code).
  */
 
-import type { HTMLAttributes, ReactNode, TextareaHTMLAttributes, RefObject } from 'react';
+import type {
+  HTMLAttributes,
+  ReactNode,
+  TextareaHTMLAttributes,
+  RefObject,
+} from "react";
 
 // ============================================================================
 // CORE ENUMS & TYPES
@@ -14,22 +19,22 @@ import type { HTMLAttributes, ReactNode, TextareaHTMLAttributes, RefObject } fro
 /**
  * Message role types
  */
-export type ChatRole = 'user' | 'assistant' | 'system';
+export type ChatRole = "user" | "assistant" | "system";
 
 /**
  * Message delivery status
  */
-export type MessageStatus = 'sending' | 'sent' | 'error' | 'streaming';
+export type MessageStatus = "sending" | "sent" | "error" | "streaming";
 
 /**
  * Attachment types for multimodal support
  */
-export type AttachmentType = 'image' | 'audio' | 'file' | 'code';
+export type AttachmentType = "image" | "audio" | "file" | "code";
 
 /**
  * Message reaction types (feedback)
  */
-export type MessageReaction = 'like' | 'dislike';
+export type MessageReaction = "like" | "dislike";
 
 // ============================================================================
 // ATTACHMENT INTERFACES
@@ -198,7 +203,7 @@ export interface ChatMessageProps extends HTMLAttributes<HTMLDivElement> {
  */
 export interface ChatInputProps extends Omit<
   TextareaHTMLAttributes<HTMLTextAreaElement>,
-  'onSubmit'
+  "onSubmit"
 > {
   /** Callback when message is sent */
   onSend?: (message: string, attachments?: File[]) => void;
@@ -441,7 +446,7 @@ export interface ChatPageTemplateProps extends HTMLAttributes<HTMLDivElement> {
   /** Custom logo element */
   logo?: ReactNode;
   /** Chat input configuration */
-  inputConfig?: ChatSectionProps['inputConfig'];
+  inputConfig?: ChatSectionProps["inputConfig"];
 }
 
 // ============================================================================

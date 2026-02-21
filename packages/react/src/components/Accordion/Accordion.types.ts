@@ -4,12 +4,12 @@
  * Type definitions for the Orion Accordion component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Accordion visual variants
  */
-export type AccordionVariant = 'default' | 'bordered' | 'separated';
+export type AccordionVariant = "default" | "bordered" | "separated";
 
 /**
  * Single accordion item data
@@ -54,7 +54,10 @@ export interface AccordionItem {
  * />
  * ```
  */
-export interface AccordionProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
+export interface AccordionProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "onChange"
+> {
   /**
    * Array of accordion items
    */

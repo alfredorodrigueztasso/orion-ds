@@ -5,24 +5,26 @@
 ## Quick Start
 
 ```tsx
-import { DataTable, Badge, Button } from '@orion/react';
-import { Edit, Trash2 } from 'lucide-react';
+import { DataTable, Badge, Button } from "@orion/react";
+import { Edit, Trash2 } from "lucide-react";
 
 const columns = [
-  { key: 'name', header: 'Name', sortable: true },
-  { key: 'email', header: 'Email' },
+  { key: "name", header: "Name", sortable: true },
+  { key: "email", header: "Email" },
   {
-    key: 'status',
-    header: 'Status',
+    key: "status",
+    header: "Status",
     render: (value) => (
-      <Badge variant={value === 'active' ? 'success' : 'secondary'}>{value}</Badge>
+      <Badge variant={value === "active" ? "success" : "secondary"}>
+        {value}
+      </Badge>
     ),
   },
 ];
 
 const data = [
-  { id: 1, name: 'Jane Doe', email: 'jane@example.com', status: 'active' },
-  { id: 2, name: 'John Smith', email: 'john@example.com', status: 'inactive' },
+  { id: 1, name: "Jane Doe", email: "jane@example.com", status: "active" },
+  { id: 2, name: "John Smith", email: "john@example.com", status: "inactive" },
 ];
 
 <DataTable
@@ -171,15 +173,15 @@ interface DataTableProps<T> {
 
 ```tsx
 const [sort, setSort] = useState<DataTableSort | undefined>({
-  key: 'name',
-  direction: 'asc',
+  key: "name",
+  direction: "asc",
 });
 
 <DataTable
   columns={[
-    { key: 'name', header: 'Name', sortable: true },
-    { key: 'email', header: 'Email', sortable: true },
-    { key: 'createdAt', header: 'Created', sortable: true },
+    { key: "name", header: "Name", sortable: true },
+    { key: "email", header: "Email", sortable: true },
+    { key: "createdAt", header: "Created", sortable: true },
   ]}
   data={data}
   sort={sort}
@@ -194,13 +196,18 @@ const [sort, setSort] = useState<DataTableSort | undefined>({
 ### Basic Search
 
 ```tsx
-<DataTable columns={columns} data={data} searchable searchPlaceholder="Search users..." />
+<DataTable
+  columns={columns}
+  data={data}
+  searchable
+  searchPlaceholder="Search users..."
+/>
 ```
 
 ### Controlled Search
 
 ```tsx
-const [search, setSearch] = useState('');
+const [search, setSearch] = useState("");
 
 <DataTable
   columns={columns}
@@ -220,29 +227,29 @@ const [search, setSearch] = useState('');
 ```tsx
 const filters = [
   {
-    key: 'status',
-    label: 'Status',
-    type: 'select',
+    key: "status",
+    label: "Status",
+    type: "select",
     options: [
-      { value: 'active', label: 'Active' },
-      { value: 'inactive', label: 'Inactive' },
+      { value: "active", label: "Active" },
+      { value: "inactive", label: "Inactive" },
     ],
   },
   {
-    key: 'search',
-    label: 'Search',
-    type: 'text',
-    placeholder: 'Search by name...',
+    key: "search",
+    label: "Search",
+    type: "text",
+    placeholder: "Search by name...",
   },
   {
-    key: 'createdAt',
-    label: 'Created',
-    type: 'date',
+    key: "createdAt",
+    label: "Created",
+    type: "date",
   },
   {
-    key: 'dateRange',
-    label: 'Date Range',
-    type: 'dateRange',
+    key: "dateRange",
+    label: "Date Range",
+    type: "dateRange",
   },
 ];
 
@@ -325,15 +332,15 @@ const [selectedKeys, setSelectedKeys] = useState<Key[]>([]);
   onSelectionChange={setSelectedKeys}
   bulkActions={[
     {
-      key: 'delete',
-      label: 'Delete Selected',
+      key: "delete",
+      label: "Delete Selected",
       icon: <Trash2 size={16} />,
-      variant: 'danger',
+      variant: "danger",
       onClick: (keys) => handleBulkDelete(keys),
     },
     {
-      key: 'export',
-      label: 'Export Selected',
+      key: "export",
+      label: "Export Selected",
       icon: <Download size={16} />,
       onClick: (keys) => handleExport(keys),
     },
@@ -351,18 +358,18 @@ const [selectedKeys, setSelectedKeys] = useState<Key[]>([]);
   data={data}
   rowActions={[
     {
-      key: 'edit',
-      label: 'Edit',
+      key: "edit",
+      label: "Edit",
       icon: <Edit size={16} />,
       onClick: (row) => handleEdit(row),
     },
     {
-      key: 'delete',
-      label: 'Delete',
+      key: "delete",
+      label: "Delete",
       icon: <Trash2 size={16} />,
-      variant: 'danger',
+      variant: "danger",
       onClick: (row) => handleDelete(row),
-      show: (row) => row.status !== 'protected', // Conditional visibility
+      show: (row) => row.status !== "protected", // Conditional visibility
     },
   ]}
 />
@@ -386,8 +393,8 @@ const [selectedKeys, setSelectedKeys] = useState<Key[]>([]);
   data={[]}
   emptyState={{
     icon: <Users size={48} />,
-    title: 'No users found',
-    description: 'Try adjusting your search or filters',
+    title: "No users found",
+    description: "Try adjusting your search or filters",
     action: <Button onClick={clearFilters}>Clear Filters</Button>,
   }}
 />
@@ -428,40 +435,54 @@ const [selectedKeys, setSelectedKeys] = useState<Key[]>([]);
 ### User Management Table
 
 ```tsx
-import { DataTable, Badge, Button, Avatar } from '@orion/react';
-import { Edit, Trash2, MoreHorizontal, Mail } from 'lucide-react';
+import { DataTable, Badge, Button, Avatar } from "@orion/react";
+import { Edit, Trash2, MoreHorizontal, Mail } from "lucide-react";
 
 type User = {
   id: number;
   name: string;
   email: string;
   role: string;
-  status: 'active' | 'inactive' | 'pending';
+  status: "active" | "inactive" | "pending";
   avatar?: string;
 };
 
 const columns: DataTableColumn<User>[] = [
   {
-    key: 'name',
-    header: 'User',
+    key: "name",
+    header: "User",
     sortable: true,
     render: (_, row) => (
-      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-3)' }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "var(--spacing-3)",
+        }}
+      >
         <Avatar src={row.avatar} fallback={row.name[0]} size="sm" />
         <div>
           <div style={{ fontWeight: 500 }}>{row.name}</div>
-          <div style={{ color: 'var(--text-secondary)', fontSize: '0.875rem' }}>{row.email}</div>
+          <div style={{ color: "var(--text-secondary)", fontSize: "0.875rem" }}>
+            {row.email}
+          </div>
         </div>
       </div>
     ),
   },
-  { key: 'role', header: 'Role', sortable: true },
+  { key: "role", header: "Role", sortable: true },
   {
-    key: 'status',
-    header: 'Status',
+    key: "status",
+    header: "Status",
     render: (value) => (
       <Badge
-        variant={value === 'active' ? 'success' : value === 'pending' ? 'warning' : 'secondary'}
+        variant={
+          value === "active"
+            ? "success"
+            : value === "pending"
+              ? "warning"
+              : "secondary"
+        }
       >
         {value}
       </Badge>
@@ -480,26 +501,31 @@ const columns: DataTableColumn<User>[] = [
   onSelectionChange={setSelected}
   bulkActions={[
     {
-      key: 'delete',
-      label: 'Delete',
+      key: "delete",
+      label: "Delete",
       icon: <Trash2 size={16} />,
-      variant: 'danger',
+      variant: "danger",
       onClick: handleBulkDelete,
     },
     {
-      key: 'email',
-      label: 'Send Email',
+      key: "email",
+      label: "Send Email",
       icon: <Mail size={16} />,
       onClick: handleBulkEmail,
     },
   ]}
   rowActions={[
-    { key: 'edit', label: 'Edit', icon: <Edit size={16} />, onClick: handleEdit },
     {
-      key: 'delete',
-      label: 'Delete',
+      key: "edit",
+      label: "Edit",
+      icon: <Edit size={16} />,
+      onClick: handleEdit,
+    },
+    {
+      key: "delete",
+      label: "Delete",
       icon: <Trash2 size={16} />,
-      variant: 'danger',
+      variant: "danger",
       onClick: handleDelete,
     },
   ]}
@@ -518,16 +544,16 @@ const columns: DataTableColumn<User>[] = [
 
 ```tsx
 const columns = [
-  { key: 'sku', header: 'SKU', sortable: true },
-  { key: 'name', header: 'Product', sortable: true },
+  { key: "sku", header: "SKU", sortable: true },
+  { key: "name", header: "Product", sortable: true },
   {
-    key: 'stock',
-    header: 'Stock',
-    align: 'right',
+    key: "stock",
+    header: "Stock",
+    align: "right",
     render: (value) => (
       <span
         style={{
-          color: value < 10 ? 'var(--status-error)' : 'inherit',
+          color: value < 10 ? "var(--status-error)" : "inherit",
         }}
       >
         {value}
@@ -535,9 +561,9 @@ const columns = [
     ),
   },
   {
-    key: 'price',
-    header: 'Price',
-    align: 'right',
+    key: "price",
+    header: "Price",
+    align: "right",
     render: (value) => `$${value.toFixed(2)}`,
   },
 ];
@@ -549,20 +575,20 @@ const columns = [
   striped
   filters={[
     {
-      key: 'category',
-      label: 'Category',
-      type: 'select',
+      key: "category",
+      label: "Category",
+      type: "select",
       options: categories,
     },
     {
-      key: 'inStock',
-      label: 'Availability',
-      type: 'select',
+      key: "inStock",
+      label: "Availability",
+      type: "select",
       options: [
-        { value: 'all', label: 'All' },
-        { value: 'inStock', label: 'In Stock' },
-        { value: 'lowStock', label: 'Low Stock' },
-        { value: 'outOfStock', label: 'Out of Stock' },
+        { value: "all", label: "All" },
+        { value: "inStock", label: "In Stock" },
+        { value: "lowStock", label: "Low Stock" },
+        { value: "outOfStock", label: "Out of Stock" },
       ],
     },
   ]}

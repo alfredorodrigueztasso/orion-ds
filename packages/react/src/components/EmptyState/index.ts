@@ -14,5 +14,5 @@
  * />
  * ```
  */
-export { EmptyState } from './EmptyState';
-export type { EmptyStateProps, EmptyStateSize } from './EmptyState.types';
+export { EmptyState } from "./EmptyState";
+export type { EmptyStateProps, EmptyStateSize } from "./EmptyState.types";

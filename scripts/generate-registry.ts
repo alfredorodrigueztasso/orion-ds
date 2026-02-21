@@ -900,6 +900,39 @@ const COMPONENT_META: Record<string, ComponentMeta> = {
       },
     ],
   },
+  AgentCard: {
+    category: 'data-display',
+    tokens: ['--surface-base', '--surface-subtle', '--border-subtle', '--text-primary', '--text-secondary', '--text-tertiary', '--status-success', '--status-error', '--radius-control', '--shadow-sm', '--shadow-lg'],
+    modeAware: true,
+    dependencies: ['lucide-react'],
+    registryDependencies: ['card', 'avatar'],
+    accessibility: {
+      ariaAttributes: ['aria-label', 'aria-expanded'],
+      keyboardNav: [
+        { key: 'Enter', action: 'Open agent or activate menu' },
+        { key: 'Escape', action: 'Close actions menu' },
+      ],
+      notes: ['Action menu button must have aria-label', 'Menu automatically closes on outside click', 'Focus trapped within menu when open'],
+    },
+    examples: [
+      {
+        title: 'Basic agent card',
+        code: `<AgentCard\n  id="agent-1"\n  avatar="https://i.pravatar.cc/150?img=1"\n  title="Customer Support Agent"\n  description="AI-powered assistant for customer support"\n  timestamp="Updated 2 hours ago"\n/>`,
+      },
+      {
+        title: 'With status badge',
+        code: `<AgentCard\n  id="agent-2"\n  avatar={<Bot size={32} />}\n  title="Sales Assistant"\n  description="Qualified leads and schedules demos"\n  timestamp="Updated today"\n  status="published"\n/>`,
+      },
+      {
+        title: 'With actions menu',
+        code: `<AgentCard\n  id="agent-3"\n  avatar="https://i.pravatar.cc/150?img=3"\n  title="Email Agent"\n  description="Automates email campaigns"\n  timestamp="Updated yesterday"\n  onClick={() => console.log('View details')}\n  onEdit={() => console.log('Edit agent')}\n  onDelete={() => console.log('Delete agent')}\n/>`,
+      },
+      {
+        title: 'Grid layout',
+        code: `<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--spacing-4)' }}>\n  <AgentCard id="1" avatar={<Bot />} title="HR Assistant" description="Answers employee questions" timestamp="Active" status="published" />\n  <AgentCard id="2" avatar={<Sparkles />} title="Research Agent" description="Compiles research reports" timestamp="Active" status="published" />\n  <AgentCard id="3" avatar={<Zap />} title="Code Reviewer" description="Reviews pull requests" timestamp="Active" status="published" />\n</div>`,
+      },
+    ],
+  },
 };
 
 // ============================================================================

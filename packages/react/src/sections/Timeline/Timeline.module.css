@@ -6,15 +6,15 @@
   padding: var(--spacing-16) var(--spacing-4);
 }
 
-.timeline[data-background='base'] {
+.timeline[data-background="base"] {
   background: var(--surface-base);
 }
 
-.timeline[data-background='subtle'] {
+.timeline[data-background="subtle"] {
   background: var(--surface-subtle);
 }
 
-.timeline[data-background='none'] {
+.timeline[data-background="none"] {
   background: transparent;
 }
 
@@ -62,8 +62,8 @@
   margin: 0 auto;
 }
 
-.vertical[data-connector='true']::before {
-  content: '';
+.vertical[data-connector="true"]::before {
+  content: "";
   position: absolute;
   left: 24px;
   top: 0;
@@ -72,7 +72,7 @@
   background: var(--border-subtle);
 }
 
-.vertical[data-alternating='true']::before {
+.vertical[data-alternating="true"]::before {
   left: 50%;
   transform: translateX(-1px);
 }
@@ -84,17 +84,17 @@
   padding-bottom: var(--spacing-12);
 }
 
-.timeline[data-compact='true'] .event {
+.timeline[data-compact="true"] .event {
   padding-bottom: var(--spacing-8);
 }
 
-.vertical[data-alternating='true'] .event {
+.vertical[data-alternating="true"] .event {
   width: 50%;
   padding-left: 0;
   padding-right: var(--spacing-8);
 }
 
-.vertical[data-alternating='true'] .event:nth-child(even) {
+.vertical[data-alternating="true"] .event:nth-child(even) {
   margin-left: 50%;
   padding-left: var(--spacing-8);
   padding-right: 0;
@@ -117,30 +117,30 @@
   z-index: 1;
 }
 
-.vertical[data-alternating='true'] .marker {
+.vertical[data-alternating="true"] .marker {
   left: auto;
   right: -24px;
 }
 
-.vertical[data-alternating='true'] .event:nth-child(even) .marker {
+.vertical[data-alternating="true"] .event:nth-child(even) .marker {
   right: auto;
   left: -24px;
 }
 
-.event[data-status='completed'] .marker {
+.event[data-status="completed"] .marker {
   background: var(--interactive-primary);
   border-color: var(--interactive-primary);
   color: var(--interactive-primary-text);
 }
 
-.event[data-status='current'] .marker {
+.event[data-status="current"] .marker {
   background: var(--surface-base);
   border-color: var(--interactive-primary);
   color: var(--text-brand);
   box-shadow: 0 0 0 4px var(--interactive-primary-subtle);
 }
 
-.event[data-status='upcoming'] .marker {
+.event[data-status="upcoming"] .marker {
   background: var(--surface-subtle);
   border-color: var(--border-subtle);
   color: var(--text-tertiary);
@@ -159,11 +159,11 @@
   padding: var(--spacing-6);
 }
 
-.vertical[data-alternating='true'] .event:nth-child(even) .eventContent {
+.vertical[data-alternating="true"] .event:nth-child(even) .eventContent {
   text-align: left;
 }
 
-.vertical[data-alternating='true'] .event:nth-child(odd) .eventContent {
+.vertical[data-alternating="true"] .event:nth-child(odd) .eventContent {
   text-align: right;
 }
 
@@ -210,8 +210,8 @@
   position: relative;
 }
 
-.horizontal[data-connector='true']::before {
-  content: '';
+.horizontal[data-connector="true"]::before {
+  content: "";
   position: absolute;
   left: 0;
   right: 0;
@@ -246,31 +246,31 @@
     font-size: clamp(1.75rem, 6vw, 2rem);
   }
 
-  .vertical[data-alternating='true']::before {
+  .vertical[data-alternating="true"]::before {
     left: 24px;
     transform: none;
   }
 
-  .vertical[data-alternating='true'] .event {
+  .vertical[data-alternating="true"] .event {
     width: 100%;
     padding-left: var(--spacing-16);
     padding-right: 0;
   }
 
-  .vertical[data-alternating='true'] .event:nth-child(even) {
+  .vertical[data-alternating="true"] .event:nth-child(even) {
     margin-left: 0;
     padding-left: var(--spacing-16);
   }
 
-  .vertical[data-alternating='true'] .marker,
-  .vertical[data-alternating='true'] .event:nth-child(even) .marker {
+  .vertical[data-alternating="true"] .marker,
+  .vertical[data-alternating="true"] .event:nth-child(even) .marker {
     left: 0;
     right: auto;
   }
 
-  .vertical[data-alternating='true'] .eventContent,
-  .vertical[data-alternating='true'] .event:nth-child(odd) .eventContent,
-  .vertical[data-alternating='true'] .event:nth-child(even) .eventContent {
+  .vertical[data-alternating="true"] .eventContent,
+  .vertical[data-alternating="true"] .event:nth-child(odd) .eventContent,
+  .vertical[data-alternating="true"] .event:nth-child(even) .eventContent {
     text-align: left;
   }
 

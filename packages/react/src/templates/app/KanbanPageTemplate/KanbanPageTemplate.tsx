@@ -5,16 +5,16 @@
  * Designed for project management, task boards, and workflow visualization.
  */
 
-import { forwardRef } from 'react';
-import type { KanbanPageTemplateProps } from './KanbanPageTemplate.types';
+import { forwardRef } from "react";
+import type { KanbanPageTemplateProps } from "./KanbanPageTemplate.types";
 
 // Sections
-import { Sidebar } from '../../../sections/Sidebar';
-import { PageHeader } from '../../../sections/PageHeader';
-import { FilterBar } from '../../../sections/FilterBar';
-import { KanbanBoard } from '../../../sections/KanbanBoard';
+import { Sidebar } from "../../../sections/Sidebar";
+import { PageHeader } from "../../../sections/PageHeader";
+import { FilterBar } from "../../../sections/FilterBar";
+import { KanbanBoard } from "../../../sections/KanbanBoard";
 
-import styles from './KanbanPageTemplate.module.css';
+import styles from "./KanbanPageTemplate.module.css";
 
 /**
  * KanbanPageTemplate - Full Kanban board page composition
@@ -31,9 +31,17 @@ import styles from './KanbanPageTemplate.module.css';
  * />
  * ```
  */
-export const KanbanPageTemplate = forwardRef<HTMLDivElement, KanbanPageTemplateProps>(
-  ({ sidebar, pageHeader, filterBar, kanban, children, className, ...rest }, ref) => {
-    const kanbanClasses = [styles.kanbanPage, className].filter(Boolean).join(' ');
+export const KanbanPageTemplate = forwardRef<
+  HTMLDivElement,
+  KanbanPageTemplateProps
+>(
+  (
+    { sidebar, pageHeader, filterBar, kanban, children, className, ...rest },
+    ref,
+  ) => {
+    const kanbanClasses = [styles.kanbanPage, className]
+      .filter(Boolean)
+      .join(" ");
 
     return (
       <div ref={ref} className={kanbanClasses} {...rest}>
@@ -68,6 +76,6 @@ export const KanbanPageTemplate = forwardRef<HTMLDivElement, KanbanPageTemplateP
   },
 );
 
-KanbanPageTemplate.displayName = 'KanbanPageTemplate';
+KanbanPageTemplate.displayName = "KanbanPageTemplate";
 
 export default KanbanPageTemplate;

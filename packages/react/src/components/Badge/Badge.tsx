@@ -12,13 +12,13 @@
  * ```
  */
 
-import React from 'react';
-import type { BadgeProps } from './Badge.types';
-import styles from './Badge.module.css';
+import React from "react";
+import type { BadgeProps } from "./Badge.types";
+import styles from "./Badge.module.css";
 
 export const Badge: React.FC<BadgeProps> = ({
-  variant = 'neutral',
-  size = 'md',
+  variant = "neutral",
+  size = "md",
   dot = false,
   className,
   children,
@@ -26,7 +26,7 @@ export const Badge: React.FC<BadgeProps> = ({
 }) => {
   const classNames = [styles.badge, styles[variant], styles[size], className]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
 
   return (
     <span className={classNames} {...rest}>
@@ -36,4 +36,4 @@ export const Badge: React.FC<BadgeProps> = ({
   );
 };
 
-Badge.displayName = 'Badge';
+Badge.displayName = "Badge";

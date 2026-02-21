@@ -18,7 +18,7 @@ Contextual information popup on hover/focus.
 ### Basic
 
 ```tsx
-import { Tooltip, Button } from '@orion/react';
+import { Tooltip, Button } from "@orion/react";
 
 <Tooltip content="Click to save">
   <Button>Save</Button>
@@ -48,7 +48,7 @@ import { Tooltip, Button } from '@orion/react';
 ### With Icon Button
 
 ```tsx
-import { Settings } from 'lucide-react';
+import { Settings } from "lucide-react";
 
 <Tooltip content="Settings">
   <Button iconOnly icon={<Settings size={20} />} aria-label="Settings" />
@@ -107,7 +107,7 @@ import { Settings } from 'lucide-react';
 ### Form Field Help
 
 ```tsx
-<div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+<div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
   <label>Email</label>
   <Tooltip content="We'll never share your email">
     <HelpCircle size={16} />

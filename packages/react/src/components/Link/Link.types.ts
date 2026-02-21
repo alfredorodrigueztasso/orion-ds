@@ -4,22 +4,22 @@
  * Type definitions for the Orion Link component.
  */
 
-import type { AnchorHTMLAttributes, ReactNode } from 'react';
+import type { AnchorHTMLAttributes, ReactNode } from "react";
 
 /**
  * Link visual variants
  */
-export type LinkVariant = 'default' | 'subtle' | 'brand';
+export type LinkVariant = "default" | "subtle" | "brand";
 
 /**
  * Link sizes
  */
-export type LinkSize = 'sm' | 'md' | 'lg';
+export type LinkSize = "sm" | "md" | "lg";
 
 /**
  * Icon animation types
  */
-export type LinkIconAnimation = 'arrow' | 'arrow-left' | 'external' | 'none';
+export type LinkIconAnimation = "arrow" | "arrow-left" | "external" | "none";
 
 /**
  * Link component props

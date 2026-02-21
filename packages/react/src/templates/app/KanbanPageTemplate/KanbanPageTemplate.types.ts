@@ -4,11 +4,11 @@
  * Type definitions for the Kanban board page template.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
-import type { SidebarProps } from '../../../sections/Sidebar';
-import type { PageHeaderProps } from '../../../sections/PageHeader';
-import type { FilterBarProps } from '../../../sections/FilterBar';
-import type { KanbanBoardProps } from '../../../sections/KanbanBoard';
+import type { HTMLAttributes, ReactNode } from "react";
+import type { SidebarProps } from "../../../sections/Sidebar";
+import type { PageHeaderProps } from "../../../sections/PageHeader";
+import type { FilterBarProps } from "../../../sections/FilterBar";
+import type { KanbanBoardProps } from "../../../sections/KanbanBoard";
 
 /**
  * KanbanPageTemplate props

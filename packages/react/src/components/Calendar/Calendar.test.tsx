@@ -1,68 +1,70 @@
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { Calendar } from './Calendar';
+import { describe, it, expect, vi } from "vitest";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { Calendar } from "./Calendar";
 
-describe('Calendar', () => {
+describe("Calendar", () => {
   // Use a fixed date for consistent tests
   const january15 = new Date(2025, 0, 15); // Jan 15, 2025
 
-  it('renders month and year header', () => {
+  it("renders month and year header", () => {
     render(<Calendar selected={january15} />);
-    expect(screen.getByText('January 2025')).toBeInTheDocument();
+    expect(screen.getByText("January 2025")).toBeInTheDocument();
   });
 
-  it('renders weekday headers', () => {
+  it("renders weekday headers", () => {
     render(<Calendar selected={january15} />);
-    expect(screen.getByText('Su')).toBeInTheDocument();
-    expect(screen.getByText('Mo')).toBeInTheDocument();
-    expect(screen.getByText('Tu')).toBeInTheDocument();
-    expect(screen.getByText('We')).toBeInTheDocument();
-    expect(screen.getByText('Th')).toBeInTheDocument();
-    expect(screen.getByText('Fr')).toBeInTheDocument();
-    expect(screen.getByText('Sa')).toBeInTheDocument();
+    expect(screen.getByText("Su")).toBeInTheDocument();
+    expect(screen.getByText("Mo")).toBeInTheDocument();
+    expect(screen.getByText("Tu")).toBeInTheDocument();
+    expect(screen.getByText("We")).toBeInTheDocument();
+    expect(screen.getByText("Th")).toBeInTheDocument();
+    expect(screen.getByText("Fr")).toBeInTheDocument();
+    expect(screen.getByText("Sa")).toBeInTheDocument();
   });
 
-  it('renders navigation buttons', () => {
+  it("renders navigation buttons", () => {
     render(<Calendar selected={january15} />);
-    expect(screen.getByLabelText('Previous month')).toBeInTheDocument();
-    expect(screen.getByLabelText('Next month')).toBeInTheDocument();
+    expect(screen.getByLabelText("Previous month")).toBeInTheDocument();
+    expect(screen.getByLabelText("Next month")).toBeInTheDocument();
   });
 
-  it('navigates to previous month', async () => {
+  it("navigates to previous month", async () => {
     const user = userEvent.setup();
     render(<Calendar selected={january15} />);
 
-    await user.click(screen.getByLabelText('Previous month'));
-    expect(screen.getByText('December 2024')).toBeInTheDocument();
+    await user.click(screen.getByLabelText("Previous month"));
+    expect(screen.getByText("December 2024")).toBeInTheDocument();
   });
 
-  it('navigates to next month', async () => {
+  it("navigates to next month", async () => {
     const user = userEvent.setup();
     render(<Calendar selected={january15} />);
 
-    await user.click(screen.getByLabelText('Next month'));
-    expect(screen.getByText('February 2025')).toBeInTheDocument();
+    await user.click(screen.getByLabelText("Next month"));
+    expect(screen.getByText("February 2025")).toBeInTheDocument();
   });
 
-  it('renders day cells with accessible labels', () => {
+  it("renders day cells with accessible labels", () => {
     render(<Calendar selected={january15} />);
     // Jan 15, 2025 is a Wednesday
-    expect(screen.getByLabelText('Wednesday, January 15, 2025')).toBeInTheDocument();
+    expect(
+      screen.getByLabelText("Wednesday, January 15, 2025"),
+    ).toBeInTheDocument();
   });
 
   it('renders grid with role="grid"', () => {
     render(<Calendar selected={january15} />);
-    expect(screen.getByRole('grid')).toBeInTheDocument();
+    expect(screen.getByRole("grid")).toBeInTheDocument();
   });
 
-  describe('single mode', () => {
-    it('calls onSelect when a day is clicked', async () => {
+  describe("single mode", () => {
+    it("calls onSelect when a day is clicked", async () => {
       const user = userEvent.setup();
       const onSelect = vi.fn();
       render(<Calendar selected={january15} onSelect={onSelect} />);
 
-      await user.click(screen.getByLabelText('Thursday, January 16, 2025'));
+      await user.click(screen.getByLabelText("Thursday, January 16, 2025"));
       expect(onSelect).toHaveBeenCalledTimes(1);
 
       const selectedDate = onSelect.mock.calls[0][0] as Date;
@@ -71,34 +73,40 @@ describe('Calendar', () => {
       expect(selectedDate.getFullYear()).toBe(2025);
     });
 
-    it('marks selected date with aria-selected', () => {
+    it("marks selected date with aria-selected", () => {
       render(<Calendar selected={january15} />);
-      const selectedDay = screen.getByLabelText('Wednesday, January 15, 2025');
-      expect(selectedDay).toHaveAttribute('aria-selected', 'true');
+      const selectedDay = screen.getByLabelText("Wednesday, January 15, 2025");
+      expect(selectedDay).toHaveAttribute("aria-selected", "true");
     });
   });
 
-  describe('range mode', () => {
-    it('selects range start on first click', async () => {
+  describe("range mode", () => {
+    it("selects range start on first click", async () => {
       const user = userEvent.setup();
       const onSelect = vi.fn();
       render(
-        <Calendar mode="range" selected={{ from: january15, to: undefined }} onSelect={onSelect} />,
+        <Calendar
+          mode="range"
+          selected={{ from: january15, to: undefined }}
+          onSelect={onSelect}
+        />,
       );
 
       // Click a different day to complete the range
-      await user.click(screen.getByLabelText('Friday, January 17, 2025'));
+      await user.click(screen.getByLabelText("Friday, January 17, 2025"));
       expect(onSelect).toHaveBeenCalled();
     });
 
-    it('completes range on second click', async () => {
+    it("completes range on second click", async () => {
       const user = userEvent.setup();
       const onSelect = vi.fn();
       const rangeStart = { from: new Date(2025, 0, 10), to: undefined };
 
-      render(<Calendar mode="range" selected={rangeStart} onSelect={onSelect} />);
+      render(
+        <Calendar mode="range" selected={rangeStart} onSelect={onSelect} />,
+      );
 
-      await user.click(screen.getByLabelText('Wednesday, January 15, 2025'));
+      await user.click(screen.getByLabelText("Wednesday, January 15, 2025"));
       expect(onSelect).toHaveBeenCalled();
 
       const selectedRange = onSelect.mock.calls[0][0];
@@ -107,15 +115,17 @@ describe('Calendar', () => {
     });
   });
 
-  describe('multiple mode', () => {
-    it('adds date to selection', async () => {
+  describe("multiple mode", () => {
+    it("adds date to selection", async () => {
       const user = userEvent.setup();
       const onSelect = vi.fn();
       // Use january15 so the calendar shows January 2025
       // For multiple mode, the calendar defaults to current month.
       // We need to navigate or use dates in the current month.
       // Instead, let's pass selected with january15 so the calendar shows Jan 2025.
-      render(<Calendar mode="multiple" selected={[january15]} onSelect={onSelect} />);
+      render(
+        <Calendar mode="multiple" selected={[january15]} onSelect={onSelect} />,
+      );
 
       // The multiple mode calendar starts on current month (not from selected).
       // We need to navigate to January 2025 first, or use a date in the current month.
@@ -125,13 +135,15 @@ describe('Calendar', () => {
       // Actually, looking at the code: for multiple mode, it defaults to startOfMonth(new Date()).
       // So we need to click a day in the current month.
       const today = new Date();
-      const currentMonth = today.toLocaleString('default', { month: 'long' });
+      const currentMonth = today.toLocaleString("default", { month: "long" });
 
       // Find a day button in the current month (pick day 10 which should always exist)
       const dayButtons = screen
-        .getAllByRole('button')
+        .getAllByRole("button")
         .filter(
-          (b) => b.getAttribute('aria-label')?.includes(currentMonth) && b.textContent === '10',
+          (b) =>
+            b.getAttribute("aria-label")?.includes(currentMonth) &&
+            b.textContent === "10",
         );
 
       if (dayButtons.length > 0) {
@@ -144,7 +156,7 @@ describe('Calendar', () => {
       }
     });
 
-    it('removes date from selection on re-click', async () => {
+    it("removes date from selection on re-click", async () => {
       const user = userEvent.setup();
       const onSelect = vi.fn();
 
@@ -152,14 +164,16 @@ describe('Calendar', () => {
       const today = new Date();
       const day15 = new Date(today.getFullYear(), today.getMonth(), 15);
 
-      render(<Calendar mode="multiple" selected={[day15]} onSelect={onSelect} />);
+      render(
+        <Calendar mode="multiple" selected={[day15]} onSelect={onSelect} />,
+      );
 
       // Format the label for day15
-      const dayLabel = day15.toLocaleDateString('en-US', {
-        weekday: 'long',
-        month: 'long',
-        day: 'numeric',
-        year: 'numeric',
+      const dayLabel = day15.toLocaleDateString("en-US", {
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+        year: "numeric",
       });
 
       // Click the already-selected day to deselect it
@@ -171,49 +185,62 @@ describe('Calendar', () => {
     });
   });
 
-  describe('disabled dates', () => {
-    it('disables specific dates', () => {
+  describe("disabled dates", () => {
+    it("disables specific dates", () => {
       const disabledDates = [new Date(2025, 0, 20)];
       render(<Calendar selected={january15} disabled={disabledDates} />);
 
-      const disabledDay = screen.getByLabelText('Monday, January 20, 2025');
+      const disabledDay = screen.getByLabelText("Monday, January 20, 2025");
       expect(disabledDay).toBeDisabled();
     });
 
-    it('disables dates via predicate function', () => {
+    it("disables dates via predicate function", () => {
       // Disable weekends
-      const isWeekend = (date: Date) => date.getDay() === 0 || date.getDay() === 6;
+      const isWeekend = (date: Date) =>
+        date.getDay() === 0 || date.getDay() === 6;
       render(<Calendar selected={january15} disabled={isWeekend} />);
 
       // Jan 18, 2025 is a Saturday
-      const saturday = screen.getByLabelText('Saturday, January 18, 2025');
+      const saturday = screen.getByLabelText("Saturday, January 18, 2025");
       expect(saturday).toBeDisabled();
     });
 
-    it('does not call onSelect for disabled dates', async () => {
+    it("does not call onSelect for disabled dates", async () => {
       const onSelect = vi.fn();
       const disabledDates = [new Date(2025, 0, 20)];
 
-      render(<Calendar selected={january15} onSelect={onSelect} disabled={disabledDates} />);
+      render(
+        <Calendar
+          selected={january15}
+          onSelect={onSelect}
+          disabled={disabledDates}
+        />,
+      );
 
       // The disabled button has pointer-events: none from CSS.
       // Verify the button is disabled (HTML attribute), which prevents interaction.
-      const disabledDay = screen.getByLabelText('Monday, January 20, 2025');
+      const disabledDay = screen.getByLabelText("Monday, January 20, 2025");
       expect(disabledDay).toBeDisabled();
       expect(onSelect).not.toHaveBeenCalled();
     });
   });
 
-  it('respects weekStartsOn prop', () => {
+  it("respects weekStartsOn prop", () => {
     render(<Calendar selected={january15} weekStartsOn={1} />);
 
     // First weekday header should be Monday
-    const columnHeaders = screen.getAllByRole('columnheader');
-    expect(columnHeaders[0]).toHaveTextContent('Mo');
+    const columnHeaders = screen.getAllByRole("columnheader");
+    expect(columnHeaders[0]).toHaveTextContent("Mo");
   });
 
-  it('applies custom className', () => {
-    render(<Calendar selected={january15} className="custom-calendar" data-testid="cal" />);
-    expect(screen.getByTestId('cal')).toHaveClass('custom-calendar');
+  it("applies custom className", () => {
+    render(
+      <Calendar
+        selected={january15}
+        className="custom-calendar"
+        data-testid="cal"
+      />,
+    );
+    expect(screen.getByTestId("cal")).toHaveClass("custom-calendar");
   });
 });

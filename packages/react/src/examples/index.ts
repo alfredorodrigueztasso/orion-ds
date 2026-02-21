@@ -19,4 +19,4 @@
  * @module examples
  */
 
-export { LandingPageExample } from './LandingPage.example';
+export { LandingPageExample } from "./LandingPage.example";

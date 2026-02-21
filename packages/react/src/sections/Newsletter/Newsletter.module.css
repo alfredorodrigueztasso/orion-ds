@@ -198,12 +198,12 @@
  * BRAND BACKGROUND ADJUSTMENTS
  * ============================================================================ */
 
-:global([class*='bg-brand']) .title,
-:global([class*='bg-brand']) .description {
+:global([class*="bg-brand"]) .title,
+:global([class*="bg-brand"]) .description {
   color: var(--interactive-primary-text);
 }
 
-:global([class*='bg-brand']) .disclaimer {
+:global([class*="bg-brand"]) .disclaimer {
   color: var(--text-on-dark-secondary);
 }
 

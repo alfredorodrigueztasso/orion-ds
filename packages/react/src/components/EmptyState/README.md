@@ -18,7 +18,7 @@ Placeholder for empty content areas with optional actions.
 ### Basic
 
 ```tsx
-import { EmptyState } from '@orion/react';
+import { EmptyState } from "@orion/react";
 
 <EmptyState title="No items found" />;
 ```
@@ -59,7 +59,7 @@ import { Inbox, Search, FileX } from 'lucide-react';
 ### With Action
 
 ```tsx
-import { Plus } from 'lucide-react';
+import { Plus } from "lucide-react";
 
 <EmptyState
   icon={<Inbox size={48} />}
@@ -143,7 +143,7 @@ function SearchResults({ results, query }) {
         title={`No results for "${query}"`}
         description="Try different keywords or check your spelling"
         action={
-          <Button variant="secondary" onClick={() => setQuery('')}>
+          <Button variant="secondary" onClick={() => setQuery("")}>
             Clear Search
           </Button>
         }

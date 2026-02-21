@@ -4,11 +4,11 @@
  * A promotional banner section with multiple style variants.
  */
 
-import React from 'react';
-import { X } from 'lucide-react';
-import { Button } from '../../components/Button';
-import type { BannerProps } from './Banner.types';
-import styles from './Banner.module.css';
+import React from "react";
+import { X } from "lucide-react";
+import { Button } from "../../components/Button";
+import type { BannerProps } from "./Banner.types";
+import styles from "./Banner.module.css";
 
 /**
  * Banner section for promotions and announcements
@@ -21,10 +21,10 @@ export const Banner: React.FC<BannerProps> = ({
   ctaHref,
   secondaryCtaLabel,
   secondaryCtaHref,
-  variant = 'default',
+  variant = "default",
   backgroundImage,
   sideImage,
-  imagePosition = 'right',
+  imagePosition = "right",
   backgroundColor,
   gradient,
   dismissible = false,
@@ -39,12 +39,12 @@ export const Banner: React.FC<BannerProps> = ({
   const customStyle: React.CSSProperties = {
     ...style,
     ...(backgroundImage &&
-      variant === 'image' && {
+      variant === "image" && {
         backgroundImage: `url(${backgroundImage})`,
       }),
     ...(backgroundColor && { backgroundColor }),
     ...(gradient &&
-      variant === 'gradient' && {
+      variant === "gradient" && {
         background: gradient,
       }),
   };
@@ -58,16 +58,16 @@ export const Banner: React.FC<BannerProps> = ({
         <div className={styles.actions}>
           {ctaLabel && ctaHref && (
             <Button
-              variant={variant === 'split' ? 'primary' : 'inverse'}
-              onClick={() => window.location.href = ctaHref}
+              variant={variant === "split" ? "primary" : "inverse"}
+              onClick={() => (window.location.href = ctaHref)}
             >
               {ctaLabel}
             </Button>
           )}
           {secondaryCtaLabel && secondaryCtaHref && (
             <Button
-              variant={variant === 'split' ? 'secondary' : 'ghost'}
-              onClick={() => window.location.href = secondaryCtaHref}
+              variant={variant === "split" ? "secondary" : "ghost"}
+              onClick={() => (window.location.href = secondaryCtaHref)}
             >
               {secondaryCtaLabel}
             </Button>
@@ -79,19 +79,27 @@ export const Banner: React.FC<BannerProps> = ({
 
   return (
     <section
-      className={`${styles.banner} ${className || ''}`}
+      className={`${styles.banner} ${className || ""}`}
       data-variant={variant}
       data-compact={compact}
-      data-centered={centered && variant !== 'split'}
+      data-centered={centered && variant !== "split"}
       data-full-width={fullWidth}
       style={customStyle}
       {...rest}
     >
       <div className={styles.container}>
-        {variant === 'split' && sideImage ? (
-          <div className={styles.splitLayout} data-image-position={imagePosition}>
+        {variant === "split" && sideImage ? (
+          <div
+            className={styles.splitLayout}
+            data-image-position={imagePosition}
+          >
             <div className={styles.splitContent}>{renderContent()}</div>
-            <img src={sideImage} alt="" className={styles.splitImage} aria-hidden="true" />
+            <img
+              src={sideImage}
+              alt=""
+              className={styles.splitImage}
+              aria-hidden="true"
+            />
           </div>
         ) : (
           renderContent()
@@ -113,4 +121,4 @@ export const Banner: React.FC<BannerProps> = ({
   );
 };
 
-Banner.displayName = 'Banner';
+Banner.displayName = "Banner";

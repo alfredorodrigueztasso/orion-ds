@@ -15,7 +15,7 @@ export interface OrionConfig {
 
 export interface RegistryIndexItem {
   name: string;
-  type: 'registry:component' | 'registry:section' | 'registry:template';
+  type: "registry:component" | "registry:section" | "registry:template";
   title: string;
   description: string;
   category: string;
@@ -68,4 +68,4 @@ export interface ResolvedComponent {
   }>;
 }
 
-export type ItemType = 'component' | 'section' | 'template';
+export type ItemType = "component" | "section" | "template";

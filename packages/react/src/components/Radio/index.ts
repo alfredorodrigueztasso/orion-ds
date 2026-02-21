@@ -10,5 +10,5 @@
  * <Radio label="Option C" name="choice" value="c" checked />
  * ```
  */
-export { Radio } from './Radio';
-export type { RadioProps, RadioSize } from './Radio.types';
+export { Radio } from "./Radio";
+export type { RadioProps, RadioSize } from "./Radio.types";

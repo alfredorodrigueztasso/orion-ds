@@ -21,10 +21,10 @@
  * ```
  */
 
-import { forwardRef, useId } from 'react';
-import { AlertCircle } from 'lucide-react';
-import type { FieldProps } from './Field.types';
-import styles from './Field.module.css';
+import { forwardRef, useId } from "react";
+import { AlertCircle } from "lucide-react";
+import type { FieldProps } from "./Field.types";
+import styles from "./Field.module.css";
 
 export const Field = forwardRef<HTMLInputElement, FieldProps>(
   (
@@ -35,14 +35,14 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
       leftIcon,
       rightIcon,
       fullWidth = false,
-      size = 'md',
+      size = "md",
       optional = false,
       className,
       id,
       disabled,
       required,
-      'aria-label': ariaLabel,
-      'aria-describedby': ariaDescribedBy,
+      "aria-label": ariaLabel,
+      "aria-describedby": ariaDescribedBy,
       ...rest
     },
     ref,
@@ -63,13 +63,14 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
     if (error) describedByIds.push(errorId);
     if (helperText && !error) describedByIds.push(helperId);
     if (ariaDescribedBy) describedByIds.push(ariaDescribedBy);
-    const computedDescribedBy = describedByIds.length > 0 ? describedByIds.join(' ') : undefined;
+    const computedDescribedBy =
+      describedByIds.length > 0 ? describedByIds.join(" ") : undefined;
 
     // Ensure input has an accessible name
     const hasAccessibleName = Boolean(label || ariaLabel);
-    if (!hasAccessibleName && process.env.NODE_ENV === 'development') {
+    if (!hasAccessibleName && process.env.NODE_ENV === "development") {
       console.warn(
-        'Field: Missing accessible name. Provide either a `label` prop or `aria-label` for screen reader users.',
+        "Field: Missing accessible name. Provide either a `label` prop or `aria-label` for screen reader users.",
       );
     }
 
@@ -82,7 +83,7 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     const inputClasses = [
       styles.input,
@@ -91,10 +92,10 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
       (rightIcon || showErrorIcon) && styles.hasRightIcon,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     // Icon sizes based on field size
-    const iconSize = size === 'sm' ? 14 : size === 'lg' ? 20 : 16;
+    const iconSize = size === "sm" ? 14 : size === "lg" ? 20 : 16;
 
     return (
       <div className={containerClasses}>
@@ -132,7 +133,7 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
             disabled={disabled}
             required={required}
             aria-required={required || undefined}
-            aria-invalid={error ? 'true' : 'false'}
+            aria-invalid={error ? "true" : "false"}
             aria-describedby={computedDescribedBy}
             aria-label={!label ? ariaLabel : undefined}
             {...rest}
@@ -150,7 +151,10 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
 
           {/* Error icon (if no right icon provided) */}
           {showErrorIcon && (
-            <span className={`${styles.rightIcon} ${styles.errorIconInline}`} aria-hidden="true">
+            <span
+              className={`${styles.rightIcon} ${styles.errorIconInline}`}
+              aria-hidden="true"
+            >
               <AlertCircle size={iconSize} />
             </span>
           )}
@@ -165,8 +169,17 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
 
         {/* Error message - role="alert" announces to screen readers immediately */}
         {error && (
-          <p id={errorId} className={styles.errorMessage} role="alert" aria-live="assertive">
-            <AlertCircle size={14} aria-hidden="true" className={styles.errorIconMessage} />
+          <p
+            id={errorId}
+            className={styles.errorMessage}
+            role="alert"
+            aria-live="assertive"
+          >
+            <AlertCircle
+              size={14}
+              aria-hidden="true"
+              className={styles.errorIconMessage}
+            />
             <span>{error}</span>
           </p>
         )}
@@ -175,4 +188,4 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
   },
 );
 
-Field.displayName = 'Field';
+Field.displayName = "Field";

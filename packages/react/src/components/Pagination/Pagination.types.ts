@@ -4,12 +4,12 @@
  * Type definitions for the Orion Pagination component.
  */
 
-import type { HTMLAttributes } from 'react';
+import type { HTMLAttributes } from "react";
 
 /**
  * Pagination sizes
  */
-export type PaginationSize = 'sm' | 'md' | 'lg';
+export type PaginationSize = "sm" | "md" | "lg";
 
 /**
  * Pagination component props
@@ -23,7 +23,10 @@ export type PaginationSize = 'sm' | 'md' | 'lg';
  * />
  * ```
  */
-export interface PaginationProps extends Omit<HTMLAttributes<HTMLElement>, 'onChange'> {
+export interface PaginationProps extends Omit<
+  HTMLAttributes<HTMLElement>,
+  "onChange"
+> {
   /**
    * Current active page (1-indexed)
    */

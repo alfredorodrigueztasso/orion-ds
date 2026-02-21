@@ -4,12 +4,12 @@
  * Type definitions for the Orion Combobox/Autocomplete component.
  */
 
-import type { InputHTMLAttributes, ReactNode } from 'react';
+import type { InputHTMLAttributes, ReactNode } from "react";
 
 /**
  * Combobox size variants
  */
-export type ComboboxSize = 'sm' | 'md' | 'lg';
+export type ComboboxSize = "sm" | "md" | "lg";
 
 /**
  * Combobox option item
@@ -80,7 +80,7 @@ export interface ComboboxGroup {
  */
 export interface ComboboxProps extends Omit<
   InputHTMLAttributes<HTMLInputElement>,
-  'size' | 'value' | 'onChange'
+  "size" | "value" | "onChange"
 > {
   /**
    * Available options
@@ -167,7 +167,11 @@ export interface ComboboxProps extends Omit<
   /**
    * Custom render function for options
    */
-  renderOption?: (option: ComboboxOption, isSelected: boolean, isHighlighted: boolean) => ReactNode;
+  renderOption?: (
+    option: ComboboxOption,
+    isSelected: boolean,
+    isHighlighted: boolean,
+  ) => ReactNode;
 
   /**
    * Maximum height of the dropdown

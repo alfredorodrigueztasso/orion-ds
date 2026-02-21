@@ -28,13 +28,13 @@
 
 > ⚠️ **Dark mode ≠ inverse.** Regular variants (`primary`, `secondary`, `ghost`) automatically adapt to dark mode via CSS tokens. You never need to switch to inverse just because the theme is dark.
 
-| Background                          | Use                                           | Why                                           |
-| ----------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| White surface (light mode default)  | `primary`, `secondary`, `ghost`, `danger`     | Regular variants designed for this            |
-| Dark surface (`data-theme="dark"`)  | `primary`, `secondary`, `ghost`, `danger`     | Same variants — they adapt automatically      |
-| Brand color (`--interactive-primary`)| `inverse`, `secondaryInverse`, `ghostInverse` | Colored surface needs contrast-specific style |
-| Gradient background                 | `inverse`, `secondaryInverse`, `ghostInverse` | Same reason — colored surface                 |
-| Photo / dark overlay                | `inverse`, `secondaryInverse`, `ghostInverse` | Dark-colored surface, not dark mode           |
+| Background                            | Use                                           | Why                                           |
+| ------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| White surface (light mode default)    | `primary`, `secondary`, `ghost`, `danger`     | Regular variants designed for this            |
+| Dark surface (`data-theme="dark"`)    | `primary`, `secondary`, `ghost`, `danger`     | Same variants — they adapt automatically      |
+| Brand color (`--interactive-primary`) | `inverse`, `secondaryInverse`, `ghostInverse` | Colored surface needs contrast-specific style |
+| Gradient background                   | `inverse`, `secondaryInverse`, `ghostInverse` | Same reason — colored surface                 |
+| Photo / dark overlay                  | `inverse`, `secondaryInverse`, `ghostInverse` | Dark-colored surface, not dark mode           |
 
 ```tsx
 // ✅ CORRECT — white/light background
@@ -62,15 +62,15 @@
 
 ## Variants Guide
 
-| Variant              | Surface type              | Semantic Meaning          | Use When                                          |
-| -------------------- | ------------------------- | ------------------------- | ------------------------------------------------- |
-| `primary`            | Any theme (light or dark) | Main action               | Primary CTA - Submit, Save, Continue, Get Started |
-| `secondary`          | Any theme (light or dark) | Supporting action         | Secondary CTA - Cancel, Back, Learn More          |
-| `ghost`              | Any theme (light or dark) | Subtle action             | Tertiary - Close, Dismiss, Skip                   |
-| `danger`             | Any surface               | Destructive action        | Irreversible - Delete, Remove, Unsubscribe        |
-| `inverse`            | Colored surface only      | Primary CTA on colored bg | "Get Started" on brand banner or hero             |
-| `secondaryInverse`   | Colored surface only      | Supporting on colored bg  | "Learn More" next to an inverse primary           |
-| `ghostInverse`       | Colored surface only      | Subtle on colored bg      | "Skip" or "Maybe Later" on colored banner         |
+| Variant            | Surface type              | Semantic Meaning          | Use When                                          |
+| ------------------ | ------------------------- | ------------------------- | ------------------------------------------------- |
+| `primary`          | Any theme (light or dark) | Main action               | Primary CTA - Submit, Save, Continue, Get Started |
+| `secondary`        | Any theme (light or dark) | Supporting action         | Secondary CTA - Cancel, Back, Learn More          |
+| `ghost`            | Any theme (light or dark) | Subtle action             | Tertiary - Close, Dismiss, Skip                   |
+| `danger`           | Any surface               | Destructive action        | Irreversible - Delete, Remove, Unsubscribe        |
+| `inverse`          | Colored surface only      | Primary CTA on colored bg | "Get Started" on brand banner or hero             |
+| `secondaryInverse` | Colored surface only      | Supporting on colored bg  | "Learn More" next to an inverse primary           |
+| `ghostInverse`     | Colored surface only      | Subtle on colored bg      | "Skip" or "Maybe Later" on colored banner         |
 
 ### Visual Hierarchy
 
@@ -80,6 +80,7 @@ Inverse:  Inverse  > SecondaryInverse > GhostInverse  (colored surfaces only)
 ```
 
 **Rules:**
+
 - Only ONE primary (or inverse) button per logical section
 - **Dark mode uses the same regular variants** — `secondary` becomes white-overlay automatically, `ghost` becomes white text automatically
 - Inverse variants are **theme-invariant** — they look identical in light and dark mode because they're designed for the colored surface, not the theme
@@ -104,22 +105,22 @@ Sizes adapt to the current mode (`display`, `product`, `app`):
 ```typescript
 interface ButtonProps {
   variant?:
-    | 'primary'          // Main CTA — white/light/dark backgrounds (default)
-    | 'secondary'        // Supporting action — white/light/dark backgrounds
-    | 'ghost'            // Subtle action — white/light/dark backgrounds
-    | 'danger'           // Destructive action — any background
-    | 'inverse'          // Primary CTA — colored/photo backgrounds only
-    | 'secondaryInverse' // Supporting action — colored/photo backgrounds only
-    | 'ghostInverse';    // Subtle action — colored/photo backgrounds only
+    | "primary" // Main CTA — white/light/dark backgrounds (default)
+    | "secondary" // Supporting action — white/light/dark backgrounds
+    | "ghost" // Subtle action — white/light/dark backgrounds
+    | "danger" // Destructive action — any background
+    | "inverse" // Primary CTA — colored/photo backgrounds only
+    | "secondaryInverse" // Supporting action — colored/photo backgrounds only
+    | "ghostInverse"; // Subtle action — colored/photo backgrounds only
   // default: 'primary'
-  size?: 'sm' | 'md' | 'lg'; // default: 'md'
+  size?: "sm" | "md" | "lg"; // default: 'md'
   isLoading?: boolean; // default: false
   fullWidth?: boolean; // default: false
   icon?: ReactNode; // Left icon
   iconRight?: ReactNode; // Right icon
   iconOnly?: boolean; // default: false
   disabled?: boolean;
-  type?: 'button' | 'submit' | 'reset'; // default: 'button'
+  type?: "button" | "submit" | "reset"; // default: 'button'
   children?: ReactNode;
 }
 ```
@@ -178,12 +179,14 @@ import { Button } from '@orion/react';
 ```
 
 **When to use inverse variants**:
+
 - ✅ Backgrounds using `var(--interactive-primary)` or any brand color
 - ✅ Gradient backgrounds (`var(--color-brand-400)` to `var(--color-brand-600)`)
 - ✅ Photo backgrounds with dark overlays
 - ✅ Any context where regular variants lack contrast
 
 **When NOT to use inverse variants**:
+
 - ❌ White / light backgrounds → use `primary`, `secondary`, `ghost`
 - ❌ In forms, tables, dashboards → always use regular variants
 - ❌ Dark mode alone is not a reason to use inverse — dark mode adapts `secondary` and `ghost` automatically
@@ -220,7 +223,7 @@ import { Download, ChevronRight, Settings, Plus } from 'lucide-react';
 ### Loading State
 
 ```tsx
-import { Button } from '@orion/react';
+import { Button } from "@orion/react";
 
 <Button isLoading>Saving...</Button>;
 
@@ -236,7 +239,7 @@ function SaveButton() {
 
   return (
     <Button onClick={handleSave} isLoading={isLoading}>
-      {isLoading ? 'Saving...' : 'Save'}
+      {isLoading ? "Saving..." : "Save"}
     </Button>
   );
 }
@@ -362,7 +365,7 @@ All buttons have visible `:focus-visible` states. Do not override.
 <form onSubmit={handleSubmit}>
   <Field label="Email" name="email" required />
   <Button type="submit" fullWidth isLoading={isSubmitting}>
-    {isSubmitting ? 'Signing up...' : 'Sign Up'}
+    {isSubmitting ? "Signing up..." : "Sign Up"}
   </Button>
 </form>
 ```

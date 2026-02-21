@@ -5,7 +5,7 @@
 ## Quick Start
 
 ```tsx
-import { Hero, Button, Badge } from '@orion/react';
+import { Hero, Button, Badge } from "@orion/react";
 
 <Hero
   badge={<Badge variant="brand">New Release</Badge>}
@@ -162,20 +162,20 @@ interface HeroProps {
 
   // Media (for variant="default" only)
   media?: ReactNode; // Image, video, or illustration
-  mediaPosition?: 'left' | 'right' | 'bottom'; // default: 'right'
+  mediaPosition?: "left" | "right" | "bottom"; // default: 'right'
   showDefaultMedia?: boolean; // Show placeholder when no media - default: false
 
   // Trust
   trustIndicators?: ReactNode; // Logos, badges, social proof
 
   // Layout
-  layout?: 'contained' | 'fullscreen' | 'card'; // default: 'contained'
-  align?: 'left' | 'center'; // default: 'center'
-  size?: 'sm' | 'md' | 'lg'; // default: 'lg'
+  layout?: "contained" | "fullscreen" | "card"; // default: 'contained'
+  align?: "left" | "center"; // default: 'center'
+  size?: "sm" | "md" | "lg"; // default: 'lg'
   elevated?: boolean; // Add shadow to card layout - default: false
 
   // Background (for variant="background" only)
-  variant?: 'default' | 'background'; // default: 'default'
+  variant?: "default" | "background"; // default: 'default'
   backgroundImage?: string; // URL for background image
   backgroundOverlay?: number; // Overlay opacity 0-1 - default: 0.6
 
@@ -272,7 +272,7 @@ Add social proof below CTAs with logos, testimonials, or stats.
   description="Join companies like Stripe, Notion, and Linear."
   primaryAction={<Button size="lg">Start Building</Button>}
   trustIndicators={
-    <div style={{ display: 'flex', gap: 'var(--spacing-8)', opacity: 0.6 }}>
+    <div style={{ display: "flex", gap: "var(--spacing-8)", opacity: 0.6 }}>
       <img src="/logos/stripe.svg" alt="Stripe" height={24} />
       <img src="/logos/notion.svg" alt="Notion" height={24} />
       <img src="/logos/linear.svg" alt="Linear" height={24} />
@@ -288,8 +288,8 @@ Add social proof below CTAs with logos, testimonials, or stats.
 ### SaaS Landing Page
 
 ```tsx
-import { Navbar, Hero, Button, Badge } from '@orion/react';
-import { Play } from 'lucide-react';
+import { Navbar, Hero, Button, Badge } from "@orion/react";
+import { Play } from "lucide-react";
 
 <>
   <Navbar sticky>
@@ -319,7 +319,9 @@ import { Play } from 'lucide-react';
       </Button>
     }
     trustIndicators={
-      <p style={{ color: 'var(--text-tertiary)' }}>Trusted by 10,000+ developers worldwide</p>
+      <p style={{ color: "var(--text-tertiary)" }}>
+        Trusted by 10,000+ developers worldwide
+      </p>
     }
   />
 </>;
@@ -328,8 +330,8 @@ import { Play } from 'lucide-react';
 ### App Download Page
 
 ```tsx
-import { Hero, Button } from '@orion/react';
-import { Download, Apple, Smartphone } from 'lucide-react';
+import { Hero, Button } from "@orion/react";
+import { Download, Apple, Smartphone } from "lucide-react";
 
 <Hero
   layout="fullscreen"
@@ -359,8 +361,8 @@ import { Download, Apple, Smartphone } from 'lucide-react';
 ### Product Page with Screenshot
 
 ```tsx
-import { Hero, Button } from '@orion/react';
-import { ArrowRight } from 'lucide-react';
+import { Hero, Button } from "@orion/react";
+import { ArrowRight } from "lucide-react";
 
 <Hero
   headline="Collaboration Without Chaos"
@@ -375,8 +377,8 @@ import { ArrowRight } from 'lucide-react';
       src="/product-screenshot.png"
       alt="Dashboard showing real-time collaboration features"
       style={{
-        borderRadius: 'var(--radius-container)',
-        boxShadow: 'var(--shadow-lg)',
+        borderRadius: "var(--radius-container)",
+        boxShadow: "var(--shadow-lg)",
       }}
     />
   }
@@ -388,7 +390,7 @@ import { ArrowRight } from 'lucide-react';
 ### Card Layout (Embedded Hero)
 
 ```tsx
-import { Hero, Button, Badge } from '@orion/react';
+import { Hero, Button, Badge } from "@orion/react";
 
 <Hero
   layout="card"

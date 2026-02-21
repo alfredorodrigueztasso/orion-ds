@@ -40,43 +40,51 @@
  */
 
 // CSS marker for style detection (used by ThemeProvider to warn about missing CSS)
-import './styles/marker.css';
+import "./styles/marker.css";
 
 // ============================================================================
 // COMPONENTS
 // ============================================================================
 
 // Icons
-export { Icon } from './components/Icon';
-export type { IconProps, IconSize, IconColor } from './components/Icon';
+export { Icon } from "./components/Icon";
+export type { IconProps, IconSize, IconColor } from "./components/Icon";
 
 // Actions
-export { Button } from './components/Button';
-export type { ButtonProps, ButtonVariant, ButtonSize } from './components/Button';
+export { Button } from "./components/Button";
+export type {
+  ButtonProps,
+  ButtonVariant,
+  ButtonSize,
+} from "./components/Button";
 
 // Forms
-export { Field } from './components/Field';
-export type { FieldProps } from './components/Field';
+export { Field } from "./components/Field";
+export type { FieldProps } from "./components/Field";
 
-export { Select } from './components/Select';
-export type { SelectProps, SelectOption } from './components/Select';
+export { Select } from "./components/Select";
+export type { SelectProps, SelectOption } from "./components/Select";
 
-export { Switch } from './components/Switch';
-export type { SwitchProps, SwitchSize } from './components/Switch';
+export { Switch } from "./components/Switch";
+export type { SwitchProps, SwitchSize } from "./components/Switch";
 
-export { Toggle } from './components/Toggle';
-export type { ToggleProps, ToggleVariant, ToggleSize } from './components/Toggle';
+export { Toggle } from "./components/Toggle";
+export type {
+  ToggleProps,
+  ToggleVariant,
+  ToggleSize,
+} from "./components/Toggle";
 
-export { ToggleGroup } from './components/ToggleGroup';
+export { ToggleGroup } from "./components/ToggleGroup";
 export type {
   ToggleGroupProps,
   ToggleGroupItemProps,
   ToggleGroupType,
   ToggleGroupVariant,
   ToggleGroupSize,
-} from './components/ToggleGroup';
+} from "./components/ToggleGroup";
 
-export { InputOTP } from './components/InputOTP';
+export { InputOTP } from "./components/InputOTP";
 export type {
   InputOTPProps,
   InputOTPGroupProps,
@@ -84,71 +92,172 @@ export type {
   InputOTPSeparatorProps,
   InputOTPType,
   InputOTPSize,
-} from './components/InputOTP';
+} from "./components/InputOTP";
 
-export { Checkbox } from './components/Checkbox';
-export type { CheckboxProps, CheckboxSize } from './components/Checkbox';
+export { Checkbox } from "./components/Checkbox";
+export type { CheckboxProps, CheckboxSize } from "./components/Checkbox";
 
-export { Radio } from './components/Radio';
-export type { RadioProps, RadioSize } from './components/Radio';
+export { Radio } from "./components/Radio";
+export type { RadioProps, RadioSize } from "./components/Radio";
 
-export { Textarea } from './components/Textarea';
-export type { TextareaProps, TextareaSize, TextareaResize } from './components/Textarea';
+export { Textarea } from "./components/Textarea";
+export type {
+  TextareaProps,
+  TextareaSize,
+  TextareaResize,
+} from "./components/Textarea";
+
+export { Slider } from "./components/Slider";
+export type { SliderProps, SliderSize } from "./components/Slider";
+
+export { Combobox } from "./components/Combobox";
+export type {
+  ComboboxProps,
+  ComboboxOption,
+  ComboboxGroup,
+  ComboboxSize,
+} from "./components/Combobox";
+
+export { SearchInput } from "./components/SearchInput";
+export type {
+  SearchInputProps,
+  SearchInputSize,
+} from "./components/SearchInput";
 
 // Layout
-export { Card } from './components/Card';
+export { Divider } from "./components/Divider";
+export type {
+  DividerProps,
+  DividerOrientation,
+  DividerVariant,
+} from "./components/Divider";
+
+export { Accordion } from "./components/Accordion";
+export type {
+  AccordionProps,
+  AccordionItem,
+  AccordionVariant,
+  AccordionItemProps,
+} from "./components/Accordion";
+
+export { Collapsible } from "./components/Collapsible";
+export type {
+  CollapsibleProps,
+  CollapsibleTriggerProps,
+  CollapsibleContentProps,
+} from "./components/Collapsible";
+
+export { Stepper } from "./components/Stepper";
+export type {
+  StepperProps,
+  StepItem,
+  StepStatus,
+  StepperOrientation,
+  StepperSize,
+} from "./components/Stepper";
+
+// Data Display
+export { Card } from "./components/Card";
 export type {
   CardProps,
   CardHeaderProps,
   CardBodyProps,
   CardFooterProps,
   CardVariant,
-} from './components/Card';
+} from "./components/Card";
 
-// Error Handling
-export { ErrorBoundary } from './components/ErrorBoundary';
-export type { ErrorBoundaryProps } from './components/ErrorBoundary';
+export { AgentCard } from "./components/AgentCard";
+export type { AgentCardProps, AgentStatus } from "./components/AgentCard";
+
+export { Avatar } from "./components/Avatar";
+export type { AvatarProps, AvatarSize } from "./components/Avatar";
+
+export { Table } from "./components/Table";
+export type {
+  TableProps,
+  TableColumn,
+  TableSize,
+  SortDirection,
+} from "./components/Table";
+
+export {
+  ChartContainer,
+  ChartTooltipContent,
+  ChartLegendContent,
+  ChartGradient,
+  ChartTooltip,
+  ChartLegend,
+} from "./components/Chart";
+export type {
+  ChartConfig,
+  ChartConfigItem,
+  ChartContainerProps,
+  ChartTooltipContentProps,
+  ChartLegendContentProps,
+  ChartGradientProps,
+} from "./components/Chart";
+
+export { List } from "./components/List";
+export type {
+  ListProps,
+  ListItem,
+  ListSize,
+  ListVariant,
+} from "./components/List";
+
+export { Chip } from "./components/Chip";
+export type { ChipProps, ChipVariant, ChipSize } from "./components/Chip";
+
+export { Badge } from "./components/Badge";
+export type { BadgeProps, BadgeVariant, BadgeSize } from "./components/Badge";
+
+export { Pagination } from "./components/Pagination";
+export type { PaginationProps, PaginationSize } from "./components/Pagination";
 
 // Feedback
-export { Badge } from './components/Badge';
-export type { BadgeProps, BadgeVariant, BadgeSize } from './components/Badge';
+export { Alert } from "./components/Alert";
+export type { AlertProps, AlertVariant } from "./components/Alert";
 
-export { Alert } from './components/Alert';
-export type { AlertProps, AlertVariant } from './components/Alert';
+export { Spinner } from "./components/Spinner";
+export type {
+  SpinnerProps,
+  SpinnerSize,
+  SpinnerVariant,
+} from "./components/Spinner";
 
-export { Spinner } from './components/Spinner';
-export type { SpinnerProps, SpinnerSize, SpinnerVariant } from './components/Spinner';
-
-export { ProgressBar } from './components/ProgressBar';
+export { ProgressBar } from "./components/ProgressBar";
 export type {
   ProgressBarProps,
   ProgressBarSize,
   ProgressBarVariant,
-} from './components/ProgressBar';
+} from "./components/ProgressBar";
 
-export { Tooltip } from './components/Tooltip';
-export type { TooltipProps, TooltipPlacement } from './components/Tooltip';
+export { Tooltip } from "./components/Tooltip";
+export type { TooltipProps, TooltipPlacement } from "./components/Tooltip";
 
-// Data Display
-export { Avatar } from './components/Avatar';
-export type { AvatarProps, AvatarSize } from './components/Avatar';
+export { Skeleton } from "./components/Skeleton";
+export type {
+  SkeletonProps,
+  SkeletonVariant,
+  SkeletonAnimation,
+} from "./components/Skeleton";
 
-export { Table } from './components/Table';
-export type { TableProps, TableColumn, TableSize, SortDirection } from './components/Table';
+export { EmptyState } from "./components/EmptyState";
+export type { EmptyStateProps, EmptyStateSize } from "./components/EmptyState";
 
 // Navigation
-export { Tabs } from './components/Tabs';
-export type { TabsProps, TabItem } from './components/Tabs';
+export { Tabs } from "./components/Tabs";
+export type { TabsProps, TabItem } from "./components/Tabs";
 
-export { Breadcrumb } from './components/Breadcrumb';
+export { Breadcrumb } from "./components/Breadcrumb";
 export type {
   BreadcrumbProps,
   BreadcrumbItem,
   BreadcrumbSize,
   BreadcrumbSeparator,
-} from './components/Breadcrumb';
+} from "./components/Breadcrumb";
 
-export { Navbar } from './components/Navbar';
+export { Navbar } from "./components/Navbar";
 export type {
   NavbarProps,
   NavbarBrandProps,
@@ -157,19 +266,22 @@ export type {
   NavbarActionsProps,
   NavbarHeight,
   NavbarVariant,
-} from './components/Navbar';
+} from "./components/Navbar";
+
+export { Link } from "./components/Link";
+export type { LinkProps, LinkVariant, LinkSize } from "./components/Link";
 
 // Overlays
-export { Modal } from './components/Modal';
+export { Modal } from "./components/Modal";
 export type {
   ModalProps,
   ModalHeaderProps,
   ModalBodyProps,
   ModalFooterProps,
   ModalSize,
-} from './components/Modal';
+} from "./components/Modal";
 
-export { Drawer } from './components/Drawer';
+export { Drawer } from "./components/Drawer";
 export type {
   DrawerProps,
   DrawerPlacement,
@@ -177,20 +289,24 @@ export type {
   DrawerHeaderProps,
   DrawerBodyProps,
   DrawerFooterProps,
-} from './components/Drawer';
+} from "./components/Drawer";
 
-export { Popover } from './components/Popover';
-export type { PopoverProps, PopoverPlacement, PopoverTrigger } from './components/Popover';
+export { Popover } from "./components/Popover";
+export type {
+  PopoverProps,
+  PopoverPlacement,
+  PopoverTrigger,
+} from "./components/Popover";
 
-export { Dropdown } from './components/Dropdown';
+export { Dropdown } from "./components/Dropdown";
 export type {
   DropdownProps,
   DropdownItem,
   DropdownGroup,
   DropdownPlacement,
-} from './components/Dropdown';
+} from "./components/Dropdown";
 
-export { ToastProvider, useToast } from './components/Toast';
+export { ToastProvider, useToast } from "./components/Toast";
 export type {
   Toast,
   ToastOptions,
@@ -198,10 +314,9 @@ export type {
   ToastPosition,
   ToastProviderProps,
   ToastContextValue,
-} from './components/Toast';
+} from "./components/Toast";
 
-// AlertDialog
-export { AlertDialog } from './components/AlertDialog';
+export { AlertDialog } from "./components/AlertDialog";
 export type {
   AlertDialogProps,
   AlertDialogVariant,
@@ -209,48 +324,9 @@ export type {
   AlertDialogTitleProps,
   AlertDialogDescriptionProps,
   AlertDialogActionsProps,
-} from './components/AlertDialog';
+} from "./components/AlertDialog";
 
-// Calendar
-export { Calendar } from './components/Calendar';
-export type {
-  CalendarProps,
-  CalendarMode,
-  CalendarSingleProps,
-  CalendarRangeProps,
-  CalendarMultipleProps,
-  DateRange,
-} from './components/Calendar';
-
-// DatePicker
-export { DatePicker } from './components/DatePicker';
-export type {
-  DatePickerProps,
-  DatePickerSingleProps,
-  DatePickerRangeProps,
-  DatePickerPreset,
-} from './components/DatePicker';
-
-// Chart
-export {
-  ChartContainer,
-  ChartTooltipContent,
-  ChartLegendContent,
-  ChartGradient,
-  ChartTooltip,
-  ChartLegend,
-} from './components/Chart';
-export type {
-  ChartConfig,
-  ChartConfigItem,
-  ChartContainerProps,
-  ChartTooltipContentProps,
-  ChartLegendContentProps,
-  ChartGradientProps,
-} from './components/Chart';
-
-// Command
-export { Command } from './components/Command';
+export { Command } from "./components/Command";
 export type {
   CommandProps,
   CommandDialogProps,
@@ -261,101 +337,46 @@ export type {
   CommandItemProps,
   CommandSeparatorProps,
   CommandShortcutProps,
-} from './components/Command';
+} from "./components/Command";
 
-// Layout & Structure
-export { Divider } from './components/Divider';
-export type { DividerProps, DividerOrientation, DividerVariant } from './components/Divider';
-
-export { Accordion } from './components/Accordion';
+export { Calendar } from "./components/Calendar";
 export type {
-  AccordionProps,
-  AccordionItem,
-  AccordionVariant,
-  AccordionItemProps,
-} from './components/Accordion';
+  CalendarProps,
+  CalendarMode,
+  CalendarSingleProps,
+  CalendarRangeProps,
+  CalendarMultipleProps,
+  DateRange,
+} from "./components/Calendar";
 
-export { Collapsible } from './components/Collapsible';
+export { DatePicker } from "./components/DatePicker";
 export type {
-  CollapsibleProps,
-  CollapsibleTriggerProps,
-  CollapsibleContentProps,
-} from './components/Collapsible';
-
-// Text & Links
-export { Link } from './components/Link';
-export type { LinkProps, LinkVariant, LinkSize } from './components/Link';
-
-// Loading States
-export { Skeleton } from './components/Skeleton';
-export type { SkeletonProps, SkeletonVariant, SkeletonAnimation } from './components/Skeleton';
-
-// Tags & Labels
-export { Chip } from './components/Chip';
-export type { ChipProps, ChipVariant, ChipSize } from './components/Chip';
-
-// Empty States
-export { EmptyState } from './components/EmptyState';
-export type { EmptyStateProps, EmptyStateSize } from './components/EmptyState';
-
-// Agent Cards
-export { AgentCard } from './components/AgentCard';
-export type { AgentCardProps, AgentStatus } from './components/AgentCard';
-
-// Pagination
-export { Pagination } from './components/Pagination';
-export type { PaginationProps, PaginationSize } from './components/Pagination';
-
-// Search
-export { SearchInput } from './components/SearchInput';
-export type { SearchInputProps, SearchInputSize } from './components/SearchInput';
-
-// Lists
-export { List } from './components/List';
-export type { ListProps, ListItem, ListSize, ListVariant } from './components/List';
-
-// Stepper/Wizard
-export { Stepper } from './components/Stepper';
-export type {
-  StepperProps,
-  StepItem,
-  StepStatus,
-  StepperOrientation,
-  StepperSize,
-} from './components/Stepper';
-
-// Slider/Range
-export { Slider } from './components/Slider';
-export type { SliderProps, SliderSize } from './components/Slider';
-
-// Combobox/Autocomplete
-export { Combobox } from './components/Combobox';
-export type {
-  ComboboxProps,
-  ComboboxOption,
-  ComboboxGroup,
-  ComboboxSize,
-} from './components/Combobox';
+  DatePickerProps,
+  DatePickerSingleProps,
+  DatePickerRangeProps,
+  DatePickerPreset,
+} from "./components/DatePicker";
 
 // Utilities
-export { ThemeController } from './components/ThemeController';
-export type { ThemeControllerProps } from './components/ThemeController';
+export { ThemeController } from "./components/ThemeController";
+export type { ThemeControllerProps } from "./components/ThemeController";
 
-// Font Loader
-export { FontLoader } from './components/FontLoader';
-export type { FontLoaderProps } from './components/FontLoader';
+export { FontLoader } from "./components/FontLoader";
+export type { FontLoaderProps } from "./components/FontLoader";
 
-// Icon Gallery (Documentation Utility)
-export { IconGallery } from './components/IconGallery';
-export type { IconGalleryProps } from './components/IconGallery';
+export { IconGallery } from "./components/IconGallery";
+export type { IconGalleryProps } from "./components/IconGallery";
+
+export { ErrorBoundary } from "./components/ErrorBoundary";
+export type { ErrorBoundaryProps } from "./components/ErrorBoundary";
 
 // ============================================================================
 // HOOKS
 // ============================================================================
 
 // Theme
-export { useTheme } from './hooks';
-export type { UseThemeOptions, UseThemeReturn } from './hooks';
+export { useTheme } from "./hooks";
+export type { UseThemeOptions, UseThemeReturn } from "./hooks";
 
 // Media queries & responsive
 export {
@@ -365,69 +386,82 @@ export {
   useIsDesktop,
   usePrefersDarkMode,
   usePrefersReducedMotion,
-} from './hooks';
+} from "./hooks";
 
 // Event handlers
-export { useClickOutside, useClickOutsideMultiple } from './hooks';
+export { useClickOutside, useClickOutsideMultiple } from "./hooks";
 
 // State management
-export { useDisclosure } from './hooks';
-export type { UseDisclosureOptions, UseDisclosureReturn } from './hooks';
+export { useDisclosure } from "./hooks";
+export type { UseDisclosureOptions, UseDisclosureReturn } from "./hooks";
 
 // Debouncing
-export { useDebounce, useDebouncedCallback } from './hooks';
-export type { UseDebouncedCallbackOptions } from './hooks';
+export { useDebounce, useDebouncedCallback } from "./hooks";
+export type { UseDebouncedCallbackOptions } from "./hooks";
 
 // Storage
-export { useLocalStorage, useSessionStorage } from './hooks';
-export type { UseLocalStorageOptions } from './hooks';
+export { useLocalStorage, useSessionStorage } from "./hooks";
+export type { UseLocalStorageOptions } from "./hooks";
 
 // Clipboard
-export { useCopyToClipboard, useCopy } from './hooks';
-export type { UseCopyToClipboardOptions, UseCopyToClipboardReturn } from './hooks';
+export { useCopyToClipboard, useCopy } from "./hooks";
+export type {
+  UseCopyToClipboardOptions,
+  UseCopyToClipboardReturn,
+} from "./hooks";
 
 // Keyboard
-export { useKeyboard, useKeyboardShortcuts } from './hooks';
-export type { KeyModifiers, UseKeyboardOptions, KeyboardShortcuts } from './hooks';
+export { useKeyboard, useKeyboardShortcuts } from "./hooks";
+export type {
+  KeyModifiers,
+  UseKeyboardOptions,
+  KeyboardShortcuts,
+} from "./hooks";
 
 // ============================================================================
 // CONTEXTS
 // ============================================================================
 
-export { ThemeProvider, useThemeContext } from './contexts';
-export type { ThemeProviderProps } from './contexts';
+export { ThemeProvider, useThemeContext } from "./contexts";
+export type { ThemeProviderProps } from "./contexts";
 
 // ============================================================================
 // UTILITIES
 // ============================================================================
 
 // Lucide Icons - All icons available from lucide-react
-export * from './utils';
+export * from "./utils";
 
 // ============================================================================
 // RE-EXPORTS FROM TOKENS
 // ============================================================================
 
 // Re-export token types and utilities for convenience
-export type { Theme, Brand } from './tokens/types';
-export { spacing, primitives, getToken, getSemanticToken, getBrand } from './tokens';
+export type { Theme, Brand } from "./tokens/types";
+export {
+  spacing,
+  primitives,
+  getToken,
+  getSemanticToken,
+  getBrand,
+} from "./tokens";
 
 // ============================================================================
 // SECTIONS (Pre-built UI Blocks)
 // ============================================================================
 
 // Layout utilities
-export { Container, Section } from './sections';
+export { Container, Section } from "./sections";
 export type {
   ContainerProps,
   ContainerSize,
   SectionProps,
   SectionSpacing,
   SectionBackground,
-} from './sections';
+} from "./sections";
 
 // Page sections - Phase 1
-export { Hero, Features, FeatureCard, CTA, Footer } from './sections';
+export { Hero, Features, FeatureCard, CTA, Footer } from "./sections";
 export type {
   // Hero
   HeroProps,
@@ -449,7 +483,7 @@ export type {
   FooterLinkGroup,
   FooterSocialLink,
   FooterVariant,
-} from './sections';
+} from "./sections";
 
 // Page sections - Phase 2 (Engagement)
 export {
@@ -463,7 +497,7 @@ export {
   FAQItemCard,
   Carousel,
   CarouselCard,
-} from './sections';
+} from "./sections";
 export type {
   // Pricing
   PricingProps,
@@ -499,10 +533,16 @@ export type {
   CarouselAspectRatio,
   CarouselGap,
   CarouselOverlay,
-} from './sections';
+} from "./sections";
 
 // Page sections - Phase 3 (Content)
-export { Team, TeamMemberCard, Contact, Newsletter, LogoCloud } from './sections';
+export {
+  Team,
+  TeamMemberCard,
+  Contact,
+  Newsletter,
+  LogoCloud,
+} from "./sections";
 export type {
   // Team
   TeamProps,
@@ -525,10 +565,18 @@ export type {
   LogoItem,
   LogoCloudLayout,
   LogoCloudSize,
-} from './sections';
+} from "./sections";
 
 // Page sections - Phase 4 (Advanced Content)
-export { Blog, Gallery, Timeline, Comparison, Banner, SocialProof, AppDownload } from './sections';
+export {
+  Blog,
+  Gallery,
+  Timeline,
+  Comparison,
+  Banner,
+  SocialProof,
+  AppDownload,
+} from "./sections";
 export type {
   // Blog
   BlogProps,
@@ -557,14 +605,21 @@ export type {
   AppDownloadProps,
   AppStoreBadge,
   AppFeature,
-} from './sections';
+} from "./sections";
 
 // ============================================================================
 // APP/SAAS SECTIONS (Product Mode Optimized)
 // ============================================================================
 
 // App/SaaS Sections - Phase 1 (Core)
-export { Sidebar, DataTable, MetricCards, MetricCard, PageHeader, FormSection } from './sections';
+export {
+  Sidebar,
+  DataTable,
+  MetricCards,
+  MetricCard,
+  PageHeader,
+  FormSection,
+} from "./sections";
 export type {
   // Sidebar
   SidebarProps,
@@ -605,7 +660,7 @@ export type {
   FormSectionVariant,
   FormSectionGroupProps,
   FormSectionActionsProps,
-} from './sections';
+} from "./sections";
 
 // App/SaaS Sections - Phase 2 (Advanced)
 export {
@@ -615,7 +670,7 @@ export {
   FilterBar,
   SettingsLayout,
   QuickActions,
-} from './sections';
+} from "./sections";
 export type {
   // CommandBar
   CommandBarProps,
@@ -644,7 +699,7 @@ export type {
   QuickAction,
   QuickActionsVariant,
   QuickActionsPosition,
-} from './sections';
+} from "./sections";
 
 // App/SaaS Sections - Phase 3 (Extended)
 export {
@@ -654,7 +709,7 @@ export {
   Breadcrumbs,
   Stepper as StepperSection,
   FileUploader,
-} from './sections';
+} from "./sections";
 export type {
   // KanbanBoard
   KanbanBoardProps,
@@ -680,21 +735,21 @@ export type {
   // FileUploader
   FileUploaderProps,
   UploadedFile,
-} from './sections';
+} from "./sections";
 
 // App/SaaS Sections - EmptyState (Section version)
-export { EmptyState as EmptyStateSection } from './sections';
+export { EmptyState as EmptyStateSection } from "./sections";
 export type {
   EmptyStateProps as EmptyStateSectionProps,
   EmptyStateVariant as EmptyStateSectionVariant,
   EmptyStateSize as EmptyStateSectionSize,
-} from './sections';
+} from "./sections";
 
 // ============================================================================
 // CHAT (AI Chat Interface)
 // ============================================================================
 
-export { Chat } from './components/Chat';
+export { Chat } from "./components/Chat";
 export type {
   // Core types
   ChatRole,
@@ -726,9 +781,14 @@ export type {
   ChatSectionProps,
   // Lightbox
   ChatLightboxProps,
-} from './components/Chat';
+} from "./components/Chat";
 
-export { useChatInput, useAutoScroll, useVoiceRecorder, useStreamingText } from './components/Chat';
+export {
+  useChatInput,
+  useAutoScroll,
+  useVoiceRecorder,
+  useStreamingText,
+} from "./components/Chat";
 
 export type {
   UseAutoScrollOptions,
@@ -739,19 +799,19 @@ export type {
   UseChatInputReturn,
   UseStreamingTextOptions,
   UseStreamingTextReturn,
-} from './components/Chat';
+} from "./components/Chat";
 
 // ============================================================================
 // SHOWCASE
 // ============================================================================
 
-export { ComponentShowcase } from './ComponentShowcase';
+export { ComponentShowcase } from "./ComponentShowcase";
 
 // ============================================================================
 // EXAMPLES (Copy-paste ready templates)
 // ============================================================================
 
-export { LandingPageExample } from './examples';
+export { LandingPageExample } from "./examples";
 
 // ============================================================================
 // TEMPLATES (Full Page Compositions)
@@ -763,13 +823,13 @@ export {
   PricingPageTemplate,
   AboutPageTemplate,
   ContactPageTemplate,
-} from './templates/marketing';
+} from "./templates/marketing";
 export type {
   LandingPageTemplateProps,
   PricingPageTemplateProps,
   AboutPageTemplateProps,
   ContactPageTemplateProps,
-} from './templates/marketing';
+} from "./templates/marketing";
 
 // App Templates
 export {
@@ -779,7 +839,7 @@ export {
   KanbanPageTemplate,
   LoginTemplate,
   ChatPageTemplate,
-} from './templates/app';
+} from "./templates/app";
 export type {
   DashboardTemplateProps,
   DashboardLayout,
@@ -793,4 +853,4 @@ export type {
   LoginEditorial,
   SocialProvider,
   ChatPageTemplateProps,
-} from './templates/app';
+} from "./templates/app";

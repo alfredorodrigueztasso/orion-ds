@@ -176,7 +176,7 @@
 }
 
 .valueDisplay::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: calc(var(--slider-tooltip-arrow) * -1);
   left: 50%;

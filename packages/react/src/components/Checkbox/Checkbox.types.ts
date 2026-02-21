@@ -5,12 +5,12 @@
  * Implements WCAG 2.1 AA accessibility guidelines.
  */
 
-import type { InputHTMLAttributes } from 'react';
+import type { InputHTMLAttributes } from "react";
 
 /**
  * Checkbox sizes
  */
-export type CheckboxSize = 'sm' | 'md' | 'lg';
+export type CheckboxSize = "sm" | "md" | "lg";
 
 /**
  * Checkbox component props
@@ -23,7 +23,7 @@ export type CheckboxSize = 'sm' | 'md' | 'lg';
  */
 export interface CheckboxProps extends Omit<
   InputHTMLAttributes<HTMLInputElement>,
-  'size' | 'type'
+  "size" | "type"
 > {
   /**
    * Checkbox label text.
@@ -74,11 +74,11 @@ export interface CheckboxProps extends Omit<
    * />
    * ```
    */
-  'aria-label'?: string;
+  "aria-label"?: string;
 
   /**
    * Additional element IDs that describe this checkbox.
    * Automatically includes error and helper text IDs when provided.
    */
-  'aria-describedby'?: string;
+  "aria-describedby"?: string;
 }

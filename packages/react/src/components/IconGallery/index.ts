@@ -14,5 +14,5 @@
  * <IconGallery categories={['navigation', 'actions', 'media']} />
  * ```
  */
-export { IconGallery } from './IconGallery';
-export type { IconGalleryProps } from './IconGallery.types';
+export { IconGallery } from "./IconGallery";
+export type { IconGalleryProps } from "./IconGallery.types";

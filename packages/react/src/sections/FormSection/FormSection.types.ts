@@ -5,12 +5,12 @@
  * Designed for Product Mode (SaaS dashboards) settings and form layouts.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * FormSection visual variant
  */
-export type FormSectionVariant = 'default' | 'card' | 'inline';
+export type FormSectionVariant = "default" | "card" | "inline";
 
 /**
  * FormSection section props
@@ -125,5 +125,5 @@ export interface FormSectionActionsProps extends HTMLAttributes<HTMLDivElement> 
    * Alignment of actions
    * @default 'end'
    */
-  align?: 'start' | 'center' | 'end' | 'between';
+  align?: "start" | "center" | "end" | "between";
 }

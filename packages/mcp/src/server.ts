@@ -20,9 +20,9 @@
  *   }
  */
 
-import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { z } from 'zod';
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { z } from "zod";
 import {
   getRegistryIndex,
   getComponent,
@@ -31,32 +31,32 @@ import {
   listTokens,
   getToken,
   getTokenCategories,
-} from './registry-data.js';
-import { validateCode } from './tools/validate.js';
+} from "./registry-data.js";
+import { validateCode } from "./tools/validate.js";
 
 const server = new McpServer({
-  name: 'orion-design-system',
-  version: '1.0.0',
+  name: "orion-design-system",
+  version: "1.0.0",
 });
 
 // ============================================================================
 // Tool: list-components
 // ============================================================================
 server.tool(
-  'list-components',
-  'List all available Orion components, sections, and templates. Optionally filter by category or type.',
+  "list-components",
+  "List all available Orion components, sections, and templates. Optionally filter by category or type.",
   {
     category: z
       .string()
       .optional()
       .describe(
-        'Filter by category: actions, forms, layout, feedback, data-display, navigation, overlays, text, loading, tags, search, marketing, app, chat, utilities',
+        "Filter by category: actions, forms, layout, feedback, data-display, navigation, overlays, text, loading, tags, search, marketing, app, chat, utilities",
       ),
     type: z
-      .enum(['registry:component', 'registry:section', 'registry:template'])
+      .enum(["registry:component", "registry:section", "registry:template"])
       .optional()
       .describe(
-        'Filter by type: component (UI primitives), section (composed blocks), template (full pages)',
+        "Filter by type: component (UI primitives), section (composed blocks), template (full pages)",
       ),
   },
   async ({ category, type }) => {
@@ -65,7 +65,7 @@ server.tool(
 
     const grouped: Record<string, typeof items> = {};
     for (const item of items) {
-      const cat = item.category || 'other';
+      const cat = item.category || "other";
       if (!grouped[cat]) grouped[cat] = [];
       grouped[cat]!.push(item);
     }
@@ -78,12 +78,12 @@ server.tool(
       for (const item of catItems) {
         text += `- **${item.title}** (\`${item.name}\`) — ${item.description}\n`;
       }
-      text += '\n';
+      text += "\n";
     }
 
     text += `\n_Use \`get-component\` with a component name for full details (props, examples, tokens)._`;
 
-    return { content: [{ type: 'text', text }] };
+    return { content: [{ type: "text", text }] };
   },
 );
 
@@ -91,8 +91,8 @@ server.tool(
 // Tool: get-component
 // ============================================================================
 server.tool(
-  'get-component',
-  'Get complete details of an Orion component: props with types/defaults, code examples, tokens used, accessibility info, and sub-components.',
+  "get-component",
+  "Get complete details of an Orion component: props with types/defaults, code examples, tokens used, accessibility info, and sub-components.",
   {
     name: z
       .string()
@@ -107,7 +107,7 @@ server.tool(
       return {
         content: [
           {
-            type: 'text',
+            type: "text",
             text: `Component "${name}" not found. Use \`list-components\` to see all available components.`,
           },
         ],
@@ -116,9 +116,9 @@ server.tool(
 
     let text = `# ${component.title}\n\n`;
     text += `**${component.description}**\n\n`;
-    text += `- **Type:** ${component.type.replace('registry:', '')}\n`;
+    text += `- **Type:** ${component.type.replace("registry:", "")}\n`;
     text += `- **Category:** ${component.category}\n`;
-    text += `- **Mode-aware:** ${component.modeAware ? 'Yes (adapts to display/product/app modes)' : 'No'}\n\n`;
+    text += `- **Mode-aware:** ${component.modeAware ? "Yes (adapts to display/product/app modes)" : "No"}\n\n`;
 
     // Import
     text += `## Import\n\n\`\`\`tsx\n${component.cssImport};\n${component.import};\n\`\`\`\n\n`;
@@ -129,12 +129,18 @@ server.tool(
       text += `| Prop | Type | Default | Description |\n`;
       text += `|------|------|---------|-------------|\n`;
       for (const prop of component.props) {
-        const typeStr = prop.values ? prop.values.map((v) => `'${v}'`).join(' \\| ') : prop.type;
+        const typeStr = prop.values
+          ? prop.values.map((v) => `'${v}'`).join(" \\| ")
+          : prop.type;
         const defStr =
-          prop.default !== undefined ? `\`${prop.default}\`` : prop.required ? '**required**' : '—';
+          prop.default !== undefined
+            ? `\`${prop.default}\``
+            : prop.required
+              ? "**required**"
+              : "—";
         text += `| \`${prop.name}\` | \`${typeStr}\` | ${defStr} | ${prop.description} |\n`;
       }
-      text += '\n';
+      text += "\n";
     }
 
     // Sub-components
@@ -148,7 +154,7 @@ server.tool(
           for (const p of sub.props) {
             text += `| \`${p.name}\` | \`${p.type}\` | ${p.description} |\n`;
           }
-          text += '\n';
+          text += "\n";
         }
       }
     }
@@ -166,7 +172,8 @@ server.tool(
     // Tokens
     if (component.tokens && component.tokens.length > 0) {
       text += `## CSS Tokens Used\n\n`;
-      text += component.tokens.map((t) => `- \`var(${t})\``).join('\n') + '\n\n';
+      text +=
+        component.tokens.map((t) => `- \`var(${t})\``).join("\n") + "\n\n";
     }
 
     // Accessibility
@@ -175,7 +182,7 @@ server.tool(
       const a11y = component.accessibility;
       if (a11y.role) text += `- **Role:** \`${a11y.role}\`\n`;
       if (a11y.ariaAttributes)
-        text += `- **ARIA:** ${a11y.ariaAttributes.map((a) => `\`${a}\``).join(', ')}\n`;
+        text += `- **ARIA:** ${a11y.ariaAttributes.map((a) => `\`${a}\``).join(", ")}\n`;
       if (a11y.keyboardNav) {
         text += `- **Keyboard:**\n`;
         for (const kn of a11y.keyboardNav) {
@@ -188,23 +195,24 @@ server.tool(
           text += `  - ${note}\n`;
         }
       }
-      text += '\n';
+      text += "\n";
     }
 
     // Dependencies
     if (component.dependencies && component.dependencies.length > 0) {
       text += `## Dependencies\n\n`;
-      text += component.dependencies.map((d) => `- \`${d}\``).join('\n') + '\n\n';
+      text +=
+        component.dependencies.map((d) => `- \`${d}\``).join("\n") + "\n\n";
     }
 
     // Files
     text += `## Source Files\n\n`;
     text +=
       component.files
-        .map((f) => `- \`${f.path}\` (${f.type.replace('registry:', '')})`)
-        .join('\n') + '\n';
+        .map((f) => `- \`${f.path}\` (${f.type.replace("registry:", "")})`)
+        .join("\n") + "\n";
 
-    return { content: [{ type: 'text', text }] };
+    return { content: [{ type: "text", text }] };
   },
 );
 
@@ -212,7 +220,7 @@ server.tool(
 // Tool: search-components
 // ============================================================================
 server.tool(
-  'search-components',
+  "search-components",
   'Search Orion components by keyword or use case. Supports semantic matching (e.g., "form input" finds Field, Select, Checkbox).',
   {
     query: z
@@ -228,7 +236,7 @@ server.tool(
       return {
         content: [
           {
-            type: 'text',
+            type: "text",
             text: `No components found for "${query}". Try broader terms or use \`list-components\` to see all available items.`,
           },
         ],
@@ -238,14 +246,14 @@ server.tool(
     let text = `# Search results for "${query}"\n\n`;
     text += `Found **${results.length}** items:\n\n`;
     for (const r of results.slice(0, 15)) {
-      text += `- **${r.title}** (\`${r.name}\`, ${r.type.replace('registry:', '')}) — ${r.description}\n`;
+      text += `- **${r.title}** (\`${r.name}\`, ${r.type.replace("registry:", "")}) — ${r.description}\n`;
     }
     if (results.length > 15) {
       text += `\n_...and ${results.length - 15} more. Refine your query for more specific results._\n`;
     }
     text += `\n_Use \`get-component\` with the name for full details._`;
 
-    return { content: [{ type: 'text', text }] };
+    return { content: [{ type: "text", text }] };
   },
 );
 
@@ -253,8 +261,8 @@ server.tool(
 // Tool: list-tokens
 // ============================================================================
 server.tool(
-  'list-tokens',
-  'List Orion design tokens by category. Categories: surface, text, interactive, border, status, spacing, radius, shadow, font, color.',
+  "list-tokens",
+  "List Orion design tokens by category. Categories: surface, text, interactive, border, status, spacing, radius, shadow, font, color.",
   {
     category: z
       .string()
@@ -273,7 +281,7 @@ server.tool(
         text += `- **${cat}** (${tokens.length} tokens)\n`;
       }
       text += `\n_Use \`list-tokens\` with a category for token details, or \`get-token\` for a specific token._`;
-      return { content: [{ type: 'text', text }] };
+      return { content: [{ type: "text", text }] };
     }
 
     const tokens = listTokens(category);
@@ -281,7 +289,7 @@ server.tool(
       return {
         content: [
           {
-            type: 'text',
+            type: "text",
             text: `No tokens found for category "${category}". Use \`list-tokens\` without a category to see available categories.`,
           },
         ],
@@ -292,13 +300,13 @@ server.tool(
     text += `| Token | Light | Dark |\n`;
     text += `|-------|-------|------|\n`;
     for (const t of tokens.slice(0, 50)) {
-      text += `| \`var(${t.name})\` | ${t.values['light'] || t.values['default'] || '—'} | ${t.values['dark'] || '—'} |\n`;
+      text += `| \`var(${t.name})\` | ${t.values["light"] || t.values["default"] || "—"} | ${t.values["dark"] || "—"} |\n`;
     }
     if (tokens.length > 50) {
       text += `\n_Showing first 50 of ${tokens.length} tokens._\n`;
     }
 
-    return { content: [{ type: 'text', text }] };
+    return { content: [{ type: "text", text }] };
   },
 );
 
@@ -306,8 +314,8 @@ server.tool(
 // Tool: get-token
 // ============================================================================
 server.tool(
-  'get-token',
-  'Get details of a specific Orion design token: values per theme, per brand, description.',
+  "get-token",
+  "Get details of a specific Orion design token: values per theme, per brand, description.",
   {
     name: z
       .string()
@@ -322,7 +330,7 @@ server.tool(
       return {
         content: [
           {
-            type: 'text',
+            type: "text",
             text: `Token "${name}" not found. Use \`list-tokens\` to browse available tokens.\n\nCommon tokens:\n- --surface-base, --surface-subtle, --surface-layer\n- --text-primary, --text-secondary, --text-brand\n- --interactive-primary, --interactive-primary-hover\n- --spacing-1 through --spacing-32\n- --radius-sm, --radius-control, --radius-container`,
           },
         ],
@@ -337,7 +345,7 @@ server.tool(
       text += `- **${theme}:** \`${value}\`\n`;
     }
 
-    return { content: [{ type: 'text', text }] };
+    return { content: [{ type: "text", text }] };
   },
 );
 
@@ -345,24 +353,24 @@ server.tool(
 // Tool: validate-code
 // ============================================================================
 server.tool(
-  'validate-code',
-  'Validate a code snippet against Orion Design System rules. Checks for hardcoded colors, wrong prop names, missing imports, brand prop violations, and more.',
+  "validate-code",
+  "Validate a code snippet against Orion Design System rules. Checks for hardcoded colors, wrong prop names, missing imports, brand prop violations, and more.",
   {
-    code: z.string().describe('The TSX/CSS code to validate'),
+    code: z.string().describe("The TSX/CSS code to validate"),
   },
   async ({ code }) => {
     const result = validateCode(code);
 
     let text = `# Validation Result\n\n`;
-    text += `**${result.valid ? 'PASS' : 'FAIL'}** — Score: ${result.score}/100\n\n`;
+    text += `**${result.valid ? "PASS" : "FAIL"}** — Score: ${result.score}/100\n\n`;
 
     if (result.errors.length > 0) {
       text += `## Errors (${result.errors.length})\n\n`;
       for (const err of result.errors) {
-        text += `- **[${err.rule}]**${err.line ? ` Line ${err.line}:` : ''} ${err.message}\n`;
+        text += `- **[${err.rule}]**${err.line ? ` Line ${err.line}:` : ""} ${err.message}\n`;
         text += `  → Fix: ${err.suggestion}\n`;
       }
-      text += '\n';
+      text += "\n";
     }
 
     if (result.warnings.length > 0) {
@@ -371,7 +379,7 @@ server.tool(
         text += `- **[${warn.rule}]** ${warn.message}\n`;
         text += `  → ${warn.suggestion}\n`;
       }
-      text += '\n';
+      text += "\n";
     }
 
     if (result.suggestions.length > 0) {
@@ -385,7 +393,7 @@ server.tool(
       text += `\nCode follows Orion Design System rules. No issues detected.`;
     }
 
-    return { content: [{ type: 'text', text }] };
+    return { content: [{ type: "text", text }] };
   },
 );
 
@@ -393,17 +401,22 @@ server.tool(
 // Tool: get-setup-guide
 // ============================================================================
 server.tool(
-  'get-setup-guide',
-  'Get a setup guide for using Orion in a new project. Supports Vite, Next.js, and general React.',
+  "get-setup-guide",
+  "Get a setup guide for using Orion in a new project. Supports Vite, Next.js, and general React.",
   {
-    framework: z.enum(['vite', 'nextjs', 'react']).describe('Target framework'),
+    framework: z.enum(["vite", "nextjs", "react"]).describe("Target framework"),
     brand: z
       .string()
       .optional()
-      .describe('Brand to configure (orion, unitec, laureate, uvm). Default: orion'),
-    theme: z.enum(['light', 'dark']).optional().describe('Default theme. Default: light'),
+      .describe(
+        "Brand to configure (orion, unitec, laureate, uvm). Default: orion",
+      ),
+    theme: z
+      .enum(["light", "dark"])
+      .optional()
+      .describe("Default theme. Default: light"),
   },
-  async ({ framework, brand = 'orion', theme = 'light' }) => {
+  async ({ framework, brand = "orion", theme = "light" }) => {
     let text = `# Orion Setup Guide — ${framework.charAt(0).toUpperCase() + framework.slice(1)}\n\n`;
 
     // Install
@@ -412,7 +425,7 @@ server.tool(
 
     // CSS Import
     text += `## 2. Import Styles\n\n`;
-    if (framework === 'nextjs') {
+    if (framework === "nextjs") {
       text += `In \`app/layout.tsx\` (App Router) or \`pages/_app.tsx\` (Pages Router):\n\n`;
       text += `\`\`\`tsx\nimport '@orion-ds/react/styles.css';\n\`\`\`\n\n`;
     } else {
@@ -437,7 +450,7 @@ server.tool(
     text += `- **CSS variables** — all styling uses semantic tokens. Never hardcode colors or pixels.\n`;
     text += `- **Mode-aware** — components adapt to display/product/app modes via \`data-mode\` attribute\n`;
 
-    return { content: [{ type: 'text', text }] };
+    return { content: [{ type: "text", text }] };
   },
 );
 
@@ -445,12 +458,12 @@ server.tool(
 // Tool: list-sections
 // ============================================================================
 server.tool(
-  'list-sections',
-  'List pre-built Orion sections (composed UI blocks like Hero, Pricing, DataTable, Sidebar) for building pages quickly.',
+  "list-sections",
+  "List pre-built Orion sections (composed UI blocks like Hero, Pricing, DataTable, Sidebar) for building pages quickly.",
   {},
   async () => {
-    const sections = listComponents({ type: 'registry:section' });
-    const templates = listComponents({ type: 'registry:template' });
+    const sections = listComponents({ type: "registry:section" });
+    const templates = listComponents({ type: "registry:template" });
 
     let text = `# Orion Pre-built Sections & Templates\n\n`;
 
@@ -460,26 +473,26 @@ server.tool(
     // Group by likely category
     const marketing = sections.filter((s) =>
       [
-        'hero',
-        'cta',
-        'features',
-        'pricing',
-        'testimonials',
-        'faq',
-        'footer',
-        'newsletter',
-        'logo-cloud',
-        'team',
-        'contact',
-        'blog',
-        'gallery',
-        'timeline',
-        'comparison',
-        'banner',
-        'social-proof',
-        'app-download',
-        'stats',
-        'carousel-section',
+        "hero",
+        "cta",
+        "features",
+        "pricing",
+        "testimonials",
+        "faq",
+        "footer",
+        "newsletter",
+        "logo-cloud",
+        "team",
+        "contact",
+        "blog",
+        "gallery",
+        "timeline",
+        "comparison",
+        "banner",
+        "social-proof",
+        "app-download",
+        "stats",
+        "carousel-section",
       ].includes(s.name),
     );
     const app = sections.filter((s) => !marketing.includes(s));
@@ -489,7 +502,7 @@ server.tool(
       for (const s of marketing) {
         text += `- **${s.title}** (\`${s.name}\`) — ${s.description}\n`;
       }
-      text += '\n';
+      text += "\n";
     }
 
     if (app.length > 0) {
@@ -497,7 +510,7 @@ server.tool(
       for (const s of app) {
         text += `- **${s.title}** (\`${s.name}\`) — ${s.description}\n`;
       }
-      text += '\n';
+      text += "\n";
     }
 
     text += `## Templates (${templates.length})\n\n`;
@@ -508,7 +521,7 @@ server.tool(
 
     text += `\n_Use \`get-component\` with the section/template name for full details and code._`;
 
-    return { content: [{ type: 'text', text }] };
+    return { content: [{ type: "text", text }] };
   },
 );
 
@@ -516,8 +529,8 @@ server.tool(
 // Tool: get-section
 // ============================================================================
 server.tool(
-  'get-section',
-  'Get details and code for an Orion section or template.',
+  "get-section",
+  "Get details and code for an Orion section or template.",
   {
     name: z
       .string()
@@ -533,7 +546,7 @@ server.tool(
       return {
         content: [
           {
-            type: 'text',
+            type: "text",
             text: `Section "${name}" not found. Use \`list-sections\` to see available sections.`,
           },
         ],
@@ -542,7 +555,7 @@ server.tool(
 
     let text = `# ${component.title}\n\n`;
     text += `**${component.description}**\n\n`;
-    text += `- **Type:** ${component.type.replace('registry:', '')}\n`;
+    text += `- **Type:** ${component.type.replace("registry:", "")}\n`;
     text += `- **Category:** ${component.category}\n\n`;
 
     text += `## Import\n\n\`\`\`tsx\n${component.cssImport};\n${component.import};\n\`\`\`\n\n`;
@@ -552,12 +565,18 @@ server.tool(
       text += `| Prop | Type | Default | Description |\n`;
       text += `|------|------|---------|-------------|\n`;
       for (const prop of component.props) {
-        const typeStr = prop.values ? prop.values.map((v) => `'${v}'`).join(' | ') : prop.type;
+        const typeStr = prop.values
+          ? prop.values.map((v) => `'${v}'`).join(" | ")
+          : prop.type;
         const defStr =
-          prop.default !== undefined ? `\`${prop.default}\`` : prop.required ? '**required**' : '—';
+          prop.default !== undefined
+            ? `\`${prop.default}\``
+            : prop.required
+              ? "**required**"
+              : "—";
         text += `| \`${prop.name}\` | \`${typeStr}\` | ${defStr} | ${prop.description} |\n`;
       }
-      text += '\n';
+      text += "\n";
     }
 
     if (component.examples && component.examples.length > 0) {
@@ -568,9 +587,9 @@ server.tool(
     }
 
     text += `## Files\n\n`;
-    text += component.files.map((f) => `- \`${f.path}\``).join('\n') + '\n';
+    text += component.files.map((f) => `- \`${f.path}\``).join("\n") + "\n";
 
-    return { content: [{ type: 'text', text }] };
+    return { content: [{ type: "text", text }] };
   },
 );
 
@@ -583,6 +602,6 @@ async function main() {
 }
 
 main().catch((error) => {
-  console.error('Failed to start Orion MCP server:', error);
+  console.error("Failed to start Orion MCP server:", error);
   process.exit(1);
 });

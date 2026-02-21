@@ -42,7 +42,13 @@ interface DropdownGroup {
 ### DropdownPlacement
 
 ```ts
-type DropdownPlacement = 'bottom-start' | 'bottom' | 'bottom-end' | 'top-start' | 'top' | 'top-end';
+type DropdownPlacement =
+  | "bottom-start"
+  | "bottom"
+  | "bottom-end"
+  | "top-start"
+  | "top"
+  | "top-end";
 ```
 
 ## Usage
@@ -50,14 +56,14 @@ type DropdownPlacement = 'bottom-start' | 'bottom' | 'bottom-end' | 'top-start' 
 ### Basic
 
 ```tsx
-import { Dropdown, Button } from '@orion/react';
+import { Dropdown, Button } from "@orion/react";
 
 <Dropdown
   trigger={<Button>Options</Button>}
   items={[
-    { id: 'edit', label: 'Edit', onClick: handleEdit },
-    { id: 'duplicate', label: 'Duplicate', onClick: handleDuplicate },
-    { id: 'delete', label: 'Delete', danger: true, onClick: handleDelete },
+    { id: "edit", label: "Edit", onClick: handleEdit },
+    { id: "duplicate", label: "Duplicate", onClick: handleDuplicate },
+    { id: "delete", label: "Delete", danger: true, onClick: handleDelete },
   ]}
 />;
 ```
@@ -65,14 +71,14 @@ import { Dropdown, Button } from '@orion/react';
 ### With Icons
 
 ```tsx
-import { Edit, Copy, Trash2 } from 'lucide-react';
+import { Edit, Copy, Trash2 } from "lucide-react";
 
 <Dropdown
   trigger={<Button>Actions</Button>}
   items={[
-    { id: 'edit', label: 'Edit', icon: <Edit size={16} /> },
-    { id: 'copy', label: 'Copy', icon: <Copy size={16} /> },
-    { id: 'delete', label: 'Delete', icon: <Trash2 size={16} />, danger: true },
+    { id: "edit", label: "Edit", icon: <Edit size={16} /> },
+    { id: "copy", label: "Copy", icon: <Copy size={16} /> },
+    { id: "delete", label: "Delete", icon: <Trash2 size={16} />, danger: true },
   ]}
 />;
 ```
@@ -83,9 +89,9 @@ import { Edit, Copy, Trash2 } from 'lucide-react';
 <Dropdown
   trigger={<Button>File</Button>}
   items={[
-    { id: 'new', label: 'New', shortcut: '⌘N' },
-    { id: 'open', label: 'Open', shortcut: '⌘O' },
-    { id: 'save', label: 'Save', shortcut: '⌘S' },
+    { id: "new", label: "New", shortcut: "⌘N" },
+    { id: "open", label: "Open", shortcut: "⌘O" },
+    { id: "save", label: "Save", shortcut: "⌘S" },
   ]}
 />
 ```
@@ -97,17 +103,17 @@ import { Edit, Copy, Trash2 } from 'lucide-react';
   trigger={<Button>Menu</Button>}
   groups={[
     {
-      label: 'Actions',
+      label: "Actions",
       items: [
-        { id: 'edit', label: 'Edit' },
-        { id: 'duplicate', label: 'Duplicate' },
+        { id: "edit", label: "Edit" },
+        { id: "duplicate", label: "Duplicate" },
       ],
     },
     {
-      label: 'Danger Zone',
+      label: "Danger Zone",
       items: [
-        { id: 'archive', label: 'Archive' },
-        { id: 'delete', label: 'Delete', danger: true },
+        { id: "archive", label: "Archive" },
+        { id: "delete", label: "Delete", danger: true },
       ],
     },
   ]}
@@ -117,7 +123,7 @@ import { Edit, Copy, Trash2 } from 'lucide-react';
 ### Controlled
 
 ```tsx
-import { useState } from 'react';
+import { useState } from "react";
 
 function Example() {
   const [open, setOpen] = useState(false);
@@ -128,7 +134,7 @@ function Example() {
       items={items}
       open={open}
       onOpenChange={setOpen}
-      onSelect={(item) => console.log('Selected:', item.id)}
+      onSelect={(item) => console.log("Selected:", item.id)}
     />
   );
 }
@@ -156,9 +162,9 @@ function Example() {
 <Dropdown
   trigger={<Button>Options</Button>}
   items={[
-    { id: 'view', label: 'View' },
-    { id: 'edit', label: 'Edit', disabled: true },
-    { id: 'delete', label: 'Delete', disabled: true },
+    { id: "view", label: "View" },
+    { id: "edit", label: "Edit", disabled: true },
+    { id: "delete", label: "Delete", disabled: true },
   ]}
 />
 ```
@@ -166,7 +172,11 @@ function Example() {
 ### Keep Open on Select
 
 ```tsx
-<Dropdown trigger={<Button>Multi-select</Button>} items={items} closeOnSelect={false} />
+<Dropdown
+  trigger={<Button>Multi-select</Button>}
+  items={items}
+  closeOnSelect={false}
+/>
 ```
 
 ## Tokens Used

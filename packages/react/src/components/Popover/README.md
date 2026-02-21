@@ -26,18 +26,18 @@ All 12 placement positions:
 
 ```ts
 type PopoverPlacement =
-  | 'top'
-  | 'top-start'
-  | 'top-end'
-  | 'bottom'
-  | 'bottom-start'
-  | 'bottom-end'
-  | 'left'
-  | 'left-start'
-  | 'left-end'
-  | 'right'
-  | 'right-start'
-  | 'right-end';
+  | "top"
+  | "top-start"
+  | "top-end"
+  | "bottom"
+  | "bottom-start"
+  | "bottom-end"
+  | "left"
+  | "left-start"
+  | "left-end"
+  | "right"
+  | "right-start"
+  | "right-end";
 ```
 
 **Visual placement guide:**
@@ -61,12 +61,12 @@ type PopoverPlacement =
 ### Basic (Click)
 
 ```tsx
-import { Popover, Button } from '@orion/react';
+import { Popover, Button } from "@orion/react";
 
 <Popover
   trigger={<Button>Click me</Button>}
   content={
-    <div style={{ padding: '16px' }}>
+    <div style={{ padding: "16px" }}>
       <p>Popover content here!</p>
     </div>
   }
@@ -124,7 +124,7 @@ Ideal for form field hints:
 ### Controlled
 
 ```tsx
-import { useState } from 'react';
+import { useState } from "react";
 
 function Example() {
   const [open, setOpen] = useState(false);
@@ -150,7 +150,11 @@ function Example() {
 ### Without Arrow
 
 ```tsx
-<Popover trigger={<Button>No arrow</Button>} content={<div>Clean look</div>} showArrow={false} />
+<Popover
+  trigger={<Button>No arrow</Button>}
+  content={<div>Clean look</div>}
+  showArrow={false}
+/>
 ```
 
 ### User Profile Menu
@@ -160,11 +164,18 @@ function Example() {
   trigger={<Avatar src="/user.jpg" interactive />}
   content={
     <div style={{ width: 250 }}>
-      <div style={{ padding: '16px', borderBottom: '1px solid var(--border-subtle)' }}>
+      <div
+        style={{
+          padding: "16px",
+          borderBottom: "1px solid var(--border-subtle)",
+        }}
+      >
         <strong>John Doe</strong>
-        <p style={{ color: 'var(--text-secondary)', margin: 0 }}>john@example.com</p>
+        <p style={{ color: "var(--text-secondary)", margin: 0 }}>
+          john@example.com
+        </p>
       </div>
-      <div style={{ padding: '8px' }}>
+      <div style={{ padding: "8px" }}>
         <Button variant="ghost" fullWidth>
           View Profile
         </Button>
@@ -186,13 +197,13 @@ For inline editing or quick forms:
 
 ```tsx
 function QuickNote() {
-  const [note, setNote] = useState('');
+  const [note, setNote] = useState("");
   const [open, setOpen] = useState(false);
 
   const handleSave = () => {
-    console.log('Saved:', note);
+    console.log("Saved:", note);
     setOpen(false);
-    setNote('');
+    setNote("");
   };
 
   return (
@@ -203,7 +214,7 @@ function QuickNote() {
       closeOnClickOutside={false}
       content={
         <form
-          style={{ padding: '16px', width: 300 }}
+          style={{ padding: "16px", width: 300 }}
           onSubmit={(e) => {
             e.preventDefault();
             handleSave();
@@ -217,9 +228,19 @@ function QuickNote() {
             autoFocus
           />
           <div
-            style={{ marginTop: '12px', display: 'flex', gap: '8px', justifyContent: 'flex-end' }}
+            style={{
+              marginTop: "12px",
+              display: "flex",
+              gap: "8px",
+              justifyContent: "flex-end",
+            }}
           >
-            <Button variant="secondary" size="sm" type="button" onClick={() => setOpen(false)}>
+            <Button
+              variant="secondary"
+              size="sm"
+              type="button"
+              onClick={() => setOpen(false)}
+            >
               Cancel
             </Button>
             <Button size="sm" type="submit">
@@ -244,14 +265,20 @@ function QuickNote() {
       <img
         src="/product.jpg"
         alt="Product"
-        style={{ width: '100%', height: 180, objectFit: 'cover' }}
+        style={{ width: "100%", height: 180, objectFit: "cover" }}
       />
-      <div style={{ padding: '16px' }}>
-        <h4 style={{ margin: '0 0 8px' }}>Premium Headphones</h4>
-        <p style={{ margin: '0 0 12px', color: 'var(--text-secondary)' }}>
+      <div style={{ padding: "16px" }}>
+        <h4 style={{ margin: "0 0 8px" }}>Premium Headphones</h4>
+        <p style={{ margin: "0 0 12px", color: "var(--text-secondary)" }}>
           Wireless noise-canceling headphones with 30-hour battery life.
         </p>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
           <span style={{ fontWeight: 600, fontSize: 18 }}>$299</span>
           <Button size="sm">Add to Cart</Button>
         </div>
@@ -274,18 +301,32 @@ function DeleteConfirmation({ onDelete }: { onDelete: () => void }) {
       open={open}
       onOpenChange={setOpen}
       content={
-        <div style={{ padding: '16px', width: 240 }}>
-          <p style={{ margin: '0 0 12px', fontWeight: 500 }}>Delete this item?</p>
-          <p style={{ margin: '0 0 16px', color: 'var(--text-secondary)', fontSize: 14 }}>
+        <div style={{ padding: "16px", width: 240 }}>
+          <p style={{ margin: "0 0 12px", fontWeight: 500 }}>
+            Delete this item?
+          </p>
+          <p
+            style={{
+              margin: "0 0 16px",
+              color: "var(--text-secondary)",
+              fontSize: 14,
+            }}
+          >
             This action cannot be undone.
           </p>
-          <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end' }}>
-            <Button variant="secondary" size="sm" onClick={() => setOpen(false)}>
+          <div
+            style={{ display: "flex", gap: "8px", justifyContent: "flex-end" }}
+          >
+            <Button
+              variant="secondary"
+              size="sm"
+              onClick={() => setOpen(false)}
+            >
               Cancel
             </Button>
             <Button
               size="sm"
-              style={{ background: 'var(--status-error)' }}
+              style={{ background: "var(--status-error)" }}
               onClick={() => {
                 onDelete();
                 setOpen(false);
@@ -306,27 +347,44 @@ function DeleteConfirmation({ onDelete }: { onDelete: () => void }) {
 ```tsx
 <Popover
   trigger={
-    <Button variant="ghost" icon={<MoreVertical size={20} />} iconOnly aria-label="More options" />
+    <Button
+      variant="ghost"
+      icon={<MoreVertical size={20} />}
+      iconOnly
+      aria-label="More options"
+    />
   }
   placement="bottom-end"
   showArrow={false}
   content={
     <div style={{ width: 180 }}>
-      <div style={{ padding: '4px' }}>
-        <Button variant="ghost" fullWidth style={{ justifyContent: 'flex-start' }}>
+      <div style={{ padding: "4px" }}>
+        <Button
+          variant="ghost"
+          fullWidth
+          style={{ justifyContent: "flex-start" }}
+        >
           <Edit size={16} style={{ marginRight: 8 }} /> Edit
         </Button>
-        <Button variant="ghost" fullWidth style={{ justifyContent: 'flex-start' }}>
+        <Button
+          variant="ghost"
+          fullWidth
+          style={{ justifyContent: "flex-start" }}
+        >
           <Copy size={16} style={{ marginRight: 8 }} /> Duplicate
         </Button>
-        <Button variant="ghost" fullWidth style={{ justifyContent: 'flex-start' }}>
+        <Button
+          variant="ghost"
+          fullWidth
+          style={{ justifyContent: "flex-start" }}
+        >
           <Archive size={16} style={{ marginRight: 8 }} /> Archive
         </Button>
         <Divider />
         <Button
           variant="ghost"
           fullWidth
-          style={{ justifyContent: 'flex-start', color: 'var(--status-error)' }}
+          style={{ justifyContent: "flex-start", color: "var(--status-error)" }}
         >
           <Trash2 size={16} style={{ marginRight: 8 }} /> Delete
         </Button>
@@ -345,18 +403,20 @@ function DeleteConfirmation({ onDelete }: { onDelete: () => void }) {
   openDelay={300}
   placement="bottom"
   content={
-    <div style={{ padding: '12px', width: 220 }}>
-      <p style={{ margin: '0 0 12px', fontWeight: 500, fontSize: 13 }}>Contributors</p>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+    <div style={{ padding: "12px", width: 220 }}>
+      <p style={{ margin: "0 0 12px", fontWeight: 500, fontSize: 13 }}>
+        Contributors
+      </p>
+      <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
           <Avatar src="/user1.jpg" size="sm" />
           <span>Alice Chen</span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
           <Avatar src="/user2.jpg" size="sm" />
           <span>Bob Smith</span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
           <Avatar src="/user3.jpg" size="sm" />
           <span>Carol White</span>
         </div>

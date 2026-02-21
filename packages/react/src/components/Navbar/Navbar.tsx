@@ -37,7 +37,7 @@
  * ```
  */
 
-import React from 'react';
+import React from "react";
 import type {
   NavbarProps,
   NavbarBrandProps,
@@ -46,15 +46,19 @@ import type {
   NavbarActionsProps,
   NavbarToggleProps,
   NavbarCollapseProps,
-} from './Navbar.types';
-import styles from './Navbar.module.css';
+} from "./Navbar.types";
+import styles from "./Navbar.module.css";
 
 // ============================================================================
 // Brand Component
 // ============================================================================
 
-const NavbarBrand: React.FC<NavbarBrandProps> = ({ children, href, className }) => {
-  const brandClasses = [styles.brand, className].filter(Boolean).join(' ');
+const NavbarBrand: React.FC<NavbarBrandProps> = ({
+  children,
+  href,
+  className,
+}) => {
+  const brandClasses = [styles.brand, className].filter(Boolean).join(" ");
 
   if (href) {
     return (
@@ -67,14 +71,18 @@ const NavbarBrand: React.FC<NavbarBrandProps> = ({ children, href, className }) 
   return <div className={brandClasses}>{children}</div>;
 };
 
-NavbarBrand.displayName = 'Navbar.Brand';
+NavbarBrand.displayName = "Navbar.Brand";
 
 // ============================================================================
 // Nav Component (Links Container)
 // ============================================================================
 
-const NavbarNav: React.FC<NavbarNavProps> = ({ children, className, ...rest }) => {
-  const navClasses = [styles.nav, className].filter(Boolean).join(' ');
+const NavbarNav: React.FC<NavbarNavProps> = ({
+  children,
+  className,
+  ...rest
+}) => {
+  const navClasses = [styles.nav, className].filter(Boolean).join(" ");
 
   return (
     <nav className={navClasses} {...rest}>
@@ -83,7 +91,7 @@ const NavbarNav: React.FC<NavbarNavProps> = ({ children, className, ...rest }) =
   );
 };
 
-NavbarNav.displayName = 'Navbar.Nav';
+NavbarNav.displayName = "Navbar.Nav";
 
 // ============================================================================
 // Link Component
@@ -97,13 +105,15 @@ const NavbarLink: React.FC<NavbarLinkProps> = ({
   onClick,
   ...rest
 }) => {
-  const linkClasses = [styles.link, active && styles.active, className].filter(Boolean).join(' ');
+  const linkClasses = [styles.link, active && styles.active, className]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <a
       href={href}
       className={linkClasses}
-      aria-current={active ? 'page' : undefined}
+      aria-current={active ? "page" : undefined}
       onClick={onClick}
       {...rest}
     >
@@ -112,14 +122,18 @@ const NavbarLink: React.FC<NavbarLinkProps> = ({
   );
 };
 
-NavbarLink.displayName = 'Navbar.Link';
+NavbarLink.displayName = "Navbar.Link";
 
 // ============================================================================
 // Actions Component
 // ============================================================================
 
-const NavbarActions: React.FC<NavbarActionsProps> = ({ children, className, ...rest }) => {
-  const actionsClasses = [styles.actions, className].filter(Boolean).join(' ');
+const NavbarActions: React.FC<NavbarActionsProps> = ({
+  children,
+  className,
+  ...rest
+}) => {
+  const actionsClasses = [styles.actions, className].filter(Boolean).join(" ");
 
   return (
     <div className={actionsClasses} {...rest}>
@@ -128,16 +142,20 @@ const NavbarActions: React.FC<NavbarActionsProps> = ({ children, className, ...r
   );
 };
 
-NavbarActions.displayName = 'Navbar.Actions';
+NavbarActions.displayName = "Navbar.Actions";
 
 // ============================================================================
 // Toggle Component (Hamburger Button)
 // ============================================================================
 
-const NavbarToggle: React.FC<NavbarToggleProps> = ({ isOpen, onToggle, className }) => {
+const NavbarToggle: React.FC<NavbarToggleProps> = ({
+  isOpen,
+  onToggle,
+  className,
+}) => {
   const toggleClasses = [styles.toggle, isOpen && styles.toggleOpen, className]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
 
   return (
     <button
@@ -145,7 +163,7 @@ const NavbarToggle: React.FC<NavbarToggleProps> = ({ isOpen, onToggle, className
       className={toggleClasses}
       onClick={onToggle}
       aria-expanded={isOpen}
-      aria-label={isOpen ? 'Close menu' : 'Open menu'}
+      aria-label={isOpen ? "Close menu" : "Open menu"}
     >
       <span className={styles.toggleIcon}>
         <span className={styles.toggleLine} />
@@ -156,7 +174,7 @@ const NavbarToggle: React.FC<NavbarToggleProps> = ({ isOpen, onToggle, className
   );
 };
 
-NavbarToggle.displayName = 'Navbar.Toggle';
+NavbarToggle.displayName = "Navbar.Toggle";
 
 // ============================================================================
 // Collapse Component (Mobile Menu Container)
@@ -168,9 +186,13 @@ const NavbarCollapse: React.FC<NavbarCollapseProps> = ({
   className,
   ...rest
 }) => {
-  const collapseClasses = [styles.collapse, isOpen && styles.collapseOpen, className]
+  const collapseClasses = [
+    styles.collapse,
+    isOpen && styles.collapseOpen,
+    className,
+  ]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
 
   return (
     <div className={collapseClasses} {...rest}>
@@ -179,14 +201,20 @@ const NavbarCollapse: React.FC<NavbarCollapseProps> = ({
   );
 };
 
-NavbarCollapse.displayName = 'Navbar.Collapse';
+NavbarCollapse.displayName = "Navbar.Collapse";
 
 // ============================================================================
 // Collapse Actions (Actions inside mobile menu)
 // ============================================================================
 
-const NavbarCollapseActions: React.FC<NavbarActionsProps> = ({ children, className, ...rest }) => {
-  const actionsClasses = [styles.collapseActions, className].filter(Boolean).join(' ');
+const NavbarCollapseActions: React.FC<NavbarActionsProps> = ({
+  children,
+  className,
+  ...rest
+}) => {
+  const actionsClasses = [styles.collapseActions, className]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <div className={actionsClasses} {...rest}>
@@ -195,7 +223,7 @@ const NavbarCollapseActions: React.FC<NavbarActionsProps> = ({ children, classNa
   );
 };
 
-NavbarCollapseActions.displayName = 'Navbar.CollapseActions';
+NavbarCollapseActions.displayName = "Navbar.CollapseActions";
 
 // ============================================================================
 // Main Navbar Component
@@ -211,9 +239,9 @@ export const Navbar: React.FC<NavbarProps> & {
   CollapseActions: typeof NavbarCollapseActions;
 } = ({
   children,
-  height = 'md',
-  variant = 'solid',
-  colorScheme = 'auto',
+  height = "md",
+  variant = "solid",
+  colorScheme = "auto",
   sticky = false,
   bordered = true,
   className,
@@ -223,14 +251,16 @@ export const Navbar: React.FC<NavbarProps> & {
     styles.navbar,
     styles[height],
     styles[variant],
-    colorScheme !== 'auto' &&
-      styles[`scheme${colorScheme.charAt(0).toUpperCase() + colorScheme.slice(1)}`],
+    colorScheme !== "auto" &&
+      styles[
+        `scheme${colorScheme.charAt(0).toUpperCase() + colorScheme.slice(1)}`
+      ],
     sticky && styles.sticky,
     bordered && styles.bordered,
     className,
   ]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
 
   return (
     <header className={navbarClasses} {...rest}>
@@ -248,4 +278,4 @@ Navbar.Toggle = NavbarToggle;
 Navbar.Collapse = NavbarCollapse;
 Navbar.CollapseActions = NavbarCollapseActions;
 
-Navbar.displayName = 'Navbar';
+Navbar.displayName = "Navbar";

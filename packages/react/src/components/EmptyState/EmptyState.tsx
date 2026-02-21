@@ -14,13 +14,27 @@
  * ```
  */
 
-import { forwardRef } from 'react';
-import type { EmptyStateProps } from './EmptyState.types';
-import styles from './EmptyState.module.css';
+import { forwardRef } from "react";
+import type { EmptyStateProps } from "./EmptyState.types";
+import styles from "./EmptyState.module.css";
 
 export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(
-  ({ icon, title, description, action, secondaryAction, size = 'md', className, ...rest }, ref) => {
-    const classNames = [styles.emptyState, styles[size], className].filter(Boolean).join(' ');
+  (
+    {
+      icon,
+      title,
+      description,
+      action,
+      secondaryAction,
+      size = "md",
+      className,
+      ...rest
+    },
+    ref,
+  ) => {
+    const classNames = [styles.emptyState, styles[size], className]
+      .filter(Boolean)
+      .join(" ");
 
     return (
       <div ref={ref} className={classNames} {...rest}>
@@ -45,4 +59,4 @@ export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(
   },
 );
 
-EmptyState.displayName = 'EmptyState';
+EmptyState.displayName = "EmptyState";

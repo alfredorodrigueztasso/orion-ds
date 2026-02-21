@@ -12,31 +12,31 @@
  * ```
  */
 
-import React, { useState } from 'react';
-import { User } from 'lucide-react';
-import type { AvatarProps } from './Avatar.types';
-import styles from './Avatar.module.css';
+import React, { useState } from "react";
+import { User } from "lucide-react";
+import type { AvatarProps } from "./Avatar.types";
+import styles from "./Avatar.module.css";
 
 // Map size prop to CSS class names
 const sizeClassMap: Record<string, string> = {
-  xs: 'xs',
-  sm: 'sm',
-  md: 'md',
-  lg: 'lg',
-  xl: 'xl',
-  '2xl': 'xxl',
-  '3xl': 'xxxl',
-  '4xl': 'xxxxl',
-  '5xl': 'xxxxxl',
-  profile: 'profile',
+  xs: "xs",
+  sm: "sm",
+  md: "md",
+  lg: "lg",
+  xl: "xl",
+  "2xl": "xxl",
+  "3xl": "xxxl",
+  "4xl": "xxxxl",
+  "5xl": "xxxxxl",
+  profile: "profile",
 };
 
 export const Avatar: React.FC<AvatarProps> = ({
   src,
-  alt = '',
+  alt = "",
   initials,
   icon,
-  size = 'md',
+  size = "md",
   status,
   interactive = false,
   className,
@@ -53,7 +53,7 @@ export const Avatar: React.FC<AvatarProps> = ({
     className,
   ]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
 
   // Determine what to display
   const showImage = src && !imageError;
@@ -64,7 +64,12 @@ export const Avatar: React.FC<AvatarProps> = ({
     <div className={classNames} {...rest}>
       {/* Image */}
       {showImage && (
-        <img src={src} alt={alt} className={styles.image} onError={() => setImageError(true)} />
+        <img
+          src={src}
+          alt={alt}
+          className={styles.image}
+          onError={() => setImageError(true)}
+        />
       )}
 
       {/* Initials */}
@@ -91,4 +96,4 @@ export const Avatar: React.FC<AvatarProps> = ({
   );
 };
 
-Avatar.displayName = 'Avatar';
+Avatar.displayName = "Avatar";

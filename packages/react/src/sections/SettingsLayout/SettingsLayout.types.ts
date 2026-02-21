@@ -5,7 +5,7 @@
  * A layout for settings pages with navigation sidebar.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Settings navigation item

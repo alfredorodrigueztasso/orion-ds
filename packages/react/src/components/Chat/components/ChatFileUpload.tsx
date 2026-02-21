@@ -4,15 +4,15 @@
  * File upload zone with drag-and-drop support.
  */
 
-import React, { useState, useRef, useCallback } from 'react';
-import { Upload } from 'lucide-react';
-import type { ChatFileUploadProps } from '../Chat.types';
-import { formatFileSize } from '../utils';
-import styles from '../Chat.module.css';
+import React, { useState, useRef, useCallback } from "react";
+import { Upload } from "lucide-react";
+import type { ChatFileUploadProps } from "../Chat.types";
+import { formatFileSize } from "../utils";
+import styles from "../Chat.module.css";
 
 export const ChatFileUpload: React.FC<ChatFileUploadProps> = ({
   onFilesSelected,
-  accept = ['*/*'],
+  accept = ["*/*"],
   multiple = true,
   maxSize = 10 * 1024 * 1024, // 10MB default
   children,
@@ -32,14 +32,16 @@ export const ChatFileUpload: React.FC<ChatFileUploadProps> = ({
       Array.from(files).forEach((file) => {
         // Check file size
         if (maxSize && file.size > maxSize) {
-          console.warn(`File ${file.name} exceeds max size of ${formatFileSize(maxSize)}`);
+          console.warn(
+            `File ${file.name} exceeds max size of ${formatFileSize(maxSize)}`,
+          );
           return;
         }
 
         // Check file type (basic check)
-        const acceptAll = accept.includes('*/*');
+        const acceptAll = accept.includes("*/*");
         const acceptedTypes = accept.flatMap((type) => {
-          if (type.endsWith('/*')) {
+          if (type.endsWith("/*")) {
             return type; // e.g., 'image/*'
           }
           return type;
@@ -48,8 +50,8 @@ export const ChatFileUpload: React.FC<ChatFileUploadProps> = ({
         const isAccepted =
           acceptAll ||
           acceptedTypes.some((type) => {
-            if (type.endsWith('/*')) {
-              const category = type.split('/')[0];
+            if (type.endsWith("/*")) {
+              const category = type.split("/")[0];
               return file.type.startsWith(`${category}/`);
             }
             return file.type === type || file.name.endsWith(type);
@@ -101,7 +103,7 @@ export const ChatFileUpload: React.FC<ChatFileUploadProps> = ({
       handleFiles(e.target.files);
       // Reset input so same file can be selected again
       if (inputRef.current) {
-        inputRef.current.value = '';
+        inputRef.current.value = "";
       }
     },
     [handleFiles],
@@ -115,7 +117,7 @@ export const ChatFileUpload: React.FC<ChatFileUploadProps> = ({
   // Handle keyboard interaction
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
-      if (e.key === 'Enter' || e.key === ' ') {
+      if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         handleClick();
       }
@@ -125,9 +127,13 @@ export const ChatFileUpload: React.FC<ChatFileUploadProps> = ({
 
   return (
     <div
-      className={[styles.fileUpload, isDragging && styles.fileUploadDragging, className]
+      className={[
+        styles.fileUpload,
+        isDragging && styles.fileUploadDragging,
+        className,
+      ]
         .filter(Boolean)
-        .join(' ')}
+        .join(" ")}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
@@ -141,10 +147,10 @@ export const ChatFileUpload: React.FC<ChatFileUploadProps> = ({
       <input
         ref={inputRef}
         type="file"
-        accept={accept.join(',')}
+        accept={accept.join(",")}
         multiple={multiple}
         onChange={handleInputChange}
-        style={{ display: 'none' }}
+        style={{ display: "none" }}
         aria-hidden="true"
       />
 
@@ -156,11 +162,13 @@ export const ChatFileUpload: React.FC<ChatFileUploadProps> = ({
           <div className={styles.fileUploadText}>
             <strong>Click to upload</strong> or drag and drop
           </div>
-          <div className={styles.fileUploadHint}>Max file size: {formatFileSize(maxSize)}</div>
+          <div className={styles.fileUploadHint}>
+            Max file size: {formatFileSize(maxSize)}
+          </div>
         </>
       )}
     </div>
   );
 };
 
-ChatFileUpload.displayName = 'ChatFileUpload';
+ChatFileUpload.displayName = "ChatFileUpload";

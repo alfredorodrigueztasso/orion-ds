@@ -20,13 +20,15 @@ Page navigation controls for paginated content.
 ### Basic
 
 ```tsx
-import { Pagination } from '@orion/react';
-import { useState } from 'react';
+import { Pagination } from "@orion/react";
+import { useState } from "react";
 
 function Example() {
   const [page, setPage] = useState(1);
 
-  return <Pagination currentPage={page} totalPages={10} onPageChange={setPage} />;
+  return (
+    <Pagination currentPage={page} totalPages={10} onPageChange={setPage} />
+  );
 }
 ```
 
@@ -44,7 +46,11 @@ function DataTableWithPagination() {
   return (
     <>
       <Table columns={columns} data={paginatedData} />
-      <Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage} />
+      <Pagination
+        currentPage={page}
+        totalPages={totalPages}
+        onPageChange={setPage}
+      />
     </>
   );
 }
@@ -116,7 +122,7 @@ function PaginationWithSize() {
   const totalPages = Math.ceil(totalItems / pageSize);
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+    <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
       <Select
         value={pageSize.toString()}
         onChange={(e) => {
@@ -124,12 +130,16 @@ function PaginationWithSize() {
           setPage(1);
         }}
         options={[
-          { value: '10', label: '10 per page' },
-          { value: '25', label: '25 per page' },
-          { value: '50', label: '50 per page' },
+          { value: "10", label: "10 per page" },
+          { value: "25", label: "25 per page" },
+          { value: "50", label: "50 per page" },
         ]}
       />
-      <Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage} />
+      <Pagination
+        currentPage={page}
+        totalPages={totalPages}
+        onPageChange={setPage}
+      />
     </div>
   );
 }
@@ -138,17 +148,23 @@ function PaginationWithSize() {
 ### With URL Sync
 
 ```tsx
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams } from "react-router-dom";
 
 function PaginatedList() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const page = Number(searchParams.get('page')) || 1;
+  const page = Number(searchParams.get("page")) || 1;
 
   const handlePageChange = (newPage: number) => {
     setSearchParams({ page: newPage.toString() });
   };
 
-  return <Pagination currentPage={page} totalPages={totalPages} onPageChange={handlePageChange} />;
+  return (
+    <Pagination
+      currentPage={page}
+      totalPages={totalPages}
+      onPageChange={handlePageChange}
+    />
+  );
 }
 ```
 

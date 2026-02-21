@@ -20,12 +20,12 @@
  * ```
  */
 
-import { forwardRef, useEffect } from 'react';
-import type { CTAProps } from './CTA.types';
-import { Section } from '../Section';
-import { Container } from '../Container';
-import { Card } from '../../components';
-import styles from './CTA.module.css';
+import { forwardRef, useEffect } from "react";
+import type { CTAProps } from "./CTA.types";
+import { Section } from "../Section";
+import { Container } from "../Container";
+import { Card } from "../../components";
+import styles from "./CTA.module.css";
 
 export const CTA = forwardRef<HTMLElement, CTAProps>(
   (
@@ -35,9 +35,9 @@ export const CTA = forwardRef<HTMLElement, CTAProps>(
       description,
       actions,
       footnote,
-      variant = 'brand',
-      size = 'md',
-      align = 'center',
+      variant = "brand",
+      size = "md",
+      align = "center",
       contained = true,
       className,
       ...rest
@@ -49,10 +49,10 @@ export const CTA = forwardRef<HTMLElement, CTAProps>(
 
     // Deprecation warning
     useEffect(() => {
-      if (headline && process.env.NODE_ENV === 'development') {
+      if (headline && process.env.NODE_ENV === "development") {
         console.warn(
           '[CTA] The "headline" prop is deprecated. Use "title" instead. ' +
-            'headline will be removed in v3.0.',
+            "headline will be removed in v3.0.",
         );
       }
     }, [headline]);
@@ -65,7 +65,7 @@ export const CTA = forwardRef<HTMLElement, CTAProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     const content = (
       <div className={styles.content}>
@@ -99,4 +99,4 @@ export const CTA = forwardRef<HTMLElement, CTAProps>(
   },
 );
 
-CTA.displayName = 'CTA';
+CTA.displayName = "CTA";

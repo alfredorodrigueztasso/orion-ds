@@ -15,7 +15,7 @@
  * ```
  */
 
-import { useState, useCallback, useRef, useEffect } from 'react';
+import { useState, useCallback, useRef, useEffect } from "react";
 
 /**
  * Options for useCopyToClipboard hook
@@ -115,7 +115,7 @@ export function useCopyToClipboard(
 
       // Check if clipboard API is available
       if (!navigator?.clipboard) {
-        const err = new Error('Clipboard API not available');
+        const err = new Error("Clipboard API not available");
         setError(err);
         onError?.(err);
         return false;
@@ -135,7 +135,7 @@ export function useCopyToClipboard(
 
         return true;
       } catch (err) {
-        const error = err instanceof Error ? err : new Error('Failed to copy');
+        const error = err instanceof Error ? err : new Error("Failed to copy");
         setError(error);
         onError?.(error);
         return false;

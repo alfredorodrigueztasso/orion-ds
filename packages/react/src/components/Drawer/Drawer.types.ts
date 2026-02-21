@@ -4,17 +4,17 @@
  * Type definitions for the Orion Drawer component.
  */
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 /**
  * Drawer placement options
  */
-export type DrawerPlacement = 'left' | 'right' | 'top' | 'bottom';
+export type DrawerPlacement = "left" | "right" | "top" | "bottom";
 
 /**
  * Drawer sizes
  */
-export type DrawerSize = 'sm' | 'md' | 'lg' | 'xl' | 'full';
+export type DrawerSize = "sm" | "md" | "lg" | "xl" | "full";
 
 /**
  * Drawer component props

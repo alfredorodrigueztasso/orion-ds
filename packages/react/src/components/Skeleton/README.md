@@ -18,7 +18,7 @@ Placeholder loading state for content.
 ### Basic Text
 
 ```tsx
-import { Skeleton } from '@orion/react';
+import { Skeleton } from "@orion/react";
 
 <Skeleton width={200} />;
 ```
@@ -63,7 +63,7 @@ function CardSkeleton() {
       <div style={{ padding: 16 }}>
         <Skeleton width="60%" height={24} />
         <Skeleton lines={2} />
-        <div style={{ display: 'flex', gap: 8, marginTop: 16 }}>
+        <div style={{ display: "flex", gap: 8, marginTop: 16 }}>
           <Skeleton variant="circular" width={32} height={32} />
           <Skeleton width={100} />
         </div>
@@ -78,9 +78,9 @@ function CardSkeleton() {
 ```tsx
 function ListSkeleton({ count = 5 }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
       {Array.from({ length: count }).map((_, i) => (
-        <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+        <div key={i} style={{ display: "flex", gap: 12, alignItems: "center" }}>
           <Skeleton variant="circular" width={40} height={40} />
           <div style={{ flex: 1 }}>
             <Skeleton width="40%" height={16} />
@@ -130,7 +130,7 @@ function TableSkeleton({ rows = 5, cols = 4 }) {
 function UserProfile({ user, isLoading }) {
   if (isLoading) {
     return (
-      <div style={{ display: 'flex', gap: 16 }}>
+      <div style={{ display: "flex", gap: 16 }}>
         <Skeleton variant="circular" width={64} height={64} />
         <div>
           <Skeleton width={150} height={24} />
@@ -141,7 +141,7 @@ function UserProfile({ user, isLoading }) {
   }
 
   return (
-    <div style={{ display: 'flex', gap: 16 }}>
+    <div style={{ display: "flex", gap: 16 }}>
       <Avatar src={user.avatar} size="xl" />
       <div>
         <h2>{user.name}</h2>

@@ -5,16 +5,16 @@
 ## Quick Start
 
 ```tsx
-import { LogoCloud } from '@orion/react';
+import { LogoCloud } from "@orion/react";
 
 <LogoCloud
   title="Trusted by leading companies"
   logos={[
-    { logo: <img src="/logos/vercel.svg" alt="" />, name: 'Vercel' },
-    { logo: <img src="/logos/stripe.svg" alt="" />, name: 'Stripe' },
-    { logo: <img src="/logos/linear.svg" alt="" />, name: 'Linear' },
-    { logo: <img src="/logos/notion.svg" alt="" />, name: 'Notion' },
-    { logo: <img src="/logos/figma.svg" alt="" />, name: 'Figma' },
+    { logo: <img src="/logos/vercel.svg" alt="" />, name: "Vercel" },
+    { logo: <img src="/logos/stripe.svg" alt="" />, name: "Stripe" },
+    { logo: <img src="/logos/linear.svg" alt="" />, name: "Linear" },
+    { logo: <img src="/logos/notion.svg" alt="" />, name: "Notion" },
+    { logo: <img src="/logos/figma.svg" alt="" />, name: "Figma" },
   ]}
 />;
 ```
@@ -45,17 +45,17 @@ interface LogoCloudProps {
   logos: LogoItem[]; // REQUIRED - Array of logo items
 
   // Layout
-  layout?: 'grid' | 'inline' | 'marquee'; // default: 'inline'
+  layout?: "grid" | "inline" | "marquee"; // default: 'inline'
   columns?: 3 | 4 | 5 | 6; // Grid columns - default: 5
   centered?: boolean; // Center content - default: true
 
   // Styling
-  size?: 'sm' | 'md' | 'lg'; // Logo size - default: 'md'
+  size?: "sm" | "md" | "lg"; // Logo size - default: 'md'
   grayscale?: boolean; // Grayscale filter - default: true
-  background?: 'base' | 'subtle' | 'none'; // default: 'none'
+  background?: "base" | "subtle" | "none"; // default: 'none'
 
   // Animation
-  marqueeSpeed?: 'slow' | 'normal' | 'fast'; // For marquee layout
+  marqueeSpeed?: "slow" | "normal" | "fast"; // For marquee layout
 }
 
 interface LogoItem {
@@ -211,16 +211,16 @@ Logos display in grayscale and colorize on hover.
 ### Landing Page Trust Section
 
 ```tsx
-import { LogoCloud } from '@orion/react';
+import { LogoCloud } from "@orion/react";
 
 <LogoCloud
   title="Trusted by 1,000+ companies worldwide"
   logos={[
-    { logo: <img src="/logos/google.svg" alt="" />, name: 'Google' },
-    { logo: <img src="/logos/microsoft.svg" alt="" />, name: 'Microsoft' },
-    { logo: <img src="/logos/amazon.svg" alt="" />, name: 'Amazon' },
-    { logo: <img src="/logos/meta.svg" alt="" />, name: 'Meta' },
-    { logo: <img src="/logos/apple.svg" alt="" />, name: 'Apple' },
+    { logo: <img src="/logos/google.svg" alt="" />, name: "Google" },
+    { logo: <img src="/logos/microsoft.svg" alt="" />, name: "Microsoft" },
+    { logo: <img src="/logos/amazon.svg" alt="" />, name: "Amazon" },
+    { logo: <img src="/logos/meta.svg" alt="" />, name: "Meta" },
+    { logo: <img src="/logos/apple.svg" alt="" />, name: "Apple" },
   ]}
   layout="inline"
   size="md"
@@ -236,15 +236,19 @@ import { LogoCloud } from '@orion/react';
   logos={[
     {
       logo: <img src="/press/techcrunch.svg" alt="" />,
-      name: 'TechCrunch',
-      href: 'https://techcrunch.com/...',
+      name: "TechCrunch",
+      href: "https://techcrunch.com/...",
     },
     {
       logo: <img src="/press/forbes.svg" alt="" />,
-      name: 'Forbes',
-      href: 'https://forbes.com/...',
+      name: "Forbes",
+      href: "https://forbes.com/...",
     },
-    { logo: <img src="/press/wired.svg" alt="" />, name: 'Wired', href: 'https://wired.com/...' },
+    {
+      logo: <img src="/press/wired.svg" alt="" />,
+      name: "Wired",
+      href: "https://wired.com/...",
+    },
   ]}
   size="sm"
   grayscale={false}
@@ -259,20 +263,36 @@ import { LogoCloud } from '@orion/react';
   title="Our Technology Partners"
   description="We integrate with the tools you already use."
   logos={[
-    { logo: <img src="/partners/aws.svg" alt="" />, name: 'AWS', href: '/integrations/aws' },
+    {
+      logo: <img src="/partners/aws.svg" alt="" />,
+      name: "AWS",
+      href: "/integrations/aws",
+    },
     {
       logo: <img src="/partners/gcp.svg" alt="" />,
-      name: 'Google Cloud',
-      href: '/integrations/gcp',
+      name: "Google Cloud",
+      href: "/integrations/gcp",
     },
-    { logo: <img src="/partners/azure.svg" alt="" />, name: 'Azure', href: '/integrations/azure' },
+    {
+      logo: <img src="/partners/azure.svg" alt="" />,
+      name: "Azure",
+      href: "/integrations/azure",
+    },
     {
       logo: <img src="/partners/github.svg" alt="" />,
-      name: 'GitHub',
-      href: '/integrations/github',
+      name: "GitHub",
+      href: "/integrations/github",
     },
-    { logo: <img src="/partners/slack.svg" alt="" />, name: 'Slack', href: '/integrations/slack' },
-    { logo: <img src="/partners/jira.svg" alt="" />, name: 'Jira', href: '/integrations/jira' },
+    {
+      logo: <img src="/partners/slack.svg" alt="" />,
+      name: "Slack",
+      href: "/integrations/slack",
+    },
+    {
+      logo: <img src="/partners/jira.svg" alt="" />,
+      name: "Jira",
+      href: "/integrations/jira",
+    },
   ]}
   layout="grid"
   columns={6}
@@ -286,14 +306,14 @@ import { LogoCloud } from '@orion/react';
 <LogoCloud
   title="Trusted by innovative companies"
   logos={[
-    { logo: <img src="/clients/1.svg" alt="" />, name: 'Client 1' },
-    { logo: <img src="/clients/2.svg" alt="" />, name: 'Client 2' },
-    { logo: <img src="/clients/3.svg" alt="" />, name: 'Client 3' },
-    { logo: <img src="/clients/4.svg" alt="" />, name: 'Client 4' },
-    { logo: <img src="/clients/5.svg" alt="" />, name: 'Client 5' },
-    { logo: <img src="/clients/6.svg" alt="" />, name: 'Client 6' },
-    { logo: <img src="/clients/7.svg" alt="" />, name: 'Client 7' },
-    { logo: <img src="/clients/8.svg" alt="" />, name: 'Client 8' },
+    { logo: <img src="/clients/1.svg" alt="" />, name: "Client 1" },
+    { logo: <img src="/clients/2.svg" alt="" />, name: "Client 2" },
+    { logo: <img src="/clients/3.svg" alt="" />, name: "Client 3" },
+    { logo: <img src="/clients/4.svg" alt="" />, name: "Client 4" },
+    { logo: <img src="/clients/5.svg" alt="" />, name: "Client 5" },
+    { logo: <img src="/clients/6.svg" alt="" />, name: "Client 6" },
+    { logo: <img src="/clients/7.svg" alt="" />, name: "Client 7" },
+    { logo: <img src="/clients/8.svg" alt="" />, name: "Client 8" },
   ]}
   layout="marquee"
   marqueeSpeed="slow"
@@ -306,9 +326,9 @@ import { LogoCloud } from '@orion/react';
 ```tsx
 <LogoCloud
   logos={[
-    { logo: <img src="/logos/soc2.svg" alt="" />, name: 'SOC 2 Certified' },
-    { logo: <img src="/logos/gdpr.svg" alt="" />, name: 'GDPR Compliant' },
-    { logo: <img src="/logos/hipaa.svg" alt="" />, name: 'HIPAA Compliant' },
+    { logo: <img src="/logos/soc2.svg" alt="" />, name: "SOC 2 Certified" },
+    { logo: <img src="/logos/gdpr.svg" alt="" />, name: "GDPR Compliant" },
+    { logo: <img src="/logos/hipaa.svg" alt="" />, name: "HIPAA Compliant" },
   ]}
   layout="inline"
   size="sm"

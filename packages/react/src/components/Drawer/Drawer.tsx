@@ -15,15 +15,15 @@
  * ```
  */
 
-import { forwardRef, useEffect, useCallback } from 'react';
-import { createPortal } from 'react-dom';
+import { forwardRef, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 import type {
   DrawerProps,
   DrawerHeaderProps,
   DrawerBodyProps,
   DrawerFooterProps,
-} from './Drawer.types';
-import styles from './Drawer.module.css';
+} from "./Drawer.types";
+import styles from "./Drawer.module.css";
 
 /**
  * Drawer Header
@@ -31,14 +31,18 @@ import styles from './Drawer.module.css';
 const DrawerHeader = forwardRef<HTMLDivElement, DrawerHeaderProps>(
   ({ children, className, ...rest }, ref) => {
     return (
-      <div ref={ref} className={`${styles.header} ${className || ''}`} {...rest}>
+      <div
+        ref={ref}
+        className={`${styles.header} ${className || ""}`}
+        {...rest}
+      >
         {children}
       </div>
     );
   },
 );
 
-DrawerHeader.displayName = 'Drawer.Header';
+DrawerHeader.displayName = "Drawer.Header";
 
 /**
  * Drawer Body
@@ -46,14 +50,14 @@ DrawerHeader.displayName = 'Drawer.Header';
 const DrawerBody = forwardRef<HTMLDivElement, DrawerBodyProps>(
   ({ children, className, ...rest }, ref) => {
     return (
-      <div ref={ref} className={`${styles.body} ${className || ''}`} {...rest}>
+      <div ref={ref} className={`${styles.body} ${className || ""}`} {...rest}>
         {children}
       </div>
     );
   },
 );
 
-DrawerBody.displayName = 'Drawer.Body';
+DrawerBody.displayName = "Drawer.Body";
 
 /**
  * Drawer Footer
@@ -61,14 +65,18 @@ DrawerBody.displayName = 'Drawer.Body';
 const DrawerFooter = forwardRef<HTMLDivElement, DrawerFooterProps>(
   ({ children, className, ...rest }, ref) => {
     return (
-      <div ref={ref} className={`${styles.footer} ${className || ''}`} {...rest}>
+      <div
+        ref={ref}
+        className={`${styles.footer} ${className || ""}`}
+        {...rest}
+      >
         {children}
       </div>
     );
   },
 );
 
-DrawerFooter.displayName = 'Drawer.Footer';
+DrawerFooter.displayName = "Drawer.Footer";
 
 /**
  * Drawer Component
@@ -78,8 +86,8 @@ const DrawerRoot = forwardRef<HTMLDivElement, DrawerProps>(
     {
       open,
       onClose,
-      placement = 'right',
-      size = 'md',
+      placement = "right",
+      size = "md",
       closeOnBackdrop = true,
       closeOnEscape = true,
       showCloseButton = true,
@@ -92,7 +100,7 @@ const DrawerRoot = forwardRef<HTMLDivElement, DrawerProps>(
     // Handle escape key
     const handleEscape = useCallback(
       (event: KeyboardEvent) => {
-        if (closeOnEscape && event.key === 'Escape') {
+        if (closeOnEscape && event.key === "Escape") {
           onClose();
         }
       },
@@ -110,12 +118,12 @@ const DrawerRoot = forwardRef<HTMLDivElement, DrawerProps>(
     useEffect(() => {
       if (open) {
         const originalOverflow = document.body.style.overflow;
-        document.body.style.overflow = 'hidden';
-        document.addEventListener('keydown', handleEscape);
+        document.body.style.overflow = "hidden";
+        document.addEventListener("keydown", handleEscape);
 
         return () => {
           document.body.style.overflow = originalOverflow;
-          document.removeEventListener('keydown', handleEscape);
+          document.removeEventListener("keydown", handleEscape);
         };
       }
     }, [open, handleEscape]);
@@ -126,7 +134,7 @@ const DrawerRoot = forwardRef<HTMLDivElement, DrawerProps>(
 
     const overlayClasses = [styles.overlay, open && styles.overlayVisible]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     const drawerClasses = [
       styles.drawer,
@@ -136,15 +144,25 @@ const DrawerRoot = forwardRef<HTMLDivElement, DrawerProps>(
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     const content = (
       <div className={overlayClasses}>
         {/* Backdrop */}
-        <div className={styles.backdrop} onClick={handleBackdropClick} aria-hidden="true" />
+        <div
+          className={styles.backdrop}
+          onClick={handleBackdropClick}
+          aria-hidden="true"
+        />
 
         {/* Drawer panel */}
-        <div ref={ref} className={drawerClasses} role="dialog" aria-modal="true" {...rest}>
+        <div
+          ref={ref}
+          className={drawerClasses}
+          role="dialog"
+          aria-modal="true"
+          {...rest}
+        >
           {showCloseButton && (
             <button
               type="button"
@@ -179,7 +197,7 @@ const DrawerRoot = forwardRef<HTMLDivElement, DrawerProps>(
   },
 );
 
-DrawerRoot.displayName = 'Drawer';
+DrawerRoot.displayName = "Drawer";
 
 // Compose the component with subcomponents
 export const Drawer = Object.assign(DrawerRoot, {

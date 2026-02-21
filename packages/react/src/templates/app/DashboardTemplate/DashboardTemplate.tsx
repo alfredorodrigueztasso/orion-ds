@@ -5,17 +5,17 @@
  * Designed for admin panels, analytics dashboards, and data-heavy interfaces.
  */
 
-import { forwardRef } from 'react';
-import type { DashboardTemplateProps } from './DashboardTemplate.types';
+import { forwardRef } from "react";
+import type { DashboardTemplateProps } from "./DashboardTemplate.types";
 
 // Sections
-import { Sidebar } from '../../../sections/Sidebar';
-import { PageHeader } from '../../../sections/PageHeader';
-import { MetricCards } from '../../../sections/MetricCards';
-import { DataTable } from '../../../sections/DataTable';
-import { ActivityFeed } from '../../../sections/ActivityFeed';
+import { Sidebar } from "../../../sections/Sidebar";
+import { PageHeader } from "../../../sections/PageHeader";
+import { MetricCards } from "../../../sections/MetricCards";
+import { DataTable } from "../../../sections/DataTable";
+import { ActivityFeed } from "../../../sections/ActivityFeed";
 
-import styles from './DashboardTemplate.module.css';
+import styles from "./DashboardTemplate.module.css";
 
 /**
  * DashboardTemplate - Full dashboard page composition
@@ -35,7 +35,10 @@ import styles from './DashboardTemplate.module.css';
  * />
  * ```
  */
-export const DashboardTemplate = forwardRef<HTMLDivElement, DashboardTemplateProps>(
+export const DashboardTemplate = forwardRef<
+  HTMLDivElement,
+  DashboardTemplateProps
+>(
   (
     {
       sidebar,
@@ -43,18 +46,23 @@ export const DashboardTemplate = forwardRef<HTMLDivElement, DashboardTemplatePro
       metrics,
       dataTable,
       activityFeed,
-      layout = 'default',
+      layout = "default",
       children,
       className,
       ...rest
     },
     ref,
   ) => {
-    const dashboardClasses = [styles.dashboard, layout === 'compact' && styles.compact, className]
+    const dashboardClasses = [
+      styles.dashboard,
+      layout === "compact" && styles.compact,
+      className,
+    ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
-    const contentClasses = layout === 'split' ? styles.contentSplit : styles.content;
+    const contentClasses =
+      layout === "split" ? styles.contentSplit : styles.content;
 
     return (
       <div ref={ref} className={dashboardClasses} {...rest}>
@@ -80,7 +88,7 @@ export const DashboardTemplate = forwardRef<HTMLDivElement, DashboardTemplatePro
             </div>
 
             {/* Activity Feed (Split Layout) */}
-            {layout === 'split' && activityFeed && (
+            {layout === "split" && activityFeed && (
               <aside className={styles.aside}>
                 <ActivityFeed {...activityFeed} />
               </aside>
@@ -92,6 +100,6 @@ export const DashboardTemplate = forwardRef<HTMLDivElement, DashboardTemplatePro
   },
 );
 
-DashboardTemplate.displayName = 'DashboardTemplate';
+DashboardTemplate.displayName = "DashboardTemplate";
 
 export default DashboardTemplate;

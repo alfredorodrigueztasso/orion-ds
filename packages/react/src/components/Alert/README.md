@@ -18,7 +18,7 @@ Notification and message alert component with status variants. Uses Lucide icons
 ### Basic
 
 ```tsx
-import { Alert } from '@orion/react';
+import { Alert } from "@orion/react";
 
 <Alert variant="info">This is an informational message.</Alert>;
 ```
@@ -34,7 +34,11 @@ import { Alert } from '@orion/react';
 ### Dismissible
 
 ```tsx
-<Alert variant="warning" dismissible onClose={() => console.log('Alert closed')}>
+<Alert
+  variant="warning"
+  dismissible
+  onClose={() => console.log("Alert closed")}
+>
   This action cannot be undone.
 </Alert>
 ```
@@ -42,7 +46,7 @@ import { Alert } from '@orion/react';
 ### With Custom Icon
 
 ```tsx
-import { Bell } from 'lucide-react';
+import { Bell } from "lucide-react";
 
 <Alert variant="info" icon={<Bell size={20} />}>
   You have new notifications.

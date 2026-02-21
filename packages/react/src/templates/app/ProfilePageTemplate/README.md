@@ -5,30 +5,44 @@
 ## Quick Start
 
 ```tsx
-import { ProfilePageTemplate, Button, Avatar } from '@orion/react';
-import { Home, Users, Settings, Mail, MapPin, Edit } from 'lucide-react';
+import { ProfilePageTemplate, Button, Avatar } from "@orion/react";
+import { Home, Users, Settings, Mail, MapPin, Edit } from "lucide-react";
 
 <ProfilePageTemplate
   sidebar={{
     sections: [
       {
         items: [
-          { id: 'home', label: 'Home', icon: <Home size={20} />, href: '/' },
-          { id: 'team', label: 'Team', icon: <Users size={20} />, href: '/team' },
-          { id: 'settings', label: 'Settings', icon: <Settings size={20} />, href: '/settings' },
+          { id: "home", label: "Home", icon: <Home size={20} />, href: "/" },
+          {
+            id: "team",
+            label: "Team",
+            icon: <Users size={20} />,
+            href: "/team",
+          },
+          {
+            id: "settings",
+            label: "Settings",
+            icon: <Settings size={20} />,
+            href: "/settings",
+          },
         ],
       },
     ],
-    activeItem: 'team',
+    activeItem: "team",
   }}
   profile={{
     avatar: <Avatar src="/john.jpg" fallback="JD" size="xl" />,
-    name: 'John Doe',
-    role: 'Software Engineer',
-    email: 'john@example.com',
+    name: "John Doe",
+    role: "Software Engineer",
+    email: "john@example.com",
     metadata: [
-      { icon: <MapPin size={16} />, label: 'Location', value: 'San Francisco, CA' },
-      { icon: <Mail size={16} />, label: 'Email', value: 'john@example.com' },
+      {
+        icon: <MapPin size={16} />,
+        label: "Location",
+        value: "San Francisco, CA",
+      },
+      { icon: <Mail size={16} />, label: "Email", value: "john@example.com" },
     ],
     actions: (
       <Button variant="secondary" icon={<Edit size={18} />}>
@@ -38,8 +52,8 @@ import { Home, Users, Settings, Mail, MapPin, Edit } from 'lucide-react';
   }}
   activityFeed={{
     activities: [
-      { id: '1', title: 'Completed project review', timestamp: '2 hours ago' },
-      { id: '2', title: 'Updated profile photo', timestamp: '1 day ago' },
+      { id: "1", title: "Completed project review", timestamp: "2 hours ago" },
+      { id: "2", title: "Updated profile photo", timestamp: "1 day ago" },
     ],
   }}
 />;
@@ -155,7 +169,7 @@ interface ProfileHeader {
 ### Full User Profile
 
 ```tsx
-import { ProfilePageTemplate, Button, Badge, Avatar } from '@orion/react';
+import { ProfilePageTemplate, Button, Badge, Avatar } from "@orion/react";
 import {
   Home,
   Users,
@@ -167,7 +181,7 @@ import {
   Edit,
   MessageSquare,
   MoreHorizontal,
-} from 'lucide-react';
+} from "lucide-react";
 
 function UserProfile() {
   const [showEditPanel, setShowEditPanel] = useState(false);
@@ -175,41 +189,67 @@ function UserProfile() {
   return (
     <ProfilePageTemplate
       sidebar={{
-        header: <div style={{ padding: 'var(--spacing-4)', fontWeight: 700 }}>Acme</div>,
+        header: (
+          <div style={{ padding: "var(--spacing-4)", fontWeight: 700 }}>
+            Acme
+          </div>
+        ),
         sections: [
           {
             items: [
-              { id: 'home', label: 'Home', icon: <Home size={20} />, href: '/' },
-              { id: 'team', label: 'Team', icon: <Users size={20} />, href: '/team' },
+              {
+                id: "home",
+                label: "Home",
+                icon: <Home size={20} />,
+                href: "/",
+              },
+              {
+                id: "team",
+                label: "Team",
+                icon: <Users size={20} />,
+                href: "/team",
+              },
             ],
           },
           {
-            title: 'Settings',
+            title: "Settings",
             items: [
               {
-                id: 'settings',
-                label: 'Settings',
+                id: "settings",
+                label: "Settings",
                 icon: <Settings size={20} />,
-                href: '/settings',
+                href: "/settings",
               },
             ],
           },
         ],
-        activeItem: 'team',
+        activeItem: "team",
       }}
       pageHeader={{
-        breadcrumbs: [{ label: 'Team', href: '/team' }, { label: 'John Doe' }],
+        breadcrumbs: [{ label: "Team", href: "/team" }, { label: "John Doe" }],
       }}
       profile={{
         avatar: <Avatar src="/john.jpg" fallback="JD" size="xl" />,
-        name: 'John Doe',
-        role: 'Senior Software Engineer',
-        email: 'john@acme.com',
+        name: "John Doe",
+        role: "Senior Software Engineer",
+        email: "john@acme.com",
         metadata: [
-          { icon: <Building size={16} />, label: 'Department', value: 'Engineering' },
-          { icon: <MapPin size={16} />, label: 'Location', value: 'San Francisco, CA' },
-          { icon: <Calendar size={16} />, label: 'Joined', value: 'March 2022' },
-          { icon: <Mail size={16} />, label: 'Email', value: 'john@acme.com' },
+          {
+            icon: <Building size={16} />,
+            label: "Department",
+            value: "Engineering",
+          },
+          {
+            icon: <MapPin size={16} />,
+            label: "Location",
+            value: "San Francisco, CA",
+          },
+          {
+            icon: <Calendar size={16} />,
+            label: "Joined",
+            value: "March 2022",
+          },
+          { icon: <Mail size={16} />, label: "Email", value: "john@acme.com" },
         ],
         actions: (
           <>
@@ -233,38 +273,38 @@ function UserProfile() {
         ),
       }}
       activityFeed={{
-        title: 'Recent Activity',
+        title: "Recent Activity",
         activities: [
           {
-            id: '1',
-            title: 'Completed code review for Project Alpha',
-            timestamp: '2 hours ago',
-            type: 'task',
+            id: "1",
+            title: "Completed code review for Project Alpha",
+            timestamp: "2 hours ago",
+            type: "task",
           },
           {
-            id: '2',
-            title: 'Joined the Platform Team',
-            timestamp: '1 day ago',
-            type: 'team',
+            id: "2",
+            title: "Joined the Platform Team",
+            timestamp: "1 day ago",
+            type: "team",
           },
           {
-            id: '3',
-            title: 'Updated profile information',
-            timestamp: '3 days ago',
-            type: 'profile',
+            id: "3",
+            title: "Updated profile information",
+            timestamp: "3 days ago",
+            type: "profile",
           },
           {
-            id: '4',
-            title: 'Shipped v2.0 release',
-            timestamp: '1 week ago',
-            type: 'release',
+            id: "4",
+            title: "Shipped v2.0 release",
+            timestamp: "1 week ago",
+            type: "release",
           },
         ],
       }}
       detailPanel={
         showEditPanel
           ? {
-              title: 'Edit Profile',
+              title: "Edit Profile",
               onClose: () => setShowEditPanel(false),
               children: <form>{/* Edit form content */}</form>,
             }
@@ -276,14 +316,17 @@ function UserProfile() {
       <section>
         <h3>About</h3>
         <p>
-          Senior Software Engineer with 8+ years of experience building scalable web applications.
-          Passionate about developer experience and design systems.
+          Senior Software Engineer with 8+ years of experience building scalable
+          web applications. Passionate about developer experience and design
+          systems.
         </p>
       </section>
 
       <section>
         <h3>Skills</h3>
-        <div style={{ display: 'flex', gap: 'var(--spacing-2)', flexWrap: 'wrap' }}>
+        <div
+          style={{ display: "flex", gap: "var(--spacing-2)", flexWrap: "wrap" }}
+        >
           <Badge>TypeScript</Badge>
           <Badge>React</Badge>
           <Badge>Node.js</Badge>
@@ -307,11 +350,11 @@ function UserProfile() {
 <ProfilePageTemplate
   profile={{
     avatar: <Avatar src="/sarah.jpg" fallback="SC" size="xl" />,
-    name: 'Sarah Chen',
-    role: 'Product Manager',
+    name: "Sarah Chen",
+    role: "Product Manager",
     metadata: [
-      { icon: <Building size={16} />, label: 'Team', value: 'Product' },
-      { icon: <MapPin size={16} />, label: 'Location', value: 'New York, NY' },
+      { icon: <Building size={16} />, label: "Team", value: "Product" },
+      { icon: <MapPin size={16} />, label: "Location", value: "New York, NY" },
     ],
     actions: (
       <Button variant="secondary" icon={<MessageSquare size={18} />}>
@@ -333,13 +376,13 @@ function UserProfile() {
 ```tsx
 <ProfilePageTemplate
   pageHeader={{
-    breadcrumbs: [{ label: 'Team', href: '/team' }, { label: 'John Doe' }],
+    breadcrumbs: [{ label: "Team", href: "/team" }, { label: "John Doe" }],
     actions: <Button>Back to Team</Button>,
   }}
   profile={{
     avatar: <Avatar initials="JD" size="xl" />,
-    name: 'John Doe',
-    role: 'Software Engineer',
+    name: "John Doe",
+    role: "Software Engineer",
   }}
 />
 ```
@@ -353,14 +396,14 @@ function EditableProfile() {
   return (
     <ProfilePageTemplate
       profile={{
-        name: 'John Doe',
-        role: 'Software Engineer',
+        name: "John Doe",
+        role: "Software Engineer",
         actions: <Button onClick={() => setIsEditing(true)}>Edit</Button>,
       }}
       detailPanel={
         isEditing
           ? {
-              title: 'Edit Profile',
+              title: "Edit Profile",
               onClose: () => setIsEditing(false),
               footer: (
                 <>
@@ -392,7 +435,7 @@ function EditableProfile() {
 ### Hide Activity Feed
 
 ```tsx
-<ProfilePageTemplate profile={{ name: 'John Doe' }} showActivity={false} />
+<ProfilePageTemplate profile={{ name: "John Doe" }} showActivity={false} />
 ```
 
 ### Custom Content Sections
@@ -400,7 +443,7 @@ function EditableProfile() {
 Use `children` to add custom profile sections.
 
 ```tsx
-<ProfilePageTemplate profile={{ name: 'John Doe', role: 'Engineer' }}>
+<ProfilePageTemplate profile={{ name: "John Doe", role: "Engineer" }}>
   <section className="profile-section">
     <h3>Certifications</h3>
     <ul>
@@ -477,8 +520,8 @@ Use `children` to add custom profile sections.
 // WRONG - This template is for user profiles
 <ProfilePageTemplate
   profile={{
-    name: 'Acme Inc', // This is a company, not a user
-    role: 'Company Profile',
+    name: "Acme Inc", // This is a company, not a user
+    role: "Company Profile",
   }}
 />
 
