@@ -468,6 +468,13 @@
       "type": "registry:component"
     },
     {
+      "name": "nav-tree",
+      "title": "NavTree",
+      "description": "NavTree section component",
+      "category": "marketing",
+      "type": "registry:section"
+    },
+    {
       "name": "navbar",
       "title": "Navbar",
       "description": "Top navigation bar with brand and links",
@@ -735,6 +742,6 @@
     }
   ],
   "totalComponents": 50,
-  "totalSections": 43,
+  "totalSections": 44,
   "totalTemplates": 11
 }

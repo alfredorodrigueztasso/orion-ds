@@ -10,7 +10,7 @@ import type { AgentCardProps } from "@orion-ds/react";
 import { Bot, Sparkles, Star, Zap } from "lucide-react";
 
 const meta: Meta<typeof AgentFolder> = {
-  title: "Sections/AgentFolder",
+  title: "Sections/App/AgentFolder",
   component: AgentFolder,
   parameters: {
     layout: "padded",

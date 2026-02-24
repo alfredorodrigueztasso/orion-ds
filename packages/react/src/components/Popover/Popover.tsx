@@ -128,6 +128,7 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
       closeOnEscape = true,
       openDelay = 0,
       closeDelay = 150,
+      fullWidth = false,
       className,
       ...rest
     },
@@ -333,9 +334,16 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
       </div>
     );
 
+    const triggerClasses = [
+      styles.trigger,
+      fullWidth && styles.triggerFullWidth,
+    ]
+      .filter(Boolean)
+      .join(" ");
+
     return (
       <>
-        <div ref={triggerRef} className={styles.trigger}>
+        <div ref={triggerRef} className={triggerClasses}>
           {triggerElement}
         </div>
         {isOpen && createPortal(popoverElement, document.body)}

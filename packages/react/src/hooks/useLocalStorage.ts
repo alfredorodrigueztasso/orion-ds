@@ -160,7 +160,8 @@ export function useLocalStorage<T>(
   // Re-read value on mount (handles SSR hydration)
   useEffect(() => {
     setStoredValue(readValue());
-  }, [readValue]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Run once on mount for SSR hydration
 
   return [storedValue, setValue, removeValue];
 }
@@ -224,7 +225,8 @@ export function useSessionStorage<T>(
 
   useEffect(() => {
     setStoredValue(readValue());
-  }, [readValue]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Run once on mount for SSR hydration
 
   return [storedValue, setValue, removeValue];
 }

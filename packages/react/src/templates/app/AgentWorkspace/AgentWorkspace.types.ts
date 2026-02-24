@@ -123,6 +123,11 @@ export interface NavbarConfig {
   userName?: string;
 
   /**
+   * User email (displayed in UserMenu header)
+   */
+  userEmail?: string;
+
+  /**
    * User menu click handler
    */
   onUserMenuClick?: () => void;
@@ -146,6 +151,26 @@ export interface PageHeaderConfig {
    * Action buttons (e.g., Create Folder, New Agent)
    */
   actions?: ReactNode;
+}
+
+/**
+ * Help center item
+ */
+export interface HelpCenter {
+  /**
+   * Unique help center ID
+   */
+  id: string;
+
+  /**
+   * Help center display name
+   */
+  name: string;
+
+  /**
+   * Optional icon (Lucide or custom ReactNode)
+   */
+  icon?: ReactNode;
 }
 
 /**
@@ -193,14 +218,54 @@ export interface AgentWorkspaceProps extends HTMLAttributes<HTMLDivElement> {
   looseAgents?: AgentCardProps[];
 
   /**
+   * Help centers (displayed in sidebar)
+   */
+  helpCenters?: HelpCenter[];
+
+  /**
    * Create new folder handler
    */
   onCreateFolder?: () => void;
 
   /**
-   * Create new agent handler
+   * Create new agent handler (with optional folderId parameter)
    */
-  onCreateAgent?: () => void;
+  onCreateAgent?: (folderId?: string) => void;
+
+  /**
+   * Create new help center handler
+   */
+  onCreateHelpCenter?: () => void;
+
+  /**
+   * Edit folder handler
+   */
+  onEditFolder?: (folderId: string) => void;
+
+  /**
+   * Delete folder handler
+   */
+  onDeleteFolder?: (folderId: string) => void;
+
+  /**
+   * Move agent handler
+   */
+  onMoveAgent?: (agentId: string) => void;
+
+  /**
+   * Delete agent handler
+   */
+  onDeleteAgent?: (agentId: string) => void;
+
+  /**
+   * Edit help center handler
+   */
+  onEditHelpCenter?: (helpCenterId: string) => void;
+
+  /**
+   * Delete help center handler
+   */
+  onDeleteHelpCenter?: (helpCenterId: string) => void;
 
   /**
    * Invite participants handler
@@ -211,6 +276,29 @@ export interface AgentWorkspaceProps extends HTMLAttributes<HTMLDivElement> {
    * Settings handler
    */
   onSettings?: () => void;
+
+  /**
+   * Navigation node click handler (sidebar navigation)
+   */
+  onNavNodeClick?: (nodeId: string) => void;
+
+  /**
+   * Active navigation node ID (for highlighting in sidebar)
+   */
+  activeNavNodeId?: string;
+
+  /**
+   * Sidebar width in pixels
+   * @default 260
+   */
+  sidebarWidth?: number;
+
+  /**
+   * Visible sections in sidebar (filter by section ID)
+   * Possible values: 'agents', 'help-centers', 'community'
+   * @default all sections visible
+   */
+  visibleSections?: string[];
 
   /**
    * Custom empty state when no folders exist

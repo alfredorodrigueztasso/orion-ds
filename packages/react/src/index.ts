@@ -706,6 +706,7 @@ export {
   KanbanBoard,
   NotificationCenter,
   UserMenu,
+  NavTree,
   Breadcrumbs,
   Stepper as StepperSection,
   FileUploader,
@@ -726,6 +727,14 @@ export type {
   UserMenuItem,
   UserMenuSection,
   UserInfo,
+  // NavTree
+  NavTreeProps,
+  NavTreeNode,
+  NavTreeNodeType,
+  NavTreeSection,
+  NavTreeSectionVariant,
+  NavTreeActionConfig,
+  NavTreeContextValue,
   // Breadcrumbs
   BreadcrumbsProps,
   StandaloneBreadcrumbItem,
@@ -839,6 +848,7 @@ export {
   KanbanPageTemplate,
   LoginTemplate,
   ChatPageTemplate,
+  AgentWorkspace,
 } from "./templates/app";
 export type {
   DashboardTemplateProps,
@@ -853,4 +863,5 @@ export type {
   LoginEditorial,
   SocialProvider,
   ChatPageTemplateProps,
+  AgentWorkspaceProps,
 } from "./templates/app";

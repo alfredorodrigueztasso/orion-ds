@@ -45,6 +45,16 @@ export interface UserMenuItem {
    * Disabled state
    */
   disabled?: boolean;
+
+  /**
+   * Keyboard shortcut hint (e.g., "⌘K", "Ctrl+S")
+   */
+  shortcut?: string;
+
+  /**
+   * Notification badge count
+   */
+  badge?: number;
 }
 
 /**
@@ -152,6 +162,12 @@ export interface UserMenuProps extends Omit<
   align?: "start" | "end";
 
   /**
+   * Dropdown placement direction
+   * @default "bottom"
+   */
+  placement?: "top" | "bottom";
+
+  /**
    * Show user info header in dropdown
    * @default true
    */
@@ -162,4 +178,12 @@ export interface UserMenuProps extends Omit<
    * @default false
    */
   compact?: boolean;
+
+  /**
+   * Whether the menu wrapper should stretch to fill its container
+   * Set to true when UserMenu is inside a constrained container (e.g., sidebar footer)
+   * Changes wrapper from display: inline-block to display: block with width: 100%
+   * @default false
+   */
+  fullWidth?: boolean;
 }

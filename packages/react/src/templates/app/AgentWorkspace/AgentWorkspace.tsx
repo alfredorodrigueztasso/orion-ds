@@ -57,7 +57,7 @@
  * ```
  */
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import type { AgentWorkspaceProps, DragEndEvent } from "./AgentWorkspace.types";
 import {
   DndContext,
@@ -66,7 +66,8 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import { Navbar } from "../../../components/Navbar";
+import { NavTree } from "../../../sections/NavTree";
+import { UserMenu } from "../../../sections/UserMenu";
 import { PageHeader } from "../../../sections/PageHeader";
 import { AgentFolder } from "../../../sections/AgentFolder";
 import { AgentCard } from "../../../components/AgentCard";
@@ -82,7 +83,23 @@ import {
   Settings,
   Users,
   Bot,
+  FolderOpen,
+  BookOpen,
+  Users2,
+  MessageCircle,
+  Target,
+  Edit2,
+  BarChart3,
+  MessageSquare,
+  Database,
+  Plug,
+  Megaphone,
+  CreditCard,
+  LogOut,
+  HelpCircle,
 } from "lucide-react";
+import type { NavTreeSection, NavTreeNode } from "../../../sections/NavTree/NavTree.types";
+import type { NavTreeActionConfig } from "../../../sections/NavTree/NavTree.types";
 import styles from "./AgentWorkspace.module.css";
 
 export const AgentWorkspace: React.FC<AgentWorkspaceProps> = ({
@@ -90,20 +107,185 @@ export const AgentWorkspace: React.FC<AgentWorkspaceProps> = ({
   pageHeader,
   folders = [],
   looseAgents,
+  helpCenters,
   onCreateFolder,
   onCreateAgent,
+  onCreateHelpCenter,
+  onEditFolder,
+  onDeleteFolder,
+  onMoveAgent,
+  onDeleteAgent,
+  onEditHelpCenter,
+  onDeleteHelpCenter,
   onInviteParticipants,
   onSettings,
+  onNavNodeClick,
+  activeNavNodeId: controlledActiveNavNodeId,
+  sidebarWidth = 260,
+  visibleSections,
   emptyState,
   enableDragDrop = true,
   className,
   ...rest
 }) => {
+  // State for sidebar navigation
+  const [activeNavNodeId, setActiveNavNodeId] = useState<string | undefined>(
+    controlledActiveNavNodeId
+  );
+
+  // Drag & drop state
   const [activeId, setActiveId] = useState<string | null>(null);
   const [overId, setOverId] = useState<string | null>(null);
   const [completedFolderId, setCompletedFolderId] = useState<string | null>(
     null,
   );
+
+  // Helper function to get agent sub-pages (7 pages)
+  const agentSubPages = (agentId: string) => [
+    { id: `${agentId}-edit`, type: "page" as const, label: "Editar", icon: <Edit2 size={14} /> },
+    { id: `${agentId}-metrics`, type: "page" as const, label: "Métricas", icon: <BarChart3 size={14} /> },
+    { id: `${agentId}-conversations`, type: "page" as const, label: "Conversaciones", icon: <MessageSquare size={14} /> },
+    { id: `${agentId}-datasources`, type: "page" as const, label: "Fuentes de datos", icon: <Database size={14} /> },
+    { id: `${agentId}-integrations`, type: "page" as const, label: "Integraciones", icon: <Plug size={14} /> },
+    { id: `${agentId}-campaigns`, type: "page" as const, label: "Campañas", icon: <Megaphone size={14} /> },
+    { id: `${agentId}-settings`, type: "page" as const, label: "Configuración", icon: <Settings size={14} /> },
+  ];
+
+  // Build NavTree sections (Agentes IA, Centro de Ayuda, Comunidad)
+  const navTreeSections = useMemo(() => {
+    const sections: NavTreeSection[] = [];
+
+    // Section: "Agentes IA" — folders + loose agents
+    const agentNodes = [
+      ...folders.map(folder => ({
+        id: folder.id,
+        type: "folder" as const,
+        label: folder.title,
+        icon: <FolderOpen size={16} />,
+        children: folder.agents.map(agent => ({
+          id: agent.id,
+          type: "folder" as const,
+          label: agent.title || "Agente sin nombre",
+          icon: typeof agent.avatar === "string"
+            ? <Avatar size="xs" src={agent.avatar} initials={agent.title?.slice(0, 2).toUpperCase()} />
+            : <Avatar size="xs" icon={agent.avatar} initials={agent.title?.slice(0, 2).toUpperCase()} />,
+          children: agentSubPages(agent.id),
+        })),
+      })),
+      ...(looseAgents ?? []).map(agent => ({
+        id: agent.id,
+        type: "folder" as const,
+        label: agent.title || "Agente sin nombre",
+        icon: typeof agent.avatar === "string"
+          ? <Avatar size="xs" src={agent.avatar} initials={agent.title?.slice(0, 2).toUpperCase()} />
+          : <Avatar size="xs" icon={agent.avatar} initials={agent.title?.slice(0, 2).toUpperCase()} />,
+        children: agentSubPages(agent.id),
+      })),
+    ];
+    // Calculate badge for agents section
+    const agentsBadge = folders.reduce((acc, f) => acc + f.agents.length, 0) + (looseAgents?.length ?? 0);
+
+    sections.push({
+      id: "agents",
+      title: "Agentes IA",
+      icon: <Sparkles size={16} />,
+      badge: agentsBadge,
+      nodes: agentNodes,
+      defaultExpanded: true,
+    });
+
+    // Section: "Centro de Ayuda" — only if helpCenters exist
+    if (helpCenters && helpCenters.length > 0) {
+      sections.push({
+        id: "help-centers",
+        title: "Centro de Ayuda",
+        icon: <BookOpen size={16} />,
+        badge: helpCenters.length,
+        nodes: helpCenters.map(hc => ({
+          id: hc.id,
+          type: "page" as const,
+          label: hc.name,
+          icon: hc.icon ?? <BookOpen size={14} />,
+        })),
+      });
+    }
+
+    // Section: "Comunidad" — fixed nodes
+    sections.push({
+      id: "community",
+      title: "Comunidad",
+      icon: <Users2 size={16} />,
+      badge: 3,
+      nodes: [
+        { id: "community-contacts", type: "page" as const, label: "Contactos", icon: <Users2 size={14} /> },
+        { id: "community-conversations", type: "page" as const, label: "Conversaciones", icon: <MessageCircle size={14} /> },
+        { id: "community-segments", type: "page" as const, label: "Segmentos", icon: <Target size={14} /> },
+      ],
+    });
+
+    return sections;
+  }, [folders, looseAgents, helpCenters]);
+
+  // Filter sections by visibleSections
+  const sectionsToShow = useMemo(() => {
+    if (!visibleSections) return navTreeSections;
+    return navTreeSections.filter(s => visibleSections.includes(s.id));
+  }, [navTreeSections, visibleSections]);
+
+  // Build NavTree actions
+  const navTreeActions: NavTreeActionConfig = useMemo(() => ({
+    onAdd: (parentId: string | null, sectionId: string) => {
+      if (sectionId === "agents" && parentId === null) {
+        onCreateFolder?.();
+      } else if (sectionId === "agents" && parentId !== null) {
+        onCreateAgent?.(parentId);
+      } else if (sectionId === "help-centers") {
+        onCreateHelpCenter?.();
+      }
+    },
+    getCustomActions: (node: NavTreeNode) => {
+      // Detect node type
+      const isFolder = folders.some(f => f.id === node.id);
+      const isAgent = !isFolder && (
+        folders.some(f => f.agents.some(a => a.id === node.id)) ||
+        looseAgents?.some(a => a.id === node.id)
+      );
+      const isHelpCenter = helpCenters?.some(hc => hc.id === node.id);
+
+      if (isFolder) {
+        return [
+          { id: "edit", label: "Editar", onClick: () => onEditFolder?.(node.id) },
+          { id: "delete", label: "Eliminar", variant: "danger" as const, onClick: () => onDeleteFolder?.(node.id) },
+        ];
+      }
+      if (isAgent) {
+        return [
+          { id: "move", label: "Mover a carpeta", onClick: () => onMoveAgent?.(node.id) },
+          { id: "delete", label: "Eliminar", variant: "danger" as const, onClick: () => onDeleteAgent?.(node.id) },
+        ];
+      }
+      if (isHelpCenter) {
+        return [
+          { id: "edit", label: "Editar", onClick: () => onEditHelpCenter?.(node.id) },
+          { id: "delete", label: "Eliminar", variant: "danger" as const, onClick: () => onDeleteHelpCenter?.(node.id) },
+        ];
+      }
+      return [];
+    },
+  }), [
+    folders,
+    looseAgents,
+    helpCenters,
+    onCreateFolder,
+    onCreateAgent,
+    onCreateHelpCenter,
+    onEditFolder,
+    onDeleteFolder,
+    onMoveAgent,
+    onDeleteAgent,
+    onEditHelpCenter,
+    onDeleteHelpCenter,
+  ]);
 
   // Drag & drop sensors
   const sensors = useSensors(
@@ -182,7 +364,7 @@ export const AgentWorkspace: React.FC<AgentWorkspaceProps> = ({
         <Button
           variant="primary"
           icon={<Plus size={20} />}
-          onClick={onCreateAgent}
+          onClick={() => onCreateAgent()}
         >
           Nuevo agente
         </Button>
@@ -195,11 +377,20 @@ export const AgentWorkspace: React.FC<AgentWorkspaceProps> = ({
 
   return (
     <div className={classNames} {...rest}>
-      {/* Navbar */}
-      {navbar && (
-        <Navbar sticky bordered>
-          {navbar.workspaces && navbar.workspaces.length > 0 && (
-            <div className={styles.workspaceSelector}>
+      {/* Sidebar */}
+      <NavTree
+        width={sidebarWidth}
+        sections={sectionsToShow}
+        activeNodeId={activeNavNodeId}
+        persistKey="agent-workspace-nav"
+        actions={navTreeActions}
+        onNodeClick={(node) => {
+          setActiveNavNodeId(node.id);
+          onNavNodeClick?.(node.id);
+        }}
+        header={
+          navbar?.workspaces && navbar.workspaces.length > 0 ? (
+            <div className={styles.sidebarHeader}>
               <Popover
                 trigger={
                   <button className={styles.workspaceButton}>
@@ -213,7 +404,9 @@ export const AgentWorkspace: React.FC<AgentWorkspaceProps> = ({
                         initials={navbar.workspaceInitials}
                       />
                     )}
-                    {navbar.workspaceName || "Workspace"}
+                    <span className={styles.workspaceName}>
+                      {navbar.workspaceName || "Workspace"}
+                    </span>
                     <ChevronDown size={16} />
                   </button>
                 }
@@ -339,39 +532,62 @@ export const AgentWorkspace: React.FC<AgentWorkspaceProps> = ({
                 }
                 placement="bottom-start"
                 showArrow={false}
+                fullWidth
               />
             </div>
-          )}
-
-          <Navbar.Nav>
-            <Navbar.Link href="#" active>
-              Agentes IA
-            </Navbar.Link>
-            <Navbar.Link href="#">Centro atención</Navbar.Link>
-          </Navbar.Nav>
-
-          <Navbar.Actions>
-            {navbar.userAvatar ? (
-              <button
-                className={styles.userButton}
-                onClick={navbar.onUserMenuClick}
-                aria-label="User menu"
-              >
-                <Avatar
-                  src={navbar.userAvatar}
-                  alt={navbar.userName || "User"}
-                  size="sm"
-                />
-              </button>
-            ) : (
-              <Avatar
-                initials={navbar.userName?.slice(0, 2).toUpperCase() || "U"}
-                size="sm"
-              />
-            )}
-          </Navbar.Actions>
-        </Navbar>
-      )}
+          ) : null
+        }
+        footer={
+          <div className={styles.sidebarFooter}>
+            <UserMenu
+              user={{
+                name: navbar?.userName ?? "Usuario",
+                email: navbar?.userEmail,
+                avatar: navbar?.userAvatar,
+                role: navbar?.workspaceRole,
+                status: "online",
+              }}
+              sections={[
+                {
+                  id: "account",
+                  label: "Mi Cuenta",
+                  items: [
+                    { id: "profile", label: "Mi Perfil", icon: <Users2 size={16} /> },
+                    { id: "preferences", label: "Preferencias", icon: <Settings size={16} /> },
+                  ],
+                },
+                {
+                  id: "workspace",
+                  label: "Espacio de Trabajo",
+                  items: [
+                    { id: "workspace-settings", label: "Configuración", icon: <Settings size={16} /> },
+                    { id: "invite", label: "Invitar miembros", icon: <Users2 size={16} /> },
+                  ],
+                },
+                {
+                  id: "billing",
+                  label: "Suscripción",
+                  items: [
+                    { id: "subscription", label: "Plan actual", icon: <CreditCard size={16} /> },
+                    { id: "billing-history", label: "Historial de pagos", icon: <CreditCard size={16} /> },
+                  ],
+                },
+                {
+                  id: "support",
+                  items: [
+                    { id: "help", label: "Ayuda y soporte", icon: <HelpCircle size={16} /> },
+                    { id: "logout", label: "Cerrar sesión", icon: <LogOut size={16} />, danger: true, onClick: navbar?.onUserMenuClick },
+                  ],
+                },
+              ]}
+              align="start"
+              placement="top"
+              showHeader={true}
+              fullWidth
+            />
+          </div>
+        }
+      />
 
       {/* Main Content */}
       <main className={styles.content}>

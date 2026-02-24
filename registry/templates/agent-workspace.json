@@ -9,6 +9,18 @@
     {
       "path": "packages/react/src/templates/app/AgentWorkspace/AgentWorkspace.tsx",
       "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/templates/app/AgentWorkspace/AgentWorkspace.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/templates/app/AgentWorkspace/AgentWorkspace.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/templates/app/AgentWorkspace/index.ts",
+      "type": "registry:index"
     }
   ],
   "preview": {

@@ -116,6 +116,14 @@ export interface PopoverProps extends Omit<
    * @default 150
    */
   closeDelay?: number;
+
+  /**
+   * Whether the trigger wrapper should stretch to fill its container
+   * Set to true when Popover is placed inside a constrained container (e.g., sidebar header)
+   * Changes trigger from display: inline-block to display: block with width: 100%
+   * @default false
+   */
+  fullWidth?: boolean;
 }
 
 /**

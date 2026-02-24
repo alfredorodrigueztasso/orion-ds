@@ -17,6 +17,13 @@
   display: inline-block;
 }
 
+/* Trigger full-width modifier */
+.triggerFullWidth {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+
 /* Popover container */
 .popover {
   position: absolute;

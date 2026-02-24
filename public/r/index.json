@@ -532,6 +532,14 @@
       "registryUrl": "https://orion-ds.dev/r/modal.json"
     },
     {
+      "name": "nav-tree",
+      "type": "registry:section",
+      "title": "NavTree",
+      "description": "NavTree section component",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/nav-tree.json"
+    },
+    {
       "name": "navbar",
       "type": "registry:component",
       "title": "Navbar",

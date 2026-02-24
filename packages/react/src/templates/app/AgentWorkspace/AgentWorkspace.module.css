@@ -6,16 +6,24 @@
  */
 
 .template {
-  min-height: 100vh;
+  height: 100vh;
   background-color: var(--surface-subtle);
   display: flex;
-  flex-direction: column;
-  overflow: visible;
+  flex-direction: row;
+  overflow: hidden;
 }
 
-/* Workspace selector in navbar */
-.workspaceSelector {
-  margin-left: var(--spacing-4);
+/* Sidebar header (workspace selector) */
+.sidebarHeader {
+  padding: 0;
+  flex-shrink: 0;
+}
+
+/* Sidebar footer (user menu) */
+.sidebarFooter {
+  padding: 0;
+  flex-shrink: 0;
+  overflow: visible;
 }
 
 .workspaceButton {
@@ -32,6 +40,10 @@
   font-weight: var(--font-weight-medium);
   cursor: pointer;
   transition: all var(--transition-fast);
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .workspaceButton:hover {
@@ -42,6 +54,15 @@
 .workspaceButton:focus-visible {
   outline: 2px solid var(--interactive-primary);
   outline-offset: 2px;
+}
+
+/* Workspace name truncation */
+.workspaceName {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  flex: 1;
 }
 
 /* User menu button */
@@ -98,11 +119,10 @@
 /* Main content area */
 .content {
   flex: 1;
-  max-width: 1440px;
   width: 100%;
-  margin: 0 auto;
   padding: var(--spacing-6);
-  overflow: visible;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* Folders container */
@@ -170,6 +190,11 @@
   }
 }
 
+/* Hide on mobile utility */
+.hideOnMobile {
+  display: block;
+}
+
 @media (max-width: 768px) {
   .content {
     padding: var(--spacing-3);
@@ -179,8 +204,14 @@
     grid-template-columns: 1fr;
   }
 
-  .workspaceSelector {
-    display: none; /* Hide on mobile, show in mobile menu */
+  /* Sidebar hides on mobile */
+  .sidebarHeader,
+  .sidebarFooter {
+    display: none;
+  }
+
+  .hideOnMobile {
+    display: none;
   }
 
   .emptyState {

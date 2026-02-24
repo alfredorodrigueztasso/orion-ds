@@ -10,6 +10,17 @@
   display: inline-block;
 }
 
+/* Full-width modifier */
+.userMenuFullWidth {
+  display: block;
+  width: 100%;
+}
+
+.userMenuFullWidth .trigger {
+  width: 100%;
+  min-width: 0;
+}
+
 /* ============================================================================
  * TRIGGER
  * ============================================================================ */
@@ -18,7 +29,7 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-2);
-  padding: var(--spacing-1-5) var(--spacing-2);
+  padding: var(--spacing-2) var(--spacing-3);
   background: transparent;
   border: none;
   border-radius: var(--radius-control);
@@ -76,6 +87,9 @@
   flex-direction: column;
   align-items: flex-start;
   gap: var(--spacing-0-5);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .triggerName {
@@ -84,6 +98,9 @@
   font-weight: var(--font-weight-medium);
   color: var(--text-primary);
   line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .triggerRole {
@@ -91,11 +108,16 @@
   font-size: var(--font-size-11);
   color: var(--text-tertiary);
   line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .chevron {
   color: var(--text-tertiary);
   transition: transform var(--mode-hover-duration);
+  flex-shrink: 0;
+  margin-left: auto;
 }
 
 .chevronOpen {
@@ -258,6 +280,47 @@
 
 .itemDisabled:hover {
   background: none;
+}
+
+/* ============================================================================
+ * DROPDOWN PLACEMENT & ITEM DETAILS
+ * ============================================================================ */
+
+/* Opens upward */
+.dropdownTop {
+  top: auto;
+  bottom: calc(100% + var(--spacing-1));
+  transform: translateY(8px);
+}
+
+.dropdownTop.dropdownOpen {
+  transform: translateY(0);
+}
+
+/* Keyboard shortcut hint on item */
+.itemShortcut {
+  margin-left: auto;
+  font-size: var(--font-size-12);
+  color: var(--text-tertiary);
+  font-family: var(--font-mono);
+  flex-shrink: 0;
+}
+
+/* Notification badge on item */
+.itemBadge {
+  margin-left: auto;
+  min-width: 18px;
+  height: 18px;
+  border-radius: var(--radius-full);
+  background: var(--interactive-primary);
+  color: var(--interactive-primary-text);
+  font-size: var(--font-size-11);
+  font-family: var(--font-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--spacing-1);
+  flex-shrink: 0;
 }
 
 /* ============================================================================

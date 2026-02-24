@@ -37,8 +37,10 @@ export const UserMenu = forwardRef<HTMLDivElement, UserMenuProps>(
       onOpenChange,
       trigger,
       align = "end",
+      placement = "bottom",
       showHeader = true,
       compact = false,
+      fullWidth = false,
       className,
       ...rest
     },
@@ -105,7 +107,13 @@ export const UserMenu = forwardRef<HTMLDivElement, UserMenuProps>(
         .slice(0, 2);
     };
 
-    const classNames = [styles.userMenu, className].filter(Boolean).join(" ");
+    const classNames = [
+      styles.userMenu,
+      fullWidth && styles.userMenuFullWidth,
+      className,
+    ]
+      .filter(Boolean)
+      .join(" ");
     const triggerClasses = [styles.trigger, compact && styles.triggerCompact]
       .filter(Boolean)
       .join(" ");
@@ -113,6 +121,7 @@ export const UserMenu = forwardRef<HTMLDivElement, UserMenuProps>(
       styles.dropdown,
       isOpen && styles.dropdownOpen,
       align === "start" && styles.dropdownStart,
+      placement === "top" && styles.dropdownTop,
     ]
       .filter(Boolean)
       .join(" ");
@@ -220,6 +229,12 @@ export const UserMenu = forwardRef<HTMLDivElement, UserMenuProps>(
                         <span className={styles.itemIcon}>{item.icon}</span>
                       )}
                       <span>{item.label}</span>
+                      {item.badge !== undefined && (
+                        <span className={styles.itemBadge}>{item.badge}</span>
+                      )}
+                      {item.shortcut && (
+                        <span className={styles.itemShortcut}>{item.shortcut}</span>
+                      )}
                     </a>
                   );
                 }
@@ -237,6 +252,12 @@ export const UserMenu = forwardRef<HTMLDivElement, UserMenuProps>(
                       <span className={styles.itemIcon}>{item.icon}</span>
                     )}
                     <span>{item.label}</span>
+                    {item.badge !== undefined && (
+                      <span className={styles.itemBadge}>{item.badge}</span>
+                    )}
+                    {item.shortcut && (
+                      <span className={styles.itemShortcut}>{item.shortcut}</span>
+                    )}
                   </button>
                 );
               })}

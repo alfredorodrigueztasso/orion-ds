@@ -71,7 +71,7 @@ import { Bot, Sparkles, FolderPlus, Plus } from "lucide-react";
 - **Collapsible Folders** — Organize agents into collapsible groups with sort options
 - **Loose Agents** — Agents not belonging to any folder displayed in a separate section
 - **Drag & Drop** — Move agents between folders with visual feedback (toggle with `enableDragDrop`)
-- **Navbar with Workspaces** — Workspace switcher, user menu, and brand logo (optional)
+- **Navbar with Workspaces** — Workspace switcher, multi-section user menu (Account, Workspace, Billing, Support), and brand logo (optional)
 - **Page Header** — Title with icon and action buttons (create folder, create agent)
 - **Empty State** — Customizable empty state when no agents exist
 - **Responsive Design** — Adapts to mobile, tablet, and desktop
@@ -113,7 +113,7 @@ Esta regla garantiza consistencia visual, legibilidad en interfaces funcionales 
 interface AgentWorkspaceProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Navbar configuration (optional)
-   * Includes logo, workspace name, workspace switcher, user menu
+   * Includes logo, workspace name, workspace switcher, multi-section user menu (Account, Workspace, Billing, Support)
    */
   navbar?: NavbarConfig;
 
@@ -196,6 +196,9 @@ interface NavbarConfig {
 
   /** User name for initials fallback */
   userName?: string;
+
+  /** User email (displayed in UserMenu header) */
+  userEmail?: string;
 
   /** User menu click handler */
   onUserMenuClick?: () => void;

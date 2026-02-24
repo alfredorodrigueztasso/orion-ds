@@ -286,8 +286,20 @@ function DefaultWrapper() {
         onFolderInvite: () => console.log("Invite to folder:", folder.id),
       }))}
       looseAgents={sampleLooseAgents}
+      helpCenters={[
+        { id: "hc-1", name: "Centro UVM" },
+        { id: "hc-2", name: "Centro Campus Online" },
+      ]}
       onCreateFolder={() => console.log("Create folder")}
-      onCreateAgent={() => console.log("Create agent")}
+      onCreateAgent={(folderId?: string) => console.log("Create agent in:", folderId ?? "root")}
+      onCreateHelpCenter={() => console.log("Create help center")}
+      onEditFolder={(id) => console.log("Edit folder:", id)}
+      onDeleteFolder={(id) => console.log("Delete folder:", id)}
+      onMoveAgent={(id) => console.log("Move agent:", id)}
+      onDeleteAgent={(id) => console.log("Delete agent:", id)}
+      onEditHelpCenter={(id) => console.log("Edit help center:", id)}
+      onDeleteHelpCenter={(id) => console.log("Delete help center:", id)}
+      onNavNodeClick={(nodeId) => console.log("Nav click:", nodeId)}
       onInviteParticipants={() => console.log("Invite participants")}
       onSettings={() => console.log("Settings")}
       enableDragDrop={true}
@@ -322,8 +334,20 @@ export const NoAgents: Story = {
     },
     folders: [],
     looseAgents: [],
+    helpCenters: [
+      { id: "hc-1", name: "Centro UVM" },
+      { id: "hc-2", name: "Centro Campus Online" },
+    ],
     onCreateFolder: () => console.log("Create folder"),
-    onCreateAgent: () => console.log("Create agent"),
+    onCreateAgent: (folderId?: string) => console.log("Create agent in:", folderId ?? "root"),
+    onCreateHelpCenter: () => console.log("Create help center"),
+    onEditFolder: (id: string) => console.log("Edit folder:", id),
+    onDeleteFolder: (id: string) => console.log("Delete folder:", id),
+    onMoveAgent: (id: string) => console.log("Move agent:", id),
+    onDeleteAgent: (id: string) => console.log("Delete agent:", id),
+    onEditHelpCenter: (id: string) => console.log("Edit help center:", id),
+    onDeleteHelpCenter: (id: string) => console.log("Delete help center:", id),
+    onNavNodeClick: (nodeId: string) => console.log("Nav click:", nodeId),
     emptyState: (
       <EmptyStateComponent
         icon={<Bot size={48} />}
@@ -523,8 +547,20 @@ function FullFeaturedWrapper() {
         onEdit: () => console.log("Edit agent:", agent.id),
         onDelete: () => console.log("Delete agent:", agent.id),
       }))}
+      helpCenters={[
+        { id: "hc-1", name: "Centro UVM" },
+        { id: "hc-2", name: "Centro Campus Online" },
+      ]}
       onCreateFolder={() => console.log("Create folder")}
-      onCreateAgent={() => console.log("Create agent")}
+      onCreateAgent={(folderId?: string) => console.log("Create agent in:", folderId ?? "root")}
+      onCreateHelpCenter={() => console.log("Create help center")}
+      onEditFolder={(id) => console.log("Edit folder:", id)}
+      onDeleteFolder={(id) => console.log("Delete folder:", id)}
+      onMoveAgent={(id) => console.log("Move agent:", id)}
+      onDeleteAgent={(id) => console.log("Delete agent:", id)}
+      onEditHelpCenter={(id) => console.log("Edit help center:", id)}
+      onDeleteHelpCenter={(id) => console.log("Delete help center:", id)}
+      onNavNodeClick={(nodeId) => console.log("Nav click:", nodeId)}
       onInviteParticipants={() => console.log("Invite participants")}
       onSettings={() => console.log("Settings")}
       enableDragDrop={true}
@@ -565,8 +601,20 @@ function MobileWrapper() {
         onDrop: (agentId, folderId) => handleDrop(agentId, folderId),
       }))}
       looseAgents={sampleLooseAgents}
+      helpCenters={[
+        { id: "hc-1", name: "Centro UVM" },
+        { id: "hc-2", name: "Centro Campus Online" },
+      ]}
       onCreateFolder={() => console.log("Create folder")}
-      onCreateAgent={() => console.log("Create agent")}
+      onCreateAgent={(folderId?: string) => console.log("Create agent in:", folderId ?? "root")}
+      onCreateHelpCenter={() => console.log("Create help center")}
+      onEditFolder={(id) => console.log("Edit folder:", id)}
+      onDeleteFolder={(id) => console.log("Delete folder:", id)}
+      onMoveAgent={(id) => console.log("Move agent:", id)}
+      onDeleteAgent={(id) => console.log("Delete agent:", id)}
+      onEditHelpCenter={(id) => console.log("Edit help center:", id)}
+      onDeleteHelpCenter={(id) => console.log("Delete help center:", id)}
+      onNavNodeClick={(nodeId) => console.log("Nav click:", nodeId)}
     />
   );
 }

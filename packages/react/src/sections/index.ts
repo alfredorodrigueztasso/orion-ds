@@ -35,7 +35,7 @@
  */
 
 // ============================================================================
-// LAYOUT UTILITIES
+// LAYOUT
 // ============================================================================
 
 export { Container } from "./Container";
@@ -49,7 +49,7 @@ export type {
 } from "./Section";
 
 // ============================================================================
-// PAGE SECTIONS
+// MARKETING
 // ============================================================================
 
 export { Hero } from "./Hero";
@@ -75,10 +75,6 @@ export type {
   FooterSocialLink,
   FooterVariant,
 } from "./Footer";
-
-// ============================================================================
-// PHASE 2 SECTIONS: ENGAGEMENT
-// ============================================================================
 
 export { Pricing, PricingCard } from "./Pricing";
 export type {
@@ -134,10 +130,6 @@ export { CarouselSection as Carousel } from "./CarouselSection";
 /** @deprecated Use CarouselSectionProps instead */
 export type { CarouselSectionProps as CarouselProps } from "./CarouselSection";
 
-// ============================================================================
-// PHASE 3 SECTIONS: CONTENT
-// ============================================================================
-
 export { Team, TeamMemberCard } from "./Team";
 export type {
   TeamProps,
@@ -170,10 +162,6 @@ export type {
   LogoCloudLayout,
   LogoCloudSize,
 } from "./LogoCloud";
-
-// ============================================================================
-// PHASE 4 SECTIONS: ADVANCED CONTENT
-// ============================================================================
 
 export { Blog } from "./Blog";
 export type { BlogProps, BlogArticle, BlogLayout } from "./Blog";
@@ -210,7 +198,7 @@ export type {
 } from "./AppDownload";
 
 // ============================================================================
-// APP/SAAS SECTIONS (Product Mode Optimized)
+// APP / SAAS
 // ============================================================================
 
 export { EmptyState } from "./EmptyState";
@@ -259,6 +247,17 @@ export type {
   SidebarDividerProps,
 } from "./Sidebar";
 
+export { NavTree } from "./NavTree";
+export type {
+  NavTreeProps,
+  NavTreeNode,
+  NavTreeNodeType,
+  NavTreeSection,
+  NavTreeSectionVariant,
+  NavTreeActionConfig,
+  NavTreeContextValue,
+} from "./NavTree";
+
 export { DataTable } from "./DataTable";
 export type {
   DataTableProps,
@@ -273,10 +272,6 @@ export type {
   DataTablePaginationProps,
   DataTableEmptyStateProps,
 } from "./DataTable";
-
-// ============================================================================
-// APP/SAAS SECTIONS - PHASE 2 (Advanced)
-// ============================================================================
 
 export { CommandBar } from "./CommandBar";
 export type { CommandBarProps, CommandItem, CommandGroup } from "./CommandBar";
@@ -322,10 +317,6 @@ export type {
   QuickActionsPosition,
 } from "./QuickActions";
 
-// ============================================================================
-// APP/SAAS SECTIONS - PHASE 3 (Extended)
-// ============================================================================
-
 export { KanbanBoard } from "./KanbanBoard";
 export type {
   KanbanBoardProps,
@@ -363,7 +354,7 @@ export { FileUploader } from "./FileUploader";
 export type { FileUploaderProps, UploadedFile } from "./FileUploader";
 
 // ============================================================================
-// AI CHAT SECTIONS
+// AI CHAT
 // ============================================================================
 
 export { ChatSection } from "./Chat";
