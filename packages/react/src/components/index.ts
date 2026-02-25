@@ -53,6 +53,9 @@ export type { RadioProps, RadioSize } from "./Radio";
 export { Textarea } from "./Textarea";
 export type { TextareaProps, TextareaSize, TextareaResize } from "./Textarea";
 
+export { CodeEditor } from "./CodeEditor";
+export type { CodeEditorProps } from "./CodeEditor";
+
 export { Slider } from "./Slider";
 export type { SliderProps, SliderSize } from "./Slider";
 

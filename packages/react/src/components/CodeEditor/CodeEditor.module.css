@@ -1,0 +1,91 @@
+/**
+ * CodeEditor Styles
+ * Textarea-based code editor with synchronized line numbers
+ */
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-control);
+  background-color: var(--surface-layer);
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-13);
+  line-height: 1.6;
+}
+
+.wrapper:focus-within {
+  outline: 2px solid var(--interactive-primary);
+  outline-offset: -2px;
+}
+
+.lineNumbers {
+  flex-shrink: 0;
+  overflow: hidden;
+  background-color: var(--surface-subtle);
+  border-right: 1px solid var(--border-subtle);
+  padding: var(--spacing-3) var(--spacing-2);
+  user-select: none;
+  color: var(--text-tertiary);
+  text-align: right;
+  min-width: auto;
+}
+
+.lineNumber {
+  display: block;
+  height: 1.6em;
+  padding: 0 var(--spacing-2);
+  white-space: pre;
+}
+
+.textarea {
+  flex: 1;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: var(--text-primary);
+  padding: var(--spacing-4);
+  resize: none;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.textarea::placeholder {
+  color: var(--text-tertiary);
+}
+
+.textarea:disabled {
+  background-color: var(--surface-subtle);
+  color: var(--text-tertiary);
+  cursor: not-allowed;
+}
+
+/* Scrollbar styling (webkit browsers) */
+.textarea::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.textarea::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.textarea::-webkit-scrollbar-thumb {
+  background-color: var(--border-subtle);
+  border-radius: 4px;
+}
+
+.textarea::-webkit-scrollbar-thumb:hover {
+  background-color: var(--border-interactive);
+}
+
+/* Support for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .wrapper {
+    outline-offset: 0;
+  }
+}

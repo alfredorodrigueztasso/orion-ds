@@ -1,0 +1,269 @@
+/**
+ * AgentEditor Styles
+ * Split-panel agent editor with NavTree sidebar (mirrors AgentWorkspace structure)
+ */
+
+/* Root container - same as AgentWorkspace */
+.template {
+  height: 100vh;
+  background-color: var(--surface-subtle);
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+/* Main content area */
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--surface-base);
+}
+
+/* PageHeader - matches AgentWorkspace */
+.pageHeaderInContent {
+  padding-top: 0 !important;
+}
+
+:global([data-mode="product"]) .pageHeaderInContent {
+  --mode-text-title: var(--font-size-32);
+}
+
+/* Page header title with icon */
+.titleWithIcon {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  color: var(--text-primary);
+}
+
+/* Icon uses brand primary color */
+.titleIcon {
+  display: inline-flex;
+  align-items: center;
+  color: var(--interactive-primary);
+}
+
+/* Header actions group */
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+/* Split area - left editor + right chat */
+.splitArea {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  gap: 0;
+}
+
+/* Left panel - editor */
+.editorPanel {
+  flex: 0 0 50%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--surface-base);
+}
+
+.editorContent {
+  flex: 1;
+  overflow: hidden;
+  padding: var(--spacing-4);
+  padding-top: 0;
+}
+
+/* Panel divider */
+.panelDivider {
+  width: 1px;
+  background-color: var(--border-subtle);
+  flex-shrink: 0;
+}
+
+/* Right panel - chat preview */
+.previewPanel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--surface-base);
+}
+
+.chat {
+  width: 100%;
+  height: 100%;
+}
+
+/* Sidebar header and footer (same as AgentWorkspace) */
+.sidebarHeader {
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.sidebarFooter {
+  padding: 0;
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+.workspaceButton {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-2) var(--spacing-3);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-control);
+  background-color: var(--surface-base);
+  color: var(--text-primary);
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.workspaceButton:hover {
+  background-color: var(--surface-subtle);
+  border-color: var(--border-interactive);
+}
+
+.workspaceButton:focus-visible {
+  outline: 2px solid var(--interactive-primary);
+  outline-offset: 2px;
+}
+
+.workspaceName {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Workspace popover panels */
+.workspacePanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3);
+  background-color: var(--surface-base);
+}
+
+.workspacePanelCount {
+  font-size: var(--font-size-12);
+  color: var(--text-tertiary);
+  font-weight: var(--font-weight-medium);
+  padding: 0 var(--spacing-2);
+}
+
+.workspacePanelActive {
+  display: flex;
+  gap: var(--spacing-3);
+  align-items: flex-start;
+  padding: var(--spacing-2);
+}
+
+.workspacePanelInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+  flex: 1;
+  min-width: 0;
+}
+
+.workspacePanelName {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.workspacePanelMeta {
+  font-size: var(--font-size-12);
+  color: var(--text-tertiary);
+}
+
+.workspacePanelActions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.workspacePanelDivider {
+  padding: var(--spacing-2) 0;
+}
+
+.workspacePanelList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.workspaceListItem {
+  display: flex;
+  gap: var(--spacing-2);
+  padding: var(--spacing-2);
+  border-radius: var(--radius-control);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.workspaceListItem:hover {
+  background-color: var(--surface-layer);
+}
+
+.workspaceListItemInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+  flex: 1;
+  min-width: 0;
+}
+
+.workspaceListItemName {
+  font-size: var(--font-size-14);
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.workspaceListItemRole {
+  font-size: var(--font-size-12);
+  color: var(--text-tertiary);
+}
+
+.workspacePanelFooter {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+/* Mode-specific overrides */
+@media (prefers-reduced-motion: reduce) {
+  .editorBar,
+  .workspaceButton,
+  .workspaceListItem {
+    transition: none;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .editorBar {
+    padding: var(--spacing-3) var(--spacing-4);
+    flex-wrap: wrap;
+  }
+
+  .editorTitle {
+    font-size: var(--font-size-18);
+  }
+
+  .editorBarActions {
+    gap: var(--spacing-2);
+  }
+}

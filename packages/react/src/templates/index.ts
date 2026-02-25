@@ -50,7 +50,7 @@
 // CHATBUILDER TEMPLATES
 // ============================================================================
 
-export { AgentWorkspace, ChatPageTemplate } from "./app";
+export { AgentWorkspace, ChatPageTemplate, AgentEditor } from "./app";
 
 export type {
   AgentWorkspaceProps,
@@ -59,6 +59,8 @@ export type {
   Workspace,
   DragEndEvent,
   ChatPageTemplateProps,
+  AgentEditorProps,
+  AgentEditorTab,
 } from "./app";
 
 // ============================================================================
