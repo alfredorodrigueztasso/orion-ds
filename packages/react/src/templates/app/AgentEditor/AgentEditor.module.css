@@ -12,13 +12,14 @@
   overflow: hidden;
 }
 
-/* Main content area */
+/* Main content area - matches AgentWorkspace */
 .content {
   flex: 1;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background-color: var(--surface-base);
+  padding: var(--spacing-6);
+  background-color: var(--surface-subtle);
 }
 
 /* PageHeader - matches AgentWorkspace */
@@ -57,7 +58,8 @@
   display: flex;
   flex: 1;
   overflow: hidden;
-  gap: 0;
+  gap: var(--spacing-4);
+  margin-top: var(--spacing-4);
 }
 
 /* Left panel - editor */
@@ -66,7 +68,6 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background-color: var(--surface-base);
 }
 
 .editorContent {
@@ -76,11 +77,13 @@
   padding-top: 0;
 }
 
-/* Panel divider */
-.panelDivider {
-  width: 1px;
-  background-color: var(--border-subtle);
-  flex-shrink: 0;
+/* Panel Card - Card that fills the panel with proper flex layout */
+.panelCard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
 }
 
 /* Right panel - chat preview */
@@ -89,7 +92,6 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background-color: var(--surface-base);
 }
 
 .chat {
@@ -254,16 +256,13 @@
 
 /* Responsive adjustments */
 @media (max-width: 1024px) {
-  .editorBar {
-    padding: var(--spacing-3) var(--spacing-4);
-    flex-wrap: wrap;
+  .content {
+    padding: var(--spacing-4);
   }
+}
 
-  .editorTitle {
-    font-size: var(--font-size-18);
-  }
-
-  .editorBarActions {
-    gap: var(--spacing-2);
+@media (max-width: 768px) {
+  .content {
+    padding: var(--spacing-3);
   }
 }

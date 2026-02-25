@@ -4,6 +4,7 @@ import { NavTree } from "../../../sections/NavTree";
 import { UserMenu } from "../../../sections/UserMenu";
 import { PageHeader } from "../../../sections/PageHeader";
 import { CodeEditor } from "../../../components/CodeEditor";
+import { Card } from "../../../components/Card";
 import { Tabs } from "../../../components/Tabs";
 import { Chat } from "../../../components/Chat";
 import { Select } from "../../../components/Select";
@@ -420,107 +421,108 @@ export const AgentEditor: React.FC<AgentEditorProps> = ({
             className={styles.editorPanel}
             style={{ flex: `0 0 ${leftPanelWidth}` }}
           >
-            {/* Tabs */}
-            <Tabs
-              tabs={tabs.map((tab) => ({
-                id: tab.id,
-                label: tab.label,
-                icon: tab.icon,
-                content: null, // Not used since we render content below
-              }))}
-              activeTab={activeTab}
-              onChange={handleTabChange}
-              fullWidth
-            />
+            <Card variant="base" className={styles.panelCard}>
+              {/* Tabs */}
+              <Tabs
+                tabs={tabs.map((tab) => ({
+                  id: tab.id,
+                  label: tab.label,
+                  icon: tab.icon,
+                  content: null, // Not used since we render content below
+                }))}
+                activeTab={activeTab}
+                onChange={handleTabChange}
+                fullWidth
+              />
 
-            {/* Editor content */}
-            <div className={styles.editorContent}>
-              {activeTabDef?.editorSlot ? (
-                activeTabDef.editorSlot
-              ) : (
-                <CodeEditor
-                  value={activeTabDef?.value || ""}
-                  onChange={
-                    activeTabDef?.onChange
-                      ? (val) => activeTabDef.onChange?.(val)
-                      : undefined
-                  }
-                  language={activeTabDef?.language}
-                  placeholder={activeTabDef?.placeholder}
-                  readOnly={activeTabDef?.readOnly}
-                  showLineNumbers
-                  minRows={20}
-                  aria-label={`${activeTabDef?.label} editor`}
-                />
-              )}
-            </div>
+              {/* Editor content */}
+              <div className={styles.editorContent}>
+                {activeTabDef?.editorSlot ? (
+                  activeTabDef.editorSlot
+                ) : (
+                  <CodeEditor
+                    value={activeTabDef?.value || ""}
+                    onChange={
+                      activeTabDef?.onChange
+                        ? (val) => activeTabDef.onChange?.(val)
+                        : undefined
+                    }
+                    language={activeTabDef?.language}
+                    placeholder={activeTabDef?.placeholder}
+                    readOnly={activeTabDef?.readOnly}
+                    showLineNumbers
+                    minRows={20}
+                    aria-label={`${activeTabDef?.label} editor`}
+                  />
+                )}
+              </div>
+            </Card>
           </div>
-
-          {/* Divider */}
-          <div className={styles.panelDivider} />
 
           {/* Right panel: chat preview */}
           <div className={styles.previewPanel}>
-            <Chat className={styles.chat}>
-              <Chat.Header
-                title={previewTitle}
-                actions={
-                  onNewConversation ? (
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      icon={<Plus size={16} />}
-                      onClick={onNewConversation}
-                    >
-                      Nueva
-                    </Button>
-                  ) : undefined
-                }
-              />
+            <Card variant="base" className={styles.panelCard}>
+              <Chat className={styles.chat}>
+                <Chat.Header
+                  title={previewTitle}
+                  actions={
+                    onNewConversation ? (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        icon={<Plus size={16} />}
+                        onClick={onNewConversation}
+                      >
+                        Nueva
+                      </Button>
+                    ) : undefined
+                  }
+                />
 
-              <Chat.Messages autoScroll>
-                {messages.length === 0 && !isTyping ? (
-                  emptyPreviewState || (
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        height: "100%",
-                        color: "var(--text-tertiary)",
-                      }}
-                    >
-                      No messages yet
-                    </div>
-                  )
-                ) : (
-                  messages.map((message) => (
-                    <Chat.Message
-                      key={message.id}
-                      role={message.role}
-                      content={message.content}
-                      status={message.status}
-                      attachments={message.attachments}
-                      isStreaming={message.isStreaming}
-                    />
-                  ))
-                )}
-                {isTyping && <Chat.TypingIndicator />}
-              </Chat.Messages>
+                <Chat.Messages autoScroll>
+                  {messages.length === 0 && !isTyping ? (
+                    emptyPreviewState || (
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          height: "100%",
+                          color: "var(--text-tertiary)",
+                        }}
+                      >
+                        No messages yet
+                      </div>
+                    )
+                  ) : (
+                    messages.map((message) => (
+                      <Chat.Message
+                        key={message.id}
+                        role={message.role}
+                        content={message.content}
+                        status={message.status}
+                        attachments={message.attachments}
+                        isStreaming={message.isStreaming}
+                      />
+                    ))
+                  )}
+                  {isTyping && <Chat.TypingIndicator />}
+                </Chat.Messages>
 
-              <Chat.Input
-                onSend={onSendMessage}
-                isLoading={isLoading}
-                placeholder={
-                  chatInputConfig?.placeholder ||
-                  "Type your message here..."
-                }
-                allowAttachments={chatInputConfig?.allowAttachments ?? true}
-                allowVoiceRecording={
-                  chatInputConfig?.allowVoiceRecording ?? false
-                }
-              />
-            </Chat>
+                <Chat.Input
+                  onSend={onSendMessage}
+                  isLoading={isLoading}
+                  placeholder={
+                    chatInputConfig?.placeholder ||
+                    "Type your message here..."
+                  }
+                  allowAttachments={chatInputConfig?.allowAttachments ?? true}
+                  allowVoiceRecording={
+                    chatInputConfig?.allowVoiceRecording ?? false
+                  }
+                />
+              </Chat>
+            </Card>
           </div>
         </div>
       </main>
