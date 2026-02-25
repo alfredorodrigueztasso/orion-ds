@@ -1,6 +1,6 @@
 {
   "name": "@orion-ds/react",
-  "version": "3.2.2",
+  "version": "3.3.0",
   "type": "module",
   "description": "Orion Design System - React component library with 40+ AI-ready components and 9 templates",
   "author": "Orion Design System Team",
@@ -12,6 +12,11 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
+    },
+    "./client": {
+      "types": "./dist/client.d.ts",
+      "import": "./dist/client.mjs",
+      "require": "./dist/client.cjs"
     },
     "./styles.css": "./dist/styles.css",
     "./theme.css": "./dist/theme.css",
