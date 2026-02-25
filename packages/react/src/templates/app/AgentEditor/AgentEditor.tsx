@@ -5,7 +5,7 @@ import { UserMenu } from "../../../sections/UserMenu";
 import { PageHeader } from "../../../sections/PageHeader";
 import { CodeEditor } from "../../../components/CodeEditor";
 import { Card } from "../../../components/Card";
-import { Tabs } from "../../../components/Tabs";
+import { ToggleGroup } from "../../../components/ToggleGroup";
 import { Chat } from "../../../components/Chat";
 import { Select } from "../../../components/Select";
 import { Button } from "../../../components/Button";
@@ -422,19 +422,21 @@ export const AgentEditor: React.FC<AgentEditorProps> = ({
             style={{ flex: `0 0 ${leftPanelWidth}` }}
           >
             <Card variant="base" className={styles.panelCard}>
-              {/* Tabs */}
+              {/* Editor tab selector */}
               <div className={styles.tabsBar}>
-                <Tabs
-                  tabs={tabs.map((tab) => ({
-                    id: tab.id,
-                    label: tab.label,
-                    icon: tab.icon,
-                    content: null, // Not used since we render content below
-                  }))}
-                  activeTab={activeTab}
-                  onChange={handleTabChange}
-                  fullWidth
-                />
+                <ToggleGroup
+                  type="single"
+                  variant="outline"
+                  size="md"
+                  value={activeTab}
+                  onValueChange={(val) => handleTabChange(val as string)}
+                >
+                  {tabs.map((tab) => (
+                    <ToggleGroup.Item key={tab.id} value={tab.id}>
+                      {tab.label}
+                    </ToggleGroup.Item>
+                  ))}
+                </ToggleGroup>
               </div>
 
               {/* Editor content */}
@@ -443,6 +445,7 @@ export const AgentEditor: React.FC<AgentEditorProps> = ({
                   activeTabDef.editorSlot
                 ) : (
                   <CodeEditor
+                    className={styles.codeEditorFull}
                     value={activeTabDef?.value || ""}
                     onChange={
                       activeTabDef?.onChange
@@ -453,7 +456,6 @@ export const AgentEditor: React.FC<AgentEditorProps> = ({
                     placeholder={activeTabDef?.placeholder}
                     readOnly={activeTabDef?.readOnly}
                     showLineNumbers
-                    minRows={20}
                     aria-label={`${activeTabDef?.label} editor`}
                   />
                 )}
