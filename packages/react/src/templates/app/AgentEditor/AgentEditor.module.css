@@ -70,6 +70,13 @@
   overflow: hidden;
 }
 
+/* Tabs bar with padding */
+.tabsBar {
+  padding: var(--spacing-3);
+  padding-bottom: var(--spacing-2);
+  flex-shrink: 0;
+}
+
 .editorContent {
   flex: 1;
   overflow: hidden;

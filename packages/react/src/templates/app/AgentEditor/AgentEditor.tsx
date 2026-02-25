@@ -423,17 +423,19 @@ export const AgentEditor: React.FC<AgentEditorProps> = ({
           >
             <Card variant="base" className={styles.panelCard}>
               {/* Tabs */}
-              <Tabs
-                tabs={tabs.map((tab) => ({
-                  id: tab.id,
-                  label: tab.label,
-                  icon: tab.icon,
-                  content: null, // Not used since we render content below
-                }))}
-                activeTab={activeTab}
-                onChange={handleTabChange}
-                fullWidth
-              />
+              <div className={styles.tabsBar}>
+                <Tabs
+                  tabs={tabs.map((tab) => ({
+                    id: tab.id,
+                    label: tab.label,
+                    icon: tab.icon,
+                    content: null, // Not used since we render content below
+                  }))}
+                  activeTab={activeTab}
+                  onChange={handleTabChange}
+                  fullWidth
+                />
+              </div>
 
               {/* Editor content */}
               <div className={styles.editorContent}>
