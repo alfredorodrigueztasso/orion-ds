@@ -228,7 +228,17 @@ function DefaultWrapper() {
           { id: "uvm", name: "Universidad Virtual de México", initials: "UVM", role: "Propietario" },
           { id: "campus", name: "Campus Online", initials: "CO", role: "Propietario" },
           { id: "postgrado", name: "Postgrado", initials: "PG", role: "Editor" },
+          { id: "research", name: "Research Team", initials: "RT", role: "Viewer" },
+          { id: "innovation", name: "Innovation Lab", initials: "IL", role: "Propietario" },
+          { id: "development", name: "Development Hub", initials: "DH", role: "Editor" },
+          { id: "quality", name: "Quality Assurance", initials: "QA", role: "Viewer" },
+          { id: "support", name: "Customer Support", initials: "CS", role: "Propietario" },
+          { id: "analytics", name: "Analytics Platform", initials: "AP", role: "Editor" },
         ],
+        onWorkspaceChange: (id: string) => console.log("Workspace changed:", id),
+        onWorkspaceSettings: () => console.log("Workspace settings"),
+        onWorkspaceInvite: () => console.log("Invite participants"),
+        onCreateWorkspace: () => console.log("Create workspace"),
         userName: "John Doe",
         userEmail: "john@example.com",
         userAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=john",
@@ -236,7 +246,7 @@ function DefaultWrapper() {
       }}
       navSections={navSections}
       activeNavNodeId="agent-1-edit"
-      onNavNodeClick={(nodeId) => console.log("Nav click:", nodeId)}
+      onNavNodeClick={(nodeId: string) => console.log("Nav click:", nodeId)}
       title="Editor"
       modelOptions={[
         { value: "gpt-4", label: "GPT-4" },
@@ -244,10 +254,10 @@ function DefaultWrapper() {
         { value: "claude-3", label: "Claude 3" },
       ]}
       selectedModel="gpt-4"
-      onModelChange={(model) => console.log("Model:", model)}
+      onModelChange={(model: string) => console.log("Model:", model)}
       onNewConversation={() => console.log("New conversation")}
       messages={messages}
-      onSendMessage={(msg) => console.log("Message:", msg)}
+      onSendMessage={(msg: string) => console.log("Message:", msg)}
       previewTitle="Vista previa"
     />
   );
