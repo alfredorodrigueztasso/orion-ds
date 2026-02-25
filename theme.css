@@ -796,6 +796,131 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
+   EMBER BRAND — Orange Accent + Dark Neutral Buttons
+   Usage: <html data-theme="light|dark" data-brand="ember">
+   Features: Rectangular buttons (12px radius), black/grey primary action,
+             orange accent palette for highlights and text
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── Ember Brand Primitives ─── */
+[data-brand="ember"] {
+    /* Typography: DM Sans (same as orange) */
+    --font-primary: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-secondary: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+    /* Brand Colors: Orange palette (accent only) */
+    --color-brand-50: #fef0eb;
+    --color-brand-100: #fdd5c9;
+    --color-brand-200: #fcb9a5;
+    --color-brand-300: #fa9d80;
+    --color-brand-400: #f87d52;
+    --color-brand-500: #F15D22;
+    --color-brand-600: #d9531f;
+    --color-brand-700: #c0491b;
+    --color-brand-800: #a63f17;
+    --color-brand-900: #8c3513;
+    --color-brand-950: #59220c;
+
+    /* Geometry: Rectangular buttons like deepblue */
+    --radius-control: var(--radius-md);
+    --radius-button: var(--radius-md);
+    --radius-container: var(--radius-xl);
+
+    /* Override Neutrals to Pure Scale (same as orange) */
+    --color-neutral-0: var(--color-neutral-pure-0);
+    --color-neutral-50: var(--color-neutral-pure-50);
+    --color-neutral-100: var(--color-neutral-pure-100);
+    --color-neutral-200: var(--color-neutral-pure-200);
+    --color-neutral-300: var(--color-neutral-pure-300);
+    --color-neutral-400: var(--color-neutral-pure-400);
+    --color-neutral-500: var(--color-neutral-pure-500);
+    --color-neutral-600: var(--color-neutral-pure-600);
+    --color-neutral-700: var(--color-neutral-pure-700);
+    --color-neutral-800: var(--color-neutral-pure-800);
+    --color-neutral-900: var(--color-neutral-pure-900);
+    --color-neutral-950: var(--color-neutral-pure-950);
+    --color-neutral-1000: var(--color-neutral-pure-1000);
+}
+
+/* ─── Ember Light Mode Semantics ─── */
+[data-theme="light"][data-brand="ember"] {
+    /* Interactive — Orange (button overrides applied separately) */
+    --interactive-primary: var(--color-brand-500);
+    --interactive-primary-hover: var(--color-brand-700);
+    --interactive-primary-text: var(--color-neutral-0);
+
+    /* Secondary Button */
+    --interactive-secondary: var(--color-neutral-100);
+    --interactive-secondary-hover: var(--color-neutral-200);
+    --interactive-secondary-text: var(--color-neutral-900);
+
+    /* Text accents remain orange */
+    --text-brand: var(--color-brand-600);
+
+    /* Borders */
+    --border-interactive: var(--color-brand-500);
+
+    /* Glass Effect */
+    --surface-glass: color-mix(in srgb, var(--color-neutral-100) 70%, transparent);
+    --surface-sunken: color-mix(in srgb, var(--color-neutral-50) 40%, transparent);
+
+    /* Hero Gradients (orange accent) */
+    --hero-gradient-1: var(--color-brand-600);
+    --hero-gradient-2: var(--color-brand-800);
+
+    /* Feature Gradients */
+    --surface-brand-gradient: linear-gradient(135deg, var(--color-brand-soft) 0%, transparent 100%);
+    --status-warning-bg: color-mix(in srgb, var(--color-warning-500) 10%, transparent);
+}
+
+/* ─── Ember Dark Mode Semantics ─── */
+[data-theme="dark"][data-brand="ember"] {
+    /* Interactive — Orange (button overrides applied separately) */
+    --interactive-primary: var(--color-brand-500);
+    --interactive-primary-hover: var(--color-brand-400);
+    --interactive-primary-text: var(--color-neutral-0);
+
+    /* Secondary Button */
+    --interactive-secondary: var(--color-neutral-800);
+    --interactive-secondary-hover: var(--color-neutral-700);
+    --interactive-secondary-text: var(--color-neutral-50);
+
+    /* Text accents remain orange */
+    --text-brand: var(--color-brand-400);
+
+    /* Borders */
+    --border-interactive: var(--color-brand-500);
+
+    /* Glass Effect */
+    --surface-glass: color-mix(in srgb, var(--color-neutral-900) 60%, transparent);
+    --surface-sunken: color-mix(in srgb, var(--color-neutral-950) 40%, transparent);
+
+    /* Hero Gradients */
+    --hero-gradient-1: var(--color-brand-600);
+    --hero-gradient-2: var(--color-brand-800);
+
+    /* Feature Gradients */
+    --surface-brand-gradient: linear-gradient(135deg, var(--color-brand-soft) 0%, transparent 100%);
+    --status-warning-bg: color-mix(in srgb, var(--color-warning-500) 15%, transparent);
+}
+
+/* ─── Ember Component Overrides ─── */
+[data-brand="ember"] .badge {
+    border-radius: var(--radius-md);
+}
+
+[data-brand="ember"] .badge-primary {
+    background: var(--color-neutral-900);
+    color: var(--color-neutral-0);
+}
+
+/* ─── Ember Brand Card Padding ─── */
+[data-brand="ember"] {
+    --card-padding: var(--spacing-6);
+    --card-padding-gap: var(--spacing-3);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
    LEMON BRAND — Bright Lime Green Theme Override
    Usage: <html data-theme="light|dark" data-brand="lemon">
    Features: Pill buttons, highly rounded design, Anton display font
@@ -2070,7 +2195,7 @@ a.navbar-link:focus:not(:focus-visible) {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   BRAND VISUAL DIFFERENTIATION — Deepblue, Orange, Lemon
+   BRAND VISUAL DIFFERENTIATION — Deepblue, Orange, Ember, Lemon
    ═══════════════════════════════════════════════════════════════════════════ */
 
 /* Deepblue: Bold & Energetic personality */
@@ -2108,6 +2233,29 @@ a.navbar-link:focus:not(:focus-visible) {
 
 [data-brand="orange"] .modal {
     box-shadow: 0 16px 24px -4px color-mix(in srgb, var(--color-brand-500) 15%, transparent);
+}
+
+/* Ember: Dark & Refined personality */
+[data-brand="ember"] .btn,
+[data-brand="ember"] .card {
+    border-width: 1px;
+}
+
+[data-brand="ember"] .card-interactive:hover {
+    box-shadow: 0 8px 16px -4px color-mix(in srgb, var(--color-neutral-900) 15%, transparent);
+}
+
+[data-brand="ember"] .btn:hover:not(:disabled) {
+    box-shadow: 0 6px 10px -2px color-mix(in srgb, var(--color-neutral-900) 20%, transparent);
+    transition-duration: var(--transition-duration-slow, 300ms);
+}
+
+[data-brand="ember"] .btn:active:not(:disabled) {
+    transition-duration: var(--transition-duration-fast, 150ms);
+}
+
+[data-brand="ember"] .modal {
+    box-shadow: 0 16px 24px -4px color-mix(in srgb, var(--color-neutral-900) 10%, transparent);
 }
 
 /* Lemon: Bold & Vivid personality */

@@ -26,6 +26,7 @@ export const BRAND_FONTS: Record<Brand, string[]> = {
   deepblue: ["Work Sans", "JetBrains Mono"],
   red: ["Poppins", "Inter", "JetBrains Mono"],
   orange: ["DM Sans", "Inter", "JetBrains Mono"],
+  ember: ["DM Sans", "Inter", "JetBrains Mono"],
   lemon: ["Anton", "Work Sans", "JetBrains Mono"],
 };
 

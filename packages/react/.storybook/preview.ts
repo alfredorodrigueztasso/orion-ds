@@ -53,6 +53,7 @@ const preview: Preview = {
           { value: "deepblue", title: "Deepblue" },
           { value: "red", title: "Red" },
           { value: "orange", title: "Orange" },
+          { value: "ember", title: "Ember" },
           { value: "lemon", title: "Lemon" },
         ],
         dynamicTitle: true,

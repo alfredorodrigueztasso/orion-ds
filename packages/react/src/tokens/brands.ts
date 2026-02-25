@@ -152,6 +152,42 @@ export const brands: Record<Brand, BrandConfig> = {
       attribute: "orange",
     },
   },
+  ember: {
+    name: "Ember",
+    description: "Ember brand — Orange accent with dark neutral buttons and rectangular geometry",
+    accent: {
+      primary: "{color.brand.orange.500}",
+      light: "{color.brand.orange.100}",
+      dark: "{color.brand.orange.900}",
+    },
+    typography: {
+      primary: "DM Sans",
+      secondary: "Inter",
+      mono: "JetBrains Mono",
+    },
+    geometry: {
+      radiusControl: "{radius.md}",
+      radiusContainer: "{radius.xl}",
+      buttonStyle: "rounded",
+    },
+    semantic: {
+      light: {
+        interactivePrimary: "{color.neutral.900}",
+        interactivePrimaryHover: "{color.neutral.700}",
+        interactivePrimaryText: "{color.neutral.0}",
+      },
+      dark: {
+        interactivePrimary: "{color.neutral.100}",
+        interactivePrimaryHover: "{color.neutral.0}",
+        interactivePrimaryText: "{color.neutral.900}",
+      },
+    },
+    usage: {
+      html: '<html data-theme="light|dark" data-brand="ember">',
+      css: '/* Included in theme.css via [data-brand="ember"] */',
+      attribute: "ember",
+    },
+  },
   lemon: {
     name: "Lemon",
     description:

@@ -28,6 +28,7 @@ export interface BrandColors {
   deepblue: ColorShades;
   red: ColorShades;
   orange: ColorShades;
+  ember: ColorShades;
   lemon: ColorShades;
 }
 
@@ -303,7 +304,7 @@ export interface SemanticTokens {
 // ============================================================================
 
 export type Theme = "light" | "dark";
-export type Brand = "orion" | "deepblue" | "red" | "orange" | "lemon";
+export type Brand = "orion" | "deepblue" | "red" | "orange" | "ember" | "lemon";
 
 export interface ThemeConfig {
   theme: Theme;

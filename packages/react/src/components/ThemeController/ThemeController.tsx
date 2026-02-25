@@ -56,6 +56,11 @@ const BRAND_CONFIG: Record<
     radius: "9999px",
     description: "Red-Orange accent • Pill buttons",
   },
+  ember: {
+    accent: "#F15D22",
+    radius: "12px",
+    description: "Orange accent • Black buttons • 12px radius",
+  },
   lemon: {
     accent: "#72FF43",
     radius: "9999px",

@@ -297,6 +297,30 @@
   border-top-color: transparent;
 }
 
+/* ============================================================================
+ * EMBER BRAND — Black primary buttons (light) / Light grey primary (dark)
+ * ============================================================================ */
+
+/* Ember: Dark primary buttons in light mode */
+:global([data-theme="light"][data-brand="ember"]) .primary {
+  background: var(--color-neutral-900);
+  color: var(--color-neutral-0);
+
+  &:hover:not(:disabled) {
+    background: var(--color-neutral-700);
+  }
+}
+
+/* Ember: Light grey primary buttons in dark mode */
+:global([data-theme="dark"][data-brand="ember"]) .primary {
+  background: var(--color-neutral-100);
+  color: var(--color-neutral-900);
+
+  &:hover:not(:disabled) {
+    background: var(--color-neutral-0);
+  }
+}
+
 /* Hide content when loading */
 .loadingContent {
   visibility: hidden;

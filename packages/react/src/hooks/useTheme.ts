@@ -26,7 +26,7 @@ import { useEffect, useState, useCallback } from "react";
 
 // Local type definitions
 export type Theme = "light" | "dark";
-export type Brand = "orion" | "red" | "deepblue" | "orange" | "lemon";
+export type Brand = "orion" | "red" | "deepblue" | "orange" | "ember" | "lemon";
 
 // Local validation functions
 const isValidTheme = (value: string): value is Theme => {
@@ -34,7 +34,7 @@ const isValidTheme = (value: string): value is Theme => {
 };
 
 const isValidBrand = (value: string): value is Brand => {
-  return ["orion", "red", "deepblue", "orange", "lemon"].includes(value);
+  return ["orion", "red", "deepblue", "orange", "ember", "lemon"].includes(value);
 };
 
 export interface UseThemeOptions {
@@ -104,25 +104,12 @@ export function useTheme(options: UseThemeOptions = {}): UseThemeReturn {
     brandStorageKey = "orion-brand",
   } = options;
 
-  // Initialize theme from localStorage or default
-  const [theme, setThemeState] = useState<Theme>(() => {
-    if (typeof window === "undefined" || !storageEnabled) {
-      return defaultTheme;
-    }
-
-    const stored = localStorage.getItem(storageKey);
-    return stored && isValidTheme(stored) ? stored : defaultTheme;
-  });
-
-  // Initialize brand from localStorage or default
-  const [brand, setBrandState] = useState<Brand>(() => {
-    if (typeof window === "undefined" || !storageEnabled) {
-      return defaultBrand;
-    }
-
-    const stored = localStorage.getItem(brandStorageKey);
-    return stored && isValidBrand(stored) ? stored : defaultBrand;
-  });
+  // Always initialize with server-safe defaults to prevent hydration mismatch.
+  // Reading from localStorage in the lazy initializer would cause the server
+  // to render one value (defaultTheme) and the client to render another
+  // (stored value), breaking React hydration.
+  const [theme, setThemeState] = useState<Theme>(defaultTheme);
+  const [brand, setBrandState] = useState<Brand>(defaultBrand);
 
   // Set theme and update DOM
   const setTheme = useCallback(
@@ -168,6 +155,27 @@ export function useTheme(options: UseThemeOptions = {}): UseThemeReturn {
       document.documentElement.setAttribute("data-brand", brand);
     }
   }, [theme, brand]);
+
+  // Rehydrate from localStorage after mount (SSR-safe pattern).
+  // This effect runs only on the client after React has hydrated the server HTML.
+  // By deferring localStorage reads to after hydration, we ensure the server
+  // and client's first render always match (both use defaultTheme/defaultBrand).
+  useEffect(() => {
+    if (!storageEnabled) return;
+
+    const storedTheme = localStorage.getItem(storageKey);
+    if (storedTheme && isValidTheme(storedTheme)) {
+      setThemeState(storedTheme);
+      document.documentElement.setAttribute("data-theme", storedTheme);
+    }
+
+    const storedBrand = localStorage.getItem(brandStorageKey);
+    if (storedBrand && isValidBrand(storedBrand)) {
+      setBrandState(storedBrand);
+      document.documentElement.setAttribute("data-brand", storedBrand);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Run once on mount for SSR hydration
 
   // Listen to system theme preference changes
   useEffect(() => {
