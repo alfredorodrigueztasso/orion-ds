@@ -14,7 +14,7 @@ import {
 import { SettingsLayout } from "./SettingsLayout";
 import { Button } from "@orion-ds/react";
 import { Field } from "@orion-ds/react";
-import { FormSection } from "../FormSection";
+import { FormSection } from "../../components/FormSection";
 import { Badge } from "@orion-ds/react";
 
 const meta: Meta<typeof SettingsLayout> = {

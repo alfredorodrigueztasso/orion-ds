@@ -9,10 +9,10 @@ import { forwardRef } from "react";
 import type { ProfilePageTemplateProps } from "./ProfilePageTemplate.types";
 
 // Sections
-import { Sidebar } from "../../../sections/Sidebar";
-import { PageHeader } from "../../../sections/PageHeader";
-import { ActivityFeed } from "../../../sections/ActivityFeed";
-import { DetailPanel } from "../../../sections/DetailPanel";
+import { Sidebar } from "../../../components/Sidebar";
+import { PageHeader } from "../../../components/PageHeader";
+import { ActivityFeed } from "../../../components/ActivityFeed";
+import { DetailPanel } from "../../../components/DetailPanel";
 
 import styles from "./ProfilePageTemplate.module.css";
 

@@ -9,10 +9,10 @@ import { forwardRef } from "react";
 import type { KanbanPageTemplateProps } from "./KanbanPageTemplate.types";
 
 // Sections
-import { Sidebar } from "../../../sections/Sidebar";
-import { PageHeader } from "../../../sections/PageHeader";
-import { FilterBar } from "../../../sections/FilterBar";
-import { KanbanBoard } from "../../../sections/KanbanBoard";
+import { Sidebar } from "../../../components/Sidebar";
+import { PageHeader } from "../../../components/PageHeader";
+import { FilterBar } from "../../../components/FilterBar";
+import { KanbanBoard } from "../../../components/KanbanBoard";
 
 import styles from "./KanbanPageTemplate.module.css";
 

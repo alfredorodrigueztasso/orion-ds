@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import type { AgentEditorProps, AgentEditorTab } from "./AgentEditor.types";
-import { NavTree } from "../../../sections/NavTree";
-import { UserMenu } from "../../../sections/UserMenu";
-import { PageHeader } from "../../../sections/PageHeader";
+import { NavTree } from "../../../components/NavTree";
+import { UserMenu } from "../../../components/UserMenu";
+import { PageHeader } from "../../../components/PageHeader";
 import { CodeEditor } from "../../../components/CodeEditor";
 import { Card } from "../../../components/Card";
 import { ToggleGroup } from "../../../components/ToggleGroup";

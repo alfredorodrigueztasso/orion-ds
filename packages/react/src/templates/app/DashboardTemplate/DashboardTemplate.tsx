@@ -9,11 +9,11 @@ import { forwardRef } from "react";
 import type { DashboardTemplateProps } from "./DashboardTemplate.types";
 
 // Sections
-import { Sidebar } from "../../../sections/Sidebar";
-import { PageHeader } from "../../../sections/PageHeader";
-import { MetricCards } from "../../../sections/MetricCards";
-import { DataTable } from "../../../sections/DataTable";
-import { ActivityFeed } from "../../../sections/ActivityFeed";
+import { Sidebar } from "../../../components/Sidebar";
+import { PageHeader } from "../../../components/PageHeader";
+import { MetricCards } from "../../../components/MetricCards";
+import { DataTable } from "../../../components/DataTable";
+import { ActivityFeed } from "../../../components/ActivityFeed";
 
 import styles from "./DashboardTemplate.module.css";
 

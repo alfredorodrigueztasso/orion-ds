@@ -5,10 +5,10 @@
  */
 
 import type { HTMLAttributes, ReactNode } from "react";
-import type { SidebarProps } from "../../../sections/Sidebar";
-import type { PageHeaderProps } from "../../../sections/PageHeader";
-import type { FilterBarProps } from "../../../sections/FilterBar";
-import type { KanbanBoardProps } from "../../../sections/KanbanBoard";
+import type { SidebarProps } from "../../../components/Sidebar";
+import type { PageHeaderProps } from "../../../components/PageHeader";
+import type { FilterBarProps } from "../../../components/FilterBar";
+import type { KanbanBoardProps } from "../../../components/KanbanBoard";
 
 /**
  * KanbanPageTemplate props

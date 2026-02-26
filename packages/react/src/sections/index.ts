@@ -179,9 +179,6 @@ export type {
   ComparisonColumn,
 } from "./Comparison";
 
-export { Banner } from "./Banner";
-export type { BannerProps, BannerVariant } from "./Banner";
-
 export { SocialProof } from "./SocialProof";
 export type {
   SocialProofProps,
@@ -198,68 +195,43 @@ export type {
 } from "./AppDownload";
 
 // ============================================================================
-// APP / SAAS
+// APP / SAAS - WIDGETS (Reclassified as Components in v3.4.0+)
 // ============================================================================
+// Re-exporting widgets from components/ for backward compatibility
+// These have been reclassified from sections to components
 
-export { EmptyState } from "./EmptyState";
+export {
+  ActivityFeed,
+  Banner,
+  CollapsibleFolder,
+  CommandBar,
+  DataTable,
+  DetailPanel,
+  FileUploader,
+  FilterBar,
+  FormSection,
+  KanbanBoard,
+  MetricCards,
+  MetricCard,
+  NavTree,
+  NotificationCenter,
+  PageHeader,
+  QuickActions,
+  Sidebar,
+  UserMenu,
+  WorkspaceSwitcher,
+} from "../components";
 export type {
-  EmptyStateProps,
-  EmptyStateVariant,
-  EmptyStateSize,
-} from "./EmptyState";
-
-export { PageHeader } from "./PageHeader";
-export type {
-  PageHeaderProps,
-  PageHeaderVariant,
-  PageHeaderSize,
-  BreadcrumbItem,
-  PageHeaderTab,
-} from "./PageHeader";
-
-export { FormSection } from "./FormSection";
-export type {
-  FormSectionProps,
-  FormSectionVariant,
-  FormSectionGroupProps,
-  FormSectionActionsProps,
-} from "./FormSection";
-
-export { MetricCards, MetricCard } from "./MetricCards";
-export type {
-  MetricCardsProps,
-  MetricCardProps,
-  MetricItem,
-  MetricTrend,
-  SparklineData,
-  MetricCardsColumns,
-  MetricCardsVariant,
-} from "./MetricCards";
-
-export { Sidebar } from "./Sidebar";
-export type {
-  SidebarProps,
-  SidebarVariant,
-  SidebarItem,
-  SidebarSection,
-  SidebarItemProps,
-  SidebarSectionProps,
-  SidebarDividerProps,
-} from "./Sidebar";
-
-export { NavTree } from "./NavTree";
-export type {
-  NavTreeProps,
-  NavTreeNode,
-  NavTreeNodeType,
-  NavTreeSection,
-  NavTreeSectionVariant,
-  NavTreeActionConfig,
-  NavTreeContextValue,
-} from "./NavTree";
-
-export { DataTable } from "./DataTable";
-export type {
+  ActivityFeedProps,
+  ActivityItem,
+  ActivityActor,
+  ActivityFilter,
+  BannerProps,
+  BannerVariant,
+  CollapsibleFolderProps,
+  CommandBarProps,
+  CommandItem,
+  CommandGroup,
   DataTableProps,
   DataTableColumn,
   DataTableSort,
@@ -271,36 +243,72 @@ export type {
   DataTableToolbarProps,
   DataTablePaginationProps,
   DataTableEmptyStateProps,
-} from "./DataTable";
-
-export { CommandBar } from "./CommandBar";
-export type { CommandBarProps, CommandItem, CommandGroup } from "./CommandBar";
-
-export { ActivityFeed } from "./ActivityFeed";
-export type {
-  ActivityFeedProps,
-  ActivityItem,
-  ActivityActor,
-  ActivityFilter,
-} from "./ActivityFeed";
-
-export { AgentFolder } from "./AgentFolder";
-export type { AgentFolderProps, SortOption } from "./AgentFolder";
-
-export { DetailPanel } from "./DetailPanel";
-export type {
   DetailPanelProps,
   DetailPanelSize,
   DetailPanelPosition,
-} from "./DetailPanel";
-
-export { FilterBar } from "./FilterBar";
-export type {
+  FileUploaderProps,
+  UploadedFile,
   FilterBarProps,
   FilterDefinition,
   FilterOption,
   ActiveFilter,
-} from "./FilterBar";
+  FormSectionProps,
+  FormSectionVariant,
+  FormSectionGroupProps,
+  FormSectionActionsProps,
+  KanbanBoardProps,
+  KanbanColumn,
+  KanbanCard,
+  KanbanLabel,
+  KanbanAssignee,
+  KanbanDragResult,
+  MetricCardsProps,
+  MetricCardProps,
+  MetricItem,
+  MetricTrend,
+  SparklineData,
+  MetricCardsColumns,
+  MetricCardsVariant,
+  NavTreeProps,
+  NavTreeNode,
+  NavTreeNodeType,
+  NavTreeSection,
+  NavTreeSectionVariant,
+  NavTreeActionConfig,
+  NavTreeContextValue,
+  NotificationCenterProps,
+  NotificationItem,
+  PageHeaderProps,
+  PageHeaderVariant,
+  PageHeaderSize,
+  BreadcrumbItem,
+  PageHeaderTab,
+  QuickActionsProps,
+  QuickAction,
+  QuickActionsVariant,
+  QuickActionsPosition,
+  SidebarProps,
+  SidebarVariant,
+  SidebarItem,
+  SidebarSection,
+  SidebarItemProps,
+  SidebarSectionProps,
+  SidebarDividerProps,
+  UserMenuProps,
+  UserMenuItem,
+  UserMenuSection,
+  UserInfo,
+  WorkspaceSwitcherProps,
+  WorkspaceOrg,
+  CurrentWorkspaceOrg,
+} from "../components";
+
+// ============================================================================
+// APP / SAAS - SECTIONS (Remaining Sections)
+// ============================================================================
+
+export { AgentFolder } from "./AgentFolder";
+export type { AgentFolderProps, SortOption } from "./AgentFolder";
 
 export { SettingsLayout } from "./SettingsLayout";
 export type {
@@ -308,38 +316,6 @@ export type {
   SettingsNavItem,
   SettingsNavGroup,
 } from "./SettingsLayout";
-
-export { QuickActions } from "./QuickActions";
-export type {
-  QuickActionsProps,
-  QuickAction,
-  QuickActionsVariant,
-  QuickActionsPosition,
-} from "./QuickActions";
-
-export { KanbanBoard } from "./KanbanBoard";
-export type {
-  KanbanBoardProps,
-  KanbanColumn,
-  KanbanCard,
-  KanbanLabel,
-  KanbanAssignee,
-  KanbanDragResult,
-} from "./KanbanBoard";
-
-export { NotificationCenter } from "./NotificationCenter";
-export type {
-  NotificationCenterProps,
-  NotificationItem,
-} from "./NotificationCenter";
-
-export { UserMenu } from "./UserMenu";
-export type {
-  UserMenuProps,
-  UserMenuItem,
-  UserMenuSection,
-  UserInfo,
-} from "./UserMenu";
 
 export { Breadcrumbs } from "./Breadcrumbs";
 export type {
@@ -349,9 +325,6 @@ export type {
 
 export { Stepper } from "./Stepper";
 export type { StepperProps, StepItem } from "./Stepper";
-
-export { FileUploader } from "./FileUploader";
-export type { FileUploaderProps, UploadedFile } from "./FileUploader";
 
 // ============================================================================
 // AI CHAT

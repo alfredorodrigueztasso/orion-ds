@@ -5,11 +5,11 @@
  */
 
 import type { HTMLAttributes, ReactNode } from "react";
-import type { SidebarProps } from "../../../sections/Sidebar";
-import type { PageHeaderProps } from "../../../sections/PageHeader";
-import type { MetricCardsProps } from "../../../sections/MetricCards";
-import type { DataTableProps } from "../../../sections/DataTable";
-import type { ActivityFeedProps } from "../../../sections/ActivityFeed";
+import type { SidebarProps } from "../../../components/Sidebar";
+import type { PageHeaderProps } from "../../../components/PageHeader";
+import type { MetricCardsProps } from "../../../components/MetricCards";
+import type { DataTableProps } from "../../../components/DataTable";
+import type { ActivityFeedProps } from "../../../components/ActivityFeed";
 
 /**
  * Dashboard layout variant

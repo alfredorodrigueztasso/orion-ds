@@ -333,6 +333,149 @@ export type {
 } from "./Chat";
 export { useAutoScroll, useVoiceRecorder, useChatInput } from "./Chat";
 
+// Widgets (Composite UI patterns reclassified from sections)
+export { ActivityFeed } from "./ActivityFeed";
+export type {
+  ActivityFeedProps,
+  ActivityItem,
+  ActivityActor,
+  ActivityFilter,
+} from "./ActivityFeed";
+
+export { Banner } from "./Banner";
+export type { BannerProps, BannerVariant } from "./Banner";
+
+export { CollapsibleFolder } from "./CollapsibleFolder";
+export type {
+  CollapsibleFolderProps,
+  SortOption,
+} from "./CollapsibleFolder";
+
+export { CommandBar } from "./CommandBar";
+export type { CommandBarProps, CommandItem, CommandGroup } from "./CommandBar";
+
+export { DataTable } from "./DataTable";
+export type {
+  DataTableProps,
+  DataTableColumn,
+  DataTableSort,
+  DataTablePagination,
+  DataTableFilter,
+  DataTableBulkAction,
+  DataTableRowAction,
+  DataTableEmptyState,
+  DataTableToolbarProps,
+  DataTablePaginationProps,
+  DataTableEmptyStateProps,
+} from "./DataTable";
+
+export { DetailPanel } from "./DetailPanel";
+export type {
+  DetailPanelProps,
+  DetailPanelSize,
+  DetailPanelPosition,
+} from "./DetailPanel";
+
+export { FileUploader } from "./FileUploader";
+export type { FileUploaderProps, UploadedFile } from "./FileUploader";
+
+export { FilterBar } from "./FilterBar";
+export type {
+  FilterBarProps,
+  FilterDefinition,
+  FilterOption,
+  ActiveFilter,
+} from "./FilterBar";
+
+export { FormSection } from "./FormSection";
+export type {
+  FormSectionProps,
+  FormSectionVariant,
+  FormSectionGroupProps,
+  FormSectionActionsProps,
+} from "./FormSection";
+
+export { KanbanBoard } from "./KanbanBoard";
+export type {
+  KanbanBoardProps,
+  KanbanColumn,
+  KanbanCard,
+  KanbanLabel,
+  KanbanAssignee,
+  KanbanDragResult,
+} from "./KanbanBoard";
+
+export { MetricCards, MetricCard } from "./MetricCards";
+export type {
+  MetricCardsProps,
+  MetricCardProps,
+  MetricItem,
+  MetricTrend,
+  SparklineData,
+  MetricCardsColumns,
+  MetricCardsVariant,
+} from "./MetricCards";
+
+export { NavTree } from "./NavTree";
+export type {
+  NavTreeProps,
+  NavTreeNode,
+  NavTreeNodeType,
+  NavTreeSection,
+  NavTreeSectionVariant,
+  NavTreeActionConfig,
+  NavTreeContextValue,
+} from "./NavTree";
+
+export { NotificationCenter } from "./NotificationCenter";
+export type {
+  NotificationCenterProps,
+  NotificationItem,
+} from "./NotificationCenter";
+
+export { PageHeader } from "./PageHeader";
+export type {
+  PageHeaderProps,
+  PageHeaderVariant,
+  PageHeaderSize,
+  BreadcrumbItem as PageHeaderBreadcrumbItem,
+  PageHeaderTab,
+} from "./PageHeader";
+
+export { QuickActions } from "./QuickActions";
+export type {
+  QuickActionsProps,
+  QuickAction,
+  QuickActionsVariant,
+  QuickActionsPosition,
+} from "./QuickActions";
+
+export { Sidebar } from "./Sidebar";
+export type {
+  SidebarProps,
+  SidebarVariant,
+  SidebarItem,
+  SidebarSection,
+  SidebarItemProps,
+  SidebarSectionProps,
+  SidebarDividerProps,
+} from "./Sidebar";
+
+export { UserMenu } from "./UserMenu";
+export type {
+  UserMenuProps,
+  UserMenuItem,
+  UserMenuSection,
+  UserInfo,
+} from "./UserMenu";
+
+export { WorkspaceSwitcher } from "./WorkspaceSwitcher";
+export type {
+  WorkspaceSwitcherProps,
+  WorkspaceOrg,
+  CurrentWorkspaceOrg,
+} from "./WorkspaceSwitcher";
+
 // Media
 export { Carousel, CarouselCard } from "./Carousel";
 export type {

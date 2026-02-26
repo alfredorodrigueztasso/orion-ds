@@ -3,7 +3,7 @@ import { ProfilePageTemplate } from "./ProfilePageTemplate";
 import { Button } from "../../../components/Button";
 import { Badge } from "../../../components/Badge";
 import { Card } from "../../../components/Card";
-import { FormSection } from "../../../sections/FormSection";
+import { FormSection } from "../../../components/FormSection";
 import { Field } from "../../../components/Field";
 import { Textarea } from "../../../components/Textarea";
 import {

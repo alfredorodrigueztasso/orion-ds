@@ -5,10 +5,10 @@
  */
 
 import type { HTMLAttributes, ReactNode } from "react";
-import type { SidebarProps } from "../../../sections/Sidebar";
-import type { PageHeaderProps } from "../../../sections/PageHeader";
-import type { DetailPanelProps } from "../../../sections/DetailPanel";
-import type { ActivityFeedProps } from "../../../sections/ActivityFeed";
+import type { SidebarProps } from "../../../components/Sidebar";
+import type { PageHeaderProps } from "../../../components/PageHeader";
+import type { DetailPanelProps } from "../../../components/DetailPanel";
+import type { ActivityFeedProps } from "../../../components/ActivityFeed";
 
 /**
  * Profile header content

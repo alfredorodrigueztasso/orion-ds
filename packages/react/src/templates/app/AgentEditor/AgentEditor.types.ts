@@ -1,6 +1,6 @@
 import type { HTMLAttributes, ReactNode } from "react";
 import type { NavbarConfig } from "../AgentWorkspace";
-import type { NavTreeSection } from "../../../sections/NavTree";
+import type { NavTreeSection } from "../../../components/NavTree";
 import type { ChatMessage } from "../../../components/Chat";
 
 /**

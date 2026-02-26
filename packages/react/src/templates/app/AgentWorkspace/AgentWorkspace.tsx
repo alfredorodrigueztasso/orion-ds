@@ -66,9 +66,9 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import { NavTree } from "../../../sections/NavTree";
-import { UserMenu } from "../../../sections/UserMenu";
-import { PageHeader } from "../../../sections/PageHeader";
+import { NavTree } from "../../../components/NavTree";
+import { UserMenu } from "../../../components/UserMenu";
+import { PageHeader } from "../../../components/PageHeader";
 import { AgentFolder } from "../../../sections/AgentFolder";
 import { AgentCard } from "../../../components/AgentCard";
 import { Button } from "../../../components/Button";
@@ -98,8 +98,8 @@ import {
   LogOut,
   HelpCircle,
 } from "lucide-react";
-import type { NavTreeSection, NavTreeNode } from "../../../sections/NavTree/NavTree.types";
-import type { NavTreeActionConfig } from "../../../sections/NavTree/NavTree.types";
+import type { NavTreeSection, NavTreeNode } from "../../../components/NavTree/NavTree.types";
+import type { NavTreeActionConfig } from "../../../components/NavTree/NavTree.types";
 import styles from "./AgentWorkspace.module.css";
 
 export const AgentWorkspace: React.FC<AgentWorkspaceProps> = ({

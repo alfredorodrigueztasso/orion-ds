@@ -5,7 +5,7 @@ import { Field } from "../../../components/Field";
 import { Textarea } from "../../../components/Textarea";
 import { Switch } from "../../../components/Switch";
 import { Select } from "../../../components/Select";
-import { FormSection } from "../../../sections/FormSection";
+import { FormSection } from "../../../components/FormSection";
 import {
   User,
   Lock,

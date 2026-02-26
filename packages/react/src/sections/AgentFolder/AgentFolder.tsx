@@ -56,7 +56,7 @@
  */
 
 import React from "react";
-import { CollapsibleFolder } from "../CollapsibleFolder";
+import { CollapsibleFolder } from "../../components/CollapsibleFolder";
 import { AgentCard } from "../../components/AgentCard";
 import type { AgentFolderProps } from "./AgentFolder.types";
 

@@ -6,7 +6,7 @@
  */
 
 import type { HTMLAttributes } from "react";
-import type { SortOption } from "../AgentFolder/AgentFolder.types";
+import type { SortOption } from "../../sections/AgentFolder/AgentFolder.types";
 
 export type { SortOption };
 
