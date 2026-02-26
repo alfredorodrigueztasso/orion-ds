@@ -14,7 +14,7 @@ interface SectionPreviewProps {
 // Render section preview from preview modules
 const getSectionPreview = (name: string): React.ReactNode => {
   // Try to use preview modules first
-  const previewModule = previewModules[name];
+  const previewModule = (previewModules as Record<string, any>)[name];
   if (previewModule && previewModule.length > 0) {
     // Render all previews from the module
     return (

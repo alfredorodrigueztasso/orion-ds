@@ -5,8 +5,8 @@ import CodeBlock from '@/components/CodeBlock';
 import PackageManagerTabs from '@/components/PackageManagerTabs';
 
 export const metadata = {
-  title: 'Getting Started',
-  description: 'Get started with Orion Design System in minutes',
+  title: 'Installation',
+  description: 'Complete setup guide for Orion across different frameworks',
 };
 
 const mdxComponents = {
@@ -14,9 +14,9 @@ const mdxComponents = {
   PackageManagerTabs: (props: any) => <PackageManagerTabs {...props} />,
 };
 
-export default async function GettingStartedPage() {
+export default async function InstallationPage() {
   const source = await readFile(
-    path.join(process.cwd(), 'content/docs/getting-started.mdx'),
+    path.join(process.cwd(), 'content/docs/installation.mdx'),
     'utf-8'
   );
 

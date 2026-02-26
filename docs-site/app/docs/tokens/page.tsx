@@ -2,21 +2,19 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import { readFile } from 'fs/promises';
 import path from 'path';
 import CodeBlock from '@/components/CodeBlock';
-import PackageManagerTabs from '@/components/PackageManagerTabs';
 
 export const metadata = {
-  title: 'Getting Started',
-  description: 'Get started with Orion Design System in minutes',
+  title: 'Design Tokens',
+  description: 'Complete reference for all Orion design tokens',
 };
 
 const mdxComponents = {
   CodeBlock: async (props: any) => <CodeBlock {...props} />,
-  PackageManagerTabs: (props: any) => <PackageManagerTabs {...props} />,
 };
 
-export default async function GettingStartedPage() {
+export default async function TokensPage() {
   const source = await readFile(
-    path.join(process.cwd(), 'content/docs/getting-started.mdx'),
+    path.join(process.cwd(), 'content/docs/tokens.mdx'),
     'utf-8'
   );
 

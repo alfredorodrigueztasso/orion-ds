@@ -14,7 +14,7 @@ interface ComponentPreviewProps {
 // Mapa de ejemplos para cada componente
 const getComponentExample = (name: string): React.ReactNode => {
   // Phase 1: Try to use preview modules first
-  const previewModule = previewModules[name];
+  const previewModule = (previewModules as Record<string, any>)[name];
   if (previewModule && previewModule.length > 0) {
     // Render all previews from the module
     return (

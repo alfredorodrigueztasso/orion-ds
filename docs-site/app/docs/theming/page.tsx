@@ -2,21 +2,19 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import { readFile } from 'fs/promises';
 import path from 'path';
 import CodeBlock from '@/components/CodeBlock';
-import PackageManagerTabs from '@/components/PackageManagerTabs';
 
 export const metadata = {
-  title: 'Getting Started',
-  description: 'Get started with Orion Design System in minutes',
+  title: 'Theming',
+  description: 'Brands, dark mode, and visual modes in Orion Design System',
 };
 
 const mdxComponents = {
   CodeBlock: async (props: any) => <CodeBlock {...props} />,
-  PackageManagerTabs: (props: any) => <PackageManagerTabs {...props} />,
 };
 
-export default async function GettingStartedPage() {
+export default async function ThemingPage() {
   const source = await readFile(
-    path.join(process.cwd(), 'content/docs/getting-started.mdx'),
+    path.join(process.cwd(), 'content/docs/theming.mdx'),
     'utf-8'
   );
 
