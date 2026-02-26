@@ -1,0 +1,84 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "kanban-board",
+  "type": "registry:component",
+  "title": "KanbanBoard",
+  "description": "KanbanBoard component",
+  "category": "utilities",
+  "files": [
+    {
+      "path": "packages/react/src/components/KanbanBoard/KanbanBoard.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/KanbanBoard/KanbanBoard.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/KanbanBoard/KanbanBoard.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/KanbanBoard/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "columns",
+      "type": "KanbanColumn[]",
+      "description": "Board columns",
+      "required": true
+    },
+    {
+      "name": "onCardMove",
+      "type": "(result: KanbanDragResult) => void",
+      "description": "Card move handler"
+    },
+    {
+      "name": "onCardClick",
+      "type": "(card: KanbanCard, columnId: string) => void",
+      "description": "Card click handler"
+    },
+    {
+      "name": "onAddCard",
+      "type": "(columnId: string) => void",
+      "description": "Add card handler (shows add button if provided)"
+    },
+    {
+      "name": "onAddColumn",
+      "type": "() => void",
+      "description": "Add column handler (shows add column button if provided)"
+    },
+    {
+      "name": "onColumnMenu",
+      "type": "(columnId: string) => void",
+      "description": "Column menu handler"
+    },
+    {
+      "name": "compact",
+      "type": "boolean",
+      "description": "Compact card display",
+      "default": false
+    },
+    {
+      "name": "showCardCount",
+      "type": "boolean",
+      "description": "Show card count in column headers",
+      "default": true
+    },
+    {
+      "name": "draggable",
+      "type": "boolean",
+      "description": "Enable drag and drop (visual only - actual DnD needs external library)",
+      "default": true
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#kanban-board",
+    "local": "/library.html#kanban-board"
+  },
+  "import": "import { KanbanBoard } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

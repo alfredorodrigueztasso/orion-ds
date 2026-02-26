@@ -1,0 +1,91 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "form-section",
+  "type": "registry:component",
+  "title": "FormSection",
+  "description": "FormSection component",
+  "category": "utilities",
+  "files": [
+    {
+      "path": "packages/react/src/components/FormSection/FormSection.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/FormSection/FormSection.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/FormSection/FormSection.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/FormSection/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "title",
+      "type": "string",
+      "description": "Section title",
+      "required": true
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "description": "Description text below title"
+    },
+    {
+      "name": "actions",
+      "type": "ReactNode",
+      "description": "Action buttons (save, cancel, etc.)"
+    },
+    {
+      "name": "collapsible",
+      "type": "boolean",
+      "description": "Make section collapsible",
+      "default": false
+    },
+    {
+      "name": "defaultCollapsed",
+      "type": "boolean",
+      "description": "Default collapsed state (only when collapsible)",
+      "default": false
+    },
+    {
+      "name": "divider",
+      "type": "boolean",
+      "description": "Show divider below section",
+      "default": false
+    },
+    {
+      "name": "variant",
+      "type": "FormSectionVariant",
+      "description": "Visual variant",
+      "default": "default",
+      "values": [
+        "default",
+        "card",
+        "inline"
+      ]
+    },
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "description": "Custom icon for section header"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disable all fields in section",
+      "default": false
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#form-section",
+    "local": "/library.html#form-section"
+  },
+  "import": "import { FormSection } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

@@ -6,13 +6,6 @@
   "homepage": "https://orion-ds.dev",
   "components": [
     {
-      "name": "about-page-template",
-      "title": "About Page",
-      "description": "AboutPage page template",
-      "category": "marketing",
-      "type": "registry:template"
-    },
-    {
       "name": "accordion",
       "title": "Accordion",
       "description": "Accordion component",
@@ -22,9 +15,9 @@
     {
       "name": "activity-feed",
       "title": "ActivityFeed",
-      "description": "ActivityFeed section component",
-      "category": "marketing",
-      "type": "registry:section"
+      "description": "ActivityFeed component",
+      "category": "utilities",
+      "type": "registry:component"
     },
     {
       "name": "agent-card",
@@ -32,20 +25,6 @@
       "description": "AgentCard component",
       "category": "data-display",
       "type": "registry:component"
-    },
-    {
-      "name": "agent-folder",
-      "title": "AgentFolder",
-      "description": "AgentFolder section component",
-      "category": "marketing",
-      "type": "registry:section"
-    },
-    {
-      "name": "agent-workspace",
-      "title": "Agent Workspace",
-      "description": "AgentWorkspace page template",
-      "category": "app",
-      "type": "registry:template"
     },
     {
       "name": "alert",
@@ -60,13 +39,6 @@
       "description": "AlertDialog component",
       "category": "utilities",
       "type": "registry:component"
-    },
-    {
-      "name": "app-download",
-      "title": "AppDownload",
-      "description": "AppDownload section component",
-      "category": "marketing",
-      "type": "registry:section"
     },
     {
       "name": "avatar",
@@ -85,16 +57,9 @@
     {
       "name": "banner",
       "title": "Banner",
-      "description": "Banner section component",
-      "category": "marketing",
-      "type": "registry:section"
-    },
-    {
-      "name": "blog",
-      "title": "Blog",
-      "description": "Blog section component",
-      "category": "marketing",
-      "type": "registry:section"
+      "description": "Banner component",
+      "category": "utilities",
+      "type": "registry:component"
     },
     {
       "name": "breadcrumb",
@@ -102,13 +67,6 @@
       "description": "Navigation path indicator",
       "category": "navigation",
       "type": "registry:component"
-    },
-    {
-      "name": "breadcrumbs",
-      "title": "Breadcrumbs",
-      "description": "Breadcrumbs section component",
-      "category": "marketing",
-      "type": "registry:section"
     },
     {
       "name": "button",
@@ -139,13 +97,6 @@
       "type": "registry:component"
     },
     {
-      "name": "carousel-section",
-      "title": "CarouselSection",
-      "description": "CarouselSection section component",
-      "category": "marketing",
-      "type": "registry:section"
-    },
-    {
       "name": "chart",
       "title": "Chart",
       "description": "Chart component",
@@ -158,20 +109,6 @@
       "description": "Chat component",
       "category": "utilities",
       "type": "registry:component"
-    },
-    {
-      "name": "chat-page-template",
-      "title": "Chat Page",
-      "description": "ChatPage page template",
-      "category": "app",
-      "type": "registry:template"
-    },
-    {
-      "name": "chat-section",
-      "title": "Chat",
-      "description": "Chat section component",
-      "category": "marketing",
-      "type": "registry:section"
     },
     {
       "name": "checkbox",
@@ -188,6 +125,13 @@
       "type": "registry:component"
     },
     {
+      "name": "code-editor",
+      "title": "CodeEditor",
+      "description": "CodeEditor component",
+      "category": "utilities",
+      "type": "registry:component"
+    },
+    {
       "name": "collapsible",
       "title": "Collapsible",
       "description": "Collapsible component",
@@ -197,9 +141,9 @@
     {
       "name": "collapsible-folder",
       "title": "CollapsibleFolder",
-      "description": "CollapsibleFolder section component",
-      "category": "marketing",
-      "type": "registry:section"
+      "description": "CollapsibleFolder component",
+      "category": "utilities",
+      "type": "registry:component"
     },
     {
       "name": "combobox",
@@ -218,30 +162,9 @@
     {
       "name": "command-bar",
       "title": "CommandBar",
-      "description": "CommandBar section component",
-      "category": "marketing",
-      "type": "registry:section"
-    },
-    {
-      "name": "comparison",
-      "title": "Comparison",
-      "description": "Comparison section component",
-      "category": "marketing",
-      "type": "registry:section"
-    },
-    {
-      "name": "contact",
-      "title": "Contact",
-      "description": "Contact section component",
-      "category": "marketing",
-      "type": "registry:section"
-    },
-    {
-      "name": "contact-page-template",
-      "title": "Contact Page",
-      "description": "ContactPage page template",
-      "category": "marketing",
-      "type": "registry:template"
+      "description": "CommandBar component",
+      "category": "utilities",
+      "type": "registry:component"
     },
     {
       "name": "container",
@@ -251,25 +174,11 @@
       "type": "registry:section"
     },
     {
-      "name": "cta",
-      "title": "CTA",
-      "description": "CTA section component",
-      "category": "marketing",
-      "type": "registry:section"
-    },
-    {
-      "name": "dashboard-template",
-      "title": "Dashboard",
-      "description": "Dashboard page template",
-      "category": "app",
-      "type": "registry:template"
-    },
-    {
       "name": "data-table",
       "title": "DataTable",
-      "description": "DataTable section component",
-      "category": "marketing",
-      "type": "registry:section"
+      "description": "DataTable component",
+      "category": "utilities",
+      "type": "registry:component"
     },
     {
       "name": "date-picker",
@@ -281,9 +190,9 @@
     {
       "name": "detail-panel",
       "title": "DetailPanel",
-      "description": "DetailPanel section component",
-      "category": "marketing",
-      "type": "registry:section"
+      "description": "DetailPanel component",
+      "category": "utilities",
+      "type": "registry:component"
     },
     {
       "name": "divider",
@@ -314,32 +223,11 @@
       "type": "registry:component"
     },
     {
-      "name": "empty-state-section",
-      "title": "EmptyState",
-      "description": "EmptyState section component",
-      "category": "marketing",
-      "type": "registry:section"
-    },
-    {
       "name": "error-boundary",
       "title": "ErrorBoundary",
       "description": "ErrorBoundary component",
       "category": "utilities",
       "type": "registry:component"
-    },
-    {
-      "name": "faq",
-      "title": "FAQ",
-      "description": "FAQ section component",
-      "category": "marketing",
-      "type": "registry:section"
-    },
-    {
-      "name": "features",
-      "title": "Features",
-      "description": "Features section component",
-      "category": "marketing",
-      "type": "registry:section"
     },
     {
       "name": "field",
@@ -351,44 +239,23 @@
     {
       "name": "file-uploader",
       "title": "FileUploader",
-      "description": "FileUploader section component",
-      "category": "marketing",
-      "type": "registry:section"
+      "description": "FileUploader component",
+      "category": "utilities",
+      "type": "registry:component"
     },
     {
       "name": "filter-bar",
       "title": "FilterBar",
-      "description": "FilterBar section component",
-      "category": "marketing",
-      "type": "registry:section"
-    },
-    {
-      "name": "footer",
-      "title": "Footer",
-      "description": "Footer section component",
-      "category": "marketing",
-      "type": "registry:section"
+      "description": "FilterBar component",
+      "category": "utilities",
+      "type": "registry:component"
     },
     {
       "name": "form-section",
       "title": "FormSection",
-      "description": "FormSection section component",
-      "category": "marketing",
-      "type": "registry:section"
-    },
-    {
-      "name": "gallery",
-      "title": "Gallery",
-      "description": "Gallery section component",
-      "category": "marketing",
-      "type": "registry:section"
-    },
-    {
-      "name": "hero",
-      "title": "Hero",
-      "description": "Hero section component",
-      "category": "marketing",
-      "type": "registry:section"
+      "description": "FormSection component",
+      "category": "utilities",
+      "type": "registry:component"
     },
     {
       "name": "icon",
@@ -407,23 +274,9 @@
     {
       "name": "kanban-board",
       "title": "KanbanBoard",
-      "description": "KanbanBoard section component",
-      "category": "marketing",
-      "type": "registry:section"
-    },
-    {
-      "name": "kanban-page-template",
-      "title": "Kanban Page",
-      "description": "KanbanPage page template",
-      "category": "app",
-      "type": "registry:template"
-    },
-    {
-      "name": "landing-page-template",
-      "title": "Landing Page",
-      "description": "LandingPage page template",
-      "category": "marketing",
-      "type": "registry:template"
+      "description": "KanbanBoard component",
+      "category": "utilities",
+      "type": "registry:component"
     },
     {
       "name": "link",
@@ -440,25 +293,11 @@
       "type": "registry:component"
     },
     {
-      "name": "login-template",
-      "title": "Login",
-      "description": "Login page template",
-      "category": "app",
-      "type": "registry:template"
-    },
-    {
-      "name": "logo-cloud",
-      "title": "LogoCloud",
-      "description": "LogoCloud section component",
-      "category": "marketing",
-      "type": "registry:section"
-    },
-    {
       "name": "metric-cards",
       "title": "MetricCards",
-      "description": "MetricCards section component",
-      "category": "marketing",
-      "type": "registry:section"
+      "description": "MetricCards component",
+      "category": "utilities",
+      "type": "registry:component"
     },
     {
       "name": "modal",
@@ -470,9 +309,9 @@
     {
       "name": "nav-tree",
       "title": "NavTree",
-      "description": "NavTree section component",
-      "category": "marketing",
-      "type": "registry:section"
+      "description": "NavTree Types",
+      "category": "utilities",
+      "type": "registry:component"
     },
     {
       "name": "navbar",
@@ -482,25 +321,18 @@
       "type": "registry:component"
     },
     {
-      "name": "newsletter",
-      "title": "Newsletter",
-      "description": "Newsletter section component",
-      "category": "marketing",
-      "type": "registry:section"
-    },
-    {
       "name": "notification-center",
       "title": "NotificationCenter",
-      "description": "NotificationCenter section component",
-      "category": "marketing",
-      "type": "registry:section"
+      "description": "NotificationCenter component",
+      "category": "utilities",
+      "type": "registry:component"
     },
     {
       "name": "page-header",
       "title": "PageHeader",
-      "description": "PageHeader section component",
-      "category": "marketing",
-      "type": "registry:section"
+      "description": "PageHeader component",
+      "category": "utilities",
+      "type": "registry:component"
     },
     {
       "name": "pagination",
@@ -517,27 +349,6 @@
       "type": "registry:component"
     },
     {
-      "name": "pricing",
-      "title": "Pricing",
-      "description": "Pricing section component",
-      "category": "marketing",
-      "type": "registry:section"
-    },
-    {
-      "name": "pricing-page-template",
-      "title": "Pricing Page",
-      "description": "PricingPage page template",
-      "category": "marketing",
-      "type": "registry:template"
-    },
-    {
-      "name": "profile-page-template",
-      "title": "Profile Page",
-      "description": "ProfilePage page template",
-      "category": "app",
-      "type": "registry:template"
-    },
-    {
       "name": "progress-bar",
       "title": "ProgressBar",
       "description": "Visual progress indicator",
@@ -547,9 +358,9 @@
     {
       "name": "quick-actions",
       "title": "QuickActions",
-      "description": "QuickActions section component",
-      "category": "marketing",
-      "type": "registry:section"
+      "description": "QuickActions component",
+      "category": "utilities",
+      "type": "registry:component"
     },
     {
       "name": "radio",
@@ -580,25 +391,11 @@
       "type": "registry:component"
     },
     {
-      "name": "settings-layout",
-      "title": "SettingsLayout",
-      "description": "SettingsLayout section component",
-      "category": "marketing",
-      "type": "registry:section"
-    },
-    {
-      "name": "settings-template",
-      "title": "Settings",
-      "description": "Settings page template",
-      "category": "app",
-      "type": "registry:template"
-    },
-    {
       "name": "sidebar",
       "title": "Sidebar",
-      "description": "Sidebar section component",
-      "category": "marketing",
-      "type": "registry:section"
+      "description": "Vertical navigation panel",
+      "category": "utilities",
+      "type": "registry:component"
     },
     {
       "name": "skeleton",
@@ -615,13 +412,6 @@
       "type": "registry:component"
     },
     {
-      "name": "social-proof",
-      "title": "SocialProof",
-      "description": "SocialProof section component",
-      "category": "marketing",
-      "type": "registry:section"
-    },
-    {
       "name": "spinner",
       "title": "Spinner",
       "description": "Loading indicator",
@@ -629,25 +419,11 @@
       "type": "registry:component"
     },
     {
-      "name": "stats",
-      "title": "Stats",
-      "description": "Stats section component",
-      "category": "marketing",
-      "type": "registry:section"
-    },
-    {
       "name": "stepper",
       "title": "Stepper",
       "description": "Stepper component",
       "category": "navigation",
       "type": "registry:component"
-    },
-    {
-      "name": "stepper-section",
-      "title": "Stepper",
-      "description": "Stepper section component",
-      "category": "marketing",
-      "type": "registry:section"
     },
     {
       "name": "switch",
@@ -671,20 +447,6 @@
       "type": "registry:component"
     },
     {
-      "name": "team",
-      "title": "Team",
-      "description": "Team section component",
-      "category": "marketing",
-      "type": "registry:section"
-    },
-    {
-      "name": "testimonials",
-      "title": "Testimonials",
-      "description": "Testimonials section component",
-      "category": "marketing",
-      "type": "registry:section"
-    },
-    {
       "name": "textarea",
       "title": "Textarea",
       "description": "Textarea component",
@@ -697,13 +459,6 @@
       "description": "ThemeController component",
       "category": "utilities",
       "type": "registry:component"
-    },
-    {
-      "name": "timeline",
-      "title": "Timeline",
-      "description": "Timeline section component",
-      "category": "marketing",
-      "type": "registry:section"
     },
     {
       "name": "toast",
@@ -736,12 +491,19 @@
     {
       "name": "user-menu",
       "title": "UserMenu",
-      "description": "UserMenu section component",
-      "category": "marketing",
-      "type": "registry:section"
+      "description": "UserMenu component",
+      "category": "utilities",
+      "type": "registry:component"
+    },
+    {
+      "name": "workspace-switcher",
+      "title": "WorkspaceSwitcher",
+      "description": "WorkspaceSwitcher component",
+      "category": "utilities",
+      "type": "registry:component"
     }
   ],
-  "totalComponents": 50,
-  "totalSections": 44,
-  "totalTemplates": 11
+  "totalComponents": 69,
+  "totalSections": 2,
+  "totalTemplates": 0
 }

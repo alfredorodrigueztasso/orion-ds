@@ -22,8 +22,7 @@
 
 import { forwardRef } from "react";
 import type { FeaturesProps } from "./Features.types";
-import { Section } from '@orion-ds/react/sections';
-import { Container } from '@orion-ds/react/sections';
+import { Section, Container } from '@orion-ds/react';
 import { FeatureCard } from "./FeatureCard";
 import styles from "./Features.module.css";
 

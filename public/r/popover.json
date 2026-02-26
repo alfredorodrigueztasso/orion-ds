@@ -123,6 +123,12 @@
       "type": "number",
       "description": "Delay before hiding (for hover trigger)",
       "default": 150
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "description": "Whether the trigger wrapper should stretch to fill its container",
+      "default": false
     }
   ],
   "tokens": [

@@ -1,0 +1,120 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "file-uploader",
+  "type": "registry:component",
+  "title": "FileUploader",
+  "description": "FileUploader component",
+  "category": "utilities",
+  "files": [
+    {
+      "path": "packages/react/src/components/FileUploader/FileUploader.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/FileUploader/FileUploader.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/FileUploader/FileUploader.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/FileUploader/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "accept",
+      "type": "string[]",
+      "description": "Accepted file types (MIME types or extensions)"
+    },
+    {
+      "name": "maxFiles",
+      "type": "number",
+      "description": "Maximum number of files"
+    },
+    {
+      "name": "maxSize",
+      "type": "number",
+      "description": "Maximum file size in bytes"
+    },
+    {
+      "name": "multiple",
+      "type": "boolean",
+      "description": "Allow multiple files",
+      "default": true
+    },
+    {
+      "name": "onFilesAdded",
+      "type": "(files: File[]) => void",
+      "description": "Callback when files are added"
+    },
+    {
+      "name": "onFileRemove",
+      "type": "(fileId: string) => void",
+      "description": "Callback when a file is removed"
+    },
+    {
+      "name": "files",
+      "type": "UploadedFile[]",
+      "description": "Current uploaded files (controlled)"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disabled state"
+    },
+    {
+      "name": "dropzoneContent",
+      "type": "ReactNode",
+      "description": "Custom dropzone content"
+    },
+    {
+      "name": "placeholder",
+      "type": "string",
+      "description": "Custom placeholder text",
+      "default": "Drag and drop files here, or click to browse"
+    },
+    {
+      "name": "showFileList",
+      "type": "boolean",
+      "description": "Show file list below dropzone",
+      "default": true
+    },
+    {
+      "name": "compact",
+      "type": "boolean",
+      "description": "Compact mode",
+      "default": false
+    },
+    {
+      "name": "variant",
+      "type": "\"default\" | \"minimal\" | \"card\"",
+      "description": "Variant style",
+      "default": "default",
+      "values": [
+        "default",
+        "minimal",
+        "card"
+      ]
+    },
+    {
+      "name": "error",
+      "type": "string",
+      "description": "Error message"
+    },
+    {
+      "name": "helperText",
+      "type": "string",
+      "description": "Helper text"
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#file-uploader",
+    "local": "/library.html#file-uploader"
+  },
+  "import": "import { FileUploader } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

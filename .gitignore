@@ -52,3 +52,4 @@ storybook-static/
 
 # Turbo
 .turbo/
+.next/

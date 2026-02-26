@@ -1,0 +1,89 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "sidebar",
+  "type": "registry:component",
+  "title": "Sidebar",
+  "description": "Vertical navigation panel",
+  "category": "utilities",
+  "files": [
+    {
+      "path": "packages/react/src/components/Sidebar/Sidebar.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Sidebar/Sidebar.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Sidebar/Sidebar.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Sidebar/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "sections",
+      "type": "SidebarSection[]",
+      "description": "Array of navigation sections",
+      "required": true
+    },
+    {
+      "name": "activeItem",
+      "type": "string",
+      "description": "Currently active item ID"
+    },
+    {
+      "name": "collapsed",
+      "type": "boolean",
+      "description": "Collapsed state (icon-only)",
+      "default": false
+    },
+    {
+      "name": "onCollapsedChange",
+      "type": "(collapsed: boolean) => void",
+      "description": "Callback when collapse state changes"
+    },
+    {
+      "name": "header",
+      "type": "ReactNode",
+      "description": "Header content (logo, app name)"
+    },
+    {
+      "name": "footer",
+      "type": "ReactNode",
+      "description": "Footer content (user menu, settings)"
+    },
+    {
+      "name": "variant",
+      "type": "SidebarVariant",
+      "description": "Visual variant",
+      "default": "default",
+      "values": [
+        "default",
+        "floating"
+      ]
+    },
+    {
+      "name": "width",
+      "type": "number",
+      "description": "Width in pixels (when not collapsed)",
+      "default": 240
+    },
+    {
+      "name": "collapsedWidth",
+      "type": "number",
+      "description": "Collapsed width in pixels",
+      "default": 64
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#sidebar",
+    "local": "/library.html#sidebar"
+  },
+  "import": "import { Sidebar } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

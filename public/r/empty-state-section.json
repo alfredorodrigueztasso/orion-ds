@@ -8,18 +8,15 @@
   "files": [
     {
       "path": "packages/react/src/sections/EmptyState/EmptyState.tsx",
-      "type": "registry:component",
-      "content": "/**\n * EmptyState Component\n *\n * A placeholder section for empty states in SaaS applications.\n * Optimized for Product Mode with minimal visual noise and clear CTAs.\n *\n * @example\n * ```tsx\n * <EmptyState\n *   icon={<Inbox size={48} />}\n *   title=\"No messages yet\"\n *   description=\"When you receive messages, they'll appear here.\"\n *   action={<Button>Compose Message</Button>}\n * />\n * ```\n */\n\nimport { forwardRef } from \"react\";\nimport type { EmptyStateProps } from \"./EmptyState.types\";\nimport styles from \"./EmptyState.module.css\";\n\nexport const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(\n  (\n    {\n      icon,\n      illustration,\n      title,\n      description,\n      action,\n      secondaryAction,\n      variant = \"default\",\n      size = \"md\",\n      className,\n      ...rest\n    },\n    ref,\n  ) => {\n    const classNames = [\n      styles.emptyState,\n      styles[`variant-${variant}`],\n      styles[`size-${size}`],\n      className,\n    ]\n      .filter(Boolean)\n      .join(\" \");\n\n    return (\n      <div ref={ref} className={classNames} {...rest}>\n        <div className={styles.content}>\n          {illustration && (\n            <div className={styles.illustration}>{illustration}</div>\n          )}\n\n          {icon && !illustration && <div className={styles.icon}>{icon}</div>}\n\n          <div className={styles.text}>\n            <h3 className={styles.title}>{title}</h3>\n            {description && <p className={styles.description}>{description}</p>}\n          </div>\n\n          {(action || secondaryAction) && (\n            <div className={styles.actions}>\n              {action}\n              {secondaryAction}\n            </div>\n          )}\n        </div>\n      </div>\n    );\n  },\n);\n\nEmptyState.displayName = \"EmptyState\";\n"
+      "type": "registry:component"
     },
     {
       "path": "packages/react/src/sections/EmptyState/EmptyState.types.ts",
-      "type": "registry:types",
-      "content": "/**\n * EmptyState Component Types\n *\n * Type definitions for the Orion EmptyState section component.\n * Designed for Product Mode (SaaS dashboards) with minimal visual noise.\n */\n\nimport type { HTMLAttributes, ReactNode } from \"react\";\n\n/**\n * EmptyState size variant\n */\nexport type EmptyStateSize = \"sm\" | \"md\" | \"lg\";\n\n/**\n * EmptyState visual variant\n */\nexport type EmptyStateVariant = \"default\" | \"compact\" | \"full-page\";\n\n/**\n * EmptyState section props\n *\n * @example\n * ```tsx\n * <EmptyState\n *   icon={<Inbox size={48} />}\n *   title=\"No messages yet\"\n *   description=\"When you receive messages, they'll appear here.\"\n *   action={<Button>Compose Message</Button>}\n * />\n * ```\n */\nexport interface EmptyStateProps extends HTMLAttributes<HTMLDivElement> {\n  /**\n   * Icon element to display\n   * Typically a Lucide icon with size 48-64\n   */\n  icon?: ReactNode;\n\n  /**\n   * Optional illustration element (larger visual)\n   * Use instead of icon for full-page variants\n   */\n  illustration?: ReactNode;\n\n  /**\n   * Main title/heading\n   */\n  title: string;\n\n  /**\n   * Description text providing context\n   */\n  description?: string;\n\n  /**\n   * Primary action button\n   */\n  action?: ReactNode;\n\n  /**\n   * Secondary action (link or button)\n   */\n  secondaryAction?: ReactNode;\n\n  /**\n   * Visual variant\n   * - default: Standard centered layout\n   * - compact: Smaller padding and text\n   * - full-page: Takes full viewport height\n   * @default 'default'\n   */\n  variant?: EmptyStateVariant;\n\n  /**\n   * Size variant affecting padding and typography\n   * @default 'md'\n   */\n  size?: EmptyStateSize;\n}\n"
+      "type": "registry:types"
     },
     {
       "path": "packages/react/src/sections/EmptyState/index.ts",
-      "type": "registry:index",
-      "content": "export { EmptyState } from \"./EmptyState\";\nexport type {\n  EmptyStateProps,\n  EmptyStateVariant,\n  EmptyStateSize,\n} from \"./EmptyState.types\";\n"
+      "type": "registry:index"
     }
   ],
   "preview": {

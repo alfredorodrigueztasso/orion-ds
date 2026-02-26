@@ -29,8 +29,7 @@
 
 import { forwardRef } from "react";
 import type { TeamProps } from "./Team.types";
-import { Section } from '@orion-ds/react/sections';
-import { Container } from '@orion-ds/react/sections';
+import { Section, Container } from '@orion-ds/react';
 import { TeamMemberCard } from "./TeamMemberCard";
 import styles from "./Team.module.css";
 

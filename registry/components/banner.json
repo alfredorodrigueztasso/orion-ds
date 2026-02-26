@@ -1,0 +1,142 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "banner",
+  "type": "registry:component",
+  "title": "Banner",
+  "description": "Banner component",
+  "category": "utilities",
+  "files": [
+    {
+      "path": "packages/react/src/components/Banner/Banner.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/Banner/Banner.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/Banner/Banner.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/Banner/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "eyebrow",
+      "type": "ReactNode",
+      "description": "Optional eyebrow/badge text"
+    },
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "description": "Banner title",
+      "required": true
+    },
+    {
+      "name": "description",
+      "type": "ReactNode",
+      "description": "Banner description"
+    },
+    {
+      "name": "ctaLabel",
+      "type": "string",
+      "description": "Primary CTA button label"
+    },
+    {
+      "name": "ctaHref",
+      "type": "string",
+      "description": "Primary CTA button href"
+    },
+    {
+      "name": "secondaryCtaLabel",
+      "type": "string",
+      "description": "Secondary CTA label"
+    },
+    {
+      "name": "secondaryCtaHref",
+      "type": "string",
+      "description": "Secondary CTA href"
+    },
+    {
+      "name": "variant",
+      "type": "BannerVariant",
+      "description": "Banner variant",
+      "default": "default",
+      "values": [
+        "default",
+        "gradient",
+        "image",
+        "split"
+      ]
+    },
+    {
+      "name": "backgroundImage",
+      "type": "string",
+      "description": "Background image URL (for 'image' and 'split' variants)"
+    },
+    {
+      "name": "sideImage",
+      "type": "string",
+      "description": "Side image URL (for 'split' variant)"
+    },
+    {
+      "name": "imagePosition",
+      "type": "\"left\" | \"right\"",
+      "description": "Image position for split variant",
+      "default": "right",
+      "values": [
+        "left",
+        "right"
+      ]
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "description": "Custom background color"
+    },
+    {
+      "name": "gradient",
+      "type": "string",
+      "description": "Custom gradient (overrides default)"
+    },
+    {
+      "name": "dismissible",
+      "type": "boolean",
+      "description": "Dismissible banner",
+      "default": false
+    },
+    {
+      "name": "onDismiss",
+      "type": "() => void",
+      "description": "On dismiss callback"
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "description": "Full width (no max-width constraint)",
+      "default": false
+    },
+    {
+      "name": "compact",
+      "type": "boolean",
+      "description": "Compact mode",
+      "default": false
+    },
+    {
+      "name": "centered",
+      "type": "boolean",
+      "description": "Center content",
+      "default": true
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#banner",
+    "local": "/library.html#banner"
+  },
+  "import": "import { Banner } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

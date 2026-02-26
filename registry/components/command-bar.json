@@ -1,0 +1,80 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "command-bar",
+  "type": "registry:component",
+  "title": "CommandBar",
+  "description": "CommandBar component",
+  "category": "utilities",
+  "files": [
+    {
+      "path": "packages/react/src/components/CommandBar/CommandBar.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/CommandBar/CommandBar.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/CommandBar/CommandBar.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/CommandBar/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "Whether the command bar is open",
+      "required": true
+    },
+    {
+      "name": "onOpenChange",
+      "type": "(open: boolean) => void",
+      "description": "Callback when open state changes",
+      "required": true
+    },
+    {
+      "name": "commands",
+      "type": "CommandItem[]",
+      "description": "Flat list of commands (will be grouped by category if specified)",
+      "required": true
+    },
+    {
+      "name": "recentCommands",
+      "type": "CommandItem[]",
+      "description": "Recent commands to show at the top"
+    },
+    {
+      "name": "onSelect",
+      "type": "(command: CommandItem) => void",
+      "description": "Callback when a command is selected"
+    },
+    {
+      "name": "placeholder",
+      "type": "string",
+      "description": "Placeholder text for search input",
+      "default": "Type a command or search..."
+    },
+    {
+      "name": "emptyMessage",
+      "type": "string",
+      "description": "Empty state message when no results",
+      "default": "No results found."
+    },
+    {
+      "name": "footer",
+      "type": "ReactNode",
+      "description": "Custom footer content"
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#command-bar",
+    "local": "/library.html#command-bar"
+  },
+  "import": "import { CommandBar } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

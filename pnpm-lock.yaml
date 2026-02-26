@@ -59,6 +59,9 @@ importers:
 
   docs-site:
     dependencies:
+      '@orion-ds/blocks':
+        specifier: workspace:*
+        version: link:../packages/blocks
       '@orion-ds/react':
         specifier: workspace:*
         version: link:../packages/react

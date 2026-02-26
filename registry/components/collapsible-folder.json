@@ -1,0 +1,155 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "collapsible-folder",
+  "type": "registry:component",
+  "title": "CollapsibleFolder",
+  "description": "CollapsibleFolder component",
+  "category": "utilities",
+  "files": [
+    {
+      "path": "packages/react/src/components/CollapsibleFolder/CollapsibleFolder.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/CollapsibleFolder/CollapsibleFolder.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/CollapsibleFolder/CollapsibleFolder.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/CollapsibleFolder/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "id",
+      "type": "string",
+      "description": "",
+      "required": true
+    },
+    {
+      "name": "draggable",
+      "type": "boolean",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "type": "string",
+      "description": "Folder title/name",
+      "required": true
+    },
+    {
+      "name": "itemCount",
+      "type": "number",
+      "description": "Number of items in folder",
+      "required": true
+    },
+    {
+      "name": "items",
+      "type": "TItem[]",
+      "description": "Array of items to display",
+      "required": true
+    },
+    {
+      "name": "renderItem",
+      "type": "(item: TItem, index: number) => React.ReactNode",
+      "description": "Render function for each item",
+      "required": true
+    },
+    {
+      "name": "itemLabel",
+      "type": "string",
+      "description": "Singular label for items (used in badge)",
+      "default": "Item"
+    },
+    {
+      "name": "itemLabelPlural",
+      "type": "string",
+      "description": "Plural label for items (used in badge)",
+      "default": "Items"
+    },
+    {
+      "name": "emptyText",
+      "type": "string",
+      "description": "Empty state message when folder contains no items",
+      "default": "No items in this folder"
+    },
+    {
+      "name": "sortLabel",
+      "type": "string",
+      "description": "Fallback label for sort button",
+      "default": "Sort"
+    },
+    {
+      "name": "defaultExpanded",
+      "type": "boolean",
+      "description": "Default expanded state",
+      "default": true
+    },
+    {
+      "name": "sortOptions",
+      "type": "SortOption[]",
+      "description": "Available sort options"
+    },
+    {
+      "name": "selectedSort",
+      "type": "string",
+      "description": "Currently selected sort value"
+    },
+    {
+      "name": "onSortChange",
+      "type": "(value: string) => void",
+      "description": "Sort option change handler"
+    },
+    {
+      "name": "onDrop",
+      "type": "(itemId: string, folderId: string, index?: number) => void",
+      "description": "Drop handler for drag & drop"
+    },
+    {
+      "name": "onFolderEdit",
+      "type": "() => void",
+      "description": "Rename folder handler"
+    },
+    {
+      "name": "onFolderDelete",
+      "type": "() => void",
+      "description": "Delete folder handler"
+    },
+    {
+      "name": "onFolderInvite",
+      "type": "() => void",
+      "description": "Invite participants to folder handler"
+    },
+    {
+      "name": "isDropTarget",
+      "type": "boolean",
+      "description": "Is this folder currently a valid drop target"
+    },
+    {
+      "name": "isDropCompleted",
+      "type": "boolean",
+      "description": "Briefly set to true after a successful drop for micro-feedback"
+    },
+    {
+      "name": "onDragEnter",
+      "type": "() => void",
+      "description": "Callback when drag enters folder (for syncing @dnd-kit state)"
+    },
+    {
+      "name": "onDragLeaveFolder",
+      "type": "() => void",
+      "description": "Callback when drag leaves folder (for syncing @dnd-kit state)"
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#collapsible-folder",
+    "local": "/library.html#collapsible-folder"
+  },
+  "import": "import { CollapsibleFolder } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

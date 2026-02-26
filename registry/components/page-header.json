@@ -1,0 +1,126 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "page-header",
+  "type": "registry:component",
+  "title": "PageHeader",
+  "description": "PageHeader component",
+  "category": "utilities",
+  "files": [
+    {
+      "path": "packages/react/src/components/PageHeader/PageHeader.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/PageHeader/PageHeader.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/PageHeader/PageHeader.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/PageHeader/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "description": "Page title",
+      "required": true
+    },
+    {
+      "name": "description",
+      "type": "ReactNode",
+      "description": "Optional description below title"
+    },
+    {
+      "name": "breadcrumbs",
+      "type": "BreadcrumbItem[]",
+      "description": "Breadcrumb navigation items"
+    },
+    {
+      "name": "actions",
+      "type": "ReactNode",
+      "description": "Action buttons/elements aligned right"
+    },
+    {
+      "name": "tabs",
+      "type": "PageHeaderTab[]",
+      "description": "Tab navigation items"
+    },
+    {
+      "name": "activeTab",
+      "type": "string",
+      "description": "Currently active tab ID"
+    },
+    {
+      "name": "onTabChange",
+      "type": "(tabId: string) => void",
+      "description": "Tab change handler"
+    },
+    {
+      "name": "backLink",
+      "type": "{\n    label?: string",
+      "description": "Back link for navigation"
+    },
+    {
+      "name": "href",
+      "type": "string",
+      "description": ""
+    },
+    {
+      "name": "onClick",
+      "type": "() => void",
+      "description": ""
+    },
+    {
+      "name": "badge",
+      "type": "ReactNode",
+      "description": "Optional badge next to title"
+    },
+    {
+      "name": "variant",
+      "type": "PageHeaderVariant",
+      "description": "Visual variant",
+      "default": "default",
+      "values": [
+        "default",
+        "compact",
+        "with-tabs",
+        "transparent"
+      ]
+    },
+    {
+      "name": "size",
+      "type": "PageHeaderSize",
+      "description": "Size variant",
+      "default": "md",
+      "values": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    {
+      "name": "bordered",
+      "type": "boolean",
+      "description": "Show border at bottom",
+      "default": true
+    },
+    {
+      "name": "sticky",
+      "type": "boolean",
+      "description": "Sticky positioning",
+      "default": false
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#page-header",
+    "local": "/library.html#page-header"
+  },
+  "import": "import { PageHeader } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

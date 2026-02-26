@@ -1,0 +1,70 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "metric-cards",
+  "type": "registry:component",
+  "title": "MetricCards",
+  "description": "MetricCards component",
+  "category": "utilities",
+  "files": [
+    {
+      "path": "packages/react/src/components/MetricCards/MetricCards.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/MetricCards/MetricCards.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/MetricCards/MetricCards.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/MetricCards/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "metrics",
+      "type": "MetricItem[]",
+      "description": "Array of metric items",
+      "required": true
+    },
+    {
+      "name": "columns",
+      "type": "MetricCardsColumns",
+      "description": "Number of grid columns",
+      "default": 4,
+      "values": [
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    {
+      "name": "variant",
+      "type": "MetricCardsVariant",
+      "description": "Visual variant",
+      "default": "default",
+      "values": [
+        "default",
+        "compact",
+        "detailed"
+      ]
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "description": "Loading state for all cards",
+      "default": false
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#metric-cards",
+    "local": "/library.html#metric-cards"
+  },
+  "import": "import { MetricCards } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

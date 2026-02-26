@@ -23,8 +23,7 @@
 
 import { forwardRef } from "react";
 import type { StatsProps } from "./Stats.types";
-import { Section } from '@orion-ds/react/sections';
-import { Container } from '@orion-ds/react/sections';
+import { Section, Container } from '@orion-ds/react';
 import { StatItemCard } from "./StatItemCard";
 import styles from "./Stats.module.css";
 

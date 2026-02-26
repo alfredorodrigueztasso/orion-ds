@@ -1,0 +1,94 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "activity-feed",
+  "type": "registry:component",
+  "title": "ActivityFeed",
+  "description": "ActivityFeed component",
+  "category": "utilities",
+  "files": [
+    {
+      "path": "packages/react/src/components/ActivityFeed/ActivityFeed.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/ActivityFeed/ActivityFeed.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/ActivityFeed/ActivityFeed.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/ActivityFeed/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "activities",
+      "type": "ActivityItem[]",
+      "description": "Array of activity items",
+      "required": true
+    },
+    {
+      "name": "showFilters",
+      "type": "boolean",
+      "description": "Show filter controls",
+      "default": false
+    },
+    {
+      "name": "filters",
+      "type": "ActivityFilter[]",
+      "description": "Filter options"
+    },
+    {
+      "name": "activeFilter",
+      "type": "string",
+      "description": "Current filter value"
+    },
+    {
+      "name": "onFilterChange",
+      "type": "(filter: string) => void",
+      "description": "Filter change handler"
+    },
+    {
+      "name": "onLoadMore",
+      "type": "() => void",
+      "description": "Load more callback"
+    },
+    {
+      "name": "hasMore",
+      "type": "boolean",
+      "description": "Whether more items are available"
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "description": "Loading state"
+    },
+    {
+      "name": "emptyMessage",
+      "type": "string",
+      "description": "Empty state message"
+    },
+    {
+      "name": "showConnectors",
+      "type": "boolean",
+      "description": "Show connector lines between items",
+      "default": true
+    },
+    {
+      "name": "compact",
+      "type": "boolean",
+      "description": "Compact mode",
+      "default": false
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#activity-feed",
+    "local": "/library.html#activity-feed"
+  },
+  "import": "import { ActivityFeed } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

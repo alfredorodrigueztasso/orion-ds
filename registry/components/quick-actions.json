@@ -1,0 +1,93 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "quick-actions",
+  "type": "registry:component",
+  "title": "QuickActions",
+  "description": "QuickActions component",
+  "category": "utilities",
+  "files": [
+    {
+      "path": "packages/react/src/components/QuickActions/QuickActions.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/QuickActions/QuickActions.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/QuickActions/QuickActions.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/QuickActions/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "actions",
+      "type": "QuickAction[]",
+      "description": "Array of quick actions",
+      "required": true
+    },
+    {
+      "name": "variant",
+      "type": "QuickActionsVariant",
+      "description": "Display variant",
+      "default": "fab",
+      "values": [
+        "fab",
+        "bar",
+        "menu"
+      ]
+    },
+    {
+      "name": "position",
+      "type": "QuickActionsPosition",
+      "description": "Position on screen",
+      "default": "bottom-right",
+      "values": [
+        "bottom-right",
+        "bottom-left",
+        "bottom-center",
+        "top-right",
+        "top-left"
+      ]
+    },
+    {
+      "name": "primaryAction",
+      "type": "QuickAction",
+      "description": "Primary action (shown when FAB is collapsed)"
+    },
+    {
+      "name": "triggerIcon",
+      "type": "ReactNode",
+      "description": "Custom trigger icon for FAB"
+    },
+    {
+      "name": "showLabels",
+      "type": "boolean",
+      "description": "Always show labels (bar variant)",
+      "default": "true for bar, false for fab"
+    },
+    {
+      "name": "fixed",
+      "type": "boolean",
+      "description": "Fixed position",
+      "default": true
+    },
+    {
+      "name": "offset",
+      "type": "number",
+      "description": "Offset from edge in pixels",
+      "default": 24
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#quick-actions",
+    "local": "/library.html#quick-actions"
+  },
+  "import": "import { QuickActions } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

@@ -8,8 +8,7 @@
   "files": [
     {
       "path": "packages/react/src/sections/Chat/index.ts",
-      "type": "registry:index",
-      "content": "/**\n * Chat Section - Pre-built chat interface with sidebar.\n *\n * @example\n * ```tsx\n * import { ChatSection } from '@orion-ds/react';\n *\n * <ChatSection\n *   conversations={conversations}\n *   activeConversationId={activeId}\n *   messages={messages}\n *   onSendMessage={handleSend}\n *   onSelectConversation={handleSelect}\n * />\n * ```\n */\n\nexport { ChatSection } from \"./ChatSection\";\nexport type { ChatSectionProps } from \"../../components/Chat\";\n"
+      "type": "registry:index"
     }
   ],
   "preview": {

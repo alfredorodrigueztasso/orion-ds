@@ -1,0 +1,73 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "workspace-switcher",
+  "type": "registry:component",
+  "title": "WorkspaceSwitcher",
+  "description": "WorkspaceSwitcher component",
+  "category": "utilities",
+  "files": [
+    {
+      "path": "packages/react/src/components/WorkspaceSwitcher/WorkspaceSwitcher.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/WorkspaceSwitcher/WorkspaceSwitcher.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/WorkspaceSwitcher/WorkspaceSwitcher.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/WorkspaceSwitcher/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "currentOrg",
+      "type": "CurrentWorkspaceOrg",
+      "description": "The currently active organization */",
+      "required": true
+    },
+    {
+      "name": "organizations",
+      "type": "WorkspaceOrg[]",
+      "description": "List of other organizations to switch to */",
+      "required": true
+    },
+    {
+      "name": "onSettings",
+      "type": "() => void",
+      "description": "Called when Settings button is clicked */"
+    },
+    {
+      "name": "onParticipants",
+      "type": "() => void",
+      "description": "Called when Participants button is clicked */"
+    },
+    {
+      "name": "onCreateOrganization",
+      "type": "() => void",
+      "description": "Called when \"Nueva organización\" button is clicked */"
+    },
+    {
+      "name": "onOrgChange",
+      "type": "(orgName: string) => void",
+      "description": "Called when user clicks another organization to switch to */"
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "description": "Whether the trigger stretches to full width.",
+      "default": true
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#workspace-switcher",
+    "local": "/library.html#workspace-switcher"
+  },
+  "import": "import { WorkspaceSwitcher } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

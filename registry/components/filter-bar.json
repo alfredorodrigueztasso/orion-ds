@@ -1,0 +1,103 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "filter-bar",
+  "type": "registry:component",
+  "title": "FilterBar",
+  "description": "FilterBar component",
+  "category": "utilities",
+  "files": [
+    {
+      "path": "packages/react/src/components/FilterBar/FilterBar.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/FilterBar/FilterBar.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/FilterBar/FilterBar.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/FilterBar/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "filters",
+      "type": "FilterDefinition[]",
+      "description": "Filter definitions",
+      "required": true
+    },
+    {
+      "name": "activeFilters",
+      "type": "ActiveFilter[]",
+      "description": "Currently active filters",
+      "required": true
+    },
+    {
+      "name": "onFilterChange",
+      "type": "(\n    key: string,\n    value: string | string[] | { start: string",
+      "description": "Filter change handler",
+      "required": true
+    },
+    {
+      "name": "end",
+      "type": "string } | null,\n  ) => void",
+      "description": "",
+      "required": true
+    },
+    {
+      "name": "onFilterRemove",
+      "type": "(key: string) => void",
+      "description": "Remove filter handler",
+      "required": true
+    },
+    {
+      "name": "onClearAll",
+      "type": "() => void",
+      "description": "Clear all filters handler"
+    },
+    {
+      "name": "searchable",
+      "type": "boolean",
+      "description": "Enable search input",
+      "default": false
+    },
+    {
+      "name": "searchValue",
+      "type": "string",
+      "description": "Search value (controlled)"
+    },
+    {
+      "name": "onSearchChange",
+      "type": "(value: string) => void",
+      "description": "Search change handler"
+    },
+    {
+      "name": "searchPlaceholder",
+      "type": "string",
+      "description": "Search placeholder"
+    },
+    {
+      "name": "showCount",
+      "type": "boolean",
+      "description": "Show filter count",
+      "default": true
+    },
+    {
+      "name": "compact",
+      "type": "boolean",
+      "description": "Compact mode",
+      "default": false
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#filter-bar",
+    "local": "/library.html#filter-bar"
+  },
+  "import": "import { FilterBar } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

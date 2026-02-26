@@ -1,0 +1,86 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "nav-tree",
+  "type": "registry:component",
+  "title": "NavTree",
+  "description": "NavTree Types",
+  "category": "utilities",
+  "files": [
+    {
+      "path": "packages/react/src/components/NavTree/NavTree.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/NavTree/NavTree.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/NavTree/NavTree.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/NavTree/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "sections",
+      "type": "NavTreeSection[]",
+      "description": "Array of collapsible sections */",
+      "required": true
+    },
+    {
+      "name": "activeNodeId",
+      "type": "string",
+      "description": "ID of the currently active node (highlighted) */"
+    },
+    {
+      "name": "onNodeClick",
+      "type": "(node: NavTreeNode) => void",
+      "description": "Callback when a node row is clicked (for page navigation) */"
+    },
+    {
+      "name": "actions",
+      "type": "NavTreeActionConfig",
+      "description": "Action callbacks for tree mutations */"
+    },
+    {
+      "name": "persistKey",
+      "type": "string",
+      "description": "localStorage key prefix (default: 'orion-nav-tree') */"
+    },
+    {
+      "name": "header",
+      "type": "ReactNode",
+      "description": "Header slot (e.g. workspace logo/switcher) */"
+    },
+    {
+      "name": "footer",
+      "type": "ReactNode",
+      "description": "Footer slot (e.g. UserMenu) */"
+    },
+    {
+      "name": "width",
+      "type": "number | string",
+      "description": "Sidebar width - number (pixels), or string (e.g. \"20%\", \"clamp(200px, 25vw, 320px)\") (default: 240) */"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "description": "Additional CSS class */"
+    },
+    {
+      "name": "headless",
+      "type": "boolean",
+      "description": "Render nodes directly without section headers (default: false) */"
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#nav-tree",
+    "local": "/library.html#nav-tree"
+  },
+  "import": "import { NavTree } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

@@ -1,0 +1,100 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "user-menu",
+  "type": "registry:component",
+  "title": "UserMenu",
+  "description": "UserMenu component",
+  "category": "utilities",
+  "files": [
+    {
+      "path": "packages/react/src/components/UserMenu/UserMenu.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/UserMenu/UserMenu.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/UserMenu/UserMenu.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/UserMenu/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "user",
+      "type": "UserInfo",
+      "description": "User information",
+      "required": true
+    },
+    {
+      "name": "sections",
+      "type": "UserMenuSection[]",
+      "description": "Menu sections",
+      "required": true
+    },
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "Open state (controlled)"
+    },
+    {
+      "name": "onOpenChange",
+      "type": "(open: boolean) => void",
+      "description": "Open state change handler"
+    },
+    {
+      "name": "trigger",
+      "type": "ReactNode",
+      "description": "Trigger element (custom trigger button)"
+    },
+    {
+      "name": "align",
+      "type": "\"start\" | \"end\"",
+      "description": "Menu alignment",
+      "default": "end",
+      "values": [
+        "start",
+        "end"
+      ]
+    },
+    {
+      "name": "placement",
+      "type": "\"top\" | \"bottom\"",
+      "description": "Dropdown placement direction",
+      "default": "bottom",
+      "values": [
+        "top",
+        "bottom"
+      ]
+    },
+    {
+      "name": "showHeader",
+      "type": "boolean",
+      "description": "Show user info header in dropdown",
+      "default": true
+    },
+    {
+      "name": "compact",
+      "type": "boolean",
+      "description": "Compact mode (smaller trigger)",
+      "default": false
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "description": "Whether the menu wrapper should stretch to fill its container",
+      "default": false
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#user-menu",
+    "local": "/library.html#user-menu"
+  },
+  "import": "import { UserMenu } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

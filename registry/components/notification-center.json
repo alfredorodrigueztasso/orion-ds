@@ -1,0 +1,100 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "notification-center",
+  "type": "registry:component",
+  "title": "NotificationCenter",
+  "description": "NotificationCenter component",
+  "category": "utilities",
+  "files": [
+    {
+      "path": "packages/react/src/components/NotificationCenter/NotificationCenter.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/NotificationCenter/NotificationCenter.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/NotificationCenter/NotificationCenter.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/NotificationCenter/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "notifications",
+      "type": "NotificationItem[]",
+      "description": "Notification items",
+      "required": true
+    },
+    {
+      "name": "onMarkAsRead",
+      "type": "(id: string) => void",
+      "description": "Mark single notification as read"
+    },
+    {
+      "name": "onMarkAllAsRead",
+      "type": "() => void",
+      "description": "Mark all notifications as read"
+    },
+    {
+      "name": "onDismiss",
+      "type": "(id: string) => void",
+      "description": "Delete/dismiss notification"
+    },
+    {
+      "name": "onClearAll",
+      "type": "() => void",
+      "description": "Clear all notifications"
+    },
+    {
+      "name": "onViewAll",
+      "type": "() => void",
+      "description": "View all link/action"
+    },
+    {
+      "name": "title",
+      "type": "string",
+      "description": "Header title",
+      "default": "Notifications"
+    },
+    {
+      "name": "emptyMessage",
+      "type": "string",
+      "description": "Empty state message",
+      "default": "No notifications"
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "description": "Loading state"
+    },
+    {
+      "name": "maxHeight",
+      "type": "string",
+      "description": "Maximum height before scrolling"
+    },
+    {
+      "name": "groupByCategory",
+      "type": "boolean",
+      "description": "Group notifications by category",
+      "default": false
+    },
+    {
+      "name": "showUnreadCount",
+      "type": "boolean",
+      "description": "Show unread count badge",
+      "default": true
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#notification-center",
+    "local": "/library.html#notification-center"
+  },
+  "import": "import { NotificationCenter } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}

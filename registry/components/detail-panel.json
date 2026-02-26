@@ -1,0 +1,118 @@
+{
+  "$schema": "https://orion-ds.dev/schema/registry-item.json",
+  "name": "detail-panel",
+  "type": "registry:component",
+  "title": "DetailPanel",
+  "description": "DetailPanel component",
+  "category": "utilities",
+  "files": [
+    {
+      "path": "packages/react/src/components/DetailPanel/DetailPanel.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "packages/react/src/components/DetailPanel/DetailPanel.types.ts",
+      "type": "registry:types"
+    },
+    {
+      "path": "packages/react/src/components/DetailPanel/DetailPanel.module.css",
+      "type": "registry:styles"
+    },
+    {
+      "path": "packages/react/src/components/DetailPanel/index.ts",
+      "type": "registry:index"
+    }
+  ],
+  "props": [
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "Whether the panel is open",
+      "required": true
+    },
+    {
+      "name": "onClose",
+      "type": "() => void",
+      "description": "Close callback",
+      "required": true
+    },
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "description": "Panel title"
+    },
+    {
+      "name": "description",
+      "type": "ReactNode",
+      "description": "Optional description text below title"
+    },
+    {
+      "name": "subtitle",
+      "type": "ReactNode",
+      "description": "@deprecated Use `description` instead. Will be removed in v3.0."
+    },
+    {
+      "name": "size",
+      "type": "DetailPanelSize",
+      "description": "Panel size",
+      "default": "md",
+      "values": [
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ]
+    },
+    {
+      "name": "position",
+      "type": "DetailPanelPosition",
+      "description": "Panel position",
+      "default": "right",
+      "values": [
+        "right",
+        "left"
+      ]
+    },
+    {
+      "name": "headerActions",
+      "type": "ReactNode",
+      "description": "Header actions (buttons in header area)"
+    },
+    {
+      "name": "footer",
+      "type": "ReactNode",
+      "description": "Footer content"
+    },
+    {
+      "name": "overlay",
+      "type": "boolean",
+      "description": "Show overlay backdrop",
+      "default": true
+    },
+    {
+      "name": "closeOnOverlayClick",
+      "type": "boolean",
+      "description": "Close on overlay click",
+      "default": true
+    },
+    {
+      "name": "closeOnEscape",
+      "type": "boolean",
+      "description": "Close on Escape key",
+      "default": true
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "description": "Loading state",
+      "default": false
+    }
+  ],
+  "modeAware": false,
+  "preview": {
+    "url": "https://orion-ds.dev/library.html#detail-panel",
+    "local": "/library.html#detail-panel"
+  },
+  "import": "import { DetailPanel } from '@orion-ds/react'",
+  "cssImport": "import '@orion-ds/react/styles.css'"
+}
