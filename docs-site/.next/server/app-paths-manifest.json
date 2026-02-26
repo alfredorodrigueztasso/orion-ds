@@ -1,4 +1,11 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
+  "/page": "app/page.js",
+  "/components/page": "app/components/page.js",
+  "/components/[name]/page": "app/components/[name]/page.js",
+  "/sections/page": "app/sections/page.js",
+  "/docs/getting-started/page": "app/docs/getting-started/page.js",
   "/sections/[name]/page": "app/sections/[name]/page.js",
-  "/sections/page": "app/sections/page.js"
+  "/templates/page": "app/templates/page.js",
+  "/templates/[name]/page": "app/templates/[name]/page.js"
 }

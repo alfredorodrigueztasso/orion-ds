@@ -7,7 +7,6 @@ import { CodeEditor } from "../../../components/CodeEditor";
 import { Card } from "../../../components/Card";
 import { ToggleGroup } from "../../../components/ToggleGroup";
 import { Chat } from "../../../components/Chat";
-import { Select } from "../../../components/Select";
 import { Button } from "../../../components/Button";
 import { Popover } from "../../../components/Popover";
 import { Avatar } from "../../../components/Avatar";
@@ -461,12 +460,43 @@ export const AgentEditor: React.FC<AgentEditorProps> = ({
           actions={
             <div className={styles.headerActions}>
               {modelOptions.length > 0 && (
-                <Select
-                  options={modelOptions}
-                  value={selectedModel}
-                  onChange={(e) => onModelChange?.(e.target.value)}
-                  size="sm"
-                  placeholder="Select model..."
+                <Popover
+                  trigger={
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      icon={<ChevronDown size={16} />}
+                      iconRight={<ChevronDown size={16} />}
+                    >
+                      {selectedModel
+                        ? modelOptions.find((opt) => opt.value === selectedModel)?.label || "Select model..."
+                        : "Select model..."}
+                    </Button>
+                  }
+                  content={
+                    <div className={styles.modelPanel}>
+                      {modelOptions.map((option) => (
+                        <div
+                          key={option.value}
+                          className={styles.modelItem}
+                          onClick={() => {
+                            onModelChange?.(option.value);
+                          }}
+                          role="option"
+                          aria-selected={selectedModel === option.value}
+                        >
+                          <span className={styles.modelItemLabel}>{option.label}</span>
+                          {selectedModel === option.value && (
+                            <span className={styles.modelItemCheck}>✓</span>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  }
+                  placement="bottom-start"
+                  showArrow={false}
+                  offset={4}
+                  closeOnClickOutside
                 />
               )}
               {onNewConversation && (

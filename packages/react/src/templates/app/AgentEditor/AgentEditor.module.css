@@ -263,11 +263,82 @@
   gap: var(--spacing-2);
 }
 
+/* Model Selector Popover */
+.modelPanel {
+  display: flex;
+  flex-direction: column;
+  min-width: 220px;
+  max-width: 100%;
+  max-height: 360px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-subtle) transparent;
+}
+
+.modelItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-2);
+  width: 100%;
+  padding: var(--spacing-3) var(--spacing-4);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+  box-sizing: border-box;
+  background-color: transparent;
+}
+
+.modelItem:hover {
+  background-color: var(--surface-layer);
+}
+
+.modelItem[aria-selected="true"] {
+  background-color: var(--surface-layer);
+  color: var(--text-brand);
+}
+
+.modelItemLabel {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--font-size-14);
+  color: var(--text-primary);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.modelItemCheck {
+  flex-shrink: 0;
+  color: var(--interactive-primary);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-14);
+}
+
+/* Webkit scrollbar for model panel */
+.modelPanel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modelPanel::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.modelPanel::-webkit-scrollbar-thumb {
+  background-color: var(--border-subtle);
+  border-radius: 4px;
+}
+
+.modelPanel::-webkit-scrollbar-thumb:hover {
+  background-color: var(--border-interactive);
+}
+
 /* Mode-specific overrides */
 @media (prefers-reduced-motion: reduce) {
   .editorBar,
   .workspaceButton,
-  .workspaceListItem {
+  .workspaceListItem,
+  .modelItem {
     transition: none;
   }
 }
