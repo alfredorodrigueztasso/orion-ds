@@ -50,15 +50,15 @@ cd "/Users/alfredo/Documents/AI First DS Library" && npm run format && npm run l
 cd "/Users/alfredo/Documents/AI First DS Library" && npm run audit
 
 # Step 3: Preview Validation
-# (Runs via /validate-previews skill - checks for duplicate components and hardcoded styles)
+cd "/Users/alfredo/Documents/AI First DS Library" && npm run validate:previews
 
 # Step 4: Build
 cd "/Users/alfredo/Documents/AI First DS Library" && npm run build
 
-# Step 4: Test (if not skipped)
+# Step 5: Test (if not skipped)
 cd "/Users/alfredo/Documents/AI First DS Library/packages/react" && npm test
 
-# Step 5: Registry (if components changed)
+# Step 6: Registry (if components changed)
 cd "/Users/alfredo/Documents/AI First DS Library" && npm run build:registry
 ```
 
@@ -89,16 +89,22 @@ This skill auto-triggers when user says:
    - TypeScript: All types valid ✓
    - AI-First components: 100% compliant ✓
 
-✅ Step 3: Build
+✅ Step 3: Preview Validation
+   - Storybook: No duplicate components ✓
+   - Docs-site: No hardcoded styles ✓
+   - Composition patterns: Valid ✓
+
+✅ Step 4: Build
    - @orion-ds/react built successfully
+   - @orion-ds/blocks built successfully
    - @orion-ds/core built successfully
    - @orion-ds/cli built successfully
 
-✅ Step 4: Unit Tests
+✅ Step 5: Unit Tests
    - 145/145 tests passed
    - Coverage: 85% statements, 78% branches
 
-✅ Step 5: Registry
+✅ Step 6: Registry
    - Updated registry (90 items: 39 components, 41 sections, 10 templates)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

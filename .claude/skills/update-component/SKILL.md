@@ -294,13 +294,33 @@ Fix any Stylelint violations found.
 
 ---
 
-### Step 9: Rebuild Registry
+### Step 9: Smart Registry Rebuild (NEW)
+
+**Diff-aware registry update** — Only rebuild if API changed:
 
 ```bash
-cd "/Users/alfredo/Documents/AI First DS Library" && npm run build:registry 2>&1 | tail -5
+# Detect if API changed (props, variants, exports)
+git diff HEAD -- "packages/react/src/components/[ComponentName]/*.tsx" "packages/react/src/components/[ComponentName]/*.types.ts" > /tmp/api-changes.txt
+
+# Check if changes affect the public API
+if grep -q "export\|interface\|type " /tmp/api-changes.txt; then
+  # API changed → rebuild registry
+  cd "/Users/alfredo/Documents/AI First DS Library" && npm run build:registry 2>&1 | tail -5
+else
+  # Only docs/styles changed → skip registry rebuild (save 15-20s)
+  echo "✅ No API changes detected. Skipping registry rebuild."
+fi
 ```
 
-This updates `registry/components/[component-name].json` with the current component state so the MCP server and CLI are in sync.
+**Smart behavior**:
+- **API changed** (props, variants, types) → Full `npm run build:registry` (~20s)
+- **Only docs changed** (README, stories, CSS) → Skip rebuild (~0s)
+- **Saves**: ~15-20 seconds per iteration when only updating documentation
+
+**Why this matters**:
+- Iterating on README/stories: Skip rebuild, save time
+- Change component props: Auto-detect, rebuild registry
+- Zero manual decision needed
 
 ---
 

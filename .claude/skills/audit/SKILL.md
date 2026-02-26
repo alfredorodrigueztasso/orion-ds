@@ -186,21 +186,50 @@ This skill auto-triggers when user says:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
-## Pre-Existing Known Issues
+## Suppression Configuration (NEW)
 
-These violations are acceptable and should NOT fail the audit:
+Instead of hardcoding acceptable violations, use `.audit-suppressions.json`:
 
-**Token validation**:
-- `:root` blocks (where primitives are defined)
-- CSS comments
-- `var()` references
+**File location**: `.audit-suppressions.json` (root)
 
-**AI-First validation**:
-- `Stepper.module.css`: Hardcoded font sizes (14px, 16px)
-- Overlay components: z-index warnings (controlled via tokens)
+**Format**:
+```json
+{
+  "version": "1.0",
+  "suppressions": [
+    {
+      "rule": "hardcoded-font-size",
+      "file": "packages/react/src/components/Stepper/Stepper.module.css",
+      "line": "14-16",
+      "reason": "Hardcoded font sizes are intentional for Stepper visual design",
+      "status": "temporary",
+      "assignee": "@alfredo",
+      "dueDate": "2026-03-15"
+    },
+    {
+      "rule": "z-index-warning",
+      "file": "packages/react/src/**/*Overlay*.css",
+      "pattern": true,
+      "reason": "Z-index controlled via token system, not hardcoded",
+      "status": "permanent"
+    }
+  ]
+}
+```
 
-**TypeScript**:
-- None (all type errors must be fixed)
+**Audit behavior**:
+1. Read `.audit-suppressions.json`
+2. During validation, check each violation against suppressions
+3. If match found → Skip violation (no fail)
+4. Report suppressed violations separately (transparency)
+5. Warn if suppression `dueDate` passed
+
+**Advantages**:
+- ✅ Suppressions are **explicit and documented**
+- ✅ Can be **tracked and reviewed** in code review
+- ✅ Automatic **expiration dates** prevent accumulation
+- ✅ Easy to **add/remove** without editing skill files
+- ✅ **Version controlled** (git track changes)
 
 ## System Health Scoring
 

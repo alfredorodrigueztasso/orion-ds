@@ -103,9 +103,9 @@ This skill auto-triggers when user says:
 ⚠️  2 of 4 checks failed. Fix errors above before committing.
 ```
 
-## Auto-Fix Suggestions
+## Auto-Fix (NEW FEATURE)
 
-When checks fail, suggest appropriate auto-fix commands:
+When checks fail, the skill now offers **inline auto-fix**:
 
 | Failed Check | Auto-Fix Command | What It Does |
 |-------------|------------------|--------------|
@@ -114,16 +114,38 @@ When checks fail, suggest appropriate auto-fix commands:
 | CSS Lint | `npm run lint:css:fix` | Auto-fixes Stylelint violations |
 | TypeScript | (manual) | Type errors must be fixed manually |
 
-**Example auto-fix output**:
+**Workflow** (NEW):
+1. Run 4 checks in parallel
+2. If any fail, ask: "Run auto-fixes? (y/n)"
+3. If user says yes:
+   - Execute: `npm run format` (if format failed)
+   - Execute: `npm run lint:fix` (if lint failed)
+   - Execute: `npm run lint:css:fix` (if CSS failed)
+   - Show: "Auto-fixes applied. Re-running checks..."
+4. Re-run all 4 checks to verify fixes worked
+5. Report final results
+
+**Example with auto-fix**:
 ```
-Run these commands to auto-fix:
+❌ Format check failed (12 files)
+❌ ESLint failed (3 violations)
+✅ TypeScript passed
+✅ CSS Lint passed
 
-npm run format       # Fix 12 formatting issues
-npm run lint:fix     # Fix ESLint violations
+Run auto-fixes? (y/n): y
 
-TypeScript errors require manual fixes in:
-- packages/react/src/components/Button.tsx:45
-- packages/react/src/components/Button.tsx:67
+Applying fixes...
+✅ npm run format (formatted 12 files)
+✅ npm run lint:fix (fixed 3 violations)
+
+Re-running checks...
+
+✅ Format check passed ✓
+✅ ESLint passed ✓
+✅ TypeScript passed ✓
+✅ CSS Lint passed ✓
+
+🎉 All checks passed! Ready to commit.
 ```
 
 ## Integration with Other Skills

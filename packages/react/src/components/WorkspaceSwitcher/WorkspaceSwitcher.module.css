@@ -105,7 +105,7 @@
   padding: var(--spacing-2);
   border-radius: var(--radius-control);
   cursor: pointer;
-  transition: background-color 150ms;
+  transition: background-color var(--transition-fast);
 }
 
 .orgItem:hover {

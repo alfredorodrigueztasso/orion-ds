@@ -1,4 +1,5 @@
-import registryData from '../../registry/index.json';
+import path from 'path';
+import fs from 'fs';
 
 export interface RegistryItem {
   name: string;
@@ -31,73 +32,107 @@ export interface RegistryItem {
     path: string;
     type: string;
   }>;
+  accessibility?: {
+    role?: string;
+    ariaAttributes?: string[];
+    keyboardNav?: Array<{ key: string; action: string }>;
+    notes?: string[];
+  };
+  tokens?: string[];
 }
 
-export interface RegistryData {
-  $schema: string;
-  name: string;
-  version: string;
-  description: string;
-  homepage: string;
-  components: RegistryItem[];
+/**
+ * Load all registry items from per-component JSON files
+ * This is called once at module load time (server-side)
+ */
+function loadAllItems(): RegistryItem[] {
+  const REGISTRY_BASE = path.join(process.cwd(), '..', 'registry');
+  const allItems: RegistryItem[] = [];
+
+  const types = [
+    { dir: 'components', type: 'registry:component' as const },
+    { dir: 'sections', type: 'registry:section' as const },
+    { dir: 'templates', type: 'registry:template' as const },
+  ];
+
+  for (const { dir } of types) {
+    const dirPath = path.join(REGISTRY_BASE, dir);
+    try {
+      const files = fs.readdirSync(dirPath).filter(f => f.endsWith('.json'));
+      for (const file of files) {
+        try {
+          const filePath = path.join(dirPath, file);
+          const data = JSON.parse(fs.readFileSync(filePath, 'utf-8')) as RegistryItem;
+          allItems.push(data);
+        } catch (error) {
+          console.warn(`Failed to load registry item from ${dir}/${file}:`, error);
+        }
+      }
+    } catch (error) {
+      console.warn(`Failed to read registry directory ${dir}:`, error);
+    }
+  }
+
+  return allItems;
 }
 
-const registry: RegistryData = registryData as RegistryData;
+// Load all items once at module initialization
+const allItems: RegistryItem[] = loadAllItems();
 
 /**
  * Get all components from the registry
  */
 export async function getAllComponents(): Promise<RegistryItem[]> {
-  return registry.components.filter(item => item.type === 'registry:component');
+  return allItems.filter(item => item.type === 'registry:component');
 }
 
 /**
  * Get all sections from the registry
  */
 export async function getAllSections(): Promise<RegistryItem[]> {
-  return registry.components.filter(item => item.type === 'registry:section');
+  return allItems.filter(item => item.type === 'registry:section');
 }
 
 /**
  * Get all templates from the registry
  */
 export async function getAllTemplates(): Promise<RegistryItem[]> {
-  return registry.components.filter(item => item.type === 'registry:template');
+  return allItems.filter(item => item.type === 'registry:template');
 }
 
 /**
  * Get all items from the registry
  */
 export async function getAllItems(): Promise<RegistryItem[]> {
-  return registry.components;
+  return allItems;
 }
 
 /**
  * Get a single item by name
  */
 export async function getItemByName(name: string): Promise<RegistryItem | undefined> {
-  return registry.components.find(item => item.name === name);
+  return allItems.find(item => item.name === name);
 }
 
 /**
  * Get items by category
  */
 export async function getItemsByCategory(category: string): Promise<RegistryItem[]> {
-  return registry.components.filter(item => item.category === category);
+  return allItems.filter(item => item.category === category);
 }
 
 /**
  * Get all unique categories
  */
 export function getCategories(): string[] {
-  return [...new Set(registry.components.map(item => item.category))];
+  return [...new Set(allItems.map(item => item.category))];
 }
 
 /**
  * Get categories for a specific type
  */
 export function getCategoriesByType(type: RegistryItem['type']): string[] {
-  const items = registry.components.filter(item => item.type === type);
+  const items = allItems.filter(item => item.type === type);
   return [...new Set(items.map(item => item.category))];
 }
 
@@ -106,7 +141,7 @@ export function getCategoriesByType(type: RegistryItem['type']): string[] {
  */
 export async function searchItems(query: string): Promise<RegistryItem[]> {
   const lowercaseQuery = query.toLowerCase();
-  return registry.components.filter(item =>
+  return allItems.filter(item =>
     item.name.toLowerCase().includes(lowercaseQuery) ||
     item.title.toLowerCase().includes(lowercaseQuery) ||
     item.description.toLowerCase().includes(lowercaseQuery)
@@ -118,13 +153,13 @@ export async function searchItems(query: string): Promise<RegistryItem[]> {
  */
 export function getRegistryMetadata() {
   return {
-    name: registry.name,
-    version: registry.version,
-    description: registry.description,
-    homepage: registry.homepage,
-    totalItems: registry.components.length,
-    componentCount: registry.components.filter(i => i.type === 'registry:component').length,
-    sectionCount: registry.components.filter(i => i.type === 'registry:section').length,
-    templateCount: registry.components.filter(i => i.type === 'registry:template').length,
+    name: '@orion-ds/registry',
+    version: '1.0.0',
+    description: 'Machine-readable registry for Orion Design System',
+    homepage: 'https://orion-ds.dev',
+    totalItems: allItems.length,
+    componentCount: allItems.filter(i => i.type === 'registry:component').length,
+    sectionCount: allItems.filter(i => i.type === 'registry:section').length,
+    templateCount: allItems.filter(i => i.type === 'registry:template').length,
   };
 }

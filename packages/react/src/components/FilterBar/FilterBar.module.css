@@ -164,7 +164,7 @@
   justify-content: center;
   border: 1px solid var(--border-moderate);
   border-radius: var(--radius-sm);
-  font-size: 10px;
+  font-size: var(--font-size-10);
   flex-shrink: 0;
 }
 

@@ -125,7 +125,7 @@
   height: 1.6em;
   background-color: var(--surface-layer);
   pointer-events: none;
-  z-index: 0;
+  z-index: var(--z-base);
 }
 
 /* Syntax highlight layer (behind textarea) */
@@ -142,7 +142,7 @@
   user-select: none;
   white-space: pre-wrap;
   word-break: break-word;
-  z-index: 0;
+  z-index: var(--z-base);
   scrollbar-width: none;
 }
 
@@ -180,7 +180,7 @@
   white-space: pre-wrap;
   word-break: break-word;
   overflow: auto;
-  z-index: 2;
+  z-index: var(--z-modal);
   scrollbar-width: thin;
   scrollbar-color: var(--border-subtle) transparent;
 }

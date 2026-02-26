@@ -1,88 +1,53 @@
-'use client';
-
-import { useState } from 'react';
-import { Check, Copy } from 'lucide-react';
+import { codeToHtml } from 'shiki';
+import CopyButton from './CopyButton';
 
 interface CodeBlockProps {
   code: string;
   language?: string;
 }
 
-export default function CodeBlock({ code, language = 'tsx' }: CodeBlockProps) {
-  const [copied, setCopied] = useState(false);
+export default async function CodeBlock({ code, language = 'tsx' }: CodeBlockProps) {
+  let highlightedHtml = '';
 
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(code);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error('Failed to copy:', err);
-    }
-  };
+  try {
+    highlightedHtml = await codeToHtml(code, {
+      lang: language,
+      themes: {
+        dark: 'github-dark',
+        light: 'github-light',
+      },
+      defaultColor: false,
+    });
+  } catch (error) {
+    console.warn(`Failed to highlight code for language ${language}:`, error);
+    // Fallback to plain text
+    highlightedHtml = `<pre style="background: var(--surface-sunken); padding: var(--spacing-4); border-radius: var(--radius-control); border: 1px solid var(--border-subtle);"><code style="font-family: var(--font-mono); color: var(--text-primary);">${escapeHtml(code)}</code></pre>`;
+  }
 
   return (
     <div style={{ position: 'relative', marginBottom: 'var(--spacing-4)' }}>
-      <button
-        onClick={handleCopy}
-        aria-label={copied ? 'Copied!' : 'Copy code'}
+      <CopyButton code={code} />
+      <div
         style={{
-          position: 'absolute',
-          top: 'var(--spacing-3)',
-          right: 'var(--spacing-3)',
-          padding: 'var(--spacing-2)',
-          background: 'var(--surface-layer)',
-          border: '1px solid var(--border-subtle)',
-          borderRadius: 'var(--radius-sm)',
-          cursor: 'pointer',
-          display: 'flex',
-          alignItems: 'center',
-          gap: 'var(--spacing-2)',
-          fontSize: '0.875rem',
-          color: 'var(--text-secondary)',
-          transition: 'all 0.2s',
-          zIndex: 10,
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.background = 'var(--surface-subtle)';
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.background = 'var(--surface-layer)';
-        }}
-      >
-        {copied ? (
-          <>
-            <Check size={16} />
-            Copied!
-          </>
-        ) : (
-          <>
-            <Copy size={16} />
-            Copy
-          </>
-        )}
-      </button>
-      <pre
-        style={{
-          padding: 'var(--spacing-4)',
-          background: 'var(--surface-sunken)',
           borderRadius: 'var(--radius-control)',
-          overflow: 'x-auto',
+          overflow: 'auto',
           border: '1px solid var(--border-subtle)',
           fontSize: '0.9rem',
           lineHeight: '1.5',
         }}
-      >
-        <code
-          className={`language-${language}`}
-          style={{
-            fontFamily: 'var(--font-mono)',
-            color: 'var(--text-primary)',
-          }}
-        >
-          {code}
-        </code>
-      </pre>
+        dangerouslySetInnerHTML={{ __html: highlightedHtml }}
+      />
     </div>
   );
+}
+
+function escapeHtml(text: string): string {
+  const map: { [key: string]: string } = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;',
+  };
+  return text.replace(/[&<>"']/g, (m) => map[m]);
 }

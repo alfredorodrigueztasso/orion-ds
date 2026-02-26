@@ -27,10 +27,29 @@ lsof -ti :6006 2>/dev/null | head -1
 - Si hay output → puerto ocupado (proceso zombie probable)
 - Si no hay output → puerto libre
 
-### Paso 2 — Preguntar modo al usuario
-Usar AskUserQuestion con las opciones según el estado detectado:
-- Si puerto libre: ofrecer "Normal" o "Reset completo"
-- Si puerto ocupado: ofrecer "Restart (matar zombie)" o "Reset completo"
+### Paso 2 — Auto-detectar modo (NEW)
+Seleccionar automáticamente sin preguntar (inteligencia mejorada):
+
+**Lógica de auto-detección**:
+1. Puerto libre + proceso no corruptido → **Modo Normal** (sin preguntar)
+2. Puerto ocupado + proceso zombie → **Modo Restart automático** (sin preguntar)
+3. Loader infinito / previews no cargan / error HTTP → **Modo Reset automático** (sin preguntar)
+4. Solo si ambiguo: preguntar al usuario
+
+**Detección de estado corrupto**:
+```bash
+# Intentar healthcheck (HTTP request al servidor)
+curl -s http://localhost:6006 > /dev/null 2>&1
+
+# Si status 200: server ok → Modo Normal
+# Si status != 200 o timeout: server crashed → Modo Restart
+# Si puerto ocupado + error en logs: → Modo Reset
+```
+
+**Usuario ya NO necesita elegir modo**:
+- "arranca storybook" → Auto-detect automático
+- "reinicia storybook" → Explícito: Restart
+- "storybook se colgó" → Auto-detect: Reset si hay evidencia
 
 ### Paso 3 — Ejecutar según modo elegido
 
