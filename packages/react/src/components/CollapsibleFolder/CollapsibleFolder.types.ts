@@ -6,9 +6,21 @@
  */
 
 import type { HTMLAttributes } from "react";
-import type { SortOption } from "../../sections/AgentFolder/AgentFolder.types";
 
-export type { SortOption };
+/**
+ * Sort option for organizing items
+ */
+export interface SortOption {
+  /**
+   * Display label
+   */
+  label: string;
+
+  /**
+   * Internal value
+   */
+  value: string;
+}
 
 /**
  * CollapsibleFolder component props

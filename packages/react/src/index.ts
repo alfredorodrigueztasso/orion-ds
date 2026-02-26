@@ -460,148 +460,23 @@ export type {
   SectionBackground,
 } from "./sections";
 
-// Page sections - Phase 1
-export { Hero, Features, FeatureCard, CTA, Footer } from "./sections";
-export type {
-  // Hero
-  HeroProps,
-  HeroAlign,
-  HeroSize,
-  // Features
-  FeaturesProps,
-  FeatureItem,
-  FeatureCardProps,
-  FeaturesColumns,
-  // CTA
-  CTAProps,
-  CTAVariant,
-  CTASize,
-  // Footer
-  FooterProps,
-  FooterBrand,
-  FooterLink,
-  FooterLinkGroup,
-  FooterSocialLink,
-  FooterVariant,
-} from "./sections";
-
-// Page sections - Phase 2 (Engagement)
-export {
-  Pricing,
-  PricingCard,
-  Testimonials,
-  TestimonialCard,
-  Stats,
-  StatItemCard,
-  FAQ,
-  FAQItemCard,
-  Carousel,
-  CarouselCard,
-} from "./sections";
-export type {
-  // Pricing
-  PricingProps,
-  PricingPlan,
-  PricingFeature,
-  PricingCardProps,
-  PricingColumns,
-  // Testimonials
-  TestimonialsProps,
-  Testimonial,
-  TestimonialAuthor,
-  TestimonialCardProps,
-  TestimonialsColumns,
-  TestimonialsVariant,
-  // Stats
-  StatsProps,
-  StatItem,
-  StatTrend,
-  StatItemCardProps,
-  StatsColumns,
-  StatsVariant,
-  // FAQ
-  FAQProps,
-  FAQItem,
-  FAQItemCardProps,
-  FAQColumns,
-  FAQVariant,
-  // Carousel
-  CarouselProps,
-  CarouselItem,
-  CarouselCardProps,
-  CarouselVariant,
-  CarouselAspectRatio,
-  CarouselGap,
-  CarouselOverlay,
-} from "./sections";
-
-// Page sections - Phase 3 (Content)
-export {
-  Team,
-  TeamMemberCard,
-  Contact,
-  Newsletter,
-  LogoCloud,
-} from "./sections";
-export type {
-  // Team
-  TeamProps,
-  TeamMember,
-  TeamSocialLink,
-  TeamMemberCardProps,
-  TeamColumns,
-  TeamVariant,
-  // Contact
-  ContactProps,
-  ContactInfo,
-  ContactFormField,
-  ContactLayout,
-  // Newsletter
-  NewsletterProps,
-  NewsletterLayout,
-  NewsletterSize,
-  // LogoCloud
-  LogoCloudProps,
-  LogoItem,
-  LogoCloudLayout,
-  LogoCloudSize,
-} from "./sections";
-
-// Page sections - Phase 4 (Advanced Content)
-export {
-  Blog,
-  Gallery,
-  Timeline,
-  Comparison,
-  SocialProof,
-  AppDownload,
-} from "./sections";
-export type {
-  // Blog
-  BlogProps,
-  BlogArticle,
-  BlogLayout,
-  // Gallery
-  GalleryProps,
-  GalleryImage,
-  GalleryLayout,
-  // Timeline
-  TimelineProps,
-  TimelineEvent,
-  // Comparison
-  ComparisonProps,
-  ComparisonFeature,
-  ComparisonColumn,
-  // SocialProof
-  SocialProofProps,
-  SocialProofLogo,
-  SocialProofTestimonial,
-  SocialProofStat,
-  // AppDownload
-  AppDownloadProps,
-  AppStoreBadge,
-  AppFeature,
-} from "./sections";
+// ============================================================================
+// PREMIUM SECTIONS & TEMPLATES (Moved to @orion-ds/blocks v1.0.0)
+// ============================================================================
+// Marketing sections: Hero, Features, CTA, Footer, Pricing, Testimonials, Stats, FAQ,
+// CarouselSection, Team, Contact, Newsletter, LogoCloud, Blog, Gallery, Timeline,
+// Comparison, SocialProof, AppDownload
+//
+// App/SaaS sections: AgentFolder, SettingsLayout, Breadcrumbs, Stepper, Chat, EmptyState
+//
+// Full-page templates: LandingPageTemplate, DashboardTemplate, SettingsTemplate, etc.
+//
+// To use these, install @orion-ds/blocks and import from '@orion-ds/blocks/sections'
+// or '@orion-ds/blocks/templates'.
+//
+// npm install @orion-ds/blocks
+// import { Hero, Features } from '@orion-ds/blocks/sections';
+// import { LandingPageTemplate } from '@orion-ds/blocks/templates';
 
 // ============================================================================
 // APP/SAAS SECTIONS (Product Mode Optimized)
@@ -609,26 +484,6 @@ export type {
 
 // Note: Widgets (Sidebar, DataTable, etc.) are now exported from WIDGETS section above
 // These are kept for backward compatibility via sections/ re-exports
-
-// Remaining App/SaaS Sections
-export { SettingsLayout } from "./sections";
-export type {
-  SettingsLayoutProps,
-  SettingsNavItem,
-  SettingsNavGroup,
-} from "./sections";
-
-export { Breadcrumbs } from "./sections";
-export type {
-  BreadcrumbsProps,
-  BreadcrumbItem as StandaloneBreadcrumbItem,
-} from "./sections";
-
-export { Stepper as StepperSection } from "./sections";
-export type {
-  StepperProps as StepperSectionProps,
-  StepItem as StepperSectionStepItem,
-} from "./sections";
 
 // ============================================================================
 // CHAT (AI Chat Interface)
@@ -851,46 +706,5 @@ export { ComponentShowcase } from "./ComponentShowcase";
 
 export { LandingPageExample } from "./examples";
 
-// ============================================================================
-// TEMPLATES (Full Page Compositions)
-// ============================================================================
-
-// Marketing Templates
-export {
-  LandingPageTemplate,
-  PricingPageTemplate,
-  AboutPageTemplate,
-  ContactPageTemplate,
-} from "./templates/marketing";
-export type {
-  LandingPageTemplateProps,
-  PricingPageTemplateProps,
-  AboutPageTemplateProps,
-  ContactPageTemplateProps,
-} from "./templates/marketing";
-
-// App Templates
-export {
-  DashboardTemplate,
-  SettingsTemplate,
-  ProfilePageTemplate,
-  KanbanPageTemplate,
-  LoginTemplate,
-  ChatPageTemplate,
-  AgentWorkspace,
-} from "./templates/app";
-export type {
-  DashboardTemplateProps,
-  DashboardLayout,
-  SettingsTemplateProps,
-  SettingsSection,
-  ProfilePageTemplateProps,
-  ProfileHeader,
-  KanbanPageTemplateProps,
-  LoginTemplateProps,
-  LoginFormConfig,
-  LoginEditorial,
-  SocialProvider,
-  ChatPageTemplateProps,
-  AgentWorkspaceProps,
-} from "./templates/app";
+// Note: Full page templates have been moved to @orion-ds/blocks v1.0.0 for the premium tier.
+// To use templates (LandingPageTemplate, DashboardTemplate, etc.), import from '@orion-ds/blocks/templates' instead.
