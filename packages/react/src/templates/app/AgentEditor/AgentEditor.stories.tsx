@@ -282,26 +282,12 @@ function DefaultWrapper() {
       onNavNodeClick={(nodeId: string) => console.log("Nav click:", nodeId)}
       title="Editor"
       modelOptions={[
-        {
-          group: "Anthropic",
-          models: [
-            { value: "claude-3-haiku-20240307", label: "claude-3-haiku-20240307" },
-            { value: "claude-haiku-4-5-20251001", label: "claude-haiku-4-5-20251001" },
-            { value: "claude-opus-4-1-20250805", label: "claude-opus-4-1-20250805" },
-            { value: "claude-opus-4-20250514", label: "claude-opus-4-20250514" },
-            { value: "claude-sonnet-4-20250514", label: "claude-sonnet-4-20250514" },
-            { value: "claude-sonnet-4-5-20250929", label: "claude-sonnet-4-5-20250929" },
-          ],
-        },
-        {
-          group: "Foundry",
-          models: [
-            { value: "gpt-4.1", label: "gpt-4.1" },
-            { value: "gpt-4.1-mini", label: "gpt-4.1-mini" },
-          ],
-        },
+        { value: "claude-haiku-4-5-20251001", label: "Claude Haiku 4.5" },
+        { value: "claude-sonnet-4-5-20250929", label: "Claude Sonnet 4.5" },
+        { value: "claude-opus-4-20250514", label: "Claude Opus 4" },
+        { value: "gpt-4.1", label: "GPT-4.1" },
       ]}
-      selectedModel="gpt-4.1"
+      selectedModel="claude-sonnet-4-5-20250929"
       onModelChange={(model: string) => console.log("Model:", model)}
       onNewConversation={() => console.log("New conversation")}
       tabs={tabs}

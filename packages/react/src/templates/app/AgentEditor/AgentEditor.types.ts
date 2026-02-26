@@ -49,10 +49,21 @@ export interface AgentEditorTab {
   placeholder?: string;
 
   /**
-   * Custom editor slot (e.g., Monaco, CodeMirror)
+   * Custom editor render prop (e.g., Monaco, CodeMirror)
+   * Enables full dirty tracking (Save/Cancel buttons) for custom editors
    * If not provided, uses CodeEditor component
    */
-  editorSlot?: ReactNode;
+  editorSlot?: (value: string, onChange: (value: string) => void) => ReactNode;
+
+  /**
+   * Callback when user saves changes in a tab
+   */
+  onSave?: (value: string) => void;
+
+  /**
+   * Callback when user cancels changes in a tab
+   */
+  onCancel?: () => void;
 }
 
 /**
@@ -149,8 +160,18 @@ export interface AgentEditorProps extends HTMLAttributes<HTMLDivElement> {
   onTabChange?: (tabId: string) => void;
 
   /**
+   * Callback when user saves changes in a tab
+   */
+  onSave?: (tabId: string, value: string) => void;
+
+  /**
+   * Callback when user cancels changes in a tab
+   */
+  onCancel?: (tabId: string) => void;
+
+  /**
    * Width of the left editor panel
-   * @default "50%"
+   * @default "60%"
    */
   leftPanelWidth?: string;
 

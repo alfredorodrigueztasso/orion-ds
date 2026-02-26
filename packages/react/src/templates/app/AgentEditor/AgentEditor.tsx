@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import type { AgentEditorProps, AgentEditorTab } from "./AgentEditor.types";
 import { NavTree } from "../../../sections/NavTree";
 import { UserMenu } from "../../../sections/UserMenu";
@@ -64,7 +64,9 @@ export const AgentEditor: React.FC<AgentEditorProps> = ({
   tabs: customTabs,
   activeTab: controlledActiveTab,
   onTabChange,
-  leftPanelWidth = "50%",
+  onSave,
+  onCancel,
+  leftPanelWidth = "60%",
 
   // Chat preview
   previewTitle = "Vista previa",
@@ -118,9 +120,79 @@ export const AgentEditor: React.FC<AgentEditorProps> = ({
 
   const activeTab = controlledActiveTab || localActiveTab;
 
+  // Dirty tracking: edited values per tab
+  const [editedValues, setEditedValues] = useState<Record<string, string>>(() => {
+    const map: Record<string, string> = {};
+    tabs.forEach((t) => {
+      map[t.id] = t.value ?? "";
+    });
+    return map;
+  });
+
+  // Track which tabs have unsaved changes
+  const [dirtyTabs, setDirtyTabs] = useState<Set<string>>(new Set());
+
   const handleTabChange = (newTabId: string) => {
     setLocalActiveTab(newTabId);
     onTabChange?.(newTabId);
+  };
+
+  // Sync editedValues when tab values change externally (only for clean tabs)
+  useEffect(() => {
+    setEditedValues((prev) => {
+      const next = { ...prev };
+      tabs.forEach((t) => {
+        if (!dirtyTabs.has(t.id)) {
+          next[t.id] = t.value ?? "";
+        }
+      });
+      return next;
+    });
+  }, [tabs]);
+
+  // Handle editor value changes with dirty tracking
+  const handleEditorChange = (val: string) => {
+    const activeTabDef = tabs.find((t) => t.id === activeTab);
+    setEditedValues((prev) => ({ ...prev, [activeTab]: val }));
+
+    const original = activeTabDef?.value ?? "";
+    setDirtyTabs((prev) => {
+      const next = new Set(prev);
+      val !== original ? next.add(activeTab) : next.delete(activeTab);
+      return next;
+    });
+
+    // Propagate to tab's onChange if it exists
+    activeTabDef?.onChange?.(val);
+  };
+
+  // Save current tab's changes
+  const handleSave = () => {
+    const activeTabDef = tabs.find((t) => t.id === activeTab);
+    const value = editedValues[activeTab] ?? "";
+    activeTabDef?.onSave?.(value);
+    onSave?.(activeTab, value);
+    setDirtyTabs((prev) => {
+      const next = new Set(prev);
+      next.delete(activeTab);
+      return next;
+    });
+  };
+
+  // Cancel current tab's changes
+  const handleCancel = () => {
+    const activeTabDef = tabs.find((t) => t.id === activeTab);
+    setEditedValues((prev) => ({
+      ...prev,
+      [activeTab]: activeTabDef?.value ?? "",
+    }));
+    setDirtyTabs((prev) => {
+      const next = new Set(prev);
+      next.delete(activeTab);
+      return next;
+    });
+    activeTabDef?.onCancel?.();
+    onCancel?.(activeTab);
   };
 
   // Find the active tab definition
@@ -442,16 +514,15 @@ export const AgentEditor: React.FC<AgentEditorProps> = ({
               {/* Editor content */}
               <div className={styles.editorContent}>
                 {activeTabDef?.editorSlot ? (
-                  activeTabDef.editorSlot
+                  activeTabDef.editorSlot(
+                    editedValues[activeTab] ?? activeTabDef?.value ?? "",
+                    handleEditorChange,
+                  )
                 ) : (
                   <CodeEditor
                     className={styles.codeEditorFull}
-                    value={activeTabDef?.value || ""}
-                    onChange={
-                      activeTabDef?.onChange
-                        ? (val) => activeTabDef.onChange?.(val)
-                        : undefined
-                    }
+                    value={editedValues[activeTab] ?? activeTabDef?.value ?? ""}
+                    onChange={handleEditorChange}
                     language={activeTabDef?.language}
                     placeholder={activeTabDef?.placeholder}
                     readOnly={activeTabDef?.readOnly}
@@ -460,6 +531,18 @@ export const AgentEditor: React.FC<AgentEditorProps> = ({
                   />
                 )}
               </div>
+
+              {/* Footer bar with Save/Cancel buttons (shown when tab has unsaved changes) */}
+              {dirtyTabs.has(activeTab) && (
+                <div className={styles.editorFooter}>
+                  <Button variant="ghost" size="sm" onClick={handleCancel}>
+                    Cancelar
+                  </Button>
+                  <Button variant="primary" size="sm" onClick={handleSave}>
+                    Guardar
+                  </Button>
+                </div>
+              )}
             </Card>
           </div>
 
