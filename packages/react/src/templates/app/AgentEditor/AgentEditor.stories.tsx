@@ -1,23 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 import { AgentEditor } from "./AgentEditor";
+import type { AgentEditorTab } from "./AgentEditor.types";
+import { MultiAgentPanel } from "./MultiAgentPanel";
 import {
   Building2,
-  Edit2,
-  BarChart3,
-  MessageSquare,
-  Database,
-  Plug,
-  Megaphone,
-  Settings,
-  Users2,
   Star,
   Sparkles,
   Zap,
   Bot,
 } from "lucide-react";
 import type { AgentFolderProps } from "../../../sections/AgentFolder";
-import type { NavTreeSection, NavTreeNode } from "../../../sections/NavTree";
 
 const meta: Meta<typeof AgentEditor> = {
   title: "Templates/ChatBuilder/AgentEditor",
@@ -115,84 +108,6 @@ const sampleLooseAgents = [
   },
 ];
 
-// Build NavTree sections from folders (IDENTICAL logic to AgentWorkspace)
-function buildNavTreeSections(folders: AgentFolderProps[], looseAgents: any[], helpCenters: any[]): NavTreeSection[] {
-  const agentSubPages = (agentId: string): NavTreeNode[] => [
-    { id: `${agentId}-edit`, type: "page", label: "Editar", icon: <Edit2 size={14} /> },
-    { id: `${agentId}-metrics`, type: "page", label: "Métricas", icon: <BarChart3 size={14} /> },
-    { id: `${agentId}-conversations`, type: "page", label: "Conversaciones", icon: <MessageSquare size={14} /> },
-    { id: `${agentId}-datasources`, type: "page", label: "Fuentes de datos", icon: <Database size={14} /> },
-    { id: `${agentId}-integrations`, type: "page", label: "Integraciones", icon: <Plug size={14} /> },
-    { id: `${agentId}-campaigns`, type: "page", label: "Campañas", icon: <Megaphone size={14} /> },
-    { id: `${agentId}-settings`, type: "page", label: "Configuración", icon: <Settings size={14} /> },
-  ];
-
-  const sections: NavTreeSection[] = [];
-
-  const agentNodes = [
-    ...folders.map((folder) => ({
-      id: folder.id,
-      type: "folder" as const,
-      label: folder.title,
-      icon: null as any,
-      children: folder.agents.map((agent) => ({
-        id: agent.id,
-        type: "folder" as const,
-        label: agent.title || "Agente sin nombre",
-        icon: <Bot size={16} />,
-        children: agentSubPages(agent.id),
-      })),
-    })),
-    ...(looseAgents ?? []).map((agent) => ({
-      id: agent.id,
-      type: "folder" as const,
-      label: agent.title || "Agente sin nombre",
-      icon: <Bot size={14} />,
-      children: agentSubPages(agent.id),
-    })),
-  ];
-
-  const agentsBadge = folders.reduce((acc, f) => acc + (f.agents?.length ?? 0), 0) + (looseAgents?.length ?? 0);
-
-  sections.push({
-    id: "agents",
-    title: "Agentes IA",
-    icon: <Sparkles size={16} />,
-    badge: agentsBadge,
-    nodes: agentNodes,
-    defaultExpanded: true,
-  });
-
-  if (helpCenters && helpCenters.length > 0) {
-    sections.push({
-      id: "help-centers",
-      title: "Centro de Ayuda",
-      icon: null as any,
-      badge: helpCenters.length,
-      nodes: helpCenters.map((hc: any) => ({
-        id: hc.id,
-        type: "page" as const,
-        label: hc.name,
-        icon: null as any,
-      })),
-    });
-  }
-
-  sections.push({
-    id: "community",
-    title: "Comunidad",
-    icon: <Users2 size={16} />,
-    badge: 3,
-    nodes: [
-      { id: "community-contacts", type: "page" as const, label: "Contactos", icon: <Users2 size={14} /> },
-      { id: "community-conversations", type: "page" as const, label: "Conversaciones", icon: <MessageSquare size={14} /> },
-      { id: "community-segments", type: "page" as const, label: "Segmentos", icon: null as any },
-    ],
-  });
-
-  return sections;
-}
-
 // === IDENTICAL navbar to AgentWorkspace Default story ===
 function DefaultWrapper() {
   const [messages] = useState([
@@ -210,10 +125,123 @@ function DefaultWrapper() {
     },
   ]);
 
-  const navSections = buildNavTreeSections(sampleFolders, sampleLooseAgents, [
-    { id: "hc-1", name: "Centro UVM" },
-    { id: "hc-2", name: "Centro Campus Online" },
-  ]);
+  // Tab state with onChange handlers (allows editing)
+  const [tabValues, setTabValues] = useState<Record<string, string>>({
+    comportamiento: "",
+    memoria: "",
+    general: "",
+  });
+
+  const tabs: AgentEditorTab[] = [
+    {
+      id: "comportamiento",
+      label: "Comportamiento",
+      language: "markdown",
+      placeholder:
+        "# Introduction & Scope\nYou are a virtual assistant designed to support users in this project.",
+      value: tabValues.comportamiento,
+      onChange: (val) => setTabValues((prev) => ({ ...prev, comportamiento: val })),
+    },
+    {
+      id: "memoria",
+      label: "Memoria",
+      language: "markdown",
+      placeholder: "# Memory\nStore and reference important user information...",
+      value: tabValues.memoria,
+      onChange: (val) => setTabValues((prev) => ({ ...prev, memoria: val })),
+    },
+    {
+      id: "general",
+      label: "General",
+      language: "markdown",
+      placeholder: "# General Settings\nConfigure general behavior...",
+      value: tabValues.general,
+      onChange: (val) => setTabValues((prev) => ({ ...prev, general: val })),
+    },
+    {
+      id: "multi-agente",
+      label: "Multi agente",
+      value: `{
+  "agent_name": "AgentSoporteIA",
+  "version": "1.0",
+  "nodes": [
+    {
+      "id": "recibir_consulta",
+      "type": "input",
+      "description": "Recibe la consulta inicial del usuario",
+      "next": "analizar_intencion"
+    },
+    {
+      "id": "analizar_intencion",
+      "type": "processing",
+      "description": "Clasifica el tipo de solicitud",
+      "next": "clasificar_urgencia"
+    },
+    {
+      "id": "clasificar_urgencia",
+      "type": "decision",
+      "description": "Evalúa la prioridad del caso",
+      "outputs": {
+        "alta": "escalar_agente",
+        "media": "resolver_directo",
+        "baja": "respuesta_automatica"
+      }
+    },
+    {
+      "id": "escalar_agente",
+      "type": "processing",
+      "description": "Deriva al agente especialista",
+      "next": "confirmar_escalamiento"
+    },
+    {
+      "id": "resolver_directo",
+      "type": "processing",
+      "description": "Resuelve con base de conocimiento",
+      "next": "verificar_resolucion"
+    },
+    {
+      "id": "respuesta_automatica",
+      "type": "processing",
+      "description": "Envía respuesta automatizada",
+      "next": "verificar_resolucion"
+    },
+    {
+      "id": "confirmar_escalamiento",
+      "type": "output",
+      "description": "Notifica escalamiento al usuario"
+    },
+    {
+      "id": "verificar_resolucion",
+      "type": "decision",
+      "description": "Confirma si el problema fue resuelto",
+      "outputs": {
+        "resuelto": "cerrar_ticket",
+        "no_resuelto": "escalar_agente"
+      }
+    },
+    {
+      "id": "cerrar_ticket",
+      "type": "output",
+      "description": "Cierra el ticket de soporte"
+    },
+    {
+      "id": "registrar_feedback",
+      "type": "processing",
+      "description": "Registra el feedback del usuario",
+      "next": "fin_atencion"
+    },
+    {
+      "id": "fin_atencion",
+      "type": "output",
+      "description": "Finaliza la sesión de atención"
+    }
+  ]
+}`,
+      editorSlot: (value, onChange) => (
+        <MultiAgentPanel value={value} onChange={onChange} />
+      ),
+    },
+  ];
 
   return (
     <AgentEditor
@@ -244,18 +272,45 @@ function DefaultWrapper() {
         userAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=john",
         onUserMenuClick: () => console.log("User menu"),
       }}
-      navSections={navSections}
+      folders={sampleFolders}
+      looseAgents={sampleLooseAgents}
+      helpCenters={[
+        { id: "hc-1", name: "Centro UVM" },
+        { id: "hc-2", name: "Centro Campus Online" },
+      ]}
       activeNavNodeId="agent-1-edit"
       onNavNodeClick={(nodeId: string) => console.log("Nav click:", nodeId)}
       title="Editor"
       modelOptions={[
-        { value: "gpt-4", label: "GPT-4" },
-        { value: "gpt-3.5", label: "GPT-3.5 Turbo" },
-        { value: "claude-3", label: "Claude 3" },
+        {
+          group: "Anthropic",
+          models: [
+            { value: "claude-3-haiku-20240307", label: "claude-3-haiku-20240307" },
+            { value: "claude-haiku-4-5-20251001", label: "claude-haiku-4-5-20251001" },
+            { value: "claude-opus-4-1-20250805", label: "claude-opus-4-1-20250805" },
+            { value: "claude-opus-4-20250514", label: "claude-opus-4-20250514" },
+            { value: "claude-sonnet-4-20250514", label: "claude-sonnet-4-20250514" },
+            { value: "claude-sonnet-4-5-20250929", label: "claude-sonnet-4-5-20250929" },
+          ],
+        },
+        {
+          group: "Foundry",
+          models: [
+            { value: "gpt-4.1", label: "gpt-4.1" },
+            { value: "gpt-4.1-mini", label: "gpt-4.1-mini" },
+          ],
+        },
       ]}
-      selectedModel="gpt-4"
+      selectedModel="gpt-4.1"
       onModelChange={(model: string) => console.log("Model:", model)}
       onNewConversation={() => console.log("New conversation")}
+      tabs={tabs}
+      onSave={(tabId: string, value: string) => {
+        console.log(`📝 Saved ${tabId}:`, value);
+      }}
+      onCancel={(tabId: string) => {
+        console.log(`❌ Cancelled ${tabId}`);
+      }}
       messages={messages}
       onSendMessage={(msg: string) => console.log("Message:", msg)}
       previewTitle="Vista previa"
@@ -270,29 +325,35 @@ function DefaultWrapper() {
  */
 export const Default: Story = {
   render: () => <DefaultWrapper />,
+  parameters: {
+    // Disable autodocs for this story to prevent hanging during docs generation
+    docs: { disable: true },
+  },
 };
 
 /**
  * Empty - No messages
  */
 export const Empty: Story = {
-  render: () => {
-    const navSections = buildNavTreeSections(sampleFolders, sampleLooseAgents, []);
-    return (
-      <AgentEditor
-        navbar={{
-          logo: <Building2 size={24} />,
-          workspaceName: "Universidad Virtual de México",
-          workspaces: [{ id: "uvm", name: "UVM", initials: "UVM" }],
-          userName: "John Doe",
-          userAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=john",
-        }}
-        navSections={navSections}
-        activeNavNodeId="agent-1-edit"
-        title="Editor"
-        messages={[]}
-      />
-    );
+  render: () => (
+    <AgentEditor
+      navbar={{
+        logo: <Building2 size={24} />,
+        workspaceName: "Universidad Virtual de México",
+        workspaces: [{ id: "uvm", name: "UVM", initials: "UVM" }],
+        userName: "John Doe",
+        userAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=john",
+      }}
+      folders={sampleFolders}
+      looseAgents={sampleLooseAgents}
+      activeNavNodeId="agent-1-edit"
+      title="Editor"
+      messages={[]}
+      tabs={[]}
+    />
+  ),
+  parameters: {
+    docs: { disable: true },
   },
 };
 
@@ -300,23 +361,25 @@ export const Empty: Story = {
  * With Typing Indicator
  */
 export const WithTypingIndicator: Story = {
-  render: () => {
-    const navSections = buildNavTreeSections(sampleFolders, sampleLooseAgents, []);
-    return (
-      <AgentEditor
-        navbar={{
-          logo: <Building2 size={24} />,
-          workspaceName: "Universidad Virtual de México",
-          workspaces: [{ id: "uvm", name: "UVM", initials: "UVM" }],
-          userName: "John Doe",
-          userAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=john",
-        }}
-        navSections={navSections}
-        activeNavNodeId="agent-1-edit"
-        title="Editor"
-        messages={[{ id: "1", role: "user" as const, content: "Hola", status: "sent" as const }]}
-        isTyping={true}
-      />
-    );
+  render: () => (
+    <AgentEditor
+      navbar={{
+        logo: <Building2 size={24} />,
+        workspaceName: "Universidad Virtual de México",
+        workspaces: [{ id: "uvm", name: "UVM", initials: "UVM" }],
+        userName: "John Doe",
+        userAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=john",
+      }}
+      folders={sampleFolders}
+      looseAgents={sampleLooseAgents}
+      activeNavNodeId="agent-1-edit"
+      title="Editor"
+      messages={[{ id: "1", role: "user" as const, content: "Hola", status: "sent" as const }]}
+      isTyping={true}
+      tabs={[]}
+    />
+  ),
+  parameters: {
+    docs: { disable: true },
   },
 };
