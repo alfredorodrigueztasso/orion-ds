@@ -21,11 +21,11 @@ import { forwardRef, useState, type FormEvent } from "react";
 import type { LoginTemplateProps } from "./LoginTemplate.types";
 
 // Orion Components
-import { Button } from "@orion-ds/react/components/Button";
-import { Field } from "@orion-ds/react/components/Field";
-import { Checkbox } from "@orion-ds/react/components/Checkbox";
-import { Link } from "@orion-ds/react/components/Link";
-import { Divider } from "@orion-ds/react/components/Divider";
+import { Button } from "@orion-ds/react";
+import { Field } from "@orion-ds/react";
+import { Checkbox } from "@orion-ds/react";
+import { Link } from "@orion-ds/react";
+import { Divider } from "@orion-ds/react";
 
 import styles from "./LoginTemplate.module.css";
 

@@ -1,0 +1,226 @@
+/* ChatPageTemplate Styles */
+
+.pageTemplate {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.pageTemplateSidebarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-4);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.pageTemplateSidebarHeaderLogo {
+  flex: 1;
+  min-width: 0;
+}
+
+.pageTemplateSidebarHeaderLogoText {
+  font-weight: 600;
+  font-size: var(--text-lg);
+}
+
+.sidebarCloseButton {
+  display: none;
+  padding: var(--spacing-2);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: color 150ms ease;
+}
+
+.sidebarCloseButton:hover {
+  color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+  .sidebarCloseButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.sectionMain {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.sectionMobileMenuButton {
+  display: none;
+  padding: var(--spacing-2);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: color 150ms ease;
+}
+
+.sectionMobileMenuButton:hover {
+  color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+  .sectionMobileMenuButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.inputButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-2);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: color 150ms ease;
+  border-radius: var(--radius-control);
+}
+
+.inputButton:hover {
+  color: var(--text-primary);
+  background: var(--surface-subtle);
+}
+
+.pageTemplateUserButton {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3) var(--spacing-4);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: var(--radius-control);
+  transition: background 150ms ease;
+  width: 100%;
+  position: relative;
+}
+
+.pageTemplateUserButton:hover {
+  background: var(--surface-subtle);
+}
+
+.pageTemplateUserButtonActive {
+  background: var(--surface-layer);
+}
+
+.pageTemplateUserAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.pageTemplateUserAvatarFallback {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--surface-layer);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.pageTemplateUserName {
+  flex: 1;
+  text-align: left;
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pageTemplateUserMenu {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background: var(--surface-layer);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-control);
+  padding: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+}
+
+.pageTemplateMenuItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  width: 100%;
+  padding: var(--spacing-2) var(--spacing-3);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: var(--radius-control);
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  transition: background 150ms ease;
+  text-align: left;
+}
+
+.pageTemplateMenuItem:hover {
+  background: var(--surface-subtle);
+}
+
+.pageTemplateMenuItemDanger {
+  color: var(--error-primary);
+}
+
+.pageTemplateMenuItemDanger:hover {
+  background: rgba(215, 40, 47, 0.1);
+}
+
+.pageTemplateMenuOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: var(--spacing-4);
+  padding: var(--spacing-8);
+  text-align: center;
+}
+
+.emptyStateIcon {
+  font-size: 48px;
+}
+
+.emptyStateTitle {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.emptyStateText {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin: 0;
+}

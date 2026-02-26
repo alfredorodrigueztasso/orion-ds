@@ -9,10 +9,10 @@ import { forwardRef } from "react";
 import type { KanbanPageTemplateProps } from "./KanbanPageTemplate.types";
 
 // Sections
-import { Sidebar } from "@orion-ds/react/components/Sidebar";
-import { PageHeader } from "@orion-ds/react/components/PageHeader";
-import { FilterBar } from "@orion-ds/react/components/FilterBar";
-import { KanbanBoard } from "@orion-ds/react/components/KanbanBoard";
+import { Sidebar } from "@orion-ds/react";
+import { PageHeader } from "@orion-ds/react";
+import { FilterBar } from "@orion-ds/react";
+import { KanbanBoard } from "@orion-ds/react";
 
 import styles from "./KanbanPageTemplate.module.css";
 

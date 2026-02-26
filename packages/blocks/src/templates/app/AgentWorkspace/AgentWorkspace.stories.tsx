@@ -8,7 +8,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 import { AgentWorkspace } from "./AgentWorkspace";
 import { EmptyState as EmptyStateComponent } from "../../../sections/EmptyState";
-import { Button } from "@orion-ds/react/components/Button";
+import { Button } from "@orion-ds/react";
 import type { AgentFolderProps } from "../../../sections/AgentFolder";
 import { Bot, Star, Sparkles, Zap, Building2 } from "lucide-react";
 

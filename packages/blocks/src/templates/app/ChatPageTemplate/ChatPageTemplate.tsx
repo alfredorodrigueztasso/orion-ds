@@ -19,12 +19,8 @@
 
 import { forwardRef, useState, useCallback } from "react";
 import { Menu, LogOut, Settings, User } from "lucide-react";
-import { Chat } from "@orion-ds/react/components/Chat";
-import type {
-  ChatPageTemplateProps,
-  ChatMessage as ChatMessageType,
-} from "@orion-ds/react/components/Chat";
-import { useStreamingText } from '@orion-ds/react';
+import { Chat, useStreamingText } from "@orion-ds/react";
+import type { ChatPageTemplateProps, ChatMessage as ChatMessageType } from "./ChatPageTemplate.types";
 import styles from './Chat.module.css';
 
 /**
@@ -195,7 +191,7 @@ export const ChatPageTemplate = forwardRef<
             {/* Header with mobile menu */}
             <Chat.Header
               title={
-                conversations.find((c) => c.id === activeConversationId)
+                conversations?.find((c) => c.id === activeConversationId)
                   ?.title || "New Chat"
               }
               actions={

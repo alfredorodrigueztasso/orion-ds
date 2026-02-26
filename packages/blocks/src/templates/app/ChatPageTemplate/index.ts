@@ -16,4 +16,4 @@
  */
 
 export { ChatPageTemplate } from "./ChatPageTemplate";
-export type { ChatPageTemplateProps } from "@orion-ds/react/components/Chat";
+export type { ChatPageTemplateProps } from "./ChatPageTemplate.types";

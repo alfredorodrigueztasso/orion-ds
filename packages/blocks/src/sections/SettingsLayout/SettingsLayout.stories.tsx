@@ -12,10 +12,7 @@ import {
   Shield,
 } from "lucide-react";
 import { SettingsLayout } from "./SettingsLayout";
-import { Button } from "@orion-ds/react";
-import { Field } from "@orion-ds/react";
-import { FormSection } from '@orion-ds/react/components/FormSection';
-import { Badge } from "@orion-ds/react";
+import { Button, Field, FormSection, Badge } from "@orion-ds/react";
 
 const meta: Meta<typeof SettingsLayout> = {
   title: "Sections/App/SettingsLayout",

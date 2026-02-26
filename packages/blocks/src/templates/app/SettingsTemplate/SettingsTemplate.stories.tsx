@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { SettingsTemplate } from "./SettingsTemplate";
-import { Button } from "@orion-ds/react/components/Button";
-import { Field } from "@orion-ds/react/components/Field";
-import { Textarea } from "@orion-ds/react/components/Textarea";
-import { Switch } from "@orion-ds/react/components/Switch";
-import { Select } from "@orion-ds/react/components/Select";
-import { FormSection } from "@orion-ds/react/components/FormSection";
+import { Button } from "@orion-ds/react";
+import { Field } from "@orion-ds/react";
+import { Textarea } from "@orion-ds/react"tarea";
+import { Switch } from "@orion-ds/react";
+import { Select } from "@orion-ds/react";
+import { FormSection } from "@orion-ds/react";
 import {
   User,
   Lock,

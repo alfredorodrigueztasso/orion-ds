@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { DashboardTemplate } from "./DashboardTemplate";
-import { Button } from "@orion-ds/react/components/Button";
-import { Badge } from "@orion-ds/react/components/Badge";
-import { Avatar } from "@orion-ds/react/components/Avatar";
+import { Button } from "@orion-ds/react";
+import { Badge } from "@orion-ds/react";
+import { Avatar } from "@orion-ds/react";
 import {
   Home,
   Users,

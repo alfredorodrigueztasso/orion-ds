@@ -42,15 +42,14 @@ import {
 import type { CarouselSectionProps } from "./CarouselSection.types";
 import { Section } from '@orion-ds/react/sections';
 import { Container } from '@orion-ds/react/sections';
-import { Carousel } from '@orion-ds/react/components/Carousel';
+import { Carousel } from '@orion-ds/react';
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { spacing } from "../../tokens/primitives";
 import styles from "./CarouselSection.module.css";
 
-// Parse spacing token values (e.g., "24px" -> 24)
-const GAP_SM = parseInt(spacing[4], 10);
-const GAP_MD = parseInt(spacing[6], 10);
-const GAP_LG = parseInt(spacing[8], 10);
+// Spacing token values (in pixels)
+const GAP_SM = 16; // --spacing-4
+const GAP_MD = 24; // --spacing-6
+const GAP_LG = 32; // --spacing-8
 
 export const CarouselSection = forwardRef<HTMLElement, CarouselSectionProps>(
   (

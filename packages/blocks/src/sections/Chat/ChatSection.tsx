@@ -20,12 +20,11 @@
 
 import { forwardRef, useState, useCallback } from "react";
 import { Menu, MessageSquare } from "lucide-react";
-import { Chat } from '@orion-ds/react/components/Chat';
+import { Chat, useStreamingText } from '@orion-ds/react';
 import type {
   ChatSectionProps,
   ChatMessage as ChatMessageType,
-} from '@orion-ds/react/components/Chat';
-import { useStreamingText } from '@orion-ds/react';
+} from '@orion-ds/react';
 import styles from './Chat.module.css';
 
 /**

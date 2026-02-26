@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ProfilePageTemplate } from "./ProfilePageTemplate";
-import { Button } from "@orion-ds/react/components/Button";
-import { Badge } from "@orion-ds/react/components/Badge";
-import { Card } from "@orion-ds/react/components/Card";
-import { FormSection } from "@orion-ds/react/components/FormSection";
-import { Field } from "@orion-ds/react/components/Field";
-import { Textarea } from "@orion-ds/react/components/Textarea";
+import { Button } from "@orion-ds/react";
+import { Badge } from "@orion-ds/react";
+import { Card } from "@orion-ds/react";
+import { FormSection } from "@orion-ds/react";
+import { Field } from "@orion-ds/react";
+import { Textarea } from "@orion-ds/react"tarea";
 import {
   Home,
   Users,

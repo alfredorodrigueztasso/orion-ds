@@ -6,7 +6,7 @@
 
 import type { HTMLAttributes, ReactNode } from "react";
 import type { AgentFolderProps } from "../../../sections/AgentFolder";
-import type { AgentCardProps } from "@orion-ds/react/components/AgentCard";
+import type { AgentCardProps } from "@orion-ds/react";
 
 /**
  * Workspace option

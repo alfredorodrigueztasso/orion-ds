@@ -8,10 +8,6 @@
  */
 
 import {
-  Hero as HeroBase,
-  Features as FeaturesBase,
-  CTA as CTABase,
-  Footer as FooterBase,
   PageHeader as PageHeaderBase,
   Sidebar as SidebarBase,
   Button as ButtonBase,
@@ -40,6 +36,13 @@ import {
   Dropdown as DropdownBase,
   Stepper as StepperBase,
   Skeleton as SkeletonBase,
+} from '@orion-ds/react';
+
+import {
+  Hero as HeroBase,
+  Features as FeaturesBase,
+  CTA as CTABase,
+  Footer as FooterBase,
   Pricing as PricingBase,
   Testimonials as TestimonialsBase,
   Stats as StatsBase,
@@ -48,7 +51,7 @@ import {
   Contact as ContactBase,
   Newsletter as NewsletterBase,
   LogoCloud as LogoCloudBase,
-} from '@orion-ds/react';
+} from '@orion-ds/blocks';
 
 // Re-export with compound components preserved
 export const Hero = HeroBase;

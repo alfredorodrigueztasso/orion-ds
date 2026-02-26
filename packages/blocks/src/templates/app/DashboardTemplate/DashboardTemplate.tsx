@@ -9,11 +9,11 @@ import { forwardRef } from "react";
 import type { DashboardTemplateProps } from "./DashboardTemplate.types";
 
 // Sections
-import { Sidebar } from "@orion-ds/react/components/Sidebar";
-import { PageHeader } from "@orion-ds/react/components/PageHeader";
-import { MetricCards } from "@orion-ds/react/components/MetricCards";
-import { DataTable } from "@orion-ds/react/components/DataTable";
-import { ActivityFeed } from "@orion-ds/react/components/ActivityFeed";
+import { Sidebar } from "@orion-ds/react";
+import { PageHeader } from "@orion-ds/react";
+import { MetricCards } from "@orion-ds/react";
+import { DataTable } from "@orion-ds/react";
+import { ActivityFeed } from "@orion-ds/react";
 
 import styles from "./DashboardTemplate.module.css";
 

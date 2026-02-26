@@ -5,10 +5,10 @@
  */
 
 import type { HTMLAttributes, ReactNode } from "react";
-import type { SidebarProps } from "@orion-ds/react/components/Sidebar";
-import type { PageHeaderProps } from "@orion-ds/react/components/PageHeader";
-import type { DetailPanelProps } from "@orion-ds/react/components/DetailPanel";
-import type { ActivityFeedProps } from "@orion-ds/react/components/ActivityFeed";
+import type { SidebarProps } from "@orion-ds/react";
+import type { PageHeaderProps } from "@orion-ds/react";
+import type { DetailPanelProps } from "@orion-ds/react";
+import type { ActivityFeedProps } from "@orion-ds/react";
 
 /**
  * Profile header content

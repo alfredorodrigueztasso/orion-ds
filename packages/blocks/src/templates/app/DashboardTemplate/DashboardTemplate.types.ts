@@ -5,11 +5,11 @@
  */
 
 import type { HTMLAttributes, ReactNode } from "react";
-import type { SidebarProps } from "@orion-ds/react/components/Sidebar";
-import type { PageHeaderProps } from "@orion-ds/react/components/PageHeader";
-import type { MetricCardsProps } from "@orion-ds/react/components/MetricCards";
-import type { DataTableProps } from "@orion-ds/react/components/DataTable";
-import type { ActivityFeedProps } from "@orion-ds/react/components/ActivityFeed";
+import type { SidebarProps } from "@orion-ds/react";
+import type { PageHeaderProps } from "@orion-ds/react";
+import type { MetricCardsProps } from "@orion-ds/react";
+import type { DataTableProps } from "@orion-ds/react";
+import type { ActivityFeedProps } from "@orion-ds/react";
 
 /**
  * Dashboard layout variant

@@ -5,10 +5,10 @@
  */
 
 import type { HTMLAttributes, ReactNode } from "react";
-import type { SidebarProps } from "@orion-ds/react/components/Sidebar";
-import type { PageHeaderProps } from "@orion-ds/react/components/PageHeader";
-import type { FilterBarProps } from "@orion-ds/react/components/FilterBar";
-import type { KanbanBoardProps } from "@orion-ds/react/components/KanbanBoard";
+import type { SidebarProps } from "@orion-ds/react";
+import type { PageHeaderProps } from "@orion-ds/react";
+import type { FilterBarProps } from "@orion-ds/react";
+import type { KanbanBoardProps } from "@orion-ds/react";
 
 /**
  * KanbanPageTemplate props

@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import type { AgentEditorProps, AgentEditorTab } from "./AgentEditor.types";
-import { NavTree } from "@orion-ds/react/components/NavTree";
-import { UserMenu } from "@orion-ds/react/components/UserMenu";
-import { PageHeader } from "@orion-ds/react/components/PageHeader";
+import { NavTree } from "@orion-ds/react";
+import { UserMenu } from "@orion-ds/react";
+import { PageHeader } from "@orion-ds/react";
 import { CodeEditor } from '@orion-ds/react';
-import { Card } from "@orion-ds/react/components/Card";
-import { ToggleGroup } from "@orion-ds/react/components/ToggleGroup";
-import { Chat } from "@orion-ds/react/components/Chat";
-import { Button } from "@orion-ds/react/components/Button";
-import { Popover } from "@orion-ds/react/components/Popover";
-import { Avatar } from "@orion-ds/react/components/Avatar";
-import { Divider } from "@orion-ds/react/components/Divider";
+import { Card } from "@orion-ds/react";
+import { ToggleGroup } from "@orion-ds/react";
+import { Chat } from "@orion-ds/react";
+import { Button } from "@orion-ds/react";
+import { Popover } from "@orion-ds/react";
+import { Avatar } from "@orion-ds/react";
+import { Divider } from "@orion-ds/react";
 import {
   ChevronDown,
   Plus,

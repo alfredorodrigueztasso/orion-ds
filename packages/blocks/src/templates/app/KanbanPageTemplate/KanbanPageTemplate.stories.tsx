@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { KanbanPageTemplate } from "./KanbanPageTemplate";
-import { Button } from "@orion-ds/react/components/Button";
+import { Button } from "@orion-ds/react";
 import { Home, Kanban, Calendar, Settings, Plus, Filter } from "lucide-react";
 
 const meta: Meta<typeof KanbanPageTemplate> = {

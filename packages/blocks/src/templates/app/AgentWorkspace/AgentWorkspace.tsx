@@ -66,15 +66,15 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import { NavTree } from "@orion-ds/react/components/NavTree";
-import { UserMenu } from "@orion-ds/react/components/UserMenu";
-import { PageHeader } from "@orion-ds/react/components/PageHeader";
+import { NavTree } from "@orion-ds/react";
+import { UserMenu } from "@orion-ds/react";
+import { PageHeader } from "@orion-ds/react";
 import { AgentFolder } from "../../../sections/AgentFolder";
-import { AgentCard } from "@orion-ds/react/components/AgentCard";
-import { Button } from "@orion-ds/react/components/Button";
-import { Popover } from "@orion-ds/react/components/Popover";
-import { Avatar } from "@orion-ds/react/components/Avatar";
-import { Divider } from "@orion-ds/react/components/Divider";
+import { AgentCard } from "@orion-ds/react";
+import { Button } from "@orion-ds/react";
+import { Popover } from "@orion-ds/react";
+import { Avatar } from "@orion-ds/react";
+import { Divider } from "@orion-ds/react";
 import {
   FolderPlus,
   Plus,

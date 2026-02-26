@@ -172,6 +172,18 @@ export type { AgentCardProps, AgentStatus } from "./components/AgentCard";
 export { Avatar } from "./components/Avatar";
 export type { AvatarProps, AvatarSize } from "./components/Avatar";
 
+export { Carousel, CarouselCard } from "./components/Carousel";
+export type {
+  CarouselProps,
+  CarouselCardProps,
+  CarouselItem,
+  CarouselVariant,
+  CarouselAspectRatio,
+  CarouselGap,
+  CarouselOverlay,
+  CarouselAlign,
+} from "./components/Carousel";
+
 export { Table } from "./components/Table";
 export type {
   TableProps,

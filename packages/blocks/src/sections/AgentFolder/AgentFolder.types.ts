@@ -5,8 +5,7 @@
  */
 
 import type { HTMLAttributes } from "react";
-import type { AgentCardProps } from '@orion-ds/react/components/AgentCard';
-import type { SortOption } from '@orion-ds/react/components/CollapsibleFolder';
+import type { AgentCardProps, SortOption } from '@orion-ds/react';
 
 export type { SortOption };
 

@@ -9,10 +9,10 @@ import { forwardRef } from "react";
 import type { ProfilePageTemplateProps } from "./ProfilePageTemplate.types";
 
 // Sections
-import { Sidebar } from "@orion-ds/react/components/Sidebar";
-import { PageHeader } from "@orion-ds/react/components/PageHeader";
-import { ActivityFeed } from "@orion-ds/react/components/ActivityFeed";
-import { DetailPanel } from "@orion-ds/react/components/DetailPanel";
+import { Sidebar } from "@orion-ds/react";
+import { PageHeader } from "@orion-ds/react";
+import { ActivityFeed } from "@orion-ds/react";
+import { DetailPanel } from "@orion-ds/react";
 
 import styles from "./ProfilePageTemplate.module.css";
 

@@ -9,7 +9,7 @@ import { forwardRef } from "react";
 import type { PricingPageTemplateProps } from "./PricingPageTemplate.types";
 
 // Components
-import { Navbar } from "@orion-ds/react/components/Navbar";
+import { Navbar } from "@orion-ds/react";
 
 // Sections
 import { Hero } from "../../../sections/Hero";

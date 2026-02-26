@@ -5,7 +5,7 @@
  */
 
 import type { HTMLAttributes, ReactNode } from "react";
-import type { NavbarProps } from "@orion-ds/react/components/Navbar";
+import type { NavbarProps } from "@orion-ds/react";
 import type { HeroProps } from "../../../sections/Hero";
 import type { CarouselSectionProps } from "../../../sections/CarouselSection";
 import type { StatsProps } from "../../../sections/Stats";

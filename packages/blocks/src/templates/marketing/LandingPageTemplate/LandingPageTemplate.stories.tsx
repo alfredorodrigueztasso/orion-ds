@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { LandingPageTemplate } from "./LandingPageTemplate";
-import { Button } from "@orion-ds/react/components/Button";
-import { Badge } from "@orion-ds/react/components/Badge";
-import { Navbar } from "@orion-ds/react/components/Navbar";
+import { Button } from "@orion-ds/react";
+import { Badge } from "@orion-ds/react";
+import { Navbar } from "@orion-ds/react";
 import { Hero } from "../../../sections/Hero";
 import {
   Zap,

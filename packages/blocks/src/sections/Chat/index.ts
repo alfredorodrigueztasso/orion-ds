@@ -16,4 +16,4 @@
  */
 
 export { ChatSection } from "./ChatSection";
-export type { ChatSectionProps } from '@orion-ds/react/components/Chat';
+export type { ChatSectionProps } from '@orion-ds/react';

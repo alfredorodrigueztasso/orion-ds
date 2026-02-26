@@ -1,7 +1,7 @@
 import type { HTMLAttributes, ReactNode } from "react";
 import type { NavbarConfig } from "../AgentWorkspace";
-import type { NavTreeSection } from "@orion-ds/react/components/NavTree";
-import type { ChatMessage } from "@orion-ds/react/components/Chat";
+import type { NavTreeSection } from "@orion-ds/react";
+import type { ChatMessage } from "@orion-ds/react";
 
 /**
  * Individual editor tab configuration

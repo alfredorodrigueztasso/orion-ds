@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState, useCallback } from "react";
 import { ChatPageTemplate } from "./ChatPageTemplate";
-import type { ChatMessage, ChatConversation } from "@orion-ds/react/components/Chat";
+import type { ChatMessage, ChatConversation } from "@orion-ds/react";
 
 const meta = {
   title: "Templates/ChatBuilder/ChatPageTemplate",
