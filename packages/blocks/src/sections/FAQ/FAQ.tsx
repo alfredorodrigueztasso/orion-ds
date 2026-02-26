@@ -27,8 +27,8 @@
 
 import { forwardRef, useState, useCallback } from "react";
 import type { FAQProps } from "./FAQ.types";
-import { Section } from "../Section";
-import { Container } from "../Container";
+import { Section } from '@orion-ds/react/sections';
+import { Container } from '@orion-ds/react/sections';
 import { FAQItemCard } from "./FAQItemCard";
 import styles from "./FAQ.module.css";
 

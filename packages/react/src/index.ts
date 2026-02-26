@@ -542,6 +542,15 @@ export type {
 } from "./components/Chat";
 
 // ============================================================================
+// CODE EDITOR (AI Code Interface)
+// ============================================================================
+
+export { CodeEditor } from "./components/CodeEditor";
+export type {
+  CodeEditorProps,
+} from "./components/CodeEditor";
+
+// ============================================================================
 // WIDGETS (Composite UI patterns)
 // ============================================================================
 

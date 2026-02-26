@@ -29,8 +29,8 @@
 
 import { forwardRef } from "react";
 import type { TestimonialsProps } from "./Testimonials.types";
-import { Section } from "../Section";
-import { Container } from "../Container";
+import { Section } from '@orion-ds/react/sections';
+import { Container } from '@orion-ds/react/sections';
 import { TestimonialCard } from "./TestimonialCard";
 import styles from "./Testimonials.module.css";
 

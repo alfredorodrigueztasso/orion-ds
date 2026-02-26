@@ -118,6 +118,9 @@ importers:
       '@orion-ds/react':
         specifier: workspace:*
         version: link:../react
+      '@types/node':
+        specifier: ^20.0.0
+        version: 20.19.33
       '@types/react':
         specifier: ^18.2.0 || ^19.0.0
         version: 19.2.14
@@ -135,10 +138,10 @@ importers:
         version: 5.9.3
       vite:
         specifier: ^5.0.0
-        version: 5.4.21(@types/node@25.2.3)
+        version: 5.4.21(@types/node@20.19.33)
       vite-plugin-dts:
         specifier: ^3.7.0
-        version: 3.9.1(@types/node@25.2.3)(rollup@4.57.1)(typescript@5.9.3)(vite@5.4.21(@types/node@25.2.3))
+        version: 3.9.1(@types/node@20.19.33)(rollup@4.57.1)(typescript@5.9.3)(vite@5.4.21(@types/node@20.19.33))
 
   packages/cli:
     devDependencies:
@@ -185,26 +188,23 @@ importers:
       '@dnd-kit/sortable':
         specifier: ^8.0.0
         version: 8.0.0(@dnd-kit/core@6.3.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)
-      '@types/react-syntax-highlighter':
-        specifier: ^15.5.13
-        version: 15.5.13
       date-fns:
         specifier: ^4.0.0
         version: 4.1.0
       lucide-react:
-        specifier: ^0.563.0
-        version: 0.563.0(react@19.2.4)
+        specifier: '>=0.400.0'
+        version: 0.400.0(react@19.2.4)
       react-markdown:
-        specifier: ^10.1.0
+        specifier: '>=8.0.0'
         version: 10.1.0(@types/react@19.2.14)(react@19.2.4)
       react-syntax-highlighter:
-        specifier: ^16.1.0
+        specifier: '>=15.0.0'
         version: 16.1.0(react@19.2.4)
       recharts:
         specifier: ^3.0.0
         version: 3.7.0(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react-is@17.0.2)(react@19.2.4)(redux@5.0.1)
       remark-gfm:
-        specifier: ^4.0.1
+        specifier: '>=3.0.0'
         version: 4.0.1
     devDependencies:
       '@percy/cli':
@@ -1948,9 +1948,6 @@ packages:
     resolution: {integrity: sha512-jp2L/eY6fn+KgVVQAOqYItbF0VY/YApe5Mz2F0aykSO8gx31bYCZyvSeYxCHKvzHG5eZjc+zyaS5BrBWya2+kQ==}
     peerDependencies:
       '@types/react': ^19.2.0
-
-  '@types/react-syntax-highlighter@15.5.13':
-    resolution: {integrity: sha512-uLGJ87j6Sz8UaBAooU0T6lWJ0dBmjZgN1PZTrj05TNql2/XpC6+4HhMT5syIdFUUt+FASfCeLLv4kBygNU+8qA==}
 
   '@types/react@19.2.14':
     resolution: {integrity: sha512-ilcTH/UniCkMdtexkoCN0bI7pMcJDvmQFPvuPvmEaYA/NSfFTAgdUSLAoVjaRJm7+6PvcM+q1zYOwS4wTYMF9w==}
@@ -6302,23 +6299,23 @@ snapshots:
       '@types/react': 19.2.14
       react: 19.2.4
 
-  '@microsoft/api-extractor-model@7.28.13(@types/node@25.2.3)':
+  '@microsoft/api-extractor-model@7.28.13(@types/node@20.19.33)':
     dependencies:
       '@microsoft/tsdoc': 0.14.2
       '@microsoft/tsdoc-config': 0.16.2
-      '@rushstack/node-core-library': 4.0.2(@types/node@25.2.3)
+      '@rushstack/node-core-library': 4.0.2(@types/node@20.19.33)
     transitivePeerDependencies:
       - '@types/node'
 
-  '@microsoft/api-extractor@7.43.0(@types/node@25.2.3)':
+  '@microsoft/api-extractor@7.43.0(@types/node@20.19.33)':
     dependencies:
-      '@microsoft/api-extractor-model': 7.28.13(@types/node@25.2.3)
+      '@microsoft/api-extractor-model': 7.28.13(@types/node@20.19.33)
       '@microsoft/tsdoc': 0.14.2
       '@microsoft/tsdoc-config': 0.16.2
-      '@rushstack/node-core-library': 4.0.2(@types/node@25.2.3)
+      '@rushstack/node-core-library': 4.0.2(@types/node@20.19.33)
       '@rushstack/rig-package': 0.5.2
-      '@rushstack/terminal': 0.10.0(@types/node@25.2.3)
-      '@rushstack/ts-command-line': 4.19.1(@types/node@25.2.3)
+      '@rushstack/terminal': 0.10.0(@types/node@20.19.33)
+      '@rushstack/ts-command-line': 4.19.1(@types/node@20.19.33)
       lodash: 4.17.23
       minimatch: 3.0.8
       resolve: 1.22.11
@@ -6710,7 +6707,7 @@ snapshots:
 
   '@rushstack/eslint-patch@1.15.0': {}
 
-  '@rushstack/node-core-library@4.0.2(@types/node@25.2.3)':
+  '@rushstack/node-core-library@4.0.2(@types/node@20.19.33)':
     dependencies:
       fs-extra: 7.0.1
       import-lazy: 4.0.0
@@ -6719,23 +6716,23 @@ snapshots:
       semver: 7.5.4
       z-schema: 5.0.5
     optionalDependencies:
-      '@types/node': 25.2.3
+      '@types/node': 20.19.33
 
   '@rushstack/rig-package@0.5.2':
     dependencies:
       resolve: 1.22.11
       strip-json-comments: 3.1.1
 
-  '@rushstack/terminal@0.10.0(@types/node@25.2.3)':
+  '@rushstack/terminal@0.10.0(@types/node@20.19.33)':
     dependencies:
-      '@rushstack/node-core-library': 4.0.2(@types/node@25.2.3)
+      '@rushstack/node-core-library': 4.0.2(@types/node@20.19.33)
       supports-color: 8.1.1
     optionalDependencies:
-      '@types/node': 25.2.3
+      '@types/node': 20.19.33
 
-  '@rushstack/ts-command-line@4.19.1(@types/node@25.2.3)':
+  '@rushstack/ts-command-line@4.19.1(@types/node@20.19.33)':
     dependencies:
-      '@rushstack/terminal': 0.10.0(@types/node@25.2.3)
+      '@rushstack/terminal': 0.10.0(@types/node@20.19.33)
       '@types/argparse': 1.0.38
       argparse: 1.0.10
       string-argv: 0.3.2
@@ -7184,10 +7181,6 @@ snapshots:
   '@types/prismjs@1.26.6': {}
 
   '@types/react-dom@19.2.3(@types/react@19.2.14)':
-    dependencies:
-      '@types/react': 19.2.14
-
-  '@types/react-syntax-highlighter@15.5.13':
     dependencies:
       '@types/react': 19.2.14
 
@@ -9583,10 +9576,6 @@ snapshots:
     dependencies:
       react: 18.3.1
 
-  lucide-react@0.563.0(react@19.2.4):
-    dependencies:
-      react: 19.2.4
-
   lz-string@1.5.0: {}
 
   magic-string@0.27.0:
@@ -11555,9 +11544,9 @@ snapshots:
       d3-time: 3.1.0
       d3-timer: 3.0.1
 
-  vite-plugin-dts@3.9.1(@types/node@25.2.3)(rollup@4.57.1)(typescript@5.9.3)(vite@5.4.21(@types/node@25.2.3)):
+  vite-plugin-dts@3.9.1(@types/node@20.19.33)(rollup@4.57.1)(typescript@5.9.3)(vite@5.4.21(@types/node@20.19.33)):
     dependencies:
-      '@microsoft/api-extractor': 7.43.0(@types/node@25.2.3)
+      '@microsoft/api-extractor': 7.43.0(@types/node@20.19.33)
       '@rollup/pluginutils': 5.3.0(rollup@4.57.1)
       '@vue/language-core': 1.8.27(typescript@5.9.3)
       debug: 4.4.3
@@ -11566,19 +11555,19 @@ snapshots:
       typescript: 5.9.3
       vue-tsc: 1.8.27(typescript@5.9.3)
     optionalDependencies:
-      vite: 5.4.21(@types/node@25.2.3)
+      vite: 5.4.21(@types/node@20.19.33)
     transitivePeerDependencies:
       - '@types/node'
       - rollup
       - supports-color
 
-  vite@5.4.21(@types/node@25.2.3):
+  vite@5.4.21(@types/node@20.19.33):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.5.6
       rollup: 4.57.1
     optionalDependencies:
-      '@types/node': 25.2.3
+      '@types/node': 20.19.33
       fsevents: 2.3.3
 
   vite@7.3.1(@types/node@25.2.3)(yaml@2.8.2):

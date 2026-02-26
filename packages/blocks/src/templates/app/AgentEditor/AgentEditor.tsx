@@ -3,7 +3,7 @@ import type { AgentEditorProps, AgentEditorTab } from "./AgentEditor.types";
 import { NavTree } from "@orion-ds/react/components/NavTree";
 import { UserMenu } from "@orion-ds/react/components/UserMenu";
 import { PageHeader } from "@orion-ds/react/components/PageHeader";
-import { CodeEditor } from "@orion-ds/react/components/CodeEditor";
+import { CodeEditor } from '@orion-ds/react';
 import { Card } from "@orion-ds/react/components/Card";
 import { ToggleGroup } from "@orion-ds/react/components/ToggleGroup";
 import { Chat } from "@orion-ds/react/components/Chat";
@@ -340,7 +340,7 @@ export const AgentEditor: React.FC<AgentEditorProps> = ({
           }
           placement="bottom-start"
           showArrow={false}
-          fullWidth
+
         />
       </div>
     ) : null
@@ -423,7 +423,7 @@ export const AgentEditor: React.FC<AgentEditorProps> = ({
         align="start"
         placement="top"
         showHeader={true}
-        fullWidth
+
       />
     </div>
   );

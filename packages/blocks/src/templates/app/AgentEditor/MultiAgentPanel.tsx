@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { CodeEditor } from "@orion-ds/react/components/CodeEditor";
+import { CodeEditor } from '@orion-ds/react';
 import styles from "./MultiAgentPanel.module.css";
 
 interface AgentFlowNode {

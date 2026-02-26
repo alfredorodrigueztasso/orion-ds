@@ -20,8 +20,8 @@
 
 import { forwardRef, useCallback, useState } from "react";
 import type { NewsletterProps } from "./Newsletter.types";
-import { Section } from "../Section";
-import { Container } from "../Container";
+import { Section } from '@orion-ds/react/sections';
+import { Container } from '@orion-ds/react/sections';
 import { Button, Field, Card } from '@orion-ds/react';
 import { CheckCircle, AlertCircle } from "lucide-react";
 import styles from "./Newsletter.module.css";

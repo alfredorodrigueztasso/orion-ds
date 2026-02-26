@@ -32,8 +32,8 @@
 import { forwardRef, useEffect } from "react";
 import type { HeroProps } from "./Hero.types";
 import { HeroHighlight } from "./HeroHighlight";
-import { Section } from "../Section";
-import { Container } from "../Container";
+import { Section } from '@orion-ds/react/sections';
+import { Container } from '@orion-ds/react/sections';
 import styles from "./Hero.module.css";
 
 // SVG placeholder for default media

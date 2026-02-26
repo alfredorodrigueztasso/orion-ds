@@ -40,8 +40,8 @@ import {
   useLayoutEffect,
 } from "react";
 import type { CarouselSectionProps } from "./CarouselSection.types";
-import { Section } from "../Section";
-import { Container } from "../Container";
+import { Section } from '@orion-ds/react/sections';
+import { Container } from '@orion-ds/react/sections';
 import { Carousel } from '@orion-ds/react/components/Carousel';
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { spacing } from "../../tokens/primitives";

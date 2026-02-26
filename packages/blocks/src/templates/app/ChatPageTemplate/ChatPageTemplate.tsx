@@ -24,8 +24,8 @@ import type {
   ChatPageTemplateProps,
   ChatMessage as ChatMessageType,
 } from "@orion-ds/react/components/Chat";
-import { useStreamingText } from "@orion-ds/react/components/Chat/hooks/useStreamingText";
-import styles from "@orion-ds/react/components/Chat/Chat.module.css";
+import { useStreamingText } from '@orion-ds/react';
+import styles from './Chat.module.css';
 
 /**
  * Internal wrapper that progressively reveals message content word-by-word.

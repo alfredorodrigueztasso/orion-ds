@@ -27,8 +27,8 @@
 
 import { forwardRef, useCallback, useState } from "react";
 import type { ContactProps, ContactFormField } from "./Contact.types";
-import { Section } from "../Section";
-import { Container } from "../Container";
+import { Section } from '@orion-ds/react/sections';
+import { Container } from '@orion-ds/react/sections';
 import { Button, Field, Textarea } from '@orion-ds/react';
 import styles from "./Contact.module.css";
 

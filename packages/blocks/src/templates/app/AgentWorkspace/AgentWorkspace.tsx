@@ -98,8 +98,8 @@ import {
   LogOut,
   HelpCircle,
 } from "lucide-react";
-import type { NavTreeSection, NavTreeNode } from "@orion-ds/react/components/NavTree/NavTree.types";
-import type { NavTreeActionConfig } from "@orion-ds/react/components/NavTree/NavTree.types";
+import type { NavTreeSection, NavTreeNode } from '@orion-ds/react';
+import type { NavTreeActionConfig } from '@orion-ds/react';
 import styles from "./AgentWorkspace.module.css";
 
 export const AgentWorkspace: React.FC<AgentWorkspaceProps> = ({
@@ -532,7 +532,7 @@ export const AgentWorkspace: React.FC<AgentWorkspaceProps> = ({
                 }
                 placement="bottom-start"
                 showArrow={false}
-                fullWidth
+
               />
             </div>
           ) : null
@@ -583,7 +583,7 @@ export const AgentWorkspace: React.FC<AgentWorkspaceProps> = ({
               align="start"
               placement="top"
               showHeader={true}
-              fullWidth
+
             />
           </div>
         }

@@ -6,7 +6,7 @@
 
 import React from "react";
 import type { BlogProps, BlogArticle } from "./Blog.types";
-import { Badge } from '@orion-ds/react/components/Badge/Badge';
+import { Badge } from '@orion-ds/react';
 import styles from "./Blog.module.css";
 
 /**
