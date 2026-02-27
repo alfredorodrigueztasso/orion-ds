@@ -50,7 +50,7 @@ export default function HomeFeatureStats({ counts }: HomeFeatureStatsProps) {
       {stats.map((stat) => {
         const Icon = stat.icon;
         return (
-          <Link key={stat.href} href={stat.href} style={{ textDecoration: 'none' }}>
+          <Link key={stat.href} href={stat.href as any} style={{ textDecoration: 'none' }}>
             <div
               style={{
                 padding: 'var(--spacing-6)',

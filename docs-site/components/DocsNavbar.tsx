@@ -22,11 +22,11 @@ export function DocsNavbar() {
       <Navbar.Actions>
         <SearchInput placeholder="Search..." style={{ width: '200px' }} size="sm" />
         <ThemeController compact />
-        <Link 
-          href="https://github.com/orion-ds/orion" 
-          target="_blank" 
+        <Link
+          href="https://github.com/orion-ds/orion"
+          target="_blank"
           rel="noopener noreferrer"
-          style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-1)', fontSize: '0.875rem', color: 'var(--text-secondary)', hover: { color: 'var(--text-primary)' } }}
+          style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-1)', fontSize: '0.875rem', color: 'var(--text-secondary)' }}
         >
           <Github size={20} />
           <span>2.1k</span>

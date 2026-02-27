@@ -42,7 +42,6 @@ import {
   Hero as HeroBase,
   Features as FeaturesBase,
   CTA as CTABase,
-  Footer as FooterBase,
   Pricing as PricingBase,
   Testimonials as TestimonialsBase,
   Stats as StatsBase,
@@ -57,7 +56,6 @@ import {
 export const Hero = HeroBase;
 export const Features = FeaturesBase;
 export const CTA = CTABase;
-export const Footer = FooterBase;
 export const PageHeader = PageHeaderBase;
 export const Button = ButtonBase;
 export const Badge = BadgeBase;

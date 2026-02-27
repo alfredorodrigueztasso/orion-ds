@@ -13,7 +13,7 @@ interface FeatureCardProps {
 
 export default function FeatureCard({ icon: Icon, title, description, href, count }: FeatureCardProps) {
   return (
-    <Link href={href} style={{ textDecoration: 'none' }}>
+    <Link href={href as any} style={{ textDecoration: 'none' }}>
       <div style={{
         padding: 'var(--spacing-6)',
         background: 'var(--surface-subtle)',

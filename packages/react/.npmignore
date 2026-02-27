@@ -31,3 +31,7 @@ node_modules/
 # Git
 .git/
 .gitignore
+
+# Source maps (belt-and-suspenders - don't publish maps even if generated)
+dist/**/*.map
+*.map

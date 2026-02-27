@@ -82,7 +82,6 @@ export function DocsSidebar() {
             cursor: 'pointer',
             fontWeight: 600,
             fontSize: '0.75rem',
-            color: 'var(--text-tertiary)',
             textTransform: 'uppercase',
             letterSpacing: '0.05em',
           }}
@@ -102,7 +101,7 @@ export function DocsSidebar() {
             ].map((item) => (
               <Link
                 key={item.href}
-                href={item.href}
+                href={item.href as any}
                 style={{
                   display: 'block',
                   padding: 'var(--spacing-2) var(--spacing-4)',
@@ -146,7 +145,6 @@ export function DocsSidebar() {
             cursor: 'pointer',
             fontWeight: 600,
             fontSize: '0.75rem',
-            color: 'var(--text-tertiary)',
             textTransform: 'uppercase',
             letterSpacing: '0.05em',
           }}
@@ -193,7 +191,6 @@ export function DocsSidebar() {
           fontSize: '0.75rem',
           textTransform: 'uppercase',
           letterSpacing: '0.05em',
-          color: 'var(--text-tertiary)',
         }}
       >
         <span style={{ marginRight: '2px' }}>→</span>
@@ -217,7 +214,6 @@ export function DocsSidebar() {
           fontSize: '0.75rem',
           textTransform: 'uppercase',
           letterSpacing: '0.05em',
-          color: 'var(--text-tertiary)',
         }}
       >
         <span style={{ marginRight: '2px' }}>→</span>
