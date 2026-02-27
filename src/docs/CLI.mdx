@@ -15,7 +15,7 @@ Copy Orion components directly into your project, shadcn-style. You own the code
 
 <Steps>
   <Step number={1} title="Configure your project">
-    Run <code>npx @orion-ds/cli init</code> to create an <code>orion.json</code> config and install <code>@orion-ds/core</code>.
+    Run <code>npx @orion-ds/cli init</code> to create an <code>orion.json</code> config and install dependencies.
   </Step>
   <Step number={2} title="Add components">
     Run <code>npx @orion-ds/cli add button card modal</code> to copy component source files into your project.
@@ -26,17 +26,17 @@ Copy Orion components directly into your project, shadcn-style. You own the code
 
 ### `orion init`
 
-Creates an `orion.json` config and installs `@orion-ds/core` if missing.
+Creates an `orion.json` config and installs dependencies if missing.
 
 ```bash
 npx @orion-ds/cli init          # Interactive setup
 npx @orion-ds/cli init --yes    # Use defaults
 ```
 
-After init, import the token CSS once in your entry file:
+After init, import the styles once in your entry file:
 
 ```tsx
-import '@orion-ds/core/theme.css';
+import '@orion-ds/react/styles.css';
 ```
 
 ### `orion add <name...>`

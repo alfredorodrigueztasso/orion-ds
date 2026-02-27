@@ -15,7 +15,7 @@ npx @orion-ds/cli add button card modal
 
 ### `orion init`
 
-Configure your project. Creates `orion.json` and installs `@orion-ds/core` if missing.
+Configure your project. Creates `orion.json` and installs dependencies if missing.
 
 ```bash
 npx @orion-ds/cli init          # Interactive setup
@@ -25,7 +25,7 @@ npx @orion-ds/cli init --yes    # Use defaults
 After init, add this to your entry file:
 
 ```tsx
-import "@orion-ds/core/theme.css";
+import "@orion-ds/react/styles.css";
 ```
 
 ### `orion add <name...>`
@@ -118,7 +118,7 @@ Created by `orion init` in your project root:
 
 ### CSS Strategy
 
-Components use **CSS Modules** referencing **CSS variables** from `@orion-ds/core`:
+Components use **CSS Modules** referencing **CSS variables** from `@orion-ds/react`:
 
 ```css
 /* Button.module.css — works automatically */
@@ -127,8 +127,8 @@ Components use **CSS Modules** referencing **CSS variables** from `@orion-ds/cor
 }
 ```
 
-- `@orion-ds/core` installed via `orion init`
-- You import `@orion-ds/core/theme.css` once
+- `@orion-ds/react` installed via `orion init`
+- You import `@orion-ds/react/styles.css` once
 - Copied `.module.css` files work out of the box
 
 ### Import Transforms

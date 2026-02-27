@@ -19,7 +19,7 @@ npx @orion-ds/cli init
 npx @orion-ds/cli add button card modal
 
 # Or install as npm package
-npm install @orion-ds/react @orion-ds/core
+npm install @orion-ds/react
 ```
 
 ### Option 3: Use in Your Code
