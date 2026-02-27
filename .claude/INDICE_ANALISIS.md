@@ -6,7 +6,7 @@
 
 ## 🗂️ ESTRUCTURA DE DOCUMENTOS
 
-Hay **5 documentos** que cubren diferentes aspectos de Orion:
+Hay **7 documentos** que cubren diferentes aspectos de Orion:
 
 ### 1. 📊 **RESUMEN_EJECUTIVO_ORION.md** ⭐ EMPIEZA AQUÍ
 **Duración de lectura**: 10 minutos | **Nivel**: Ejecutivo
@@ -356,11 +356,26 @@ MEJORES_PRACTICAS_ORION.md
 ├─ Código: 100+ snippets
 └─ Ejemplos: Real-world
 
+ESTRATEGIA_FORTALECIMIENTO.md (NUEVO)
+├─ Palabras: ~12,000
+├─ Secciones: 5 (4 debilidades + roadmap)
+├─ Iniciativas: 10+ detalladas
+├─ Ejemplos: 20+
+└─ Data: Completa
+
+MATRIZ_DECISION_ROADMAP.md (NUEVO)
+├─ Palabras: ~10,000
+├─ Secciones: 6 (comparativa + decision tree)
+├─ Tablas: 8 (matriz de decisión)
+├─ Checklists: 3
+└─ Data: Completa
+
 TOTAL:
-├─ Palabras: ~39,000 (libro de 150 páginas)
-├─ Tiempo de lectura: 2-3 horas (completo)
+├─ Palabras: ~61,000 (libro de ~250 páginas)
+├─ Tiempo de lectura: 4-5 horas (completo)
 ├─ Ejemplos de código: 200+
-└─ Diagramas: 20+
+├─ Diagramas: 20+
+└─ Matrices de decisión: 8
 ```
 
 ---

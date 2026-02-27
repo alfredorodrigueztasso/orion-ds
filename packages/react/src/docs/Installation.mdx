@@ -23,12 +23,8 @@ There are two ways to use Orion components in your project.
 Install the package to get all components as a versioned dependency.
 
 ```bash
-npm install @orion-ds/react @orion-ds/core
+npm install @orion-ds/react
 ```
-
-<Callout variant="info">
-  <code>@orion-ds/core</code> is a peer dependency required for design tokens.
-</Callout>
 
 ### CSS Setup
 
@@ -42,12 +38,6 @@ import '@orion-ds/react/styles.css';
 
 This bundles both design tokens and component styles.
 
-**Separate imports (if you need granular control):**
-
-```tsx
-import '@orion-ds/core/theme.css';        // Design tokens
-import '@orion-ds/react/dist/react.css';  // Component styles
-```
 
 <Callout variant="warning" title="Missing CSS = unstyled components">
   You must import the CSS file — without it, components will render without any Orion styling.
@@ -93,17 +83,17 @@ Copy individual components into your project, shadcn-style. You own the source a
 
 <Steps>
   <Step number={1} title="Initialize your project">
-    Run <code>npx @orion-ds/cli init</code> — creates an <code>orion.json</code> config and installs <code>@orion-ds/core</code>.
+    Run <code>npx @orion-ds/cli init</code> — creates an <code>orion.json</code> config file.
   </Step>
   <Step number={2} title="Add the components you need">
     Run <code>npx @orion-ds/cli add button card modal</code> — copies component source files, resolves dependencies, transforms imports.
   </Step>
 </Steps>
 
-After init, import the token CSS once:
+After init, import the CSS once:
 
 ```tsx
-import '@orion-ds/core/theme.css';
+import '@orion-ds/react/styles.css';
 ```
 
 See the [CLI documentation](?path=/docs/getting-started-cli-orion-add--docs) for full details.
@@ -140,5 +130,5 @@ If the button renders with the correct Orion blue color and rounded corners, you
 </Callout>
 
 <Callout variant="info" title="TypeScript errors?">
-  Both packages include type declarations. Make sure <code>@orion-ds/core</code> is installed alongside <code>@orion-ds/react</code>.
+  Make sure <code>@orion-ds/react</code> is installed and imported correctly.
 </Callout>

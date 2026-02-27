@@ -160,10 +160,8 @@ export function ThemeProvider({
         console.warn(
           `[Orion] Component styles not detected!\n\n` +
             `You must import the component CSS file:\n\n` +
-            `  import '@orion-ds/react/dist/react.css';\n\n` +
-            `Add this import alongside the theme CSS in your app entry file:\n\n` +
-            `  import '@orion-ds/core/theme.css';       // Design tokens\n` +
-            `  import '@orion-ds/react/dist/react.css'; // Component styles\n\n` +
+            `  import '@orion-ds/react/styles.css'; // Single import includes all styles\n\n` +
+            `Add this import in your app entry file. It includes both design tokens and component styles.\n\n` +
             `To disable this warning, set disableCSSWarnings={true} on ThemeProvider.`,
         );
       }

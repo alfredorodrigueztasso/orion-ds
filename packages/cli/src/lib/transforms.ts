@@ -5,7 +5,7 @@
  * - Internal imports (./Foo.types, ./Foo.module.css) → unchanged
  * - Cross-component imports (../Button, ../../Button) → relative to installed dir
  * - Hook/context imports (../../hooks, ../../contexts/*) → @orion-ds/react
- * - NPM package imports (react, lucide-react, @orion-ds/core) → unchanged
+ * - NPM package imports (react, lucide-react) → unchanged
  */
 
 /**

@@ -5,9 +5,8 @@
  *
  * @example
  * ```tsx
- * // IMPORTANT: Both CSS imports are REQUIRED
- * import '@orion-ds/core/theme.css';       // Design tokens
- * import '@orion-ds/react/dist/react.css'; // Component styles
+ * // Single CSS import includes all tokens and component styles
+ * import '@orion-ds/react/styles.css';
  *
  * import { Button, Field, Card, useTheme, ThemeProvider } from '@orion-ds/react';
  *

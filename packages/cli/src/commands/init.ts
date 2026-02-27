@@ -2,10 +2,8 @@
  * orion init — Initialize orion.json in the current project
  */
 
-import * as fs from "node:fs";
 import * as readline from "node:readline";
 import { DEFAULT_CONFIG, saveConfig, findConfigPath } from "../lib/config.js";
-import { installDeps } from "../lib/package-manager.js";
 import * as logger from "../lib/logger.js";
 import type { OrionConfig } from "../types.js";
 
@@ -69,19 +67,12 @@ export async function init(args: string[]): Promise<void> {
   const configPath = saveConfig(config, cwd);
   logger.success(`Created ${configPath}`);
 
-  // Check if @orion-ds/core is installed
-  const hasCorePackage = fs.existsSync(`${cwd}/node_modules/@orion-ds/core`);
-  if (!hasCorePackage) {
-    logger.info("\n@orion-ds/core not found. Installing...");
-    installDeps(["@orion-ds/core"], cwd);
-  }
-
   // Final instructions
   logger.info("");
   logger.success("Orion CLI initialized!");
   logger.info("");
   logger.info(`Add this import to your entry file:`);
-  logger.info(`  ${logger.cyan("import '@orion-ds/core/theme.css'")}`);
+  logger.info(`  ${logger.cyan("import '@orion-ds/react/styles.css'")}`);
   logger.info("");
   logger.info(`Then add components:`);
   logger.info(`  ${logger.cyan("npx @orion-ds/cli add button card modal")}`);

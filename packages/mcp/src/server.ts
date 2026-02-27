@@ -421,7 +421,7 @@ server.tool(
 
     // Install
     text += `## 1. Install Dependencies\n\n`;
-    text += `\`\`\`bash\nnpm install @orion-ds/core @orion-ds/react lucide-react\n\`\`\`\n\n`;
+    text += `\`\`\`bash\nnpm install @orion-ds/react lucide-react\n\`\`\`\n\n`;
 
     // CSS Import
     text += `## 2. Import Styles\n\n`;

@@ -4,15 +4,6 @@ import userEvent from "@testing-library/user-event";
 import { Carousel } from "./Carousel";
 import type { CarouselItem } from "./Carousel.types";
 
-// Mock @orion-ds/core spacing to avoid import issues in test env
-vi.mock("@orion-ds/core", () => ({
-  spacing: {
-    4: "16px",
-    6: "24px",
-    8: "32px",
-  },
-}));
-
 // jsdom doesn't implement scrollTo/scrollBy
 beforeAll(() => {
   Element.prototype.scrollTo = vi.fn();
