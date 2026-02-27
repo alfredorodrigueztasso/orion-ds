@@ -4,7 +4,8 @@
  */
 
 import React from 'react';
-import { Pricing, Button, Badge } from '@orion-ds/react';
+import { Pricing } from '@orion-ds/blocks';
+import { Button, Badge } from '@orion-ds/react';
 import { Check } from 'lucide-react';
 
 export const previews = [

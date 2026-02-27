@@ -4,7 +4,8 @@
  */
 
 import React from 'react';
-import { Hero, Button, Badge } from '@orion-ds/react';
+import { Hero } from '@orion-ds/blocks';
+import { Button, Badge } from '@orion-ds/react';
 import { ArrowRight, Play, Star, CheckCircle } from 'lucide-react';
 
 export const previews = [

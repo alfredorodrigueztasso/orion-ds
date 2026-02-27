@@ -4,7 +4,8 @@
  */
 
 import React from 'react';
-import { Testimonials, Badge } from '@orion-ds/react';
+import { Testimonials } from '@orion-ds/blocks';
+import { Badge } from '@orion-ds/react';
 
 export const previews = [
   {

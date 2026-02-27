@@ -4,7 +4,8 @@
  */
 
 import React from 'react';
-import { Team, Badge } from '@orion-ds/react';
+import { Team } from '@orion-ds/blocks';
+import { Badge } from '@orion-ds/react';
 import { Twitter, Linkedin, Github } from 'lucide-react';
 
 export const previews = [

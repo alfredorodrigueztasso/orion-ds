@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { Footer } from '@orion-ds/react';
+import { Footer } from '@orion-ds/blocks';
 import { Twitter, Github, Linkedin, Youtube, Mail } from 'lucide-react';
 
 const basicLinkGroups = [

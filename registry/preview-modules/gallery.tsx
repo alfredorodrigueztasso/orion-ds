@@ -4,8 +4,8 @@
  */
 
 import React from 'react';
-import { Gallery } from '@orion-ds/react';
-import type { GalleryImage } from '@orion-ds/react';
+import { Gallery } from '@orion-ds/blocks';
+import type { GalleryImage } from '@orion-ds/blocks';
 
 // Sample images from Unsplash
 const sampleImages: GalleryImage[] = [

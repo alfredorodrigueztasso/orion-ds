@@ -4,8 +4,8 @@
  */
 
 import React from 'react';
-import { Comparison } from '@orion-ds/react';
-import type { ComparisonColumn, ComparisonFeature } from '@orion-ds/react';
+import { Comparison } from '@orion-ds/blocks';
+import type { ComparisonColumn, ComparisonFeature } from '@orion-ds/blocks';
 
 const pricingColumns: ComparisonColumn[] = [
   {

@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { Breadcrumbs } from '@orion-ds/react';
+import { Breadcrumbs } from '@orion-ds/blocks';
 import { Home, Folder, FileText, Settings, Users } from 'lucide-react';
 
 export const previews = [

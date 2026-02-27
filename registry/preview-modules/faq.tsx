@@ -4,7 +4,8 @@
  */
 
 import React from 'react';
-import { FAQ, Badge } from '@orion-ds/react';
+import { FAQ } from '@orion-ds/blocks';
+import { Badge } from '@orion-ds/react';
 
 const basicFAQs = [
   {

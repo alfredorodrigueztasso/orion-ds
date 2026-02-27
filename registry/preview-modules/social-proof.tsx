@@ -4,7 +4,8 @@
  */
 
 import React from 'react';
-import { SocialProof, Badge } from '@orion-ds/react';
+import { SocialProof } from '@orion-ds/blocks';
+import { Badge } from '@orion-ds/react';
 
 export const previews = [
   {

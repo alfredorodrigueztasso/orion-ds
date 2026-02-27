@@ -4,7 +4,8 @@
  */
 
 import React from 'react';
-import { Stats, Badge } from '@orion-ds/react';
+import { Stats } from '@orion-ds/blocks';
+import { Badge } from '@orion-ds/react';
 import { Users, TrendingUp, DollarSign, Globe } from 'lucide-react';
 
 export const previews = [

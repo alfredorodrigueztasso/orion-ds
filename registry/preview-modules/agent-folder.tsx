@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { AgentFolder } from '@orion-ds/react';
+import { AgentFolder } from '@orion-ds/blocks';
 import { Bot, Sparkles, Zap, MessageSquare, TrendingUp } from 'lucide-react';
 
 export const previews = [

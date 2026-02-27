@@ -4,7 +4,8 @@
  */
 
 import React, { useState } from 'react';
-import { SettingsLayout, Field, Button, Badge } from '@orion-ds/react';
+import { SettingsLayout } from '@orion-ds/blocks';
+import { Field, Button, Badge } from '@orion-ds/react';
 import { User, Lock, Bell, CreditCard, Users, Settings as SettingsIcon } from 'lucide-react';
 
 export const previews = [

@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { AppDownload } from '@orion-ds/react';
+import { AppDownload } from '@orion-ds/blocks';
 import { Shield, Zap, Heart } from 'lucide-react';
 
 export const previews = [

@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { CarouselSection } from '@orion-ds/react';
+import { CarouselSection } from '@orion-ds/blocks';
 
 const editorialItems = [
   {

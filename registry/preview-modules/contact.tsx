@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { Contact } from '@orion-ds/react';
+import { Contact } from '@orion-ds/blocks';
 import { Mail, Phone, MapPin, Clock, MessageSquare } from 'lucide-react';
 
 export const previews = [

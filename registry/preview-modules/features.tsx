@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { Features } from '@orion-ds/react';
+import { Features } from '@orion-ds/blocks';
 import { Zap, Shield, Code, Smartphone, Globe, Lock, Rocket, Cloud, Database, Users } from 'lucide-react';
 
 export const previews = [

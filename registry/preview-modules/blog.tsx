@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { Blog } from '@orion-ds/react';
+import { Blog } from '@orion-ds/blocks';
 
 const sampleArticles = [
   {

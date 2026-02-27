@@ -4,7 +4,8 @@
  */
 
 import React, { useState } from 'react';
-import { Newsletter, Badge, Button } from '@orion-ds/react';
+import { Newsletter } from '@orion-ds/blocks';
+import { Badge, Button } from '@orion-ds/react';
 import { Mail, Gift, Zap } from 'lucide-react';
 
 export const previews = [

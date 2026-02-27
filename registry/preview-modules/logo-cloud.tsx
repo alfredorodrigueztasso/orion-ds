@@ -4,7 +4,8 @@
  */
 
 import React from 'react';
-import { LogoCloud, Badge } from '@orion-ds/react';
+import { LogoCloud } from '@orion-ds/blocks';
+import { Badge } from '@orion-ds/react';
 
 // SVG logo components (simplified placeholders)
 const VercelLogo = () => (

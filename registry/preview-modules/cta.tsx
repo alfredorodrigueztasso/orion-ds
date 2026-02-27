@@ -4,7 +4,8 @@
  */
 
 import React from 'react';
-import { CTA, Button } from '@orion-ds/react';
+import { CTA } from '@orion-ds/blocks';
+import { Button } from '@orion-ds/react';
 import { ArrowRight, Zap, Shield } from 'lucide-react';
 
 export const previews = [

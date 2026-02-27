@@ -4,8 +4,8 @@
  */
 
 import React, { useState } from 'react';
-import { ChatSection } from '@orion-ds/react';
-import type { ChatMessage, ChatConversation } from '@orion-ds/react';
+import { ChatSection } from '@orion-ds/blocks';
+import type { ChatMessage, ChatConversation } from '@orion-ds/blocks';
 import { Bot, Settings } from 'lucide-react';
 
 const sampleConversations: ChatConversation[] = [
