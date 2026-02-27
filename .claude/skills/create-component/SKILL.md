@@ -81,7 +81,7 @@ Let's capture the design specification for optimal vibecoding:
 ### Step 3: Run Component Generator
 
 ```bash
-cd "/Users/alfredo/Documents/AI First DS Library" && node scripts/create-component.js ComponentName
+cd "/Users/alfredo/Documents/AI First DS Library" && node scripts/create-component.js $ARGUMENTS
 ```
 
 ### Step 4: Generate AI-Native Files

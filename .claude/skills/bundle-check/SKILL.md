@@ -2,6 +2,8 @@
 name: bundle-check
 description: "Validate bundle optimization: tree-shaking, entry points, externalized deps, bundle size per module. Auto-triggers after changing vite.config.ts, before releases, when user says \"bundle check\", \"tree-shaking\", \"bundle size\", \"optimize bundle\"."
 allowed-tools: ["Bash"]
+context: fork
+agent: Bash
 ---
 
 # Bundle Check — Verify Tree-Shaking & Optimization

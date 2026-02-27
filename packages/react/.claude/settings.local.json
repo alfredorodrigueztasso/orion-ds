@@ -42,7 +42,9 @@
       "Skill(validate-previews)",
       "Skill(validate-previews:*)",
       "Skill(validate-ai-first)",
-      "Skill(validate-ai-first:*)"
+      "Skill(validate-ai-first:*)",
+      "Bash(git commit:*)",
+      "Bash(npm run release:patch:*)"
     ]
   }
 }

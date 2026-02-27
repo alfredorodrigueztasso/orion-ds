@@ -2,6 +2,7 @@
 name: registry-sync
 description: "Sync registry for @orion-ds/react + @orion-ds/blocks. Regenerate registry JSONs, rebuild HTTP API, verify MCP tools. Auto-triggers after component changes, before releases, when user says \"sync registry\", \"update registry\", \"rebuild registry\"."
 allowed-tools: ["Bash"]
+model: haiku
 ---
 
 # Registry Sync — Regenerate Registry & HTTP API

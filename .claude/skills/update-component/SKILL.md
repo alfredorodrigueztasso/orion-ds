@@ -56,12 +56,12 @@ Which component did you update?
 
 Then verify the component exists:
 ```bash
-ls "packages/react/src/components/[ComponentName]/"
+ls "packages/react/src/components/$ARGUMENTS/"
 ```
 
 If not found in `components/`, check `sections/`:
 ```bash
-ls "packages/react/src/sections/[ComponentName]/"
+ls "packages/react/src/sections/$ARGUMENTS/"
 ```
 
 Set `COMPONENT_DIR` to the resolved path.

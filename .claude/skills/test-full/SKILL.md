@@ -2,6 +2,8 @@
 name: test-full
 description: Run full test suite (unit, E2E, visual regression). Auto-triggers when user says "run all tests", "full test suite", "test everything", or before releases. Complete testing in ~5-10 minutes.
 allowed-tools: ["Bash"]
+context: fork
+agent: Bash
 ---
 
 # Full Test Suite

@@ -2,12 +2,26 @@
 name: storybook
 description: Inicia o reinicia el servidor de Storybook de forma confiable. Detecta puertos zombie, limpia cache si es necesario. Auto-triggers cuando el usuario dice "arranca storybook", "reinicia storybook", "storybook no carga", "storybook se colgó", "storybook reset", "abre storybook", "inicia storybook".
 allowed-tools: ["Bash", "AskUserQuestion"]
+model: haiku
 ---
 
 # Storybook — Arranque Confiable
 
 Inicia o reinicia el servidor de Storybook resolviendo los problemas más comunes: puertos zombie,
 cache corrupto y procesos colgados.
+
+## Pre-Flight Status Check (Dynamic Context)
+
+Before proceeding, check current Storybook port status:
+```bash
+PORT_STATUS=`lsof -ti :6006 2>/dev/null | head -1`
+HEALTH_CHECK=`curl -s -o /dev/null -w "%{http_code}" http://localhost:6006 2>/dev/null || echo "offline"`
+```
+
+This information is used to auto-detect the appropriate startup mode:
+- Port free + offline → **Normal mode** (fresh start)
+- Port occupied + offline → **Restart mode** (kill zombie + start)
+- Port occupied + error HTTP → **Reset mode** (kill + clean cache + start)
 
 ## Modos disponibles
 

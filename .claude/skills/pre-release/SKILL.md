@@ -2,6 +2,7 @@
 name: pre-release
 description: Complete pre-release checklist (audit, build, test, registry, pre-publish checks). Auto-triggers when user says "prepare release", "pre-release check", "ready to publish", or mentions npm publish. Comprehensive validation before releasing to npm.
 allowed-tools: ["Bash", "Read"]
+model: haiku
 ---
 
 # Pre-Release Checklist

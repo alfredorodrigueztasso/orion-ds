@@ -4,6 +4,7 @@ description: Automated patch release (1.0.0 → 1.0.1). Auto-triggers when user 
 allowed-tools: ["Bash"]
 disable-model-invocation: true
 argument-hint: [--dry-run]
+model: haiku
 ---
 
 # Release Patch Version

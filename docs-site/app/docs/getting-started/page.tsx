@@ -21,7 +21,7 @@ export default async function GettingStartedPage() {
   );
 
   return (
-    <div className="main-content docs-prose">
+    <div className="docs-content docs-prose">
       <MDXRemote source={source} components={mdxComponents} />
     </div>
   );

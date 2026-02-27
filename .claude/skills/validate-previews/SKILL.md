@@ -2,6 +2,8 @@
 name: validate-previews
 description: Validate Storybook and docs-site previews use Orion components (no duplicates, no hardcoded styles). Auto-triggers when user mentions "validate previews", "check Storybook", "docs-site validation", or after modifying stories/docs. Prevents component duplication and style inconsistencies.
 allowed-tools: ["Bash", "Read", "Grep", "Glob"]
+context: fork
+agent: Bash
 ---
 
 # Validate Previews (Storybook & Docs)

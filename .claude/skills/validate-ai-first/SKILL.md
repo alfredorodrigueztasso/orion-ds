@@ -2,6 +2,8 @@
 name: validate-ai-first
 description: Run AI-First compliance validation on React components. Auto-triggers when user mentions "validate", "check compliance", "AI-First rules", or after component changes. Validates no hardcoded colors, fonts, brand props, or pixel values.
 allowed-tools: ["Bash", "Read"]
+context: fork
+agent: Bash
 ---
 
 # AI-First Compliance Validation

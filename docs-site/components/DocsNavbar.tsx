@@ -13,25 +13,23 @@ export function DocsNavbar() {
       </Navbar.Brand>
 
       <Navbar.Nav>
-        <Link href="/components">Components</Link>
-        <Link href="/sections">Sections</Link>
-        <Link href="/templates">Templates</Link>
         <Link href="/docs/getting-started">Docs</Link>
+        <Link href="/components">Components</Link>
+        <Link href="/sections">Blocks</Link>
+        <Link href="/templates">Templates</Link>
       </Navbar.Nav>
 
       <Navbar.Actions>
-        <SearchInput
-          placeholder="Search..."
-          style={{ width: '200px' }}
-          size="sm"
-        />
+        <SearchInput placeholder="Search..." style={{ width: '200px' }} size="sm" />
         <ThemeController compact />
-        <Link
-          href="https://github.com/orion-ds/orion"
-          target="_blank"
+        <Link 
+          href="https://github.com/orion-ds/orion" 
+          target="_blank" 
           rel="noopener noreferrer"
+          style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-1)', fontSize: '0.875rem', color: 'var(--text-secondary)', hover: { color: 'var(--text-primary)' } }}
         >
           <Github size={20} />
+          <span>2.1k</span>
         </Link>
       </Navbar.Actions>
     </Navbar>

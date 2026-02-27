@@ -11,6 +11,7 @@ export default defineConfig({
     css: true,
     testTimeout: 10000, // Increased from 5000ms to handle async operations
     hookTimeout: 10000, // Increased for slow setup/teardown
+    exclude: ["node_modules", "dist", "e2e/**"],
     coverage: {
       provider: "v8",
       reporter: ["text", "json", "html"],

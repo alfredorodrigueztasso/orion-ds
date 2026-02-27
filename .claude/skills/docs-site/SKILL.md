@@ -2,6 +2,7 @@
 name: docs-site
 description: "Start, build, and validate Next.js docs site. Auto-triggers when user says \"docs\", \"open docs\", \"start docs site\", \"build docs\", \"docs development\"."
 allowed-tools: ["Bash"]
+model: haiku
 ---
 
 # Docs Site — Next.js App Router Documentation

@@ -2,6 +2,7 @@
 name: fix-tokens
 description: Regenerate TypeScript types and CSS after editing token JSON files. Auto-triggers when user modifies files in tokens/ directory or says "rebuild tokens", "regenerate types", "fix tokens". Ensures types and CSS stay in sync with JSON source.
 allowed-tools: ["Bash"]
+model: haiku
 ---
 
 # Fix Tokens (Regenerate Types)

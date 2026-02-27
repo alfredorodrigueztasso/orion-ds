@@ -27,12 +27,17 @@ export default function ComponentsList({ components, categories }: ComponentsLis
     <>
       {categories.map((category) => (
         <section key={category} style={{ marginBottom: 'var(--spacing-12)' }}>
-          <h2 style={{ textTransform: 'capitalize', marginBottom: 'var(--spacing-4)' }}>
+          <h2 style={{
+            textTransform: 'capitalize',
+            marginBottom: 'var(--spacing-6)',
+            fontSize: '1.5rem',
+            fontWeight: 600,
+          }}>
             {category}
           </h2>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
             gap: 'var(--spacing-4)'
           }}>
             {componentsByCategory[category]?.map((component) => (
@@ -41,20 +46,65 @@ export default function ComponentsList({ components, categories }: ComponentsLis
                 href={`/components/${component.name}`}
                 style={{ textDecoration: 'none' }}
               >
-                <Card variant="outlined" interactive style={{ height: '100%' }}>
-                  <Card.Header>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)' }}>
-                      <span>{component.title}</span>
-                      {component.modeAware && (
-                        <Badge variant="info" size="sm">Mode Aware</Badge>
-                      )}
-                    </div>
+                <Card
+                  variant="outlined"
+                  interactive
+                  style={{
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                  }}
+                >
+                  {/* Header with Title and Badge */}
+                  <Card.Header style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'flex-start',
+                    gap: 'var(--spacing-2)',
+                  }}>
+                    <h3 style={{
+                      margin: 0,
+                      fontSize: '1rem',
+                      fontWeight: 600,
+                      color: 'var(--text-primary)',
+                      flex: 1,
+                    }}>
+                      {component.title}
+                    </h3>
+                    {component.modeAware && (
+                      <Badge variant="info" size="sm" style={{ whiteSpace: 'nowrap', flexShrink: 0 }}>
+                        Mode Aware
+                      </Badge>
+                    )}
                   </Card.Header>
-                  <Card.Body>
-                    <p style={{ margin: 0, color: 'var(--text-secondary)' }}>
+
+                  {/* Description */}
+                  <Card.Body style={{ flex: 1 }}>
+                    <p style={{
+                      margin: 0,
+                      color: 'var(--text-secondary)',
+                      fontSize: '0.875rem',
+                      lineHeight: 1.5,
+                    }}>
                       {component.description}
                     </p>
                   </Card.Body>
+
+                  {/* Footer: Component Name as Code */}
+                  <div style={{
+                    paddingTop: 'var(--spacing-3)',
+                    borderTop: '1px solid var(--border-subtle)',
+                    fontSize: '0.75rem',
+                    color: 'var(--text-tertiary)',
+                  }}>
+                    <code style={{
+                      background: 'var(--surface-layer)',
+                      padding: 'var(--spacing-1) var(--spacing-2)',
+                      borderRadius: 'var(--radius-sm)',
+                    }}>
+                      {component.name}
+                    </code>
+                  </div>
                 </Card>
               </Link>
             ))}

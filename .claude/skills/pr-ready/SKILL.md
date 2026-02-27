@@ -2,6 +2,7 @@
 name: pr-ready
 description: Prepare code for pull request (format, lint, audit, build, test, registry). Auto-triggers when user says "ready for PR", "prepare pull request", "PR checklist", or "PR preparation". Complete PR workflow in ~1-2 minutes.
 allowed-tools: ["Bash"]
+model: haiku
 ---
 
 # PR Readiness Check

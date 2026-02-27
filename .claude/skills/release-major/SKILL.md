@@ -4,6 +4,7 @@ description: Automated major release (1.0.0 → 2.0.0). Auto-triggers when user 
 allowed-tools: ["Bash"]
 disable-model-invocation: true
 argument-hint: [--dry-run]
+model: haiku
 ---
 
 # Release Major Version

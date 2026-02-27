@@ -2,6 +2,7 @@
 name: mcp-test
 description: "Test MCP server and validate all 9 tools work. Auto-triggers when user says \"test MCP\", \"MCP broken\", \"MCP tools\", \"check MCP server\", or before releases."
 allowed-tools: ["Bash"]
+model: haiku
 ---
 
 # MCP Test — Validate Model Context Protocol Server

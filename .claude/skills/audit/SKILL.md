@@ -2,6 +2,8 @@
 name: audit
 description: Full system audit (tokens + types + AI-First compliance). Auto-triggers when user says "full audit", "system check", "validate everything", or before releasing. Comprehensive validation of Chain of Truth, TypeScript, and component compliance.
 allowed-tools: ["Bash", "Read"]
+context: fork
+agent: Bash
 ---
 
 # Full System Audit

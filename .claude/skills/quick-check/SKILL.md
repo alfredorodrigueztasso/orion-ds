@@ -2,6 +2,7 @@
 name: quick-check
 description: Fast pre-commit validation (format, lint, type-check, CSS lint in parallel). Auto-triggers when user says "check code", "pre-commit", "ready to commit", or "quick validation". Runs in ~15-30 seconds.
 allowed-tools: ["Bash"]
+model: haiku
 ---
 
 # Quick Code Check

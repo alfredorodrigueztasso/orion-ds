@@ -1,13 +1,15 @@
 {
   "name": "@orion-ds/react",
-  "version": "4.0.0",
+  "version": "4.0.4",
   "type": "module",
   "description": "Orion Design System - React component library with 40+ AI-ready components and 9 templates",
   "author": "Orion Design System Team",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
-  "sideEffects": ["**/*.css"],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -156,8 +158,7 @@
       "optional": true
     }
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "@percy/cli": "^1.31.8",
     "@percy/storybook": "^10.0.0",

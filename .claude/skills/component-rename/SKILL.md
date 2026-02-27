@@ -25,6 +25,8 @@ Renames or moves a component while updating all imports, exports, and dependenci
 ## Usage
 
 ```bash
+/component-rename $0 $1                   # Rename $0 → $1
+# Examples:
 /component-rename Button NewButton        # Rename Button → NewButton
 /component-rename Modal ConfirmDialog     # Rename Modal → ConfirmDialog
 /component-rename Card DataCard           # Rename Card → DataCard
