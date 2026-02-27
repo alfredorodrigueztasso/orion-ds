@@ -24,7 +24,7 @@
 npx @orion-ds/create my-app
 
 # Option 2: Install as dependency
-npm install @orion-ds/core @orion-ds/react
+npm install @orion-ds/react
 ```
 
 ```tsx
@@ -55,8 +55,8 @@ function App() {
 
 | Package | Description |
 |---------|-------------|
-| **@orion-ds/core** | Design tokens + TypeScript types |
-| **@orion-ds/react** | 51 React components + 41 sections + 10 templates |
+| **@orion-ds/react** | 51 React components + 41 sections + design tokens + TypeScript types |
+| **@orion-ds/blocks** | 26 marketing sections + 6 app sections + 12 templates |
 | **@orion-ds/cli** | shadcn-style CLI — copy individual components to your project |
 | **@orion-ds/create** | Project scaffolding — `npx @orion-ds/create my-app` |
 | **@orion-ds/validate** | Code validator — catches hardcoded values and anti-patterns |
