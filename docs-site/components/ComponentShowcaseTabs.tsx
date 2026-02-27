@@ -135,7 +135,7 @@ const NavigationShowcase = () => (
     </div>
     <div>
       <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginBottom: 'var(--spacing-3)' }}>Pagination</div>
-      <Pagination current={1} total={5} />
+      <Pagination currentPage={1} totalPages={5} onPageChange={() => {}} />
     </div>
   </div>
 );
@@ -144,7 +144,7 @@ const AvatarShowcase = () => (
   <div style={{ display: 'flex', gap: 'var(--spacing-4)', alignItems: 'center', flexWrap: 'wrap' }}>
     {['sm', 'md', 'lg'].map((size) => (
       <div key={size} style={{ textAlign: 'center' }}>
-        <Avatar size={size as any} name="Alex Chen" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Alex" />
+        <Avatar size={size as any} alt="Alex Chen" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Alex" />
         <p style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)', marginTop: 'var(--spacing-2)' }}>
           {size}
         </p>
