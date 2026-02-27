@@ -26,22 +26,22 @@ export const previews = [
               <div style={{ display: 'flex', gap: 'var(--spacing-3)', alignItems: 'center' }}>
                 <User size={16} style={{ color: 'var(--text-secondary)' }} />
                 <div>
-                  <div style={{ fontSize: '12px', color: 'var(--text-tertiary)' }}>Name</div>
-                  <div style={{ fontSize: '14px', color: 'var(--text-primary)' }}>Sarah Chen</div>
+                  <div style={{ fontSize: 'var(--font-size-10)', color: 'var(--text-tertiary)' }}>Name</div>
+                  <div style={{ fontSize: 'var(--font-size-base)', color: 'var(--text-primary)' }}>Sarah Chen</div>
                 </div>
               </div>
               <div style={{ display: 'flex', gap: 'var(--spacing-3)', alignItems: 'center' }}>
                 <Mail size={16} style={{ color: 'var(--text-secondary)' }} />
                 <div>
-                  <div style={{ fontSize: '12px', color: 'var(--text-tertiary)' }}>Email</div>
-                  <div style={{ fontSize: '14px', color: 'var(--text-primary)' }}>sarah.chen@example.com</div>
+                  <div style={{ fontSize: 'var(--font-size-10)', color: 'var(--text-tertiary)' }}>Email</div>
+                  <div style={{ fontSize: 'var(--font-size-base)', color: 'var(--text-primary)' }}>sarah.chen@example.com</div>
                 </div>
               </div>
               <div style={{ display: 'flex', gap: 'var(--spacing-3)', alignItems: 'center' }}>
                 <Phone size={16} style={{ color: 'var(--text-secondary)' }} />
                 <div>
-                  <div style={{ fontSize: '12px', color: 'var(--text-tertiary)' }}>Phone</div>
-                  <div style={{ fontSize: '14px', color: 'var(--text-primary)' }}>+1 (555) 123-4567</div>
+                  <div style={{ fontSize: 'var(--font-size-10)', color: 'var(--text-tertiary)' }}>Phone</div>
+                  <div style={{ fontSize: 'var(--font-size-base)', color: 'var(--text-primary)' }}>+1 (555) 123-4567</div>
                 </div>
               </div>
             </div>
