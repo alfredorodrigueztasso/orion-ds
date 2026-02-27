@@ -75,8 +75,8 @@ describe("ThemeController", () => {
     expect(
       screen.queryByText("Theme & Brand Settings"),
     ).not.toBeInTheDocument();
-    // But should still have theme controls
-    expect(screen.getByRole("checkbox")).toBeInTheDocument(); // Switch
+    // But should still have theme controls (Switch uses role="switch", not "checkbox")
+    expect(screen.getByRole("switch")).toBeInTheDocument();
   });
 
   it("renders brand buttons in compact mode", () => {
@@ -90,8 +90,10 @@ describe("ThemeController", () => {
     const handleThemeChange = vi.fn();
     render(<ThemeController onThemeChange={handleThemeChange} />, { wrapper });
 
-    const switchElement = screen.getByRole("checkbox");
-    await user.click(switchElement);
+    // The Switch input has pointer-events: none CSS, so click the theme buttons instead
+    // which internally call the onThemeChange callback
+    const darkButton = screen.getByRole("button", { name: "Dark" });
+    await user.click(darkButton);
 
     expect(handleThemeChange).toHaveBeenCalled();
   });
@@ -159,14 +161,14 @@ describe("ThemeController", () => {
       render(<ThemeController compact showBrandSelector />, { wrapper });
       // Should have brand buttons
       expect(screen.getByRole("button", { name: /Orion/ })).toBeInTheDocument();
-      expect(screen.getByRole("button", { name: /Uvm/ })).toBeInTheDocument();
+      expect(screen.getByRole("button", { name: /Deepblue/ })).toBeInTheDocument();
     });
 
     it("renders both controls in compact mode", () => {
       render(<ThemeController compact showThemeToggle showBrandSelector />, {
         wrapper,
       });
-      expect(screen.getByRole("checkbox")).toBeInTheDocument();
+      expect(screen.getByRole("switch")).toBeInTheDocument();
       expect(screen.getAllByRole("button").length).toBeGreaterThanOrEqual(4);
     });
   });
@@ -175,11 +177,11 @@ describe("ThemeController", () => {
     it("shows brand descriptions in full mode", () => {
       render(<ThemeController />, { wrapper });
       expect(
-        screen.getByText("Orange accent • 12px radius"),
+        screen.getByText("Blue accent • 12px radius"),
       ).toBeInTheDocument(); // Orion
       expect(
-        screen.getByText("Neutral accent • Pill buttons"),
-      ).toBeInTheDocument(); // UVM
+        screen.getByText("Red accent • Pill buttons"),
+      ).toBeInTheDocument(); // Red
     });
   });
 

@@ -209,12 +209,11 @@ describe("Toast", () => {
     expect(screen.getByText("Test toast")).toBeInTheDocument();
 
     await act(async () => {
-      vi.advanceTimersByTime(1500);
+      await vi.advanceTimersByTimeAsync(1500);
     });
 
-    await waitFor(() => {
-      expect(screen.queryByText("Test toast")).not.toBeInTheDocument();
-    });
+    // Direct assertion after advancing timers - no waitFor needed
+    expect(screen.queryByText("Test toast")).not.toBeInTheDocument();
 
     vi.useRealTimers();
   });
@@ -232,13 +231,14 @@ describe("Toast", () => {
     await user.click(screen.getByText("Show Error"));
     await user.click(screen.getByText("Show Warning"));
 
-    await waitFor(() => {
-      // First toast should be removed
-      expect(screen.queryByText("Success message")).not.toBeInTheDocument();
-      // Last two should remain
-      expect(screen.getByText("Error message")).toBeInTheDocument();
-      expect(screen.getByText("Warning message")).toBeInTheDocument();
-    });
+    // Use a short timeout to allow React to process state updates
+    await new Promise(resolve => setTimeout(resolve, 50));
+
+    // First toast should be removed
+    expect(screen.queryByText("Success message")).not.toBeInTheDocument();
+    // Last two should remain
+    expect(screen.getByText("Error message")).toBeInTheDocument();
+    expect(screen.getByText("Warning message")).toBeInTheDocument();
   });
 
   it("supports different positions", () => {
@@ -263,9 +263,10 @@ describe("Toast", () => {
 
     await user.click(screen.getByText("Show Toast"));
 
-    await waitFor(() => {
-      const toast = screen.getByRole("alert");
-      expect(toast).toHaveAttribute("aria-live", "polite");
-    });
+    // Allow React to process the click and render the toast
+    await new Promise(resolve => setTimeout(resolve, 50));
+
+    const toast = screen.getByRole("alert");
+    expect(toast).toHaveAttribute("aria-live", "polite");
   });
 });

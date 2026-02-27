@@ -117,25 +117,25 @@ describe("Stepper", () => {
     const { container, rerender } = render(
       <Stepper steps={mockSteps} size="sm" />,
     );
-    expect(container.querySelector(".sm")).toBeInTheDocument();
+    expect(container.querySelector('[class*="sm"]')).toBeInTheDocument();
 
     rerender(<Stepper steps={mockSteps} size="md" />);
-    expect(container.querySelector(".md")).toBeInTheDocument();
+    expect(container.querySelector('[class*="md"]')).toBeInTheDocument();
 
     rerender(<Stepper steps={mockSteps} size="lg" />);
-    expect(container.querySelector(".lg")).toBeInTheDocument();
+    expect(container.querySelector('[class*="lg"]')).toBeInTheDocument();
   });
 
   it("renders horizontal orientation by default", () => {
     const { container } = render(<Stepper steps={mockSteps} />);
-    expect(container.querySelector(".horizontal")).toBeInTheDocument();
+    expect(container.querySelector('[class*="horizontal"]')).toBeInTheDocument();
   });
 
   it("renders vertical orientation", () => {
     const { container } = render(
       <Stepper steps={mockSteps} orientation="vertical" />,
     );
-    expect(container.querySelector(".vertical")).toBeInTheDocument();
+    expect(container.querySelector('[class*="vertical"]')).toBeInTheDocument();
   });
 
   it("hides connectors when showConnectors is false", () => {

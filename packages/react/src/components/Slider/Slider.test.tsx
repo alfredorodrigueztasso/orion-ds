@@ -39,13 +39,13 @@ describe("Slider", () => {
     const { container, rerender } = render(
       <Slider value={50} onChange={() => {}} size="sm" />,
     );
-    expect(container.querySelector(".sm")).toBeInTheDocument();
+    expect(container.querySelector('[class*="sm"]')).toBeInTheDocument();
 
     rerender(<Slider value={50} onChange={() => {}} size="md" />);
-    expect(container.querySelector(".md")).toBeInTheDocument();
+    expect(container.querySelector('[class*="md"]')).toBeInTheDocument();
 
     rerender(<Slider value={50} onChange={() => {}} size="lg" />);
-    expect(container.querySelector(".lg")).toBeInTheDocument();
+    expect(container.querySelector('[class*="lg"]')).toBeInTheDocument();
   });
 
   it("renders disabled state", () => {
@@ -53,7 +53,7 @@ describe("Slider", () => {
       <Slider value={50} onChange={() => {}} disabled />,
     );
     expect(screen.getByRole("slider")).toBeDisabled();
-    expect(container.querySelector(".disabled")).toBeInTheDocument();
+    expect(container.querySelector('[class*="disabled"]')).toBeInTheDocument();
   });
 
   it("shows value display", () => {
@@ -100,7 +100,7 @@ describe("Slider", () => {
     const { container } = render(
       <Slider value={50} onChange={() => {}} showTicks />,
     );
-    expect(container.querySelector(".ticks")).toBeInTheDocument();
+    expect(container.querySelector('[class*="ticks"]')).toBeInTheDocument();
   });
 
   it("shows custom tick values", () => {
@@ -112,7 +112,9 @@ describe("Slider", () => {
         tickValues={[0, 25, 50, 75, 100]}
       />,
     );
-    const ticks = container.querySelectorAll(".tick");
+    const ticks = Array.from(container.querySelectorAll('[class*="tick"]')).filter(el =>
+      (el as HTMLElement).className.includes('tick') && !(el as HTMLElement).className.includes('ticks')
+    );
     expect(ticks).toHaveLength(5);
   });
 

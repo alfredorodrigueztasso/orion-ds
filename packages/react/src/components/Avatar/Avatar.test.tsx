@@ -92,7 +92,7 @@ describe("Avatar", () => {
 
   it("applies 2xl size class", () => {
     const { container } = render(<Avatar initials="JD" size="2xl" />);
-    expect((container.firstChild as HTMLElement).className).toMatch(/2xl/);
+    expect((container.firstChild as HTMLElement).className).toMatch(/xxl/);
   });
 
   it("renders online status indicator", () => {
@@ -216,7 +216,7 @@ describe("Avatar", () => {
 
     it("renders 2xl size", () => {
       const { container } = render(<Avatar initials="JD" size="2xl" />);
-      expect((container.firstChild as HTMLElement).className).toMatch(/2xl/);
+      expect((container.firstChild as HTMLElement).className).toMatch(/xxl/);
     });
   });
 

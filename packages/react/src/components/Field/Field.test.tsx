@@ -101,8 +101,8 @@ describe("Field", () => {
 
   it("shows error icon when error present and no right icon", () => {
     const { container } = render(<Field label="Email" error="Invalid" />);
-    // Error icon should be present (⚠ symbol)
-    expect(container.textContent).toContain("⚠");
+    // Error icon should be present (AlertCircle mocked as data-icon span)
+    expect(container.querySelector('[data-icon="AlertCircle"]')).toBeInTheDocument();
   });
 
   it("does not show error icon when right icon is provided", () => {
@@ -171,7 +171,7 @@ describe("Field", () => {
     render(<Field label="Email" error="Invalid email" id="email-field" />);
     const input = screen.getByLabelText("Email");
     expect(input).toHaveAttribute("aria-describedby", "email-field-error");
-    expect(screen.getByText("Invalid email")).toHaveAttribute(
+    expect(screen.getByRole("alert")).toHaveAttribute(
       "id",
       "email-field-error",
     );

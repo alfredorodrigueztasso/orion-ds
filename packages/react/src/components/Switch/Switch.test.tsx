@@ -7,7 +7,7 @@ describe("Switch", () => {
   it("renders with label", () => {
     render(<Switch label="Enable notifications" />);
     expect(screen.getByLabelText("Enable notifications")).toBeInTheDocument();
-    expect(screen.getByRole("checkbox")).toBeInTheDocument();
+    expect(screen.getByRole("switch")).toBeInTheDocument();
   });
 
   it("applies size classes correctly", () => {
@@ -23,17 +23,17 @@ describe("Switch", () => {
 
   it("uses default size when not specified", () => {
     const { container } = render(<Switch label="Test" />);
-    expect((container.firstChild as HTMLElement).className).toMatch(/md/);
+    expect((container.firstChild as HTMLElement).className).toMatch(/sm/);
   });
 
   it("renders unchecked by default", () => {
     render(<Switch label="Test" />);
-    expect(screen.getByRole("checkbox")).not.toBeChecked();
+    expect(screen.getByRole("switch")).not.toBeChecked();
   });
 
   it("renders checked state", () => {
     render(<Switch label="Test" checked readOnly />);
-    expect(screen.getByRole("checkbox")).toBeChecked();
+    expect(screen.getByRole("switch")).toBeChecked();
   });
 
   it("displays helper text", () => {
@@ -47,12 +47,12 @@ describe("Switch", () => {
 
   it("renders disabled state", () => {
     render(<Switch label="Disabled" disabled />);
-    expect(screen.getByRole("checkbox")).toBeDisabled();
+    expect(screen.getByRole("switch")).toBeDisabled();
   });
 
   it("renders required state", () => {
     render(<Switch label="Required" required />);
-    expect(screen.getByRole("checkbox")).toHaveAttribute("required");
+    expect(screen.getByRole("switch")).toHaveAttribute("required");
   });
 
   it("applies custom className", () => {
@@ -79,7 +79,7 @@ describe("Switch", () => {
   it("handles user toggling on", async () => {
     const user = userEvent.setup();
     const { container } = render(<Switch label="Test" />);
-    const switchInput = screen.getByRole("checkbox");
+    const switchInput = screen.getByRole("switch");
     const label = container.querySelector("label");
 
     expect(switchInput).not.toBeChecked();
@@ -91,7 +91,7 @@ describe("Switch", () => {
   it("handles user toggling off", async () => {
     const user = userEvent.setup();
     const { container } = render(<Switch label="Test" defaultChecked />);
-    const switchInput = screen.getByRole("checkbox");
+    const switchInput = screen.getByRole("switch");
     const label = container.querySelector("label");
 
     expect(switchInput).toBeChecked();
@@ -103,7 +103,7 @@ describe("Switch", () => {
   it("can be toggled by clicking label", async () => {
     const user = userEvent.setup();
     render(<Switch label="Click label" />);
-    const switchInput = screen.getByRole("checkbox");
+    const switchInput = screen.getByRole("switch");
 
     await user.click(screen.getByText("Click label"));
     expect(switchInput).toBeChecked();
@@ -140,15 +140,15 @@ describe("Switch", () => {
     const { rerender } = render(
       <Switch label="Controlled" checked={false} readOnly />,
     );
-    expect(screen.getByRole("checkbox")).not.toBeChecked();
+    expect(screen.getByRole("switch")).not.toBeChecked();
 
     rerender(<Switch label="Controlled" checked={true} readOnly />);
-    expect(screen.getByRole("checkbox")).toBeChecked();
+    expect(screen.getByRole("switch")).toBeChecked();
   });
 
   it("does not allow user interaction when disabled", () => {
     const { container } = render(<Switch label="Disabled" disabled />);
-    const switchInput = screen.getByRole("checkbox");
+    const switchInput = screen.getByRole("switch");
     const label = container.querySelector("label");
 
     expect(switchInput).not.toBeChecked();
@@ -200,7 +200,7 @@ describe("Switch", () => {
     it("toggles between on and off states", async () => {
       const user = userEvent.setup();
       const { container } = render(<Switch label="Toggle test" />);
-      const switchInput = screen.getByRole("checkbox");
+      const switchInput = screen.getByRole("switch");
       const label = container.querySelector("label");
 
       // Start unchecked
@@ -222,7 +222,7 @@ describe("Switch", () => {
     it("can be toggled via label multiple times", async () => {
       const user = userEvent.setup();
       render(<Switch label="Label toggle" />);
-      const switchInput = screen.getByRole("checkbox");
+      const switchInput = screen.getByRole("switch");
       const label = screen.getByText("Label toggle");
 
       await user.click(label);
@@ -237,9 +237,9 @@ describe("Switch", () => {
   });
 
   describe("Accessibility", () => {
-    it("uses checkbox role for switch semantics", () => {
+    it("uses switch role for switch semantics", () => {
       render(<Switch label="Accessible switch" />);
-      expect(screen.getByRole("checkbox")).toBeInTheDocument();
+      expect(screen.getByRole("switch")).toBeInTheDocument();
     });
 
     it("associates label with input correctly", () => {

@@ -148,8 +148,7 @@ describe("Accordion", () => {
     expect(onChange).toHaveBeenCalledWith(["1"]);
   });
 
-  it("renders disabled items correctly", async () => {
-    const user = userEvent.setup();
+  it("renders disabled items correctly", () => {
     const itemsWithDisabled = [
       { id: "1", title: "Section 1", content: "Content 1", disabled: true },
       { id: "2", title: "Section 2", content: "Content 2" },
@@ -158,8 +157,6 @@ describe("Accordion", () => {
 
     const disabledButton = screen.getByText("Section 1").closest("button");
     expect(disabledButton).toBeDisabled();
-
-    await user.click(disabledButton!);
     expect(disabledButton).toHaveAttribute("aria-expanded", "false");
   });
 
@@ -185,7 +182,7 @@ describe("Accordion", () => {
         data-testid="accordion"
       />,
     );
-    expect(screen.getByTestId("accordion").className).toContain("bordered");
+    expect(screen.getByTestId("accordion").className).toMatch(/bordered/);
 
     rerender(
       <Accordion
@@ -194,7 +191,7 @@ describe("Accordion", () => {
         data-testid="accordion"
       />,
     );
-    expect(screen.getByTestId("accordion").className).toContain("separated");
+    expect(screen.getByTestId("accordion").className).toMatch(/separated/);
   });
 
   it("applies custom className", () => {

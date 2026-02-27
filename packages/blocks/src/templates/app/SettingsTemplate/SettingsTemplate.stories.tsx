@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { SettingsTemplate } from "./SettingsTemplate";
 import { Button } from "@orion-ds/react";
 import { Field } from "@orion-ds/react";
-import { Textarea } from "@orion-ds/react"tarea";
+import { Textarea } from "@orion-ds/react";
 import { Switch } from "@orion-ds/react";
 import { Select } from "@orion-ds/react";
 import { FormSection } from "@orion-ds/react";

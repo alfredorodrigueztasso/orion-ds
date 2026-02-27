@@ -91,23 +91,23 @@ describe("List", () => {
     const { container, rerender } = render(
       <List items={mockItems} size="sm" />,
     );
-    expect(container.querySelector(".sm")).toBeInTheDocument();
+    expect(container.querySelector('[class*="sm"]')).toBeInTheDocument();
 
     rerender(<List items={mockItems} size="md" />);
-    expect(container.querySelector(".md")).toBeInTheDocument();
+    expect(container.querySelector('[class*="md"]')).toBeInTheDocument();
 
     rerender(<List items={mockItems} size="lg" />);
-    expect(container.querySelector(".lg")).toBeInTheDocument();
+    expect(container.querySelector('[class*="lg"]')).toBeInTheDocument();
   });
 
   it("renders different variants", () => {
     const { container, rerender } = render(
       <List items={mockItems} variant="bordered" />,
     );
-    expect(container.querySelector(".bordered")).toBeInTheDocument();
+    expect(container.querySelector('[class*="bordered"]')).toBeInTheDocument();
 
     rerender(<List items={mockItems} variant="divided" />);
-    expect(container.querySelector(".divided")).toBeInTheDocument();
+    expect(container.querySelector('[class*="divided"]')).toBeInTheDocument();
   });
 
   it("renders empty content when no items", () => {

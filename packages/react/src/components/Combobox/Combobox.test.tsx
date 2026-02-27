@@ -107,14 +107,14 @@ describe("Combobox", () => {
 
     await waitFor(() => {
       const options = screen.getAllByRole("option");
-      expect(options[0]).toHaveClass("highlighted");
+      expect(options[0].className).toMatch(/highlighted/);
     });
 
     fireEvent.keyDown(input, { key: "ArrowDown" });
 
     await waitFor(() => {
       const options = screen.getAllByRole("option");
-      expect(options[1]).toHaveClass("highlighted");
+      expect(options[1].className).toMatch(/highlighted/);
     });
   });
 
@@ -169,7 +169,7 @@ describe("Combobox", () => {
       <Combobox options={mockOptions} error="Required field" />,
     );
     expect(screen.getByText("Required field")).toBeInTheDocument();
-    expect(container.querySelector(".error")).toBeInTheDocument();
+    expect(container.querySelector('[class*="error"]')).toBeInTheDocument();
   });
 
   it("shows helper text", () => {
@@ -193,18 +193,18 @@ describe("Combobox", () => {
     const { container, rerender } = render(
       <Combobox options={mockOptions} size="sm" />,
     );
-    expect(container.querySelector(".sm")).toBeInTheDocument();
+    expect(container.querySelector('[class*="sm"]')).toBeInTheDocument();
 
     rerender(<Combobox options={mockOptions} size="md" />);
-    expect(container.querySelector(".md")).toBeInTheDocument();
+    expect(container.querySelector('[class*="md"]')).toBeInTheDocument();
 
     rerender(<Combobox options={mockOptions} size="lg" />);
-    expect(container.querySelector(".lg")).toBeInTheDocument();
+    expect(container.querySelector('[class*="lg"]')).toBeInTheDocument();
   });
 
   it("renders full width", () => {
     const { container } = render(<Combobox options={mockOptions} fullWidth />);
-    expect(container.querySelector(".fullWidth")).toBeInTheDocument();
+    expect(container.querySelector('[class*="fullWidth"]')).toBeInTheDocument();
   });
 
   it("respects minChars before showing options", async () => {

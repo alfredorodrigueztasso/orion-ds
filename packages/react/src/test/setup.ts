@@ -24,6 +24,11 @@ Object.defineProperty(window, "matchMedia", {
   }),
 });
 
+// Mock HTMLElement.scrollIntoView for portal elements
+if (!HTMLElement.prototype.scrollIntoView) {
+  HTMLElement.prototype.scrollIntoView = vi.fn();
+}
+
 // Mock lucide-react icons for testing
 // This prevents SVG rendering issues in jsdom and speeds up tests
 vi.mock("lucide-react", () => {
@@ -122,6 +127,7 @@ vi.mock("lucide-react", () => {
     Filter: createMockIcon("Filter"),
     Layout: createMockIcon("Layout"),
     Loader: createMockIcon("Loader"),
+    Loader2: createMockIcon("Loader2"),
     Lock: createMockIcon("Lock"),
     Unlock: createMockIcon("Unlock"),
     LogOut: createMockIcon("LogOut"),

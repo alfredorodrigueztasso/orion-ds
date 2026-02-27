@@ -94,18 +94,18 @@ describe("SearchInput", () => {
 
   it("renders different sizes", () => {
     const { rerender } = render(<SearchInput size="sm" data-testid="input" />);
-    expect(screen.getByTestId("input").parentElement).toHaveClass("sm");
+    expect(screen.getByTestId("input").parentElement!.className).toMatch(/sm/);
 
     rerender(<SearchInput size="md" data-testid="input" />);
-    expect(screen.getByTestId("input").parentElement).toHaveClass("md");
+    expect(screen.getByTestId("input").parentElement!.className).toMatch(/md/);
 
     rerender(<SearchInput size="lg" data-testid="input" />);
-    expect(screen.getByTestId("input").parentElement).toHaveClass("lg");
+    expect(screen.getByTestId("input").parentElement!.className).toMatch(/lg/);
   });
 
   it("renders full width", () => {
     render(<SearchInput fullWidth data-testid="input" />);
-    expect(screen.getByTestId("input").parentElement).toHaveClass("fullWidth");
+    expect(screen.getByTestId("input").parentElement!.className).toMatch(/fullWidth/);
   });
 
   it("renders loading state", () => {

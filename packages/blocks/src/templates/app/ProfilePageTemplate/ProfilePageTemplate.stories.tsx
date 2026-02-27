@@ -5,7 +5,7 @@ import { Badge } from "@orion-ds/react";
 import { Card } from "@orion-ds/react";
 import { FormSection } from "@orion-ds/react";
 import { Field } from "@orion-ds/react";
-import { Textarea } from "@orion-ds/react"tarea";
+import { Textarea } from "@orion-ds/react";
 import {
   Home,
   Users,

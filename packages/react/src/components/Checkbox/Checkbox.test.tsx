@@ -44,12 +44,12 @@ describe("Checkbox", () => {
 
   it("displays checkmark when checked", () => {
     const { container } = render(<Checkbox label="Test" checked readOnly />);
-    expect(container.textContent).toContain("✓");
+    expect(container.querySelector('[data-lucide="Check"]')).toBeInTheDocument();
   });
 
   it("displays minus when indeterminate", () => {
     const { container } = render(<Checkbox label="Test" indeterminate />);
-    expect(container.textContent).toContain("−");
+    expect(container.querySelector('[data-lucide="Minus"]')).toBeInTheDocument();
   });
 
   it("displays error message", () => {
