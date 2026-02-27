@@ -1,19 +1,16 @@
 'use client';
 
-import { Tabs } from '@orion-ds/react';
 import {
+  Tabs,
   Button,
   Badge,
   Card,
   Alert,
   Field,
-  Select,
-  Switch,
   Toggle,
   ProgressBar,
   Spinner,
   Avatar,
-  Chip,
   Breadcrumb,
   Pagination,
   SearchInput,
@@ -169,24 +166,19 @@ export default function ComponentShowcaseTabs() {
         </p>
       </div>
 
-      <Tabs defaultValue="buttons" orientation="horizontal">
-        {[
-          { value: 'buttons', label: 'Buttons', content: <ButtonShowcase /> },
-          { value: 'cards', label: 'Cards', content: <CardShowcase /> },
-          { value: 'badges', label: 'Badges', content: <BadgeShowcase /> },
-          { value: 'alerts', label: 'Alerts', content: <AlertShowcase /> },
-          { value: 'forms', label: 'Forms', content: <FormShowcase /> },
-          { value: 'feedback', label: 'Feedback', content: <FeedbackShowcase /> },
-          { value: 'navigation', label: 'Navigation', content: <NavigationShowcase /> },
-          { value: 'avatars', label: 'Avatars', content: <AvatarShowcase /> },
-        ].map((tab) => (
-          <Tabs.Content key={tab.value} value={tab.value}>
-            <div style={{ paddingTop: 'var(--spacing-6)' }}>
-              {tab.content}
-            </div>
-          </Tabs.Content>
-        ))}
-      </Tabs>
+      <Tabs
+        tabs={[
+          { id: 'buttons', label: 'Buttons', content: <ButtonShowcase /> },
+          { id: 'cards', label: 'Cards', content: <CardShowcase /> },
+          { id: 'badges', label: 'Badges', content: <BadgeShowcase /> },
+          { id: 'alerts', label: 'Alerts', content: <AlertShowcase /> },
+          { id: 'forms', label: 'Forms', content: <FormShowcase /> },
+          { id: 'feedback', label: 'Feedback', content: <FeedbackShowcase /> },
+          { id: 'navigation', label: 'Navigation', content: <NavigationShowcase /> },
+          { id: 'avatars', label: 'Avatars', content: <AvatarShowcase /> },
+        ]}
+        defaultTab="buttons"
+      />
     </section>
   );
 }

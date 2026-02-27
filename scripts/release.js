@@ -19,7 +19,6 @@ const path = require('path');
 
 // Configuration
 const PACKAGES = [
-  { name: '@orion-ds/core', path: 'packages/core' },
   { name: '@orion-ds/react', path: 'packages/react' }
 ];
 
@@ -289,9 +288,7 @@ async function release() {
         log(`    - ${pkg.name}@${newVersion}`);
       }
       log('\n  Install with:');
-      log(`    npm install @orion-ds/core@${newVersion}`);
       log(`    npm install @orion-ds/react@${newVersion}`);
-      log(`    npm install @orion-ds/vue@${newVersion}`);
     } else {
       log(`\n  ${colors.red}PARTIAL FAILURE${colors.reset}`, colors.red);
       log(`  ${successful.length}/${publishResults.length} packages published.`);

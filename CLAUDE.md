@@ -10,11 +10,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 The system now includes a **TypeScript-based monorepo architecture**:
 
-- **@orion-ds/react v3.0.0+**: Type-safe React component library **with integrated design tokens** (previously separate `@orion-ds/core`)
+- **@orion-ds/react v3.0.0+**: Type-safe React component library **with integrated design tokens** (consolidated from previously separate packages)
 - **@orion-ds/vue**: Type-safe Vue 3 composables
-- **@orion-ds/core v1.3.0**: **DEPRECATED** - Tokens are now included in @orion-ds/react
-
-**Migration:** If using `@orion-ds/core`, migrate to `@orion-ds/react@^3.0.0` - see [MIGRATION_V3.md](./MIGRATION_V3.md).
 
 See [TYPESCRIPT_SETUP.md](./TYPESCRIPT_SETUP.md) for complete setup instructions.
 
@@ -511,8 +508,6 @@ import '@orion-ds/react/dist/react.css'; // Component styles
 
 Missing CSS imports will result in unstyled components.
 
-**⚠️ Deprecated:** `@orion-ds/core` is no longer needed - tokens are included in React v3.0.0+. See [MIGRATION_V3.md](./MIGRATION_V3.md) for migration details.
-
 ## TypeScript Development Workflow (NEW)
 
 ### 1. Working with Tokens
@@ -703,7 +698,7 @@ import { primitives, getToken, getSemanticToken } from '@orion-ds/react/tokens';
 import { Button } from '@orion-ds/react/components/Button';
 ```
 
-**⚠️ CRITICAL**: Always import from `@orion-ds/react`, NOT `@orion-ds/core` (deprecated in v3.0.0+).
+**⚠️ CRITICAL**: Always import from `@orion-ds/react`.
 
 **Exports configuration**: See `packages/react/package.json` → `exports` field
 
@@ -895,8 +890,8 @@ When user provides external references (screenshots, website URLs, brand names l
 
 ```
 packages/
+├── blocks/         # @orion-ds/blocks - Marketing sections & templates
 ├── cli/            # @orion-ds/cli - Component installer (shadcn-style)
-├── core/           # @orion-ds/core - Design tokens (DEPRECATED in v3.0.0+)
 ├── create/         # @orion-ds/create - Project scaffolder
 ├── mcp/            # @orion-ds/mcp - MCP server for AI agents
 ├── react/          # @orion-ds/react - React components + tokens (v3.0.0+)
@@ -904,9 +899,8 @@ packages/
 ```
 
 **Build order** (enforced by Turbo):
-1. `@orion-ds/core` (DEPRECATED - now part of react v3.0.0+)
-2. `@orion-ds/react` (depends on core for backward compatibility)
-3. `@orion-ds/cli`, `@orion-ds/mcp`, `@orion-ds/validate` (independent)
+1. `@orion-ds/react` (main package with tokens + components)
+2. `@orion-ds/blocks`, `@orion-ds/cli`, `@orion-ds/mcp`, `@orion-ds/validate` (depend on react)
 
 **Key files**:
 - `pnpm-workspace.yaml` - Workspace definition
@@ -1099,11 +1093,11 @@ npm publish --access public
 **Access**: Public packages (@orion-ds scope)
 
 **Published packages**:
-- `@orion-ds/react` - Main component library (v3.0.0+)
-- `@orion-ds/core` - Design tokens (deprecated, use @orion-ds/react)
+- `@orion-ds/react` - Main component library (v3.0.0+ with integrated tokens)
+- `@orion-ds/blocks` - Marketing sections & full-page templates
 - `@orion-ds/cli` - Component installer
 - `@orion-ds/create` - Project scaffolder
-- `@orion-ds/mcp` - MCP server
+- `@orion-ds/mcp` - MCP server for AI agents
 - `@orion-ds/validate` - Code validator
 
 ## Key Principles for AI Agents
@@ -1111,7 +1105,7 @@ npm publish --access public
 1. **Check system status**: Always read `tokens/ai-manifest.json` FIRST to understand system capabilities
 2. **Read documentation**: Then read `AGENTS.md`, `tokens/index.json`, and `tokens/components.json`
 3. **TypeScript first**: When available, use TypeScript packages (`@orion/react`, `@orion/vue`) over vanilla HTML
-4. **Type safety**: Always import and use TypeScript types from `@orion/core`
+4. **Type safety**: Always import and use TypeScript types from `@orion-ds/react`
 5. **Validate after**: Run `npm run validate` and `npm run type-check` after making changes
 6. **Brand awareness**: Check `data-brand` attribute and use appropriate tokens
 7. **No innovation**: Don't invent components or tokens - use what exists or ask
