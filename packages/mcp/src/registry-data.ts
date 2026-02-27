@@ -203,8 +203,6 @@ export function searchComponents(query: string): Array<{
   return index.components
     .map((c) => {
       let score = 0;
-      const _searchText =
-        `${c.name} ${c.title} ${c.description} ${c.category}`.toLowerCase();
 
       for (const term of terms) {
         if (c.name.toLowerCase() === term) score += 10;

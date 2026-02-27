@@ -13,31 +13,6 @@
       "require": "./dist/index.cjs",
       "types": "./dist/index.d.ts"
     },
-    "./client": {
-      "import": "./dist/client.mjs",
-      "require": "./dist/client.cjs",
-      "types": "./dist/client.d.ts"
-    },
-    "./sections": {
-      "import": "./dist/sections/index.mjs",
-      "require": "./dist/sections/index.cjs",
-      "types": "./dist/sections/index.d.ts"
-    },
-    "./sections/*": {
-      "import": "./dist/sections/*/index.mjs",
-      "require": "./dist/sections/*/index.cjs",
-      "types": "./dist/sections/*/index.d.ts"
-    },
-    "./templates": {
-      "import": "./dist/templates/index.mjs",
-      "require": "./dist/templates/index.cjs",
-      "types": "./dist/templates/index.d.ts"
-    },
-    "./templates/*": {
-      "import": "./dist/templates/*/index.mjs",
-      "require": "./dist/templates/*/index.cjs",
-      "types": "./dist/templates/*/index.d.ts"
-    },
     "./styles.css": "./dist/blocks.css"
   },
   "files": ["dist"],

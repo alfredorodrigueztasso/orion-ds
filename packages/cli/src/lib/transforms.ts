@@ -49,7 +49,7 @@ export function transformImports(
   // Matches patterns like: from '../Button' or from '../../Button'
   content = content.replace(
     /from\s+['"](\.\.\/(?:\.\.\/)?)([\w]+)['"]/g,
-    (match, _prefix: string, componentName: string) => {
+    (_match, _prefix: string, componentName: string) => {
       // Skip internal imports (same-dir files like ./Button.types)
       // This regex only matches ../ prefixed imports, so internal ./Foo won't match
 

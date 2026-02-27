@@ -1,30 +1,16 @@
-'use client';
-
-import { useState } from 'react';
-import Link from 'next/link';
 import { Card, Alert, Badge } from '@/components/ClientComponents';
 import CodeBlock from '@/components/CodeBlock';
 import PropsTable from '@/components/PropsTable';
 import PreviewBrandModeBar from '@/components/PreviewBrandModeBar';
 import PackageManagerTabs from '@/components/PackageManagerTabs';
+import ExpandableExamples from '@/components/ExpandableExamples';
+import Link from 'next/link';
 
 interface ComponentDetailProps {
   component: any;
 }
 
 export default function ComponentDetail({ component }: ComponentDetailProps) {
-  const [expandedCodes, setExpandedCodes] = useState<Set<number>>(new Set());
-
-  const toggleCodeExpanded = (idx: number) => {
-    const newSet = new Set(expandedCodes);
-    if (newSet.has(idx)) {
-      newSet.delete(idx);
-    } else {
-      newSet.add(idx);
-    }
-    setExpandedCodes(newSet);
-  };
-
   return (
     <>
       {/* Mode Aware Alert */}
@@ -93,34 +79,12 @@ export default function ComponentDetail({ component }: ComponentDetailProps) {
       {component.examples && component.examples.length > 1 && (
         <section id="examples" style={{ marginBottom: 'var(--spacing-12)' }}>
           <h2>Examples</h2>
-          {component.examples.map((example: any, idx: number) => (
-            <div key={idx} style={{ marginBottom: 'var(--spacing-8)' }}>
-              <h3 style={{ fontSize: '1rem', marginBottom: 'var(--spacing-3)' }}>{example.title}</h3>
-              <button
-                onClick={() => toggleCodeExpanded(idx)}
-                style={{
-                  marginBottom: 'var(--spacing-3)',
-                  padding: 'var(--spacing-2) var(--spacing-3)',
-                  background: 'var(--surface-layer)',
-                  border: '1px solid var(--border-subtle)',
-                  borderRadius: 'var(--radius-sm)',
-                  cursor: 'pointer',
-                  fontSize: '0.875rem',
-                  color: 'var(--text-secondary)',
-                  transition: 'all 0.2s',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'var(--surface-subtle)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'var(--surface-layer)';
-                }}
-              >
-                {expandedCodes.has(idx) ? '▼ Hide Code' : '▶ View Code'}
-              </button>
-              {expandedCodes.has(idx) && <CodeBlock code={example.code} language="tsx" />}
-            </div>
-          ))}
+          <ExpandableExamples
+            examples={component.examples.map((example: any) => ({
+              title: example.title,
+              codeBlock: <CodeBlock code={example.code} language="tsx" />,
+            }))}
+          />
         </section>
       )}
 

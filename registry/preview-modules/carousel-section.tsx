@@ -77,7 +77,7 @@ export const previews = [
     title: 'Editorial Variant',
     render: () => (
       <CarouselSection
-        eyebrow={<span style={{ color: 'var(--text-brand)' }}>Featured Stories</span>}
+        eyebrow={<span>Featured Stories</span>}
         title="Insights & Ideas"
         description="Explore our latest articles and thought leadership on the future of work."
         items={editorialItems}

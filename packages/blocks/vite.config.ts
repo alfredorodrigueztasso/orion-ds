@@ -34,6 +34,16 @@ export default defineConfig({
         '@dnd-kit/utilities',
       ],
       output: {
+        // Enable tree-shaking by preserving module structure
+        preserveModules: true,
+        preserveModulesRoot: 'src',
+        // Rename CSS file from 'style.css' to 'blocks.css'
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name && assetInfo.name.endsWith('.css')) {
+            return 'blocks.css';
+          }
+          return assetInfo.name || 'assets/[name]-[hash][extname]';
+        },
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',

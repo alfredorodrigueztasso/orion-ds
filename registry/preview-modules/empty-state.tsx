@@ -4,7 +4,8 @@
  */
 
 import React from 'react';
-import { EmptyState, Button } from '@orion-ds/react';
+import { EmptyState } from '@orion-ds/blocks';
+import { Button } from '@orion-ds/react';
 import { Inbox, Search, FolderOpen, Plus } from 'lucide-react';
 
 export const previews = [

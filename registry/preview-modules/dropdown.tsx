@@ -47,15 +47,13 @@ export const previews = [
     },
   },
   {
-    title: 'With Dividers',
+    title: 'With Multiple Actions',
     render: () => {
       const items = [
         { id: 'edit', label: 'Edit', icon: <Edit size={16} />, onClick: () => alert('Edit') },
         { id: 'copy', label: 'Duplicate', icon: <Copy size={16} />, onClick: () => alert('Duplicate') },
-        { id: 'divider1', type: 'divider' as const },
         { id: 'share', label: 'Share', icon: <Share2 size={16} />, onClick: () => alert('Share') },
         { id: 'download', label: 'Download', icon: <Download size={16} />, onClick: () => alert('Download') },
-        { id: 'divider2', type: 'divider' as const },
         { id: 'delete', label: 'Delete', icon: <Trash2 size={16} />, danger: true, onClick: () => alert('Delete') },
       ];
 

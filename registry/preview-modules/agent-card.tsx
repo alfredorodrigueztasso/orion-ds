@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { AgentCard, Badge } from '@orion-ds/react';
+import { AgentCard } from '@orion-ds/react';
 import { Bot, Sparkles, Zap } from 'lucide-react';
 
 export const previews = [
@@ -33,8 +33,6 @@ export const previews = [
           title="Sales Assistant"
           description="Qualified leads and schedules demos automatically with intelligent conversation flows."
           timestamp="Updated today"
-          status="published"
-          badge={<Badge variant="success">Active</Badge>}
         />
         <AgentCard
           id="agent-3"
@@ -42,8 +40,6 @@ export const previews = [
           title="Content Generator"
           description="Creates blog posts, social media content, and marketing copy in your brand voice."
           timestamp="Draft saved 1 hour ago"
-          status="draft"
-          badge={<Badge>Draft</Badge>}
         />
         <AgentCard
           id="agent-4"
@@ -51,8 +47,6 @@ export const previews = [
           title="Analytics Agent"
           description="Analyzes data and generates insights from your business metrics automatically."
           timestamp="Archived 1 week ago"
-          status="archived"
-          badge={<Badge variant="error">Archived</Badge>}
         />
       </div>
     ),
@@ -67,7 +61,6 @@ export const previews = [
           title="Email Marketing Agent"
           description="Automates email campaigns with personalized content and optimal send times based on user behavior."
           timestamp="Updated yesterday"
-          status="published"
           onClick={() => alert('View agent details')}
           onEdit={() => alert('Edit agent')}
           onDelete={() => confirm('Delete this agent?')}
@@ -85,7 +78,6 @@ export const previews = [
           title="HR Assistant"
           description="Answers employee questions about policies, benefits, and time-off requests."
           timestamp="Active"
-          status="published"
         />
         <AgentCard
           id="agent-7"
@@ -93,7 +85,6 @@ export const previews = [
           title="Research Agent"
           description="Gathers information from multiple sources and compiles detailed research reports."
           timestamp="Active"
-          status="published"
         />
         <AgentCard
           id="agent-8"
@@ -101,7 +92,6 @@ export const previews = [
           title="Code Reviewer"
           description="Reviews pull requests and suggests improvements to code quality and style."
           timestamp="Active"
-          status="published"
         />
       </div>
     ),

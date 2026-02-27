@@ -5,7 +5,7 @@
  */
 
 import React from "react";
-import { Button, Field, Alert, Badge, Card, ThemeProvider } from "@orion/react";
+import { Button, Field, Alert, Badge, Card, ThemeProvider } from "@orion-ds/react";
 
 // Import Lucide icons
 import {
@@ -27,7 +27,7 @@ import {
 } from "lucide-react";
 
 // Import CSS
-import "@orion/core/theme.css";
+import "@orion-ds/react/styles.css";
 import "@orion/react/dist/react.css";
 
 /**

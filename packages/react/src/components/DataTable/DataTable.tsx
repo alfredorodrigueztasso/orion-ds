@@ -254,9 +254,9 @@ function DataTableInner<T extends Record<string, unknown>>(
       ? selectedKeys.filter((k) => k !== key)
       : [...selectedKeys, key];
     if (onSelectionChange) {
-      onSelectionChange(newSelection);
+      onSelectionChange(newSelection as Key[]);
     } else {
-      setInternalSelectedKeys(newSelection);
+      setInternalSelectedKeys(newSelection as Key[]);
     }
   };
 

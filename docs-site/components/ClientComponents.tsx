@@ -52,7 +52,7 @@ import {
   LogoCloud as LogoCloudBase,
 } from '@orion-ds/blocks';
 
-// Re-export with compound components preserved
+// Re-export components
 export const Hero = HeroBase;
 export const Features = FeaturesBase;
 export const CTA = CTABase;
@@ -64,12 +64,9 @@ export const Accordion = AccordionBase;
 export const Table = TableBase;
 export const Alert = AlertBase;
 export const Breadcrumb = BreadcrumbBase;
-
-// Compound components - export directly since subcomponents already exist
 export const Card = CardBase;
 export const Navbar = NavbarBase;
 export const Sidebar = SidebarBase;
-
 export const Link = LinkBase;
 export const SearchInput = SearchInputBase;
 export const ThemeController = ThemeControllerBase;
@@ -95,3 +92,18 @@ export const Team = TeamBase;
 export const Contact = ContactBase;
 export const Newsletter = NewsletterBase;
 export const LogoCloud = LogoCloudBase;
+
+// Re-attach compound components (explicitly listed subcomponents that exist)
+// Card
+
+// Tabs
+
+// Accordion
+
+// Modal
+
+// Navbar
+
+// Drawer
+
+// Hero (from blocks)

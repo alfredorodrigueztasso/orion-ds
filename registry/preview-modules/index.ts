@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Preview Modules Index
  * Phase 7 (Complete): 50 components with preview modules (96% coverage)

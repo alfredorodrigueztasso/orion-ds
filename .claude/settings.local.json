@@ -17,7 +17,8 @@
       "Bash(npm view:*)",
       "Bash(git push:*)",
       "Bash(wc:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(npx tsc:*)"
     ]
   }
 }
