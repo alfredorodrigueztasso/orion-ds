@@ -5,17 +5,16 @@
  *
  * Creates a combined CSS bundle (styles.css) that includes:
  * 1. @orion-ds/core theme.css (design tokens)
- * 2. @orion-ds/react react.css (component styles)
+ * 2. @orion-ds/react component styles (collected from dist/components/ and dist/sections/)
  *
  * This allows users to import a single CSS file:
  *   import '@orion-ds/react/styles.css'
  *
- * Instead of importing both separately:
- *   import '@orion-ds/core/theme.css'
- *   import '@orion-ds/react/dist/react.css'
+ * Note: With preserveModules: true, individual CSS Module files are generated per component.
+ * This script collects and concatenates them into a single bundle.
  */
 
-import { readFileSync, writeFileSync, existsSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, readdirSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -26,8 +25,32 @@ const DIST_DIR = resolve(__dirname, '../dist');
 
 // Paths to source CSS files
 const THEME_CSS_PATH = resolve(__dirname, '../assets/theme.css');
-const REACT_CSS_PATH = resolve(DIST_DIR, 'react.css');
 const OUTPUT_PATH = resolve(DIST_DIR, 'styles.css');
+
+function collectComponentStyles(dirPath) {
+  const cssFiles = [];
+
+  if (!existsSync(dirPath)) {
+    return cssFiles;
+  }
+
+  const walk = (path) => {
+    const entries = readdirSync(path, { withFileTypes: true });
+
+    for (const entry of entries) {
+      const fullPath = resolve(path, entry.name);
+
+      if (entry.isDirectory()) {
+        walk(fullPath);
+      } else if (entry.name.endsWith('.module.css')) {
+        cssFiles.push(fullPath);
+      }
+    }
+  };
+
+  walk(dirPath);
+  return cssFiles;
+}
 
 function bundleStyles() {
   console.log('Bundling styles...');
@@ -39,16 +62,21 @@ function bundleStyles() {
     process.exit(1);
   }
 
-  // Check if react.css exists
-  if (!existsSync(REACT_CSS_PATH)) {
-    console.error(`Error: react.css not found at ${REACT_CSS_PATH}`);
+  // Collect all component CSS files
+  const componentCssFiles = [
+    ...collectComponentStyles(resolve(DIST_DIR, 'components')),
+    ...collectComponentStyles(resolve(DIST_DIR, 'sections')),
+  ];
+
+  if (componentCssFiles.length === 0) {
+    console.error(`Error: No CSS files found in ${DIST_DIR}/components or ${DIST_DIR}/sections`);
     console.error('Make sure the Vite build completed successfully.');
     process.exit(1);
   }
 
   // Read source files
   const themeCssRaw = readFileSync(THEME_CSS_PATH, 'utf-8');
-  const reactCss = readFileSync(REACT_CSS_PATH, 'utf-8');
+  const reactCss = componentCssFiles.map(file => readFileSync(file, 'utf-8')).join('\n');
 
   // Resolve @import url('tokens/generated.css') by inlining its contents
   // This prevents a broken relative import in the published bundle
