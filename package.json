@@ -30,6 +30,7 @@
     "validate:theme": "node scripts/validate-tokens.js theme.css",
     "validate:code": "node packages/validate/dist/cli.js",
     "validate:previews": "node scripts/validate-previews.js",
+    "validate:preview-modules": "node scripts/validate-preview-modules.js",
     "audit": "npm run validate && npm run type-check && echo '✅ Token audit passed'",
     "dev": "npx live-server --port=3000 --open=index.html",
     "dev:packages": "turbo run dev --parallel",
