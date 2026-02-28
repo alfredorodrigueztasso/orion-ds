@@ -79,6 +79,91 @@ npm run dev:packages                    # Start all packages in watch mode
 node scripts/validate-components.js     # Check React components follow AI-first rules
 ```
 
+### Release & Infrastructure (Post-Split Improvements - Feb 28 2026)
+
+**Problem**: After splitting @orion-ds/core into separate packages, the release pipeline became fragile:
+- docs-site failures cancelled npm releases even when core packages were ready
+- No validation of preview-module API drift until docs-site broke
+- Divergent Vite configs in packages/react and packages/blocks required dual maintenance
+
+**Solution**: Three critical infrastructure improvements implemented:
+
+#### 1. Release Pipeline Separation (Mejora 1)
+The `npm run build` command included docs-site, which could fail and block releases. Now:
+
+```bash
+npm run build:release          # Builds core packages, omits docs-site
+                               # Uses: npm run build:tokens && turbo run build --filter=!orion-docs
+npm run release:patch          # Release workflow now uses build:release (safe from docs-site)
+npm run release:dry            # Simulate release without publishing (validates infrastructure)
+```
+
+**Files**: `scripts/release.js` (line 235), `package.json` (build:release script)
+
+**Impact**: Releases now independent of docs-site status. Failing docs builds don't block npm publications.
+
+#### 2. Pre-commit Preview-Modules Validation (Mejora 2)
+API drift in preview-modules (92 component examples) often goes undetected until docs-site renders broken. Now:
+
+```bash
+npm run validate:preview-modules   # Syntax validation of all 92 preview modules
+                                   # Automatically runs on git commit via .husky/pre-commit hook
+```
+
+**How it works**:
+- `.husky/pre-commit` hook runs: `npx lint-staged` → `node scripts/validate-preview-modules.js`
+- `scripts/validate-preview-modules.js` checks for syntax errors (mismatched braces/parentheses)
+- Catches obvious issues before code is committed
+- Can bypass with `git commit --no-verify` if needed
+
+**Files**: `scripts/validate-preview-modules.js`, `.husky/pre-commit`, `registry/tsconfig.json` (paths config)
+
+**Impact**: API drift detected immediately at pre-commit, not at deployment.
+
+#### 3. Shared Vite Configuration (Mejora 3)
+Both `packages/react` and `packages/blocks` had divergent, hard-to-maintain Vite configs. Now:
+
+```bash
+vite.shared.config.ts          # Factory function createViteConfig() + COMMON_EXTERNALS
+packages/react/vite.config.ts  # Refactored: 56 → 12 lines (uses factory)
+packages/blocks/vite.config.ts # Refactored: 60 → 15 lines (uses factory)
+```
+
+**Pattern**:
+```typescript
+// Before: 60 lines of duplicated config
+export default defineConfig({
+  plugins: [react(), dts()],
+  build: { ... duplicated settings ... }
+})
+
+// After: 12 lines using factory
+export default defineConfig(
+  createViteConfig({
+    entry: resolve(__dirname, 'src/index.ts'),
+    name: 'OrionReact',
+    resolveAlias: { '@': path.resolve(__dirname, './src') },
+  })
+);
+```
+
+**Features**:
+- `COMMON_EXTERNALS`: React, lucide-react, react-markdown, recharts, @dnd-kit, date-fns (externalized)
+- `BLOCKS_EXTERNALS`: @orion-ds/react sub-paths + CSS imports
+- Both packages use `preserveModules: true` for tree-shaking
+- Centralized: changes benefit both packages automatically
+
+**Files**: `vite.shared.config.ts` (root), refactored config files, deleted legacy `vite.config.ts`
+
+**Impact**: Single source of truth for build configuration. Easier to maintain and evolve.
+
+**Validation**: All improvements tested and deployed:
+```bash
+npm run release:dry            # ✅ PASSES - Infrastructure working end-to-end
+npm run validate:preview-modules # ✅ Checks 92 preview modules successfully
+npm run build:release          # ✅ Builds 6 packages (omits docs-site)
+```
+
 ### Storybook
 ```bash
 cd packages/react
@@ -1185,6 +1270,33 @@ git commit -m "feat(react): auto-load fonts in ThemeProvider
 - Don't bypass type checking - ensure `npm run type-check` passes
 - Don't hardcode token paths - use `TokenPath` and `SemanticTokenPath` types
 - Don't forget to import CSS - use `import '@orion-ds/react/styles.css'` (recommended) or separate imports
+
+### Infrastructure & Build Pipeline (Feb 28 2026)
+**New infrastructure post-split — respect these patterns:**
+
+- **Don't modify `vite.shared.config.ts` lightly** — changes affect both @orion-ds/react and @orion-ds/blocks. Test with `npm run build:release` after changes.
+- **Don't bypass the pre-commit hook** — `git commit --no-verify` skips preview-module validation. Only use if absolutely necessary. Fix issues instead.
+- **Don't use `npm run build` for releases** — always use `npm run build:release` (excludes docs-site). The release script automatically uses this.
+- **Don't add CSS imports to bundle-styles.js logic** — the script automatically collects all `.module.css` files with `preserveModules: true`. Trust the walking algorithm.
+- **Don't change preview-modules without testing** — changes to component APIs must be reflected in `registry/preview-modules/*.tsx`. Pre-commit validation will catch syntax errors, but not API drift. Run Storybook to verify visually.
+
+**Proper workflow:**
+```bash
+# Making component API changes
+1. Update component in packages/react/src/components/ComponentName/
+2. Update preview-module in registry/preview-modules/component-name.tsx
+3. npm run storybook                              # Verify visually
+4. git commit                                     # Pre-commit validates syntax
+5. npm run validate:preview-modules               # Optional: explicit check
+6. npm run release:dry                            # Optional: test release flow
+```
+
+**Release checklist (automated by `npm run release:patch/minor/major`):**
+```
+✅ npm run audit                    # Type-check, token validation
+✅ npm run build:release            # Build 6 packages (no docs-site)
+✅ npm publish                      # Publish to npm
+```
 
 ## Documentation Pages
 
