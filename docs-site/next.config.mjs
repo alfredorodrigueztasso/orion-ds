@@ -10,6 +10,16 @@ const nextConfig = {
     // Disable ESLint for the build to allow proceeding with type errors
     ignoreDuringBuilds: true,
   },
+  images: {
+    // Allow external avatar/image services used in preview modules
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'i.pravatar.cc',
+        pathname: '/**',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

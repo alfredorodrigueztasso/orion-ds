@@ -11,19 +11,20 @@ export const previews = [
   {
     title: 'Basic Horizontal Stepper',
     render: () => {
-      const [activeStep, setActiveStep] = useState(1);
+      const [currentStep, setCurrentStep] = useState(1);
 
       return (
         <div style={{ padding: 'var(--spacing-8)' }}>
           <Stepper
             steps={[
-              { id: 'account', label: 'Account Details' },
-              { id: 'payment', label: 'Payment Info' },
-              { id: 'review', label: 'Review & Confirm' },
-              { id: 'complete', label: 'Complete' },
+              { id: 'account', title: 'Account Details' },
+              { id: 'payment', title: 'Payment Info' },
+              { id: 'review', title: 'Review & Confirm' },
+              { id: 'complete', title: 'Complete' },
             ]}
-            activeStep={activeStep}
-            onStepClick={setActiveStep}
+            currentStep={currentStep}
+            onStepClick={(index) => setCurrentStep(index)}
+            clickable
             orientation="horizontal"
           />
         </div>
@@ -33,7 +34,7 @@ export const previews = [
   {
     title: 'With Icons and Descriptions',
     render: () => {
-      const [activeStep, setActiveStep] = useState(1);
+      const [currentStep, setCurrentStep] = useState(1);
 
       return (
         <div style={{ padding: 'var(--spacing-8)' }}>
@@ -41,25 +42,26 @@ export const previews = [
             steps={[
               {
                 id: 'details',
-                label: 'Personal Details',
+                title: 'Personal Details',
                 description: 'Enter your information',
                 icon: <User size={18} />,
               },
               {
                 id: 'payment',
-                label: 'Payment Method',
+                title: 'Payment Method',
                 description: 'Choose how to pay',
                 icon: <CreditCard size={18} />,
               },
               {
                 id: 'confirm',
-                label: 'Confirmation',
+                title: 'Confirmation',
                 description: 'Review your order',
                 icon: <CheckCircle size={18} />,
               },
             ]}
-            activeStep={activeStep}
-            onStepClick={setActiveStep}
+            currentStep={currentStep}
+            onStepClick={(index) => setCurrentStep(index)}
+            clickable
             size="lg"
           />
         </div>
@@ -69,23 +71,22 @@ export const previews = [
   {
     title: 'With Error State',
     render: () => {
-      const [activeStep] = useState(2);
+      const [currentStep] = useState(2);
 
       return (
         <div style={{ padding: 'var(--spacing-8)' }}>
           <Stepper
             steps={[
-              { id: 'shipping', label: 'Shipping Address' },
+              { id: 'shipping', title: 'Shipping Address' },
               {
                 id: 'payment',
-                label: 'Payment Details',
+                title: 'Payment Details',
                 error: true,
                 errorMessage: 'Card number is invalid',
               },
-              { id: 'review', label: 'Order Review' },
+              { id: 'review', title: 'Order Review' },
             ]}
-            activeStep={activeStep}
-            onStepClick={() => {}}
+            currentStep={currentStep}
             orientation="horizontal"
           />
         </div>
@@ -95,7 +96,7 @@ export const previews = [
   {
     title: 'Vertical Stepper',
     render: () => {
-      const [activeStep, setActiveStep] = useState(2);
+      const [currentStep, setCurrentStep] = useState(2);
 
       return (
         <div style={{ padding: 'var(--spacing-8)', maxWidth: '500px' }}>
@@ -103,31 +104,32 @@ export const previews = [
             steps={[
               {
                 id: 'order',
-                label: 'Order Placed',
+                title: 'Order Placed',
                 description: 'Your order has been confirmed',
                 icon: <Package size={18} />,
               },
               {
                 id: 'processing',
-                label: 'Processing',
+                title: 'Processing',
                 description: 'Preparing your items for shipment',
                 icon: <CheckCircle size={18} />,
               },
               {
                 id: 'shipped',
-                label: 'Shipped',
+                title: 'Shipped',
                 description: 'Package is on its way',
                 icon: <Truck size={18} />,
               },
               {
                 id: 'delivered',
-                label: 'Delivered',
+                title: 'Delivered',
                 description: 'Arrives by Friday, Nov 24',
                 icon: <Home size={18} />,
               },
             ]}
-            activeStep={activeStep}
-            onStepClick={setActiveStep}
+            currentStep={currentStep}
+            onStepClick={(index) => setCurrentStep(index)}
+            clickable
             orientation="vertical"
             size="md"
           />
@@ -136,26 +138,26 @@ export const previews = [
     },
   },
   {
-    title: 'Alternative Label - Compact',
+    title: 'Compact Horizontal - Scrollable on Mobile',
     render: () => {
-      const [activeStep, setActiveStep] = useState(0);
+      const [currentStep, setCurrentStep] = useState(0);
 
       return (
         <div style={{ padding: 'var(--spacing-8)' }}>
           <Stepper
             steps={[
-              { id: 'cart', label: 'Cart' },
-              { id: 'details', label: 'Details', optional: true },
-              { id: 'payment', label: 'Payment' },
-              { id: 'review', label: 'Review' },
-              { id: 'done', label: 'Done' },
+              { id: 'cart', title: 'Cart' },
+              { id: 'details', title: 'Details', optional: true },
+              { id: 'payment', title: 'Payment' },
+              { id: 'review', title: 'Review' },
+              { id: 'done', title: 'Done' },
             ]}
-            activeStep={activeStep}
-            onStepClick={setActiveStep}
+            currentStep={currentStep}
+            onStepClick={(index) => setCurrentStep(index)}
+            clickable
             orientation="horizontal"
-            alternativeLabel={true}
             size="sm"
-            connectorStyle="dashed"
+            scrollable
           />
         </div>
       );

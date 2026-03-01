@@ -6,25 +6,26 @@
 import React from 'react';
 import { SocialProof } from '@orion-ds/blocks';
 import { Badge } from '@orion-ds/react';
+import { logoPlaceholder } from './utils';
 
 export const previews = [
   {
     title: 'Logos Only - Grid Layout',
     render: () => (
       <SocialProof
-        eyebrow={<Badge variant="outline">Trusted By</Badge>}
+        eyebrow={<Badge variant="secondary">Trusted By</Badge>}
         title="Industry leaders choose Orion"
         description="Join thousands of companies building with our design system"
         layout="logos-only"
         logoStyle="grid"
         grayscaleLogos={true}
         logos={[
-          { name: 'Stripe', logo: 'https://via.placeholder.com/120x40/1B5BFF/FFFFFF?text=Stripe' },
-          { name: 'Vercel', logo: 'https://via.placeholder.com/120x40/1B5BFF/FFFFFF?text=Vercel' },
-          { name: 'Linear', logo: 'https://via.placeholder.com/120x40/1B5BFF/FFFFFF?text=Linear' },
-          { name: 'Notion', logo: 'https://via.placeholder.com/120x40/1B5BFF/FFFFFF?text=Notion' },
-          { name: 'Figma', logo: 'https://via.placeholder.com/120x40/1B5BFF/FFFFFF?text=Figma' },
-          { name: 'GitHub', logo: 'https://via.placeholder.com/120x40/1B5BFF/FFFFFF?text=GitHub' },
+          { name: 'Stripe', logo: logoPlaceholder('Stripe') },
+          { name: 'Vercel', logo: logoPlaceholder('Vercel') },
+          { name: 'Linear', logo: logoPlaceholder('Linear') },
+          { name: 'Notion', logo: logoPlaceholder('Notion') },
+          { name: 'Figma', logo: logoPlaceholder('Figma') },
+          { name: 'GitHub', logo: logoPlaceholder('GitHub') },
         ]}
         background="subtle"
       />
@@ -38,10 +39,10 @@ export const previews = [
         layout="stacked"
         logoStyle="inline"
         logos={[
-          { name: 'Airbnb', logo: 'https://via.placeholder.com/100x32/1B5BFF/FFFFFF?text=Airbnb', href: '#' },
-          { name: 'Shopify', logo: 'https://via.placeholder.com/100x32/1B5BFF/FFFFFF?text=Shopify', href: '#' },
-          { name: 'Netflix', logo: 'https://via.placeholder.com/100x32/1B5BFF/FFFFFF?text=Netflix', href: '#' },
-          { name: 'Uber', logo: 'https://via.placeholder.com/100x32/1B5BFF/FFFFFF?text=Uber', href: '#' },
+          { name: 'Airbnb', logo: logoPlaceholder('Airbnb', 100, 32), href: '#' },
+          { name: 'Shopify', logo: logoPlaceholder('Shopify', 100, 32), href: '#' },
+          { name: 'Netflix', logo: logoPlaceholder('Netflix', 100, 32), href: '#' },
+          { name: 'Uber', logo: logoPlaceholder('Uber', 100, 32), href: '#' },
         ]}
         stats={[
           { value: '50K+', label: 'Active users' },
@@ -103,10 +104,10 @@ export const previews = [
         description="Join thousands of teams building with confidence"
         layout="side-by-side"
         logos={[
-          { name: 'Spotify', logo: 'https://via.placeholder.com/110x36/1B5BFF/FFFFFF?text=Spotify' },
-          { name: 'Slack', logo: 'https://via.placeholder.com/110x36/1B5BFF/FFFFFF?text=Slack' },
-          { name: 'Zoom', logo: 'https://via.placeholder.com/110x36/1B5BFF/FFFFFF?text=Zoom' },
-          { name: 'Atlassian', logo: 'https://via.placeholder.com/110x36/1B5BFF/FFFFFF?text=Atlassian' },
+          { name: 'Spotify', logo: logoPlaceholder('Spotify', 110, 36) },
+          { name: 'Slack', logo: logoPlaceholder('Slack', 110, 36) },
+          { name: 'Zoom', logo: logoPlaceholder('Zoom', 110, 36) },
+          { name: 'Atlassian', logo: logoPlaceholder('Atlassian', 110, 36) },
         ]}
         stats={[
           { value: '1M+', label: 'Components generated' },
@@ -144,9 +145,9 @@ export const previews = [
         title="Loved by developers worldwide"
         compact
         logos={[
-          { name: 'Discord', logo: 'https://via.placeholder.com/90x30/1B5BFF/FFFFFF?text=Discord' },
-          { name: 'Twitch', logo: 'https://via.placeholder.com/90x30/1B5BFF/FFFFFF?text=Twitch' },
-          { name: 'Reddit', logo: 'https://via.placeholder.com/90x30/1B5BFF/FFFFFF?text=Reddit' },
+          { name: 'Discord', logo: logoPlaceholder('Discord', 90, 30) },
+          { name: 'Twitch', logo: logoPlaceholder('Twitch', 90, 30) },
+          { name: 'Reddit', logo: logoPlaceholder('Reddit', 90, 30) },
         ]}
         stats={[
           { value: '10K+', label: 'GitHub stars' },
