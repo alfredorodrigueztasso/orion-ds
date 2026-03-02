@@ -1,6 +1,9 @@
 /**
  * Chip Component Stories
+ *
+ * Note: ESLint rules disabled for render() functions with hooks (valid Storybook pattern)
  */
+/* eslint-disable react-hooks/rules-of-hooks */
 
 import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
@@ -17,7 +20,15 @@ const meta: Meta<typeof Chip> = {
   argTypes: {
     variant: {
       control: "select",
-      options: ["default", "primary", "success", "warning", "error", "info"],
+      options: [
+        "default",
+        "primary",
+        "success",
+        "warning",
+        "error",
+        "info",
+        "inverse",
+      ],
     },
     size: {
       control: "radio",
@@ -298,7 +309,7 @@ export const FilterChips: Story = {
   },
 };
 
-export const AllVariants: Story = {
+export const AllVariantsWithInverse: Story = {
   render: () => (
     <div style={{ display: "flex", gap: "var(--spacing-2)", flexWrap: "wrap" }}>
       <Chip variant="default">Default</Chip>
@@ -307,6 +318,15 @@ export const AllVariants: Story = {
       <Chip variant="warning">Warning</Chip>
       <Chip variant="error">Error</Chip>
       <Chip variant="info">Info</Chip>
+      <div
+        style={{
+          backgroundColor: "#1a1a1a",
+          padding: "var(--spacing-2)",
+          borderRadius: "var(--radius-full)",
+        }}
+      >
+        <Chip variant="inverse">Inverse</Chip>
+      </div>
     </div>
   ),
 };

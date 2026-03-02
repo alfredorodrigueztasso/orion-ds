@@ -9,7 +9,7 @@ import type { HTMLAttributes, ReactNode } from "react";
 /**
  * Alert variants (status types)
  */
-export type AlertVariant = "success" | "error" | "warning" | "info";
+export type AlertVariant = "success" | "error" | "warning" | "info" | "inverse";
 
 /**
  * Alert component props

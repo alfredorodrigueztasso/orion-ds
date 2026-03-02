@@ -82,6 +82,32 @@
   border: 1px solid color-mix(in srgb, var(--status-info) 30%, transparent);
 }
 
+.inverse {
+  background: color-mix(in srgb, var(--color-neutral-0) 20%, transparent);
+  color: var(--color-neutral-0);
+  border: 1px solid color-mix(in srgb, var(--color-neutral-0) 20%, transparent);
+}
+
+/* ============================================================================
+ * CONTEXT: data-on-dark="true" — Dark background contexts
+ * (e.g. Hero variant="background")
+ *
+ * Maps default/primary/success/warning/error/info variants to inverse appearance automatically.
+ * This allows chips to inherit correct styling when inside dark backgrounds
+ * without requiring developers to manually switch to inverse variant.
+ * ============================================================================ */
+
+:global([data-on-dark="true"]) .default,
+:global([data-on-dark="true"]) .primary,
+:global([data-on-dark="true"]) .success,
+:global([data-on-dark="true"]) .warning,
+:global([data-on-dark="true"]) .error,
+:global([data-on-dark="true"]) .info {
+  background: color-mix(in srgb, var(--color-neutral-0) 20%, transparent);
+  color: var(--color-neutral-0);
+  border: 1px solid color-mix(in srgb, var(--color-neutral-0) 20%, transparent);
+}
+
 /* ============================================================================
  * STATES
  * ============================================================================ */

@@ -122,3 +122,29 @@
   border: 1px solid var(--status-info);
   color: var(--status-info);
 }
+
+/* Inverse variant — for dark/colored backgrounds (theme-invariant) */
+/* White text on semi-transparent white background */
+.inverse {
+  background: color-mix(in srgb, var(--color-neutral-0) 20%, transparent);
+  color: var(--color-neutral-0);
+  border: 1px solid color-mix(in srgb, var(--color-neutral-0) 20%, transparent);
+}
+
+/* ============================================================================
+ * CONTEXT: data-on-dark="true" — Dark background contexts
+ * (e.g. Hero variant="background")
+ *
+ * Maps success/error/warning/info variants to inverse appearance automatically.
+ * This allows alerts to inherit correct styling when inside dark backgrounds
+ * without requiring developers to manually switch to inverse variant.
+ * ============================================================================ */
+
+:global([data-on-dark="true"]) .success,
+:global([data-on-dark="true"]) .error,
+:global([data-on-dark="true"]) .warning,
+:global([data-on-dark="true"]) .info {
+  background: color-mix(in srgb, var(--color-neutral-0) 20%, transparent);
+  color: var(--color-neutral-0);
+  border: 1px solid color-mix(in srgb, var(--color-neutral-0) 20%, transparent);
+}

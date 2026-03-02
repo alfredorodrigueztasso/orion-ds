@@ -11,13 +11,17 @@ const meta = {
   argTypes: {
     variant: {
       control: "select",
-      options: ["info", "success", "warning", "error"],
+      options: ["info", "success", "warning", "error", "inverse"],
     },
   },
 } satisfies Meta<typeof Alert>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
+
+// ============================================================================
+// VARIANT STORIES (Individual Variants)
+// ============================================================================
 
 export const Info: Story = {
   args: {
@@ -47,6 +51,26 @@ export const Error: Story = {
   },
 };
 
+export const Inverse: Story = {
+  args: {
+    variant: "inverse",
+    children: "Inverse alert for dark backgrounds",
+  },
+  parameters: {
+    backgrounds: {
+      default: "dark",
+      values: [
+        { name: "dark", value: "#1a1a1a" },
+        { name: "light", value: "#ffffff" },
+      ],
+    },
+  },
+};
+
+// ============================================================================
+// COMBINATION STORIES
+// ============================================================================
+
 export const WithTitle: Story = {
   render: () => (
     <Alert variant="info">
@@ -66,7 +90,7 @@ export const LongMessage: Story = {
   },
 };
 
-export const AllVariants: Story = {
+export const AllVariantsWithInverse: Story = {
   render: () => (
     <div
       style={{
@@ -80,6 +104,15 @@ export const AllVariants: Story = {
       <Alert variant="success">This is a success alert</Alert>
       <Alert variant="warning">This is a warning alert</Alert>
       <Alert variant="error">This is an error alert</Alert>
+      <div
+        style={{
+          backgroundColor: "#1a1a1a",
+          padding: "var(--spacing-3)",
+          borderRadius: "var(--radius-control)",
+        }}
+      >
+        <Alert variant="inverse">Inverse alert for dark background</Alert>
+      </div>
     </div>
   ),
 };

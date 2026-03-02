@@ -15,7 +15,8 @@ export type ChipVariant =
   | "success"
   | "warning"
   | "error"
-  | "info";
+  | "info"
+  | "inverse";
 
 /**
  * Chip sizes
