@@ -20,6 +20,7 @@ const meta = {
         "warning",
         "info",
         "brand",
+        "inverse",
       ],
     },
     size: {
@@ -85,6 +86,22 @@ export const Brand: Story = {
   args: {
     variant: "brand",
     children: "Brand",
+  },
+};
+
+export const Inverse: Story = {
+  args: {
+    variant: "inverse",
+    children: "Inverse",
+  },
+  parameters: {
+    backgrounds: {
+      default: "dark",
+      values: [
+        { name: "dark", value: "#1a1a1a" },
+        { name: "light", value: "#ffffff" },
+      ],
+    },
   },
 };
 
@@ -159,6 +176,9 @@ export const WithDot: Story = {
       <Badge variant="secondary" dot>
         Secondary
       </Badge>
+      <Badge variant="inverse" dot>
+        Inverse
+      </Badge>
     </div>
   ),
 };
@@ -174,6 +194,30 @@ export const AllVariants: Story = {
       <Badge variant="warning">Warning</Badge>
       <Badge variant="info">Info</Badge>
       <Badge variant="brand">Brand</Badge>
+    </div>
+  ),
+};
+
+export const AllVariantsWithInverse: Story = {
+  render: () => (
+    <div style={{ display: "flex", gap: "var(--spacing-3)", flexWrap: "wrap" }}>
+      <Badge variant="primary">Primary</Badge>
+      <Badge variant="secondary">Secondary</Badge>
+      <Badge variant="neutral">Neutral</Badge>
+      <Badge variant="success">Success</Badge>
+      <Badge variant="error">Error</Badge>
+      <Badge variant="warning">Warning</Badge>
+      <Badge variant="info">Info</Badge>
+      <Badge variant="brand">Brand</Badge>
+      <div
+        style={{
+          backgroundColor: "#1a1a1a",
+          padding: "var(--spacing-2) var(--spacing-3)",
+          borderRadius: "var(--radius-full)",
+        }}
+      >
+        <Badge variant="inverse">Inverse</Badge>
+      </div>
     </div>
   ),
 };
