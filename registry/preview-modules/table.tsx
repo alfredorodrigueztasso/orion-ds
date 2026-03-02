@@ -18,7 +18,7 @@ export const previews = [
             key: 'status',
             header: 'Status',
             cell: (row: any) => (
-              <Badge variant={row.status === 'active' ? 'success' : 'neutral'}>{row.status}</Badge>
+              <Badge variant={row.status === 'active' ? 'success' : 'secondary'}>{row.status}</Badge>
             ),
           },
           {

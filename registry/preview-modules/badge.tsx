@@ -19,7 +19,10 @@ export const previews = [
         <Badge variant="warning">Warning</Badge>
         <Badge variant="error">Error</Badge>
         <Badge variant="info">Info</Badge>
-        <Badge variant="neutral">Neutral</Badge>
+        <Badge variant="brand">Brand</Badge>
+        <div style={{ backgroundColor: '#1a1a1a', padding: 'var(--spacing-2) var(--spacing-3)', borderRadius: 'var(--radius-full)' }}>
+          <Badge variant="inverse">Inverse</Badge>
+        </div>
       </div>
     ),
   },

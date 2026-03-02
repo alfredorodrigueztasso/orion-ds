@@ -14,7 +14,6 @@ const meta = {
       options: [
         "primary",
         "secondary",
-        "neutral",
         "success",
         "error",
         "warning",
@@ -48,13 +47,6 @@ export const Secondary: Story = {
   args: {
     variant: "secondary",
     children: "Secondary",
-  },
-};
-
-export const Neutral: Story = {
-  args: {
-    variant: "neutral",
-    children: "Neutral",
   },
 };
 
@@ -178,7 +170,7 @@ export const WithDot: Story = {
       <Badge variant="brand" dot>
         New
       </Badge>
-      <Badge variant="neutral" dot>
+      <Badge variant="secondary" dot>
         Draft
       </Badge>
       <Badge variant="primary" dot>
@@ -194,27 +186,11 @@ export const WithDot: Story = {
   ),
 };
 
-export const AllVariants: Story = {
-  render: () => (
-    <div style={{ display: "flex", gap: "var(--spacing-3)", flexWrap: "wrap" }}>
-      <Badge variant="primary">Primary</Badge>
-      <Badge variant="secondary">Secondary</Badge>
-      <Badge variant="neutral">Neutral</Badge>
-      <Badge variant="success">Success</Badge>
-      <Badge variant="error">Error</Badge>
-      <Badge variant="warning">Warning</Badge>
-      <Badge variant="info">Info</Badge>
-      <Badge variant="brand">Brand</Badge>
-    </div>
-  ),
-};
-
 export const AllVariantsWithInverse: Story = {
   render: () => (
     <div style={{ display: "flex", gap: "var(--spacing-3)", flexWrap: "wrap" }}>
       <Badge variant="primary">Primary</Badge>
       <Badge variant="secondary">Secondary</Badge>
-      <Badge variant="neutral">Neutral</Badge>
       <Badge variant="success">Success</Badge>
       <Badge variant="error">Error</Badge>
       <Badge variant="warning">Warning</Badge>

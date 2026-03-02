@@ -12,7 +12,6 @@ import type { HTMLAttributes, ReactNode } from "react";
 export type BadgeVariant =
   | "primary"
   | "secondary"
-  | "neutral"
   | "success"
   | "error"
   | "warning"
@@ -38,7 +37,7 @@ export type BadgeSize = "sm" | "md" | "lg";
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   /**
    * Badge visual variant
-   * @default 'neutral'
+   * @default 'secondary'
    */
   variant?: BadgeVariant;
 
