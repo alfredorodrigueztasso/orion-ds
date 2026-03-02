@@ -1,7 +1,7 @@
 'use client';
 
 import { Hero, Badge, Button } from '@/components/ClientComponents';
-import { Github, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 interface HomepageHeroProps {
@@ -35,7 +35,7 @@ export default function HomepageHero({
           Design System
         </>
       }
-      description="Build beautiful, consistent interfaces with zero visual drift. Token-governed components that eliminate UI hallucination."
+      description="Token-governed components that eliminate UI hallucination. Build consistent interfaces at scale — without visual drift."
       primaryAction={
         <Link href="/docs/getting-started">
           <Button
@@ -53,7 +53,7 @@ export default function HomepageHero({
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Button size="lg" variant="ghost" icon={<Github size={20} />}>
+          <Button size="lg" variant="ghost">
             GitHub
           </Button>
         </Link>
@@ -62,18 +62,20 @@ export default function HomepageHero({
         <div
           style={{
             display: 'flex',
-            gap: 'var(--spacing-6)',
-            color: 'var(--text-tertiary)',
-            fontSize: '0.875rem',
+            gap: 'var(--spacing-3)',
             justifyContent: 'center',
             flexWrap: 'wrap',
           }}
         >
-          <span>{componentCount} components</span>
-          <span>·</span>
-          <span>{sectionCount} sections</span>
-          <span>·</span>
-          <span>{templateCount} templates</span>
+          <Link href="/components">
+            <Badge variant="secondary" size="sm">↗ {componentCount} components</Badge>
+          </Link>
+          <Link href="/sections">
+            <Badge variant="secondary" size="sm">↗ {sectionCount} sections</Badge>
+          </Link>
+          <Link href="/templates">
+            <Badge variant="secondary" size="sm">↗ {templateCount} templates</Badge>
+          </Link>
         </div>
       }
     />

@@ -32,7 +32,7 @@
 import { forwardRef, useEffect } from "react";
 import type { HeroProps } from "./Hero.types";
 import { HeroHighlight } from "./HeroHighlight";
-import { Section, Container } from '@orion-ds/react';
+import { Section, Container } from "@orion-ds/react";
 import styles from "./Hero.module.css";
 
 // SVG placeholder for default media
@@ -78,6 +78,7 @@ const HeroBase = forwardRef<HTMLElement, HeroProps>(
       backgroundOverlay = 0.6,
       elevated = false,
       fullHeight = false,
+      spacing,
       className,
       ...rest
     },
@@ -107,6 +108,10 @@ const HeroBase = forwardRef<HTMLElement, HeroProps>(
     // Handle deprecated fullHeight prop
     const effectiveLayout = fullHeight ? "fullscreen" : layout;
 
+    // Calculate effective spacing: default 'xl' (128px) for all layouts
+    // Hero is designed for landing pages where generous padding is the standard
+    const effectiveSpacing = spacing ?? "xl";
+
     // Determine if we should show media
     const effectiveMedia =
       media || (showDefaultMedia ? <DefaultMediaPlaceholder /> : null);
@@ -129,7 +134,12 @@ const HeroBase = forwardRef<HTMLElement, HeroProps>(
       .join(" ");
 
     return (
-      <Section ref={ref} spacing="xl" className={classNames} {...rest}>
+      <Section
+        ref={ref}
+        spacing={effectiveSpacing}
+        className={classNames}
+        {...rest}
+      >
         {/* Background image for background variant */}
         {isBackgroundVariant && backgroundImage && (
           <>
@@ -154,7 +164,10 @@ const HeroBase = forwardRef<HTMLElement, HeroProps>(
             {description && <p className={styles.description}>{description}</p>}
 
             {hasActions && (
-              <div className={styles.actions}>
+              <div
+                className={styles.actions}
+                {...(isBackgroundVariant && { "data-on-dark": "true" })}
+              >
                 {primaryAction}
                 {secondaryAction}
               </div>

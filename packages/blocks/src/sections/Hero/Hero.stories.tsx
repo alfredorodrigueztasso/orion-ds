@@ -7,7 +7,7 @@ const meta = {
   title: "Sections/Marketing/Hero",
   component: Hero,
   parameters: {
-    layout: "fullscreen",
+    layout: "fullWidth",
   },
   tags: ["autodocs"],
   argTypes: {
@@ -18,6 +18,11 @@ const meta = {
     size: {
       control: "select",
       options: ["sm", "md", "lg"],
+    },
+    spacing: {
+      control: "select",
+      options: ["none", "sm", "md", "lg", "xl"],
+      description: "Vertical padding. Default is 'xl' (128px) for all layouts.",
     },
     mediaPosition: {
       control: "select",

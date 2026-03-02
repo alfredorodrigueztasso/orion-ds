@@ -3,7 +3,15 @@
 import { Features } from '@/components/ClientComponents';
 import { Zap, Package, Layers, Palette, Moon, Bot } from 'lucide-react';
 
-export default function HomepageFeaturesSection() {
+interface HomepageFeaturesSectionProps {
+  componentCount?: number;
+  sectionCount?: number;
+}
+
+export default function HomepageFeaturesSection({
+  componentCount = 39,
+  sectionCount = 41,
+}: HomepageFeaturesSectionProps) {
   return (
     <Features
       eyebrow="Why Orion"
@@ -22,13 +30,13 @@ export default function HomepageFeaturesSection() {
         },
         {
           icon: <Package size={24} />,
-          title: '39 Components',
+          title: `${componentCount} Components`,
           description:
             'Production-ready React components with full TypeScript support, built-in accessibility, and Storybook coverage.',
         },
         {
           icon: <Layers size={24} />,
-          title: '41 Sections',
+          title: `${sectionCount} Sections`,
           description:
             'Pre-built page blocks for hero sections, features grids, pricing tables, and more — ready to compose.',
         },

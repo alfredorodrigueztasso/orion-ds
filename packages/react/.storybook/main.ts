@@ -3,7 +3,11 @@ import { mergeConfig } from "vite";
 import path from "path";
 
 const config: StorybookConfig = {
-  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+  stories: [
+    "../src/**/*.mdx",
+    "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    "../../blocks/src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+  ],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
@@ -24,7 +28,15 @@ const config: StorybookConfig = {
         alias: {
           // Force Vite to use the workspace-local theme.css (with inlined generated tokens)
           // instead of the stale pnpm store copy
-          "@orion-ds/react/theme.css": path.resolve(__dirname, "../../theme.css"),
+          "@orion-ds/react/theme.css": path.resolve(
+            __dirname,
+            "../../theme.css",
+          ),
+          // Resolve @orion-ds/blocks to source for hot-reload (CSS modules handled by Vite)
+          "@orion-ds/blocks": path.resolve(
+            __dirname,
+            "../../packages/blocks/src",
+          ),
         },
       },
     });

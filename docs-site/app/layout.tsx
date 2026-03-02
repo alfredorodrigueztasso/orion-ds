@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import { Providers } from '@/components/Providers';
 import { DocsNavbar } from '@/components/DocsNavbar';
 import { DocsSidebar } from '@/components/DocsSidebar';
+import { MainWrapper } from '@/components/MainWrapper';
 import '@orion-ds/react/styles.css';
+import '@orion-ds/blocks/styles.css';
 import '../styles/globals.css';
 
 export const metadata: Metadata = {
@@ -53,9 +55,7 @@ export default function RootLayout({
           <DocsNavbar />
           <div style={{ display: 'flex' }}>
             <DocsSidebar />
-            <main className="main-content">
-              {children}
-            </main>
+            <MainWrapper>{children}</MainWrapper>
           </div>
         </Providers>
       </body>

@@ -149,162 +149,172 @@ const recentCommands: CommandItem[] = [
   fileCommands[0],
 ];
 
+const BasicCommandBarPreview = () => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div>
+      <Button onClick={() => setOpen(true)}>
+        Open Command Bar (⌘K)
+      </Button>
+      <CommandBar
+        open={open}
+        onOpenChange={setOpen}
+        commands={allCommands}
+      />
+    </div>
+  );
+};
+
+const WithRecentCommandsPreview = () => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div>
+      <Button onClick={() => setOpen(true)}>
+        Open Command Bar
+      </Button>
+      <CommandBar
+        open={open}
+        onOpenChange={setOpen}
+        commands={allCommands}
+        recentCommands={recentCommands}
+      />
+    </div>
+  );
+};
+
+const SearchFilteringPreview = () => {
+  const [open, setOpen] = useState(true);
+
+  const searchableCommands: CommandItem[] = [
+    {
+      id: 'email',
+      label: 'Send Email',
+      description: 'Compose a new email',
+      icon: <Mail size={18} />,
+      category: 'Communication',
+      keywords: ['mail', 'message', 'send'],
+      onSelect: () => console.log('Send email'),
+    },
+    {
+      id: 'notification',
+      label: 'Notifications',
+      description: 'View all notifications',
+      icon: <Bell size={18} />,
+      category: 'Communication',
+      keywords: ['alerts', 'updates'],
+      onSelect: () => console.log('View notifications'),
+    },
+    {
+      id: 'calendar',
+      label: 'Calendar',
+      description: 'Open your calendar',
+      icon: <Calendar size={18} />,
+      category: 'Productivity',
+      keywords: ['schedule', 'events', 'meetings'],
+      onSelect: () => console.log('Open calendar'),
+    },
+    ...allCommands,
+  ];
+
+  return (
+    <div>
+      <p style={{ marginBottom: '16px', color: 'var(--text-secondary)' }}>
+        Try searching for "mail", "project", or "save" to see filtering in action
+      </p>
+      <Button onClick={() => setOpen(true)}>
+        Open Command Bar
+      </Button>
+      <CommandBar
+        open={open}
+        onOpenChange={setOpen}
+        commands={searchableCommands}
+        placeholder="Search commands..."
+      />
+    </div>
+  );
+};
+
+const WithDisabledCommandsPreview = () => {
+  const [open, setOpen] = useState(false);
+
+  const commandsWithDisabled: CommandItem[] = [
+    ...navigationCommands,
+    {
+      id: 'export',
+      label: 'Export Project',
+      description: 'Export is currently unavailable',
+      icon: <Download size={18} />,
+      category: 'Actions',
+      disabled: true,
+      onSelect: () => {},
+    },
+    {
+      id: 'share',
+      label: 'Share',
+      description: 'Sharing requires premium plan',
+      icon: <Upload size={18} />,
+      category: 'Actions',
+      disabled: true,
+      onSelect: () => {},
+    },
+    ...fileCommands,
+  ];
+
+  return (
+    <div>
+      <Button onClick={() => setOpen(true)}>
+        Open Command Bar
+      </Button>
+      <CommandBar
+        open={open}
+        onOpenChange={setOpen}
+        commands={commandsWithDisabled}
+      />
+    </div>
+  );
+};
+
+const CustomEmptyStatePreview = () => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div>
+      <Button onClick={() => setOpen(true)}>
+        Open Command Bar
+      </Button>
+      <CommandBar
+        open={open}
+        onOpenChange={setOpen}
+        commands={[]}
+        emptyMessage="No commands available. Try adding some actions to your workspace."
+        placeholder="Type to search..."
+      />
+    </div>
+  );
+};
+
 export const previews = [
   {
     title: 'Basic Command Bar',
-    render: () => {
-      const [open, setOpen] = useState(false);
-
-      return (
-        <div>
-          <Button onClick={() => setOpen(true)}>
-            Open Command Bar (⌘K)
-          </Button>
-          <CommandBar
-            open={open}
-            onOpenChange={setOpen}
-            commands={allCommands}
-          />
-        </div>
-      );
-    },
+    render: BasicCommandBarPreview,
   },
   {
     title: 'With Recent Commands',
-    render: () => {
-      const [open, setOpen] = useState(false);
-
-      return (
-        <div>
-          <Button onClick={() => setOpen(true)}>
-            Open Command Bar
-          </Button>
-          <CommandBar
-            open={open}
-            onOpenChange={setOpen}
-            commands={allCommands}
-            recentCommands={recentCommands}
-          />
-        </div>
-      );
-    },
+    render: WithRecentCommandsPreview,
   },
   {
     title: 'Search Filtering',
-    render: () => {
-      const [open, setOpen] = useState(true);
-
-      const searchableCommands: CommandItem[] = [
-        {
-          id: 'email',
-          label: 'Send Email',
-          description: 'Compose a new email',
-          icon: <Mail size={18} />,
-          category: 'Communication',
-          keywords: ['mail', 'message', 'send'],
-          onSelect: () => console.log('Send email'),
-        },
-        {
-          id: 'notification',
-          label: 'Notifications',
-          description: 'View all notifications',
-          icon: <Bell size={18} />,
-          category: 'Communication',
-          keywords: ['alerts', 'updates'],
-          onSelect: () => console.log('View notifications'),
-        },
-        {
-          id: 'calendar',
-          label: 'Calendar',
-          description: 'Open your calendar',
-          icon: <Calendar size={18} />,
-          category: 'Productivity',
-          keywords: ['schedule', 'events', 'meetings'],
-          onSelect: () => console.log('Open calendar'),
-        },
-        ...allCommands,
-      ];
-
-      return (
-        <div>
-          <p style={{ marginBottom: '16px', color: 'var(--text-secondary)' }}>
-            Try searching for "mail", "project", or "save" to see filtering in action
-          </p>
-          <Button onClick={() => setOpen(true)}>
-            Open Command Bar
-          </Button>
-          <CommandBar
-            open={open}
-            onOpenChange={setOpen}
-            commands={searchableCommands}
-            placeholder="Search commands..."
-          />
-        </div>
-      );
-    },
+    render: SearchFilteringPreview,
   },
   {
     title: 'With Disabled Commands',
-    render: () => {
-      const [open, setOpen] = useState(false);
-
-      const commandsWithDisabled: CommandItem[] = [
-        ...navigationCommands,
-        {
-          id: 'export',
-          label: 'Export Project',
-          description: 'Export is currently unavailable',
-          icon: <Download size={18} />,
-          category: 'Actions',
-          disabled: true,
-          onSelect: () => {},
-        },
-        {
-          id: 'share',
-          label: 'Share',
-          description: 'Sharing requires premium plan',
-          icon: <Upload size={18} />,
-          category: 'Actions',
-          disabled: true,
-          onSelect: () => {},
-        },
-        ...fileCommands,
-      ];
-
-      return (
-        <div>
-          <Button onClick={() => setOpen(true)}>
-            Open Command Bar
-          </Button>
-          <CommandBar
-            open={open}
-            onOpenChange={setOpen}
-            commands={commandsWithDisabled}
-          />
-        </div>
-      );
-    },
+    render: WithDisabledCommandsPreview,
   },
   {
     title: 'Custom Empty State',
-    render: () => {
-      const [open, setOpen] = useState(false);
-
-      return (
-        <div>
-          <Button onClick={() => setOpen(true)}>
-            Open Command Bar
-          </Button>
-          <CommandBar
-            open={open}
-            onOpenChange={setOpen}
-            commands={[]}
-            emptyMessage="No commands available. Try adding some actions to your workspace."
-            placeholder="Type to search..."
-          />
-        </div>
-      );
-    },
+    render: CustomEmptyStatePreview,
   },
 ];
 

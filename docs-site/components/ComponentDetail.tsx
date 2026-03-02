@@ -1,5 +1,7 @@
+'use client';
+
 import { Card, Alert, Badge } from '@/components/ClientComponents';
-import CodeBlock from '@/components/CodeBlock';
+import CodeBlockSimple from '@/components/CodeBlockSimple';
 import PropsTable from '@/components/PropsTable';
 import PreviewBrandModeBar from '@/components/PreviewBrandModeBar';
 import PackageManagerTabs from '@/components/PackageManagerTabs';
@@ -33,7 +35,7 @@ export default function ComponentDetail({ component }: ComponentDetailProps) {
             <h3 style={{ margin: 0, fontSize: '0.95rem' }}>Using CLI</h3>
           </Card.Header>
           <Card.Body style={{ padding: 0 }}>
-            <CodeBlock code={`npx @orion-ds/cli add ${component.name}`} language="bash" />
+            <CodeBlockSimple code={`npx @orion-ds/cli add ${component.name}`} language="bash" />
           </Card.Body>
         </Card>
 
@@ -64,7 +66,7 @@ export default function ComponentDetail({ component }: ComponentDetailProps) {
               <h3 style={{ margin: 0, fontSize: '0.95rem' }}>Basic Example</h3>
             </Card.Header>
             <Card.Body style={{ padding: 0 }}>
-              <CodeBlock
+              <CodeBlockSimple
                 code={`${component.import}${
                   component.cssImport ? `\n${component.cssImport}` : ''
                 }\n\nexport default function Example() {\n  return <${component.title} />;\n}`}
@@ -82,7 +84,7 @@ export default function ComponentDetail({ component }: ComponentDetailProps) {
           <ExpandableExamples
             examples={component.examples.map((example: any) => ({
               title: example.title,
-              codeBlock: <CodeBlock code={example.code} language="tsx" />,
+              codeBlock: <CodeBlockSimple code={example.code} language="tsx" />,
             }))}
           />
         </section>

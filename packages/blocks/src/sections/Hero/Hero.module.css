@@ -20,6 +20,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-12);
+  padding-left: var(--spacing-6);
+  padding-right: var(--spacing-6);
 }
 
 .content {
@@ -190,8 +192,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
-  margin: 0;
   width: 100vw;
   margin-left: calc(-50vw + 50%); /* Break out of container */
 }
@@ -416,6 +416,12 @@
     & > * {
       width: 100%;
     }
+  }
+
+  /* Responsive container padding (reduce on mobile) */
+  .container {
+    padding-left: var(--spacing-4);
+    padding-right: var(--spacing-4);
   }
 
   /* Fullscreen on mobile */

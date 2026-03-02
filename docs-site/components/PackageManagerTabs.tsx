@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Tabs } from '@/components/ClientComponents';
-import CodeBlock from './CodeBlock';
+import CodeBlockSimple from './CodeBlockSimple';
 
 type PackageManager = 'pnpm' | 'npm' | 'yarn';
 
@@ -41,7 +40,7 @@ export default function PackageManagerTabs({ packageName }: PackageManagerTabsPr
 
   if (!mounted) {
     // Avoid hydration mismatch
-    return <CodeBlock code={getCommand('pnpm', packageName)} language="bash" />;
+    return <CodeBlockSimple code={getCommand('pnpm', packageName)} language="bash" />;
   }
 
   return (
@@ -67,7 +66,7 @@ export default function PackageManagerTabs({ packageName }: PackageManagerTabsPr
           </button>
         ))}
       </div>
-      <CodeBlock code={getCommand(selectedPM, packageName)} language="bash" />
+      <CodeBlockSimple code={getCommand(selectedPM, packageName)} language="bash" />
     </div>
   );
 }

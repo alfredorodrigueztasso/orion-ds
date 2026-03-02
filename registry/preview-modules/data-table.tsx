@@ -59,24 +59,26 @@ const sampleUsers: User[] = [
   },
 ];
 
+const BasicTablePreview = () => (
+  <DataTable
+    columns={[
+      { key: 'name', header: 'Name', sortable: true },
+      { key: 'email', header: 'Email' },
+      { key: 'role', header: 'Role', sortable: true },
+      {
+        key: 'status',
+        header: 'Status',
+        render: (value) => <Badge variant={value === 'active' ? 'success' : 'default'}>{value as string}</Badge>,
+      },
+    ]}
+    data={sampleUsers}
+  />
+);
+
 export const previews = [
   {
     title: 'Basic Table',
-    render: () => (
-      <DataTable
-        columns={[
-          { key: 'name', header: 'Name', sortable: true },
-          { key: 'email', header: 'Email' },
-          { key: 'role', header: 'Role', sortable: true },
-          {
-            key: 'status',
-            header: 'Status',
-            render: (value) => <Badge variant={value === 'active' ? 'success' : 'default'}>{value as string}</Badge>,
-          },
-        ]}
-        data={sampleUsers}
-      />
-    ),
+    render: BasicTablePreview,
   },
   {
     title: 'With Search and Sorting',

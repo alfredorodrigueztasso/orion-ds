@@ -2,7 +2,9 @@ import { getRegistryMetadata } from '@/lib/registry';
 import ComponentShowcaseTabs from '@/components/ComponentShowcaseTabs';
 import HomepageHero from '@/components/HomepageHero';
 import HomepageInstall from '@/components/HomepageInstall';
+import HomepageLogoCloud from '@/components/HomepageLogoCloud';
 import HomepageFeaturesSection from '@/components/HomepageFeaturesSection';
+import HomepageTestimonials from '@/components/HomepageTestimonials';
 import HomepageStats from '@/components/HomepageStats';
 import HomepageCTA from '@/components/HomepageCTA';
 
@@ -19,6 +21,8 @@ export default async function HomePage() {
 
       <HomepageInstall />
 
+      <HomepageLogoCloud />
+
       {/* Component Showcase - Main Visual Section */}
       <section
         style={{
@@ -32,7 +36,12 @@ export default async function HomePage() {
         <ComponentShowcaseTabs />
       </section>
 
-      <HomepageFeaturesSection />
+      <HomepageFeaturesSection
+        componentCount={metadata.componentCount}
+        sectionCount={metadata.sectionCount}
+      />
+
+      <HomepageTestimonials />
 
       <HomepageStats
         counts={{

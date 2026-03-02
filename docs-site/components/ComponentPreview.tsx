@@ -10,7 +10,7 @@ interface ComponentPreviewProps {
 
 interface PreviewModule {
   title: string;
-  render: () => React.ReactNode;
+  render: React.ComponentType;
 }
 
 export default function ComponentPreview({ componentName, title }: ComponentPreviewProps) {
@@ -55,16 +55,19 @@ export default function ComponentPreview({ componentName, title }: ComponentPrev
     </div>
   ) : previews.length > 0 ? (
     <div style={{ display: 'grid', gap: 'var(--spacing-6)' }}>
-      {previews.map((preview, idx) => (
-        <div key={idx}>
-          {preview.title && (
-            <h4 style={{ marginBottom: 'var(--spacing-3)', color: 'var(--text-secondary)', fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-              {preview.title}
-            </h4>
-          )}
-          {preview.render()}
-        </div>
-      ))}
+      {previews.map((preview, idx) => {
+        const PreviewComponent = preview.render;
+        return (
+          <div key={idx}>
+            {preview.title && (
+              <h4 style={{ marginBottom: 'var(--spacing-3)', color: 'var(--text-secondary)', fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                {preview.title}
+              </h4>
+            )}
+            <PreviewComponent />
+          </div>
+        );
+      })}
     </div>
   ) : (
     <Alert variant="info">

@@ -1,4 +1,4 @@
-import { codeToHtml } from 'shiki';
+import { createHighlighter, type Highlighter } from 'shiki';
 import CopyButton from './CopyButton';
 
 interface CodeBlockProps {
@@ -6,11 +6,25 @@ interface CodeBlockProps {
   language?: string;
 }
 
+// Singleton: initialize Shiki once per process, reuse across requests
+let _highlighter: Promise<Highlighter> | null = null;
+
+function getHighlighter() {
+  if (!_highlighter) {
+    _highlighter = createHighlighter({
+      themes: ['github-dark', 'github-light'],
+      langs: ['tsx', 'typescript', 'javascript', 'bash', 'json', 'css', 'html'],
+    });
+  }
+  return _highlighter;
+}
+
 export default async function CodeBlock({ code, language = 'tsx' }: CodeBlockProps) {
   let highlightedHtml = '';
 
   try {
-    highlightedHtml = await codeToHtml(code, {
+    const hl = await getHighlighter();
+    highlightedHtml = hl.codeToHtml(code, {
       lang: language,
       themes: {
         dark: 'github-dark',

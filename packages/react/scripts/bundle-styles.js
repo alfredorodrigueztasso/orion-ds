@@ -25,6 +25,7 @@ const DIST_DIR = resolve(__dirname, '../dist');
 
 // Paths to source CSS files
 const THEME_CSS_PATH = resolve(__dirname, '../assets/theme.css');
+const MARKER_CSS_PATH = resolve(__dirname, '../src/styles/marker.css');
 const OUTPUT_PATH = resolve(DIST_DIR, 'styles.css');
 
 function collectComponentStyles(dirPath) {
@@ -76,6 +77,7 @@ function bundleStyles() {
 
   // Read source files
   const themeCssRaw = readFileSync(THEME_CSS_PATH, 'utf-8');
+  const markerCss = existsSync(MARKER_CSS_PATH) ? readFileSync(MARKER_CSS_PATH, 'utf-8') : '';
   const reactCss = componentCssFiles.map(file => readFileSync(file, 'utf-8')).join('\n');
 
   // Resolve @import url('tokens/generated.css') by inlining its contents
@@ -109,6 +111,12 @@ function bundleStyles() {
    ═══════════════════════════════════════════════════════════════════════════ */
 
 ${themeCss}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Styles Detection Marker
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+${markerCss}
 
 /* ═══════════════════════════════════════════════════════════════════════════
    @orion-ds/react - Component Styles (react.css)

@@ -5,6 +5,7 @@
  */
 
 import type { HTMLAttributes, ReactNode } from "react";
+import type { SectionSpacing } from "@orion-ds/react";
 
 /**
  * Hero text alignment
@@ -176,4 +177,15 @@ export interface HeroProps extends Omit<HTMLAttributes<HTMLElement>, "title"> {
    * @default false
    */
   fullHeight?: boolean;
+
+  /**
+   * Vertical padding of the Hero section.
+   * Hero is designed for landing pages where generous padding (128px) is the standard.
+   * @default 'xl' (128px) — all layouts default to generous spacing
+   * @example
+   * - `<Hero />` → 128px padding (standard)
+   * - `<Hero spacing="none" />` → 0px padding (if you want to override)
+   * - `<Hero spacing="md" />` → 64px padding (custom spacing)
+   */
+  spacing?: SectionSpacing;
 }

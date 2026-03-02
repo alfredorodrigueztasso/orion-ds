@@ -120,6 +120,13 @@ body {
   color: var(--text-secondary);
 }
 
+/* Homepage — full-width layout for Hero and blocks */
+.home-content {
+  flex: 1;
+  width: 100%;
+  overflow: hidden;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .main-content {

@@ -66,7 +66,7 @@ export default async function SectionsListPage() {
                 href={`/sections/${section.name}`}
                 style={{ textDecoration: 'none' }}
               >
-                <Card interactive variant="outlined" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                <Card variant="outlined" style={{ height: '100%', display: 'flex', flexDirection: 'column', cursor: 'pointer' }}>
                   {/* Preview */}
                   <div style={{
                     height: '240px',
@@ -92,7 +92,7 @@ export default async function SectionsListPage() {
                   </div>
 
                   {/* Info */}
-                  <Card.Body style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 'var(--spacing-2)' }}>
+                  <div style={{ padding: 'var(--spacing-4)', flex: 1, display: 'flex', flexDirection: 'column', gap: 'var(--spacing-2)' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', gap: 'var(--spacing-2)' }}>
                       <h3 style={{ margin: 0, fontSize: '1.125rem', fontWeight: 600 }}>
                         {section.title}
@@ -120,7 +120,7 @@ export default async function SectionsListPage() {
                     }}>
                       npx @orion-ds/cli add {section.name}
                     </code>
-                  </Card.Body>
+                  </div>
                 </Card>
               </Link>
             ))}

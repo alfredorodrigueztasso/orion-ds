@@ -72,88 +72,101 @@ const sampleActivities = [
   },
 ];
 
+// Preview components - proper functional components for React hooks
+const BasicActivityFeedPreview = () => (
+  <div style={{ maxWidth: '600px' }}>
+    <ActivityFeed activities={sampleActivities.slice(0, 4)} />
+  </div>
+);
+
+const WithFiltersPreview = () => {
+  const [activeFilter, setActiveFilter] = useState('all');
+
+  const filters = [
+    { label: 'All Activity', value: 'all', count: 24 },
+    { label: 'Comments', value: 'comment', count: 8 },
+    { label: 'Updates', value: 'update', count: 12 },
+    { label: 'Completed', value: 'complete', count: 4 },
+  ];
+
+  return (
+    <div style={{ maxWidth: '600px' }}>
+      <ActivityFeed
+        activities={sampleActivities}
+        showFilters
+        filters={filters}
+        activeFilter={activeFilter}
+        onFilterChange={setActiveFilter}
+      />
+    </div>
+  );
+};
+
+const CompactModePreview = () => (
+  <div style={{ maxWidth: '600px' }}>
+    <ActivityFeed
+      activities={sampleActivities}
+      compact
+    />
+  </div>
+);
+
+const WithLoadMorePreview = () => {
+  const [loadedCount, setLoadedCount] = useState(3);
+
+  return (
+    <div style={{ maxWidth: '600px' }}>
+      <ActivityFeed
+        activities={sampleActivities.slice(0, loadedCount)}
+        hasMore={loadedCount < sampleActivities.length}
+        onLoadMore={() => setLoadedCount(prev => Math.min(prev + 2, sampleActivities.length))}
+      />
+    </div>
+  );
+};
+
+const LoadingStatePreview = () => (
+  <div style={{ maxWidth: '600px' }}>
+    <ActivityFeed
+      activities={sampleActivities.slice(0, 2)}
+      loading
+    />
+  </div>
+);
+
+const EmptyStatePreview = () => (
+  <div style={{ maxWidth: '600px' }}>
+    <ActivityFeed
+      activities={[]}
+      emptyMessage="No recent activity. Start by creating a task or commenting on a project."
+    />
+  </div>
+);
+
 export const previews = [
   {
     title: 'Basic Activity Feed',
-    render: () => (
-      <div style={{ maxWidth: '600px' }}>
-        <ActivityFeed activities={sampleActivities.slice(0, 4)} />
-      </div>
-    ),
+    render: BasicActivityFeedPreview,
   },
   {
     title: 'With Filters',
-    render: () => {
-      const [activeFilter, setActiveFilter] = useState('all');
-
-      const filters = [
-        { label: 'All Activity', value: 'all', count: 24 },
-        { label: 'Comments', value: 'comment', count: 8 },
-        { label: 'Updates', value: 'update', count: 12 },
-        { label: 'Completed', value: 'complete', count: 4 },
-      ];
-
-      return (
-        <div style={{ maxWidth: '600px' }}>
-          <ActivityFeed
-            activities={sampleActivities}
-            showFilters
-            filters={filters}
-            activeFilter={activeFilter}
-            onFilterChange={setActiveFilter}
-          />
-        </div>
-      );
-    },
+    render: WithFiltersPreview,
   },
   {
     title: 'Compact Mode',
-    render: () => (
-      <div style={{ maxWidth: '600px' }}>
-        <ActivityFeed
-          activities={sampleActivities}
-          compact
-        />
-      </div>
-    ),
+    render: CompactModePreview,
   },
   {
     title: 'With Load More',
-    render: () => {
-      const [loadedCount, setLoadedCount] = useState(3);
-
-      return (
-        <div style={{ maxWidth: '600px' }}>
-          <ActivityFeed
-            activities={sampleActivities.slice(0, loadedCount)}
-            hasMore={loadedCount < sampleActivities.length}
-            onLoadMore={() => setLoadedCount(prev => Math.min(prev + 2, sampleActivities.length))}
-          />
-        </div>
-      );
-    },
+    render: WithLoadMorePreview,
   },
   {
     title: 'Loading State',
-    render: () => (
-      <div style={{ maxWidth: '600px' }}>
-        <ActivityFeed
-          activities={sampleActivities.slice(0, 2)}
-          loading
-        />
-      </div>
-    ),
+    render: LoadingStatePreview,
   },
   {
     title: 'Empty State',
-    render: () => (
-      <div style={{ maxWidth: '600px' }}>
-        <ActivityFeed
-          activities={[]}
-          emptyMessage="No recent activity. Start by creating a task or commenting on a project."
-        />
-      </div>
-    ),
+    render: EmptyStatePreview,
   },
 ];
 
