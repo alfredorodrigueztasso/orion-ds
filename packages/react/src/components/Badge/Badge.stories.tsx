@@ -33,6 +33,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+// ============================================================================
+// VARIANT STORIES (Individual Variants)
+// ============================================================================
+
 export const Primary: Story = {
   args: {
     variant: "primary",
@@ -105,7 +109,10 @@ export const Inverse: Story = {
   },
 };
 
-// Sizes
+// ============================================================================
+// SIZE STORIES (Size Variants)
+// ============================================================================
+
 export const Small: Story = {
   args: {
     size: "sm",
@@ -138,6 +145,10 @@ export const AllSizes: Story = {
     </div>
   ),
 };
+
+// ============================================================================
+// COMBINATION STORIES (Multiple Variants & Features)
+// ============================================================================
 
 export const WithNumbers: Story = {
   render: () => (
