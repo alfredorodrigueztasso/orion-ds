@@ -15,6 +15,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+/* ============================================================================
+ * VARIANT STORIES
+ * ============================================================================ */
+
 export const Default: Story = {
   render: () => (
     <Card style={{ width: "400px" }}>
@@ -116,7 +120,10 @@ export const WithBadge: Story = {
   ),
 };
 
-// Image Card Stories
+/* ============================================================================
+ * IMAGE CARD STORIES
+ * ============================================================================ */
+
 export const ImageCard: Story = {
   render: () => (
     <Card
@@ -261,52 +268,102 @@ export const ImageCardGrid: Story = {
   ),
 };
 
-export const AllVariants: Story = {
+/* ============================================================================
+ * COMBINATION STORIES
+ * ============================================================================ */
+
+export const AllVariantsWithInverse: Story = {
   render: () => (
     <div
       style={{
         display: "flex",
-        gap: "var(--spacing-4)",
-        flexWrap: "wrap",
-        alignItems: "flex-start",
+        flexDirection: "column",
+        gap: "var(--spacing-6)",
       }}
     >
-      <Card variant="base" style={{ width: "220px" }}>
-        <Card.Header>Base</Card.Header>
-        <Card.Body>Standard card style</Card.Body>
-      </Card>
-      <Card variant="elevated" style={{ width: "220px" }}>
-        <Card.Header>Elevated</Card.Header>
-        <Card.Body>With shadow</Card.Body>
-      </Card>
-      <Card variant="outlined" style={{ width: "220px" }}>
-        <Card.Header>Outlined</Card.Header>
-        <Card.Body>With border</Card.Body>
-      </Card>
       <div
         style={{
-          padding: "var(--spacing-4)",
-          borderRadius: "var(--radius-container)",
-          background:
-            "linear-gradient(135deg, var(--color-brand-400), var(--color-brand-600))",
+          display: "flex",
+          gap: "var(--spacing-4)",
+          flexWrap: "wrap",
+          alignItems: "flex-start",
         }}
       >
-        <Card variant="glass" style={{ width: "220px" }}>
-          <Card.Header>Glass</Card.Header>
-          <Card.Body>Glassmorphism effect</Card.Body>
+        <Card variant="base" style={{ width: "220px" }}>
+          <Card.Header>Base</Card.Header>
+          <Card.Body>Standard card style</Card.Body>
+        </Card>
+        <Card variant="elevated" style={{ width: "220px" }}>
+          <Card.Header>Elevated</Card.Header>
+          <Card.Body>With shadow</Card.Body>
+        </Card>
+        <Card variant="outlined" style={{ width: "220px" }}>
+          <Card.Header>Outlined</Card.Header>
+          <Card.Body>With border</Card.Body>
+        </Card>
+        <div
+          style={{
+            padding: "var(--spacing-4)",
+            borderRadius: "var(--radius-container)",
+            background:
+              "linear-gradient(135deg, var(--color-brand-400), var(--color-brand-600))",
+          }}
+        >
+          <Card variant="glass" style={{ width: "220px" }}>
+            <Card.Header>Glass</Card.Header>
+            <Card.Body>Glassmorphism effect</Card.Body>
+          </Card>
+        </div>
+        <Card
+          variant="image"
+          imageUrl="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400"
+          imagePosition="bottom"
+          style={{ width: "220px" }}
+        >
+          <Card.ImageContent>
+            <Card.ImageTitle>Image</Card.ImageTitle>
+            <Card.ImageDescription>With background image</Card.ImageDescription>
+          </Card.ImageContent>
         </Card>
       </div>
-      <Card
-        variant="image"
-        imageUrl="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400"
-        imagePosition="bottom"
-        style={{ width: "220px" }}
+      <div
+        style={{
+          padding: "var(--spacing-6)",
+          borderRadius: "var(--radius-container)",
+          background:
+            "linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7))",
+        }}
       >
-        <Card.ImageContent>
-          <Card.ImageTitle>Image</Card.ImageTitle>
-          <Card.ImageDescription>With background image</Card.ImageDescription>
-        </Card.ImageContent>
-      </Card>
+        <h3
+          style={{
+            color: "var(--color-neutral-0)",
+            marginBottom: "var(--spacing-4)",
+          }}
+        >
+          Inverse Variant (on dark background)
+        </h3>
+        <div
+          style={{
+            display: "flex",
+            gap: "var(--spacing-4)",
+            flexWrap: "wrap",
+            alignItems: "flex-start",
+          }}
+        >
+          <Card variant="inverse" style={{ width: "220px" }}>
+            <Card.Header>Inverse</Card.Header>
+            <Card.Body>For dark backgrounds</Card.Body>
+          </Card>
+          <Card variant="base" style={{ width: "220px" }}>
+            <Card.Header>Base (Auto-switch)</Card.Header>
+            <Card.Body>Becomes inverse on dark</Card.Body>
+          </Card>
+          <Card variant="elevated" style={{ width: "220px" }}>
+            <Card.Header>Elevated (Auto-switch)</Card.Header>
+            <Card.Body>Becomes inverse on dark</Card.Body>
+          </Card>
+        </div>
+      </div>
     </div>
   ),
 };

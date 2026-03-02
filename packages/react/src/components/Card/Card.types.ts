@@ -9,7 +9,13 @@ import type { HTMLAttributes, ReactNode } from "react";
 /**
  * Card visual variants
  */
-export type CardVariant = "base" | "glass" | "elevated" | "outlined" | "image";
+export type CardVariant =
+  | "base"
+  | "glass"
+  | "elevated"
+  | "outlined"
+  | "image"
+  | "inverse";
 
 /**
  * Image card content position

@@ -54,6 +54,14 @@
   aspect-ratio: 16 / 9;
 }
 
+/* Inverse variant — for dark/colored backgrounds (theme-invariant) */
+/* White text on semi-transparent white background */
+.inverse {
+  background: color-mix(in srgb, var(--color-neutral-0) 20%, transparent);
+  color: var(--color-neutral-0);
+  border: 1px solid color-mix(in srgb, var(--color-neutral-0) 20%, transparent);
+}
+
 /* Gradient overlay for readability */
 .imageOverlay {
   position: absolute;
@@ -135,6 +143,24 @@
   letter-spacing: 0.02em;
   text-transform: uppercase;
   text-shadow: 0 1px 2px var(--overlay-dark-heavy);
+}
+
+/* ============================================================================
+ * CONTEXT: data-on-dark="true" — Dark background contexts
+ * (e.g. Hero variant="background")
+ *
+ * Maps base/glass/elevated/outlined variants to inverse appearance automatically.
+ * This allows cards to inherit correct styling when inside dark backgrounds
+ * without requiring developers to manually switch to inverse variant.
+ * ============================================================================ */
+
+:global([data-on-dark="true"]) .base,
+:global([data-on-dark="true"]) .glass,
+:global([data-on-dark="true"]) .elevated,
+:global([data-on-dark="true"]) .outlined {
+  background: color-mix(in srgb, var(--color-neutral-0) 20%, transparent);
+  color: var(--color-neutral-0);
+  border: 1px solid color-mix(in srgb, var(--color-neutral-0) 20%, transparent);
 }
 
 /* ============================================================================
