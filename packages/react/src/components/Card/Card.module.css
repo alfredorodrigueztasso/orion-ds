@@ -62,6 +62,13 @@
   border: 1px solid color-mix(in srgb, var(--color-neutral-0) 20%, transparent);
 }
 
+/* Inverse variant text elements */
+.inverse.header,
+.inverse.body,
+.inverse.footer {
+  color: var(--color-neutral-0);
+}
+
 /* Gradient overlay for readability */
 .imageOverlay {
   position: absolute;
@@ -161,6 +168,22 @@
   background: color-mix(in srgb, var(--color-neutral-0) 20%, transparent);
   color: var(--color-neutral-0);
   border: 1px solid color-mix(in srgb, var(--color-neutral-0) 20%, transparent);
+}
+
+/* Context text elements on dark backgrounds */
+:global([data-on-dark="true"]) .base .header,
+:global([data-on-dark="true"]) .base .body,
+:global([data-on-dark="true"]) .base .footer,
+:global([data-on-dark="true"]) .glass .header,
+:global([data-on-dark="true"]) .glass .body,
+:global([data-on-dark="true"]) .glass .footer,
+:global([data-on-dark="true"]) .elevated .header,
+:global([data-on-dark="true"]) .elevated .body,
+:global([data-on-dark="true"]) .elevated .footer,
+:global([data-on-dark="true"]) .outlined .header,
+:global([data-on-dark="true"]) .outlined .body,
+:global([data-on-dark="true"]) .outlined .footer {
+  color: var(--color-neutral-0);
 }
 
 /* ============================================================================
