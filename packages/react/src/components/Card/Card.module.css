@@ -63,9 +63,9 @@
 }
 
 /* Inverse variant text elements */
-.inverse.header,
-.inverse.body,
-.inverse.footer {
+.inverse .header,
+.inverse .body,
+.inverse .footer {
   color: var(--color-neutral-0);
 }
 
