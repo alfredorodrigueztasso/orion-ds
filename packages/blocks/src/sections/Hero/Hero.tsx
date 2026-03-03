@@ -160,7 +160,7 @@ const HeroBase = forwardRef<HTMLElement, HeroProps>(
             {badge && (
               <div
                 className={styles.badge}
-                {...(isBackgroundVariant && { "data-on-dark": "true" })}
+                {...(isBackgroundVariant && { "data-dark-bg": "true" })}
               >
                 {typeof badge === "string" ? (
                   <Badge variant="brand" size="lg">
@@ -179,7 +179,7 @@ const HeroBase = forwardRef<HTMLElement, HeroProps>(
             {hasActions && (
               <div
                 className={styles.actions}
-                {...(isBackgroundVariant && { "data-on-dark": "true" })}
+                {...(isBackgroundVariant && { "data-dark-bg": "true" })}
               >
                 {primaryAction}
                 {secondaryAction}

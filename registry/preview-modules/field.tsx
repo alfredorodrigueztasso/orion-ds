@@ -54,7 +54,7 @@ export const previews = [
         <p style={{ color: 'var(--color-neutral-0)', marginBottom: 'var(--spacing-4)' }}>
           Fields automatically adapt for dark backgrounds
         </p>
-        <div style={{ display: 'grid', gap: 'var(--spacing-4)', maxWidth: '400px' }} data-on-dark="true">
+        <div style={{ display: 'grid', gap: 'var(--spacing-4)', maxWidth: '400px' }} data-dark-bg="true">
           <Field label="Email" type="email" placeholder="you@example.com" />
           <Field label="Password" type="password" placeholder="Enter password" />
           <Field

@@ -113,7 +113,7 @@
 }
 
 /* ============================================================================
- * CONTEXT: data-on-dark="true" — Dark background contexts
+ * CONTEXT: data-dark-bg="true" — Dark background contexts
  * (e.g. Hero variant="background")
  *
  * Maps brand/secondary variants to inverse appearance automatically.
@@ -121,8 +121,8 @@
  * without requiring developers to manually switch to inverse variant.
  * ============================================================================ */
 
-:global([data-on-dark="true"]) .brand,
-:global([data-on-dark="true"]) .secondary {
+:global([data-dark-bg="true"]) .brand,
+:global([data-dark-bg="true"]) .secondary {
   background: color-mix(in srgb, var(--color-neutral-0) 20%, transparent);
   color: var(--color-neutral-0);
   border: 1px solid color-mix(in srgb, var(--color-neutral-0) 20%, transparent);

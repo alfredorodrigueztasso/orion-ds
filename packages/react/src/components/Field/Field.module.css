@@ -311,26 +311,26 @@
 }
 
 /* ============================================================================
- * CONTEXT: data-on-dark="true" — Dark background contexts
+ * CONTEXT: data-dark-bg="true" — Dark background contexts
  * (e.g. Hero variant="background")
  *
  * Makes Field visible on dark backgrounds without needing variants.
  * Label, input border, and text automatically adapt for readability.
  * ============================================================================ */
 
-:global([data-on-dark="true"]) .label {
+:global([data-dark-bg="true"]) .label {
   color: var(--color-neutral-0);
 }
 
-:global([data-on-dark="true"]) .optional {
+:global([data-dark-bg="true"]) .optional {
   color: var(--color-neutral-200);
 }
 
-:global([data-on-dark="true"]) .required {
+:global([data-dark-bg="true"]) .required {
   color: var(--status-error);
 }
 
-:global([data-on-dark="true"]) .input {
+:global([data-dark-bg="true"]) .input {
   background: color-mix(in srgb, var(--color-neutral-0) 15%, transparent);
   border-color: color-mix(in srgb, var(--color-neutral-0) 40%, transparent);
   color: var(--color-neutral-0);
@@ -374,7 +374,7 @@
   }
 }
 
-:global([data-on-dark="true"]) .error .input {
+:global([data-dark-bg="true"]) .error .input {
   border-color: var(--status-error);
 
   &:focus {
@@ -390,30 +390,30 @@
   }
 }
 
-:global([data-on-dark="true"]) .leftIcon,
-:global([data-on-dark="true"]) .rightIcon {
+:global([data-dark-bg="true"]) .leftIcon,
+:global([data-dark-bg="true"]) .rightIcon {
   color: var(--color-neutral-300);
 }
 
-:global([data-on-dark="true"]) .rightIconInteractive button,
-:global([data-on-dark="true"]) .rightIconInteractive [role="button"] {
+:global([data-dark-bg="true"]) .rightIconInteractive button,
+:global([data-dark-bg="true"]) .rightIconInteractive [role="button"] {
   color: var(--color-neutral-300);
 }
 
-:global([data-on-dark="true"]) .rightIconInteractive button:hover,
-:global([data-on-dark="true"]) .rightIconInteractive [role="button"]:hover {
+:global([data-dark-bg="true"]) .rightIconInteractive button:hover,
+:global([data-dark-bg="true"]) .rightIconInteractive [role="button"]:hover {
   color: var(--color-neutral-0);
 }
 
-:global([data-on-dark="true"]) .helperText {
+:global([data-dark-bg="true"]) .helperText {
   color: var(--color-neutral-300);
 }
 
-:global([data-on-dark="true"]) .errorMessage {
+:global([data-dark-bg="true"]) .errorMessage {
   color: var(--status-error);
 }
 
-:global([data-on-dark="true"]) .errorIconInline {
+:global([data-dark-bg="true"]) .errorIconInline {
   color: var(--status-error);
 }
 

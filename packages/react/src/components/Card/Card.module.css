@@ -153,7 +153,7 @@
 }
 
 /* ============================================================================
- * CONTEXT: data-on-dark="true" — Dark background contexts
+ * CONTEXT: data-dark-bg="true" — Dark background contexts
  * (e.g. Hero variant="background")
  *
  * Maps base/glass/elevated/outlined variants to inverse appearance automatically.
@@ -161,28 +161,28 @@
  * without requiring developers to manually switch to inverse variant.
  * ============================================================================ */
 
-:global([data-on-dark="true"]) .base,
-:global([data-on-dark="true"]) .glass,
-:global([data-on-dark="true"]) .elevated,
-:global([data-on-dark="true"]) .outlined {
+:global([data-dark-bg="true"]) .base,
+:global([data-dark-bg="true"]) .glass,
+:global([data-dark-bg="true"]) .elevated,
+:global([data-dark-bg="true"]) .outlined {
   background: color-mix(in srgb, var(--color-neutral-0) 20%, transparent);
   color: var(--color-neutral-0);
   border: 1px solid color-mix(in srgb, var(--color-neutral-0) 20%, transparent);
 }
 
 /* Context text elements on dark backgrounds */
-:global([data-on-dark="true"]) .base .header,
-:global([data-on-dark="true"]) .base .body,
-:global([data-on-dark="true"]) .base .footer,
-:global([data-on-dark="true"]) .glass .header,
-:global([data-on-dark="true"]) .glass .body,
-:global([data-on-dark="true"]) .glass .footer,
-:global([data-on-dark="true"]) .elevated .header,
-:global([data-on-dark="true"]) .elevated .body,
-:global([data-on-dark="true"]) .elevated .footer,
-:global([data-on-dark="true"]) .outlined .header,
-:global([data-on-dark="true"]) .outlined .body,
-:global([data-on-dark="true"]) .outlined .footer {
+:global([data-dark-bg="true"]) .base .header,
+:global([data-dark-bg="true"]) .base .body,
+:global([data-dark-bg="true"]) .base .footer,
+:global([data-dark-bg="true"]) .glass .header,
+:global([data-dark-bg="true"]) .glass .body,
+:global([data-dark-bg="true"]) .glass .footer,
+:global([data-dark-bg="true"]) .elevated .header,
+:global([data-dark-bg="true"]) .elevated .body,
+:global([data-dark-bg="true"]) .elevated .footer,
+:global([data-dark-bg="true"]) .outlined .header,
+:global([data-dark-bg="true"]) .outlined .body,
+:global([data-dark-bg="true"]) .outlined .footer {
   color: var(--color-neutral-0);
 }
 

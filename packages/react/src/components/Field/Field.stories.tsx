@@ -399,7 +399,7 @@ export const AccessibilityOverview: Story = {
 
 /**
  * On Dark Background - Field visibility on dark backgrounds (e.g., Hero sections).
- * The data-on-dark="true" attribute automatically adapts Field styling.
+ * The data-dark-bg="true" attribute automatically adapts Field styling.
  */
 export const OnDarkBackground: Story = {
   render: () => {
@@ -431,7 +431,7 @@ export const OnDarkBackground: Story = {
             gap: "var(--spacing-4)",
             maxWidth: "400px",
           }}
-          data-on-dark="true"
+          data-dark-bg="true"
         >
           <Field
             label="Email Address"

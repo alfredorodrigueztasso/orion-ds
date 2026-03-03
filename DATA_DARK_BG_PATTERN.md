@@ -1,8 +1,8 @@
-# data-on-dark Pattern — Automatic Dark Background Styling
+# data-dark-bg Pattern — Automatic Dark Background Styling
 
 ## Objetivo
 
-El patrón `data-on-dark="true"` permite que componentes Orion se adapten automáticamente a fondos oscuros (como Hero sections con background) sin necesidad de que el desarrollador especifique variants inversas manualmente.
+El patrón `data-dark-bg="true"` permite que componentes Orion se adapten automáticamente a fondos oscuros (como Hero sections con background) sin necesidad de que el desarrollador especifique variants inversas manualmente.
 
 **Problema que resuelve:**
 - Inputs, buttons, chips y otros componentes tienen colores que **desaparecen en fondos oscuros**
@@ -10,7 +10,7 @@ El patrón `data-on-dark="true"` permite que componentes Orion se adapten autom�
 - No es automático → mucho boilerplate, fácil olvidar
 
 **Solución:**
-- Un atributo CSS contextual `data-on-dark="true"` en el contenedor
+- Un atributo CSS contextual `data-dark-bg="true"` en el contenedor
 - Todos los componentes dentro adaptan automáticamente sus estilos
 - **Cero cambios en el código de componentes** — solo CSS contextual
 
@@ -31,8 +31,8 @@ El patrón `data-on-dark="true"` permite que componentes Orion se adapten autom�
 }
 
 /* 2. Auto-mapear variants al contexto dark */
-:global([data-on-dark="true"]) .primary,
-:global([data-on-dark="true"]) .secondary {
+:global([data-dark-bg="true"]) .primary,
+:global([data-dark-bg="true"]) .secondary {
   /* Aplicar estilos inverse automáticamente */
   background: color-mix(in srgb, var(--color-neutral-0) 20%, transparent);
   color: var(--color-neutral-0);
@@ -40,11 +40,11 @@ El patrón `data-on-dark="true"` permite que componentes Orion se adapten autom�
 }
 ```
 
-### DOM + data-on-dark Attribute
+### DOM + data-dark-bg Attribute
 
 ```tsx
 // En Hero o cualquier contexto con fondo oscuro
-<div data-on-dark="true">  {/* ← Activa el contexto */}
+<div data-dark-bg="true">  {/* ← Activa el contexto */}
   <Badge variant="secondary">New</Badge>        {/* Auto-inverse en dark */}
   <Button variant="primary">Click me</Button>  {/* Auto-inverse en dark */}
   <Field label="Email" />                      {/* Auto-adapta en dark */}
@@ -59,7 +59,7 @@ El patrón `data-on-dark="true"` permite que componentes Orion se adapten autom�
 
 ---
 
-## Componentes que Soportan data-on-dark
+## Componentes que Soportan data-dark-bg
 
 ### ✅ Con Variants (auto-mapeo)
 
@@ -96,7 +96,7 @@ import { Badge, Button } from '@orion-ds/react';
   variant="background"                    // ← Dark background (image or color)
   backgroundImage="/hero-bg.jpg"
   title="Welcome"
-  badge="New Feature"                     // Auto usa inverse inside data-on-dark
+  badge="New Feature"                     // Auto usa inverse inside data-dark-bg
 >
   <Button>Get Started</Button>            // Auto inverse
 </Hero>
@@ -105,7 +105,7 @@ import { Badge, Button } from '@orion-ds/react';
 **Internamente (en Hero component):**
 ```tsx
 {badge && (
-  <div data-on-dark={isBackgroundVariant}>  {/* ← Activa el contexto */}
+  <div data-dark-bg={isBackgroundVariant}>  {/* ← Activa el contexto */}
     {typeof badge === 'string'
       ? <Badge variant="brand">{badge}</Badge>
       : badge}
@@ -121,7 +121,7 @@ import { Badge, Button } from '@orion-ds/react';
     background: 'linear-gradient(135deg, #000, #333)',
     padding: 'var(--spacing-6)'
   }}
-  data-on-dark="true"  {/* ← Activa contexto para toda la sección */}
+  data-dark-bg="true"  {/* ← Activa contexto para toda la sección */}
 >
   <h2 style={{ color: 'white' }}>Premium Features</h2>
 
@@ -134,7 +134,7 @@ import { Badge, Button } from '@orion-ds/react';
 ### Patrón 3: Override Manual (escape hatch)
 
 ```tsx
-<div data-on-dark="true">
+<div data-dark-bg="true">
   <Badge variant="primary">Auto-inverse</Badge>    {/* Usa inverse automático */}
   <Badge variant="success">Always green</Badge>   {/* NO se mapea, es verde siempre */}
   <Badge variant="inverse">Explicit inverse</Badge> {/* Explícito */}
@@ -171,14 +171,14 @@ export type ComponentVariant =
 
 ```css
 /* ============================================================================
- * CONTEXT: data-on-dark="true" — Dark background contexts
+ * CONTEXT: data-dark-bg="true" — Dark background contexts
  * (e.g. Hero variant="background")
  * Maps primary/secondary/success variants to inverse automatically.
  * ============================================================================ */
 
-:global([data-on-dark="true"]) .primary,
-:global([data-on-dark="true"]) .secondary,
-:global([data-on-dark="true"]) .success {
+:global([data-dark-bg="true"]) .primary,
+:global([data-dark-bg="true"]) .secondary,
+:global([data-dark-bg="true"]) .success {
   background: color-mix(in srgb, var(--color-neutral-0) 20%, transparent);
   color: var(--color-neutral-0);
   border: 1px solid color-mix(in srgb, var(--color-neutral-0) 20%, transparent);
@@ -204,7 +204,7 @@ export const OnDarkBackground: Story = {
       }}
     >
       <h3 style={{ color: "var(--color-neutral-0)" }}>On Dark Background</h3>
-      <div data-on-dark="true" style={{ display: "flex", gap: "var(--spacing-4)" }}>
+      <div data-dark-bg="true" style={{ display: "flex", gap: "var(--spacing-4)" }}>
         <Component variant="primary">Primary (auto-inverse)</Component>
         <Component variant="inverse">Explicit inverse</Component>
       </div>
@@ -221,7 +221,7 @@ export const previews = [
   {
     title: 'On Dark Background',
     render: () => (
-      <div style={{ padding: 'var(--spacing-6)', background: 'rgba(0,0,0,0.8)' }} data-on-dark="true">
+      <div style={{ padding: 'var(--spacing-6)', background: 'rgba(0,0,0,0.8)' }} data-dark-bg="true">
         <Component variant="primary">Auto-inverse on dark</Component>
       </div>
     ),
@@ -259,7 +259,7 @@ export const previews = [
 
 | Aspecto | Beneficio |
 |---|---|
-| **DX (Developer Experience)** | Zero boilerplate — `data-on-dark="true"` una sola vez |
+| **DX (Developer Experience)** | Zero boilerplate — `data-dark-bg="true"` una sola vez |
 | **Mantenibilidad** | Cambios en un lugar (CSS) afectan a todos los componentes |
 | **Escalabilidad** | Fácil agregar a nuevos componentes (3-5 CSS rules) |
 | **Breaking changes** | Zero — completamente backwards compatible |
@@ -274,7 +274,7 @@ export const previews = [
 | Limitación | Razón |
 |---|---|
 | **Solo CSS contextual** | No puede acceder a JavaScript context (por diseño — CSS-only) |
-| **data-on-dark no es reactivo** | Es atributo DOM, no cambia dinámicamente (se usa en Hero, que es estático) |
+| **data-dark-bg no es reactivo** | Es atributo DOM, no cambia dinámicamente (se usa en Hero, que es estático) |
 | **Requiere estructura HTML** | El atributo debe estar en el contenedor padre de los componentes |
 | **No mapea semantic variants** | error, success, warning deben verse iguales en cualquier fondo |
 
@@ -286,7 +286,7 @@ export const previews = [
 
 Cada componente tiene una story `OnDarkBackground` que muestra:
 1. Variantes normales en luz (arriba)
-2. Mismas variantes en dark con `data-on-dark="true"` (abajo)
+2. Mismas variantes en dark con `data-dark-bg="true"` (abajo)
 3. Variant `inverse` explícito para comparar
 
 ```
@@ -298,12 +298,12 @@ http://localhost:6006/?path=/story/components-forms-field--on-dark-background
 
 ```tsx
 // Verificar que esto funciona:
-<div data-on-dark="true">
+<div data-dark-bg="true">
   <Badge variant="secondary">✅ Should be white</Badge>
 </div>
 
 // Verificar que esto no se mapea:
-<div data-on-dark="true">
+<div data-dark-bg="true">
   <Badge variant="success">✅ Should stay green (not white)</Badge>
 </div>
 ```
@@ -318,21 +318,21 @@ http://localhost:6006/?path=/story/components-forms-field--on-dark-background
 - [ ] CommandBar — Input + results styling
 
 ### Phase 4: Hero Integration
-- [ ] Add `data-on-dark` al Hero wrapper automáticamente cuando `variant="background"`
+- [ ] Add `data-dark-bg` al Hero wrapper automáticamente cuando `variant="background"`
 - [ ] Deprecate manual variant overrides (users can rely on auto-switch)
 - [ ] Update Hero documentation
 
 ### Phase 5: Documentation
 - [ ] Add to CLAUDE.md — Best practices section
 - [ ] Add to component README templates
-- [ ] Create video tutorial on data-on-dark pattern
+- [ ] Create video tutorial on data-dark-bg pattern
 
 ---
 
 ## FAQ
 
-**P: ¿Por qué no usar CSS variables en lugar de data-on-dark?**
-R: CSS variables cambiarían globalmente (todo el sitio). `data-on-dark` es local al contenedor.
+**P: ¿Por qué no usar CSS variables en lugar de data-dark-bg?**
+R: CSS variables cambiarían globalmente (todo el sitio). `data-dark-bg` es local al contenedor.
 
 **P: ¿Funciona en modo oscuro del navegador (prefers-color-scheme)?**
 R: No — es para fondos oscuros específicos (como Hero). Para modo oscuro global, usa `prefers-color-scheme` media query.
@@ -340,10 +340,10 @@ R: No — es para fondos oscuros específicos (como Hero). Para modo oscuro glob
 **P: ¿Puedo anular un mapeo automático?**
 R: Sí, pasa `variant="success"` (que no se mapea) o `variant="inverse"` (explícito).
 
-**P: ¿Qué pasa si olvido agregar `data-on-dark`?**
+**P: ¿Qué pasa si olvido agregar `data-dark-bg`?**
 R: Los componentes seguirán funcionando, pero tendrán bajo contraste en fondos oscuros. No es un error — es responsabilidad del developer.
 
-**P: ¿Puede un componente vivir dentro de múltiples `data-on-dark` padres?**
+**P: ¿Puede un componente vivir dentro de múltiples `data-dark-bg` padres?**
 R: Los selectores CSS se aplicarán del padre más cercano. No hay conflictos.
 
 ---
@@ -353,4 +353,4 @@ R: Los selectores CSS se aplicarán del padre más cercano. No hay conflictos.
 - **Components**: Badge, Alert, Chip, Card, Field, Button
 - **Storybook**: `OnDarkBackground` story en cada componente
 - **Commits**: 4944bfa, 5cd5402, 51485ed, 61a5a47, 88c5c7f, 60e5fae
-- **CSS Pattern**: `:global([data-on-dark="true"]) .selector { ... }`
+- **CSS Pattern**: `:global([data-dark-bg="true"]) .selector { ... }`

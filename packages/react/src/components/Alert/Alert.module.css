@@ -132,7 +132,7 @@
 }
 
 /* ============================================================================
- * CONTEXT: data-on-dark="true" — Dark background contexts
+ * CONTEXT: data-dark-bg="true" — Dark background contexts
  * (e.g. Hero variant="background")
  *
  * Maps success/error/warning/info variants to inverse appearance automatically.
@@ -140,10 +140,10 @@
  * without requiring developers to manually switch to inverse variant.
  * ============================================================================ */
 
-:global([data-on-dark="true"]) .success,
-:global([data-on-dark="true"]) .error,
-:global([data-on-dark="true"]) .warning,
-:global([data-on-dark="true"]) .info {
+:global([data-dark-bg="true"]) .success,
+:global([data-dark-bg="true"]) .error,
+:global([data-dark-bg="true"]) .warning,
+:global([data-dark-bg="true"]) .info {
   background: color-mix(in srgb, var(--color-neutral-0) 20%, transparent);
   color: var(--color-neutral-0);
   border: 1px solid color-mix(in srgb, var(--color-neutral-0) 20%, transparent);

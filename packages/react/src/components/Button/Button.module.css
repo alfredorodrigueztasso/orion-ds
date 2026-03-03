@@ -327,7 +327,7 @@
 }
 
 /* ============================================================================
- * CONTEXT: data-on-dark="true" — Dark background contexts
+ * CONTEXT: data-dark-bg="true" — Dark background contexts
  * (e.g. Hero variant="background", CTA variant="brand")
  *
  * Maps light-context button variants to their inverse counterparts automatically.
@@ -336,7 +336,7 @@
  * ============================================================================ */
 
 /* primary → inverse behavior (white bg, brand text) */
-:global([data-on-dark="true"]) .primary {
+:global([data-dark-bg="true"]) .primary {
   background: var(--color-neutral-0);
   color: var(--interactive-primary);
   border-color: transparent;
@@ -355,7 +355,7 @@
 }
 
 /* secondary → secondaryInverse behavior (20% white frosted, white text) */
-:global([data-on-dark="true"]) .secondary {
+:global([data-dark-bg="true"]) .secondary {
   background: color-mix(in srgb, var(--color-neutral-0) 20%, transparent);
   color: var(--color-neutral-0);
   border: 1px solid color-mix(in srgb, var(--color-neutral-0) 20%, transparent);
@@ -374,7 +374,7 @@
 }
 
 /* ghost → ghostInverse behavior (transparent, white text) */
-:global([data-on-dark="true"]) .ghost {
+:global([data-dark-bg="true"]) .ghost {
   background: transparent;
   color: var(--color-neutral-0);
 
@@ -388,19 +388,19 @@
 }
 
 /* Spinners in dark context */
-:global([data-on-dark="true"]) .primary .spinner {
+:global([data-dark-bg="true"]) .primary .spinner {
   border: 2px solid var(--interactive-primary);
   border-top-color: transparent;
 }
 
-:global([data-on-dark="true"]) .secondary .spinner,
-:global([data-on-dark="true"]) .ghost .spinner {
+:global([data-dark-bg="true"]) .secondary .spinner,
+:global([data-dark-bg="true"]) .ghost .spinner {
   border: 2px solid var(--color-neutral-0);
   border-top-color: transparent;
 }
 
 /* Lemon brand in dark context: primary uses black text for contrast */
-:global([data-brand="lemon"][data-on-dark="true"]) .primary {
+:global([data-brand="lemon"][data-dark-bg="true"]) .primary {
   color: var(--color-neutral-1000);
 }
 
