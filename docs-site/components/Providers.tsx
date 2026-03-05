@@ -8,5 +8,9 @@ interface ProvidersProps {
 }
 
 export function Providers({ children }: ProvidersProps) {
-  return <ThemeProvider disableCSSWarnings>{children}</ThemeProvider>;
+  return (
+    <ThemeProvider disableCSSWarnings disableAutoFontLoading>
+      {children}
+    </ThemeProvider>
+  );
 }

@@ -1,10 +1,9 @@
 import DocsPageHero from '@/components/DocsPageHero';
 import DocsFeatureGrid from '@/components/DocsFeatureGrid';
-import DocsStepCard from '@/components/DocsStepCard';
 import DocsNextStepsGrid from '@/components/DocsNextStepsGrid';
 import CodeBlockSimple from '@/components/CodeBlockSimple';
-import { Card, CardBody, Alert, Accordion, Link } from '@/components/ClientComponents';
-import { Package, Zap, Settings, Layers, BookOpen, GitBranch } from 'lucide-react';
+import { Card, CardBody, Alert, Accordion, Timeline } from '@/components/ClientComponents';
+import { Package, Zap, Settings, Layers, BookOpen, GitBranch, Terminal, Code2 } from 'lucide-react';
 
 export const metadata = {
   title: 'CLI Documentation',
@@ -257,29 +256,41 @@ export default function CliPage() {
           Quick Start
         </h2>
 
-        <DocsStepCard
-          stepNumber={1}
-          title="Initialize Your Project"
-          description="Set up orion.json configuration and target directories."
-        >
-          <CodeBlockSimple code={`npx @orion-ds/cli init`} language="bash" />
-        </DocsStepCard>
-
-        <DocsStepCard
-          stepNumber={2}
-          title="Add Components"
-          description="Choose components to copy. Dependencies are resolved automatically."
-        >
-          <CodeBlockSimple code={`npx @orion-ds/cli add button card modal`} language="bash" />
-        </DocsStepCard>
-
-        <DocsStepCard
-          stepNumber={3}
-          title="Import & Use"
-          description="Start using components in your application immediately."
-        >
-          <CodeBlockSimple code={`import { Button } from './components/Button';\n\nexport default function App() {\n  return <Button>Click me</Button>;\n}`} language="tsx" />
-        </DocsStepCard>
+        <Timeline
+          orientation="vertical"
+          showConnector={true}
+          background="none"
+          align="left"
+          events={[
+            {
+              id: 1,
+              date: 'Step 1',
+              title: 'Initialize Your Project',
+              description: 'Set up orion.json configuration and target directories.',
+              status: 'default',
+              icon: <Terminal size={20} />,
+              content: <CodeBlockSimple code={`npx @orion-ds/cli init`} language="bash" />,
+            },
+            {
+              id: 2,
+              date: 'Step 2',
+              title: 'Add Components',
+              description: 'Choose components to copy. Dependencies are resolved automatically.',
+              status: 'default',
+              icon: <Package size={20} />,
+              content: <CodeBlockSimple code={`npx @orion-ds/cli add button card modal`} language="bash" />,
+            },
+            {
+              id: 3,
+              date: 'Step 3',
+              title: 'Import & Use',
+              description: 'Start using components in your application immediately.',
+              status: 'default',
+              icon: <Code2 size={20} />,
+              content: <CodeBlockSimple code={`import { Button } from './components/Button';\n\nexport default function App() {\n  return <Button>Click me</Button>;\n}`} language="tsx" />,
+            },
+          ]}
+        />
       </section>
 
       {/* Commands */}
@@ -369,17 +380,13 @@ export default function CliPage() {
           After running <code style={{ background: 'var(--surface-layer)', padding: '0.2em 0.4em', borderRadius: 'var(--radius-sm)', fontFamily: 'var(--font-mono)', fontSize: '0.9em' }}>orion init</code>, a configuration file is created.
         </p>
 
-        <Card variant="base">
-          <CardBody style={{ padding: 0 }}>
-            <CodeBlockSimple code={`{
+        <CodeBlockSimple code={`{
   "componentDirectory": "./src/components",
   "utilsDirectory": "./src/utils",
   "typeScript": true,
   "packageManager": "pnpm",
   "registryUrl": "https://orion-ds.dev/r"
 }`} language="json" />
-          </CardBody>
-        </Card>
 
         <Alert variant="info" style={{ marginTop: 'var(--spacing-4)' }}>
           All paths are relative to the project root. Adjust them to match your project structure.

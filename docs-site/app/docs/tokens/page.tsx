@@ -1,32 +1,48 @@
 import DocsPageHero from '@/components/DocsPageHero';
-import DocsFeatureGrid from '@/components/DocsFeatureGrid';
 import DocsNextStepsGrid from '@/components/DocsNextStepsGrid';
 import CodeBlockSimple from '@/components/CodeBlockSimple';
-import { Card, CardBody, Alert, Tabs, Link } from '@/components/ClientComponents';
-import { Layers, Zap, Palette, BookOpen, Wrench } from 'lucide-react';
+import { Card, CardBody, Alert, Tabs, Badge } from '@/components/ClientComponents';
+import { Palette, BookOpen, Wrench, ChevronDown } from 'lucide-react';
 
 export const metadata = {
   title: 'Design Tokens',
   description: 'Complete reference for all Orion design tokens and the Chain of Truth',
 };
 
-const CHAIN_OF_TRUTH_FEATURES = [
-  {
-    icon: <Palette size={24} />,
-    title: 'Layer 1: Primitives',
-    description: 'Raw values in tokens/primary.json — the immutable source of all design decisions.',
-  },
-  {
-    icon: <Layers size={24} />,
-    title: 'Layer 2: Semantics',
-    description: 'Intent-based aliases that describe what values do, not what they look like.',
-  },
-  {
-    icon: <Zap size={24} />,
-    title: 'Layer 3: Components',
-    description: 'Blind consumers that reference semantic tokens via CSS variables.',
-  },
-];
+const TOKENS_PRIMITIVES = `// tokens/primary.json — raw immutable values
+{
+  "color.brand.500": "#1B5BFF",
+  "spacing.4": "16px",
+  "radius.control": "12px",
+  "font.secondary": "DM Sans"
+}`;
+
+const TOKENS_SEMANTICS = `:root {
+  /* Layer 1 → Layer 2: aliased as intent-based names */
+  --interactive-primary: var(--color-brand-500);
+  --surface-base: #FFFFFF;
+  --text-primary: #111827;
+  --radius-control: 12px;
+  --font-secondary: "DM Sans";
+}
+
+[data-theme="dark"] {
+  --surface-base: #0F172A;
+  --text-primary: #F8FAFC;
+  /* --interactive-primary stays the same (works in all themes) */
+}`;
+
+const TOKENS_COMPONENTS = `/* Button.module.css — consumes semantics, never primitives */
+.button {
+  background: var(--interactive-primary);
+  color: var(--interactive-primary-text);
+  border-radius: var(--radius-control);
+  padding: var(--spacing-3) var(--spacing-5);
+  font-family: var(--font-secondary);
+}
+
+/* Switch brand or theme → all buttons update. No code changes. */
+/* ❌ Never: background: #1B5BFF (hardcoded = UI hallucination) */`;
 
 const NEXT_STEPS = [
   {
@@ -82,13 +98,65 @@ export default function TokensPage() {
         </h2>
 
         <p style={{ color: 'var(--text-secondary)', marginBottom: 'var(--spacing-6)', lineHeight: 1.6 }}>
-          The Orion token system is built on a three-layer architecture. This separation eliminates visual drift and ensures consistency across all components and brands.
+          The Orion token system is built on a three-layer architecture. Tokens flow from raw primitives, through semantic intent, into components that remain blind to their source. This separation ensures zero visual drift across brands and themes.
         </p>
 
-        <DocsFeatureGrid features={CHAIN_OF_TRUTH_FEATURES} />
+        {/* Layer 1: Primitives */}
+        <Card variant="base">
+          <CardBody>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)', marginBottom: 'var(--spacing-3)' }}>
+              <Badge variant="info" size="sm">Layer 1</Badge>
+              <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>Primitives — the source of truth</span>
+            </div>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.5, marginBottom: 'var(--spacing-3)' }}>
+              Raw values in <code style={{ background: 'var(--surface-layer)', padding: '0.2em 0.4em', borderRadius: 'var(--radius-sm)', fontFamily: 'var(--font-mono)', fontSize: '0.85em' }}>tokens/primary.json</code> — immutable, named after appearance (color-blue, spacing-4, not primary-accent or large-padding).
+            </p>
+            <CodeBlockSimple code={TOKENS_PRIMITIVES} language="json" />
+          </CardBody>
+        </Card>
+
+        {/* Connector */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)', padding: 'var(--spacing-3) var(--spacing-4)', color: 'var(--text-tertiary)', fontSize: '0.8rem', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+          <ChevronDown size={16} />
+          aliased as intent-based names
+        </div>
+
+        {/* Layer 2: Semantics */}
+        <Card variant="base">
+          <CardBody>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)', marginBottom: 'var(--spacing-3)' }}>
+              <Badge variant="warning" size="sm">Layer 2</Badge>
+              <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>Semantics — intent-based aliases</span>
+            </div>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.5, marginBottom: 'var(--spacing-3)' }}>
+              CSS custom properties in <code style={{ background: 'var(--surface-layer)', padding: '0.2em 0.4em', borderRadius: 'var(--radius-sm)', fontFamily: 'var(--font-mono)', fontSize: '0.85em' }}>theme.css</code> — named after purpose (interactive-primary, surface-base, text-secondary). Support light/dark themes and multi-brand variants.
+            </p>
+            <CodeBlockSimple code={TOKENS_SEMANTICS} language="css" />
+          </CardBody>
+        </Card>
+
+        {/* Connector */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)', padding: 'var(--spacing-3) var(--spacing-4)', color: 'var(--text-tertiary)', fontSize: '0.8rem', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+          <ChevronDown size={16} />
+          consumed by components
+        </div>
+
+        {/* Layer 3: Components */}
+        <Card variant="base">
+          <CardBody>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)', marginBottom: 'var(--spacing-3)' }}>
+              <Badge variant="success" size="sm">Layer 3</Badge>
+              <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>Components — blind consumers</span>
+            </div>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.5, marginBottom: 'var(--spacing-3)' }}>
+              Styles in <code style={{ background: 'var(--surface-layer)', padding: '0.2em 0.4em', borderRadius: 'var(--radius-sm)', fontFamily: 'var(--font-mono)', fontSize: '0.85em' }}>*.module.css</code> reference only semantic tokens. They never know about primitives or brand details. Switch brand → all components update automatically.
+            </p>
+            <CodeBlockSimple code={TOKENS_COMPONENTS} language="css" />
+          </CardBody>
+        </Card>
 
         <Alert variant="info" style={{ marginTop: 'var(--spacing-8)' }}>
-          <strong>Components never hardcode values.</strong> They use CSS variables exclusively, referencing semantic tokens. This enables seamless brand switching and dark mode support without touching component code.
+          <strong>This separation prevents UI hallucination.</strong> Because components are blind to raw values, no accidental hardcoding can occur. Brand switching, dark mode, and design updates flow through the token layers automatically.
         </Alert>
       </section>
 
@@ -117,22 +185,29 @@ export default function TokensPage() {
               <h3 style={{ fontSize: '1rem', fontWeight: 600, marginTop: 0, marginBottom: 'var(--spacing-3)', color: 'var(--text-primary)' }}>Surface</h3>
               <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
                 <tbody>
-                  <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-                    <td style={{ padding: 'var(--spacing-2)', fontFamily: 'var(--font-mono)', color: 'var(--text-brand)', fontSize: '0.85rem' }}>--surface-base</td>
-                    <td style={{ padding: 'var(--spacing-2)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Main background</td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-                    <td style={{ padding: 'var(--spacing-2)', fontFamily: 'var(--font-mono)', color: 'var(--text-brand)', fontSize: '0.85rem' }}>--surface-subtle</td>
-                    <td style={{ padding: 'var(--spacing-2)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Subtle background</td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-                    <td style={{ padding: 'var(--spacing-2)', fontFamily: 'var(--font-mono)', color: 'var(--text-brand)', fontSize: '0.85rem' }}>--surface-layer</td>
-                    <td style={{ padding: 'var(--spacing-2)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Layered surface</td>
-                  </tr>
-                  <tr>
-                    <td style={{ padding: 'var(--spacing-2)', fontFamily: 'var(--font-mono)', color: 'var(--text-brand)', fontSize: '0.85rem' }}>--surface-glass</td>
-                    <td style={{ padding: 'var(--spacing-2)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Frosted glass</td>
-                  </tr>
+                  {['--surface-base', '--surface-subtle', '--surface-layer', '--surface-glass'].map((token, idx) => (
+                    <tr key={token} style={{ borderBottom: idx < 3 ? '1px solid var(--border-subtle)' : 'none' }}>
+                      <td style={{ padding: 'var(--spacing-2)' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)' }}>
+                          <span style={{
+                            display: 'inline-block',
+                            width: 16, height: 16,
+                            borderRadius: '50%',
+                            background: `var(${token})`,
+                            border: '1px solid var(--border-subtle)',
+                            flexShrink: 0,
+                          }} />
+                          <span style={{ fontFamily: 'var(--font-mono)', color: 'var(--text-brand)', fontSize: '0.85rem' }}>{token}</span>
+                        </div>
+                      </td>
+                      <td style={{ padding: 'var(--spacing-2)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
+                        {token === '--surface-base' && 'Main background'}
+                        {token === '--surface-subtle' && 'Subtle background'}
+                        {token === '--surface-layer' && 'Layered surface'}
+                        {token === '--surface-glass' && 'Frosted glass'}
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </CardBody>
@@ -144,22 +219,29 @@ export default function TokensPage() {
               <h3 style={{ fontSize: '1rem', fontWeight: 600, marginTop: 0, marginBottom: 'var(--spacing-3)', color: 'var(--text-primary)' }}>Text</h3>
               <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
                 <tbody>
-                  <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-                    <td style={{ padding: 'var(--spacing-2)', fontFamily: 'var(--font-mono)', color: 'var(--text-brand)', fontSize: '0.85rem' }}>--text-primary</td>
-                    <td style={{ padding: 'var(--spacing-2)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Main content</td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-                    <td style={{ padding: 'var(--spacing-2)', fontFamily: 'var(--font-mono)', color: 'var(--text-brand)', fontSize: '0.85rem' }}>--text-secondary</td>
-                    <td style={{ padding: 'var(--spacing-2)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Descriptions</td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-                    <td style={{ padding: 'var(--spacing-2)', fontFamily: 'var(--font-mono)', color: 'var(--text-brand)', fontSize: '0.85rem' }}>--text-tertiary</td>
-                    <td style={{ padding: 'var(--spacing-2)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Captions</td>
-                  </tr>
-                  <tr>
-                    <td style={{ padding: 'var(--spacing-2)', fontFamily: 'var(--font-mono)', color: 'var(--text-brand)', fontSize: '0.85rem' }}>--text-brand</td>
-                    <td style={{ padding: 'var(--spacing-2)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Brand accent</td>
-                  </tr>
+                  {['--text-primary', '--text-secondary', '--text-tertiary', '--text-brand'].map((token, idx) => (
+                    <tr key={token} style={{ borderBottom: idx < 3 ? '1px solid var(--border-subtle)' : 'none' }}>
+                      <td style={{ padding: 'var(--spacing-2)' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)' }}>
+                          <span style={{
+                            display: 'inline-block',
+                            width: 16, height: 16,
+                            borderRadius: '50%',
+                            background: `var(${token})`,
+                            border: '1px solid var(--border-subtle)',
+                            flexShrink: 0,
+                          }} />
+                          <span style={{ fontFamily: 'var(--font-mono)', color: 'var(--text-brand)', fontSize: '0.85rem' }}>{token}</span>
+                        </div>
+                      </td>
+                      <td style={{ padding: 'var(--spacing-2)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
+                        {token === '--text-primary' && 'Main content'}
+                        {token === '--text-secondary' && 'Descriptions'}
+                        {token === '--text-tertiary' && 'Captions'}
+                        {token === '--text-brand' && 'Brand accent'}
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </CardBody>
@@ -171,22 +253,29 @@ export default function TokensPage() {
               <h3 style={{ fontSize: '1rem', fontWeight: 600, marginTop: 0, marginBottom: 'var(--spacing-3)', color: 'var(--text-primary)' }}>Interactive</h3>
               <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
                 <tbody>
-                  <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-                    <td style={{ padding: 'var(--spacing-2)', fontFamily: 'var(--font-mono)', color: 'var(--text-brand)', fontSize: '0.85rem' }}>--interactive-primary</td>
-                    <td style={{ padding: 'var(--spacing-2)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Primary buttons</td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-                    <td style={{ padding: 'var(--spacing-2)', fontFamily: 'var(--font-mono)', color: 'var(--text-brand)', fontSize: '0.85rem' }}>--interactive-primary-hover</td>
-                    <td style={{ padding: 'var(--spacing-2)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Primary hover</td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-                    <td style={{ padding: 'var(--spacing-2)', fontFamily: 'var(--font-mono)', color: 'var(--text-brand)', fontSize: '0.85rem' }}>--interactive-secondary</td>
-                    <td style={{ padding: 'var(--spacing-2)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Secondary buttons</td>
-                  </tr>
-                  <tr>
-                    <td style={{ padding: 'var(--spacing-2)', fontFamily: 'var(--font-mono)', color: 'var(--text-brand)', fontSize: '0.85rem' }}>--interactive-disabled</td>
-                    <td style={{ padding: 'var(--spacing-2)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Disabled state</td>
-                  </tr>
+                  {['--interactive-primary', '--interactive-primary-hover', '--interactive-secondary', '--interactive-disabled'].map((token, idx) => (
+                    <tr key={token} style={{ borderBottom: idx < 3 ? '1px solid var(--border-subtle)' : 'none' }}>
+                      <td style={{ padding: 'var(--spacing-2)' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)' }}>
+                          <span style={{
+                            display: 'inline-block',
+                            width: 16, height: 16,
+                            borderRadius: '50%',
+                            background: `var(${token})`,
+                            border: '1px solid var(--border-subtle)',
+                            flexShrink: 0,
+                          }} />
+                          <span style={{ fontFamily: 'var(--font-mono)', color: 'var(--text-brand)', fontSize: '0.85rem' }}>{token}</span>
+                        </div>
+                      </td>
+                      <td style={{ padding: 'var(--spacing-2)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
+                        {token === '--interactive-primary' && 'Primary buttons'}
+                        {token === '--interactive-primary-hover' && 'Primary hover'}
+                        {token === '--interactive-secondary' && 'Secondary buttons'}
+                        {token === '--interactive-disabled' && 'Disabled state'}
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </CardBody>
@@ -198,18 +287,28 @@ export default function TokensPage() {
               <h3 style={{ fontSize: '1rem', fontWeight: 600, marginTop: 0, marginBottom: 'var(--spacing-3)', color: 'var(--text-primary)' }}>Borders</h3>
               <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
                 <tbody>
-                  <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-                    <td style={{ padding: 'var(--spacing-2)', fontFamily: 'var(--font-mono)', color: 'var(--text-brand)', fontSize: '0.85rem' }}>--border-subtle</td>
-                    <td style={{ padding: 'var(--spacing-2)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Thin borders</td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-                    <td style={{ padding: 'var(--spacing-2)', fontFamily: 'var(--font-mono)', color: 'var(--text-brand)', fontSize: '0.85rem' }}>--border-strong</td>
-                    <td style={{ padding: 'var(--spacing-2)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Strong borders</td>
-                  </tr>
-                  <tr>
-                    <td style={{ padding: 'var(--spacing-2)', fontFamily: 'var(--font-mono)', color: 'var(--text-brand)', fontSize: '0.85rem' }}>--border-focus</td>
-                    <td style={{ padding: 'var(--spacing-2)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Focus indicators</td>
-                  </tr>
+                  {['--border-subtle', '--border-strong', '--border-focus'].map((token, idx) => (
+                    <tr key={token} style={{ borderBottom: idx < 2 ? '1px solid var(--border-subtle)' : 'none' }}>
+                      <td style={{ padding: 'var(--spacing-2)' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)' }}>
+                          <span style={{
+                            display: 'inline-block',
+                            width: 16, height: 16,
+                            borderRadius: '50%',
+                            background: `var(${token})`,
+                            border: '1px solid var(--border-subtle)',
+                            flexShrink: 0,
+                          }} />
+                          <span style={{ fontFamily: 'var(--font-mono)', color: 'var(--text-brand)', fontSize: '0.85rem' }}>{token}</span>
+                        </div>
+                      </td>
+                      <td style={{ padding: 'var(--spacing-2)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
+                        {token === '--border-subtle' && 'Thin borders'}
+                        {token === '--border-strong' && 'Strong borders'}
+                        {token === '--border-focus' && 'Focus indicators'}
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </CardBody>
@@ -242,6 +341,7 @@ export default function TokensPage() {
                   <th style={{ padding: 'var(--spacing-3)', textAlign: 'left', fontWeight: 600, color: 'var(--text-primary)' }}>Token</th>
                   <th style={{ padding: 'var(--spacing-3)', textAlign: 'left', fontWeight: 600, color: 'var(--text-primary)' }}>Value</th>
                   <th style={{ padding: 'var(--spacing-3)', textAlign: 'left', fontWeight: 600, color: 'var(--text-primary)' }}>Usage</th>
+                  <th style={{ padding: 'var(--spacing-3)', textAlign: 'left', fontWeight: 600, color: 'var(--text-primary)' }}>Scale</th>
                 </tr>
               </thead>
               <tbody>
@@ -260,6 +360,16 @@ export default function TokensPage() {
                     <td style={{ padding: 'var(--spacing-3)', fontFamily: 'var(--font-mono)', color: 'var(--text-brand)', fontSize: '0.85rem' }}>{row.token}</td>
                     <td style={{ padding: 'var(--spacing-3)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>{row.value}</td>
                     <td style={{ padding: 'var(--spacing-3)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>{row.usage}</td>
+                    <td style={{ padding: 'var(--spacing-3)' }}>
+                      <div style={{
+                        height: 12,
+                        background: 'var(--interactive-primary)',
+                        borderRadius: 'var(--radius-sm)',
+                        width: `var(${row.token})`,
+                        maxWidth: '100%',
+                        opacity: 0.7,
+                      }} />
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -288,73 +398,72 @@ export default function TokensPage() {
               id: 'fonts',
               label: 'Fonts',
               content: (
-                <Card variant="base">
-                  <CardBody>
-                    <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
-                      <thead>
-                        <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-                          <th style={{ padding: 'var(--spacing-3)', textAlign: 'left', fontWeight: 600, color: 'var(--text-primary)' }}>Token</th>
-                          <th style={{ padding: 'var(--spacing-3)', textAlign: 'left', fontWeight: 600, color: 'var(--text-primary)' }}>Font Family</th>
-                          <th style={{ padding: 'var(--spacing-3)', textAlign: 'left', fontWeight: 600, color: 'var(--text-primary)' }}>Usage</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-                          <td style={{ padding: 'var(--spacing-3)', fontFamily: 'var(--font-mono)', color: 'var(--text-brand)', fontSize: '0.85rem' }}>--font-primary</td>
-                          <td style={{ padding: 'var(--spacing-3)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Libre Baskerville</td>
-                          <td style={{ padding: 'var(--spacing-3)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Headings</td>
-                        </tr>
-                        <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-                          <td style={{ padding: 'var(--spacing-3)', fontFamily: 'var(--font-mono)', color: 'var(--text-brand)', fontSize: '0.85rem' }}>--font-secondary</td>
-                          <td style={{ padding: 'var(--spacing-3)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>DM Sans</td>
-                          <td style={{ padding: 'var(--spacing-3)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Body text</td>
-                        </tr>
-                        <tr>
-                          <td style={{ padding: 'var(--spacing-3)', fontFamily: 'var(--font-mono)', color: 'var(--text-brand)', fontSize: '0.85rem' }}>--font-mono</td>
-                          <td style={{ padding: 'var(--spacing-3)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>JetBrains Mono</td>
-                          <td style={{ padding: 'var(--spacing-3)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Code blocks</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </CardBody>
-                </Card>
+                <div>
+                  <Card variant="base">
+                    <CardBody>
+                      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
+                        <thead>
+                          <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
+                            <th style={{ padding: 'var(--spacing-3)', textAlign: 'left', fontWeight: 600, color: 'var(--text-primary)' }}>Token</th>
+                            <th style={{ padding: 'var(--spacing-3)', textAlign: 'left', fontWeight: 600, color: 'var(--text-primary)' }}>Font Family</th>
+                            <th style={{ padding: 'var(--spacing-3)', textAlign: 'left', fontWeight: 600, color: 'var(--text-primary)' }}>Usage</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
+                            <td style={{ padding: 'var(--spacing-3)', fontFamily: 'var(--font-mono)', color: 'var(--text-brand)', fontSize: '0.85rem' }}>--font-primary</td>
+                            <td style={{ padding: 'var(--spacing-3)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Libre Baskerville</td>
+                            <td style={{ padding: 'var(--spacing-3)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Headings</td>
+                          </tr>
+                          <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
+                            <td style={{ padding: 'var(--spacing-3)', fontFamily: 'var(--font-mono)', color: 'var(--text-brand)', fontSize: '0.85rem' }}>--font-secondary</td>
+                            <td style={{ padding: 'var(--spacing-3)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>DM Sans</td>
+                            <td style={{ padding: 'var(--spacing-3)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Body text</td>
+                          </tr>
+                          <tr>
+                            <td style={{ padding: 'var(--spacing-3)', fontFamily: 'var(--font-mono)', color: 'var(--text-brand)', fontSize: '0.85rem' }}>--font-mono</td>
+                            <td style={{ padding: 'var(--spacing-3)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>JetBrains Mono</td>
+                            <td style={{ padding: 'var(--spacing-3)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Code blocks</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </CardBody>
+                  </Card>
+                  <div style={{ marginTop: 'var(--spacing-4)', padding: 'var(--spacing-4)', background: 'var(--surface-subtle)', borderRadius: 'var(--radius-control)' }}>
+                    <p style={{ fontFamily: 'var(--font-primary)', fontSize: '1.25rem', margin: '0 0 var(--spacing-2)', color: 'var(--text-primary)' }}>Libre Baskerville — heading font</p>
+                    <p style={{ fontFamily: 'var(--font-secondary)', margin: '0 0 var(--spacing-2)', color: 'var(--text-primary)' }}>DM Sans — body text font</p>
+                    <p style={{ fontFamily: 'var(--font-mono)', margin: 0, fontSize: '0.9rem', color: 'var(--text-primary)' }}>JetBrains Mono — code font</p>
+                  </div>
+                </div>
               ),
             },
             {
               id: 'sizes',
               label: 'Sizes',
               content: (
-                <Card variant="base">
-                  <CardBody>
-                    <CodeBlockSimple
-                      code={`--font-size-12: 12px   /* Captions */
+                <CodeBlockSimple
+                  code={`--font-size-12: 12px   /* Captions */
 --font-size-14: 14px   /* Small text */
 --font-size-16: 16px   /* Body text */
 --font-size-20: 20px   /* Large body */
 --font-size-24: 24px   /* Heading */
 --font-size-32: 32px   /* Large heading */
 --font-size-48: 48px   /* Display text */`}
-                      language="css"
-                    />
-                  </CardBody>
-                </Card>
+                  language="css"
+                />
               ),
             },
             {
               id: 'weights',
               label: 'Weights',
               content: (
-                <Card variant="base">
-                  <CardBody>
-                    <CodeBlockSimple
-                      code={`--font-weight-regular:   400   /* Regular */
+                <CodeBlockSimple
+                  code={`--font-weight-regular:   400   /* Regular */
 --font-weight-medium:    500   /* Medium */
 --font-weight-semibold: 600   /* Semi-bold */
 --font-weight-bold:     700   /* Bold */`}
-                      language="css"
-                    />
-                  </CardBody>
-                </Card>
+                  language="css"
+                />
               ),
             },
           ]}
@@ -381,29 +490,23 @@ export default function TokensPage() {
               id: 'css',
               label: 'CSS',
               content: (
-                <Card variant="base">
-                  <CardBody style={{ padding: 0 }}>
-                    <CodeBlockSimple
-                      code={`.card {
+                <CodeBlockSimple
+                  code={`.card {
   background: var(--surface-base);
   border: 1px solid var(--border-subtle);
   padding: var(--spacing-4);
   border-radius: 12px;
 }`}
-                      language="css"
-                    />
-                  </CardBody>
-                </Card>
+                  language="css"
+                />
               ),
             },
             {
               id: 'css-modules',
               label: 'CSS Modules',
               content: (
-                <Card variant="base">
-                  <CardBody style={{ padding: 0 }}>
-                    <CodeBlockSimple
-                      code={`.card {
+                <CodeBlockSimple
+                  code={`.card {
   background: var(--surface-base);
   border: 1px solid var(--border-subtle);
   padding: var(--spacing-4);
@@ -412,20 +515,16 @@ export default function TokensPage() {
 .card:hover {
   box-shadow: var(--shadow-md);
 }`}
-                      language="css"
-                    />
-                  </CardBody>
-                </Card>
+                  language="css"
+                />
               ),
             },
             {
               id: 'react-inline',
               label: 'React Inline',
               content: (
-                <Card variant="base">
-                  <CardBody style={{ padding: 0 }}>
-                    <CodeBlockSimple
-                      code={`<div style={{
+                <CodeBlockSimple
+                  code={`<div style={{
   background: 'var(--surface-base)',
   border: '1px solid var(--border-subtle)',
   padding: 'var(--spacing-4)',
@@ -433,26 +532,20 @@ export default function TokensPage() {
 }}>
   Content
 </div>`}
-                      language="tsx"
-                    />
-                  </CardBody>
-                </Card>
+                  language="tsx"
+                />
               ),
             },
             {
               id: 'tailwind',
               label: 'Tailwind CSS',
               content: (
-                <Card variant="base">
-                  <CardBody style={{ padding: 0 }}>
-                    <CodeBlockSimple
-                      code={`<div className="bg-[var(--surface-base)] border border-[var(--border-subtle)] p-4 rounded">
+                <CodeBlockSimple
+                  code={`<div className="bg-[var(--surface-base)] border border-[var(--border-subtle)] p-4 rounded">
   Content
 </div>`}
-                      language="html"
-                    />
-                  </CardBody>
-                </Card>
+                  language="html"
+                />
               ),
             },
           ]}
@@ -474,25 +567,33 @@ export default function TokensPage() {
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--spacing-4)', marginBottom: 'var(--spacing-4)' }}>
           <Alert variant="success">
-            <strong>✓ Always use CSS variables</strong>
-            <div style={{ marginTop: 'var(--spacing-2)', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Reference semantic tokens, never hardcode colors or spacing.</div>
+            <strong>Always use CSS variables</strong>
+            <div style={{ marginTop: 'var(--spacing-2)', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+              background: <code style={{ background: 'var(--surface-layer)', padding: '0.2em 0.4em', borderRadius: 'var(--radius-sm)', fontFamily: 'var(--font-mono)' }}>var(--surface-base)</code>
+            </div>
           </Alert>
 
           <Alert variant="error">
-            <strong>✗ Never hardcode values</strong>
-            <div style={{ marginTop: 'var(--spacing-2)', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Colors like #1B5BFF or spacing like 16px break the Chain of Truth.</div>
+            <strong>Never hardcode values</strong>
+            <div style={{ marginTop: 'var(--spacing-2)', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+              background: <code style={{ background: 'var(--surface-layer)', padding: '0.2em 0.4em', borderRadius: 'var(--radius-sm)', fontFamily: 'var(--font-mono)' }}>#FFFFFF</code> breaks dark mode
+            </div>
           </Alert>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--spacing-4)' }}>
           <Alert variant="success">
-            <strong>✓ Use semantic tokens</strong>
-            <div style={{ marginTop: 'var(--spacing-2)', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>`--text-primary`, `--surface-base`, `--interactive-primary` — they adapt to theme and brand.</div>
+            <strong>Use semantic tokens</strong>
+            <div style={{ marginTop: 'var(--spacing-2)', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+              color: <code style={{ background: 'var(--surface-layer)', padding: '0.2em 0.4em', borderRadius: 'var(--radius-sm)', fontFamily: 'var(--font-mono)' }}>var(--text-primary)</code> adapts to theme
+            </div>
           </Alert>
 
           <Alert variant="error">
-            <strong>✗ Avoid primitive tokens</strong>
-            <div style={{ marginTop: 'var(--spacing-2)', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>`--color-blue-500` — semantics describe purpose, not appearance.</div>
+            <strong>Avoid primitive tokens</strong>
+            <div style={{ marginTop: 'var(--spacing-2)', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+              color: <code style={{ background: 'var(--surface-layer)', padding: '0.2em 0.4em', borderRadius: 'var(--radius-sm)', fontFamily: 'var(--font-mono)' }}>var(--color-blue-500)</code> is too specific
+            </div>
           </Alert>
         </div>
       </section>

@@ -1,11 +1,9 @@
-import { Suspense } from 'react';
-import { AlertCircle, Zap, Package, Layers, Palette, Moon, Terminal, ArrowRight, BookOpen, Lightbulb, HelpCircle } from 'lucide-react';
+import { Zap, Package, Layers, Palette, Moon, Terminal, BookOpen, Lightbulb, ChevronDown } from 'lucide-react';
 import DocsPageHero from '@/components/DocsPageHero';
 import DocsFeatureGrid from '@/components/DocsFeatureGrid';
 import DocsBrandGrid from '@/components/DocsBrandGrid';
 import DocsNextStepsGrid from '@/components/DocsNextStepsGrid';
 import PackageManagerTabs from '@/components/PackageManagerTabs';
-import CodeBlock from '@/components/CodeBlock';
 import CodeBlockSimple from '@/components/CodeBlockSimple';
 import { Card, CardBody, Alert, Badge, Tabs, Link } from '@/components/ClientComponents';
 
@@ -117,6 +115,30 @@ export function ThemeToggle() {
   );
 }`;
 
+const CHAIN_PRIMITIVES = `// tokens/primary.json — immutable raw values
+{
+  "color.brand.500": "#1B5BFF",
+  "spacing.4":       "16px",
+  "radius.control":  "12px",
+  "font.primary":    "Libre Baskerville"
+}`;
+
+const CHAIN_SEMANTICS = `/* theme.css — intent-based aliases */
+--interactive-primary:  var(--color-brand-500);
+--surface-base:         var(--color-neutral-0);
+--text-secondary:       var(--color-neutral-500);
+--radius-control:       var(--radius-scale-3);`;
+
+const CHAIN_COMPONENTS = `/* Button.module.css — consumes semantics only */
+.button {
+  background:    var(--interactive-primary);
+  border-radius: var(--radius-control);
+  font-family:   var(--font-secondary);
+}
+
+/* Switch brand → every component updates. No code changes. */
+/* ❌ Never:  background: #1B5BFF  (hardcoded = UI hallucination) */`;
+
 const NEXT_STEPS = [
   {
     icon: <BookOpen size={20} />,
@@ -182,7 +204,7 @@ export default function GettingStartedPage() {
         <h2 style={{
           fontSize: '2rem',
           fontWeight: 600,
-          marginBottom: 'var(--spacing-6)',
+          marginBottom: 'var(--spacing-4)',
           color: 'var(--text-primary)',
           borderBottom: '1px solid var(--border-subtle)',
           paddingBottom: 'var(--spacing-3)',
@@ -191,41 +213,63 @@ export default function GettingStartedPage() {
         </h2>
         <p style={{
           color: 'var(--text-secondary)',
-          marginBottom: 'var(--spacing-4)',
+          marginBottom: 'var(--spacing-8)',
           lineHeight: 1.6,
         }}>
-          Orion eliminates UI hallucination by enforcing strict separation between <strong>primitives</strong>, <strong>semantics</strong>, and <strong>components</strong>:
+          Every token flows through three layers. No component ever references a raw value directly — breaking this rule causes UI drift across brands and themes.
         </p>
-        <Card variant="elevated" style={{ marginBottom: 'var(--spacing-4)' }}>
+
+        {/* Layer 1 */}
+        <Card variant="base">
           <CardBody>
-            <div style={{ marginBottom: 'var(--spacing-3)' }}>
-              <Badge variant="info" size="sm">Layer 1: Primitives</Badge>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)', marginBottom: 'var(--spacing-3)' }}>
+              <Badge variant="info" size="sm">Layer 1</Badge>
+              <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>Primitives — the source of truth</span>
             </div>
-            <Suspense fallback={<div>Loading...</div>}>
-              <CodeBlock
-              language="text"
-              code={`Layer 1: Primitives (source truth)
-├─ Colors: #1B5BFF, #FFFFFF, #000000, etc.
-├─ Spacing: 4px, 8px, 12px, 16px, etc.
-├─ Typography: Libre Baskerville, DM Sans, JetBrains Mono
-└─ Radius: 6px, 12px, 16px, 9999px
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.5, marginBottom: 'var(--spacing-3)' }}>
+              Raw, immutable values defined once in JSON. These are the only place in the system where actual values live.
+            </p>
+            <CodeBlockSimple code={CHAIN_PRIMITIVES} language="json" />
+          </CardBody>
+        </Card>
 
-      ↓ (aliased as)
+        {/* Connector */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)', padding: 'var(--spacing-3) var(--spacing-4)', color: 'var(--text-tertiary)', fontSize: '0.8rem', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+          <ChevronDown size={16} />
+          aliased as intent-based names
+        </div>
 
-Layer 2: Semantics (intent-based tokens)
-├─ --interactive-primary → uses brand color
-├─ --surface-base → uses light/dark background
-├─ --text-secondary → uses contrast-adjusted text
-└─ --radius-control → uses radius scale
+        {/* Layer 2 */}
+        <Card variant="base">
+          <CardBody>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)', marginBottom: 'var(--spacing-3)' }}>
+              <Badge variant="warning" size="sm">Layer 2</Badge>
+              <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>Semantics — describe intent</span>
+            </div>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.5, marginBottom: 'var(--spacing-3)' }}>
+              Semantic tokens name values by <em>purpose</em>, not appearance. <code style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85em', background: 'var(--surface-layer)', padding: '0.1em 0.3em', borderRadius: 'var(--radius-sm)' }}>--interactive-primary</code> instead of <code style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85em', background: 'var(--surface-layer)', padding: '0.1em 0.3em', borderRadius: 'var(--radius-sm)' }}>--blue-500</code>. Switch brand → the alias updates. Components stay unchanged.
+            </p>
+            <CodeBlockSimple code={CHAIN_SEMANTICS} language="css" />
+          </CardBody>
+        </Card>
 
-      ↓ (consumed by)
+        {/* Connector */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)', padding: 'var(--spacing-3) var(--spacing-4)', color: 'var(--text-tertiary)', fontSize: '0.8rem', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+          <ChevronDown size={16} />
+          consumed by
+        </div>
 
-Layer 3: Components (blind consumers)
-├─ Button: uses --interactive-primary, --radius-control, --font-secondary
-├─ Card: uses --surface-base, --border-subtle
-└─ All components automatically adapt to brand/theme/mode changes`}
-            />
-            </Suspense>
+        {/* Layer 3 */}
+        <Card variant="base">
+          <CardBody>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)', marginBottom: 'var(--spacing-3)' }}>
+              <Badge variant="success" size="sm">Layer 3</Badge>
+              <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>Components — blind consumers</span>
+            </div>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.5, marginBottom: 'var(--spacing-3)' }}>
+              Components reference only semantic tokens. They are "blind" to raw values — which means they automatically adapt to any brand, theme, or mode change.
+            </p>
+            <CodeBlockSimple code={CHAIN_COMPONENTS} language="css" />
           </CardBody>
         </Card>
       </section>
@@ -251,7 +295,7 @@ Layer 3: Components (blind consumers)
         </p>
         <Card variant="base" style={{ marginBottom: 'var(--spacing-4)' }}>
           <CardBody>
-            <PackageManagerTabs packageName="@orion-ds/react" />
+            <PackageManagerTabs packageName="@orion-ds/react" noPanelPadding />
           </CardBody>
         </Card>
         <p style={{

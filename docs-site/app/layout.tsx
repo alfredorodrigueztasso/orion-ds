@@ -50,6 +50,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning data-theme="light" data-brand="orion">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&family=Work+Sans:wght@400;500;700&family=Poppins:wght@400;500;700&family=Anton&display=swap"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem('orion-theme'),b=localStorage.getItem('orion-brand'),el=document.documentElement,themes=['light','dark'],brands=['orion','red','deepblue','orange','ember','lemon'];if(t&&themes.includes(t))el.setAttribute('data-theme',t);if(b&&brands.includes(b))el.setAttribute('data-brand',b)}catch(e){}`,
+          }}
+        />
+      </head>
       <body>
         <Providers>
           <DocsNavbar />

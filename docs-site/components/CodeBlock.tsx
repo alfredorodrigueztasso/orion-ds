@@ -1,5 +1,6 @@
 import { createHighlighter, type Highlighter } from 'shiki';
 import CopyButton from './CopyButton';
+import styles from './CodeBlock.module.css';
 
 interface CodeBlockProps {
   code: string;
@@ -39,7 +40,7 @@ export default async function CodeBlock({ code, language = 'tsx' }: CodeBlockPro
   }
 
   return (
-    <div style={{ position: 'relative', marginBottom: 'var(--spacing-4)' }}>
+    <div className={styles.wrapper} style={{ position: 'relative' }}>
       <CopyButton code={code} />
       <div
         style={{

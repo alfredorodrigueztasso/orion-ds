@@ -37,6 +37,7 @@ import {
   Stepper as StepperBase,
   Skeleton as SkeletonBase,
   Popover as PopoverBase,
+  Chip as ChipBase,
 } from '@orion-ds/react';
 
 import {
@@ -90,6 +91,7 @@ export const Dropdown = DropdownBase;
 export const Stepper = StepperBase;
 export const Skeleton = SkeletonBase;
 export const Popover = PopoverBase;
+export const Chip = ChipBase;
 export const Pricing = PricingBase;
 export const Testimonials = TestimonialsBase;
 export const Stats = StatsBase;

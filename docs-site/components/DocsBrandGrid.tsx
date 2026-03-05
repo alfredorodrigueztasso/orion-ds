@@ -27,6 +27,18 @@ const BRANDS = [
     radiusStyle: '9999px (pill)',
     useCase: 'Warm, modern',
   },
+  {
+    name: 'ember',
+    color: '#F15D22',
+    radiusStyle: '12px radius',
+    useCase: 'Warm accent, dark buttons',
+  },
+  {
+    name: 'lemon',
+    color: '#5CE629',
+    radiusStyle: '9999px (pill)',
+    useCase: 'Vibrant lime, playful',
+  },
 ];
 
 export default function DocsBrandGrid() {

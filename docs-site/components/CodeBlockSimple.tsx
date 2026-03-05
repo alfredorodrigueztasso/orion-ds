@@ -1,6 +1,7 @@
 'use client';
 
 import CopyButton from './CopyButton';
+import styles from './CodeBlockSimple.module.css';
 
 interface CodeBlockSimpleProps {
   code: string;
@@ -9,7 +10,7 @@ interface CodeBlockSimpleProps {
 
 export default function CodeBlockSimple({ code }: CodeBlockSimpleProps) {
   return (
-    <div style={{ position: 'relative', marginBottom: 'var(--spacing-4)' }}>
+    <div className={styles.wrapper} style={{ position: 'relative' }}>
       <CopyButton code={code} />
       <pre
         style={{

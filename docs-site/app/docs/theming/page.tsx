@@ -3,36 +3,13 @@ import DocsNextStepsGrid from '@/components/DocsNextStepsGrid';
 import DocsBrandGrid from '@/components/DocsBrandGrid';
 import DocsFeatureGrid from '@/components/DocsFeatureGrid';
 import CodeBlockSimple from '@/components/CodeBlockSimple';
-import { Card, CardBody, Alert, Accordion, Link } from '@/components/ClientComponents';
+import { Card, CardBody, Alert, Accordion } from '@/components/ClientComponents';
 import { Palette, Moon, Zap } from 'lucide-react';
 
 export const metadata = {
   title: 'Theming',
   description: 'Brands, dark mode, and visual modes in Orion Design System',
 };
-
-const BRANDS_FEATURE_GRID = [
-  {
-    icon: <Palette size={32} />,
-    title: 'orion',
-    description: 'Default blue brand with modern design',
-  },
-  {
-    icon: <Palette size={32} />,
-    title: 'red',
-    description: 'Bold red accent for emphasis',
-  },
-  {
-    icon: <Palette size={32} />,
-    title: 'deepblue',
-    description: 'Deep blue for enterprise contexts',
-  },
-  {
-    icon: <Palette size={32} />,
-    title: 'orange',
-    description: 'Vibrant orange for energy',
-  },
-];
 
 const VISUAL_MODES_GRID = [
   {
@@ -54,6 +31,7 @@ const VISUAL_MODES_GRID = [
 
 const VISUAL_MODES_ACCORDION = [
   {
+    id: 'display',
     title: 'Display Mode',
     content: (
       <div style={{ color: 'var(--text-primary)', lineHeight: 1.6 }}>
@@ -76,6 +54,7 @@ const VISUAL_MODES_ACCORDION = [
     ),
   },
   {
+    id: 'product',
     title: 'Product Mode',
     content: (
       <div style={{ color: 'var(--text-primary)', lineHeight: 1.6 }}>
@@ -98,6 +77,7 @@ const VISUAL_MODES_ACCORDION = [
     ),
   },
   {
+    id: 'app',
     title: 'App Mode',
     content: (
       <div style={{ color: 'var(--text-primary)', lineHeight: 1.6 }}>
@@ -159,7 +139,11 @@ export default function ThemingPage() {
       <DocsPageHero
         title="Theming"
         subtitle="Multi-brand, dark mode, and three visual modes — all without touching components."
-        badges={['Multi-Brand', 'Dark Mode', '3 Visual Modes']}
+        badges={[
+          { label: 'Multi-Brand', variant: 'brand' },
+          { label: 'Dark Mode', variant: 'secondary' },
+          { label: '3 Visual Modes', variant: 'secondary' },
+        ]}
       />
 
       {/* Brands Section */}
