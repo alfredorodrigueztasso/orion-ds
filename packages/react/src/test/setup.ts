@@ -90,6 +90,7 @@ vi.mock("lucide-react", () => {
     Home: createMockIcon("Home"),
     Settings: createMockIcon("Settings"),
     User: createMockIcon("User"),
+    UserPlus: createMockIcon("UserPlus"),
     Users: createMockIcon("Users"),
     Search: createMockIcon("Search"),
     Bell: createMockIcon("Bell"),
@@ -168,6 +169,11 @@ vi.mock("lucide-react", () => {
     // Additional icons used by components
     Inbox: createMockIcon("Inbox"),
     Building2: createMockIcon("Building2"),
+    Circle: createMockIcon("Circle"),
+    Command: createMockIcon("Command"),
+    Folder: createMockIcon("Folder"),
+    MessageCircle: createMockIcon("MessageCircle"),
+    TrendingUp: createMockIcon("TrendingUp"),
 
     __esModule: true,
   };
