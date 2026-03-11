@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getAllComponents, getItemByName } from '@/lib/registry';
-import { PageHeader, Badge } from '@/components/ClientComponents';
+import { Badge } from '@/components/ClientComponents';
+import DocsPageHeader from '@/components/DocsPageHeader';
 import ComponentDetail from '@/components/ComponentDetail';
 
 interface PageProps {
@@ -50,8 +51,7 @@ export default async function ComponentPage({ params }: PageProps) {
   return (
     <div className="main-content">
       {/* Header */}
-      <PageHeader
-        size="lg"
+      <DocsPageHeader
         title={component.title}
         description={component.description}
         badge={
