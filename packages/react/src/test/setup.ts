@@ -42,6 +42,15 @@ if (!global.ResizeObserver) {
   } as any;
 }
 
+// Mock MutationObserver for hooks like useAutoScroll
+if (!global.MutationObserver) {
+  global.MutationObserver = vi.fn().mockImplementation(() => ({
+    observe: vi.fn(),
+    unobserve: vi.fn(),
+    disconnect: vi.fn(),
+  })) as any;
+}
+
 // Mock lucide-react icons for testing
 // This prevents SVG rendering issues in jsdom and speeds up tests
 vi.mock("lucide-react", () => {
@@ -87,6 +96,10 @@ vi.mock("lucide-react", () => {
     ChevronUp: createMockIcon("ChevronUp"),
     ChevronLeft: createMockIcon("ChevronLeft"),
     ChevronRight: createMockIcon("ChevronRight"),
+    ArrowDown: createMockIcon("ArrowDown"),
+    ArrowUp: createMockIcon("ArrowUp"),
+    ArrowLeft: createMockIcon("ArrowLeft"),
+    ArrowRight: createMockIcon("ArrowRight"),
     Home: createMockIcon("Home"),
     Settings: createMockIcon("Settings"),
     User: createMockIcon("User"),
@@ -110,6 +123,7 @@ vi.mock("lucide-react", () => {
     ExternalLink: createMockIcon("ExternalLink"),
     MoreVertical: createMockIcon("MoreVertical"),
     MoreHorizontal: createMockIcon("MoreHorizontal"),
+    Music: createMockIcon("Music"),
 
     // Status & Alerts
     AlertCircle: createMockIcon("AlertCircle"),

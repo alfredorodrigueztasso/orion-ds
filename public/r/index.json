@@ -4,6 +4,14 @@
   "homepage": "https://orion-ds.dev",
   "items": [
     {
+      "name": "about-page-template",
+      "type": "registry:template",
+      "title": "About Page",
+      "description": "AboutPage page template",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/about-page-template.json"
+    },
+    {
       "name": "accordion",
       "type": "registry:component",
       "title": "Accordion",
@@ -20,12 +28,44 @@
       "registryUrl": "https://orion-ds.dev/r/activity-feed.json"
     },
     {
+      "name": "activity-feed-section",
+      "type": "registry:section",
+      "title": "ActivityFeed",
+      "description": "ActivityFeed section component",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/activity-feed-section.json"
+    },
+    {
       "name": "agent-card",
       "type": "registry:component",
       "title": "AgentCard",
       "description": "AgentCard component",
       "category": "data-display",
       "registryUrl": "https://orion-ds.dev/r/agent-card.json"
+    },
+    {
+      "name": "agent-editor",
+      "type": "registry:template",
+      "title": "Agent Editor",
+      "description": "AgentEditor page template",
+      "category": "app",
+      "registryUrl": "https://orion-ds.dev/r/agent-editor.json"
+    },
+    {
+      "name": "agent-folder",
+      "type": "registry:section",
+      "title": "AgentFolder",
+      "description": "AgentFolder section component",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/agent-folder.json"
+    },
+    {
+      "name": "agent-workspace",
+      "type": "registry:template",
+      "title": "Agent Workspace",
+      "description": "AgentWorkspace page template",
+      "category": "app",
+      "registryUrl": "https://orion-ds.dev/r/agent-workspace.json"
     },
     {
       "name": "alert",
@@ -42,6 +82,14 @@
       "description": "AlertDialog component",
       "category": "overlays",
       "registryUrl": "https://orion-ds.dev/r/alert-dialog.json"
+    },
+    {
+      "name": "app-download",
+      "type": "registry:section",
+      "title": "AppDownload",
+      "description": "AppDownload section component",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/app-download.json"
     },
     {
       "name": "avatar",
@@ -68,12 +116,28 @@
       "registryUrl": "https://orion-ds.dev/r/banner.json"
     },
     {
+      "name": "blog",
+      "type": "registry:section",
+      "title": "Blog",
+      "description": "Blog section component",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/blog.json"
+    },
+    {
       "name": "breadcrumb",
       "type": "registry:component",
       "title": "Breadcrumb",
       "description": "Navigation path indicator",
       "category": "navigation",
       "registryUrl": "https://orion-ds.dev/r/breadcrumb.json"
+    },
+    {
+      "name": "breadcrumbs",
+      "type": "registry:section",
+      "title": "Breadcrumbs",
+      "description": "Breadcrumbs section component",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/breadcrumbs.json"
     },
     {
       "name": "button",
@@ -108,6 +172,14 @@
       "registryUrl": "https://orion-ds.dev/r/carousel.json"
     },
     {
+      "name": "carousel-section",
+      "type": "registry:section",
+      "title": "CarouselSection",
+      "description": "CarouselSection section component",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/carousel-section.json"
+    },
+    {
       "name": "chart",
       "type": "registry:component",
       "title": "Chart",
@@ -122,6 +194,22 @@
       "description": "Chat component",
       "category": "data-display",
       "registryUrl": "https://orion-ds.dev/r/chat.json"
+    },
+    {
+      "name": "chat-page-template",
+      "type": "registry:template",
+      "title": "Chat Page",
+      "description": "ChatPage page template",
+      "category": "app",
+      "registryUrl": "https://orion-ds.dev/r/chat-page-template.json"
+    },
+    {
+      "name": "chat-section",
+      "type": "registry:section",
+      "title": "Chat",
+      "description": "Chat section component",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/chat-section.json"
     },
     {
       "name": "checkbox",
@@ -188,12 +276,44 @@
       "registryUrl": "https://orion-ds.dev/r/command-bar.json"
     },
     {
-      "name": "container",
+      "name": "comparison",
       "type": "registry:section",
-      "title": "Container",
-      "description": "Container section component",
+      "title": "Comparison",
+      "description": "Comparison section component",
       "category": "marketing",
-      "registryUrl": "https://orion-ds.dev/r/container.json"
+      "registryUrl": "https://orion-ds.dev/r/comparison.json"
+    },
+    {
+      "name": "contact",
+      "type": "registry:section",
+      "title": "Contact",
+      "description": "Contact section component",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/contact.json"
+    },
+    {
+      "name": "contact-page-template",
+      "type": "registry:template",
+      "title": "Contact Page",
+      "description": "ContactPage page template",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/contact-page-template.json"
+    },
+    {
+      "name": "cta",
+      "type": "registry:section",
+      "title": "CTA",
+      "description": "CTA section component",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/cta.json"
+    },
+    {
+      "name": "dashboard-template",
+      "type": "registry:template",
+      "title": "Dashboard",
+      "description": "Dashboard page template",
+      "category": "app",
+      "registryUrl": "https://orion-ds.dev/r/dashboard-template.json"
     },
     {
       "name": "data-table",
@@ -252,12 +372,36 @@
       "registryUrl": "https://orion-ds.dev/r/empty-state.json"
     },
     {
+      "name": "empty-state-section",
+      "type": "registry:section",
+      "title": "EmptyState",
+      "description": "EmptyState section component",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/empty-state-section.json"
+    },
+    {
       "name": "error-boundary",
       "type": "registry:component",
       "title": "ErrorBoundary",
       "description": "ErrorBoundary component",
       "category": "feedback",
       "registryUrl": "https://orion-ds.dev/r/error-boundary.json"
+    },
+    {
+      "name": "faq",
+      "type": "registry:section",
+      "title": "FAQ",
+      "description": "FAQ section component",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/faq.json"
+    },
+    {
+      "name": "features",
+      "type": "registry:section",
+      "title": "Features",
+      "description": "Features section component",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/features.json"
     },
     {
       "name": "field",
@@ -284,12 +428,36 @@
       "registryUrl": "https://orion-ds.dev/r/filter-bar.json"
     },
     {
+      "name": "footer",
+      "type": "registry:section",
+      "title": "Footer",
+      "description": "Footer section component",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/footer.json"
+    },
+    {
       "name": "form-section",
       "type": "registry:component",
       "title": "FormSection",
       "description": "FormSection component",
       "category": "forms",
       "registryUrl": "https://orion-ds.dev/r/form-section.json"
+    },
+    {
+      "name": "gallery",
+      "type": "registry:section",
+      "title": "Gallery",
+      "description": "Gallery section component",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/gallery.json"
+    },
+    {
+      "name": "hero",
+      "type": "registry:section",
+      "title": "Hero",
+      "description": "Hero section component",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/hero.json"
     },
     {
       "name": "icon",
@@ -316,6 +484,22 @@
       "registryUrl": "https://orion-ds.dev/r/kanban-board.json"
     },
     {
+      "name": "kanban-page-template",
+      "type": "registry:template",
+      "title": "Kanban Page",
+      "description": "KanbanPage page template",
+      "category": "app",
+      "registryUrl": "https://orion-ds.dev/r/kanban-page-template.json"
+    },
+    {
+      "name": "landing-page-template",
+      "type": "registry:template",
+      "title": "Landing Page",
+      "description": "LandingPage page template",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/landing-page-template.json"
+    },
+    {
       "name": "link",
       "type": "registry:component",
       "title": "Link",
@@ -330,6 +514,22 @@
       "description": "List component",
       "category": "data-display",
       "registryUrl": "https://orion-ds.dev/r/list.json"
+    },
+    {
+      "name": "login-template",
+      "type": "registry:template",
+      "title": "Login",
+      "description": "Login page template",
+      "category": "app",
+      "registryUrl": "https://orion-ds.dev/r/login-template.json"
+    },
+    {
+      "name": "logo-cloud",
+      "type": "registry:section",
+      "title": "LogoCloud",
+      "description": "LogoCloud section component",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/logo-cloud.json"
     },
     {
       "name": "metric-cards",
@@ -364,6 +564,14 @@
       "registryUrl": "https://orion-ds.dev/r/navbar.json"
     },
     {
+      "name": "newsletter",
+      "type": "registry:section",
+      "title": "Newsletter",
+      "description": "Newsletter section component",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/newsletter.json"
+    },
+    {
       "name": "notification-center",
       "type": "registry:component",
       "title": "NotificationCenter",
@@ -394,6 +602,30 @@
       "description": "Popover component",
       "category": "overlays",
       "registryUrl": "https://orion-ds.dev/r/popover.json"
+    },
+    {
+      "name": "pricing",
+      "type": "registry:section",
+      "title": "Pricing",
+      "description": "Pricing section component",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/pricing.json"
+    },
+    {
+      "name": "pricing-page-template",
+      "type": "registry:template",
+      "title": "Pricing Page",
+      "description": "PricingPage page template",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/pricing-page-template.json"
+    },
+    {
+      "name": "profile-page-template",
+      "type": "registry:template",
+      "title": "Profile Page",
+      "description": "ProfilePage page template",
+      "category": "app",
+      "registryUrl": "https://orion-ds.dev/r/profile-page-template.json"
     },
     {
       "name": "progress-bar",
@@ -428,20 +660,28 @@
       "registryUrl": "https://orion-ds.dev/r/search-input.json"
     },
     {
-      "name": "section",
-      "type": "registry:section",
-      "title": "Section",
-      "description": "Section section component",
-      "category": "marketing",
-      "registryUrl": "https://orion-ds.dev/r/section.json"
-    },
-    {
       "name": "select",
       "type": "registry:component",
       "title": "Select",
       "description": "Dropdown selection input",
       "category": "forms",
       "registryUrl": "https://orion-ds.dev/r/select.json"
+    },
+    {
+      "name": "settings-layout",
+      "type": "registry:section",
+      "title": "SettingsLayout",
+      "description": "SettingsLayout section component",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/settings-layout.json"
+    },
+    {
+      "name": "settings-template",
+      "type": "registry:template",
+      "title": "Settings",
+      "description": "Settings page template",
+      "category": "app",
+      "registryUrl": "https://orion-ds.dev/r/settings-template.json"
     },
     {
       "name": "sidebar",
@@ -468,6 +708,14 @@
       "registryUrl": "https://orion-ds.dev/r/slider.json"
     },
     {
+      "name": "social-proof",
+      "type": "registry:section",
+      "title": "SocialProof",
+      "description": "SocialProof section component",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/social-proof.json"
+    },
+    {
       "name": "spinner",
       "type": "registry:component",
       "title": "Spinner",
@@ -476,12 +724,28 @@
       "registryUrl": "https://orion-ds.dev/r/spinner.json"
     },
     {
+      "name": "stats",
+      "type": "registry:section",
+      "title": "Stats",
+      "description": "Stats section component",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/stats.json"
+    },
+    {
       "name": "stepper",
       "type": "registry:component",
       "title": "Stepper",
       "description": "Stepper component",
       "category": "navigation",
       "registryUrl": "https://orion-ds.dev/r/stepper.json"
+    },
+    {
+      "name": "stepper-section",
+      "type": "registry:section",
+      "title": "Stepper",
+      "description": "Stepper section component",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/stepper-section.json"
     },
     {
       "name": "switch",
@@ -508,6 +772,22 @@
       "registryUrl": "https://orion-ds.dev/r/tabs.json"
     },
     {
+      "name": "team",
+      "type": "registry:section",
+      "title": "Team",
+      "description": "Team section component",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/team.json"
+    },
+    {
+      "name": "testimonials",
+      "type": "registry:section",
+      "title": "Testimonials",
+      "description": "Testimonials section component",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/testimonials.json"
+    },
+    {
       "name": "textarea",
       "type": "registry:component",
       "title": "Textarea",
@@ -522,6 +802,14 @@
       "description": "ThemeController component",
       "category": "interactive",
       "registryUrl": "https://orion-ds.dev/r/theme-controller.json"
+    },
+    {
+      "name": "timeline",
+      "type": "registry:section",
+      "title": "Timeline",
+      "description": "Timeline section component",
+      "category": "marketing",
+      "registryUrl": "https://orion-ds.dev/r/timeline.json"
     },
     {
       "name": "toast",

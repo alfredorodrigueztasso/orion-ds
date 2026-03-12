@@ -18,7 +18,10 @@
       "Bash(git push:*)",
       "Bash(wc:*)",
       "Bash(find:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Skill(pre-release)",
+      "Skill(pre-release:*)",
+      "Bash(npm test)"
     ]
   }
 }
