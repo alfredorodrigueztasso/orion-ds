@@ -172,8 +172,17 @@ vi.mock("lucide-react", () => {
     Circle: createMockIcon("Circle"),
     Command: createMockIcon("Command"),
     Folder: createMockIcon("Folder"),
+    FolderSymlink: createMockIcon("FolderSymlink"),
     MessageCircle: createMockIcon("MessageCircle"),
     TrendingUp: createMockIcon("TrendingUp"),
+    Pencil: createMockIcon("Pencil"),
+
+    // Icons object (for IconGallery)
+    icons: {
+      MessageSquare: createMockIcon("MessageSquare"),
+      Heart: createMockIcon("Heart"),
+      Star: createMockIcon("Star"),
+    },
 
     __esModule: true,
   };

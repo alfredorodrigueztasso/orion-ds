@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Sidebar } from "./Sidebar";
 import { Home, Settings, Users, FileText } from "lucide-react";
-import type { SidebarItem } from "./Sidebar.types";
+import type { SidebarItem, SidebarSection } from "./Sidebar.types";
 
 describe("Sidebar", () => {
   const mockItems: SidebarItem[] = [
@@ -37,8 +37,14 @@ describe("Sidebar", () => {
     },
   ];
 
+  const mockSections: SidebarSection[] = [
+    {
+      items: mockItems,
+    },
+  ];
+
   it("renders sidebar items", () => {
-    render(<Sidebar items={mockItems} />);
+    render(<Sidebar sections={mockSections} />);
 
     expect(screen.getByText("Home")).toBeInTheDocument();
     expect(screen.getByText("Users")).toBeInTheDocument();
@@ -47,84 +53,76 @@ describe("Sidebar", () => {
   });
 
   it("renders badges", () => {
-    render(<Sidebar items={mockItems} />);
+    render(<Sidebar sections={mockSections} />);
 
     expect(screen.getByText("5")).toBeInTheDocument();
   });
 
   it("renders collapsible items with children", () => {
-    render(<Sidebar items={mockItems} />);
+    render(<Sidebar sections={mockSections} />);
 
     expect(screen.getByText("Documents")).toBeInTheDocument();
   });
 
   it("handles item click events", async () => {
-    const handleSelect = vi.fn();
+    const handleClick = vi.fn();
     const user = userEvent.setup();
 
-    render(
-      <Sidebar
-        items={mockItems}
-        onSelect={handleSelect}
-      />,
-    );
+    const itemsWithClick = [
+      {
+        id: "action",
+        label: "Action",
+        onClick: handleClick,
+      },
+      ...mockItems,
+    ];
 
-    const homeItem = screen.getByText("Home");
-    await user.click(homeItem);
+    const sections: SidebarSection[] = [{ items: itemsWithClick }];
 
-    expect(handleSelect).toHaveBeenCalledWith(mockItems[0]);
+    render(<Sidebar sections={sections} />);
+
+    const actionItem = screen.getByText("Action");
+    await user.click(actionItem);
+
+    expect(handleClick).toHaveBeenCalled();
   });
 
   it("supports active item highlighting", () => {
     const { container } = render(
-      <Sidebar
-        items={mockItems}
-        activeItemId="home"
-      />,
+      <Sidebar sections={mockSections} activeItem="home" />,
     );
 
     expect(container).toBeInTheDocument();
   });
 
-  it("supports collapsible mode", () => {
-    render(
+  it("supports collapsed mode", () => {
+    const handleCollapsedChange = vi.fn();
+    const { container } = render(
       <Sidebar
-        items={mockItems}
-        collapsible
+        sections={mockSections}
+        collapsed={false}
+        onCollapsedChange={handleCollapsedChange}
       />,
     );
 
-    expect(screen.getByText("Home")).toBeInTheDocument();
+    expect(container.querySelector("nav")).toBeInTheDocument();
   });
 
   it("renders header when provided", () => {
-    render(
-      <Sidebar
-        items={mockItems}
-        header={<div>My App</div>}
-      />,
-    );
+    render(<Sidebar sections={mockSections} header={<div>My App</div>} />);
 
     expect(screen.getByText("My App")).toBeInTheDocument();
   });
 
   it("renders footer when provided", () => {
-    render(
-      <Sidebar
-        items={mockItems}
-        footer={<div>Version 1.0</div>}
-      />,
-    );
+    render(<Sidebar sections={mockSections} footer={<div>Version 1.0</div>} />);
 
     expect(screen.getByText("Version 1.0")).toBeInTheDocument();
   });
 
   it("applies custom className", () => {
     const { container } = render(
-      <Sidebar
-        items={mockItems}
-        className="custom-sidebar"
-      />,
+      <Sidebar sections={mockSections} className="custom-sidebar" />,
     );
 
     const sidebar = container.querySelector(".custom-sidebar");
@@ -134,12 +132,7 @@ describe("Sidebar", () => {
   it("forwards ref correctly", () => {
     const ref = vi.fn();
 
-    render(
-      <Sidebar
-        ref={ref}
-        items={mockItems}
-      />,
-    );
+    render(<Sidebar ref={ref} sections={mockSections} />);
 
     expect(ref).toHaveBeenCalled();
   });
@@ -147,19 +140,18 @@ describe("Sidebar", () => {
   it("handles nested navigation", async () => {
     const user = userEvent.setup();
 
-    render(
-      <Sidebar items={mockItems} />
-    );
+    render(<Sidebar sections={mockSections} />);
 
     // Check if nested items exist
     const documentsItem = screen.getByText("Documents");
     expect(documentsItem).toBeInTheDocument();
   });
 
-  it("renders with empty items", () => {
-    render(<Sidebar items={[]} />);
+  it("renders with empty sections", () => {
+    render(<Sidebar sections={[]} />);
 
-    const sidebar = screen.queryByRole("navigation") || screen.getByText(/./);
+    const sidebar =
+      screen.queryByRole("navigation") || document.querySelector("nav");
     expect(sidebar).toBeInTheDocument();
   });
 });

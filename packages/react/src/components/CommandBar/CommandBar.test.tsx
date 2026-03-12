@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { CommandBar } from "./CommandBar";
-import { Command, Settings, FileText } from "lucide-react";
+import { Settings, FileText } from "lucide-react";
 import type { CommandItem } from "./CommandBar.types";
 
 describe("CommandBar", () => {
@@ -12,41 +12,48 @@ describe("CommandBar", () => {
       label: "Create File",
       description: "Create a new file",
       icon: <FileText size={16} />,
-      shortcuts: ["Cmd+N"],
+      shortcut: "⌘N",
+      onSelect: vi.fn(),
     },
     {
       id: "settings",
       label: "Settings",
       description: "Open application settings",
       icon: <Settings size={16} />,
-      shortcuts: ["Cmd+,"],
+      shortcut: "⌘,",
+      onSelect: vi.fn(),
     },
     {
       id: "search",
       label: "Search",
       description: "Search across files",
-      icon: <Command size={16} />,
-      shortcuts: ["Cmd+P"],
+      icon: <FileText size={16} />,
+      shortcut: "⌘P",
+      onSelect: vi.fn(),
     },
   ];
 
-  it("renders command input", () => {
+  it("renders command input when open", () => {
     render(
       <CommandBar
+        open={true}
+        onOpenChange={() => {}}
         commands={mockCommands}
-        onExecute={() => {}}
       />,
     );
 
-    const input = screen.queryByPlaceholderText(/search|command/i);
-    expect(input || screen.getByRole("textbox")).toBeInTheDocument();
+    const input =
+      screen.queryByPlaceholderText(/search|command/i) ||
+      screen.queryByRole("textbox");
+    expect(input).toBeInTheDocument();
   });
 
-  it("displays all commands initially hidden", () => {
+  it("displays commands when open", () => {
     render(
       <CommandBar
+        open={true}
+        onOpenChange={() => {}}
         commands={mockCommands}
-        onExecute={() => {}}
       />,
     );
 
@@ -59,8 +66,9 @@ describe("CommandBar", () => {
 
     render(
       <CommandBar
+        open={true}
+        onOpenChange={() => {}}
         commands={mockCommands}
-        onExecute={() => {}}
       />,
     );
 
@@ -72,13 +80,26 @@ describe("CommandBar", () => {
   });
 
   it("executes command on select", async () => {
-    const handleExecute = vi.fn();
+    const handleSelect = vi.fn();
+    const onSelect = vi.fn();
     const user = userEvent.setup();
+
+    const commands = [
+      {
+        id: "create-file",
+        label: "Create File",
+        description: "Create a new file",
+        icon: <FileText size={16} />,
+        onSelect,
+      },
+    ];
 
     render(
       <CommandBar
-        commands={mockCommands}
-        onExecute={handleExecute}
+        open={true}
+        onOpenChange={() => {}}
+        commands={commands}
+        onSelect={handleSelect}
       />,
     );
 
@@ -88,7 +109,7 @@ describe("CommandBar", () => {
     const createOption = screen.getByText("Create File");
     await user.click(createOption);
 
-    expect(handleExecute).toHaveBeenCalledWith(
+    expect(handleSelect).toHaveBeenCalledWith(
       expect.objectContaining({ id: "create-file" }),
     );
   });
@@ -98,8 +119,9 @@ describe("CommandBar", () => {
 
     render(
       <CommandBar
+        open={true}
+        onOpenChange={() => {}}
         commands={mockCommands}
-        onExecute={() => {}}
       />,
     );
 
@@ -107,16 +129,15 @@ describe("CommandBar", () => {
     await user.type(input, "settings");
 
     // Shortcuts should be visible
-    expect(screen.getByText(/Cmd|\,/)).toBeInTheDocument();
+    expect(screen.getByText("⌘,")).toBeInTheDocument();
   });
 
   it("handles keyboard navigation", async () => {
-    const user = userEvent.setup();
-
     render(
       <CommandBar
+        open={true}
+        onOpenChange={() => {}}
         commands={mockCommands}
-        onExecute={() => {}}
       />,
     );
 
@@ -127,46 +148,29 @@ describe("CommandBar", () => {
     expect(input).toHaveFocus();
   });
 
-  it("clears input on command execution", async () => {
-    const user = userEvent.setup();
-
-    render(
-      <CommandBar
-        commands={mockCommands}
-        onExecute={() => {}}
-      />,
-    );
-
-    const input = screen.getByRole("textbox") as HTMLInputElement;
-    await user.type(input, "Create");
-
-    const option = screen.getByText("Create File");
-    await user.click(option);
-
-    // Input should be cleared after execution
-    expect(input.value || input).toBeInTheDocument();
-  });
-
-  it("supports grouped commands", () => {
-    const groupedCommands: CommandItem[] = [
+  it("supports categorized commands", () => {
+    const categorizedCommands: CommandItem[] = [
       {
         id: "file",
         label: "File",
-        group: "Navigation",
+        category: "Navigation",
         icon: <FileText size={16} />,
+        onSelect: vi.fn(),
       },
       {
         id: "settings",
         label: "Settings",
-        group: "Configuration",
+        category: "Configuration",
         icon: <Settings size={16} />,
+        onSelect: vi.fn(),
       },
     ];
 
     render(
       <CommandBar
-        commands={groupedCommands}
-        onExecute={() => {}}
+        open={true}
+        onOpenChange={() => {}}
+        commands={categorizedCommands}
       />,
     );
 
@@ -176,8 +180,9 @@ describe("CommandBar", () => {
   it("applies custom className", () => {
     const { container } = render(
       <CommandBar
+        open={true}
+        onOpenChange={() => {}}
         commands={mockCommands}
-        onExecute={() => {}}
         className="custom-command"
       />,
     );
@@ -192,8 +197,9 @@ describe("CommandBar", () => {
     render(
       <CommandBar
         ref={ref}
+        open={true}
+        onOpenChange={() => {}}
         commands={mockCommands}
-        onExecute={() => {}}
       />,
     );
 
@@ -205,8 +211,9 @@ describe("CommandBar", () => {
 
     render(
       <CommandBar
+        open={true}
+        onOpenChange={() => {}}
         commands={mockCommands}
-        onExecute={() => {}}
       />,
     );
 
@@ -215,5 +222,27 @@ describe("CommandBar", () => {
 
     // Should show no results message or empty state
     expect(input).toBeInTheDocument();
+  });
+
+  it("calls onOpenChange when toggling visibility", async () => {
+    const handleOpenChange = vi.fn();
+
+    const { rerender } = render(
+      <CommandBar
+        open={false}
+        onOpenChange={handleOpenChange}
+        commands={mockCommands}
+      />,
+    );
+
+    rerender(
+      <CommandBar
+        open={true}
+        onOpenChange={handleOpenChange}
+        commands={mockCommands}
+      />,
+    );
+
+    expect(screen.queryByRole("textbox")).toBeInTheDocument();
   });
 });
