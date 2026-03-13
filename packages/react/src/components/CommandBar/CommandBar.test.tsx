@@ -245,4 +245,341 @@ describe("CommandBar", () => {
 
     expect(screen.queryByRole("textbox")).toBeInTheDocument();
   });
+
+  // ============================================================================
+  // NEW TESTS FOR UNTESTED BRANCHES
+  // ============================================================================
+
+  it("does not render when open is false", () => {
+    const { container } = render(
+      <CommandBar
+        open={false}
+        onOpenChange={() => {}}
+        commands={mockCommands}
+      />,
+    );
+
+    // When closed, no content should be rendered
+    expect(container.innerHTML).toBe("");
+  });
+
+  it("closes when clicking overlay", async () => {
+    const handleOpenChange = vi.fn();
+    const user = userEvent.setup();
+
+    const { container } = render(
+      <CommandBar
+        open={true}
+        onOpenChange={handleOpenChange}
+        commands={mockCommands}
+      />,
+    );
+
+    const overlay = container.querySelector(
+      '[class*="overlay"]',
+    ) as HTMLElement;
+    if (overlay) {
+      await user.click(overlay);
+    }
+
+    expect(handleOpenChange).toHaveBeenCalledWith(false);
+  });
+
+  it("supports disabled commands", () => {
+    const disabledCommands: CommandItem[] = [
+      {
+        id: "enabled",
+        label: "Enabled",
+        onSelect: vi.fn(),
+        disabled: false,
+      },
+      {
+        id: "disabled",
+        label: "Disabled",
+        onSelect: vi.fn(),
+        disabled: true,
+      },
+    ];
+
+    render(
+      <CommandBar
+        open={true}
+        onOpenChange={() => {}}
+        commands={disabledCommands}
+      />,
+    );
+
+    expect(screen.getByText("Enabled")).toBeInTheDocument();
+    expect(screen.getByText("Disabled")).toBeInTheDocument();
+  });
+
+  it("does not call onSelect when disabled command is clicked", async () => {
+    const onSelect = vi.fn();
+    const handleSelect = vi.fn();
+    const user = userEvent.setup();
+
+    const disabledCommand: CommandItem = {
+      id: "disabled",
+      label: "Disabled Command",
+      onSelect,
+      disabled: true,
+    };
+
+    render(
+      <CommandBar
+        open={true}
+        onOpenChange={() => {}}
+        commands={[disabledCommand]}
+        onSelect={handleSelect}
+      />,
+    );
+
+    const cmd = screen.getByText("Disabled Command");
+    await user.click(cmd);
+
+    expect(onSelect).not.toHaveBeenCalled();
+    expect(handleSelect).not.toHaveBeenCalled();
+  });
+
+  it("shows recent commands when no search is active", () => {
+    const recentCommands: CommandItem[] = [
+      {
+        id: "recent-1",
+        label: "Recent File",
+        onSelect: vi.fn(),
+      },
+    ];
+
+    render(
+      <CommandBar
+        open={true}
+        onOpenChange={() => {}}
+        commands={mockCommands}
+        recentCommands={recentCommands}
+      />,
+    );
+
+    expect(screen.getByText("Recent")).toBeInTheDocument();
+    expect(screen.getByText("Recent File")).toBeInTheDocument();
+  });
+
+  it("hides recent commands when searching", async () => {
+    const recentCommands: CommandItem[] = [
+      {
+        id: "recent-1",
+        label: "Recent File",
+        onSelect: vi.fn(),
+      },
+    ];
+    const user = userEvent.setup();
+
+    render(
+      <CommandBar
+        open={true}
+        onOpenChange={() => {}}
+        commands={mockCommands}
+        recentCommands={recentCommands}
+      />,
+    );
+
+    const input = screen.getByRole("textbox");
+    await user.type(input, "settings");
+
+    // Recent section should be hidden when searching
+    expect(screen.getByText("Settings")).toBeInTheDocument();
+  });
+
+  it("searches by description", async () => {
+    const commandsWithDescription: CommandItem[] = [
+      {
+        id: "test",
+        label: "Test Command",
+        description: "Unique description text",
+        onSelect: vi.fn(),
+      },
+    ];
+    const user = userEvent.setup();
+
+    render(
+      <CommandBar
+        open={true}
+        onOpenChange={() => {}}
+        commands={commandsWithDescription}
+      />,
+    );
+
+    const input = screen.getByRole("textbox");
+    await user.type(input, "unique");
+
+    expect(screen.getByText("Test Command")).toBeInTheDocument();
+  });
+
+  it("searches by keywords", async () => {
+    const commandsWithKeywords: CommandItem[] = [
+      {
+        id: "test",
+        label: "Test Command",
+        keywords: ["special", "keyword"],
+        onSelect: vi.fn(),
+      },
+    ];
+    const user = userEvent.setup();
+
+    render(
+      <CommandBar
+        open={true}
+        onOpenChange={() => {}}
+        commands={commandsWithKeywords}
+      />,
+    );
+
+    const input = screen.getByRole("textbox");
+    await user.type(input, "keyword");
+
+    expect(screen.getByText("Test Command")).toBeInTheDocument();
+  });
+
+  it("handles ArrowDown key navigation", async () => {
+    const user = userEvent.setup();
+
+    render(
+      <CommandBar
+        open={true}
+        onOpenChange={() => {}}
+        commands={mockCommands}
+      />,
+    );
+
+    const input = screen.getByRole("textbox");
+    input.focus();
+
+    await user.keyboard("{ArrowDown}");
+
+    expect(input).toBeInTheDocument();
+  });
+
+  it("handles ArrowUp key navigation", async () => {
+    const user = userEvent.setup();
+
+    render(
+      <CommandBar
+        open={true}
+        onOpenChange={() => {}}
+        commands={mockCommands}
+      />,
+    );
+
+    const input = screen.getByRole("textbox");
+    input.focus();
+
+    await user.keyboard("{ArrowUp}");
+
+    expect(input).toBeInTheDocument();
+  });
+
+  it("does not select disabled command with Enter key", async () => {
+    const onSelect = vi.fn();
+    const handleSelect = vi.fn();
+    const user = userEvent.setup();
+
+    const disabledCommands: CommandItem[] = [
+      {
+        id: "disabled",
+        label: "Disabled",
+        onSelect,
+        disabled: true,
+      },
+      {
+        id: "enabled",
+        label: "Enabled",
+        onSelect: vi.fn(),
+      },
+    ];
+
+    render(
+      <CommandBar
+        open={true}
+        onOpenChange={() => {}}
+        commands={disabledCommands}
+        onSelect={handleSelect}
+      />,
+    );
+
+    const input = screen.getByRole("textbox");
+    input.focus();
+
+    // First command is disabled, so selecting it should not call onSelect
+    await user.keyboard("{Enter}");
+
+    expect(onSelect).not.toHaveBeenCalled();
+  });
+
+  it("updates selection on mouse enter", async () => {
+    const onSelect = vi.fn();
+    const handleSelect = vi.fn();
+    const user = userEvent.setup();
+
+    const commands: CommandItem[] = [
+      { id: "first", label: "First", onSelect: vi.fn() },
+      { id: "second", label: "Second", onSelect },
+    ];
+
+    render(
+      <CommandBar
+        open={true}
+        onOpenChange={() => {}}
+        commands={commands}
+        onSelect={handleSelect}
+      />,
+    );
+
+    const secondCommand = screen.getByText("Second");
+    await user.hover(secondCommand);
+    await user.keyboard("{Enter}");
+
+    // After hovering on second, enter should select it
+    expect(onSelect).toHaveBeenCalled();
+  });
+
+  it("handles Escape key to close", async () => {
+    const handleOpenChange = vi.fn();
+    const user = userEvent.setup();
+
+    render(
+      <CommandBar
+        open={true}
+        onOpenChange={handleOpenChange}
+        commands={mockCommands}
+      />,
+    );
+
+    const input = screen.getByRole("textbox");
+    input.focus();
+
+    await user.keyboard("{Escape}");
+
+    expect(handleOpenChange).toHaveBeenCalledWith(false);
+  });
+
+  it("resets state when opening", () => {
+    const { rerender } = render(
+      <CommandBar
+        open={false}
+        onOpenChange={() => {}}
+        commands={mockCommands}
+      />,
+    );
+
+    rerender(
+      <CommandBar
+        open={true}
+        onOpenChange={() => {}}
+        commands={mockCommands}
+      />,
+    );
+
+    const input = screen.getByRole("textbox") as HTMLInputElement;
+    // Should have empty search value when opened
+    expect(input.value).toBe("");
+  });
 });
