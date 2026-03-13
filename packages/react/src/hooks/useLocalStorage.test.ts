@@ -529,3 +529,259 @@ describe("useSessionStorage - Advanced scenarios", () => {
     expect(result.current[0]).toBe("value2");
   });
 });
+
+// ============================================================================
+// ADDITIONAL COMPREHENSIVE TESTS FOR BRANCH COVERAGE
+// ============================================================================
+
+describe("useLocalStorage - Branch Coverage Tests", () => {
+  beforeEach(() => localStorage.clear());
+
+  it("setValue accepts functional updater with complex state", () => {
+    const { result } = renderHook(() =>
+      useLocalStorage("complex", { count: 0, items: [] as string[] }),
+    );
+
+    act(() => {
+      result.current[1]((prev) => ({
+        ...prev,
+        count: prev.count + 1,
+        items: [...prev.items, "new"],
+      }));
+    });
+
+    expect(result.current[0]).toEqual({ count: 1, items: ["new"] });
+  });
+
+  it("syncAcrossTabs false prevents storage listener registration", () => {
+    const { result } = renderHook(() =>
+      useLocalStorage("testKey", "initial", { syncAcrossTabs: false }),
+    );
+
+    // Dispatch a storage event
+    act(() => {
+      window.dispatchEvent(
+        new StorageEvent("storage", {
+          key: "testKey",
+          newValue: JSON.stringify("should-not-sync"),
+        }),
+      );
+    });
+
+    // Value should remain unchanged
+    expect(result.current[0]).toBe("initial");
+  });
+
+  it("storage event with matching key triggers deserializer", () => {
+    const deserializerSpy = vi.fn((value: string) => {
+      const parsed = JSON.parse(value);
+      return parsed.toUpperCase?.() || parsed;
+    });
+
+    const { result } = renderHook(() =>
+      useLocalStorage("testKey", "initial", { deserializer: deserializerSpy }),
+    );
+
+    act(() => {
+      window.dispatchEvent(
+        new StorageEvent("storage", {
+          key: "testKey",
+          newValue: JSON.stringify("hello"),
+        }),
+      );
+    });
+
+    // Deserializer should be called with the newValue
+    expect(deserializerSpy).toHaveBeenCalledWith(JSON.stringify("hello"));
+  });
+
+  it("removeValue dispatches storage event", () => {
+    localStorage.setItem("testKey", JSON.stringify("stored"));
+    const { result } = renderHook(() => useLocalStorage("testKey", "initial"));
+
+    act(() => result.current[2]());
+
+    // Verify removeValue works correctly
+    expect(result.current[0]).toBe("initial");
+    expect(localStorage.getItem("testKey")).toBeNull();
+  });
+
+  it("readValue returns initialValue when localStorage is empty", () => {
+    const { result } = renderHook(() =>
+      useLocalStorage("nonexistent", "default-value"),
+    );
+
+    expect(result.current[0]).toBe("default-value");
+  });
+
+  it("setValue with serializer error still updates state", () => {
+    const brokenSerializer = vi.fn(() => {
+      throw new Error("Serialization failed");
+    });
+
+    const { result } = renderHook(() =>
+      useLocalStorage("testKey", "initial", { serializer: brokenSerializer }),
+    );
+
+    // Even though serializer throws, state should update
+    act(() => result.current[1]("updated"));
+
+    expect(result.current[0]).toBe("updated");
+  });
+
+  it("useLocalStorage returns tuple with value, setter, and remover", () => {
+    const { result } = renderHook(() => useLocalStorage("testKey", "initial"));
+
+    expect(Array.isArray(result.current)).toBe(true);
+    expect(result.current.length).toBe(3);
+    expect(typeof result.current[1]).toBe("function");
+    expect(typeof result.current[2]).toBe("function");
+  });
+
+  it("dispatchEvent in setValue includes both key and serialized value", () => {
+    const { result } = renderHook(() => useLocalStorage("myKey", "initial"));
+
+    act(() => result.current[1]("updated"));
+
+    // Verify localStorage has the serialized value
+    expect(localStorage.getItem("myKey")).toBe(JSON.stringify("updated"));
+  });
+
+  it("storage event deserializer error falls back to initialValue", () => {
+    const brokenDeserializer = vi.fn(() => {
+      throw new Error("Deserialization failed");
+    });
+
+    const { result } = renderHook(() =>
+      useLocalStorage("testKey", "fallback", {
+        deserializer: brokenDeserializer,
+      }),
+    );
+
+    act(() => {
+      window.dispatchEvent(
+        new StorageEvent("storage", {
+          key: "testKey",
+          newValue: JSON.stringify("broken"),
+        }),
+      );
+    });
+
+    // Should fall back to initialValue when deserializer fails
+    expect(result.current[0]).toBe("fallback");
+  });
+
+  it("removeValue error handling keeps state unchanged", () => {
+    const removeItemSpy = vi
+      .spyOn(Storage.prototype, "removeItem")
+      .mockImplementationOnce(() => {
+        throw new Error("Cannot remove");
+      });
+
+    localStorage.setItem("testKey", JSON.stringify("stored"));
+    const { result } = renderHook(() => useLocalStorage("testKey", "initial"));
+
+    act(() => result.current[2]());
+
+    // When removeItem fails, state should not be reset
+    expect(result.current[0]).toBe("stored");
+
+    removeItemSpy.mockRestore();
+  });
+});
+
+describe("useSessionStorage - Branch Coverage Tests", () => {
+  beforeEach(() => sessionStorage.clear());
+
+  it("readValue returns initialValue when sessionStorage is empty", () => {
+    const { result } = renderHook(() =>
+      useSessionStorage("nonexistent", "session-default"),
+    );
+
+    expect(result.current[0]).toBe("session-default");
+  });
+
+  it("setValue with functional updater in sessionStorage", () => {
+    const { result } = renderHook(() => useSessionStorage("counter", 0));
+
+    act(() => {
+      result.current[1]((prev) => prev + 5);
+    });
+
+    expect(result.current[0]).toBe(5);
+    expect(sessionStorage.getItem("counter")).toBe("5");
+  });
+
+  it("setValue updates sessionStorage correctly", () => {
+    const { result } = renderHook(() =>
+      useSessionStorage("testKey", "initial"),
+    );
+
+    act(() => result.current[1]("updated"));
+
+    // State should be updated
+    expect(result.current[0]).toBe("updated");
+    // And sessionStorage should have the value
+    expect(sessionStorage.getItem("testKey")).toBe(JSON.stringify("updated"));
+  });
+
+  it("useSessionStorage with custom deserializer", () => {
+    const customDeserializer = vi.fn((value: string) => {
+      return JSON.parse(value);
+    });
+
+    sessionStorage.setItem("testKey", JSON.stringify({ data: "test" }));
+
+    const { result } = renderHook(() =>
+      useSessionStorage(
+        "testKey",
+        {},
+        {
+          deserializer: customDeserializer,
+        },
+      ),
+    );
+
+    expect(result.current[0]).toEqual({ data: "test" });
+    expect(customDeserializer).toHaveBeenCalled();
+  });
+
+  it("removeValue in useSessionStorage triggers correct behavior", () => {
+    sessionStorage.setItem("testKey", JSON.stringify("stored"));
+    const { result } = renderHook(() =>
+      useSessionStorage("testKey", "initial"),
+    );
+
+    act(() => result.current[2]());
+
+    expect(result.current[0]).toBe("initial");
+    expect(sessionStorage.getItem("testKey")).toBeNull();
+  });
+
+  it("useSessionStorage handles empty key gracefully", () => {
+    const { result } = renderHook(() => useSessionStorage("", "initial"));
+
+    // Should render without errors
+    expect(result.current[0]).toBe("initial");
+  });
+
+  it("useSessionStorage custom serializer is used on setValue", () => {
+    const customSerializer = vi.fn((value: any) => {
+      return JSON.stringify({ serialized: true, value });
+    });
+
+    const { result } = renderHook(() =>
+      useSessionStorage(
+        "testKey",
+        { data: "test" },
+        {
+          serializer: customSerializer,
+        },
+      ),
+    );
+
+    act(() => result.current[1]({ data: "updated" }));
+
+    expect(customSerializer).toHaveBeenCalled();
+  });
+});
