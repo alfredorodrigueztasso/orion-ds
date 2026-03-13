@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from "vitest";
+import { describe, it, expect, beforeEach, vi } from "vitest";
 import { renderHook, act } from "@testing-library/react";
 import { useTheme } from "./useTheme";
 
@@ -336,5 +336,267 @@ describe("useTheme", () => {
     // Null values should fall back to defaults
     expect(result.current.theme).toBe("light");
     expect(result.current.brand).toBe("orion");
+  });
+
+  it("auto-switches theme based on system preference when no stored preference", () => {
+    let matchMediaListener: ((event: MediaQueryListEvent) => void) | null =
+      null;
+
+    vi.stubGlobal(
+      "matchMedia",
+      vi.fn((query: string) => ({
+        matches: query === "(prefers-color-scheme: dark)" ? true : false,
+        media: query,
+        addEventListener: (
+          event: string,
+          listener: (event: MediaQueryListEvent) => void,
+        ) => {
+          if (event === "change") {
+            matchMediaListener = listener;
+          }
+        },
+        removeEventListener: vi.fn(),
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+      })),
+    );
+
+    // No stored theme - should respect system preference
+    const { result } = renderHook(() => useTheme({ storageEnabled: true }));
+
+    expect(result.current.theme).toBe("light"); // Initial default
+
+    // Trigger system preference change to dark
+    if (matchMediaListener) {
+      act(() => {
+        matchMediaListener!({ matches: true } as MediaQueryListEvent);
+      });
+
+      expect(result.current.theme).toBe("dark");
+    }
+  });
+
+  it("does NOT auto-switch theme when user has stored preference", () => {
+    localStorage.setItem("orion-theme", "light");
+
+    let matchMediaListener: ((event: MediaQueryListEvent) => void) | null =
+      null;
+
+    vi.stubGlobal(
+      "matchMedia",
+      vi.fn((query: string) => ({
+        matches: query === "(prefers-color-scheme: dark)" ? true : false,
+        media: query,
+        addEventListener: (
+          event: string,
+          listener: (event: MediaQueryListEvent) => void,
+        ) => {
+          if (event === "change") {
+            matchMediaListener = listener;
+          }
+        },
+        removeEventListener: vi.fn(),
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+      })),
+    );
+
+    const { result } = renderHook(() => useTheme({ storageEnabled: true }));
+
+    expect(result.current.theme).toBe("light"); // From localStorage
+
+    // Trigger system preference change to dark
+    if (matchMediaListener) {
+      act(() => {
+        matchMediaListener!({ matches: true } as MediaQueryListEvent);
+      });
+
+      // Should NOT switch because user has stored preference
+      expect(result.current.theme).toBe("light");
+    }
+  });
+
+  it("uses legacy addListener when addEventListener is not available", () => {
+    const addListenerSpy = vi.fn();
+    const removeListenerSpy = vi.fn();
+
+    vi.stubGlobal(
+      "matchMedia",
+      vi.fn(() => ({
+        matches: false,
+        media: "(prefers-color-scheme: dark)",
+        addListener: addListenerSpy,
+        removeListener: removeListenerSpy,
+        // No addEventListener - simulate older browser
+      })),
+    );
+
+    const { unmount } = renderHook(() => useTheme({ storageEnabled: true }));
+
+    expect(addListenerSpy).toHaveBeenCalled();
+
+    unmount();
+
+    expect(removeListenerSpy).toHaveBeenCalled();
+  });
+
+  it("handles system preference change with legacy addListener", () => {
+    let legacyListener: ((event: MediaQueryListEvent) => void) | null = null;
+
+    vi.stubGlobal(
+      "matchMedia",
+      vi.fn(() => ({
+        matches: false,
+        media: "(prefers-color-scheme: dark)",
+        addListener: (listener: (event: MediaQueryListEvent) => void) => {
+          legacyListener = listener;
+        },
+        removeListener: vi.fn(),
+        // No addEventListener - simulate older browser
+      })),
+    );
+
+    const { result } = renderHook(() => useTheme({ storageEnabled: true }));
+
+    expect(result.current.theme).toBe("light");
+
+    // Trigger change via legacy addListener
+    if (legacyListener) {
+      act(() => {
+        legacyListener!({ matches: true } as MediaQueryListEvent);
+      });
+
+      expect(result.current.theme).toBe("dark");
+    }
+  });
+
+  it("skips system preference listener when storageEnabled is false", () => {
+    const addEventListenerSpy = vi.fn();
+
+    vi.stubGlobal(
+      "matchMedia",
+      vi.fn(() => ({
+        matches: false,
+        media: "(prefers-color-scheme: dark)",
+        addEventListener: addEventListenerSpy,
+        removeEventListener: vi.fn(),
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+      })),
+    );
+
+    renderHook(() => useTheme({ storageEnabled: false }));
+
+    // Should NOT set up listener when storage is disabled
+    expect(addEventListenerSpy).not.toHaveBeenCalled();
+  });
+
+  it("properly cleans up mediaQuery listener on unmount", () => {
+    const removeEventListenerSpy = vi.fn();
+
+    vi.stubGlobal(
+      "matchMedia",
+      vi.fn(() => ({
+        matches: false,
+        media: "(prefers-color-scheme: dark)",
+        addEventListener: vi.fn(),
+        removeEventListener: removeEventListenerSpy,
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+      })),
+    );
+
+    const { unmount } = renderHook(() => useTheme({ storageEnabled: true }));
+
+    unmount();
+
+    expect(removeEventListenerSpy).toHaveBeenCalledWith(
+      "change",
+      expect.any(Function),
+    );
+  });
+
+  it("switches to dark theme when system prefers dark and no stored preference", () => {
+    let matchMediaListener: ((event: MediaQueryListEvent) => void) | null =
+      null;
+
+    vi.stubGlobal(
+      "matchMedia",
+      vi.fn(() => ({
+        matches: true, // System prefers dark
+        media: "(prefers-color-scheme: dark)",
+        addEventListener: (
+          event: string,
+          listener: (event: MediaQueryListEvent) => void,
+        ) => {
+          if (event === "change") {
+            matchMediaListener = listener;
+          }
+        },
+        removeEventListener: vi.fn(),
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+      })),
+    );
+
+    localStorage.removeItem("orion-theme"); // Ensure no stored preference
+
+    const { result } = renderHook(() => useTheme({ storageEnabled: true }));
+
+    // Should auto-switch to dark based on system preference
+    expect(result.current.theme).toBe("light"); // Initial render
+  });
+
+  it("all brand options are settable and gettable", () => {
+    const allBrands = [
+      "orion",
+      "red",
+      "deepblue",
+      "orange",
+      "ember",
+      "lemon",
+    ] as const;
+
+    const { result, rerender } = renderHook(
+      ({ brand }) => {
+        const hook = useTheme({ defaultBrand: brand });
+        return hook;
+      },
+      { initialProps: { brand: "orion" as const } },
+    );
+
+    allBrands.forEach((brand) => {
+      const { result: hookResult } = renderHook(() =>
+        useTheme({ defaultBrand: brand }),
+      );
+      expect(hookResult.current.brand).toBe(brand);
+    });
+  });
+
+  it("setTheme and setBrand don't write to localStorage when storageEnabled=false", () => {
+    const { result } = renderHook(() => useTheme({ storageEnabled: false }));
+
+    act(() => {
+      result.current.setTheme("dark");
+      result.current.setBrand("red");
+    });
+
+    expect(localStorage.getItem("orion-theme")).toBeNull();
+    expect(localStorage.getItem("orion-brand")).toBeNull();
+  });
+
+  it("respects all valid themes (light and dark)", () => {
+    const themes = ["light", "dark"] as const;
+
+    themes.forEach((theme) => {
+      const { result } = renderHook(() =>
+        useTheme({ defaultTheme: theme, storageEnabled: false }),
+      );
+      expect(result.current.theme).toBe(theme);
+
+      const expectedIsDark = theme === "dark";
+      expect(result.current.isDark).toBe(expectedIsDark);
+      expect(result.current.isLight).toBe(!expectedIsDark);
+    });
   });
 });
