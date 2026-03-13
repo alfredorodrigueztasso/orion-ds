@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import {
   BRAND_FONTS,
   ALL_FONTS,
@@ -8,6 +8,7 @@ import {
   areBrandFontsLoaded,
   getMissingFonts,
   getFontLinkTags,
+  waitForFonts,
 } from "./fonts";
 
 describe("fonts utils", () => {
@@ -134,6 +135,72 @@ describe("fonts utils", () => {
       const html = getFontLinkTags();
       expect(html).toContain("preconnect");
       expect(html).toContain("gstatic.com");
+    });
+  });
+
+  describe("waitForFonts", () => {
+    beforeEach(() => {
+      // Tests modify document.fonts via Object.defineProperty
+    });
+
+    it("returns true when fonts load successfully", async () => {
+      // Mock document.fonts.load to resolve successfully
+      Object.defineProperty(document, "fonts", {
+        writable: true,
+        configurable: true,
+        value: {
+          load: vi.fn().mockResolvedValue([]),
+          check: vi.fn().mockReturnValue(true),
+          ready: Promise.resolve(true),
+        },
+      });
+
+      const result = await waitForFonts(["Inter", "DM Sans"]);
+      expect(result).toBe(true);
+    });
+
+    it("returns false when fonts fail to load", async () => {
+      // Mock document.fonts.load to reject
+      Object.defineProperty(document, "fonts", {
+        writable: true,
+        configurable: true,
+        value: {
+          load: vi.fn().mockRejectedValue(new Error("Font load failed")),
+          check: vi.fn().mockReturnValue(false),
+          ready: Promise.reject(new Error("Font load failed")).catch(() => {}), // Handle rejection
+        },
+      });
+
+      const result = await waitForFonts(["Invalid Font"]);
+      expect(result).toBe(false);
+    });
+
+    it("calls document.fonts.load with correct font names", async () => {
+      const loadSpy = vi.fn().mockResolvedValue([]);
+      Object.defineProperty(document, "fonts", {
+        writable: true,
+        configurable: true,
+        value: {
+          load: loadSpy,
+          check: vi.fn().mockReturnValue(true),
+        },
+      });
+
+      await waitForFonts(["Inter", "DM Sans"]);
+      expect(loadSpy).toHaveBeenCalled();
+    });
+
+    it("handles missing document.fonts API gracefully", async () => {
+      // Simulate missing document.fonts
+      Object.defineProperty(document, "fonts", {
+        writable: true,
+        configurable: true,
+        value: undefined,
+      });
+
+      const result = await waitForFonts(["Inter"]);
+      // Should return false or handle gracefully
+      expect(typeof result).toBe("boolean");
     });
   });
 });

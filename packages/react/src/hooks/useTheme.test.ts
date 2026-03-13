@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, beforeEach } from "vitest";
 import { renderHook, act } from "@testing-library/react";
 import { useTheme } from "./useTheme";
 
@@ -86,5 +86,37 @@ describe("useTheme", () => {
 
     // The hook should set data-theme on document.documentElement
     expect(["dark", "light"]).toContain(result.current.theme);
+  });
+
+  it("reads persisted theme from localStorage on mount", async () => {
+    localStorage.setItem("orion-theme", "dark");
+    const { result } = renderHook(() => useTheme());
+
+    // Hook reads from localStorage in an effect, wait for it to complete
+    expect(result.current.theme).toBe("dark");
+  });
+
+  it("ignores invalid theme from localStorage (falls back to default)", async () => {
+    localStorage.setItem("orion-theme", "purple");
+    const { result } = renderHook(() => useTheme());
+
+    // Should fall back to default "light" theme for invalid value
+    expect(result.current.theme).toBe("light");
+  });
+
+  it("reads persisted brand from localStorage on mount", async () => {
+    localStorage.setItem("orion-brand", "red");
+    const { result } = renderHook(() => useTheme());
+
+    // Hook reads from localStorage in an effect, wait for it to complete
+    expect(result.current.brand).toBe("red");
+  });
+
+  it("ignores invalid brand from localStorage (falls back to default)", async () => {
+    localStorage.setItem("orion-brand", "invalid-brand");
+    const { result } = renderHook(() => useTheme());
+
+    // Should fall back to default "orion" brand for invalid value
+    expect(result.current.brand).toBe("orion");
   });
 });

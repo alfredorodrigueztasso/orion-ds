@@ -1,5 +1,6 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { renderHook } from "@testing-library/react";
+import { fireEvent } from "@testing-library/react";
 import { useKeyboard, useKeyboardShortcuts } from "./useKeyboard";
 
 describe("useKeyboard", () => {
@@ -98,6 +99,75 @@ describe("useKeyboard", () => {
     const { result } = renderHook(() => useKeyboard("Enter", handler));
     expect(result.current).toBeUndefined();
   });
+
+  describe("keyboard event handling", () => {
+    it("calls handler when correct key is pressed", () => {
+      const handler = vi.fn();
+      renderHook(() => useKeyboard("Enter", handler));
+
+      fireEvent.keyDown(document, { key: "Enter" });
+      expect(handler).toHaveBeenCalled();
+    });
+
+    it("does not call handler when wrong key is pressed", () => {
+      const handler = vi.fn();
+      renderHook(() => useKeyboard("Enter", handler));
+
+      fireEvent.keyDown(document, { key: "Escape" });
+      expect(handler).not.toHaveBeenCalled();
+    });
+
+    it("respects ctrl modifier", () => {
+      const handler = vi.fn();
+      renderHook(() => useKeyboard("s", handler, { ctrl: true }));
+
+      // Without modifier
+      fireEvent.keyDown(document, { key: "s" });
+      expect(handler).not.toHaveBeenCalled();
+
+      // With modifier
+      fireEvent.keyDown(document, { key: "s", ctrlKey: true });
+      expect(handler).toHaveBeenCalled();
+    });
+
+    it("respects shift modifier", () => {
+      const handler = vi.fn();
+      renderHook(() => useKeyboard("A", handler, { shift: true }));
+
+      fireEvent.keyDown(document, { key: "A", shiftKey: true });
+      expect(handler).toHaveBeenCalled();
+    });
+
+    it("respects alt modifier", () => {
+      const handler = vi.fn();
+      renderHook(() => useKeyboard("a", handler, { alt: true }));
+
+      fireEvent.keyDown(document, { key: "a", altKey: true });
+      expect(handler).toHaveBeenCalled();
+    });
+
+    it("respects meta modifier", () => {
+      const handler = vi.fn();
+      renderHook(() => useKeyboard("k", handler, { meta: true }));
+
+      fireEvent.keyDown(document, { key: "k", metaKey: true });
+      expect(handler).toHaveBeenCalled();
+    });
+
+    it("calls handler for Escape even when input is focused", () => {
+      const handler = vi.fn();
+      const input = document.createElement("input");
+      document.body.appendChild(input);
+
+      renderHook(() => useKeyboard("Escape", handler));
+      input.focus();
+
+      fireEvent.keyDown(document, { key: "Escape" });
+      expect(handler).toHaveBeenCalled();
+
+      document.body.removeChild(input);
+    });
+  });
 });
 
 describe("useKeyboardShortcuts", () => {
@@ -135,4 +205,7 @@ describe("useKeyboardShortcuts", () => {
   it("works with empty shortcuts", () => {
     expect(() => renderHook(() => useKeyboardShortcuts({}))).not.toThrow();
   });
+
+  // fireEvent compatibility notes: useKeyboardShortcuts internal logic with event listeners
+  // is tested through useKeyboard tests which cover the core event handling.
 });

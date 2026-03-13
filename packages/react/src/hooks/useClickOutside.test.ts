@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { renderHook } from "@testing-library/react";
+import { fireEvent } from "@testing-library/react";
 import React from "react";
 import { useClickOutside, useClickOutsideMultiple } from "./useClickOutside";
 
@@ -66,6 +67,62 @@ describe("useClickOutside", () => {
       renderHook(() => useClickOutside(nullRef, handler)),
     ).not.toThrow();
   });
+
+  it("calls handler when clicking outside ref", () => {
+    const handler = vi.fn();
+    const div = document.createElement("div");
+    document.body.appendChild(div);
+    const testRef = { current: div };
+
+    renderHook(() => useClickOutside(testRef, handler));
+
+    fireEvent.mouseDown(document.body);
+    expect(handler).toHaveBeenCalled();
+
+    document.body.removeChild(div);
+  });
+
+  it("does not call handler when clicking inside ref", () => {
+    const handler = vi.fn();
+    const div = document.createElement("div");
+    document.body.appendChild(div);
+    const testRef = { current: div };
+
+    renderHook(() => useClickOutside(testRef, handler));
+
+    fireEvent.mouseDown(div);
+    expect(handler).not.toHaveBeenCalled();
+
+    document.body.removeChild(div);
+  });
+
+  it("does not call handler when enabled is false", () => {
+    const handler = vi.fn();
+    const div = document.createElement("div");
+    document.body.appendChild(div);
+    const testRef = { current: div };
+
+    renderHook(() => useClickOutside(testRef, handler, false));
+
+    fireEvent.mouseDown(document.body);
+    expect(handler).not.toHaveBeenCalled();
+
+    document.body.removeChild(div);
+  });
+
+  it("calls handler on touchstart event", () => {
+    const handler = vi.fn();
+    const div = document.createElement("div");
+    document.body.appendChild(div);
+    const testRef = { current: div };
+
+    renderHook(() => useClickOutside(testRef, handler));
+
+    fireEvent.touchStart(document.body);
+    expect(handler).toHaveBeenCalled();
+
+    document.body.removeChild(div);
+  });
 });
 
 describe("useClickOutsideMultiple", () => {
@@ -105,5 +162,42 @@ describe("useClickOutsideMultiple", () => {
     expect(() =>
       renderHook(() => useClickOutsideMultiple(refs, handler)),
     ).not.toThrow();
+  });
+
+  it("calls handler when clicking outside all refs", () => {
+    const handler = vi.fn();
+    const div1 = document.createElement("div");
+    const div2 = document.createElement("div");
+    document.body.appendChild(div1);
+    document.body.appendChild(div2);
+    const testRefs = [{ current: div1 }, { current: div2 }];
+
+    renderHook(() => useClickOutsideMultiple(testRefs, handler));
+
+    fireEvent.mouseDown(document.body);
+    expect(handler).toHaveBeenCalled();
+
+    document.body.removeChild(div1);
+    document.body.removeChild(div2);
+  });
+
+  it("does not call handler when clicking inside one of the refs", () => {
+    const handler = vi.fn();
+    const div1 = document.createElement("div");
+    const div2 = document.createElement("div");
+    document.body.appendChild(div1);
+    document.body.appendChild(div2);
+    const testRefs = [{ current: div1 }, { current: div2 }];
+
+    renderHook(() => useClickOutsideMultiple(testRefs, handler));
+
+    fireEvent.mouseDown(div1);
+    expect(handler).not.toHaveBeenCalled();
+
+    fireEvent.mouseDown(div2);
+    expect(handler).not.toHaveBeenCalled();
+
+    document.body.removeChild(div1);
+    document.body.removeChild(div2);
   });
 });
