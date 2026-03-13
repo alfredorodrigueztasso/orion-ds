@@ -318,6 +318,40 @@ describe("ToggleGroup", () => {
     expect(screen.getByText("B").closest("button")).toHaveFocus();
   });
 
+  it("supports keyboard navigation with Home key", async () => {
+    const user = userEvent.setup();
+    render(
+      <ToggleGroup type="single">
+        <ToggleGroup.Item value="a">A</ToggleGroup.Item>
+        <ToggleGroup.Item value="b">B</ToggleGroup.Item>
+        <ToggleGroup.Item value="c">C</ToggleGroup.Item>
+      </ToggleGroup>,
+    );
+
+    const buttonC = screen.getByText("C").closest("button")!;
+    buttonC.focus();
+
+    await user.keyboard("{Home}");
+    expect(screen.getByText("A").closest("button")).toHaveFocus();
+  });
+
+  it("supports keyboard navigation with End key", async () => {
+    const user = userEvent.setup();
+    render(
+      <ToggleGroup type="single">
+        <ToggleGroup.Item value="a">A</ToggleGroup.Item>
+        <ToggleGroup.Item value="b">B</ToggleGroup.Item>
+        <ToggleGroup.Item value="c">C</ToggleGroup.Item>
+      </ToggleGroup>,
+    );
+
+    const buttonA = screen.getByText("A").closest("button")!;
+    buttonA.focus();
+
+    await user.keyboard("{End}");
+    expect(screen.getByText("C").closest("button")).toHaveFocus();
+  });
+
   it("applies custom className", () => {
     render(
       <ToggleGroup type="single" className="custom-class">
