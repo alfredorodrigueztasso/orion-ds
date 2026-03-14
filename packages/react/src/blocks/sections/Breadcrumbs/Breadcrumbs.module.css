@@ -1,0 +1,147 @@
+/**
+ * Breadcrumbs Component Styles
+ *
+ * Optimized for Product Mode (SaaS dashboards).
+ * Clean navigation trail with efficient wayfinding.
+ */
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+}
+
+/* ============================================================================
+ * LIST
+ * ============================================================================ */
+
+.list {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+}
+
+/* ============================================================================
+ * ITEM
+ * ============================================================================ */
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1-5);
+  font-family: var(--font-secondary);
+  color: var(--text-secondary);
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: var(--spacing-1) var(--spacing-1-5);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--mode-hover-duration);
+  white-space: nowrap;
+}
+
+a.item:hover,
+button.item:hover {
+  color: var(--text-primary);
+  background: var(--surface-subtle);
+}
+
+.itemCurrent {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-medium);
+  cursor: default;
+}
+
+.itemCurrent:hover {
+  background: transparent;
+}
+
+.itemIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+}
+
+.homeIcon {
+  color: var(--text-tertiary);
+}
+
+/* ============================================================================
+ * SEPARATOR
+ * ============================================================================ */
+
+.separator {
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+
+/* ============================================================================
+ * COLLAPSE BUTTON
+ * ============================================================================ */
+
+.collapseButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-1);
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: all var(--mode-hover-duration);
+}
+
+.collapseButton:hover {
+  background: var(--surface-subtle);
+  color: var(--text-secondary);
+}
+
+/* ============================================================================
+ * SIZE VARIANTS
+ * ============================================================================ */
+
+.sm .item {
+  font-size: var(--font-size-11);
+  padding: var(--spacing-0-5) var(--spacing-1);
+}
+
+.md .item {
+  font-size: var(--font-size-13);
+}
+
+.lg .item {
+  font-size: var(--font-size-14);
+  padding: var(--spacing-1-5) var(--spacing-2);
+}
+
+/* ============================================================================
+ * RESPONSIVE
+ * ============================================================================ */
+
+@media (max-width: 640px) {
+  .breadcrumbs {
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .breadcrumbs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .item {
+    flex-shrink: 0;
+  }
+}

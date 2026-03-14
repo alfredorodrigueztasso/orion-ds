@@ -4,7 +4,14 @@ import { createViteConfig } from "../../vite.shared.config";
 
 export default defineConfig(
   createViteConfig({
-    entry: path.resolve(__dirname, "src/index.ts"),
+    entry: {
+      index: path.resolve(__dirname, "src/index.ts"),
+      "blocks/index": path.resolve(__dirname, "src/blocks/index.ts"),
+      "templates/index": path.resolve(
+        __dirname,
+        "src/blocks/templates/index.ts",
+      ),
+    },
     name: "OrionReact",
     resolveAlias: {
       "@": path.resolve(__dirname, "./src"),

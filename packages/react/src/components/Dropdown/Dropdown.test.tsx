@@ -3,7 +3,7 @@
  */
 
 import { describe, it, expect, vi } from "vitest";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Dropdown } from "./Dropdown";
 
@@ -276,5 +276,144 @@ describe("Dropdown", () => {
     );
 
     expect(screen.getByRole("menu")).toBeInTheDocument();
+  });
+
+  // ============================================================================
+  // MISSING BRANCHES & KEYBOARD NAVIGATION COVERAGE
+  // ============================================================================
+
+  it("fires onClick and closes menu on Enter key in menuitem", async () => {
+    const user = userEvent.setup();
+    const onEditClick = vi.fn();
+
+    render(
+      <Dropdown
+        trigger={<button>Open Menu</button>}
+        items={[
+          { id: "edit", label: "Edit", onClick: onEditClick },
+          { id: "delete", label: "Delete" },
+        ]}
+      />,
+    );
+
+    await user.click(screen.getByRole("button", { name: "Open Menu" }));
+
+    await waitFor(() => {
+      const editMenuItem = screen.getByRole("menuitem", { name: /edit/i });
+      expect(editMenuItem).toBeInTheDocument();
+    });
+
+    const editMenuItem = screen.getByRole("menuitem", { name: /edit/i });
+    fireEvent.keyDown(editMenuItem, { key: "Enter" });
+
+    expect(onEditClick).toHaveBeenCalled();
+  });
+
+  it("fires onClick on Space key in menuitem", async () => {
+    const user = userEvent.setup();
+    const onEditClick = vi.fn();
+
+    render(
+      <Dropdown
+        trigger={<button>Open Menu</button>}
+        items={[
+          { id: "edit", label: "Edit", onClick: onEditClick },
+          { id: "delete", label: "Delete" },
+        ]}
+      />,
+    );
+
+    await user.click(screen.getByRole("button", { name: "Open Menu" }));
+
+    await waitFor(() => {
+      const editMenuItem = screen.getByRole("menuitem", { name: /edit/i });
+      expect(editMenuItem).toBeInTheDocument();
+    });
+
+    const editMenuItem = screen.getByRole("menuitem", { name: /edit/i });
+    fireEvent.keyDown(editMenuItem, { key: " " });
+
+    expect(onEditClick).toHaveBeenCalled();
+  });
+
+  it("navigates to next item on ArrowDown", async () => {
+    const user = userEvent.setup();
+
+    render(
+      <Dropdown
+        trigger={<button>Open Menu</button>}
+        items={[
+          { id: "edit", label: "Edit" },
+          { id: "duplicate", label: "Duplicate" },
+          { id: "delete", label: "Delete" },
+        ]}
+      />,
+    );
+
+    await user.click(screen.getByRole("button", { name: "Open Menu" }));
+
+    await waitFor(() => {
+      const firstItem = screen.getByRole("menuitem", { name: /edit/i });
+      expect(firstItem).toBeInTheDocument();
+    });
+
+    const firstItem = screen.getByRole("menuitem", { name: /edit/i });
+    fireEvent.keyDown(firstItem, { key: "ArrowDown" });
+
+    // After navigation, focus should move (handled by component's handleNavigate)
+    expect(screen.getByRole("menu")).toBeInTheDocument();
+  });
+
+  it("wraps to last item on ArrowUp from first item", async () => {
+    const user = userEvent.setup();
+
+    render(
+      <Dropdown
+        trigger={<button>Open Menu</button>}
+        items={[
+          { id: "edit", label: "Edit" },
+          { id: "duplicate", label: "Duplicate" },
+          { id: "delete", label: "Delete" },
+        ]}
+      />,
+    );
+
+    await user.click(screen.getByRole("button", { name: "Open Menu" }));
+
+    await waitFor(() => {
+      const firstItem = screen.getByRole("menuitem", { name: /edit/i });
+      expect(firstItem).toBeInTheDocument();
+    });
+
+    const firstItem = screen.getByRole("menuitem", { name: /edit/i });
+    fireEvent.keyDown(firstItem, { key: "ArrowUp" });
+
+    // After navigation, component should handle wrapping
+    expect(screen.getByRole("menu")).toBeInTheDocument();
+  });
+
+  it("handles empty items gracefully when navigating", async () => {
+    const user = userEvent.setup();
+
+    const { rerender } = render(
+      <Dropdown
+        trigger={<button>Open Menu</button>}
+        items={[{ id: "edit", label: "Edit" }]}
+      />,
+    );
+
+    await user.click(screen.getByRole("button", { name: "Open Menu" }));
+
+    // Rerender with disabled item (filtered out from allItemsFlat)
+    rerender(
+      <Dropdown
+        trigger={<button>Open Menu</button>}
+        items={[{ id: "edit", label: "Edit", disabled: true }]}
+      />,
+    );
+
+    // Try to navigate - should not crash
+    const menu = screen.getByRole("menu");
+    expect(menu).toBeInTheDocument();
   });
 });

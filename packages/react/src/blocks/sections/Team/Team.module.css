@@ -1,0 +1,367 @@
+/**
+ * Team Component Styles
+ *
+ * Uses CSS Modules for scoped styling.
+ * All values reference semantic tokens via CSS variables.
+ */
+
+.team {
+  position: relative;
+}
+
+/* ============================================================================
+ * HEADER STYLES
+ * ============================================================================ */
+
+.header {
+  margin-bottom: var(--spacing-16);
+}
+
+.centered {
+  & .header {
+    text-align: center;
+  }
+
+  & .description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.eyebrow {
+  margin-bottom: var(--spacing-4);
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-4) 0;
+}
+
+.description {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-18);
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0;
+  line-height: var(--line-height-relaxed);
+}
+
+/* ============================================================================
+ * GRID LAYOUT
+ * ============================================================================ */
+
+.grid {
+  display: grid;
+  gap: var(--spacing-8);
+}
+
+.cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* ============================================================================
+ * MEMBER CARD STYLES
+ * ============================================================================ */
+
+.memberCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-4);
+  padding: var(--spacing-6);
+  border-radius: var(--radius-container);
+  background: transparent;
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base),
+    background var(--transition-fast);
+}
+
+.memberCard:hover {
+  transform: translateY(var(--mode-hover-lift, -2px));
+}
+
+/* Default variant - subtle hover */
+.variant-default {
+  padding: var(--spacing-4);
+}
+
+.variant-default:hover {
+  background: var(--surface-subtle);
+}
+
+/* Cards variant - elevated with border */
+.variant-cards {
+  background: var(--surface-base);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
+}
+
+.variant-cards:hover {
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--border-default);
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-4);
+  width: 100%;
+}
+
+/* Compact variant - horizontal layout */
+.variant-compact {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--spacing-4);
+  padding: var(--spacing-4);
+  border-radius: var(--radius-control);
+}
+
+.variant-compact:hover {
+  transform: translateX(var(--spacing-1));
+  background: var(--surface-subtle);
+}
+
+/* ============================================================================
+ * AVATAR
+ * ============================================================================ */
+
+.avatarWrapper {
+  flex-shrink: 0;
+}
+
+/* Legacy avatar support (ReactNode) */
+.avatarLegacy {
+  --avatar-size: 120px;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.avatarLegacy img,
+.avatarLegacy > * {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Hover effect for avatars */
+.memberCard:hover .avatarWrapper img,
+.memberCard:hover .avatarLegacy img {
+  transform: scale(1.05);
+  transition: transform var(--transition-base);
+}
+
+/* Compact variant avatar size */
+.variant-compact .avatarLegacy {
+  --avatar-size: 64px;
+}
+
+/* ============================================================================
+ * INFO
+ * ============================================================================ */
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--spacing-1);
+}
+
+.name {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  color: var(--text-primary);
+  margin: 0;
+  transition: color var(--transition-fast);
+}
+
+.memberCard:hover .name {
+  color: var(--interactive-primary);
+}
+
+.variant-compact .name {
+  font-size: var(--font-size-16);
+}
+
+.variant-compact .info {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.role {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.bio {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-14);
+  color: var(--text-tertiary);
+  line-height: var(--line-height-relaxed);
+  margin: var(--spacing-2) 0 0 0;
+}
+
+/* ============================================================================
+ * SOCIAL LINKS
+ * ============================================================================ */
+
+.socialLinks {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-3);
+  opacity: 0.7;
+  transition: opacity var(--transition-fast);
+}
+
+.memberCard:hover .socialLinks {
+  opacity: 1;
+}
+
+.variant-compact .socialLinks {
+  justify-content: flex-start;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--spacing-9);
+  height: var(--spacing-9);
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--text-tertiary);
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.socialLink:hover {
+  background: var(--surface-layer);
+  color: var(--interactive-primary);
+  transform: translateY(-2px);
+}
+
+.socialLink:active {
+  transform: translateY(0);
+}
+
+/* ============================================================================
+ * RESPONSIVE ADJUSTMENTS
+ * ============================================================================ */
+
+@media (max-width: 1024px) {
+  .cols-4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid {
+    gap: var(--spacing-6);
+  }
+}
+
+@media (max-width: 768px) {
+  .cols-3,
+  .cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .header {
+    margin-bottom: var(--spacing-8);
+  }
+
+  .memberCard {
+    padding: var(--spacing-4);
+  }
+
+  .avatarLegacy {
+    --avatar-size: 96px;
+  }
+
+  .name {
+    font-size: var(--font-size-16);
+  }
+
+  /* Show social links always on touch devices */
+  .socialLinks {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .cols-2,
+  .cols-3,
+  .cols-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .grid {
+    gap: var(--spacing-4);
+  }
+
+  .memberCard {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-4);
+    padding: var(--spacing-4);
+  }
+
+  .memberCard:hover {
+    transform: translateX(var(--spacing-1));
+  }
+
+  .avatarLegacy {
+    --avatar-size: 72px;
+  }
+
+  .info {
+    flex: 1;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .socialLinks {
+    justify-content: flex-start;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .memberCard,
+  .avatarWrapper img,
+  .avatarLegacy img,
+  .socialLink,
+  .name {
+    transition: none;
+  }
+
+  .memberCard:hover,
+  .memberCard:hover .avatarWrapper img,
+  .memberCard:hover .avatarLegacy img {
+    transform: none;
+  }
+}

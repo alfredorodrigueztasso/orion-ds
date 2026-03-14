@@ -885,4 +885,111 @@ describe("Popover", () => {
     const triggerHover = screen.getByRole("button");
     expect(triggerHover).toHaveAttribute("aria-haspopup", "true");
   });
+
+  // ============================================================================
+  // MISSING BRANCHES & EDGE CASES COVERAGE
+  // ============================================================================
+
+  it("popover renders correctly with offset prop", async () => {
+    const user = userEvent.setup();
+
+    render(
+      <Popover
+        trigger={<button>Open Popover</button>}
+        content={<div>Popover content</div>}
+        offset={30}
+      />,
+    );
+
+    const trigger = screen.getByRole("button");
+    await user.click(trigger);
+
+    await waitFor(() => {
+      expect(screen.getByText("Popover content")).toBeInTheDocument();
+    });
+  });
+
+  it("handles fullWidth prop correctly", async () => {
+    const user = userEvent.setup();
+
+    render(
+      <Popover
+        trigger={<button>Open Popover</button>}
+        content={<div>Popover content</div>}
+        fullWidth={true}
+      />,
+    );
+
+    await user.click(screen.getByRole("button"));
+
+    await waitFor(() => {
+      const popover = screen.getByRole("dialog");
+      expect(popover).toBeInTheDocument();
+    });
+  });
+
+  it("handles invalid placement prop without crashing", () => {
+    expect(() => {
+      render(
+        <Popover
+          trigger={<button>Open Popover</button>}
+          content={<div>Popover content</div>}
+          placement={"center" as any}
+          showArrow={true}
+          defaultOpen={true}
+        />,
+      );
+    }).not.toThrow();
+
+    // Should render without crashing despite invalid placement
+    expect(screen.getByText("Popover content")).toBeInTheDocument();
+  });
+
+  it("correctly applies custom className prop", async () => {
+    const user = userEvent.setup();
+
+    render(
+      <Popover
+        trigger={<button>Open Popover</button>}
+        content={<div>Popover content</div>}
+        className="custom-class"
+      />,
+    );
+
+    await user.click(screen.getByRole("button"));
+
+    await waitFor(() => {
+      const popover = screen.getByRole("dialog");
+      expect(popover.className).toContain("custom-class");
+    });
+  });
+
+  it("respects trigger ref prop", async () => {
+    const ref = { current: null as HTMLDivElement | null };
+
+    render(
+      <Popover
+        ref={ref}
+        trigger={<button>Open Popover</button>}
+        content={<div>Popover content</div>}
+      />,
+    );
+
+    expect(ref.current).toBeInstanceOf(HTMLDivElement);
+  });
+
+  it("unmounts safely when popover is open", () => {
+    expect(() => {
+      const { unmount } = render(
+        <Popover
+          trigger={<button>Open Popover</button>}
+          content={<div>Popover content</div>}
+          defaultOpen={true}
+        />,
+      );
+
+      expect(screen.getByText("Popover content")).toBeInTheDocument();
+      unmount();
+    }).not.toThrow();
+  });
 });

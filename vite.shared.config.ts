@@ -32,7 +32,7 @@ export const BLOCKS_EXTERNALS = [
 ];
 
 export interface ViteConfigOptions {
-  entry: string;
+  entry: string | Record<string, string>;
   name: string;
   extraExternals?: string[];
   resolveAlias?: Record<string, string>;
@@ -49,8 +49,10 @@ export function createViteConfig(options: ViteConfigOptions) {
         entry: options.entry,
         name: options.name,
         formats: ['es', 'cjs'] as const,
-        fileName: (format: string) =>
-          `index.${format === 'es' ? 'mjs' : 'cjs'}`,
+        fileName: typeof options.entry === 'string'
+          ? (format: string) => `index.${format === 'es' ? 'mjs' : 'cjs'}`
+          : (format: string, entryAlias: string) =>
+              `${entryAlias}.${format === 'es' ? 'mjs' : 'cjs'}`,
       },
       cssCodeSplit: options.cssCodeSplit ?? true,
       rollupOptions: {

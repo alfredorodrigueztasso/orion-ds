@@ -218,4 +218,105 @@ describe("InputOTP", () => {
     expect(screen.getByTestId("slot-2")).toHaveTextContent("");
     expect(screen.getByTestId("slot-3")).toHaveTextContent("");
   });
+
+  // ============================================================================
+  // MISSING BRANCHES & EVENT HANDLERS COVERAGE
+  // ============================================================================
+
+  it("calls preventDefault on Backspace when value is empty", () => {
+    renderOTP({ value: "" });
+    const input = screen.getByLabelText("OTP input, 6 digits");
+
+    const event = new KeyboardEvent("keydown", {
+      key: "Backspace",
+      bubbles: true,
+      cancelable: true,
+    });
+    const preventDefaultSpy = vi.spyOn(event, "preventDefault");
+    input.dispatchEvent(event);
+
+    expect(preventDefaultSpy).toHaveBeenCalled();
+  });
+
+  it("does not call preventDefault on Backspace when value is not empty", () => {
+    const onChange = vi.fn();
+    renderOTP({ value: "123", onChange });
+    const input = screen.getByLabelText("OTP input, 6 digits");
+
+    const event = new KeyboardEvent("keydown", {
+      key: "Backspace",
+      bubbles: true,
+      cancelable: true,
+    });
+    const preventDefaultSpy = vi.spyOn(event, "preventDefault");
+    input.dispatchEvent(event);
+
+    // preventDefault should NOT be called when value is not empty
+    expect(preventDefaultSpy).not.toHaveBeenCalled();
+  });
+
+  it("calls onChange with pasted value on paste event", () => {
+    const onChange = vi.fn();
+    renderOTP({ onChange });
+
+    const input = screen.getByLabelText(
+      "OTP input, 6 digits",
+    ) as HTMLInputElement;
+
+    // Simulate paste by firing change event with pasted value
+    fireEvent.change(input, { target: { value: "123456" } });
+
+    // Should call onChange with the pasted value
+    expect(onChange).toHaveBeenCalledWith("123456");
+  });
+
+  it("truncates pasted value to maxLength", () => {
+    const onChange = vi.fn();
+    renderOTP({ maxLength: 4, onChange });
+
+    const input = screen.getByLabelText(
+      "OTP input, 4 digits",
+    ) as HTMLInputElement;
+
+    // Simulate paste with value longer than maxLength
+    fireEvent.change(input, { target: { value: "123456" } });
+
+    // Should truncate to 4 digits
+    expect(onChange).toHaveBeenCalledWith("1234");
+  });
+
+  it("filters non-numeric characters in pasted value", () => {
+    const onChange = vi.fn();
+    renderOTP({ onChange });
+
+    const input = screen.getByLabelText(
+      "OTP input, 6 digits",
+    ) as HTMLInputElement;
+
+    // Simulate paste with non-numeric characters
+    fireEvent.change(input, { target: { value: "1a2b3c" } });
+
+    // Should filter to only numeric characters
+    expect(onChange).toHaveBeenCalledWith("123");
+  });
+
+  it("shows caret when slot is focused", async () => {
+    const user = setupUser();
+    const { container } = renderOTP();
+
+    const input = screen.getByLabelText("OTP input, 6 digits");
+    await user.click(input);
+
+    // Find the caret element in the first slot
+    const caretElement = container.querySelector("[class*='caret']");
+    expect(caretElement).toBeInTheDocument();
+  });
+
+  it("hides caret when focus is lost", () => {
+    const { container } = renderOTP();
+
+    // Initially, without focus, no caret should be visible
+    const caretElement = container.querySelector("[class*='caret']");
+    expect(caretElement).not.toBeInTheDocument();
+  });
 });

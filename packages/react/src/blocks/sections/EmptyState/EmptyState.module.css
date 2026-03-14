@@ -1,0 +1,211 @@
+/**
+ * EmptyState Component Styles
+ *
+ * Optimized for Product Mode (SaaS dashboards).
+ * Uses mode-aware tokens for shadows, spacing, and hover effects.
+ */
+
+.emptyState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: var(--mode-spacing-block);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 400px;
+  gap: var(--mode-spacing-element);
+}
+
+/* ============================================================================
+ * ICON & ILLUSTRATION
+ * ============================================================================ */
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-control);
+  background: var(--surface-subtle);
+  color: var(--text-tertiary);
+}
+
+.illustration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 200px;
+  color: var(--text-tertiary);
+}
+
+.illustration > * {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ============================================================================
+ * TEXT CONTENT
+ * ============================================================================ */
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.title {
+  font-family: var(--font-secondary);
+  font-size: var(--mode-text-title);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.description {
+  font-family: var(--font-secondary);
+  font-size: var(--mode-text-body);
+  color: var(--text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+}
+
+/* ============================================================================
+ * ACTIONS
+ * ============================================================================ */
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: var(--spacing-2);
+}
+
+/* ============================================================================
+ * SIZE VARIANTS
+ * ============================================================================ */
+
+.size-sm {
+  padding: var(--mode-spacing-element);
+}
+
+.size-sm .content {
+  max-width: 300px;
+  gap: var(--spacing-3);
+}
+
+.size-sm .icon {
+  width: 56px;
+  height: 56px;
+}
+
+.size-sm .title {
+  font-size: var(--font-size-16);
+}
+
+.size-sm .description {
+  font-size: var(--font-size-13);
+}
+
+.size-lg {
+  padding: var(--mode-spacing-section);
+}
+
+.size-lg .content {
+  max-width: 480px;
+  gap: var(--spacing-8);
+}
+
+.size-lg .icon {
+  width: 96px;
+  height: 96px;
+}
+
+.size-lg .illustration {
+  max-width: 280px;
+}
+
+/* ============================================================================
+ * VARIANT: COMPACT
+ * ============================================================================ */
+
+.variant-compact {
+  padding: var(--spacing-6);
+}
+
+.variant-compact .content {
+  max-width: 320px;
+  gap: var(--spacing-3);
+}
+
+.variant-compact .icon {
+  width: 48px;
+  height: 48px;
+}
+
+.variant-compact .title {
+  font-size: var(--font-size-14);
+}
+
+.variant-compact .description {
+  font-size: var(--font-size-12);
+}
+
+/* ============================================================================
+ * VARIANT: FULL-PAGE
+ * ============================================================================ */
+
+.variant-full-page {
+  min-height: 60vh;
+  padding: var(--spacing-16);
+}
+
+.variant-full-page .content {
+  max-width: 480px;
+  gap: var(--spacing-8);
+}
+
+.variant-full-page .icon {
+  width: 96px;
+  height: 96px;
+}
+
+.variant-full-page .illustration {
+  max-width: 320px;
+}
+
+.variant-full-page .title {
+  font-size: var(--font-size-24);
+}
+
+.variant-full-page .description {
+  font-size: var(--font-size-16);
+}
+
+/* ============================================================================
+ * RESPONSIVE
+ * ============================================================================ */
+
+@media (max-width: 640px) {
+  .emptyState {
+    padding: var(--spacing-8);
+  }
+
+  .content {
+    max-width: 100%;
+  }
+
+  .variant-full-page {
+    min-height: 50vh;
+    padding: var(--spacing-8);
+  }
+}

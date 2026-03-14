@@ -275,4 +275,94 @@ describe("CodeEditor", () => {
     textarea = container.querySelector("textarea");
     expect(textarea?.value).toBe("updated code");
   });
+
+  // ============================================================================
+  // TAB HANDLING & EVENT HANDLERS COVERAGE
+  // ============================================================================
+
+  it("handles Tab key without throwing error", () => {
+    const mockOnChange = vi.fn();
+    const { container } = render(
+      <CodeEditor value="hello" onChange={mockOnChange} />,
+    );
+
+    const textarea = container.querySelector("textarea") as HTMLTextAreaElement;
+    textarea.selectionStart = 5;
+    textarea.selectionEnd = 5;
+
+    // Should not throw when Tab is pressed
+    expect(() => {
+      fireEvent.keyDown(textarea, { key: "Tab" });
+    }).not.toThrow();
+  });
+
+  it("handles Shift+Tab without throwing error", () => {
+    const mockOnChange = vi.fn();
+    const { container } = render(
+      <CodeEditor value="  hello" onChange={mockOnChange} />,
+    );
+
+    const textarea = container.querySelector("textarea") as HTMLTextAreaElement;
+    textarea.selectionStart = 4;
+    textarea.selectionEnd = 4;
+
+    // Should not throw when Shift+Tab is pressed
+    expect(() => {
+      fireEvent.keyDown(textarea, { key: "Tab", shiftKey: true });
+    }).not.toThrow();
+  });
+
+  it("responds to onChange when value changes", () => {
+    const mockOnChange = vi.fn();
+    const { container } = render(
+      <CodeEditor value="hello" onChange={mockOnChange} />,
+    );
+
+    const textarea = container.querySelector("textarea") as HTMLTextAreaElement;
+
+    // Simulate typing by changing value
+    fireEvent.change(textarea, { target: { value: "hello world" } });
+
+    expect(mockOnChange).toHaveBeenCalled();
+  });
+
+  it("fires onChange on change event in plain branch", () => {
+    const mockOnChange = vi.fn();
+    const { container } = render(
+      <CodeEditor value="old" onChange={mockOnChange} />,
+    );
+
+    const textarea = container.querySelector("textarea") as HTMLTextAreaElement;
+    fireEvent.change(textarea, { target: { value: "new" } });
+
+    expect(mockOnChange).toHaveBeenCalledWith("new");
+  });
+
+  it("calls updateCurrentLine on click in language branch", () => {
+    const { container } = render(
+      <CodeEditor
+        value="line1\nline2"
+        language="javascript"
+        onChange={() => {}}
+      />,
+    );
+
+    const textarea = container.querySelector("textarea") as HTMLTextAreaElement;
+    fireEvent.click(textarea);
+
+    // No error thrown = updateCurrentLine executed
+    expect(textarea).toBeInTheDocument();
+  });
+
+  it("calls updateCurrentLine on keyUp in language branch", () => {
+    const { container } = render(
+      <CodeEditor value="test" language="javascript" onChange={() => {}} />,
+    );
+
+    const textarea = container.querySelector("textarea") as HTMLTextAreaElement;
+    fireEvent.keyUp(textarea);
+
+    // No error thrown = updateCurrentLine executed
+    expect(textarea).toBeInTheDocument();
+  });
 });

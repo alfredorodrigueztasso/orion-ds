@@ -418,4 +418,96 @@ describe("AgentCard", () => {
     // Should render without errors
     expect(container).toBeInTheDocument();
   });
+
+  // ============================================================================
+  // MISSING BRANCHES & DRAG HANDLERS COVERAGE
+  // ============================================================================
+
+  it("renders card element with draggable attribute when draggable is true", () => {
+    const { container } = render(
+      <AgentCard
+        id="agent-1"
+        title="Code Assistant"
+        description="Helps with code generation"
+        avatar="https://i.pravatar.cc/150?u=code"
+        draggable={true}
+      />,
+    );
+
+    const card = container.querySelector("[draggable='true']");
+    expect(card).toBeInTheDocument();
+  });
+
+  it("does not render draggable attribute when draggable is false", () => {
+    const { container } = render(
+      <AgentCard
+        id="agent-1"
+        title="Code Assistant"
+        description="Helps with code generation"
+        avatar="https://i.pravatar.cc/150?u=code"
+        draggable={false}
+      />,
+    );
+
+    const card = container.querySelector("[draggable='true']");
+    expect(card).not.toBeInTheDocument();
+  });
+
+  it("shows dragging state when isDragging is true", () => {
+    const { container } = render(
+      <AgentCard
+        id="agent-1"
+        title="Code Assistant"
+        description="Helps with code generation"
+        avatar="https://i.pravatar.cc/150?u=code"
+        draggable={true}
+        isDragging={true}
+      />,
+    );
+
+    const draggingElement = container.querySelector("[class*='dragging']");
+    expect(draggingElement).toBeInTheDocument();
+  });
+
+  it("displays actions button when onEdit is provided", () => {
+    const mockOnEdit = vi.fn();
+
+    const { container } = render(
+      <AgentCard
+        id="agent-1"
+        title="Code Assistant"
+        description="Helps with code generation"
+        avatar="https://i.pravatar.cc/150?u=code"
+        onEdit={mockOnEdit}
+      />,
+    );
+
+    // Actions button should be rendered when onEdit is provided
+    const actionsButton = screen.getByRole("button", { name: /actions/i });
+    expect(actionsButton).toBeInTheDocument();
+  });
+
+  it("displays actions button when onMoveToFolder is provided with folders", () => {
+    const mockOnMoveToFolder = vi.fn();
+
+    const mockFolders = [
+      { id: "folder-1", title: "Project Agents" },
+      { id: "folder-2", title: "Testing Agents" },
+    ];
+
+    render(
+      <AgentCard
+        id="agent-1"
+        title="Code Assistant"
+        description="Helps with code generation"
+        avatar="https://i.pravatar.cc/150?u=code"
+        availableFolders={mockFolders}
+        onMoveToFolder={mockOnMoveToFolder}
+      />,
+    );
+
+    // Actions button should be rendered when folders are available
+    const actionsButton = screen.getByRole("button", { name: /actions/i });
+    expect(actionsButton).toBeInTheDocument();
+  });
 });

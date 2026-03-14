@@ -1,31 +1,28 @@
 /**
- * @orion-ds/blocks - Premium Sections & Templates
+ * @deprecated This package is deprecated. Use @orion-ds/react/blocks and @orion-ds/react/templates instead.
  *
- * Pre-built sections and full-page templates for Orion Design System.
- * Extends the core @orion-ds/react components with ready-to-use page blocks
- * and compositions optimized for marketing, SaaS, and app interfaces.
+ * @orion-ds/blocks - Premium Sections & Templates (DEPRECATED)
  *
- * @example
- * ```tsx
- * import { Hero, Features, CTA, Footer, DashboardTemplate } from '@orion-ds/blocks';
+ * ⚠️  DEPRECATION NOTICE
+ * This package is maintained for backward compatibility only.
+ * All blocks and templates have been consolidated into @orion-ds/react as subpath exports.
  *
- * export default function LandingPage() {
- *   return (
- *     <DashboardTemplate>
- *       <Hero />
- *       <Features />
- *       <CTA />
- *       <Footer />
- *     </DashboardTemplate>
- *   );
- * }
- * ```
+ * MIGRATION:
+ * - Old: `import { Hero } from '@orion-ds/blocks'`
+ * - New: `import { Hero } from '@orion-ds/react/blocks'`
+ *
+ * - Old: `import { DashboardTemplate } from '@orion-ds/blocks'`
+ * - New: `import { DashboardTemplate } from '@orion-ds/react/templates'`
+ *
+ * - Old: `import '@orion-ds/blocks/styles.css'`
+ * - New: `import '@orion-ds/react/blocks.css'`
+ *
+ * This re-export wrapper will be removed in a future major version.
+ * Please update your imports to use @orion-ds/react/blocks and @orion-ds/react/templates.
  *
  * @packageDocumentation
  */
 
-// Import and re-export sections
-export * from "./sections";
-
-// Import and re-export templates
-export * from "./templates";
+// Re-export from @orion-ds/react for backward compatibility
+export * from "@orion-ds/react/blocks";
+export * from "@orion-ds/react/templates";

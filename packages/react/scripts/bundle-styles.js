@@ -63,10 +63,16 @@ function bundleStyles() {
     process.exit(1);
   }
 
-  // Collect all component CSS files
+  // Collect all component CSS files (main bundle - no blocks)
   const componentCssFiles = [
     ...collectComponentStyles(resolve(DIST_DIR, 'components')),
     ...collectComponentStyles(resolve(DIST_DIR, 'sections')),
+  ];
+
+  // Collect blocks CSS separately
+  const blocksCssFiles = [
+    ...collectComponentStyles(resolve(DIST_DIR, 'blocks')),
+    ...collectComponentStyles(resolve(DIST_DIR, 'templates')),
   ];
 
   if (componentCssFiles.length === 0) {
@@ -132,16 +138,36 @@ ${reactCss}
   const THEME_OUTPUT_PATH = resolve(DIST_DIR, 'theme.css');
   writeFileSync(THEME_OUTPUT_PATH, themeCss, 'utf-8');
 
+  // Write blocks CSS separately (includes blocks sections + templates)
+  const BLOCKS_OUTPUT_PATH = resolve(DIST_DIR, 'blocks.css');
+  const blocksCss = blocksCssFiles.map(file => readFileSync(file, 'utf-8')).join('\n');
+  const blocksBundleHeader = `/**
+ * @orion-ds/react/blocks - Blocks Styles Bundle
+ *
+ * This file includes styles for premium blocks and templates.
+ *
+ * Usage:
+ *   import '@orion-ds/react/blocks.css';
+ *
+ * Generated automatically during build.
+ */
+
+`;
+  writeFileSync(BLOCKS_OUTPUT_PATH, blocksBundleHeader + blocksCss, 'utf-8');
+
   // Calculate sizes for logging
   const themeSize = (themeCss.length / 1024).toFixed(1);
   const reactSize = (reactCss.length / 1024).toFixed(1);
   const bundleSize = (bundle.length / 1024).toFixed(1);
+  const blocksSize = (blocksCss.length / 1024).toFixed(1);
 
   console.log(`  theme.css: ${themeSize}KB`);
   console.log(`  react.css: ${reactSize}KB`);
   console.log(`  styles.css: ${bundleSize}KB (bundle)`);
+  console.log(`  blocks.css: ${blocksSize}KB (blocks only)`);
   console.log(`Bundle created at: ${OUTPUT_PATH}`);
   console.log(`Theme created at: ${THEME_OUTPUT_PATH}`);
+  console.log(`Blocks CSS created at: ${BLOCKS_OUTPUT_PATH}`);
 }
 
 bundleStyles();

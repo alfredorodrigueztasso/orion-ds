@@ -1,0 +1,201 @@
+/**
+ * Testimonials Component Styles
+ *
+ * Uses CSS Modules for scoped styling.
+ * All values reference semantic tokens via CSS variables.
+ */
+
+.testimonials {
+  position: relative;
+}
+
+/* ============================================================================
+ * HEADER STYLES
+ * ============================================================================ */
+
+.header {
+  margin-bottom: var(--spacing-16);
+}
+
+.centered {
+  & .header {
+    text-align: center;
+  }
+
+  & .description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.eyebrow {
+  margin-bottom: var(--spacing-4);
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-4) 0;
+}
+
+.description {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-18);
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0;
+  line-height: var(--line-height-relaxed);
+}
+
+/* ============================================================================
+ * GRID LAYOUT
+ * ============================================================================ */
+
+.grid {
+  display: grid;
+  gap: var(--spacing-6);
+  align-items: start;
+}
+
+.cols-1 {
+  grid-template-columns: 1fr;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* ============================================================================
+ * TESTIMONIAL CARD STYLES
+ * ============================================================================ */
+
+.testimonialCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.variant-default {
+  border: 1px solid var(--border-subtle);
+}
+
+.variant-cards {
+  box-shadow: var(--shadow-card-sm);
+}
+
+.variant-minimal {
+  padding: var(--spacing-6);
+  border-left: 3px solid var(--interactive-primary);
+  background: var(--surface-subtle);
+}
+
+/* ============================================================================
+ * RATING STARS
+ * ============================================================================ */
+
+.rating {
+  display: flex;
+  gap: var(--spacing-1);
+  margin-bottom: var(--spacing-2);
+}
+
+.starFilled {
+  color: var(--status-warning);
+}
+
+.starEmpty {
+  color: var(--border-subtle);
+}
+
+/* ============================================================================
+ * QUOTE
+ * ============================================================================ */
+
+.quote {
+  margin: 0;
+  flex: 1;
+}
+
+.quote p {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-16);
+  color: var(--text-primary);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+  font-style: italic;
+}
+
+/* ============================================================================
+ * AUTHOR
+ * ============================================================================ */
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-4);
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--surface-subtle);
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.authorInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.authorName {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.authorRole {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-13);
+  color: var(--text-tertiary);
+}
+
+/* ============================================================================
+ * RESPONSIVE ADJUSTMENTS
+ * ============================================================================ */
+
+@media (max-width: 1024px) {
+  .cols-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .cols-2,
+  .cols-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .header {
+    margin-bottom: var(--spacing-8);
+  }
+}
