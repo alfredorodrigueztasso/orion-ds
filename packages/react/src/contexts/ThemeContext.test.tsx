@@ -826,4 +826,66 @@ describe("ThemeProvider - Edge Cases", () => {
     // Should use innermost provider's value
     expect(screen.getByTestId("inner")).toHaveTextContent("dark");
   });
+
+  // ============================================================================
+  // NEW TESTS FOR UNTESTED BRANCHES (Production + Non-localhost conditions)
+  // ============================================================================
+
+  it("does not warn about CSS in production on non-localhost", () => {
+    const consoleSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
+
+    // Mock window.location to non-localhost domain in production
+    Object.defineProperty(window, "location", {
+      value: { hostname: "production.example.com" },
+      writable: true,
+    });
+
+    vi.stubEnv("NODE_ENV", "production");
+
+    const TestComponent = () => {
+      const { theme } = useThemeContext();
+      return <div data-testid="content">{theme}</div>;
+    };
+
+    render(
+      <ThemeProvider defaultTheme="light">
+        <TestComponent />
+      </ThemeProvider>,
+    );
+
+    // No warning should be logged in production + non-localhost
+    expect(consoleSpy).not.toHaveBeenCalled();
+
+    consoleSpy.mockRestore();
+    vi.unstubAllEnvs();
+  });
+
+  it("does not warn about fonts in production on non-localhost", () => {
+    const consoleSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
+
+    // Mock window.location to non-localhost domain in production
+    Object.defineProperty(window, "location", {
+      value: { hostname: "production.example.com" },
+      writable: true,
+    });
+
+    vi.stubEnv("NODE_ENV", "production");
+
+    const TestComponent = () => {
+      const { theme } = useThemeContext();
+      return <div data-testid="content">{theme}</div>;
+    };
+
+    render(
+      <ThemeProvider defaultTheme="light" disableAutoFontLoading={false}>
+        <TestComponent />
+      </ThemeProvider>,
+    );
+
+    // No warning should be logged in production + non-localhost
+    expect(consoleSpy).not.toHaveBeenCalled();
+
+    consoleSpy.mockRestore();
+    vi.unstubAllEnvs();
+  });
 });

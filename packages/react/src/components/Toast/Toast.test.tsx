@@ -370,4 +370,150 @@ describe("Toast", () => {
     expect(screen.getByText("Info message")).toBeInTheDocument();
     expect(screen.getByText("Warning message")).toBeInTheDocument();
   });
+
+  // ============================================================================
+  // NEW TESTS FOR UNTESTED BRANCHES (Timer & Interaction)
+  // ============================================================================
+
+  it("does not auto-dismiss when duration is 0", async () => {
+    vi.useFakeTimers();
+
+    const TestComponent = () => {
+      const { toast } = useToast();
+      return (
+        <button onClick={() => toast({ message: "No dismiss", duration: 0 })}>
+          Show Toast
+        </button>
+      );
+    };
+
+    render(
+      <ToastProvider>
+        <TestComponent />
+      </ToastProvider>,
+    );
+
+    await act(async () => {
+      screen.getByText("Show Toast").click();
+    });
+
+    expect(screen.getByText("No dismiss")).toBeInTheDocument();
+
+    // Advance time significantly - toast should still be present
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(5000);
+    });
+
+    expect(screen.getByText("No dismiss")).toBeInTheDocument();
+
+    vi.useRealTimers();
+  });
+
+  it("pauses auto-dismiss on mouse enter", async () => {
+    vi.useFakeTimers();
+
+    render(
+      <ToastProvider defaultDuration={1000}>
+        <ToastTester />
+      </ToastProvider>,
+    );
+
+    await act(async () => {
+      screen.getByText("Show Toast").click();
+    });
+
+    expect(screen.getByText("Test toast")).toBeInTheDocument();
+
+    // Get the toast element and simulate mouse enter
+    const toast = screen.getByText("Test toast").closest("[role='alert']");
+    await act(async () => {
+      fireEvent.mouseEnter(toast!);
+      // Advance past the default dismiss time
+      await vi.advanceTimersByTimeAsync(1500);
+    });
+
+    // Toast should still be present because hover paused the timer
+    expect(screen.getByText("Test toast")).toBeInTheDocument();
+
+    vi.useRealTimers();
+  });
+
+  it("resumes auto-dismiss on mouse leave", async () => {
+    vi.useFakeTimers();
+
+    render(
+      <ToastProvider defaultDuration={1000}>
+        <ToastTester />
+      </ToastProvider>,
+    );
+
+    await act(async () => {
+      screen.getByText("Show Toast").click();
+    });
+
+    const toast = screen.getByText("Test toast").closest("[role='alert']");
+
+    // Pause timer by hovering
+    await act(async () => {
+      fireEvent.mouseEnter(toast!);
+      await vi.advanceTimersByTimeAsync(500); // Advance 500ms (still less than 1000ms)
+    });
+
+    // Resume timer by unhoverng
+    await act(async () => {
+      fireEvent.mouseLeave(toast!);
+      // Now advance time to trigger dismiss (1000 + some buffer)
+      await vi.advanceTimersByTimeAsync(1200);
+    });
+
+    // Toast should now be dismissed
+    expect(screen.queryByText("Test toast")).not.toBeInTheDocument();
+
+    vi.useRealTimers();
+  });
+
+  it("calls onDismiss callback when toast is dismissed", async () => {
+    vi.useFakeTimers();
+
+    const onDismiss = vi.fn();
+
+    const TestComponent = () => {
+      const { toast } = useToast();
+      return (
+        <button
+          onClick={() =>
+            toast({
+              message: "Toast with callback",
+              duration: 500,
+              onDismiss,
+            })
+          }
+        >
+          Show Toast
+        </button>
+      );
+    };
+
+    render(
+      <ToastProvider>
+        <TestComponent />
+      </ToastProvider>,
+    );
+
+    await act(async () => {
+      screen.getByText("Show Toast").click();
+    });
+
+    expect(screen.getByText("Toast with callback")).toBeInTheDocument();
+
+    // Advance time to trigger auto-dismiss (500ms duration + buffer for dismiss delay)
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(1000);
+    });
+
+    expect(screen.queryByText("Toast with callback")).not.toBeInTheDocument();
+    expect(onDismiss).toHaveBeenCalled();
+
+    vi.useRealTimers();
+  });
 });

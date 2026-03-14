@@ -378,4 +378,42 @@ describe("ToggleGroup", () => {
     }).toThrow("ToggleGroup.Item must be used within a ToggleGroup");
     consoleSpy.mockRestore();
   });
+
+  // ============================================================================
+  // NEW TESTS FOR UNTESTED BRANCHES (ArrowDown and ArrowUp keys)
+  // ============================================================================
+
+  it("supports keyboard navigation with ArrowDown", async () => {
+    const user = userEvent.setup();
+    render(
+      <ToggleGroup type="single">
+        <ToggleGroup.Item value="a">A</ToggleGroup.Item>
+        <ToggleGroup.Item value="b">B</ToggleGroup.Item>
+        <ToggleGroup.Item value="c">C</ToggleGroup.Item>
+      </ToggleGroup>,
+    );
+
+    const buttonA = screen.getByText("A").closest("button")!;
+    buttonA.focus();
+
+    await user.keyboard("{ArrowDown}");
+    expect(screen.getByText("B").closest("button")).toHaveFocus();
+  });
+
+  it("supports keyboard navigation with ArrowUp", async () => {
+    const user = userEvent.setup();
+    render(
+      <ToggleGroup type="single">
+        <ToggleGroup.Item value="a">A</ToggleGroup.Item>
+        <ToggleGroup.Item value="b">B</ToggleGroup.Item>
+        <ToggleGroup.Item value="c">C</ToggleGroup.Item>
+      </ToggleGroup>,
+    );
+
+    const buttonC = screen.getByText("C").closest("button")!;
+    buttonC.focus();
+
+    await user.keyboard("{ArrowUp}");
+    expect(screen.getByText("B").closest("button")).toHaveFocus();
+  });
 });

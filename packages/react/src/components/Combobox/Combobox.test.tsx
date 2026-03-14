@@ -264,4 +264,131 @@ describe("Combobox", () => {
     expect(input).toHaveAttribute("aria-haspopup", "listbox");
     expect(input).toHaveAttribute("aria-autocomplete", "list");
   });
+
+  it("closes dropdown on blur when focus leaves container", async () => {
+    render(<Combobox options={mockOptions} />);
+    const input = screen.getByRole("combobox");
+
+    fireEvent.focus(input);
+    expect(input).toHaveAttribute("aria-expanded", "true");
+
+    fireEvent.blur(input);
+
+    await waitFor(
+      () => {
+        expect(input).toHaveAttribute("aria-expanded", "false");
+      },
+      { timeout: 300 },
+    );
+  });
+
+  it("confirms free input value on blur with allowFreeInput", async () => {
+    const onChange = vi.fn();
+    render(
+      <Combobox
+        options={mockOptions}
+        onChange={onChange}
+        allowFreeInput={true}
+      />,
+    );
+    const input = screen.getByRole("combobox") as HTMLInputElement;
+
+    fireEvent.focus(input);
+    fireEvent.change(input, { target: { value: "custom value" } });
+    fireEvent.blur(input);
+
+    // Input value should remain (allowFreeInput doesn't clear)
+    expect(input.value).toBe("custom value");
+  });
+
+  it("resets input to selected option label on blur without allowFreeInput", async () => {
+    render(<Combobox options={mockOptions} value="react" />);
+    const input = screen.getByRole("combobox") as HTMLInputElement;
+
+    expect(input.value).toBe("React");
+
+    fireEvent.focus(input);
+    fireEvent.change(input, { target: { value: "changed" } });
+    fireEvent.blur(input);
+
+    await waitFor(
+      () => {
+        expect(input.value).toBe("React");
+      },
+      { timeout: 300 },
+    );
+  });
+
+  it("closes dropdown when clicking outside container", async () => {
+    render(
+      <div>
+        <Combobox options={mockOptions} />
+        <div data-testid="outside">Outside</div>
+      </div>,
+    );
+    const input = screen.getByRole("combobox");
+
+    fireEvent.focus(input);
+    expect(input).toHaveAttribute("aria-expanded", "true");
+
+    const outside = screen.getByTestId("outside");
+    fireEvent.mouseDown(outside);
+
+    await waitFor(() => {
+      expect(input).toHaveAttribute("aria-expanded", "false");
+    });
+  });
+
+  it("uses custom renderOption function", async () => {
+    const customRender = vi.fn((option) => (
+      <div data-testid={`custom-${option.value}`}>
+        {option.label.toUpperCase()}
+      </div>
+    ));
+
+    render(<Combobox options={mockOptions} renderOption={customRender} />);
+    const input = screen.getByRole("combobox");
+
+    fireEvent.focus(input);
+
+    await waitFor(() => {
+      expect(customRender).toHaveBeenCalled();
+      expect(screen.getByTestId("custom-react")).toBeInTheDocument();
+    });
+  });
+
+  it("opens dropdown on ArrowDown when closed", async () => {
+    render(<Combobox options={mockOptions} />);
+    const input = screen.getByRole("combobox");
+
+    fireEvent.focus(input);
+    // Close it
+    fireEvent.keyDown(input, { key: "Escape" });
+
+    expect(input).toHaveAttribute("aria-expanded", "false");
+
+    // ArrowDown should open it
+    fireEvent.keyDown(input, { key: "ArrowDown" });
+
+    await waitFor(() => {
+      expect(input).toHaveAttribute("aria-expanded", "true");
+    });
+  });
+
+  it("does not select when Enter pressed with no option highlighted", async () => {
+    const onChange = vi.fn();
+    render(<Combobox options={mockOptions} onChange={onChange} />);
+    const input = screen.getByRole("combobox");
+
+    fireEvent.focus(input);
+    expect(input).toHaveAttribute("aria-expanded", "true");
+
+    // Press Enter without navigating to any option (highlightedIndex = -1)
+    fireEvent.keyDown(input, { key: "Enter" });
+
+    // onChange should not be called (no selection)
+    expect(onChange).not.toHaveBeenCalled();
+    // Dropdown remains open
+    expect(input).toHaveAttribute("aria-expanded", "true");
+  });
 });

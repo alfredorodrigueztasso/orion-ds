@@ -1,5 +1,5 @@
-import { describe, it, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { describe, it, expect, vi } from "vitest";
+import { render, screen, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Tooltip } from "./Tooltip";
 
@@ -305,6 +305,59 @@ describe("Tooltip", () => {
 
       const tooltip = container.querySelector('[role="tooltip"]');
       expect(tooltip?.className).toMatch(/left/);
+    });
+
+    it("does not show tooltip on hover when disabled", async () => {
+      const user = userEvent.setup();
+      const { container } = render(
+        <Tooltip content="Should not appear" disabled={true} delay={0}>
+          <button>Hover</button>
+        </Tooltip>,
+      );
+
+      await user.hover(screen.getByText("Hover"));
+
+      const tooltip = container.querySelector('[role="tooltip"]');
+      expect(tooltip).not.toBeInTheDocument();
+    });
+
+    it("does not show tooltip on focus when disabled", async () => {
+      const user = userEvent.setup();
+      const { container } = render(
+        <Tooltip content="Should not appear" disabled={true}>
+          <button>Focus me</button>
+        </Tooltip>,
+      );
+
+      const button = screen.getByText("Focus me");
+      await user.click(button);
+
+      const tooltip = container.querySelector('[role="tooltip"]');
+      expect(tooltip).not.toBeInTheDocument();
+    });
+
+    it("clears timeout on mouseLeave before delay completes", async () => {
+      vi.useFakeTimers();
+      const user = userEvent.setup({ delay: null });
+      const { container } = render(
+        <Tooltip content="Delayed" delay={500}>
+          <button>Hover</button>
+        </Tooltip>,
+      );
+
+      const button = screen.getByText("Hover");
+
+      // Hover and then immediately leave
+      fireEvent.mouseEnter(button);
+      fireEvent.mouseLeave(button);
+
+      // Advance timers - tooltip should NOT appear
+      vi.advanceTimersByTime(600);
+
+      const tooltip = container.querySelector('[role="tooltip"]');
+      expect(tooltip).not.toBeInTheDocument();
+
+      vi.useRealTimers();
     });
   });
 });
