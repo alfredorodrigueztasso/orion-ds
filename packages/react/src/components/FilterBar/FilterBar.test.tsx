@@ -654,4 +654,36 @@ describe("FilterBar", () => {
       screen.queryByText(/Active|Inactive|High|Medium/),
     ).not.toBeInTheDocument();
   });
+
+  it("toggles multi-select options on/off", async () => {
+    const handleFilterChange = vi.fn();
+    const user = userEvent.setup();
+
+    render(
+      <FilterBar
+        filters={mockFilters}
+        activeFilters={mockActiveFilters}
+        onFilterChange={handleFilterChange}
+        onFilterRemove={() => {}}
+      />,
+    );
+
+    const priorityButton = screen.getByText("Priority").closest("button");
+    await user.click(priorityButton!);
+
+    // Click a multi-select option
+    const highOption = screen.getByText("High");
+    await user.click(highOption);
+
+    // Option should be selected
+    expect(highOption.closest("button")?.className).toContain(
+      "dropdownItemSelected",
+    );
+
+    // Click Apply button
+    const applyButton = screen.getByText("Apply");
+    await user.click(applyButton);
+
+    expect(handleFilterChange).toHaveBeenCalled();
+  });
 });

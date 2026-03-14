@@ -359,4 +359,25 @@ describe("QuickActions", () => {
     expect(screen.getByTitle("Edit")).toBeInTheDocument();
     expect(screen.getByTitle("Delete")).toBeInTheDocument();
   });
+
+  it("executes action when clicked in bar variant", async () => {
+    const user = userEvent.setup();
+    const handleClick = vi.fn();
+
+    const actions = [
+      {
+        id: "test",
+        label: "Test",
+        icon: <Plus size={20} />,
+        onClick: handleClick,
+      },
+    ];
+
+    render(<QuickActions variant="bar" actions={actions} />);
+
+    const button = screen.getByTitle("Test");
+    await user.click(button);
+
+    expect(handleClick).toHaveBeenCalled();
+  });
 });
