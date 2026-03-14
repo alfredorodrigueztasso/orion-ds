@@ -57,6 +57,12 @@
       "default": false
     },
     {
+      "name": "loadingText",
+      "type": "string",
+      "description": "Text to display during loading state instead of children.",
+      "default": "undefined (uses children)"
+    },
+    {
       "name": "fullWidth",
       "type": "boolean",
       "description": "Full width button - expands to fill container.",

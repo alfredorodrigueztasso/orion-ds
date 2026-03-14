@@ -27,8 +27,7 @@
     {
       "name": "title",
       "type": "string",
-      "description": "Section title",
-      "required": true
+      "description": "Section title (optional)"
     },
     {
       "name": "description",
