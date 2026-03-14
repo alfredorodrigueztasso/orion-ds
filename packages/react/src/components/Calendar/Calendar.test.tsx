@@ -290,4 +290,78 @@ describe("Calendar", () => {
       expect(onSelect).toHaveBeenCalled();
     });
   });
+
+  describe("min and max constraints (helper functions)", () => {
+    it("disables dates before min date using startOfDay helper", () => {
+      // Set min to January 10, 2025 - tests startOfDay() helper function
+      const minDate = new Date(2025, 0, 10);
+      render(<Calendar selected={january15} min={minDate} />);
+
+      // January 5 should be disabled (before min, triggers startOfDay comparison)
+      const beforeMinDate = screen.getByLabelText("Sunday, January 5, 2025");
+      expect(beforeMinDate).toBeDisabled();
+
+      // January 15 should be enabled (after min)
+      const afterMinDate = screen.getByLabelText("Wednesday, January 15, 2025");
+      expect(afterMinDate).not.toBeDisabled();
+    });
+
+    it("disables dates after max date using endOfDay helper", () => {
+      // Set max to January 20, 2025 - tests endOfDay() helper function
+      const maxDate = new Date(2025, 0, 20);
+      render(<Calendar selected={january15} max={maxDate} />);
+
+      // January 25 should be disabled (after max, triggers endOfDay comparison)
+      const afterMaxDate = screen.getByLabelText("Saturday, January 25, 2025");
+      expect(afterMaxDate).toBeDisabled();
+
+      // January 15 should be enabled (before max)
+      const beforeMaxDate = screen.getByLabelText(
+        "Wednesday, January 15, 2025",
+      );
+      expect(beforeMaxDate).not.toBeDisabled();
+    });
+
+    it("respects both min and max constraints together", () => {
+      // Test both startOfDay and endOfDay in same render
+      const minDate = new Date(2025, 0, 10);
+      const maxDate = new Date(2025, 0, 25);
+
+      render(<Calendar selected={january15} min={minDate} max={maxDate} />);
+
+      // Before min - disabled
+      const beforeMin = screen.getByLabelText("Monday, January 6, 2025");
+      expect(beforeMin).toBeDisabled();
+
+      // Between min and max - enabled
+      const between = screen.getByLabelText("Wednesday, January 15, 2025");
+      expect(between).not.toBeDisabled();
+
+      // After max - disabled
+      const afterMax = screen.getByLabelText("Monday, January 27, 2025");
+      expect(afterMax).toBeDisabled();
+    });
+
+    it("allows selecting date within min/max range", async () => {
+      const user = userEvent.setup();
+      const onSelect = vi.fn();
+      const minDate = new Date(2025, 0, 10);
+      const maxDate = new Date(2025, 0, 25);
+
+      render(
+        <Calendar
+          selected={january15}
+          onSelect={onSelect}
+          min={minDate}
+          max={maxDate}
+        />,
+      );
+
+      // Click on an enabled date within range
+      const validDate = screen.getByLabelText("Tuesday, January 14, 2025");
+      await user.click(validDate);
+
+      expect(onSelect).toHaveBeenCalled();
+    });
+  });
 });

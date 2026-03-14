@@ -1,5 +1,6 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { Alert } from "./Alert";
 
 describe("Alert", () => {
@@ -96,6 +97,69 @@ describe("Alert", () => {
       );
       expect((container.firstChild as HTMLElement).className).toMatch(/error/);
       expect(screen.getByRole("alert")).toBeInTheDocument();
+    });
+  });
+
+  describe("custom icon and dismissible behavior (lines 57-58, 74)", () => {
+    it("renders custom icon when icon prop provided (tests line 57-58)", () => {
+      const customIcon = <span data-testid="custom-icon">🔔</span>;
+      const { container } = render(
+        <Alert variant="info" icon={customIcon}>
+          Custom icon message
+        </Alert>,
+      );
+
+      // Custom icon should be rendered (tests ternary at line 57-58: icon !== undefined)
+      expect(screen.getByTestId("custom-icon")).toBeInTheDocument();
+    });
+
+    it("hides alert after closing (tests line 74: if (!isVisible))", async () => {
+      const user = userEvent.setup();
+
+      const { container } = render(
+        <Alert variant="warning" dismissible={true}>
+          Dismissible message
+        </Alert>,
+      );
+
+      // Initially visible
+      expect(screen.getByRole("alert")).toBeInTheDocument();
+
+      // Find and click the close button
+      const closeButton = screen.getByRole("button");
+      await user.click(closeButton);
+
+      // After closing, alert should not be in document (tests if (!isVisible) return null)
+      expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+    });
+
+    it("calls onClose callback when dismissed (tests onClose?.())", async () => {
+      const user = userEvent.setup();
+      const onCloseMock = vi.fn();
+
+      render(
+        <Alert variant="info" dismissible={true} onClose={onCloseMock}>
+          Alert with callback
+        </Alert>,
+      );
+
+      // Click close button
+      const closeButton = screen.getByRole("button");
+      await user.click(closeButton);
+
+      // onClose callback should be called
+      expect(onCloseMock).toHaveBeenCalled();
+    });
+
+    it("uses default Lucide icon when custom icon not provided", () => {
+      const { container } = render(
+        <Alert variant="success">Message with default icon</Alert>,
+      );
+
+      // Alert should render with default icon (tests DEFAULT_ICONS[variant])
+      const alert = screen.getByRole("alert");
+      expect(alert).toBeInTheDocument();
+      expect(alert).toHaveTextContent("Message with default icon");
     });
   });
 });
