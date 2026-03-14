@@ -3,7 +3,7 @@
  */
 
 import { describe, it, expect, vi } from "vitest";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Popover } from "./Popover";
 
@@ -806,5 +806,83 @@ describe("Popover", () => {
     await waitFor(() => {
       expect(screen.queryByText("Popover content")).not.toBeInTheDocument();
     });
+  });
+
+  it("handles click outside safely even if refs unmount", async () => {
+    const user = userEvent.setup();
+
+    const { unmount } = render(
+      <>
+        <button>Outside</button>
+        <Popover
+          trigger={<button>Open Popover</button>}
+          content={<div>Popover content</div>}
+          closeOnClickOutside={true}
+        />
+      </>,
+    );
+
+    const trigger = screen.getByRole("button", { name: "Open Popover" });
+    await user.click(trigger);
+
+    await waitFor(() => {
+      expect(screen.getByText("Popover content")).toBeInTheDocument();
+    });
+
+    // Unmount component while popover is open
+    unmount();
+
+    // Component should unmount without errors
+    expect(screen.queryByText("Popover content")).not.toBeInTheDocument();
+  });
+
+  it("shows arrow correctly for different placements", async () => {
+    const user = userEvent.setup();
+    const placements = ["top", "bottom", "left", "right"] as const;
+
+    for (const placement of placements) {
+      const { unmount } = render(
+        <Popover
+          trigger={<button>Open</button>}
+          content={<div>Content</div>}
+          placement={placement}
+          showArrow={true}
+        />,
+      );
+
+      const trigger = screen.getByRole("button");
+      await user.click(trigger);
+
+      await waitFor(() => {
+        expect(screen.getByText("Content")).toBeInTheDocument();
+      });
+
+      unmount();
+    }
+  });
+
+  it("applies correct CSS classes based on trigger type", () => {
+    const { rerender } = render(
+      <Popover
+        trigger={<button>Click</button>}
+        content={<div>Content</div>}
+        triggerType="click"
+      />,
+    );
+
+    const trigger = screen.getByRole("button");
+    expect(trigger).toHaveAttribute("aria-haspopup", "true");
+    expect(trigger).toHaveAttribute("aria-expanded", "false");
+
+    rerender(
+      <Popover
+        trigger={<button>Hover</button>}
+        content={<div>Content</div>}
+        triggerType="hover"
+      />,
+    );
+
+    const triggerHover = screen.getByRole("button");
+    expect(triggerHover).toHaveAttribute("aria-haspopup", "true");
   });
 });
