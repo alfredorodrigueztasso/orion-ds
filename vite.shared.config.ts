@@ -1,6 +1,7 @@
 import path from 'path';
 import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
+import preserveDirectives from 'rollup-plugin-preserve-directives';
 import { defineConfig } from 'vite';
 
 export const COMMON_EXTERNALS = [
@@ -42,7 +43,7 @@ export interface ViteConfigOptions {
 
 export function createViteConfig(options: ViteConfigOptions) {
   return defineConfig({
-    plugins: [react(), dts({ insertTypesEntry: true })],
+    plugins: [react(), dts({ insertTypesEntry: true }), preserveDirectives()],
     resolve: options.resolveAlias ? { alias: options.resolveAlias } : undefined,
     build: {
       lib: {
@@ -60,6 +61,11 @@ export function createViteConfig(options: ViteConfigOptions) {
           ...COMMON_EXTERNALS,
           ...(options.extraExternals || []),
         ],
+        onwarn(warning, warn) {
+          // Suppress Rollup's warning about module-level directives (like "use client")
+          if (warning.code === 'MODULE_LEVEL_DIRECTIVE') return;
+          warn(warning);
+        },
         output: {
           preserveModules: true,
           preserveModulesRoot: 'src',
