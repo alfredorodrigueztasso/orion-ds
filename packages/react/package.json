@@ -43,6 +43,31 @@
       "import": "./dist/templates/index.mjs",
       "require": "./dist/templates/index.cjs"
     },
+    "./chart": {
+      "types": "./dist/chart.d.ts",
+      "import": "./dist/chart.mjs",
+      "require": "./dist/chart.cjs"
+    },
+    "./calendar": {
+      "types": "./dist/calendar.d.ts",
+      "import": "./dist/calendar.mjs",
+      "require": "./dist/calendar.cjs"
+    },
+    "./editor": {
+      "types": "./dist/editor.d.ts",
+      "import": "./dist/editor.mjs",
+      "require": "./dist/editor.cjs"
+    },
+    "./dnd": {
+      "types": "./dist/dnd.d.ts",
+      "import": "./dist/dnd.mjs",
+      "require": "./dist/dnd.cjs"
+    },
+    "./rich": {
+      "types": "./dist/rich.d.ts",
+      "import": "./dist/rich.mjs",
+      "require": "./dist/rich.cjs"
+    },
     "./blocks.css": "./dist/blocks.css"
   },
   "files": [
@@ -157,6 +182,9 @@
       "optional": true
     },
     "@dnd-kit/sortable": {
+      "optional": true
+    },
+    "@dnd-kit/utilities": {
       "optional": true
     }
   },

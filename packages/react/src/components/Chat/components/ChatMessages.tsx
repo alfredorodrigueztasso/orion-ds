@@ -5,6 +5,8 @@
  * and accessibility features.
  */
 
+"use client";
+
 import React, { forwardRef } from "react";
 import { ArrowDown } from "lucide-react";
 import type { ChatMessagesProps } from "../Chat.types";

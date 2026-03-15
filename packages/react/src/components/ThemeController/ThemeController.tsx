@@ -19,6 +19,8 @@
  * ```
  */
 
+"use client";
+
 import React from "react";
 import type { ThemeControllerProps } from "./ThemeController.types";
 import type { Brand } from "../../tokens/types";

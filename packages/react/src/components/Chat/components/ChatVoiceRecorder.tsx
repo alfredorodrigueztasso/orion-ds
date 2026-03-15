@@ -4,6 +4,8 @@
  * Voice recording UI with waveform visualization.
  */
 
+"use client";
+
 import React from "react";
 import { Mic, Square, X, Send } from "lucide-react";
 import type { ChatVoiceRecorderProps } from "../Chat.types";
