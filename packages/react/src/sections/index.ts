@@ -145,15 +145,10 @@ export type {
 } from "../components";
 
 // ============================================================================
-// PREMIUM SECTIONS & TEMPLATES (Moved to @orion-ds/blocks)
+// PREMIUM SECTIONS & TEMPLATES (Consolidated in @orion-ds/react v4.5.0+)
 // ============================================================================
-// Marketing sections: Hero, Features, CTA, Footer, Pricing, Testimonials, Stats, FAQ,
-// CarouselSection, Team, Contact, Newsletter, LogoCloud, Blog, Gallery, Timeline,
-// Comparison, SocialProof, AppDownload
+// See CLAUDE.md "4a. Using Premium Sections & Templates (Bloques)" for complete docs.
 //
-// App/SaaS sections: AgentFolder, SettingsLayout, Breadcrumbs, Stepper, Chat, EmptyState
-//
-// Full-page templates: LandingPageTemplate, DashboardTemplate, SettingsTemplate, etc.
-//
-// To use these, install @orion-ds/blocks and import from '@orion-ds/blocks/sections'
-// or '@orion-ds/blocks/templates'.
+// Recommended imports (new architecture):
+// import { Hero, Features, CTA } from '@orion-ds/react/blocks';
+// import { LandingPageTemplate } from '@orion-ds/react/templates';
