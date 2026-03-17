@@ -59,9 +59,9 @@
   left: 0;
   right: 0;
   padding: var(--spacing-3) var(--spacing-4);
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+  background: linear-gradient(transparent, var(--surface-overlay));
   font-family: var(--font-secondary);
   font-size: var(--font-size-sm);
-  color: #fff;
+  color: var(--text-on-brand-primary);
   margin: 0;
 }

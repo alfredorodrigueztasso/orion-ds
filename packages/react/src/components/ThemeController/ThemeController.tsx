@@ -160,7 +160,7 @@ export const ThemeController: React.FC<ThemeControllerProps> = ({
       className={className}
       style={{
         background: "var(--interactive-primary)",
-        color: "white",
+        color: "var(--interactive-primary-text)",
         ...style,
       }}
     >
@@ -174,7 +174,7 @@ export const ThemeController: React.FC<ThemeControllerProps> = ({
         >
           <span style={{ fontSize: "24px" }}>🎨</span>
           <div>
-            <h3 style={{ margin: 0, color: "white" }}>
+            <h3 style={{ margin: 0, color: "var(--interactive-primary-text)" }}>
               Theme & Brand Settings
             </h3>
             <p
@@ -182,7 +182,7 @@ export const ThemeController: React.FC<ThemeControllerProps> = ({
                 margin: 0,
                 fontSize: "var(--text-sm)",
                 opacity: 0.9,
-                color: "white",
+                color: "var(--interactive-primary-text)",
               }}
             >
               Customize the appearance in real-time
