@@ -1,10 +1,8 @@
-# @orion-ds/react (v3.0.0)
+# @orion-ds/react
 
 > **Orion Design System** - AI-First React Component Library with Integrated Tokens
 
-TypeScript-first React component library built on the Orion Design System. Features 40+ components, 30+ sections, and 9 page templates with full type safety, theme switching, and multi-brand support.
-
-**New in v3.0.0**: Design tokens and theming from `@orion-ds/core` are now included. No need for separate Core package!
+TypeScript-first React component library built on the Orion Design System. Features 70+ components, 25+ sections, and 8 full-page templates with full type safety, theme switching, and multi-brand support.
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-100%25-blue)](https://www.typescriptlang.org/)
 [![Tests](https://img.shields.io/badge/tests-passing-brightgreen)](#)
@@ -14,9 +12,9 @@ TypeScript-first React component library built on the Orion Design System. Featu
 ## Features
 
 - 🤖 **AI-First Design** - Optimized for AI/LLM code generation (see AI_GUIDE.md)
-- ✅ **40+ Components** - Fully typed with IntelliSense support
-- 📐 **30+ Sections** - Pre-built page sections (Hero, Features, Pricing, etc.)
-- 📄 **9 Templates** - Complete page templates (Landing, Dashboard, Profile, etc.)
+- ✅ **70+ Components** - Fully typed with IntelliSense support
+- 📐 **25+ Sections** - Pre-built page sections (Hero, Features, Pricing, etc.)
+- 📄 **8 Templates** - Complete page templates (Dashboard, Login, Profile, Settings, Chat, etc.)
 - 🎨 **Theme Switching** - Light/Dark modes with CSS variables
 - 🏢 **Multi-Brand** - orion, red, deepblue, orange, lemon brands
 - 🎯 **Lucide Icons** - 5000+ icons built-in
@@ -55,9 +53,9 @@ yarn add @orion-ds/react
 Copy individual components into your project, shadcn-style. You own the source and can modify freely.
 
 \`\`\`bash
-npx @orion-ds/cli init # Creates orion.json, installs @orion-ds/core
+npx @orion-ds/cli init # Creates orion.json configuration
 npx @orion-ds/cli add button card modal # Copies component source files
-npx @orion-ds/cli list # Shows all 90 available items
+npx @orion-ds/cli list # Shows all 90+ available items
 \`\`\`
 
 See [@orion-ds/cli README](../cli/README.md) for full documentation.
@@ -162,10 +160,10 @@ For vanilla HTML projects or if you disabled auto-loading, add these links to yo
 
 | Brand        | Primary Font      | Secondary Font |
 | ------------ | ----------------- | -------------- |
-| **Orion**    | Libre Baskerville | Inter          |
+| **Orion**    | Libre Baskerville | DM Sans        |
 | **Deepblue** | Work Sans         | Work Sans      |
-| **Red**      | Poppins           | Inter          |
-| **Orange**   | DM Sans           | Inter          |
+| **Red**      | Poppins           | DM Sans        |
+| **Orange**   | DM Sans           | DM Sans        |
 | **Lemon**    | Anton             | Work Sans      |
 
 ### Programmatic Access
@@ -188,85 +186,119 @@ console.warn('Missing fonts:', missing);
 
 ## Components
 
-### Forms
+### Forms & Input
 
-- **Button** - Primary, secondary, ghost variants
-- **Field** - Text input with label, helper, error states
-- **Select** - Dropdown with options
+- **Button** - Primary, secondary, ghost variants with icon support
+- **Field** - Text input with label, helper, error states, and icons
+- **Select** - Dropdown with options and multi-select
+- **Combobox** - Searchable dropdown
+- **DatePicker** - Date selection with calendar
+- **InputOTP** - One-time password input
+- **SearchInput** - Specialized search field with autocomplete
+- **Textarea** - Multi-line text input
 - **Switch** - Toggle switch
 - **Checkbox** - Checkbox input
 - **Radio** - Radio button
-- **Textarea** - Multi-line text input
+- **FileUploader** - File upload with preview
+- **Slider** - Range slider input
 
-### Layout
+### Layout & Structure
 
 - **Card** - Container with header, body, footer
+- **Stack** - Flexible stack layout (horizontal/vertical)
+- **Divider** - Visual separator
 - **Modal** - Overlay dialog
+- **Drawer** - Slide-out panel
 - **Navbar** - Navigation bar with brand, links, actions
+- **Sidebar** - Side navigation panel
+- **NavTree** - Hierarchical navigation tree
 
-### Feedback
+### Feedback & Status
 
 - **Alert** - Info, success, warning, error messages
 - **Badge** - Status indicators
 - **Spinner** - Loading indicator
 - **ProgressBar** - Progress visualization
 - **Tooltip** - Hover information
+- **Banner** - Dismissible banner notifications
 
 ### Data Display
 
 - **Avatar** - User profile picture
 - **Table** - Data table with sorting
+- **DataTable** - Advanced data table with filtering/sorting
 - **Tabs** - Tab navigation
 - **Breadcrumb** - Navigation breadcrumbs
+- **List** - Structured list component
+- **MetricCards** - Metric display cards
+- **Pagination** - Page navigation
 
-### Utilities
+### AI & Collaboration
+
+- **Chat** - Conversational UI component
+- **AgentCard** - Agent profile card
+- **CommandBar** - Command palette
+- **NotificationCenter** - Notification management
+- **KanbanBoard** - Kanban board layout
+
+### Utilities & Behavior
 
 - **ThemeController** - Theme & brand selector
 - **useTheme** - Theme management hook
+- **Collapsible** - Collapsible section
+- **Popover** - Floating popover
+- **Dropdown** - Dropdown menu
+- **Toggle** - Toggle button group
+- **ToggleGroup** - Group of toggle buttons
+- **Skeleton** - Loading skeleton
+- **EmptyState** - Empty state display
+- **ErrorBoundary** - Error boundary wrapper
+- **Carousel** - Image carousel
 
 ## Sections
 
 Pre-built page sections for rapid development:
 
-| Category      | Sections                                                |
-| ------------- | ------------------------------------------------------- |
-| **Marketing** | Hero, Features, Pricing, CTA, Testimonials, FAQ, Footer |
-| **App**       | Sidebar, Header, DetailPanel, StatCards                 |
-| **Content**   | ArticleContent, MediaGallery, Timeline                  |
+| Category       | Sections                                                           |
+| -------------- | ------------------------------------------------------------------ |
+| **Marketing**  | Hero, Features, Pricing, CTA, Testimonials, FAQ, Footer, LogoCloud |
+| **Content**    | Blog, Timeline, Gallery, TeamShowcase                              |
+| **App**        | Sidebar, Header, DetailPanel, SettingsLayout, Breadcrumbs          |
+| **Engagement** | Newsletter, SocialProof, Comparison, Contact                       |
+| **Navigation** | ActivityFeed, CarouselSection, AppDownload                         |
 
 \`\`\`tsx
-import { Hero, Features, Pricing } from '@orion-ds/react';
+import { Hero, Features, Pricing } from '@orion-ds/react/sections';
 
 <Hero title="Welcome" description="Build faster" />
 <Features items={[...]} columns={3} />
 <Pricing plans={[...]} />
 \`\`\`
 
-[View all 30+ sections in AI_COMPONENTS.md](./AI_COMPONENTS.md)
+[View all 25+ sections in AI_COMPONENTS.md](./AI_COMPONENTS.md)
 
 ## Templates
 
-Complete page templates ready to use:
+Complete full-page templates ready to use:
 
-| Template              | Use Case                |
-| --------------------- | ----------------------- |
-| `LandingPageTemplate` | Marketing landing pages |
-| `DashboardTemplate`   | Admin dashboards        |
-| `ProfilePageTemplate` | User profile pages      |
-| `SettingsTemplate`    | Settings pages          |
-| `LoginTemplate`       | Authentication pages    |
-| `OnboardingTemplate`  | User onboarding flows   |
-| `NotFoundTemplate`    | 404 error pages         |
-| `MaintenanceTemplate` | Maintenance pages       |
-| `ComingSoonTemplate`  | Pre-launch pages        |
+| Template              | Use Case                                          |
+| --------------------- | ------------------------------------------------- |
+| `DashboardTemplate`   | Admin dashboards with sidebar, header, data views |
+| `LoginTemplate`       | Authentication and login flows                    |
+| `ProfilePageTemplate` | User profile pages                                |
+| `SettingsTemplate`    | Settings and preferences pages                    |
+| `ChatPageTemplate`    | AI chat interface and conversations               |
+| `AgentWorkspace`      | AI agent builder and management                   |
+| `AgentEditor`         | AI agent configuration editor                     |
+| `KanbanPageTemplate`  | Kanban board for task management                  |
 
 \`\`\`tsx
-import { LandingPageTemplate } from '@orion-ds/react';
+import { DashboardTemplate } from '@orion-ds/react/templates';
 
-<LandingPageTemplate
-hero={{ title: 'Welcome', description: '...' }}
-features={{ items: [...] }}
-pricing={{ plans: [...] }}
+<DashboardTemplate
+sidebar={{ items: [...] }}
+header={{ title: 'Dashboard' }}
+content={<YourContent />}
 />
 \`\`\`
 
@@ -302,6 +334,55 @@ Something went wrong
 
 See [LUCIDE_ICONS.md](./LUCIDE_ICONS.md) for complete icon documentation.
 
+## Entry Points
+
+The library provides multiple entry points optimized for different use cases:
+
+### Core Imports
+
+```typescript
+// Main export - all components, sections, and hooks
+import { Button, Card, Hero, useTheme, ThemeProvider } from "@orion-ds/react";
+
+// Next.js App Router compatible - excludes heavy dependencies
+import { Button, Card, Field } from "@orion-ds/react/client";
+
+// Design tokens (TypeScript)
+import { primitives, getToken, getSemanticToken } from "@orion-ds/react/tokens";
+
+// CSS imports
+import "@orion-ds/react/styles.css"; // Complete bundle (recommended)
+import "@orion-ds/react/theme.css"; // Tokens only (advanced tree-shaking)
+```
+
+### Heavy Components (Optional Dependencies)
+
+These components require optional peer dependencies. Install only what you need:
+
+| Entry Point                | Components                                      | Peer Dependency                                            | Install Command                                                  |
+| -------------------------- | ----------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------------- |
+| `@orion-ds/react/chart`    | `ChartContainer`, `ChartTooltip`, `ChartLegend` | `recharts`                                                 | `npm install recharts`                                           |
+| `@orion-ds/react/calendar` | `Calendar`, `DatePicker`                        | `date-fns`                                                 | `npm install date-fns`                                           |
+| `@orion-ds/react/editor`   | `CodeEditor`                                    | `react-syntax-highlighter`                                 | `npm install react-syntax-highlighter`                           |
+| `@orion-ds/react/dnd`      | `CollapsibleFolder`, `KanbanBoard`              | `@dnd-kit/core`, `@dnd-kit/sortable`, `@dnd-kit/utilities` | `npm install @dnd-kit/core @dnd-kit/sortable @dnd-kit/utilities` |
+| `@orion-ds/react/rich`     | `Chat`, `RichText`                              | `react-markdown`, `remark-gfm`, `react-syntax-highlighter` | `npm install react-markdown remark-gfm react-syntax-highlighter` |
+
+```typescript
+// Only import if you've installed the peer dependency
+import { ChartContainer } from "@orion-ds/react/chart"; // requires recharts
+import { Calendar } from "@orion-ds/react/calendar"; // requires date-fns
+import { CodeEditor } from "@orion-ds/react/editor"; // requires react-syntax-highlighter
+import { CollapsibleFolder } from "@orion-ds/react/dnd"; // requires @dnd-kit/*
+import { Chat } from "@orion-ds/react/rich"; // requires react-markdown
+```
+
+### Sections & Templates
+
+```typescript
+import { Hero, Features, Pricing } from "@orion-ds/react/sections";
+import { DashboardTemplate, LoginTemplate } from "@orion-ds/react/templates";
+```
+
 ## Theme & Brand Switching
 
 ### Using the Hook
@@ -324,39 +405,6 @@ Switch to Deepblue Brand
 );
 }
 \`\`\`
-
-## v2.0.0 Migration Guide
-
-### Breaking Changes
-
-#### Hero & CTA: `headline` → `title`
-
-\`\`\`diff
-
-- <Hero headline="Welcome" description="..." />
-
-* <Hero title="Welcome" description="..." />
-  \`\`\`
-
-#### DetailPanel: `subtitle` → `description`
-
-\`\`\`diff
-
-- <DetailPanel title="Edit" subtitle="User profile" />
-
-* <DetailPanel title="Edit" description="User profile" />
-  \`\`\`
-
-#### ThemeProvider: Flat Props (Optional)
-
-\`\`\`diff
-
-- <ThemeProvider options={{ defaultBrand: 'red' }}>
-
-* <ThemeProvider defaultBrand="red">
-  \`\`\`
-
-> **Backward Compatibility**: The old props still work but show deprecation warnings in development.
 
 ## License
 
